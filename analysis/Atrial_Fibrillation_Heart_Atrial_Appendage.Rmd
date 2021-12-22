@@ -21,6 +21,37 @@ results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", tr
 source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
 ```
 
+## Weight QC
+
+<span style="color: red;">TO-DO: add enhanced QC reporting (total number of weights, why each variant was missing for all genes) </span>
+
+```{r}
+qclist_all <- list()
+
+qc_files <- paste0(results_dir, "/", list.files(results_dir, pattern="exprqc.Rd"))
+
+for (i in 1:length(qc_files)){
+  load(qc_files[i])
+  chr <- unlist(strsplit(rev(unlist(strsplit(qc_files[i], "_")))[1], "[.]"))[1]
+  qclist_all[[chr]] <- cbind(do.call(rbind, lapply(qclist,unlist)), as.numeric(substring(chr,4)))
+}
+
+qclist_all <- data.frame(do.call(rbind, qclist_all))
+colnames(qclist_all)[ncol(qclist_all)] <- "chr"
+
+rm(qclist, wgtlist, z_gene_chr)
+
+#number of imputed weights
+nrow(qclist_all)
+
+#number of imputed weights by chromosome
+table(qclist_all$chr)
+
+#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)
+
+```
+
 ## Load ctwas results
 
 ```{r echo=F}
@@ -102,6 +133,220 @@ rm(ctwas_res_s1)
 
 ```
 
+## Check convergence of parameters
+
+```{r}
+library(ggplot2)
+library(cowplot)
+
+load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd"))
+  
+df <- data.frame(niter = rep(1:ncol(group_prior_rec), 2),
+                 value = c(group_prior_rec[1,], group_prior_rec[2,]),
+                 group = rep(c("Gene", "SNP"), each = ncol(group_prior_rec)))
+df$group <- as.factor(df$group)
+
+df$value[df$group=="SNP"] <- df$value[df$group=="SNP"]*thin #adjust parameter to account for thin argument
+
+p_pi <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(pi)) +
+  ggtitle("Prior mean") +
+  theme_cowplot()
+
+df <- data.frame(niter = rep(1:ncol(group_prior_var_rec), 2),
+                 value = c(group_prior_var_rec[1,], group_prior_var_rec[2,]),
+                 group = rep(c("Gene", "SNP"), each = ncol(group_prior_var_rec)))
+df$group <- as.factor(df$group)
+p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(sigma^2)) +
+  ggtitle("Prior variance") +
+  theme_cowplot()
+
+plot_grid(p_pi, p_sigma2)
+
+#estimated group prior
+estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
+names(estimated_group_prior) <- c("gene", "snp")
+estimated_group_prior["snp"] <- estimated_group_prior["snp"]*thin #adjust parameter to account for thin argument
+print(estimated_group_prior)
+
+#estimated group prior variance
+estimated_group_prior_var <- group_prior_var_rec[,ncol(group_prior_var_rec)]
+names(estimated_group_prior_var) <- c("gene", "snp")
+print(estimated_group_prior_var)
+
+#report sample size
+print(sample_size)
+
+#report group size
+group_size <- c(nrow(ctwas_gene_res), n_snps)
+print(group_size)
+
+#estimated group PVE
+estimated_group_pve <- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+names(estimated_group_pve) <- c("gene", "snp")
+print(estimated_group_pve)
+
+#compare sum(PIP*mu2/sample_size) with above PVE calculation
+c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
+```
+
+## Genes with highest PIPs 
+
+```{r}
+#distribution of PIPs
+hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
+
+#genes with PIP>0.8 or 20 highest PIPs
+head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+```
+
+## Genes with largest effect sizes 
+
+```{r}
+#plot PIP vs effect size
+plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
+
+#genes with 20 largest effect sizes
+head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
+
+```
+
+## Genes with highest PVE 
+
+```{r}
+#genes with 20 highest pve
+head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
+
+```
+
+## Genes with largest z scores 
+
+```{r}
+#genes with 20 largest z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
+```
+
+## Comparing z scores and PIPs
+
+```{r}
+#set nominal signifiance threshold for z scores
+alpha <- 0.05
+
+#bonferroni adjusted threshold for z scores
+sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
+
+#Q-Q plot for z scores
+obs_z <- ctwas_gene_res$z[order(ctwas_gene_res$z)]
+exp_z <- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res))
+
+plot(exp_z, obs_z, xlab="Expected z", ylab="Observed z", main="Gene z score Q-Q plot")
+abline(a=0,b=1)
+
+#plot z score vs PIP
+plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP")
+abline(v=sig_thresh, col="red", lty=2)
+
+#proportion of significant z scores
+mean(abs(ctwas_gene_res$z) > sig_thresh)
+
+#genes with most significant z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
+```
+
+## Locus plots for genes and SNPs
+
+```{r, fig.height = 9, fig.width = 7}
+ctwas_gene_res_sortz <- ctwas_gene_res[order(-abs(ctwas_gene_res$z)),]
+report_cols_region <- report_cols[!(report_cols %in% c("num_eqtl"))]
+
+n_plots <- 5
+for (region_tag_plot in head(unique(ctwas_gene_res_sortz$region_tag), n_plots)){
+  ctwas_res_region <-  ctwas_res[ctwas_res$region_tag==region_tag_plot,]
+  start <- min(ctwas_res_region$pos)
+  end <- max(ctwas_res_region$pos)
+  
+  ctwas_res_region <- ctwas_res_region[order(ctwas_res_region$pos),]
+  ctwas_res_region_gene <- ctwas_res_region[ctwas_res_region$type=="gene",]
+  ctwas_res_region_snp <- ctwas_res_region[ctwas_res_region$type=="SNP",]
+  
+  #region name
+  print(paste0("Region: ", region_tag_plot))
+  
+  #table of genes in region
+  print(ctwas_res_region_gene[,report_cols_region])
+  
+  par(mfrow=c(4,1))
+  
+  #gene z scores
+  plot(ctwas_res_region_gene$pos, abs(ctwas_res_region_gene$z), xlab="Position", ylab="abs(gene_z)", xlim=c(start,end),
+   ylim=c(0,max(sig_thresh, abs(ctwas_res_region_gene$z))),
+   main=paste0("Region: ", region_tag_plot))
+  abline(h=sig_thresh,col="red",lty=2)
+  
+  #significance threshold for SNPs
+  alpha_snp <- 5*10^(-8)
+  sig_thresh_snp <- qnorm(1-alpha_snp/2, lower=T)
+  
+  #snp z scores
+  plot(ctwas_res_region_snp$pos, abs(ctwas_res_region_snp$z), xlab="Position", ylab="abs(snp_z)",xlim=c(start,end),
+   ylim=c(0,max(sig_thresh_snp, max(abs(ctwas_res_region_snp$z)))))
+  abline(h=sig_thresh_snp,col="purple",lty=2)
+  
+  #gene pips
+  plot(ctwas_res_region_gene$pos, ctwas_res_region_gene$susie_pip, xlab="Position", ylab="Gene PIP", xlim=c(start,end), ylim=c(0,1))
+  abline(h=0.8,col="blue",lty=2)
+  
+  #snp pips
+  plot(ctwas_res_region_snp$pos, ctwas_res_region_snp$susie_pip, xlab="Position", ylab="SNP PIP", xlim=c(start,end), ylim=c(0,1))
+  abline(h=0.8,col="blue",lty=2)
+}
+```
+
+## SNPs with highest PIPs 
+
+```{r}
+#snps with PIP>0.8 or 20 highest PIPs
+head(ctwas_snp_res[order(-ctwas_snp_res$susie_pip),report_cols_snps],
+max(sum(ctwas_snp_res$susie_pip>0.8), 20))
+
+```
+
+## SNPs with largest effect sizes 
+
+```{r}
+#plot PIP vs effect size
+#plot(ctwas_snp_res$susie_pip, ctwas_snp_res$mu2, xlab="PIP", ylab="mu^2", main="SNP PIPs vs Effect Size")
+
+#SNPs with 50 largest effect sizes
+head(ctwas_snp_res[order(-ctwas_snp_res$mu2),report_cols_snps],50)
+
+```
+
+## SNPs with highest PVE 
+
+```{r}
+#SNPs with 50 highest pve
+head(ctwas_snp_res[order(-ctwas_snp_res$PVE),report_cols_snps],50)
+
+```
+
+## SNPs with largest z scores 
+
+```{r}
+#histogram of (abs) SNP z scores
+hist(abs(ctwas_snp_res$z))
+
+#SNPs with 50 largest z scores
+head(ctwas_snp_res[order(-abs(ctwas_snp_res$z)),report_cols_snps],50)
+
+```
 
 ## Gene set enrichment for genes with PIP>0.8
 
