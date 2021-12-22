@@ -508,16 +508,16 @@ code/ctwas_config.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefbe71b7701a9a151008b0395bbbf55faccd8ef33targetblankfbe71b7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/fbe71b7701a9a151008b0395bbbf55faccd8ef33" target="_blank">fbe71b7</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree7e05bbc394287384daeb7802a9ccc009a246ad6etargetblank7e05bbca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/7e05bbc394287384daeb7802a9ccc009a246ad6e" target="_blank">7e05bbc</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefbe71b7701a9a151008b0395bbbf55faccd8ef33targetblankfbe71b7a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree7e05bbc394287384daeb7802a9ccc009a246ad6etargetblank7e05bbca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/fbe71b7701a9a151008b0395bbbf55faccd8ef33" target="_blank">fbe71b7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/7e05bbc394287384daeb7802a9ccc009a246ad6e" target="_blank">7e05bbc</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -569,6 +569,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/7e05bbc394287384daeb7802a9ccc009a246ad6e/analysis/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd" target="_blank">7e05bbc</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-12-22
+</td>
+<td>
+Start my new project
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/9cf0e70ad824b1554fe1f2598c64b5fcd4f11146/docs/Atrial_Fibrillation_Heart_Atrial_Appendage.html" target="_blank">9cf0e70</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-12-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -2652,6 +2686,281 @@ for (index in 1:length(sig_thresh_range)){
 
 lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col=&quot;red&quot;, lty=2)</code></pre>
 <p><img src="figure/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
+Past versions of unnamed-chunk-16-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-16-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9cf0e70ad824b1554fe1f2598c64b5fcd4f11146/docs/figure/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd/unnamed-chunk-16-1.png" target="_blank">9cf0e70</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="sensitivity-specificity-and-precision-for-silver-standard-genes---bystanders-only" class="section level2">
+<h2>Sensitivity, specificity and precision for silver standard genes - bystanders only</h2>
+<p>This section first uses imputed silver standard genes to identify bystander genes within 1Mb. The bystander gene list is then subset to only genes with imputed expression in this analysis. Then, the ctwas and TWAS gene lists from this analysis are subset to only genes that are in the (subset) silver standard and bystander genes. These gene lists are then used to compute sensitivity, specificity and precision for ctwas and TWAS.</p>
+<pre class="r"><code>library(biomaRt)
+library(GenomicRanges)</code></pre>
+<pre><code>Loading required package: stats4</code></pre>
+<pre><code>Loading required package: BiocGenerics</code></pre>
+<pre><code>Loading required package: parallel</code></pre>
+<pre><code>
+Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:parallel&#39;:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which, which.max, which.min</code></pre>
+<pre><code>Loading required package: S4Vectors</code></pre>
+<pre><code>
+Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    expand.grid</code></pre>
+<pre><code>Loading required package: IRanges</code></pre>
+<pre><code>Loading required package: GenomeInfoDb</code></pre>
+<pre class="r"><code>ensembl &lt;- useEnsembl(biomart=&quot;ENSEMBL_MART_ENSEMBL&quot;, dataset=&quot;hsapiens_gene_ensembl&quot;)
+G_list &lt;- getBM(filters= &quot;chromosome_name&quot;, attributes= c(&quot;hgnc_symbol&quot;,&quot;chromosome_name&quot;,&quot;start_position&quot;,&quot;end_position&quot;,&quot;gene_biotype&quot;), values=1:22, mart=ensembl)
+G_list &lt;- G_list[G_list$hgnc_symbol!=&quot;&quot;,]
+G_list &lt;- G_list[G_list$gene_biotype %in% c(&quot;protein_coding&quot;,&quot;lncRNA&quot;),]
+G_list$start &lt;- G_list$start_position
+G_list$end &lt;- G_list$end_position
+G_list_granges &lt;- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
+
+#remove genes without imputed expression from gene lists
+known_annotations &lt;- known_annotations[known_annotations %in% ctwas_gene_res$genename]
+
+known_annotations_positions &lt;- G_list[G_list$hgnc_symbol %in% known_annotations,]
+half_window &lt;- 1000000
+known_annotations_positions$start &lt;- known_annotations_positions$start_position - half_window
+known_annotations_positions$end &lt;- known_annotations_positions$end_position + half_window
+known_annotations_positions$start[known_annotations_positions$start&lt;1] &lt;- 1
+known_annotations_granges &lt;- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
+
+bystanders &lt;- findOverlaps(known_annotations_granges,G_list_granges)
+bystanders &lt;- unique(subjectHits(bystanders))
+bystanders &lt;- G_list$hgnc_symbol[bystanders]
+bystanders &lt;- unique(bystanders[!(bystanders %in% known_annotations)])
+unrelated_genes &lt;- bystanders
+
+#save gene lists
+save(known_annotations, file=paste0(results_dir, &quot;/known_annotations.Rd&quot;))
+save(unrelated_genes, file=paste0(results_dir, &quot;/bystanders.Rd&quot;))
+
+
+load(paste0(results_dir, &quot;/known_annotations.Rd&quot;))
+load(paste0(results_dir, &quot;/bystanders.Rd&quot;))
+
+
+#remove genes without imputed expression from bystander list
+unrelated_genes &lt;- unrelated_genes[unrelated_genes %in% ctwas_gene_res$genename]
+
+#number of genes in known annotations (with imputed expression)
+print(length(known_annotations))</code></pre>
+<pre><code>[1] 44</code></pre>
+<pre class="r"><code>#number of bystander genes (with imputed expression)
+print(length(unrelated_genes))</code></pre>
+<pre><code>[1] 605</code></pre>
+<pre class="r"><code>#subset results to genes in known annotations or bystanders
+ctwas_gene_res_subset &lt;- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),]
+
+#assign ctwas and TWAS genes
+ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;0.8]
+twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;sig_thresh]
+
+#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.582104</code></pre>
+<pre class="r"><code>#number of ctwas genes (in known annotations or bystanders)
+length(ctwas_genes)</code></pre>
+<pre><code>[1] 1</code></pre>
+<pre class="r"><code>#number of TWAS genes (in known annotations or bystanders)
+length(twas_genes)</code></pre>
+<pre><code>[1] 2</code></pre>
+<pre class="r"><code>#sensitivity / recall
+sensitivity &lt;- rep(NA,2)
+names(sensitivity) &lt;- c(&quot;ctwas&quot;, &quot;TWAS&quot;)
+sensitivity[&quot;ctwas&quot;] &lt;- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+sensitivity[&quot;TWAS&quot;] &lt;- sum(twas_genes %in% known_annotations)/length(known_annotations)
+sensitivity</code></pre>
+<pre><code>ctwas  TWAS 
+    0     0 </code></pre>
+<pre class="r"><code>#specificity / (1 - False Positive Rate)
+specificity &lt;- rep(NA,2)
+names(specificity) &lt;- c(&quot;ctwas&quot;, &quot;TWAS&quot;)
+specificity[&quot;ctwas&quot;] &lt;- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+specificity[&quot;TWAS&quot;] &lt;- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+specificity</code></pre>
+<pre><code>    ctwas      TWAS 
+0.9983471 0.9966942 </code></pre>
+<pre class="r"><code>#precision / PPV / (1 - False Discovery Rate)
+precision &lt;- rep(NA,2)
+names(precision) &lt;- c(&quot;ctwas&quot;, &quot;TWAS&quot;)
+precision[&quot;ctwas&quot;] &lt;- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+precision[&quot;TWAS&quot;] &lt;- sum(twas_genes %in% known_annotations)/length(twas_genes)
+precision</code></pre>
+<pre><code>ctwas  TWAS 
+    0     0 </code></pre>
+<pre class="r"><code>#store sensitivity and specificity calculations for plots
+sensitivity_plot &lt;- sensitivity
+specificity_plot &lt;- specificity
+
+#precision / PPV by PIP bin
+pip_range &lt;- c(0.2, 0.4, 0.6, 0.8, 1)
+precision_range &lt;- rep(NA, length(pip_range))
+
+for (i in 1:length(pip_range)){
+  pip_upper &lt;- pip_range[i]
+
+  if (i==1){
+    pip_lower &lt;- 0
+  } else {
+    pip_lower &lt;- pip_range[i-1]
+  }
+  
+  #assign ctwas genes in PIP bin
+  ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;=pip_lower &amp; ctwas_gene_res_subset$susie_pip&lt;pip_upper]
+  
+  precision_range[i] &lt;- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+}
+
+names(precision_range) &lt;- paste(c(0, pip_range[-length(pip_range)]), pip_range,sep=&quot; - &quot;)
+
+barplot(precision_range, ylim=c(0,1), main=&quot;Precision by PIP Range&quot;, xlab=&quot;PIP Range&quot;, ylab=&quot;Precision&quot;)
+abline(h=0.2, lty=2)
+abline(h=0.4, lty=2)
+abline(h=0.6, lty=2)
+abline(h=0.8, lty=2)
+barplot(precision_range, add=T, col=&quot;darkgrey&quot;)</code></pre>
+<p><img src="figure/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#precision / PPV by PIP threshold
+#pip_range &lt;- c(0.2, 0.4, 0.6, 0.8, 1)
+pip_range &lt;- c(0.5, 0.8, 1)
+precision_range &lt;- rep(NA, length(pip_range))
+number_detected &lt;- rep(NA, length(pip_range))
+
+for (i in 1:length(pip_range)){
+  pip_upper &lt;- pip_range[i]
+
+  if (i==1){
+    pip_lower &lt;- 0
+  } else {
+    pip_lower &lt;- pip_range[i-1]
+  }
+  
+  #assign ctwas genes using PIP threshold
+  ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;=pip_lower]
+  
+  number_detected[i] &lt;- length(ctwas_genes)
+  precision_range[i] &lt;- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+}
+
+names(precision_range) &lt;- paste0(&quot;&gt;= &quot;, c(0, pip_range[-length(pip_range)]))
+
+precision_range &lt;- precision_range*100
+
+precision_range &lt;- c(precision_range, precision[&quot;TWAS&quot;]*100)
+names(precision_range)[4] &lt;- &quot;TWAS Bonferroni&quot;
+number_detected &lt;- c(number_detected, length(twas_genes))
+
+barplot(precision_range, ylim=c(0,100), main=&quot;Precision for Distinguishing Silver Standard and Bystander Genes&quot;, xlab=&quot;PIP Threshold for Detection&quot;, ylab=&quot;% of Detected Genes in Silver Standard&quot;)
+abline(h=20, lty=2)
+abline(h=40, lty=2)
+abline(h=60, lty=2)
+abline(h=80, lty=2)
+xx &lt;- barplot(precision_range, add=T, col=c(rep(&quot;darkgrey&quot;,3), &quot;white&quot;))
+text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, &quot; detected&quot;), pos = 3, cex=0.8)</code></pre>
+<p><img src="figure/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#text(x = xx, y = precision_range, label = paste0(round(precision_range,1), &quot;%&quot;), pos = 3, cex=0.8, offset = 1.5)
+
+#false discovery rate by PIP threshold
+
+barplot(100-precision_range, ylim=c(0,100), main=&quot;False Discovery Rate for Distinguishing Silver Standard and Bystander Genes&quot;, xlab=&quot;PIP Threshold for Detection&quot;, ylab=&quot;% Bystanders in Detected Genes&quot;)
+abline(h=20, lty=2)
+abline(h=40, lty=2)
+abline(h=60, lty=2)
+abline(h=80, lty=2)
+xx &lt;- barplot(100-precision_range, add=T, col=c(rep(&quot;darkgrey&quot;,3), &quot;white&quot;))
+text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, &quot; detected&quot;), pos = 3, cex=0.8)</code></pre>
+<p><img src="figure/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd/unnamed-chunk-17-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#text(x = xx, y = precision_range, label = paste0(round(precision_range,1), &quot;%&quot;), pos = 3, cex=0.8, offset = 1.5)
+
+#ROC curves
+
+pip_range &lt;- (0:1000)/1000
+sensitivity &lt;- rep(NA, length(pip_range))
+specificity &lt;- rep(NA, length(pip_range))
+
+for (index in 1:length(pip_range)){
+  pip &lt;- pip_range[index]
+  ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;=pip]
+  sensitivity[index] &lt;- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] &lt;- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+}
+
+plot(1-specificity, sensitivity, type=&quot;l&quot;, xlim=c(0,1), ylim=c(0,1), main=&quot;&quot;, xlab=&quot;1 - Specificity&quot;, ylab=&quot;Sensitivity&quot;)
+title(expression(&quot;ROC Curve for cTWAS (black) and TWAS (&quot; * phantom(&quot;red&quot;) * &quot;)&quot;))
+title(expression(phantom(&quot;ROC Curve for cTWAS (black) and TWAS (&quot;) * &quot;red&quot; * phantom(&quot;)&quot;)), col.main=&quot;red&quot;)
+
+sig_thresh_range &lt;- seq(from=0, to=max(abs(ctwas_gene_res_subset$z)), length.out=length(pip_range))
+
+for (index in 1:length(sig_thresh_range)){
+  sig_thresh_plot &lt;- sig_thresh_range[index]
+  twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;=sig_thresh_plot]
+  sensitivity[index] &lt;- sum(twas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] &lt;- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+}
+
+lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col=&quot;red&quot;, lty=1)
+
+abline(a=0,b=1,lty=3)
+
+#add previously computed points from the analysis
+ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;0.8]
+twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;sig_thresh]
+
+points(1-specificity_plot[&quot;ctwas&quot;], sensitivity_plot[&quot;ctwas&quot;], pch=21, bg=&quot;black&quot;)
+points(1-specificity_plot[&quot;TWAS&quot;], sensitivity_plot[&quot;TWAS&quot;], pch=21, bg=&quot;red&quot;)</code></pre>
+<p><img src="figure/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd/unnamed-chunk-17-4.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -2676,33 +2985,47 @@ locale:
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
 
 other attached packages:
-[1] readxl_1.3.1      WebGestaltR_0.4.4 disgenet2r_0.99.2 enrichR_3.0      
-[5] cowplot_1.0.0     ggplot2_3.3.5     workflowr_1.6.2  
+ [1] GenomicRanges_1.36.1 GenomeInfoDb_1.20.0  IRanges_2.18.1      
+ [4] S4Vectors_0.22.1     BiocGenerics_0.30.0  biomaRt_2.40.1      
+ [7] readxl_1.3.1         WebGestaltR_0.4.4    disgenet2r_0.99.2   
+[10] enrichR_3.0          cowplot_1.0.0        ggplot2_3.3.5       
+[13] workflowr_1.6.2     
 
 loaded via a namespace (and not attached):
- [1] httr_1.4.2        vroom_1.5.7       bit64_4.0.5       jsonlite_1.7.2   
- [5] foreach_1.5.1     assertthat_0.2.1  highr_0.9         doRNG_1.8.2      
- [9] blob_1.2.2        cellranger_1.1.0  yaml_2.2.1        gdtools_0.1.9    
-[13] pillar_1.6.4      RSQLite_2.2.8     lattice_0.20-38   glue_1.5.1       
-[17] digest_0.6.29     promises_1.0.1    colorspace_2.0-2  htmltools_0.5.2  
-[21] httpuv_1.5.1      Matrix_1.2-18     plyr_1.8.6        pkgconfig_2.0.3  
-[25] purrr_0.3.4       scales_1.1.1      svglite_1.2.2     whisker_0.3-2    
-[29] later_0.8.0       tzdb_0.2.0        git2r_0.26.1      tibble_3.1.6     
-[33] generics_0.1.1    farver_2.1.0      ellipsis_0.3.2    cachem_1.0.6     
-[37] withr_2.4.3       magrittr_2.0.1    crayon_1.4.2      memoise_2.0.1    
-[41] evaluate_0.14     apcluster_1.4.8   fs_1.5.2          fansi_0.5.0      
-[45] doParallel_1.0.16 tools_3.6.1       data.table_1.14.2 hms_1.1.1        
-[49] lifecycle_1.0.1   stringr_1.4.0     munsell_0.5.0     rngtools_1.5.2   
-[53] compiler_3.6.1    jquerylib_0.1.4   rlang_0.4.12      grid_3.6.1       
-[57] iterators_1.0.13  rjson_0.2.20      igraph_1.2.10     labeling_0.4.2   
-[61] rmarkdown_2.11    gtable_0.3.0      codetools_0.2-16  DBI_1.1.1        
-[65] curl_4.3.2        reshape2_1.4.4    R6_2.5.1          knitr_1.36       
-[69] dplyr_1.0.7       fastmap_1.1.0     bit_4.0.4         utf8_1.2.2       
-[73] rprojroot_2.0.2   readr_2.1.1       stringi_1.7.6     parallel_3.6.1   
-[77] Rcpp_1.0.7        vctrs_0.3.8       tidyselect_1.1.1  xfun_0.29        </code></pre>
+ [1] bitops_1.0-7           fs_1.5.2               bit64_4.0.5           
+ [4] progress_1.2.2         doParallel_1.0.16      httr_1.4.2            
+ [7] rprojroot_2.0.2        tools_3.6.1            doRNG_1.8.2           
+[10] utf8_1.2.2             R6_2.5.1               DBI_1.1.1             
+[13] colorspace_2.0-2       withr_2.4.3            prettyunits_1.1.1     
+[16] tidyselect_1.1.1       bit_4.0.4              curl_4.3.2            
+[19] compiler_3.6.1         git2r_0.26.1           Biobase_2.44.0        
+[22] labeling_0.4.2         scales_1.1.1           readr_2.1.1           
+[25] stringr_1.4.0          apcluster_1.4.8        digest_0.6.29         
+[28] rmarkdown_2.11         svglite_1.2.2          XVector_0.24.0        
+[31] pkgconfig_2.0.3        htmltools_0.5.2        fastmap_1.1.0         
+[34] highr_0.9              rlang_0.4.12           RSQLite_2.2.8         
+[37] jquerylib_0.1.4        farver_2.1.0           generics_0.1.1        
+[40] jsonlite_1.7.2         vroom_1.5.7            dplyr_1.0.7           
+[43] RCurl_1.98-1.5         magrittr_2.0.1         GenomeInfoDbData_1.2.1
+[46] Matrix_1.2-18          Rcpp_1.0.7             munsell_0.5.0         
+[49] fansi_0.5.0            gdtools_0.1.9          lifecycle_1.0.1       
+[52] stringi_1.7.6          whisker_0.3-2          yaml_2.2.1            
+[55] zlibbioc_1.30.0        plyr_1.8.6             grid_3.6.1            
+[58] blob_1.2.2             promises_1.0.1         crayon_1.4.2          
+[61] lattice_0.20-38        hms_1.1.1              knitr_1.36            
+[64] pillar_1.6.4           igraph_1.2.10          rjson_0.2.20          
+[67] rngtools_1.5.2         reshape2_1.4.4         codetools_0.2-16      
+[70] XML_3.99-0.3           glue_1.5.1             evaluate_0.14         
+[73] data.table_1.14.2      vctrs_0.3.8            tzdb_0.2.0            
+[76] httpuv_1.5.1           foreach_1.5.1          cellranger_1.1.0      
+[79] gtable_0.3.0           purrr_0.3.4            assertthat_0.2.1      
+[82] cachem_1.0.6           xfun_0.29              later_0.8.0           
+[85] tibble_3.1.6           iterators_1.0.13       AnnotationDbi_1.46.0  
+[88] memoise_2.0.1          ellipsis_0.3.2        </code></pre>
 </div>
 </div>
 
