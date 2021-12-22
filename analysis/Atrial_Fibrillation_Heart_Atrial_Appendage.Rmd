@@ -492,36 +492,36 @@ lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
 This section first uses imputed silver standard genes to identify bystander genes within 1Mb. The bystander gene list is then subset to only genes with imputed expression in this analysis. Then, the ctwas and TWAS gene lists from this analysis are subset to only genes that are in the (subset) silver standard and bystander genes. These gene lists are then used to compute sensitivity, specificity and precision for ctwas and TWAS.
 
 ```{r}
-library(biomaRt)
-library(GenomicRanges)
-
-ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
-G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
-G_list <- G_list[G_list$hgnc_symbol!="",]
-G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
-G_list$start <- G_list$start_position
-G_list$end <- G_list$end_position
-G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
-
-#remove genes without imputed expression from gene lists
-known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename]
-
-known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,]
-half_window <- 1000000
-known_annotations_positions$start <- known_annotations_positions$start_position - half_window
-known_annotations_positions$end <- known_annotations_positions$end_position + half_window
-known_annotations_positions$start[known_annotations_positions$start<1] <- 1
-known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
-
-bystanders <- findOverlaps(known_annotations_granges,G_list_granges)
-bystanders <- unique(subjectHits(bystanders))
-bystanders <- G_list$hgnc_symbol[bystanders]
-bystanders <- unique(bystanders[!(bystanders %in% known_annotations)])
-unrelated_genes <- bystanders
-
-#save gene lists
-save(known_annotations, file=paste0(results_dir, "/known_annotations.Rd"))
-save(unrelated_genes, file=paste0(results_dir, "/bystanders.Rd"))
+# library(biomaRt)
+# library(GenomicRanges)
+# 
+# ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+# G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
+# G_list <- G_list[G_list$hgnc_symbol!="",]
+# G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
+# G_list$start <- G_list$start_position
+# G_list$end <- G_list$end_position
+# G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
+# 
+# #remove genes without imputed expression from gene lists
+# known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename]
+# 
+# known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,]
+# half_window <- 1000000
+# known_annotations_positions$start <- known_annotations_positions$start_position - half_window
+# known_annotations_positions$end <- known_annotations_positions$end_position + half_window
+# known_annotations_positions$start[known_annotations_positions$start<1] <- 1
+# known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
+# 
+# bystanders <- findOverlaps(known_annotations_granges,G_list_granges)
+# bystanders <- unique(subjectHits(bystanders))
+# bystanders <- G_list$hgnc_symbol[bystanders]
+# bystanders <- unique(bystanders[!(bystanders %in% known_annotations)])
+# unrelated_genes <- bystanders
+# 
+# #save gene lists
+# save(known_annotations, file=paste0(results_dir, "/known_annotations.Rd"))
+# save(unrelated_genes, file=paste0(results_dir, "/bystanders.Rd"))
 
 
 load(paste0(results_dir, "/known_annotations.Rd"))
@@ -695,3 +695,78 @@ points(1-specificity_plot["TWAS"], sensitivity_plot["TWAS"], pch=21, bg="red")
 
 ```
 
+## PIP Manhattan Plot
+
+```{r}
+library(tibble)
+library(tidyverse)
+
+full.gene.pip.summary <- data.frame(gene_name = ctwas_gene_res$genename, 
+                                    gene_pip = ctwas_gene_res$susie_pip, 
+                                    gene_id = ctwas_gene_res$id, 
+                                    chr = as.integer(ctwas_gene_res$chrom),
+                                    start = ctwas_gene_res$pos / 1e3,
+                                    is_highlight = F, stringsAsFactors = F) %>% as_tibble()
+full.gene.pip.summary$is_highlight <- full.gene.pip.summary$gene_pip > 0.80
+
+don <- full.gene.pip.summary %>% 
+  
+  # Compute chromosome size
+  group_by(chr) %>% 
+  summarise(chr_len=max(start)) %>% 
+  
+  # Calculate cumulative position of each chromosome
+  mutate(tot=cumsum(chr_len)-chr_len) %>%
+  dplyr::select(-chr_len) %>%
+  
+  # Add this info to the initial dataset
+  left_join(full.gene.pip.summary, ., by=c("chr"="chr")) %>%
+  
+  # Add a cumulative position of each SNP
+  arrange(chr, start) %>%
+  mutate( BPcum=start+tot)
+
+axisdf <- don %>% group_by(chr) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 )
+
+x_axis_labels <- axisdf$chr
+x_axis_labels[seq(1,21,2)] <- ""
+
+ggplot(don, aes(x=BPcum, y=gene_pip)) +
+  
+  # Show all points
+  ggrastr::geom_point_rast(aes(color=as.factor(chr)), size=2) +
+  scale_color_manual(values = rep(c("grey", "skyblue"), 22 )) +
+  
+  # custom X axis:
+  # scale_x_continuous(label = axisdf$chr, 
+  #                    breaks= axisdf$center,
+  #                    guide = guide_axis(n.dodge = 2)) +
+  scale_x_continuous(label = x_axis_labels,
+                     breaks = axisdf$center) +
+  
+  scale_y_continuous(expand = c(0, 0), limits = c(0,1.25), breaks=(1:5)*0.2, minor_breaks=(1:10)*0.1) + # remove space between plot area and x axis
+  
+  # Add highlighted points
+  ggrastr::geom_point_rast(data=subset(don, is_highlight==T), color="orange", size=2) +
+  
+  # Add label using ggrepel to avoid overlapping
+  ggrepel::geom_label_repel(data=subset(don, is_highlight==T), 
+                            aes(label=gene_name), 
+                            size=4,
+                            min.segment.length = 0, 
+                            label.size = NA,
+                            fill = alpha(c("white"),0)) +
+  
+  # Custom the theme:
+  theme_bw() +
+  theme( 
+    text = element_text(size = 14),
+    legend.position="none",
+    panel.border = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  xlab("Chromosome") + 
+  ylab("cTWAS PIP")
+
+```
