@@ -11,8 +11,6 @@ params:
   weight: "Brain_Putamen_basal_ganglia"
 ---
 
-## Introduction
-
 ```{r echo=F}
 analysis_id <- params$analysis_id
 trait_id <- params$trait_id
@@ -25,7 +23,7 @@ source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
 
 ## Weight QC
 
-```{r}
+```{r echo=F}
 qclist_all <- list()
 
 qc_files <- paste0(results_dir, "/", list.files(results_dir, pattern="exprqc.Rd"))
@@ -138,7 +136,7 @@ rm(ctwas_res_s1)
 
 ## Check convergence of parameters
 
-```{r}
+```{r echo=F}
 library(ggplot2)
 library(cowplot)
 
@@ -200,7 +198,7 @@ c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
 
 ## Genes with highest PIPs 
 
-```{r}
+```{r echo=F}
 #distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 
@@ -210,7 +208,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas
 
 ## Genes with largest effect sizes 
 
-```{r}
+```{r echo=F}
 #plot PIP vs effect size
 plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
 
@@ -221,7 +219,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
 
 ## Genes with highest PVE 
 
-```{r}
+```{r echo=F}
 #genes with 20 highest pve
 head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
 
@@ -229,7 +227,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
 
 ## Genes with largest z scores 
 
-```{r}
+```{r echo=F}
 #genes with 20 largest z scores
 head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
@@ -237,7 +235,7 @@ head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
 ## Comparing z scores and PIPs
 
-```{r}
+```{r echo=F}
 #set nominal signifiance threshold for z scores
 alpha <- 0.05
 
@@ -265,7 +263,7 @@ head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
 ## Sensitivity, specificity and precision for silver standard genes
 
-```{r}
+```{r echo=F}
 library("readxl")
 
 known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="BMI")

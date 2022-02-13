@@ -11,8 +11,6 @@ params:
   weight: "Pancreas"
 ---
 
-## Introduction
-
 ```{r echo=F}
 analysis_id <- params$analysis_id
 trait_id <- params$trait_id
@@ -25,7 +23,7 @@ source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
 
 ## Weight QC
 
-```{r}
+```{r echo=F}
 qclist_all <- list()
 
 qc_files <- paste0(results_dir, "/", list.files(results_dir, pattern="exprqc.Rd"))
@@ -138,7 +136,7 @@ rm(ctwas_res_s1)
 
 ## Check convergence of parameters
 
-```{r}
+```{r echo=F}
 library(ggplot2)
 library(cowplot)
 
@@ -200,7 +198,7 @@ c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
 
 ## Genes with highest PIPs 
 
-```{r}
+```{r echo=F}
 #distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 
@@ -210,7 +208,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas
 
 ## Genes with largest effect sizes 
 
-```{r}
+```{r echo=F}
 #plot PIP vs effect size
 plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
 
@@ -221,7 +219,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
 
 ## Genes with highest PVE 
 
-```{r}
+```{r echo=F}
 #genes with 20 highest pve
 head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
 
@@ -229,7 +227,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
 
 ## Genes with largest z scores 
 
-```{r}
+```{r echo=F}
 #genes with 20 largest z scores
 head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
@@ -237,7 +235,7 @@ head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
 ## Comparing z scores and PIPs
 
-```{r}
+```{r echo=F}
 #set nominal signifiance threshold for z scores
 alpha <- 0.05
 
@@ -265,7 +263,7 @@ head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
 ## Sensitivity, specificity and precision for silver standard genes
 
-```{r}
+```{r echo=F}
 library("readxl")
 
 known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="T2D")
@@ -342,96 +340,5 @@ for (index in 1:length(sig_thresh_range)){
 }
 
 lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
-
-```
-
-## Sensitivity, specificity and precision for silver standard genes - bystanders only
-
-This section first uses all silver standard genes to identify bystander genes within 1Mb. The silver standard and bystander gene lists are then subset to only genes with imputed expression in this analysis. Then, the ctwas and TWAS gene lists from this analysis are subset to only genes that are in the (subset) silver standard and bystander genes. These gene lists are then used to compute sensitivity, specificity and precision for ctwas and TWAS.
-
-```{r}
-library(biomaRt)
-library(GenomicRanges)
-
-ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
-G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
-G_list <- G_list[G_list$hgnc_symbol!="",]
-G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
-G_list$start <- G_list$start_position
-G_list$end <- G_list$end_position
-G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
-
-known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,]
-half_window <- 1000000
-known_annotations_positions$start <- known_annotations_positions$start_position - half_window
-known_annotations_positions$end <- known_annotations_positions$end_position + half_window
-known_annotations_positions$start[known_annotations_positions$start<1] <- 1
-known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
-
-bystanders <- findOverlaps(known_annotations_granges,G_list_granges)
-bystanders <- unique(subjectHits(bystanders))
-bystanders <- G_list$hgnc_symbol[bystanders]
-bystanders <- bystanders[!(bystanders %in% known_annotations)]
-unrelated_genes <- bystanders
-
-#number of genes in known annotations
-print(length(known_annotations))
-
-#number of genes in known annotations with imputed expression
-print(sum(known_annotations %in% ctwas_gene_res$genename))
-
-#number of bystander genes
-print(length(unrelated_genes))
-
-#number of bystander genes with imputed expression
-print(sum(unrelated_genes %in% ctwas_gene_res$genename))
-
-#remove genes without imputed expression from gene lists
-known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename]
-unrelated_genes <- unrelated_genes[unrelated_genes %in% ctwas_gene_res$genename]
-
-#assign ctwas and TWAS genes
-ctwas_genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.8]
-twas_genes <- ctwas_gene_res$genename[abs(ctwas_gene_res$z)>sig_thresh]
-
-#significance threshold for TWAS
-print(sig_thresh)
-
-#number of ctwas genes
-length(ctwas_genes)
-
-#number of ctwas genes in known annotations or bystanders
-sum(ctwas_genes %in% c(known_annotations, unrelated_genes))
-
-#number of ctwas genes
-length(twas_genes)
-
-#number of TWAS genes
-sum(twas_genes %in% c(known_annotations, unrelated_genes))
-
-#remove genes not in known or bystander lists from results
-ctwas_genes <- ctwas_genes[ctwas_genes %in% c(known_annotations, unrelated_genes)]
-twas_genes <- twas_genes[twas_genes %in% c(known_annotations, unrelated_genes)]
-
-#sensitivity / recall
-sensitivity <- rep(NA,2)
-names(sensitivity) <- c("ctwas", "TWAS")
-sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
-sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
-sensitivity
-
-#specificity
-specificity <- rep(NA,2)
-names(specificity) <- c("ctwas", "TWAS")
-specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
-specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
-specificity
-
-#precision / PPV
-precision <- rep(NA,2)
-names(precision) <- c("ctwas", "TWAS")
-precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
-precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes)
-precision
 
 ```
