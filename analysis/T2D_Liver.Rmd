@@ -19,6 +19,7 @@ weight <- params$weight
 results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
 
 source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
+options(digits = 5)
 ```
 
 ## Weight QC
@@ -38,7 +39,9 @@ qclist_all <- data.frame(do.call(rbind, qclist_all))
 colnames(qclist_all)[ncol(qclist_all)] <- "chr"
 
 rm(qclist, wgtlist, z_gene_chr)
+```
 
+```{r}
 #number of imputed weights
 nrow(qclist_all)
 
@@ -50,10 +53,7 @@ sum(qclist_all$nmiss==0)
 
 #proportion of imputed weights without missing variants
 mean(qclist_all$nmiss==0)
-
 ```
-
-## Load ctwas results
 
 ```{r echo=F}
 #load ctwas results
@@ -136,7 +136,7 @@ rm(ctwas_res_s1)
 
 ## Check convergence of parameters
 
-```{r echo=F}
+```{r echo=F,message=F}
 library(ggplot2)
 library(cowplot)
 
@@ -168,7 +168,9 @@ p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
   theme_cowplot()
 
 plot_grid(p_pi, p_sigma2)
+```
 
+```{r}
 #estimated group prior
 estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
 names(estimated_group_prior) <- c("gene", "snp")
