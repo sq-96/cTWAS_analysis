@@ -305,7 +305,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-02-14
+<strong>Last updated:</strong> 2022-02-22
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -336,16 +336,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree0ade7d35bd8599d02056019128156527dee8ab3ctargetblank0ade7d3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/0ade7d35bd8599d02056019128156527dee8ab3c" target="_blank">0ade7d3</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4b58620611c93f2153695e24ba981d53ebd4d63atargetblank4b58620a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/4b58620611c93f2153695e24ba981d53ebd4d63a" target="_blank">4b58620</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree0ade7d35bd8599d02056019128156527dee8ab3ctargetblank0ade7d3a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4b58620611c93f2153695e24ba981d53ebd4d63atargetblank4b58620a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/0ade7d35bd8599d02056019128156527dee8ab3c" target="_blank">0ade7d3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/4b58620611c93f2153695e24ba981d53ebd4d63a" target="_blank">4b58620</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -353,12 +353,19 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .ipynb_checkpoints/
-    Ignored:    code/T2D_out/
 
 Untracked files:
+    Untracked:  Rplot.png
+    Untracked:  analysis/Glucose_Adipose_Subcutaneous.Rmd
+    Untracked:  analysis/Glucose_Adipose_Visceral_Omentum.Rmd
+    Untracked:  analysis/Splicing_Test.Rmd
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  code/AF_out/
+    Untracked:  code/BMI_S_out/
     Untracked:  code/BMI_out/
+    Untracked:  code/Glucose_out/
+    Untracked:  code/LDL_S_out/
+    Untracked:  code/T2D_out/
     Untracked:  code/ctwas_config.R
     Untracked:  code/mapping.R
     Untracked:  code/out/
@@ -367,18 +374,33 @@ Untracked files:
     Untracked:  code/run_AF_ctwas_rss_LDR.R
     Untracked:  code/run_BMI_analysis.sbatch
     Untracked:  code/run_BMI_analysis.sh
+    Untracked:  code/run_BMI_analysis_S.sbatch
+    Untracked:  code/run_BMI_analysis_S.sh
     Untracked:  code/run_BMI_ctwas_rss_LDR.R
+    Untracked:  code/run_BMI_ctwas_rss_LDR_S.R
+    Untracked:  code/run_Glucose_analysis.sbatch
+    Untracked:  code/run_Glucose_analysis.sh
+    Untracked:  code/run_Glucose_ctwas_rss_LDR.R
+    Untracked:  code/run_LDL_analysis_S.sbatch
+    Untracked:  code/run_LDL_analysis_S.sh
+    Untracked:  code/run_LDL_ctwas_rss_LDR_S.R
     Untracked:  code/run_T2D_analysis.sbatch
     Untracked:  code/run_T2D_analysis.sh
     Untracked:  code/run_T2D_ctwas_rss_LDR.R
     Untracked:  data/.ipynb_checkpoints/
     Untracked:  data/AF/
     Untracked:  data/BMI/
+    Untracked:  data/BMI_S/
+    Untracked:  data/Glucose/
+    Untracked:  data/LDL_S/
+    Untracked:  data/T2D/
+    Untracked:  data/TEST/
     Untracked:  data/UKBB/
     Untracked:  data/UKBB_SNPs_Info.text
     Untracked:  data/gene_OMIM.txt
     Untracked:  data/gene_pip_0.8.txt
     Untracked:  data/mashr_Heart_Atrial_Appendage.db
+    Untracked:  data/mashr_sqtl/
     Untracked:  data/summary_known_genes_annotations.xlsx
     Untracked:  data/untitled.txt
 
@@ -419,6 +441,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4b58620611c93f2153695e24ba981d53ebd4d63a/analysis/index.Rmd" target="_blank">4b58620</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-22
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/bb3a9468b0c0f68deb9f0601ec7a768fa4327aad/docs/index.html" target="_blank">bb3a946</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -832,10 +888,8 @@ Start workflowr project.
 <p>BMI - Brain Hippocampus <a href="BMI_Brain_Hippocampus.html">link</a>.</p>
 <p>BMI - Brain Frontal Cortex BA9 <a href="BMI_Brain_Frontal_Cortex_BA9.html">link</a>.</p>
 <p>BMI - Brain Cerebellum <a href="BMI_Brain_Cerebellum.html">link</a>.</p>
-<p>BMI - Brain Hippocampus <a href="BMI_Brain_Hippocampus.html">link</a>.</p>
 <p>BMI - Brain Cerebellar Hemisphere <a href="BMI_Brain_Cerebellar_Hemisphere.html">link</a>.</p>
 <p>BMI - Brain Caudate basal ganglia <a href="BMI_Brain_Caudate_basal_ganglia.html">link</a>.</p>
-<p>BMI - Brain Cerebellar Hemisphere <a href="BMI_Brain_Cerebellar_Hemisphere.html">link</a>.</p>
 <p>BMI - Brain Anterior cingulate cortex BA24 <a href="BMI_Brain_Anterior_cingulate_cortex_BA24.html">link</a>.</p>
 <p>BMI - Brain Amygdala <a href="BMI_Brain_Amygdala.html">link</a>.</p>
 <p>Welcome to my research website.</p>
