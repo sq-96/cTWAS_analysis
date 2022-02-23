@@ -6,9 +6,9 @@ output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "BMI_Brain_Cortex"
+  analysis_id: "BMI_Brain_Substantia_nigra"
   trait_id: "BMI_S"
-  weight: "Brain_Cortex"
+  weight: "Brain_Substantia_nigra"
 ---
 
 ```{r echo=F}
@@ -511,4 +511,3 @@ for (index in 1:length(sig_thresh_range)){
 
 lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
 ```
-

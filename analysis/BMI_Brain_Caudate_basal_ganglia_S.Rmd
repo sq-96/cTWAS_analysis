@@ -6,9 +6,9 @@ output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "BMI_Brain_Cortex"
+  analysis_id: "BMI_Brain_Caudate_basal_ganglia"
   trait_id: "BMI_S"
-  weight: "Brain_Cortex"
+  weight: "Brain_Caudate_basal_ganglia"
 ---
 
 ```{r echo=F}
