@@ -507,16 +507,16 @@ code/ctwas_config.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree0e6a2f2c3118b5f30ca0127df8276597f53c2607targetblank0e6a2f2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/0e6a2f2c3118b5f30ca0127df8276597f53c2607" target="_blank">0e6a2f2</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree5c37a5d91b99c4299f94f486608c8735de02fd62targetblank5c37a5da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/5c37a5d91b99c4299f94f486608c8735de02fd62" target="_blank">5c37a5d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree0e6a2f2c3118b5f30ca0127df8276597f53c2607targetblank0e6a2f2a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree5c37a5d91b99c4299f94f486608c8735de02fd62targetblank5c37a5da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/0e6a2f2c3118b5f30ca0127df8276597f53c2607" target="_blank">0e6a2f2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/5c37a5d91b99c4299f94f486608c8735de02fd62" target="_blank">5c37a5d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -632,6 +632,40 @@ Message
 <tbody>
 <tr>
 <td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/5c37a5d91b99c4299f94f486608c8735de02fd62/analysis/T2D_Adipose_Visceral_Omentum.Rmd" target="_blank">5c37a5d</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-26
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/3fa3a64422585dc9f94588111e57ecd6aaa3aa5e/docs/T2D_Adipose_Visceral_Omentum.html" target="_blank">3fa3a64</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 html
 </td>
 <td>
@@ -707,77 +741,25 @@ update
 </div>
 <div id="weight-qc" class="section level2">
 <h2>Weight QC</h2>
+<pre class="r"><code>#number of imputed weights
+nrow(qclist_all)</code></pre>
 <pre><code>[1] 8279</code></pre>
+<pre class="r"><code>#number of imputed weights by chromosome
+table(qclist_all$chr)</code></pre>
 <pre><code>
   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
 860 632 533 357 434 491 417 287 316 367 525 508 179 281 284 320 451 139 400 239 
  21  22 
  83 176 </code></pre>
+<pre class="r"><code>#number of imputed weights without missing variants
+sum(qclist_all$nmiss==0)</code></pre>
 <pre><code>[1] 4625</code></pre>
-<pre><code>[1] 0.5586423</code></pre>
-</div>
-<div id="load-ctwas-results" class="section level2">
-<h2>Load ctwas results</h2>
+<pre class="r"><code>#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)</code></pre>
+<pre><code>[1] 0.5586</code></pre>
 </div>
 <div id="check-convergence-of-parameters" class="section level2">
 <h2>Check convergence of parameters</h2>
-<pre><code>
-********************************************************</code></pre>
-<pre><code>Note: As of version 1.0.0, cowplot does not change the</code></pre>
-<pre><code>  default ggplot2 theme anymore. To recover the previous</code></pre>
-<pre><code>  behavior, execute:
-  theme_set(theme_cowplot())</code></pre>
-<pre><code>********************************************************</code></pre>
-<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
-Past versions of unnamed-chunk-4-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-4-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-4-1.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre><code>        gene          snp 
-0.0185530132 0.0003497053 </code></pre>
-<pre><code>    gene      snp 
-7.211326 8.953709 </code></pre>
-<pre><code>[1] 62892</code></pre>
-<pre><code>[1]    8279 5017190</code></pre>
-<pre><code>      gene        snp 
-0.01761214 0.24978730 </code></pre>
-<pre><code>[1] 0.102309 1.400366</code></pre>
-</div>
-<div id="genes-with-highest-pips" class="section level2">
-<h2>Genes with highest PIPs</h2>
 <p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
@@ -803,6 +785,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/3fa3a64422585dc9f94588111e57ecd6aaa3aa5e/docs/figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-5-1.png" target="_blank">3fa3a64</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-5-1.png" target="_blank">e6bc169</a>
 </td>
 <td>
@@ -816,377 +809,259 @@ sq-96
 </table>
 </div>
 </div>
-<pre><code>         genename region_tag susie_pip      mu2          PVE         z num_eqtl
-8882      POLR2J3       7_63 0.9604481 25.73621 0.0003930277  4.987179        1
-7980        LMOD1      1_102 0.9455781 24.42585 0.0003672414 -4.906667        1
-249        ANGEL1      14_36 0.9355098 21.80009 0.0003242733  4.558286        2
-3617         ARG1       6_87 0.9093784 29.86900 0.0004318868 -5.606383        1
-1848         CTSZ      20_34 0.8804599 20.17505 0.0002824416 -3.895833        1
-7655        PTH1R       3_33 0.8779571 28.46963 0.0003974292 -5.646341        1
-3290        GRB14      2_100 0.8747366 25.00435 0.0003477743  5.163265        1
-14287 RP5-899E9.1       7_49 0.8131882 19.91257 0.0002574678 -4.333333        1
-4668       ZNF236      18_45 0.7874377 20.13940 0.0002521548 -4.378049        1
-7322        NTAN1      16_15 0.7753888 19.37072 0.0002388196  4.191781        1
-9579        DMRT2        9_1 0.7497494 19.40307 0.0002313082 -4.317647        1
-10241      ZNF664      12_75 0.7398435 41.10919 0.0004835967 -6.452055        1
-9990       SEC24C      10_49 0.7329619 26.90018 0.0003135026 -4.862500        1
-2306       DNASE2      19_10 0.7295752 18.47136 0.0002142760 -3.744186        1
-11753    TMEM229B      14_31 0.7256206 18.30602 0.0002112069 -3.658228        1
-1508      CWF19L1      10_64 0.6961732 33.33104 0.0003689527 -5.810127        1
-5258      C2orf49       2_62 0.6887055 26.87816 0.0002943322  5.234783        1
-13192   LINC01184       5_78 0.6804573 18.63653 0.0002016372  3.793478        1
-6264        MRPS5       2_57 0.6164002 20.19764 0.0001979557 -3.736842        1
-6029        SCYL1      11_36 0.6145439 22.22566 0.0002171762 -4.813953        1</code></pre>
+<pre class="r"><code>#estimated group prior
+estimated_group_prior &lt;- group_prior_rec[,ncol(group_prior_rec)]
+names(estimated_group_prior) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+estimated_group_prior[&quot;snp&quot;] &lt;- estimated_group_prior[&quot;snp&quot;]*thin #adjust parameter to account for thin argument
+print(estimated_group_prior)</code></pre>
+<pre><code>     gene       snp 
+0.0185530 0.0003497 </code></pre>
+<pre class="r"><code>#estimated group prior variance
+estimated_group_prior_var &lt;- group_prior_var_rec[,ncol(group_prior_var_rec)]
+names(estimated_group_prior_var) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+print(estimated_group_prior_var)</code></pre>
+<pre><code> gene   snp 
+7.211 8.954 </code></pre>
+<pre class="r"><code>#report sample size
+print(sample_size)</code></pre>
+<pre><code>[1] 62892</code></pre>
+<pre class="r"><code>#report group size
+group_size &lt;- c(nrow(ctwas_gene_res), n_snps)
+print(group_size)</code></pre>
+<pre><code>[1]    8279 5017190</code></pre>
+<pre class="r"><code>#estimated group PVE
+estimated_group_pve &lt;- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+names(estimated_group_pve) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+print(estimated_group_pve)</code></pre>
+<pre><code>   gene     snp 
+0.01761 0.24979 </code></pre>
+<pre class="r"><code>#compare sum(PIP*mu2/sample_size) with above PVE calculation
+c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))</code></pre>
+<pre><code>[1] 0.1023 1.4004</code></pre>
+</div>
+<div id="genes-with-highest-pips" class="section level2">
+<h2>Genes with highest PIPs</h2>
+<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>         genename region_tag susie_pip   mu2       PVE      z num_eqtl
+8882      POLR2J3       7_63    0.9604 25.74 0.0003930  4.987        1
+7980        LMOD1      1_102    0.9456 24.43 0.0003672 -4.907        1
+249        ANGEL1      14_36    0.9355 21.80 0.0003243  4.558        2
+3617         ARG1       6_87    0.9094 29.87 0.0004319 -5.606        1
+1848         CTSZ      20_34    0.8805 20.18 0.0002824 -3.896        1
+7655        PTH1R       3_33    0.8780 28.47 0.0003974 -5.646        1
+3290        GRB14      2_100    0.8747 25.00 0.0003478  5.163        1
+14287 RP5-899E9.1       7_49    0.8132 19.91 0.0002575 -4.333        1
+4668       ZNF236      18_45    0.7874 20.14 0.0002522 -4.378        1
+7322        NTAN1      16_15    0.7754 19.37 0.0002388  4.192        1
+9579        DMRT2        9_1    0.7497 19.40 0.0002313 -4.318        1
+10241      ZNF664      12_75    0.7398 41.11 0.0004836 -6.452        1
+9990       SEC24C      10_49    0.7330 26.90 0.0003135 -4.862        1
+2306       DNASE2      19_10    0.7296 18.47 0.0002143 -3.744        1
+11753    TMEM229B      14_31    0.7256 18.31 0.0002112 -3.658        1
+1508      CWF19L1      10_64    0.6962 33.33 0.0003690 -5.810        1
+5258      C2orf49       2_62    0.6887 26.88 0.0002943  5.235        1
+13192   LINC01184       5_78    0.6805 18.64 0.0002016  3.793        1
+6264        MRPS5       2_57    0.6164 20.20 0.0001980 -3.737        1
+6029        SCYL1      11_36    0.6145 22.23 0.0002172 -4.814        1</code></pre>
 </div>
 <div id="genes-with-largest-effect-sizes" class="section level2">
 <h2>Genes with largest effect sizes</h2>
-<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-6-1.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre><code>       genename region_tag   susie_pip       mu2          PVE          z
-7057      JAZF1       7_23 0.277121240 130.41581 5.746517e-04 -12.662338
-2722       WFS1        4_7 0.158489875  64.77219 1.632280e-04  11.434211
-3379      THADA       2_27 0.063977825  59.34224 6.036678e-05   8.666667
-14565 LINC01126       2_27 0.050344112  52.17727 4.176713e-05  -8.376923
-10525    UBE2E2       3_17 0.084142485  48.51436 6.490681e-05   7.166009
-11136    KCNJ11      11_12 0.028462071  45.08258 2.040234e-05   7.075347
-11227   NCR3LG1      11_12 0.035886976  44.07749 2.515118e-05  -6.854088
-3273      NRBP1       2_16 0.057481036  43.85515 4.008204e-05  -6.625000
-7493      UBE2Z      17_28 0.607571388  43.82484 4.233721e-04  -7.392405
-3656     CCDC92      12_75 0.135611254  42.88152 9.246353e-05  -5.886761
-1401     PABPC4       1_24 0.103951722  42.78419 7.071631e-05  -6.817204
-7491     ATP5G1      17_28 0.090094897  41.34788 5.923222e-05   6.400000
-10241    ZNF664      12_75 0.739843464  41.10919 4.835967e-04  -6.452055
-1158     COBLL1      2_100 0.072550762  39.99019 4.613177e-05  -5.375000
-12780   CYP21A2       6_26 0.055454852  39.91456 3.519456e-05   6.452632
-7494       SNF8      17_28 0.077698290  39.44087 4.872620e-05   6.300000
-9611      PEAK1      15_36 0.478499702  39.01754 2.968563e-04  -6.885057
-6467     CDKAL1       6_15 0.004169188  37.80537 2.506165e-06  -8.191860
-7378      AP3S2      15_41 0.369115688  36.18157 2.123511e-04   6.356322
-5126      P2RX4      12_74 0.263754799  35.41665 1.485294e-04   4.096154
-      num_eqtl
-7057         1
-2722         1
-3379         1
-14565        1
-10525        2
-11136        2
-11227        2
-3273         1
-7493         1
-3656         2
-1401         1
-7491         1
-10241        1
-1158         1
-12780        1
-7494         1
-9611         1
-6467         1
-7378         1
-5126         1</code></pre>
+<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>       genename region_tag susie_pip    mu2       PVE       z num_eqtl
+7057      JAZF1       7_23  0.277121 130.42 5.747e-04 -12.662        1
+2722       WFS1        4_7  0.158490  64.77 1.632e-04  11.434        1
+3379      THADA       2_27  0.063978  59.34 6.037e-05   8.667        1
+14565 LINC01126       2_27  0.050344  52.18 4.177e-05  -8.377        1
+10525    UBE2E2       3_17  0.084142  48.51 6.491e-05   7.166        2
+11136    KCNJ11      11_12  0.028462  45.08 2.040e-05   7.075        2
+11227   NCR3LG1      11_12  0.035887  44.08 2.515e-05  -6.854        2
+3273      NRBP1       2_16  0.057481  43.86 4.008e-05  -6.625        1
+7493      UBE2Z      17_28  0.607571  43.82 4.234e-04  -7.392        1
+3656     CCDC92      12_75  0.135611  42.88 9.246e-05  -5.887        2
+1401     PABPC4       1_24  0.103952  42.78 7.072e-05  -6.817        1
+7491     ATP5G1      17_28  0.090095  41.35 5.923e-05   6.400        1
+10241    ZNF664      12_75  0.739843  41.11 4.836e-04  -6.452        1
+1158     COBLL1      2_100  0.072551  39.99 4.613e-05  -5.375        1
+12780   CYP21A2       6_26  0.055455  39.91 3.519e-05   6.453        1
+7494       SNF8      17_28  0.077698  39.44 4.873e-05   6.300        1
+9611      PEAK1      15_36  0.478500  39.02 2.969e-04  -6.885        1
+6467     CDKAL1       6_15  0.004169  37.81 2.506e-06  -8.192        1
+7378      AP3S2      15_41  0.369116  36.18 2.124e-04   6.356        1
+5126      P2RX4      12_74  0.263755  35.42 1.485e-04   4.096        1</code></pre>
 </div>
 <div id="genes-with-highest-pve" class="section level2">
 <h2>Genes with highest PVE</h2>
-<pre><code>         genename region_tag susie_pip       mu2          PVE          z
-7057        JAZF1       7_23 0.2771212 130.41581 0.0005746517 -12.662338
-10241      ZNF664      12_75 0.7398435  41.10919 0.0004835967  -6.452055
-3617         ARG1       6_87 0.9093784  29.86900 0.0004318868  -5.606383
-7493        UBE2Z      17_28 0.6075714  43.82484 0.0004233721  -7.392405
-7655        PTH1R       3_33 0.8779571  28.46963 0.0003974292  -5.646341
-8882      POLR2J3       7_63 0.9604481  25.73621 0.0003930277   4.987179
-1508      CWF19L1      10_64 0.6961732  33.33104 0.0003689527  -5.810127
-7980        LMOD1      1_102 0.9455781  24.42585 0.0003672414  -4.906667
-3290        GRB14      2_100 0.8747366  25.00435 0.0003477743   5.163265
-249        ANGEL1      14_36 0.9355098  21.80009 0.0003242733   4.558286
-9990       SEC24C      10_49 0.7329619  26.90018 0.0003135026  -4.862500
-9611        PEAK1      15_36 0.4784997  39.01754 0.0002968563  -6.885057
-5258      C2orf49       2_62 0.6887055  26.87816 0.0002943322   5.234783
-1848         CTSZ      20_34 0.8804599  20.17505 0.0002824416  -3.895833
-14287 RP5-899E9.1       7_49 0.8131882  19.91257 0.0002574678  -4.333333
-4668       ZNF236      18_45 0.7874377  20.13940 0.0002521548  -4.378049
-7322        NTAN1      16_15 0.7753888  19.37072 0.0002388196   4.191781
-4021       KBTBD4      11_29 0.6072885  24.29633 0.0002346066  -5.097561
-9579        DMRT2        9_1 0.7497494  19.40307 0.0002313082  -4.317647
-6029        SCYL1      11_36 0.6145439  22.22566 0.0002171762  -4.813953
-      num_eqtl
-7057         1
-10241        1
-3617         1
-7493         1
-7655         1
-8882         1
-1508         1
-7980         1
-3290         1
-249          2
-9990         1
-9611         1
-5258         1
-1848         1
-14287        1
-4668         1
-7322         1
-4021         1
-9579         1
-6029         1</code></pre>
+<pre><code>         genename region_tag susie_pip    mu2       PVE       z num_eqtl
+7057        JAZF1       7_23    0.2771 130.42 0.0005747 -12.662        1
+10241      ZNF664      12_75    0.7398  41.11 0.0004836  -6.452        1
+3617         ARG1       6_87    0.9094  29.87 0.0004319  -5.606        1
+7493        UBE2Z      17_28    0.6076  43.82 0.0004234  -7.392        1
+7655        PTH1R       3_33    0.8780  28.47 0.0003974  -5.646        1
+8882      POLR2J3       7_63    0.9604  25.74 0.0003930   4.987        1
+1508      CWF19L1      10_64    0.6962  33.33 0.0003690  -5.810        1
+7980        LMOD1      1_102    0.9456  24.43 0.0003672  -4.907        1
+3290        GRB14      2_100    0.8747  25.00 0.0003478   5.163        1
+249        ANGEL1      14_36    0.9355  21.80 0.0003243   4.558        2
+9990       SEC24C      10_49    0.7330  26.90 0.0003135  -4.862        1
+9611        PEAK1      15_36    0.4785  39.02 0.0002969  -6.885        1
+5258      C2orf49       2_62    0.6887  26.88 0.0002943   5.235        1
+1848         CTSZ      20_34    0.8805  20.18 0.0002824  -3.896        1
+14287 RP5-899E9.1       7_49    0.8132  19.91 0.0002575  -4.333        1
+4668       ZNF236      18_45    0.7874  20.14 0.0002522  -4.378        1
+7322        NTAN1      16_15    0.7754  19.37 0.0002388   4.192        1
+4021       KBTBD4      11_29    0.6073  24.30 0.0002346  -5.098        1
+9579        DMRT2        9_1    0.7497  19.40 0.0002313  -4.318        1
+6029        SCYL1      11_36    0.6145  22.23 0.0002172  -4.814        1</code></pre>
 </div>
 <div id="genes-with-largest-z-scores" class="section level2">
 <h2>Genes with largest z scores</h2>
-<pre><code>       genename region_tag   susie_pip       mu2          PVE          z
-7057      JAZF1       7_23 0.277121240 130.41581 5.746517e-04 -12.662338
-2722       WFS1        4_7 0.158489875  64.77219 1.632280e-04  11.434211
-3379      THADA       2_27 0.063977825  59.34224 6.036678e-05   8.666667
-14565 LINC01126       2_27 0.050344112  52.17727 4.176713e-05  -8.376923
-6467     CDKAL1       6_15 0.004169188  37.80537 2.506165e-06  -8.191860
-7493      UBE2Z      17_28 0.607571388  43.82484 4.233721e-04  -7.392405
-10525    UBE2E2       3_17 0.084142485  48.51436 6.490681e-05   7.166009
-11136    KCNJ11      11_12 0.028462071  45.08258 2.040234e-05   7.075347
-9611      PEAK1      15_36 0.478499702  39.01754 2.968563e-04  -6.885057
-11227   NCR3LG1      11_12 0.035886976  44.07749 2.515118e-05  -6.854088
-1401     PABPC4       1_24 0.103951722  42.78419 7.071631e-05  -6.817204
-3273      NRBP1       2_16 0.057481036  43.85515 4.008204e-05  -6.625000
-12062      MICB       6_25 0.392658326  34.75289 2.169753e-04   6.462427
-12780   CYP21A2       6_26 0.055454852  39.91456 3.519456e-05   6.452632
-10241    ZNF664      12_75 0.739843464  41.10919 4.835967e-04  -6.452055
-7491     ATP5G1      17_28 0.090094897  41.34788 5.923222e-05   6.400000
-7378      AP3S2      15_41 0.369115688  36.18157 2.123511e-04   6.356322
-7494       SNF8      17_28 0.077698290  39.44087 4.872620e-05   6.300000
-13095     ARPIN      15_41 0.224871053  34.65071 1.238940e-04   6.250000
-3656     CCDC92      12_75 0.135611254  42.88152 9.246353e-05  -5.886761
-      num_eqtl
-7057         1
-2722         1
-3379         1
-14565        1
-6467         1
-7493         1
-10525        2
-11136        2
-9611         1
-11227        2
-1401         1
-3273         1
-12062        2
-12780        1
-10241        1
-7491         1
-7378         1
-7494         1
-13095        1
-3656         2</code></pre>
+<pre><code>       genename region_tag susie_pip    mu2       PVE       z num_eqtl
+7057      JAZF1       7_23  0.277121 130.42 5.747e-04 -12.662        1
+2722       WFS1        4_7  0.158490  64.77 1.632e-04  11.434        1
+3379      THADA       2_27  0.063978  59.34 6.037e-05   8.667        1
+14565 LINC01126       2_27  0.050344  52.18 4.177e-05  -8.377        1
+6467     CDKAL1       6_15  0.004169  37.81 2.506e-06  -8.192        1
+7493      UBE2Z      17_28  0.607571  43.82 4.234e-04  -7.392        1
+10525    UBE2E2       3_17  0.084142  48.51 6.491e-05   7.166        2
+11136    KCNJ11      11_12  0.028462  45.08 2.040e-05   7.075        2
+9611      PEAK1      15_36  0.478500  39.02 2.969e-04  -6.885        1
+11227   NCR3LG1      11_12  0.035887  44.08 2.515e-05  -6.854        2
+1401     PABPC4       1_24  0.103952  42.78 7.072e-05  -6.817        1
+3273      NRBP1       2_16  0.057481  43.86 4.008e-05  -6.625        1
+12062      MICB       6_25  0.392658  34.75 2.170e-04   6.462        2
+12780   CYP21A2       6_26  0.055455  39.91 3.519e-05   6.453        1
+10241    ZNF664      12_75  0.739843  41.11 4.836e-04  -6.452        1
+7491     ATP5G1      17_28  0.090095  41.35 5.923e-05   6.400        1
+7378      AP3S2      15_41  0.369116  36.18 2.124e-04   6.356        1
+7494       SNF8      17_28  0.077698  39.44 4.873e-05   6.300        1
+13095     ARPIN      15_41  0.224871  34.65 1.239e-04   6.250        1
+3656     CCDC92      12_75  0.135611  42.88 9.246e-05  -5.887        2</code></pre>
 </div>
 <div id="comparing-z-scores-and-pips" class="section level2">
 <h2>Comparing z scores and PIPs</h2>
-<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
-Past versions of unnamed-chunk-9-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-9-1.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
+<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-11-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0.008093</code></pre>
+<pre><code>       genename region_tag susie_pip    mu2       PVE       z num_eqtl
+7057      JAZF1       7_23  0.277121 130.42 5.747e-04 -12.662        1
+2722       WFS1        4_7  0.158490  64.77 1.632e-04  11.434        1
+3379      THADA       2_27  0.063978  59.34 6.037e-05   8.667        1
+14565 LINC01126       2_27  0.050344  52.18 4.177e-05  -8.377        1
+6467     CDKAL1       6_15  0.004169  37.81 2.506e-06  -8.192        1
+7493      UBE2Z      17_28  0.607571  43.82 4.234e-04  -7.392        1
+10525    UBE2E2       3_17  0.084142  48.51 6.491e-05   7.166        2
+11136    KCNJ11      11_12  0.028462  45.08 2.040e-05   7.075        2
+9611      PEAK1      15_36  0.478500  39.02 2.969e-04  -6.885        1
+11227   NCR3LG1      11_12  0.035887  44.08 2.515e-05  -6.854        2
+1401     PABPC4       1_24  0.103952  42.78 7.072e-05  -6.817        1
+3273      NRBP1       2_16  0.057481  43.86 4.008e-05  -6.625        1
+12062      MICB       6_25  0.392658  34.75 2.170e-04   6.462        2
+12780   CYP21A2       6_26  0.055455  39.91 3.519e-05   6.453        1
+10241    ZNF664      12_75  0.739843  41.11 4.836e-04  -6.452        1
+7491     ATP5G1      17_28  0.090095  41.35 5.923e-05   6.400        1
+7378      AP3S2      15_41  0.369116  36.18 2.124e-04   6.356        1
+7494       SNF8      17_28  0.077698  39.44 4.873e-05   6.300        1
+13095     ARPIN      15_41  0.224871  34.65 1.239e-04   6.250        1
+3656     CCDC92      12_75  0.135611  42.88 9.246e-05  -5.887        2</code></pre>
 </div>
+<div id="go-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>GO enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre class="r"><code>#number of genes for gene set enrichment
+length(genes)</code></pre>
+<pre><code>[1] 30</code></pre>
+<pre><code>Uploading data to Enrichr... Done.
+  Querying GO_Biological_Process_2021... Done.
+  Querying GO_Cellular_Component_2021... Done.
+  Querying GO_Molecular_Function_2021... Done.
+Parsing results... Done.
+[1] &quot;GO_Biological_Process_2021&quot;</code></pre>
+<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
+<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-14-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Molecular_Function_2021&quot;</code></pre>
+<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-14-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
-<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-9-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-2">
-Past versions of unnamed-chunk-9-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-9-2.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
+<div id="disgenet-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>DisGeNET enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>                                Description      FDR Ratio BgRatio
+30                  Ataxia, Spinocerebellar 0.006521  2/13 34/9703
+35 Jansen type metaphyseal chondrodysplasia 0.006521  1/13  1/9703
+45            Spinocerebellar Ataxia Type 1 0.006521  2/13 34/9703
+46            Spinocerebellar Ataxia Type 2 0.006521  2/13 34/9703
+47            Spinocerebellar Ataxia Type 4 0.006521  2/13 35/9703
+48            Spinocerebellar Ataxia Type 5 0.006521  2/13 34/9703
+49 Spinocerebellar Ataxia Type 6 (disorder) 0.006521  2/13 34/9703
+50            Spinocerebellar Ataxia Type 7 0.006521  2/13 34/9703
+52        Calcium pyrophosphate arthropathy 0.006521  1/13  1/9703
+58                 Eiken Skeletal Dysplasia 0.006521  1/13  1/9703</code></pre>
 </div>
+<div id="webgestalt-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>WebGestalt enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>Loading the functional categories...
+Loading the ID list...
+Loading the reference list...
+Performing the enrichment analysis...</code></pre>
+<pre><code>Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<pre><code>NULL</code></pre>
 </div>
-<pre><code>[1] 0.008092765</code></pre>
-<pre><code>       genename region_tag   susie_pip       mu2          PVE          z
-7057      JAZF1       7_23 0.277121240 130.41581 5.746517e-04 -12.662338
-2722       WFS1        4_7 0.158489875  64.77219 1.632280e-04  11.434211
-3379      THADA       2_27 0.063977825  59.34224 6.036678e-05   8.666667
-14565 LINC01126       2_27 0.050344112  52.17727 4.176713e-05  -8.376923
-6467     CDKAL1       6_15 0.004169188  37.80537 2.506165e-06  -8.191860
-7493      UBE2Z      17_28 0.607571388  43.82484 4.233721e-04  -7.392405
-10525    UBE2E2       3_17 0.084142485  48.51436 6.490681e-05   7.166009
-11136    KCNJ11      11_12 0.028462071  45.08258 2.040234e-05   7.075347
-9611      PEAK1      15_36 0.478499702  39.01754 2.968563e-04  -6.885057
-11227   NCR3LG1      11_12 0.035886976  44.07749 2.515118e-05  -6.854088
-1401     PABPC4       1_24 0.103951722  42.78419 7.071631e-05  -6.817204
-3273      NRBP1       2_16 0.057481036  43.85515 4.008204e-05  -6.625000
-12062      MICB       6_25 0.392658326  34.75289 2.169753e-04   6.462427
-12780   CYP21A2       6_26 0.055454852  39.91456 3.519456e-05   6.452632
-10241    ZNF664      12_75 0.739843464  41.10919 4.835967e-04  -6.452055
-7491     ATP5G1      17_28 0.090094897  41.34788 5.923222e-05   6.400000
-7378      AP3S2      15_41 0.369115688  36.18157 2.123511e-04   6.356322
-7494       SNF8      17_28 0.077698290  39.44087 4.872620e-05   6.300000
-13095     ARPIN      15_41 0.224871053  34.65071 1.238940e-04   6.250000
-3656     CCDC92      12_75 0.135611254  42.88152 9.246353e-05  -5.886761
-      num_eqtl
-7057         1
-2722         1
-3379         1
-14565        1
-6467         1
-7493         1
-10525        2
-11136        2
-9611         1
-11227        2
-1401         1
-3273         1
-12062        2
-12780        1
-10241        1
-7491         1
-7378         1
-7494         1
-13095        1
-3656         2</code></pre>
+<div id="pip-manhattan-plot" class="section level2">
+<h2>PIP Manhattan Plot</h2>
+<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sensitivity-specificity-and-precision-for-silver-standard-genes" class="section level2">
 <h2>Sensitivity, specificity and precision for silver standard genes</h2>
+<pre class="r"><code>#number of genes in known annotations
+print(length(known_annotations))</code></pre>
 <pre><code>[1] 72</code></pre>
+<pre class="r"><code>#number of genes in known annotations with imputed expression
+print(sum(known_annotations %in% ctwas_gene_res$genename))</code></pre>
 <pre><code>[1] 23</code></pre>
-<pre><code>[1] 4.525006</code></pre>
-<pre><code>[1] 8</code></pre>
+<pre class="r"><code>#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.525</code></pre>
+<pre class="r"><code>#number of ctwas genes
+length(ctwas_genes)</code></pre>
+<pre><code>[1] 30</code></pre>
+<pre class="r"><code>#number of TWAS genes
+length(twas_genes)</code></pre>
 <pre><code>[1] 67</code></pre>
-<pre><code>         genename region_tag susie_pip      mu2          PVE         z num_eqtl
-14287 RP5-899E9.1       7_49 0.8131882 19.91257 0.0002574678 -4.333333        1
-1848         CTSZ      20_34 0.8804599 20.17505 0.0002824416 -3.895833        1</code></pre>
-<pre><code>     ctwas       TWAS 
-0.00000000 0.04166667 </code></pre>
-<pre><code>    ctwas      TWAS 
-0.9990310 0.9922481 </code></pre>
-<pre><code>     ctwas       TWAS 
-0.00000000 0.04477612 </code></pre>
-<p><img src="figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
-Past versions of unnamed-chunk-10-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-10-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Adipose_Visceral_Omentum.Rmd/unnamed-chunk-10-1.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<pre class="r"><code>#show novel genes (ctwas genes with not in TWAS genes)
+ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]</code></pre>
+<pre><code>         genename region_tag susie_pip   mu2       PVE      z num_eqtl
+6264        MRPS5       2_57    0.6164 20.20 0.0001980 -3.737        1
+11469     PRPF40A       2_91    0.5260 19.92 0.0001666 -3.944        2
+10022      ZBTB38       3_86    0.5340 17.12 0.0001454 -3.072        1
+7953       DCAF16       4_17    0.5632 20.45 0.0001831 -4.139        3
+5664        G3BP2       4_51    0.5373 20.37 0.0001740 -4.457        1
+7088         ANKH       5_12    0.5580 21.14 0.0001876  3.655        1
+13192   LINC01184       5_78    0.6805 18.64 0.0002016  3.793        1
+5358    NIPSNAP3A       9_52    0.5688 19.29 0.0001745 -3.837        2
+6679        EIF3M      11_22    0.5118 17.81 0.0001449 -3.890        1
+11753    TMEM229B      14_31    0.7256 18.31 0.0002112 -3.658        1
+7322        NTAN1      16_15    0.7754 19.37 0.0002388  4.192        1
+4668       ZNF236      18_45    0.7874 20.14 0.0002522 -4.378        1
+2306       DNASE2      19_10    0.7296 18.47 0.0002143 -3.744        1
+14287 RP5-899E9.1       7_49    0.8132 19.91 0.0002575 -4.333        1
+9579        DMRT2        9_1    0.7497 19.40 0.0002313 -4.318        1
+1848         CTSZ      20_34    0.8805 20.18 0.0002824 -3.896        1</code></pre>
+<pre class="r"><code>#sensitivity / recall
+print(sensitivity)</code></pre>
+<pre><code>  ctwas    TWAS 
+0.01389 0.04167 </code></pre>
+<pre class="r"><code>#specificity
+print(specificity)</code></pre>
+<pre><code> ctwas   TWAS 
+0.9965 0.9922 </code></pre>
+<pre class="r"><code>#precision / PPV
+print(precision)</code></pre>
+<pre><code>  ctwas    TWAS 
+0.03333 0.04478 </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1214,24 +1089,35 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] readxl_1.3.1    cowplot_1.0.0   ggplot2_3.3.5   workflowr_1.6.2
+ [1] readxl_1.3.1      forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
+ [5] purrr_0.3.4       readr_2.1.1       tidyr_1.1.4       tidyverse_1.3.1  
+ [9] tibble_3.1.6      WebGestaltR_0.4.4 disgenet2r_0.99.2 enrichR_3.0      
+[13] cowplot_1.0.0     ggplot2_3.3.5     workflowr_1.6.2  
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.1.1  xfun_0.29         purrr_0.3.4       colorspace_2.0-2 
- [5] vctrs_0.3.8       generics_0.1.1    htmltools_0.5.2   yaml_2.2.1       
- [9] utf8_1.2.2        blob_1.2.2        rlang_1.0.1       jquerylib_0.1.4  
-[13] later_0.8.0       pillar_1.6.4      glue_1.6.2        withr_2.4.3      
-[17] DBI_1.1.2         bit64_4.0.5       lifecycle_1.0.1   stringr_1.4.0    
-[21] cellranger_1.1.0  munsell_0.5.0     gtable_0.3.0      evaluate_0.14    
-[25] memoise_2.0.1     labeling_0.4.2    knitr_1.36        fastmap_1.1.0    
-[29] httpuv_1.5.1      fansi_1.0.2       highr_0.9         Rcpp_1.0.8       
-[33] promises_1.0.1    scales_1.1.1      cachem_1.0.6      farver_2.1.0     
-[37] fs_1.5.2          bit_4.0.4         digest_0.6.29     stringi_1.7.6    
-[41] dplyr_1.0.7       rprojroot_2.0.2   grid_3.6.1        cli_3.1.0        
-[45] tools_3.6.1       magrittr_2.0.2    tibble_3.1.6      RSQLite_2.2.8    
-[49] crayon_1.5.0      whisker_0.3-2     pkgconfig_2.0.3   ellipsis_0.3.2   
-[53] data.table_1.14.2 assertthat_0.2.1  rmarkdown_2.11    R6_2.5.1         
-[57] git2r_0.26.1      compiler_3.6.1   </code></pre>
+ [1] fs_1.5.2          lubridate_1.8.0   bit64_4.0.5       doParallel_1.0.17
+ [5] httr_1.4.2        rprojroot_2.0.2   tools_3.6.1       backports_1.4.1  
+ [9] doRNG_1.8.2       utf8_1.2.2        R6_2.5.1          vipor_0.4.5      
+[13] DBI_1.1.2         colorspace_2.0-2  withr_2.4.3       ggrastr_1.0.1    
+[17] tidyselect_1.1.1  bit_4.0.4         curl_4.3.2        compiler_3.6.1   
+[21] git2r_0.26.1      rvest_1.0.2       cli_3.1.0         Cairo_1.5-12.2   
+[25] xml2_1.3.3        labeling_0.4.2    scales_1.1.1      apcluster_1.4.8  
+[29] digest_0.6.29     rmarkdown_2.11    svglite_1.2.2     pkgconfig_2.0.3  
+[33] htmltools_0.5.2   dbplyr_2.1.1      fastmap_1.1.0     highr_0.9        
+[37] rlang_1.0.1       rstudioapi_0.13   RSQLite_2.2.8     jquerylib_0.1.4  
+[41] farver_2.1.0      generics_0.1.1    jsonlite_1.7.2    vroom_1.5.7      
+[45] magrittr_2.0.2    Matrix_1.2-18     ggbeeswarm_0.6.0  Rcpp_1.0.8       
+[49] munsell_0.5.0     fansi_1.0.2       gdtools_0.1.9     lifecycle_1.0.1  
+[53] stringi_1.7.6     whisker_0.3-2     yaml_2.2.1        plyr_1.8.6       
+[57] grid_3.6.1        blob_1.2.2        ggrepel_0.9.1     parallel_3.6.1   
+[61] promises_1.0.1    crayon_1.5.0      lattice_0.20-38   haven_2.4.3      
+[65] hms_1.1.1         knitr_1.36        pillar_1.6.4      igraph_1.2.10    
+[69] rjson_0.2.20      rngtools_1.5.2    reshape2_1.4.4    codetools_0.2-16 
+[73] reprex_2.0.1      glue_1.6.2        evaluate_0.14     data.table_1.14.2
+[77] modelr_0.1.8      vctrs_0.3.8       tzdb_0.2.0        httpuv_1.5.1     
+[81] foreach_1.5.2     cellranger_1.1.0  gtable_0.3.0      assertthat_0.2.1 
+[85] cachem_1.0.6      xfun_0.29         broom_0.7.10      later_0.8.0      
+[89] iterators_1.0.14  beeswarm_0.2.3    memoise_2.0.1     ellipsis_0.3.2   </code></pre>
 </div>
 </div>
 

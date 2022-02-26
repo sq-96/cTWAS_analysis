@@ -507,16 +507,16 @@ code/ctwas_config.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree0e6a2f2c3118b5f30ca0127df8276597f53c2607targetblank0e6a2f2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/0e6a2f2c3118b5f30ca0127df8276597f53c2607" target="_blank">0e6a2f2</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree5c37a5d91b99c4299f94f486608c8735de02fd62targetblank5c37a5da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/5c37a5d91b99c4299f94f486608c8735de02fd62" target="_blank">5c37a5d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree0e6a2f2c3118b5f30ca0127df8276597f53c2607targetblank0e6a2f2a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree5c37a5d91b99c4299f94f486608c8735de02fd62targetblank5c37a5da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/0e6a2f2c3118b5f30ca0127df8276597f53c2607" target="_blank">0e6a2f2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/5c37a5d91b99c4299f94f486608c8735de02fd62" target="_blank">5c37a5d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -635,6 +635,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/5c37a5d91b99c4299f94f486608c8735de02fd62/analysis/T2D_Pancreas.Rmd" target="_blank">5c37a5d</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-26
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/3fa3a64422585dc9f94588111e57ecd6aaa3aa5e/docs/T2D_Pancreas.html" target="_blank">3fa3a64</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/0e6a2f2c3118b5f30ca0127df8276597f53c2607/analysis/T2D_Pancreas.Rmd" target="_blank">0e6a2f2</a>
 </td>
 <td>
@@ -724,77 +758,25 @@ update
 </div>
 <div id="weight-qc" class="section level2">
 <h2>Weight QC</h2>
+<pre class="r"><code>#number of imputed weights
+nrow(qclist_all)</code></pre>
 <pre><code>[1] 7605</code></pre>
+<pre class="r"><code>#number of imputed weights by chromosome
+table(qclist_all$chr)</code></pre>
 <pre><code>
   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
 748 581 480 310 401 436 387 270 287 327 513 475 161 273 282 292 407 119 367 228 
  21  22 
  92 169 </code></pre>
+<pre class="r"><code>#number of imputed weights without missing variants
+sum(qclist_all$nmiss==0)</code></pre>
 <pre><code>[1] 4452</code></pre>
-<pre><code>[1] 0.5854043</code></pre>
-</div>
-<div id="load-ctwas-results" class="section level2">
-<h2>Load ctwas results</h2>
+<pre class="r"><code>#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)</code></pre>
+<pre><code>[1] 0.5854</code></pre>
 </div>
 <div id="check-convergence-of-parameters" class="section level2">
 <h2>Check convergence of parameters</h2>
-<pre><code>
-********************************************************</code></pre>
-<pre><code>Note: As of version 1.0.0, cowplot does not change the</code></pre>
-<pre><code>  default ggplot2 theme anymore. To recover the previous</code></pre>
-<pre><code>  behavior, execute:
-  theme_set(theme_cowplot())</code></pre>
-<pre><code>********************************************************</code></pre>
-<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
-Past versions of unnamed-chunk-4-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-4-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Pancreas.Rmd/unnamed-chunk-4-1.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre><code>        gene          snp 
-0.0123097006 0.0003667405 </code></pre>
-<pre><code>    gene      snp 
-8.180928 8.889625 </code></pre>
-<pre><code>[1] 62892</code></pre>
-<pre><code>[1]    7605 5017190</code></pre>
-<pre><code>      gene        snp 
-0.01217738 0.26008027 </code></pre>
-<pre><code>[1] 0.06992339 1.44416811</code></pre>
-</div>
-<div id="genes-with-highest-pips" class="section level2">
-<h2>Genes with highest PIPs</h2>
 <p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
@@ -820,6 +802,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/3fa3a64422585dc9f94588111e57ecd6aaa3aa5e/docs/figure/T2D_Pancreas.Rmd/unnamed-chunk-5-1.png" target="_blank">3fa3a64</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Pancreas.Rmd/unnamed-chunk-5-1.png" target="_blank">e6bc169</a>
 </td>
 <td>
@@ -833,324 +826,262 @@ sq-96
 </table>
 </div>
 </div>
-<pre><code>       genename region_tag susie_pip      mu2          PVE         z num_eqtl
-5708      SCRN2      17_28 0.8106840 23.09802 0.0002977357 -4.970331        2
-3452       ARG1       6_87 0.7825383 28.70545 0.0003571696 -5.418037        2
-8741    ONECUT1      15_22 0.7596047 27.19347 0.0003284406  5.078652        1
-10062   ARL6IP4      12_75 0.7433361 36.01403 0.0004256587  5.620253        1
-11158     PARVA       11_9 0.7137719 21.89032 0.0002484369 -3.861836        2
-2227     DNASE2      19_10 0.7083131 19.08862 0.0002149831 -3.744186        1
-4461     ZNF236      18_45 0.7058864 20.69653 0.0002322934 -4.378049        1
-7604    CFAP221       2_69 0.6764235 20.29448 0.0002182736 -4.049666        2
-10527      GSAP       7_49 0.6504951 24.56257 0.0002540519 -4.185185        1
-183        GIPR      19_32 0.6326493 36.31838 0.0003653374 -6.632184        1
-1451    CWF19L1      10_64 0.6279579 33.14247 0.0003309177 -5.802916        2
-12493 LINC01184       5_78 0.5774450 20.30140 0.0001863979  3.793478        1
-4519      TUBG1      17_25 0.5615797 23.49127 0.0002097599  5.267913        2
-6236      CRIP3       6_33 0.5552431 21.65792 0.0001912073  4.544995        2
-2221      MIER2       19_1 0.5414438 23.95810 0.0002062578  3.683544        1
-6019      MRPS5       2_57 0.5399310 21.72457 0.0001865065 -3.736842        1
-11243    ZNF251       8_94 0.5343093 24.42065 0.0002074696 -4.886076        1
-1411      TYRO3      15_15 0.5095761 23.08603 0.0001870522  4.865854        1
-3830     KBTBD4      11_29 0.4950396 25.44472 0.0002002821 -5.097561        1
-12664 LINC01933       5_89 0.4650992 20.73843 0.0001533649  3.780488        1</code></pre>
+<pre class="r"><code>#estimated group prior
+estimated_group_prior &lt;- group_prior_rec[,ncol(group_prior_rec)]
+names(estimated_group_prior) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+estimated_group_prior[&quot;snp&quot;] &lt;- estimated_group_prior[&quot;snp&quot;]*thin #adjust parameter to account for thin argument
+print(estimated_group_prior)</code></pre>
+<pre><code>     gene       snp 
+0.0123097 0.0003667 </code></pre>
+<pre class="r"><code>#estimated group prior variance
+estimated_group_prior_var &lt;- group_prior_var_rec[,ncol(group_prior_var_rec)]
+names(estimated_group_prior_var) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+print(estimated_group_prior_var)</code></pre>
+<pre><code> gene   snp 
+8.181 8.890 </code></pre>
+<pre class="r"><code>#report sample size
+print(sample_size)</code></pre>
+<pre><code>[1] 62892</code></pre>
+<pre class="r"><code>#report group size
+group_size &lt;- c(nrow(ctwas_gene_res), n_snps)
+print(group_size)</code></pre>
+<pre><code>[1]    7605 5017190</code></pre>
+<pre class="r"><code>#estimated group PVE
+estimated_group_pve &lt;- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+names(estimated_group_pve) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+print(estimated_group_pve)</code></pre>
+<pre><code>   gene     snp 
+0.01218 0.26008 </code></pre>
+<pre class="r"><code>#compare sum(PIP*mu2/sample_size) with above PVE calculation
+c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))</code></pre>
+<pre><code>[1] 0.06992 1.44417</code></pre>
+</div>
+<div id="genes-with-highest-pips" class="section level2">
+<h2>Genes with highest PIPs</h2>
+<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>       genename region_tag susie_pip   mu2       PVE      z num_eqtl
+5708      SCRN2      17_28    0.8107 23.10 0.0002977 -4.970        2
+3452       ARG1       6_87    0.7825 28.71 0.0003572 -5.418        2
+8741    ONECUT1      15_22    0.7596 27.19 0.0003284  5.079        1
+10062   ARL6IP4      12_75    0.7433 36.01 0.0004257  5.620        1
+11158     PARVA       11_9    0.7138 21.89 0.0002484 -3.862        2
+2227     DNASE2      19_10    0.7083 19.09 0.0002150 -3.744        1
+4461     ZNF236      18_45    0.7059 20.70 0.0002323 -4.378        1
+7604    CFAP221       2_69    0.6764 20.29 0.0002183 -4.050        2
+10527      GSAP       7_49    0.6505 24.56 0.0002541 -4.185        1
+183        GIPR      19_32    0.6326 36.32 0.0003653 -6.632        1
+1451    CWF19L1      10_64    0.6280 33.14 0.0003309 -5.803        2
+12493 LINC01184       5_78    0.5774 20.30 0.0001864  3.793        1
+4519      TUBG1      17_25    0.5616 23.49 0.0002098  5.268        2
+6236      CRIP3       6_33    0.5552 21.66 0.0001912  4.545        2
+2221      MIER2       19_1    0.5414 23.96 0.0002063  3.684        1
+6019      MRPS5       2_57    0.5399 21.72 0.0001865 -3.737        1
+11243    ZNF251       8_94    0.5343 24.42 0.0002075 -4.886        1
+1411      TYRO3      15_15    0.5096 23.09 0.0001871  4.866        1
+3830     KBTBD4      11_29    0.4950 25.44 0.0002003 -5.098        1
+12664 LINC01933       5_89    0.4651 20.74 0.0001534  3.780        1</code></pre>
 </div>
 <div id="genes-with-largest-effect-sizes" class="section level2">
 <h2>Genes with largest effect sizes</h2>
-<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Pancreas.Rmd/unnamed-chunk-6-1.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre><code>       genename region_tag    susie_pip       mu2          PVE          z
-6795      JAZF1       7_23 0.0253350265 147.33975 5.935344e-05 -13.081610
-474       BCAR1      16_40 0.0891403843  58.61868 8.308357e-05  -7.720000
-10584     ARAP1      11_41 0.0192135642  57.42519 1.754345e-05   7.885714
-6345     CDKN2B       9_16 0.0874432759  55.90606 7.773022e-05  -8.191781
-13639 LINC01126       2_27 0.0310929522  53.93953 2.666697e-05  -8.376923
-10742   NCR3LG1      11_12 0.0210811758  51.25289 1.717979e-05  -7.369863
-7991     NKX6-3       8_36 0.4571378966  42.54881 3.092710e-04  -6.780976
-9232      PEAK1      15_36 0.4152425579  40.39351 2.666970e-04   6.885057
-7192     ATP5G1      17_28 0.0676819144  39.62674 4.264475e-05   6.400000
-11440     RBM20      10_70 0.0002240545  38.42672 1.368962e-07  -3.000000
-7194       SNF8      17_28 0.0573205865  37.71067 3.437000e-05   6.300000
-1291      P2RX7      12_74 0.2975091723  37.48946 1.773430e-04   5.483748
-10224     BMP8A       1_24 0.0347386872  37.42298 2.067076e-05   6.296296
-7087      AP3S2      15_41 0.3727948286  37.36237 2.214669e-04   6.356322
-183        GIPR      19_32 0.6326492659  36.31838 3.653374e-04  -6.632184
-10062   ARL6IP4      12_75 0.7433361169  36.01403 4.256587e-04   5.620253
-10674    HAPLN4      19_15 0.0946101030  35.80928 5.386884e-05   5.347368
-11533      MICB       6_25 0.0933548640  33.28052 4.940054e-05   5.545585
-1451    CWF19L1      10_64 0.6279578506  33.14247 3.309177e-04  -5.802916
-8540       TAP1       6_27 0.0647763566  32.26518 3.323190e-05  -5.575000
-      num_eqtl
-6795         2
-474          1
-10584        1
-6345         1
-13639        1
-10742        1
-7991         2
-9232         1
-7192         1
-11440        1
-7194         1
-1291         2
-10224        1
-7087         1
-183          1
-10062        1
-10674        1
-11533        2
-1451         2
-8540         1</code></pre>
+<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>       genename region_tag susie_pip    mu2       PVE       z num_eqtl
+6795      JAZF1       7_23 0.0253350 147.34 5.935e-05 -13.082        2
+474       BCAR1      16_40 0.0891404  58.62 8.308e-05  -7.720        1
+10584     ARAP1      11_41 0.0192136  57.43 1.754e-05   7.886        1
+6345     CDKN2B       9_16 0.0874433  55.91 7.773e-05  -8.192        1
+13639 LINC01126       2_27 0.0310930  53.94 2.667e-05  -8.377        1
+10742   NCR3LG1      11_12 0.0210812  51.25 1.718e-05  -7.370        1
+7991     NKX6-3       8_36 0.4571379  42.55 3.093e-04  -6.781        2
+9232      PEAK1      15_36 0.4152426  40.39 2.667e-04   6.885        1
+7192     ATP5G1      17_28 0.0676819  39.63 4.264e-05   6.400        1
+11440     RBM20      10_70 0.0002241  38.43 1.369e-07  -3.000        1
+7194       SNF8      17_28 0.0573206  37.71 3.437e-05   6.300        1
+1291      P2RX7      12_74 0.2975092  37.49 1.773e-04   5.484        2
+10224     BMP8A       1_24 0.0347387  37.42 2.067e-05   6.296        1
+7087      AP3S2      15_41 0.3727948  37.36 2.215e-04   6.356        1
+183        GIPR      19_32 0.6326493  36.32 3.653e-04  -6.632        1
+10062   ARL6IP4      12_75 0.7433361  36.01 4.257e-04   5.620        1
+10674    HAPLN4      19_15 0.0946101  35.81 5.387e-05   5.347        1
+11533      MICB       6_25 0.0933549  33.28 4.940e-05   5.546        2
+1451    CWF19L1      10_64 0.6279579  33.14 3.309e-04  -5.803        2
+8540       TAP1       6_27 0.0647764  32.27 3.323e-05  -5.575        1</code></pre>
 </div>
 <div id="genes-with-highest-pve" class="section level2">
 <h2>Genes with highest PVE</h2>
-<pre><code>      genename region_tag susie_pip      mu2          PVE         z num_eqtl
-10062  ARL6IP4      12_75 0.7433361 36.01403 0.0004256587  5.620253        1
-183       GIPR      19_32 0.6326493 36.31838 0.0003653374 -6.632184        1
-3452      ARG1       6_87 0.7825383 28.70545 0.0003571696 -5.418037        2
-1451   CWF19L1      10_64 0.6279579 33.14247 0.0003309177 -5.802916        2
-8741   ONECUT1      15_22 0.7596047 27.19347 0.0003284406  5.078652        1
-7991    NKX6-3       8_36 0.4571379 42.54881 0.0003092710 -6.780976        2
-5708     SCRN2      17_28 0.8106840 23.09802 0.0002977357 -4.970331        2
-9232     PEAK1      15_36 0.4152426 40.39351 0.0002666970  6.885057        1
-10527     GSAP       7_49 0.6504951 24.56257 0.0002540519 -4.185185        1
-11158    PARVA       11_9 0.7137719 21.89032 0.0002484369 -3.861836        2
-4461    ZNF236      18_45 0.7058864 20.69653 0.0002322934 -4.378049        1
-7087     AP3S2      15_41 0.3727948 37.36237 0.0002214669  6.356322        1
-7604   CFAP221       2_69 0.6764235 20.29448 0.0002182736 -4.049666        2
-2227    DNASE2      19_10 0.7083131 19.08862 0.0002149831 -3.744186        1
-4519     TUBG1      17_25 0.5615797 23.49127 0.0002097599  5.267913        2
-11243   ZNF251       8_94 0.5343093 24.42065 0.0002074696 -4.886076        1
-2221     MIER2       19_1 0.5414438 23.95810 0.0002062578  3.683544        1
-3830    KBTBD4      11_29 0.4950396 25.44472 0.0002002821 -5.097561        1
-6236     CRIP3       6_33 0.5552431 21.65792 0.0001912073  4.544995        2
-1411     TYRO3      15_15 0.5095761 23.08603 0.0001870522  4.865854        1</code></pre>
+<pre><code>      genename region_tag susie_pip   mu2       PVE      z num_eqtl
+10062  ARL6IP4      12_75    0.7433 36.01 0.0004257  5.620        1
+183       GIPR      19_32    0.6326 36.32 0.0003653 -6.632        1
+3452      ARG1       6_87    0.7825 28.71 0.0003572 -5.418        2
+1451   CWF19L1      10_64    0.6280 33.14 0.0003309 -5.803        2
+8741   ONECUT1      15_22    0.7596 27.19 0.0003284  5.079        1
+7991    NKX6-3       8_36    0.4571 42.55 0.0003093 -6.781        2
+5708     SCRN2      17_28    0.8107 23.10 0.0002977 -4.970        2
+9232     PEAK1      15_36    0.4152 40.39 0.0002667  6.885        1
+10527     GSAP       7_49    0.6505 24.56 0.0002541 -4.185        1
+11158    PARVA       11_9    0.7138 21.89 0.0002484 -3.862        2
+4461    ZNF236      18_45    0.7059 20.70 0.0002323 -4.378        1
+7087     AP3S2      15_41    0.3728 37.36 0.0002215  6.356        1
+7604   CFAP221       2_69    0.6764 20.29 0.0002183 -4.050        2
+2227    DNASE2      19_10    0.7083 19.09 0.0002150 -3.744        1
+4519     TUBG1      17_25    0.5616 23.49 0.0002098  5.268        2
+11243   ZNF251       8_94    0.5343 24.42 0.0002075 -4.886        1
+2221     MIER2       19_1    0.5414 23.96 0.0002063  3.684        1
+3830    KBTBD4      11_29    0.4950 25.44 0.0002003 -5.098        1
+6236     CRIP3       6_33    0.5552 21.66 0.0001912  4.545        2
+1411     TYRO3      15_15    0.5096 23.09 0.0001871  4.866        1</code></pre>
 </div>
 <div id="genes-with-largest-z-scores" class="section level2">
 <h2>Genes with largest z scores</h2>
-<pre><code>       genename region_tag  susie_pip       mu2          PVE          z
-6795      JAZF1       7_23 0.02533503 147.33975 5.935344e-05 -13.081610
-13639 LINC01126       2_27 0.03109295  53.93953 2.666697e-05  -8.376923
-6345     CDKN2B       9_16 0.08744328  55.90606 7.773022e-05  -8.191781
-10584     ARAP1      11_41 0.01921356  57.42519 1.754345e-05   7.885714
-474       BCAR1      16_40 0.08914038  58.61868 8.308357e-05  -7.720000
-10742   NCR3LG1      11_12 0.02108118  51.25289 1.717979e-05  -7.369863
-9232      PEAK1      15_36 0.41524256  40.39351 2.666970e-04   6.885057
-7991     NKX6-3       8_36 0.45713790  42.54881 3.092710e-04  -6.780976
-183        GIPR      19_32 0.63264927  36.31838 3.653374e-04  -6.632184
-7192     ATP5G1      17_28 0.06768191  39.62674 4.264475e-05   6.400000
-7087      AP3S2      15_41 0.37279483  37.36237 2.214669e-04   6.356322
-7194       SNF8      17_28 0.05732059  37.71067 3.437000e-05   6.300000
-10224     BMP8A       1_24 0.03473869  37.42298 2.067076e-05   6.296296
-1451    CWF19L1      10_64 0.62795785  33.14247 3.309177e-04  -5.802916
-10062   ARL6IP4      12_75 0.74333612  36.01403 4.256587e-04   5.620253
-3128      NRBP1       2_16 0.02608681  31.30510 1.298496e-05  -5.594937
-8540       TAP1       6_27 0.06477636  32.26518 3.323190e-05  -5.575000
-11533      MICB       6_25 0.09335486  33.28052 4.940054e-05   5.545585
-3134      PPM1G       2_16 0.02636672  30.92622 1.296545e-05  -5.544304
-1291      P2RX7      12_74 0.29750917  37.48946 1.773430e-04   5.483748
-      num_eqtl
-6795         2
-13639        1
-6345         1
-10584        1
-474          1
-10742        1
-9232         1
-7991         2
-183          1
-7192         1
-7087         1
-7194         1
-10224        1
-1451         2
-10062        1
-3128         1
-8540         1
-11533        2
-3134         1
-1291         2</code></pre>
+<pre><code>       genename region_tag susie_pip    mu2       PVE       z num_eqtl
+6795      JAZF1       7_23   0.02534 147.34 5.935e-05 -13.082        2
+13639 LINC01126       2_27   0.03109  53.94 2.667e-05  -8.377        1
+6345     CDKN2B       9_16   0.08744  55.91 7.773e-05  -8.192        1
+10584     ARAP1      11_41   0.01921  57.43 1.754e-05   7.886        1
+474       BCAR1      16_40   0.08914  58.62 8.308e-05  -7.720        1
+10742   NCR3LG1      11_12   0.02108  51.25 1.718e-05  -7.370        1
+9232      PEAK1      15_36   0.41524  40.39 2.667e-04   6.885        1
+7991     NKX6-3       8_36   0.45714  42.55 3.093e-04  -6.781        2
+183        GIPR      19_32   0.63265  36.32 3.653e-04  -6.632        1
+7192     ATP5G1      17_28   0.06768  39.63 4.264e-05   6.400        1
+7087      AP3S2      15_41   0.37279  37.36 2.215e-04   6.356        1
+7194       SNF8      17_28   0.05732  37.71 3.437e-05   6.300        1
+10224     BMP8A       1_24   0.03474  37.42 2.067e-05   6.296        1
+1451    CWF19L1      10_64   0.62796  33.14 3.309e-04  -5.803        2
+10062   ARL6IP4      12_75   0.74334  36.01 4.257e-04   5.620        1
+3128      NRBP1       2_16   0.02609  31.31 1.298e-05  -5.595        1
+8540       TAP1       6_27   0.06478  32.27 3.323e-05  -5.575        1
+11533      MICB       6_25   0.09335  33.28 4.940e-05   5.546        2
+3134      PPM1G       2_16   0.02637  30.93 1.297e-05  -5.544        1
+1291      P2RX7      12_74   0.29751  37.49 1.773e-04   5.484        2</code></pre>
 </div>
 <div id="comparing-z-scores-and-pips" class="section level2">
 <h2>Comparing z scores and PIPs</h2>
-<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
-Past versions of unnamed-chunk-9-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Pancreas.Rmd/unnamed-chunk-9-1.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
+<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-11-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0.00618</code></pre>
+<pre><code>       genename region_tag susie_pip    mu2       PVE       z num_eqtl
+6795      JAZF1       7_23   0.02534 147.34 5.935e-05 -13.082        2
+13639 LINC01126       2_27   0.03109  53.94 2.667e-05  -8.377        1
+6345     CDKN2B       9_16   0.08744  55.91 7.773e-05  -8.192        1
+10584     ARAP1      11_41   0.01921  57.43 1.754e-05   7.886        1
+474       BCAR1      16_40   0.08914  58.62 8.308e-05  -7.720        1
+10742   NCR3LG1      11_12   0.02108  51.25 1.718e-05  -7.370        1
+9232      PEAK1      15_36   0.41524  40.39 2.667e-04   6.885        1
+7991     NKX6-3       8_36   0.45714  42.55 3.093e-04  -6.781        2
+183        GIPR      19_32   0.63265  36.32 3.653e-04  -6.632        1
+7192     ATP5G1      17_28   0.06768  39.63 4.264e-05   6.400        1
+7087      AP3S2      15_41   0.37279  37.36 2.215e-04   6.356        1
+7194       SNF8      17_28   0.05732  37.71 3.437e-05   6.300        1
+10224     BMP8A       1_24   0.03474  37.42 2.067e-05   6.296        1
+1451    CWF19L1      10_64   0.62796  33.14 3.309e-04  -5.803        2
+10062   ARL6IP4      12_75   0.74334  36.01 4.257e-04   5.620        1
+3128      NRBP1       2_16   0.02609  31.31 1.298e-05  -5.595        1
+8540       TAP1       6_27   0.06478  32.27 3.323e-05  -5.575        1
+11533      MICB       6_25   0.09335  33.28 4.940e-05   5.546        2
+3134      PPM1G       2_16   0.02637  30.93 1.297e-05  -5.544        1
+1291      P2RX7      12_74   0.29751  37.49 1.773e-04   5.484        2</code></pre>
 </div>
+<div id="go-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>GO enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre class="r"><code>#number of genes for gene set enrichment
+length(genes)</code></pre>
+<pre><code>[1] 18</code></pre>
+<pre><code>Uploading data to Enrichr... Done.
+  Querying GO_Biological_Process_2021... Done.
+  Querying GO_Cellular_Component_2021... Done.
+  Querying GO_Molecular_Function_2021... Done.
+Parsing results... Done.
+[1] &quot;GO_Biological_Process_2021&quot;</code></pre>
+<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
+<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-14-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Molecular_Function_2021&quot;</code></pre>
+<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-14-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
-<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-9-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-2">
-Past versions of unnamed-chunk-9-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/e6bc16990373312d301ab183ec936aff373d2497/docs/figure/T2D_Pancreas.Rmd/unnamed-chunk-9-2.png" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-</tr>
-</tbody>
-</table>
+<div id="disgenet-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>DisGeNET enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>                                                     Description     FDR Ratio
+50 CORTICAL DYSPLASIA, COMPLEX, WITH OTHER BRAIN MALFORMATIONS 4 0.03041  1/10
+53                SPINOCEREBELLAR ATAXIA, AUTOSOMAL RECESSIVE 17 0.03041  1/10
+32                                              Hyperargininemia 0.04052  1/10
+11                                                 Hair Diseases 0.04557  1/10
+1                           Amino Acid Metabolism, Inborn Errors 0.06042  1/10
+2                                                     Asbestosis 0.06042  1/10
+4                                                    Body Weight 0.06042  1/10
+10                     Glomerulonephritis, Membranoproliferative 0.06042  1/10
+13                                        Immune System Diseases 0.06042  1/10
+15                                                 Leishmaniasis 0.06042  1/10
+   BgRatio
+50  1/9703
+53  1/9703
+32  2/9703
+11  3/9703
+1  13/9703
+2  14/9703
+4  15/9703
+10  7/9703
+13  7/9703
+15  9/9703</code></pre>
 </div>
+<div id="webgestalt-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>WebGestalt enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>Loading the functional categories...
+Loading the ID list...
+Loading the reference list...
+Performing the enrichment analysis...</code></pre>
+<pre><code>Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<pre><code>NULL</code></pre>
 </div>
-<pre><code>[1] 0.006180145</code></pre>
-<pre><code>       genename region_tag  susie_pip       mu2          PVE          z
-6795      JAZF1       7_23 0.02533503 147.33975 5.935344e-05 -13.081610
-13639 LINC01126       2_27 0.03109295  53.93953 2.666697e-05  -8.376923
-6345     CDKN2B       9_16 0.08744328  55.90606 7.773022e-05  -8.191781
-10584     ARAP1      11_41 0.01921356  57.42519 1.754345e-05   7.885714
-474       BCAR1      16_40 0.08914038  58.61868 8.308357e-05  -7.720000
-10742   NCR3LG1      11_12 0.02108118  51.25289 1.717979e-05  -7.369863
-9232      PEAK1      15_36 0.41524256  40.39351 2.666970e-04   6.885057
-7991     NKX6-3       8_36 0.45713790  42.54881 3.092710e-04  -6.780976
-183        GIPR      19_32 0.63264927  36.31838 3.653374e-04  -6.632184
-7192     ATP5G1      17_28 0.06768191  39.62674 4.264475e-05   6.400000
-7087      AP3S2      15_41 0.37279483  37.36237 2.214669e-04   6.356322
-7194       SNF8      17_28 0.05732059  37.71067 3.437000e-05   6.300000
-10224     BMP8A       1_24 0.03473869  37.42298 2.067076e-05   6.296296
-1451    CWF19L1      10_64 0.62795785  33.14247 3.309177e-04  -5.802916
-10062   ARL6IP4      12_75 0.74333612  36.01403 4.256587e-04   5.620253
-3128      NRBP1       2_16 0.02608681  31.30510 1.298496e-05  -5.594937
-8540       TAP1       6_27 0.06477636  32.26518 3.323190e-05  -5.575000
-11533      MICB       6_25 0.09335486  33.28052 4.940054e-05   5.545585
-3134      PPM1G       2_16 0.02636672  30.92622 1.296545e-05  -5.544304
-1291      P2RX7      12_74 0.29750917  37.48946 1.773430e-04   5.483748
-      num_eqtl
-6795         2
-13639        1
-6345         1
-10584        1
-474          1
-10742        1
-9232         1
-7991         2
-183          1
-7192         1
-7087         1
-7194         1
-10224        1
-1451         2
-10062        1
-3128         1
-8540         1
-11533        2
-3134         1
-1291         2</code></pre>
+<div id="pip-manhattan-plot" class="section level2">
+<h2>PIP Manhattan Plot</h2>
+<p><img src="figure/T2D_Pancreas.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sensitivity-specificity-and-precision-for-silver-standard-genes" class="section level2">
 <h2>Sensitivity, specificity and precision for silver standard genes</h2>
+<pre class="r"><code>#number of genes in known annotations
+print(length(known_annotations))</code></pre>
 <pre><code>[1] 72</code></pre>
+<pre class="r"><code>#number of genes in known annotations with imputed expression
+print(sum(known_annotations %in% ctwas_gene_res$genename))</code></pre>
 <pre><code>[1] 27</code></pre>
-<pre><code>[1] 4.507014</code></pre>
+<pre class="r"><code>#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.507</code></pre>
+<pre class="r"><code>#number of ctwas genes
+length(ctwas_genes)</code></pre>
 <pre><code>[1] 18</code></pre>
+<pre class="r"><code>#number of TWAS genes
+length(twas_genes)</code></pre>
 <pre><code>[1] 47</code></pre>
-<pre><code>       genename region_tag susie_pip      mu2          PVE         z num_eqtl
-6019      MRPS5       2_57 0.5399310 21.72457 0.0001865065 -3.736842        1
-12493 LINC01184       5_78 0.5774450 20.30140 0.0001863979  3.793478        1
-10527      GSAP       7_49 0.6504951 24.56257 0.0002540519 -4.185185        1
-11158     PARVA       11_9 0.7137719 21.89032 0.0002484369 -3.861836        2
-4461     ZNF236      18_45 0.7058864 20.69653 0.0002322934 -4.378049        1
-2221      MIER2       19_1 0.5414438 23.95810 0.0002062578  3.683544        1
-2227     DNASE2      19_10 0.7083131 19.08862 0.0002149831 -3.744186        1
-7604    CFAP221       2_69 0.6764235 20.29448 0.0002182736 -4.049666        2</code></pre>
-<pre><code>     ctwas       TWAS 
-0.01388889 0.01388889 </code></pre>
-<pre><code>    ctwas      TWAS 
-0.9977567 0.9939298 </code></pre>
-<pre><code>     ctwas       TWAS 
-0.05555556 0.02127660 </code></pre>
+<pre class="r"><code>#show novel genes (ctwas genes with not in TWAS genes)
+ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]</code></pre>
+<pre><code>       genename region_tag susie_pip   mu2       PVE      z num_eqtl
+6019      MRPS5       2_57    0.5399 21.72 0.0001865 -3.737        1
+12493 LINC01184       5_78    0.5774 20.30 0.0001864  3.793        1
+10527      GSAP       7_49    0.6505 24.56 0.0002541 -4.185        1
+11158     PARVA       11_9    0.7138 21.89 0.0002484 -3.862        2
+4461     ZNF236      18_45    0.7059 20.70 0.0002323 -4.378        1
+2221      MIER2       19_1    0.5414 23.96 0.0002063  3.684        1
+2227     DNASE2      19_10    0.7083 19.09 0.0002150 -3.744        1
+7604    CFAP221       2_69    0.6764 20.29 0.0002183 -4.050        2</code></pre>
+<pre class="r"><code>#sensitivity / recall
+print(sensitivity)</code></pre>
+<pre><code>  ctwas    TWAS 
+0.01389 0.01389 </code></pre>
+<pre class="r"><code>#specificity
+print(specificity)</code></pre>
+<pre><code> ctwas   TWAS 
+0.9978 0.9939 </code></pre>
+<pre class="r"><code>#precision / PPV
+print(precision)</code></pre>
+<pre><code>  ctwas    TWAS 
+0.05556 0.02128 </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1178,24 +1109,35 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] readxl_1.3.1    cowplot_1.0.0   ggplot2_3.3.5   workflowr_1.6.2
+ [1] readxl_1.3.1      forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
+ [5] purrr_0.3.4       readr_2.1.1       tidyr_1.1.4       tidyverse_1.3.1  
+ [9] tibble_3.1.6      WebGestaltR_0.4.4 disgenet2r_0.99.2 enrichR_3.0      
+[13] cowplot_1.0.0     ggplot2_3.3.5     workflowr_1.6.2  
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.1.1  xfun_0.29         purrr_0.3.4       colorspace_2.0-2 
- [5] vctrs_0.3.8       generics_0.1.1    htmltools_0.5.2   yaml_2.2.1       
- [9] utf8_1.2.2        blob_1.2.2        rlang_1.0.1       jquerylib_0.1.4  
-[13] later_0.8.0       pillar_1.6.4      glue_1.6.2        withr_2.4.3      
-[17] DBI_1.1.2         bit64_4.0.5       lifecycle_1.0.1   stringr_1.4.0    
-[21] cellranger_1.1.0  munsell_0.5.0     gtable_0.3.0      evaluate_0.14    
-[25] memoise_2.0.1     labeling_0.4.2    knitr_1.36        fastmap_1.1.0    
-[29] httpuv_1.5.1      fansi_1.0.2       highr_0.9         Rcpp_1.0.8       
-[33] promises_1.0.1    scales_1.1.1      cachem_1.0.6      farver_2.1.0     
-[37] fs_1.5.2          bit_4.0.4         digest_0.6.29     stringi_1.7.6    
-[41] dplyr_1.0.7       rprojroot_2.0.2   grid_3.6.1        cli_3.1.0        
-[45] tools_3.6.1       magrittr_2.0.2    tibble_3.1.6      RSQLite_2.2.8    
-[49] crayon_1.5.0      whisker_0.3-2     pkgconfig_2.0.3   ellipsis_0.3.2   
-[53] data.table_1.14.2 assertthat_0.2.1  rmarkdown_2.11    R6_2.5.1         
-[57] git2r_0.26.1      compiler_3.6.1   </code></pre>
+ [1] fs_1.5.2          lubridate_1.8.0   bit64_4.0.5       doParallel_1.0.17
+ [5] httr_1.4.2        rprojroot_2.0.2   tools_3.6.1       backports_1.4.1  
+ [9] doRNG_1.8.2       utf8_1.2.2        R6_2.5.1          vipor_0.4.5      
+[13] DBI_1.1.2         colorspace_2.0-2  withr_2.4.3       ggrastr_1.0.1    
+[17] tidyselect_1.1.1  bit_4.0.4         curl_4.3.2        compiler_3.6.1   
+[21] git2r_0.26.1      rvest_1.0.2       cli_3.1.0         Cairo_1.5-12.2   
+[25] xml2_1.3.3        labeling_0.4.2    scales_1.1.1      apcluster_1.4.8  
+[29] digest_0.6.29     rmarkdown_2.11    svglite_1.2.2     pkgconfig_2.0.3  
+[33] htmltools_0.5.2   dbplyr_2.1.1      fastmap_1.1.0     highr_0.9        
+[37] rlang_1.0.1       rstudioapi_0.13   RSQLite_2.2.8     jquerylib_0.1.4  
+[41] farver_2.1.0      generics_0.1.1    jsonlite_1.7.2    vroom_1.5.7      
+[45] magrittr_2.0.2    Matrix_1.2-18     ggbeeswarm_0.6.0  Rcpp_1.0.8       
+[49] munsell_0.5.0     fansi_1.0.2       gdtools_0.1.9     lifecycle_1.0.1  
+[53] stringi_1.7.6     whisker_0.3-2     yaml_2.2.1        plyr_1.8.6       
+[57] grid_3.6.1        blob_1.2.2        ggrepel_0.9.1     parallel_3.6.1   
+[61] promises_1.0.1    crayon_1.5.0      lattice_0.20-38   haven_2.4.3      
+[65] hms_1.1.1         knitr_1.36        pillar_1.6.4      igraph_1.2.10    
+[69] rjson_0.2.20      rngtools_1.5.2    reshape2_1.4.4    codetools_0.2-16 
+[73] reprex_2.0.1      glue_1.6.2        evaluate_0.14     data.table_1.14.2
+[77] modelr_0.1.8      vctrs_0.3.8       tzdb_0.2.0        httpuv_1.5.1     
+[81] foreach_1.5.2     cellranger_1.1.0  gtable_0.3.0      assertthat_0.2.1 
+[85] cachem_1.0.6      xfun_0.29         broom_0.7.10      later_0.8.0      
+[89] iterators_1.0.14  beeswarm_0.2.3    memoise_2.0.1     ellipsis_0.3.2   </code></pre>
 </div>
 </div>
 
