@@ -251,18 +251,22 @@ head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
 ```
 
-## Gene set enrichment for genes with PIP>0.5
+## GO enrichment analysis for genes with PIP>0.5
 
-```{r echo=F, message=FALSE}
+```{r echo=FALSE, message=FALSE}
 #GO enrichment analysis
 library(enrichR)
 
 dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecular_Function_2021")
 genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.5]
+```
 
+```{r}
 #number of genes for gene set enrichment
 length(genes)
+```
 
+```{r echo=F, message=FALSE}
 if (length(genes)>0){
   GO_enrichment <- enrichr(genes, dbs)
 
@@ -273,10 +277,13 @@ if (length(genes)>0){
     df <- df[df$Adjusted.P.value<0.05,c("Term", "Overlap", "Adjusted.P.value", "Genes")]
     print(df)
   }
-  
-  #DisGeNET enrichment
-  
-  # devtools::install_bitbucket("ibi_group/disgenet2r")
+}
+
+```
+
+## DisGeNET enrichment analysis for genes with PIP>0.5
+```{r echo=F, message=FALSE}
+if (length(genes)>0){
   library(disgenet2r)
   
   disgenet_api_key <- get_disgenet_api_key(
@@ -290,7 +297,13 @@ if (length(genes)>0){
   
   df <- res_enrich@qresult[1:10, c("Description", "FDR", "Ratio",  "BgRatio")]
   print(df)
-  
+}
+
+```
+
+## WebGestalt enrichment analysis for genes with PIP>0.5
+```{r echo=F, message=FALSE}
+if (length(genes)>0){
   #WebGestalt enrichment
   library(WebGestaltR)
   
@@ -307,7 +320,6 @@ if (length(genes)>0){
 }
 
 ```
-
 
 ## PIP Manhattan Plot
 
@@ -451,31 +463,3 @@ print(specificity)
 #precision / PPV
 print(precision)
 ```
-
-```{r,echo=FALSE}
-#ROC curves
-pip_range <- (0:1000)/1000
-sensitivity <- rep(NA, length(pip_range))
-specificity <- rep(NA, length(pip_range))
-
-for (index in 1:length(pip_range)){
-  pip <- pip_range[index]
-  ctwas_genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>=pip]
-  sensitivity[index] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
-  specificity[index] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
-}
-
-plot(1-specificity, sensitivity, type="l", xlim=c(0,1), ylim=c(0,1))
-
-sig_thresh_range <- seq(from=0, to=max(abs(ctwas_gene_res$z)), length.out=length(pip_range))
-
-for (index in 1:length(sig_thresh_range)){
-  sig_thresh_plot <- sig_thresh_range[index]
-  twas_genes <- ctwas_gene_res$genename[abs(ctwas_gene_res$z)>=sig_thresh_plot]
-  sensitivity[index] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
-  specificity[index] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
-}
-
-lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
-```
-
