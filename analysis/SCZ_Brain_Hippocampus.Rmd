@@ -1,5 +1,5 @@
 ---
-title: "Autism - Brain Hippocampus"
+title: "SCZ - Brain Hippocampus"
 author: "sheng Qian"
 date: "2021-2-6"
 output: workflowr::wflow_html
@@ -403,7 +403,7 @@ ggplot(don, aes(x=BPcum, y=gene_pip)) +
 ```{r echo=F}
 library("readxl")
 
-known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="BMI")
+known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ")
 known_annotations <- unique(known_annotations$`Gene Symbol`)
 
 unrelated_genes <- ctwas_gene_res$genename[!(ctwas_gene_res$genename %in% known_annotations)]
