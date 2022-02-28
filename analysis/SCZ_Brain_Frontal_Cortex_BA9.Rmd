@@ -490,3 +490,209 @@ for (index in 1:length(sig_thresh_range)){
 
 lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
 ```
+
+
+## Sensitivity, specificity and precision for silver standard genes - bystanders only
+
+```{r}
+library(biomaRt)
+library(GenomicRanges)
+# 
+ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+G_list <- getBM(filters= "chromosome_name", attributes = c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
+G_list <- G_list[G_list$hgnc_symbol!="",]
+G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
+G_list$start <- G_list$start_position
+G_list$end <- G_list$end_position
+G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
+# 
+# #remove genes without imputed expression from gene lists
+known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename]
+# 
+known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,]
+half_window <- 1000000
+known_annotations_positions$start <- known_annotations_positions$start_position - half_window
+known_annotations_positions$end <- known_annotations_positions$end_position + half_window
+known_annotations_positions$start[known_annotations_positions$start<1] <- 1
+known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
+# 
+bystanders <- findOverlaps(known_annotations_granges,G_list_granges)
+bystanders <- unique(subjectHits(bystanders))
+bystanders <- G_list$hgnc_symbol[bystanders]
+bystanders <- unique(bystanders[!(bystanders %in% known_annotations)])
+unrelated_genes <- bystanders
+# 
+# #save gene lists
+save(known_annotations, file=paste0(results_dir, "/known_annotations.Rd"))
+save(unrelated_genes, file=paste0(results_dir, "/bystanders.Rd"))
+
+
+load(paste0(results_dir, "/known_annotations.Rd"))
+load(paste0(results_dir, "/bystanders.Rd"))
+
+
+#remove genes without imputed expression from bystander list
+unrelated_genes <- unrelated_genes[unrelated_genes %in% ctwas_gene_res$genename]
+
+#number of genes in known annotations (with imputed expression)
+print(length(known_annotations))
+
+#subset results to genes in known annotations or bystanders
+ctwas_gene_res_subset <- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),]
+
+#assign ctwas and TWAS genes
+ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8]
+twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh]
+
+#significance threshold for TWAS
+print(sig_thresh)
+
+#number of ctwas genes (in known annotations or bystanders)
+length(ctwas_genes)
+
+#number of TWAS genes (in known annotations or bystanders)
+length(twas_genes)
+
+#sensitivity / recall
+sensitivity <- rep(NA,2)
+names(sensitivity) <- c("ctwas", "TWAS")
+sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
+sensitivity
+
+#specificity / (1 - False Positive Rate)
+specificity <- rep(NA,2)
+names(specificity) <- c("ctwas", "TWAS")
+specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+specificity
+
+#precision / PPV / (1 - False Discovery Rate)
+precision <- rep(NA,2)
+names(precision) <- c("ctwas", "TWAS")
+precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes)
+precision
+
+#store sensitivity and specificity calculations for plots
+sensitivity_plot <- sensitivity
+specificity_plot <- specificity
+
+#precision / PPV by PIP bin
+pip_range <- c(0.2, 0.4, 0.6, 0.8, 1)
+precision_range <- rep(NA, length(pip_range))
+
+for (i in 1:length(pip_range)){
+  pip_upper <- pip_range[i]
+
+  if (i==1){
+    pip_lower <- 0
+  } else {
+    pip_lower <- pip_range[i-1]
+  }
+  
+  #assign ctwas genes in PIP bin
+  ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>=pip_lower & ctwas_gene_res_subset$susie_pip<pip_upper]
+  
+  precision_range[i] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+}
+
+names(precision_range) <- paste(c(0, pip_range[-length(pip_range)]), pip_range,sep=" - ")
+
+barplot(precision_range, ylim=c(0,1), main="Precision by PIP Range", xlab="PIP Range", ylab="Precision")
+abline(h=0.2, lty=2)
+abline(h=0.4, lty=2)
+abline(h=0.6, lty=2)
+abline(h=0.8, lty=2)
+barplot(precision_range, add=T, col="darkgrey")
+
+#precision / PPV by PIP threshold
+#pip_range <- c(0.2, 0.4, 0.6, 0.8, 1)
+pip_range <- c(0.5, 0.8, 1)
+precision_range <- rep(NA, length(pip_range))
+number_detected <- rep(NA, length(pip_range))
+
+for (i in 1:length(pip_range)){
+  pip_upper <- pip_range[i]
+
+  if (i==1){
+    pip_lower <- 0
+  } else {
+    pip_lower <- pip_range[i-1]
+  }
+  
+  #assign ctwas genes using PIP threshold
+  ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>=pip_lower]
+  
+  number_detected[i] <- length(ctwas_genes)
+  precision_range[i] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+}
+
+names(precision_range) <- paste0(">= ", c(0, pip_range[-length(pip_range)]))
+
+precision_range <- precision_range*100
+
+precision_range <- c(precision_range, precision["TWAS"]*100)
+names(precision_range)[4] <- "TWAS Bonferroni"
+number_detected <- c(number_detected, length(twas_genes))
+
+barplot(precision_range, ylim=c(0,100), main="Precision for Distinguishing Silver Standard and Bystander Genes", xlab="PIP Threshold for Detection", ylab="% of Detected Genes in Silver Standard")
+abline(h=20, lty=2)
+abline(h=40, lty=2)
+abline(h=60, lty=2)
+abline(h=80, lty=2)
+xx <- barplot(precision_range, add=T, col=c(rep("darkgrey",3), "white"))
+text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, " detected"), pos = 3, cex=0.8)
+
+#text(x = xx, y = precision_range, label = paste0(round(precision_range,1), "%"), pos = 3, cex=0.8, offset = 1.5)
+
+#false discovery rate by PIP threshold
+
+barplot(100-precision_range, ylim=c(0,100), main="False Discovery Rate for Distinguishing Silver Standard and Bystander Genes", xlab="PIP Threshold for Detection", ylab="% Bystanders in Detected Genes")
+abline(h=20, lty=2)
+abline(h=40, lty=2)
+abline(h=60, lty=2)
+abline(h=80, lty=2)
+xx <- barplot(100-precision_range, add=T, col=c(rep("darkgrey",3), "white"))
+text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, " detected"), pos = 3, cex=0.8)
+
+#text(x = xx, y = precision_range, label = paste0(round(precision_range,1), "%"), pos = 3, cex=0.8, offset = 1.5)
+
+#ROC curves
+
+pip_range <- (0:1000)/1000
+sensitivity <- rep(NA, length(pip_range))
+specificity <- rep(NA, length(pip_range))
+
+for (index in 1:length(pip_range)){
+  pip <- pip_range[index]
+  ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>=pip]
+  sensitivity[index] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+}
+
+plot(1-specificity, sensitivity, type="l", xlim=c(0,1), ylim=c(0,1), main="", xlab="1 - Specificity", ylab="Sensitivity")
+title(expression("ROC Curve for cTWAS (black) and TWAS (" * phantom("red") * ")"))
+title(expression(phantom("ROC Curve for cTWAS (black) and TWAS (") * "red" * phantom(")")), col.main="red")
+
+sig_thresh_range <- seq(from=0, to=max(abs(ctwas_gene_res_subset$z)), length.out=length(pip_range))
+
+for (index in 1:length(sig_thresh_range)){
+  sig_thresh_plot <- sig_thresh_range[index]
+  twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>=sig_thresh_plot]
+  sensitivity[index] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+}
+
+lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=1)
+
+abline(a=0,b=1,lty=3)
+
+#add previously computed points from the analysis
+ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8]
+twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh]
+
+points(1-specificity_plot["ctwas"], sensitivity_plot["ctwas"], pch=21, bg="black")
+points(1-specificity_plot["TWAS"], sensitivity_plot["TWAS"], pch=21, bg="red")
+```
+
