@@ -384,7 +384,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-02-27
+<strong>Last updated:</strong> 2022-02-28
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -507,16 +507,16 @@ code/ctwas_config.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree1c69dd24cb48d62e1c884f260adbee91383bbe92targetblank1c69dd2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/1c69dd24cb48d62e1c884f260adbee91383bbe92" target="_blank">1c69dd2</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4dd47fbc430a3f74482856839b723b4de2ca92dbtargetblank4dd47fba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/4dd47fbc430a3f74482856839b723b4de2ca92db" target="_blank">4dd47fb</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree1c69dd24cb48d62e1c884f260adbee91383bbe92targetblank1c69dd2a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4dd47fbc430a3f74482856839b723b4de2ca92dbtargetblank4dd47fba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/1c69dd24cb48d62e1c884f260adbee91383bbe92" target="_blank">1c69dd2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/4dd47fbc430a3f74482856839b723b4de2ca92db" target="_blank">4dd47fb</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -653,6 +653,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4dd47fbc430a3f74482856839b723b4de2ca92db/analysis/SCZ_Brain_Frontal_Cortex_BA9.Rmd" target="_blank">4dd47fb</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-28
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/75a146615b51c4871f234c7d5cc78179e55ef29c/docs/SCZ_Brain_Frontal_Cortex_BA9.html" target="_blank">75a1466</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1332,6 +1366,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/75a146615b51c4871f234c7d5cc78179e55ef29c/docs/figure/SCZ_Brain_Frontal_Cortex_BA9.Rmd/unnamed-chunk-20-1.png" target="_blank">75a1466</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-27
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/ff6403af6ee51518b5688c45524c9108825b8e3e/docs/figure/SCZ_Brain_Frontal_Cortex_BA9.Rmd/unnamed-chunk-20-1.png" target="_blank">ff6403a</a>
 </td>
 <td>
@@ -1345,6 +1390,306 @@ sq-96
 </table>
 </div>
 </div>
+</div>
+<div id="sensitivity-specificity-and-precision-for-silver-standard-genes---bystanders-only" class="section level2">
+<h2>Sensitivity, specificity and precision for silver standard genes - bystanders only</h2>
+<pre class="r"><code>library(biomaRt)
+library(GenomicRanges)</code></pre>
+<pre><code>Loading required package: stats4</code></pre>
+<pre><code>Loading required package: BiocGenerics</code></pre>
+<pre><code>Loading required package: parallel</code></pre>
+<pre><code>
+Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:parallel&#39;:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
+<pre><code>The following objects are masked from &#39;package:dplyr&#39;:
+
+    combine, intersect, setdiff, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which, which.max, which.min</code></pre>
+<pre><code>Loading required package: S4Vectors</code></pre>
+<pre><code>
+Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:dplyr&#39;:
+
+    first, rename</code></pre>
+<pre><code>The following object is masked from &#39;package:tidyr&#39;:
+
+    expand</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    expand.grid</code></pre>
+<pre><code>Loading required package: IRanges</code></pre>
+<pre><code>
+Attaching package: &#39;IRanges&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:dplyr&#39;:
+
+    collapse, desc, slice</code></pre>
+<pre><code>The following object is masked from &#39;package:purrr&#39;:
+
+    reduce</code></pre>
+<pre><code>Loading required package: GenomeInfoDb</code></pre>
+<pre class="r"><code># 
+ensembl &lt;- useEnsembl(biomart=&quot;ENSEMBL_MART_ENSEMBL&quot;, dataset=&quot;hsapiens_gene_ensembl&quot;)
+G_list &lt;- getBM(filters= &quot;chromosome_name&quot;, attributes = c(&quot;hgnc_symbol&quot;,&quot;chromosome_name&quot;,&quot;start_position&quot;,&quot;end_position&quot;,&quot;gene_biotype&quot;), values=1:22, mart=ensembl)
+G_list &lt;- G_list[G_list$hgnc_symbol!=&quot;&quot;,]
+G_list &lt;- G_list[G_list$gene_biotype %in% c(&quot;protein_coding&quot;,&quot;lncRNA&quot;),]
+G_list$start &lt;- G_list$start_position
+G_list$end &lt;- G_list$end_position
+G_list_granges &lt;- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
+# 
+# #remove genes without imputed expression from gene lists
+known_annotations &lt;- known_annotations[known_annotations %in% ctwas_gene_res$genename]
+# 
+known_annotations_positions &lt;- G_list[G_list$hgnc_symbol %in% known_annotations,]
+half_window &lt;- 1000000
+known_annotations_positions$start &lt;- known_annotations_positions$start_position - half_window
+known_annotations_positions$end &lt;- known_annotations_positions$end_position + half_window
+known_annotations_positions$start[known_annotations_positions$start&lt;1] &lt;- 1
+known_annotations_granges &lt;- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
+# 
+bystanders &lt;- findOverlaps(known_annotations_granges,G_list_granges)
+bystanders &lt;- unique(subjectHits(bystanders))
+bystanders &lt;- G_list$hgnc_symbol[bystanders]
+bystanders &lt;- unique(bystanders[!(bystanders %in% known_annotations)])
+unrelated_genes &lt;- bystanders
+# 
+# #save gene lists
+save(known_annotations, file=paste0(results_dir, &quot;/known_annotations.Rd&quot;))
+save(unrelated_genes, file=paste0(results_dir, &quot;/bystanders.Rd&quot;))
+
+
+load(paste0(results_dir, &quot;/known_annotations.Rd&quot;))
+load(paste0(results_dir, &quot;/bystanders.Rd&quot;))
+
+
+#remove genes without imputed expression from bystander list
+unrelated_genes &lt;- unrelated_genes[unrelated_genes %in% ctwas_gene_res$genename]
+
+#number of genes in known annotations (with imputed expression)
+print(length(known_annotations))</code></pre>
+<pre><code>[1] 64</code></pre>
+<pre class="r"><code>#subset results to genes in known annotations or bystanders
+ctwas_gene_res_subset &lt;- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),]
+
+#assign ctwas and TWAS genes
+ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;0.8]
+twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;sig_thresh]
+
+#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.594</code></pre>
+<pre class="r"><code>#number of ctwas genes (in known annotations or bystanders)
+length(ctwas_genes)</code></pre>
+<pre><code>[1] 4</code></pre>
+<pre class="r"><code>#number of TWAS genes (in known annotations or bystanders)
+length(twas_genes)</code></pre>
+<pre><code>[1] 25</code></pre>
+<pre class="r"><code>#sensitivity / recall
+sensitivity &lt;- rep(NA,2)
+names(sensitivity) &lt;- c(&quot;ctwas&quot;, &quot;TWAS&quot;)
+sensitivity[&quot;ctwas&quot;] &lt;- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+sensitivity[&quot;TWAS&quot;] &lt;- sum(twas_genes %in% known_annotations)/length(known_annotations)
+sensitivity</code></pre>
+<pre><code>  ctwas    TWAS 
+0.04688 0.12500 </code></pre>
+<pre class="r"><code>#specificity / (1 - False Positive Rate)
+specificity &lt;- rep(NA,2)
+names(specificity) &lt;- c(&quot;ctwas&quot;, &quot;TWAS&quot;)
+specificity[&quot;ctwas&quot;] &lt;- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+specificity[&quot;TWAS&quot;] &lt;- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+specificity</code></pre>
+<pre><code> ctwas   TWAS 
+0.9989 0.9807 </code></pre>
+<pre class="r"><code>#precision / PPV / (1 - False Discovery Rate)
+precision &lt;- rep(NA,2)
+names(precision) &lt;- c(&quot;ctwas&quot;, &quot;TWAS&quot;)
+precision[&quot;ctwas&quot;] &lt;- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+precision[&quot;TWAS&quot;] &lt;- sum(twas_genes %in% known_annotations)/length(twas_genes)
+precision</code></pre>
+<pre><code>ctwas  TWAS 
+ 0.75  0.32 </code></pre>
+<pre class="r"><code>#store sensitivity and specificity calculations for plots
+sensitivity_plot &lt;- sensitivity
+specificity_plot &lt;- specificity
+
+#precision / PPV by PIP bin
+pip_range &lt;- c(0.2, 0.4, 0.6, 0.8, 1)
+precision_range &lt;- rep(NA, length(pip_range))
+
+for (i in 1:length(pip_range)){
+  pip_upper &lt;- pip_range[i]
+
+  if (i==1){
+    pip_lower &lt;- 0
+  } else {
+    pip_lower &lt;- pip_range[i-1]
+  }
+  
+  #assign ctwas genes in PIP bin
+  ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;=pip_lower &amp; ctwas_gene_res_subset$susie_pip&lt;pip_upper]
+  
+  precision_range[i] &lt;- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+}
+
+names(precision_range) &lt;- paste(c(0, pip_range[-length(pip_range)]), pip_range,sep=&quot; - &quot;)
+
+barplot(precision_range, ylim=c(0,1), main=&quot;Precision by PIP Range&quot;, xlab=&quot;PIP Range&quot;, ylab=&quot;Precision&quot;)
+abline(h=0.2, lty=2)
+abline(h=0.4, lty=2)
+abline(h=0.6, lty=2)
+abline(h=0.8, lty=2)
+barplot(precision_range, add=T, col=&quot;darkgrey&quot;)</code></pre>
+<p><img src="figure/SCZ_Brain_Frontal_Cortex_BA9.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-21-1">
+Past versions of unnamed-chunk-21-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-21-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/75a146615b51c4871f234c7d5cc78179e55ef29c/docs/figure/SCZ_Brain_Frontal_Cortex_BA9.Rmd/unnamed-chunk-21-1.png" target="_blank">75a1466</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-27
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/ff6403af6ee51518b5688c45524c9108825b8e3e/docs/figure/SCZ_Brain_Frontal_Cortex_BA9.Rmd/unnamed-chunk-21-1.png" target="_blank">ff6403a</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-02-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>#precision / PPV by PIP threshold
+#pip_range &lt;- c(0.2, 0.4, 0.6, 0.8, 1)
+pip_range &lt;- c(0.5, 0.8, 1)
+precision_range &lt;- rep(NA, length(pip_range))
+number_detected &lt;- rep(NA, length(pip_range))
+
+for (i in 1:length(pip_range)){
+  pip_upper &lt;- pip_range[i]
+
+  if (i==1){
+    pip_lower &lt;- 0
+  } else {
+    pip_lower &lt;- pip_range[i-1]
+  }
+  
+  #assign ctwas genes using PIP threshold
+  ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;=pip_lower]
+  
+  number_detected[i] &lt;- length(ctwas_genes)
+  precision_range[i] &lt;- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+}
+
+names(precision_range) &lt;- paste0(&quot;&gt;= &quot;, c(0, pip_range[-length(pip_range)]))
+
+precision_range &lt;- precision_range*100
+
+precision_range &lt;- c(precision_range, precision[&quot;TWAS&quot;]*100)
+names(precision_range)[4] &lt;- &quot;TWAS Bonferroni&quot;
+number_detected &lt;- c(number_detected, length(twas_genes))
+
+barplot(precision_range, ylim=c(0,100), main=&quot;Precision for Distinguishing Silver Standard and Bystander Genes&quot;, xlab=&quot;PIP Threshold for Detection&quot;, ylab=&quot;% of Detected Genes in Silver Standard&quot;)
+abline(h=20, lty=2)
+abline(h=40, lty=2)
+abline(h=60, lty=2)
+abline(h=80, lty=2)
+xx &lt;- barplot(precision_range, add=T, col=c(rep(&quot;darkgrey&quot;,3), &quot;white&quot;))
+text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, &quot; detected&quot;), pos = 3, cex=0.8)</code></pre>
+<p><img src="figure/SCZ_Brain_Frontal_Cortex_BA9.Rmd/unnamed-chunk-21-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#text(x = xx, y = precision_range, label = paste0(round(precision_range,1), &quot;%&quot;), pos = 3, cex=0.8, offset = 1.5)
+
+#false discovery rate by PIP threshold
+
+barplot(100-precision_range, ylim=c(0,100), main=&quot;False Discovery Rate for Distinguishing Silver Standard and Bystander Genes&quot;, xlab=&quot;PIP Threshold for Detection&quot;, ylab=&quot;% Bystanders in Detected Genes&quot;)
+abline(h=20, lty=2)
+abline(h=40, lty=2)
+abline(h=60, lty=2)
+abline(h=80, lty=2)
+xx &lt;- barplot(100-precision_range, add=T, col=c(rep(&quot;darkgrey&quot;,3), &quot;white&quot;))
+text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, &quot; detected&quot;), pos = 3, cex=0.8)</code></pre>
+<p><img src="figure/SCZ_Brain_Frontal_Cortex_BA9.Rmd/unnamed-chunk-21-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#text(x = xx, y = precision_range, label = paste0(round(precision_range,1), &quot;%&quot;), pos = 3, cex=0.8, offset = 1.5)
+
+#ROC curves
+
+pip_range &lt;- (0:1000)/1000
+sensitivity &lt;- rep(NA, length(pip_range))
+specificity &lt;- rep(NA, length(pip_range))
+
+for (index in 1:length(pip_range)){
+  pip &lt;- pip_range[index]
+  ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;=pip]
+  sensitivity[index] &lt;- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] &lt;- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+}
+
+plot(1-specificity, sensitivity, type=&quot;l&quot;, xlim=c(0,1), ylim=c(0,1), main=&quot;&quot;, xlab=&quot;1 - Specificity&quot;, ylab=&quot;Sensitivity&quot;)
+title(expression(&quot;ROC Curve for cTWAS (black) and TWAS (&quot; * phantom(&quot;red&quot;) * &quot;)&quot;))
+title(expression(phantom(&quot;ROC Curve for cTWAS (black) and TWAS (&quot;) * &quot;red&quot; * phantom(&quot;)&quot;)), col.main=&quot;red&quot;)
+
+sig_thresh_range &lt;- seq(from=0, to=max(abs(ctwas_gene_res_subset$z)), length.out=length(pip_range))
+
+for (index in 1:length(sig_thresh_range)){
+  sig_thresh_plot &lt;- sig_thresh_range[index]
+  twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;=sig_thresh_plot]
+  sensitivity[index] &lt;- sum(twas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] &lt;- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+}
+
+lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col=&quot;red&quot;, lty=1)
+
+abline(a=0,b=1,lty=3)
+
+#add previously computed points from the analysis
+ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;0.8]
+twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;sig_thresh]
+
+points(1-specificity_plot[&quot;ctwas&quot;], sensitivity_plot[&quot;ctwas&quot;], pch=21, bg=&quot;black&quot;)
+points(1-specificity_plot[&quot;TWAS&quot;], sensitivity_plot[&quot;TWAS&quot;], pch=21, bg=&quot;red&quot;)</code></pre>
+<p><img src="figure/SCZ_Brain_Frontal_Cortex_BA9.Rmd/unnamed-chunk-21-4.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1369,38 +1714,53 @@ locale:
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
 
 other attached packages:
- [1] readxl_1.3.1      forcats_0.5.1     stringr_1.4.0     dplyr_1.0.7      
- [5] purrr_0.3.4       readr_2.1.1       tidyr_1.1.4       tidyverse_1.3.1  
- [9] tibble_3.1.6      WebGestaltR_0.4.4 disgenet2r_0.99.2 enrichR_3.0      
-[13] cowplot_1.0.0     ggplot2_3.3.5     workflowr_1.6.2  
+ [1] GenomicRanges_1.36.1 GenomeInfoDb_1.20.0  IRanges_2.18.1      
+ [4] S4Vectors_0.22.1     BiocGenerics_0.30.0  biomaRt_2.40.1      
+ [7] readxl_1.3.1         forcats_0.5.1        stringr_1.4.0       
+[10] dplyr_1.0.7          purrr_0.3.4          readr_2.1.1         
+[13] tidyr_1.1.4          tidyverse_1.3.1      tibble_3.1.6        
+[16] WebGestaltR_0.4.4    disgenet2r_0.99.2    enrichR_3.0         
+[19] cowplot_1.0.0        ggplot2_3.3.5        workflowr_1.6.2     
 
 loaded via a namespace (and not attached):
- [1] fs_1.5.2          lubridate_1.8.0   bit64_4.0.5       doParallel_1.0.17
- [5] httr_1.4.2        rprojroot_2.0.2   tools_3.6.1       backports_1.4.1  
- [9] doRNG_1.8.2       utf8_1.2.2        R6_2.5.1          vipor_0.4.5      
-[13] DBI_1.1.2         colorspace_2.0-2  withr_2.4.3       ggrastr_1.0.1    
-[17] tidyselect_1.1.1  bit_4.0.4         curl_4.3.2        compiler_3.6.1   
-[21] git2r_0.26.1      rvest_1.0.2       cli_3.1.0         Cairo_1.5-12.2   
-[25] xml2_1.3.3        labeling_0.4.2    scales_1.1.1      apcluster_1.4.8  
-[29] digest_0.6.29     rmarkdown_2.11    svglite_1.2.2     pkgconfig_2.0.3  
-[33] htmltools_0.5.2   dbplyr_2.1.1      fastmap_1.1.0     highr_0.9        
-[37] rlang_1.0.1       rstudioapi_0.13   RSQLite_2.2.8     jquerylib_0.1.4  
-[41] farver_2.1.0      generics_0.1.1    jsonlite_1.7.2    vroom_1.5.7      
-[45] magrittr_2.0.2    Matrix_1.2-18     ggbeeswarm_0.6.0  Rcpp_1.0.8       
-[49] munsell_0.5.0     fansi_1.0.2       gdtools_0.1.9     lifecycle_1.0.1  
-[53] stringi_1.7.6     whisker_0.3-2     yaml_2.2.1        plyr_1.8.6       
-[57] grid_3.6.1        blob_1.2.2        ggrepel_0.9.1     parallel_3.6.1   
-[61] promises_1.0.1    crayon_1.5.0      lattice_0.20-38   haven_2.4.3      
-[65] hms_1.1.1         knitr_1.36        pillar_1.6.4      igraph_1.2.10    
-[69] rjson_0.2.20      rngtools_1.5.2    reshape2_1.4.4    codetools_0.2-16 
-[73] reprex_2.0.1      glue_1.6.2        evaluate_0.14     data.table_1.14.2
-[77] modelr_0.1.8      vctrs_0.3.8       tzdb_0.2.0        httpuv_1.5.1     
-[81] foreach_1.5.2     cellranger_1.1.0  gtable_0.3.0      assertthat_0.2.1 
-[85] cachem_1.0.6      xfun_0.29         broom_0.7.10      later_0.8.0      
-[89] iterators_1.0.14  beeswarm_0.2.3    memoise_2.0.1     ellipsis_0.3.2   </code></pre>
+  [1] ggbeeswarm_0.6.0       colorspace_2.0-2       rjson_0.2.20          
+  [4] ellipsis_0.3.2         rprojroot_2.0.2        XVector_0.24.0        
+  [7] fs_1.5.2               rstudioapi_0.13        farver_2.1.0          
+ [10] ggrepel_0.9.1          bit64_4.0.5            AnnotationDbi_1.46.0  
+ [13] fansi_1.0.2            lubridate_1.8.0        xml2_1.3.3            
+ [16] codetools_0.2-16       doParallel_1.0.17      cachem_1.0.6          
+ [19] knitr_1.36             jsonlite_1.7.2         apcluster_1.4.8       
+ [22] Cairo_1.5-12.2         broom_0.7.10           dbplyr_2.1.1          
+ [25] compiler_3.6.1         httr_1.4.2             backports_1.4.1       
+ [28] assertthat_0.2.1       Matrix_1.2-18          fastmap_1.1.0         
+ [31] cli_3.1.0              later_0.8.0            prettyunits_1.1.1     
+ [34] htmltools_0.5.2        tools_3.6.1            igraph_1.2.10         
+ [37] GenomeInfoDbData_1.2.1 gtable_0.3.0           glue_1.6.2            
+ [40] reshape2_1.4.4         doRNG_1.8.2            Rcpp_1.0.8            
+ [43] Biobase_2.44.0         cellranger_1.1.0       jquerylib_0.1.4       
+ [46] vctrs_0.3.8            svglite_1.2.2          iterators_1.0.14      
+ [49] xfun_0.29              rvest_1.0.2            lifecycle_1.0.1       
+ [52] rngtools_1.5.2         XML_3.99-0.3           zlibbioc_1.30.0       
+ [55] scales_1.1.1           vroom_1.5.7            hms_1.1.1             
+ [58] promises_1.0.1         yaml_2.2.1             curl_4.3.2            
+ [61] memoise_2.0.1          ggrastr_1.0.1          gdtools_0.1.9         
+ [64] stringi_1.7.6          RSQLite_2.2.8          highr_0.9             
+ [67] foreach_1.5.2          rlang_1.0.1            pkgconfig_2.0.3       
+ [70] bitops_1.0-7           evaluate_0.14          lattice_0.20-38       
+ [73] labeling_0.4.2         bit_4.0.4              tidyselect_1.1.1      
+ [76] plyr_1.8.6             magrittr_2.0.2         R6_2.5.1              
+ [79] generics_0.1.1         DBI_1.1.2              pillar_1.6.4          
+ [82] haven_2.4.3            whisker_0.3-2          withr_2.4.3           
+ [85] RCurl_1.98-1.5         modelr_0.1.8           crayon_1.5.0          
+ [88] utf8_1.2.2             tzdb_0.2.0             rmarkdown_2.11        
+ [91] progress_1.2.2         grid_3.6.1             data.table_1.14.2     
+ [94] blob_1.2.2             git2r_0.26.1           reprex_2.0.1          
+ [97] digest_0.6.29          httpuv_1.5.1           munsell_0.5.0         
+[100] beeswarm_0.2.3         vipor_0.4.5           </code></pre>
 </div>
 </div>
 
