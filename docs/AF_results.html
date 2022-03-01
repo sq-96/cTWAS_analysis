@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="sq-96" />
 
+<meta name="date" content="2022-03-01" />
 
-<title>Home</title>
+<title>BMI_results</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +31,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -230,6 +235,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -237,6 +305,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -280,7 +358,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Home</h1>
+<h1 class="title toc-ignore">BMI_results</h1>
+<h4 class="author">sq-96</h4>
+<h4 class="date">2022-03-01</h4>
 
 </div>
 
@@ -329,7 +409,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -451,714 +531,15 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
-
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML (<code>docs/index.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
 </p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/8ba9d7da6c75f3fab885e504ba3029027b5dcbb5/docs/index.html" target="_blank">8ba9d7d</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-03-01
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/03ad07c6378fbe2f688f5f47a4283c369dcf5f75/analysis/index.Rmd" target="_blank">03ad07c</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-03-01
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/3829e822011b346341706b1aa6fadb9977118645/docs/index.html" target="_blank">3829e82</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-03-01
-</td>
-<td>
-wq
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/b2cb1a05900d2e5c5e3009b2b3a7af57671cc9f2/docs/index.html" target="_blank">b2cb1a0</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-28
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/83b0e36b13c1dfee6f9aecbe231f575b3e04a294/analysis/index.Rmd" target="_blank">83b0e36</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-28
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/26c9b3f8f262b15430cfe4746feb2e8354e7184e/docs/index.html" target="_blank">26c9b3f</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-28
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/5da5f1f74ab7b062e97f21ee6a144e9e581e2018/analysis/index.Rmd" target="_blank">5da5f1f</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-28
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/48ac0f325787c9878ac737afb9b0f6fa0f39c872/docs/index.html" target="_blank">48ac0f3</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/25c7a37dfd54ed5c044409745511970fbec954af/analysis/index.Rmd" target="_blank">25c7a37</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-27
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/05932255b68cdfaceda71b550fc5584f3edc238f/docs/index.html" target="_blank">0593225</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-23
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/5135a74f84ac6e28a2663636a30fe1dcd8252507/analysis/index.Rmd" target="_blank">5135a74</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-23
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/f7ec8c2b204396c0c3009a39f83535821ae4bfff/docs/index.html" target="_blank">f7ec8c2</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/6d4c4c91201198f79b7538c956d5964afc90e3e8/analysis/index.Rmd" target="_blank">6d4c4c9</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-22
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/753dc3248127a48a45899484d6afcaf664681c95/docs/index.html" target="_blank">753dc32</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/4b58620611c93f2153695e24ba981d53ebd4d63a/analysis/index.Rmd" target="_blank">4b58620</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-22
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/bb3a9468b0c0f68deb9f0601ec7a768fa4327aad/docs/index.html" target="_blank">bb3a946</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-14
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/0ade7d35bd8599d02056019128156527dee8ab3c/analysis/index.Rmd" target="_blank">0ade7d3</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-14
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/d20e424e8faa5ad46a1966407607ada8b3e20dc7/docs/index.html" target="_blank">d20e424</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-14
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/67211e844e53e7478560fdc5259b8ff300efcf98/analysis/index.Rmd" target="_blank">67211e8</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-14
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/91f38fa8b991bcb34c11575638dc25fc81457a5f/docs/index.html" target="_blank">91f38fa</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/e6bc16990373312d301ab183ec936aff373d2497/docs/index.html" target="_blank">e6bc169</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/87fee8b56a4f94471388b3fc74b464d3b6efdd41/analysis/index.Rmd" target="_blank">87fee8b</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-13
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/41069190a9ee6622855efc159d8c38d2ba0e54f1/docs/index.html" target="_blank">4106919</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-24
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/1f785cffd36f1af589f47f1a7373a30191b0dd6b/docs/index.html" target="_blank">1f785cf</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/82c68fdd84120d702cc7b5233cbad9411174dfe9/docs/index.html" target="_blank">82c68fd</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/9cf0e70ad824b1554fe1f2598c64b5fcd4f11146/docs/index.html" target="_blank">9cf0e70</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/77de9fb222c2ed3d38a025cd3fdab8f49d2f1073/docs/index.html" target="_blank">77de9fb</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/6b46de7ec1a695719b465266eedd482afc78cd71/docs/index.html" target="_blank">6b46de7</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/e22d0c906642196ab22d358cad154fab6f31a91d/docs/index.html" target="_blank">e22d0c9</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-21
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/a6c7890ef95af27ea685d302cd9ff9e62b9dcd36/analysis/index.Rmd" target="_blank">a6c7890</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-21
-</td>
-<td>
-Start my new project
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/a8dbae0bab7e7b0c861cbac1b67e3a297f8fc5ad/docs/index.html" target="_blank">a8dbae0</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-21
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/564d909aaa86a61b25e0a61e9ec2660e499b3556/docs/index.html" target="_blank">564d909</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/e080e7ba33161d30413d5ba3032e65f38318b6b2/docs/index.html" target="_blank">e080e7b</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/9b1bb6e6cdaebd6e1e1f12fb74a2d0502b9ea07b/docs/index.html" target="_blank">9b1bb6e</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/773dcb5bf8c0a4fe714e6d391de27b8193563da4/docs/index.html" target="_blank">773dcb5</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/d6eccf8741de2bb81103af8f0e9c767a9ca44d17/docs/index.html" target="_blank">d6eccf8</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/2d5ef036e492947645367603a6735c054429e6a2/analysis/index.Rmd" target="_blank">2d5ef03</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-20
-</td>
-<td>
-Publish the files
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/3052d49e1cacb26e4aa48a8de07f1dcc650c51d3/docs/index.html" target="_blank">3052d49</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/ef6958a408e075d2aa2849b4aaaa151ed35e02ea/analysis/index.Rmd" target="_blank">ef6958a</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2021-12-20
-</td>
-<td>
-Start workflowr project.
-</td>
-</tr>
-</tbody>
-</table>
-</div>
 <hr>
 </div>
 </div>
 </div>
-<div id="gene-expression-weights" class="section level3">
-<h3>Gene Expression Weights</h3>
-<p>Schizophrenia results <a href="SCZ_results.html">link</a>.</p>
-<p>BMI results <a href="BMI_results.html">link</a>.</p>
-<p>T2D results <a href="T2D_results.html">link</a>.</p>
-<p>Autism results <a href="Autism_results.html">link</a>.</p>
-<p>AF results <a href="AF_results.html">link</a>.</p>
-</div>
-<div id="alternative-splicing-weights" class="section level3">
-<h3>Alternative Splicing Weights</h3>
-<p>BMI Splicing results <a href="BMI_S_results.html">link</a>.</p>
-</div>
+<p>Atrial Fibrillation - Heart Atrial Appendage Results <a href="Atrial_Fibrillation_Heart_Atrial_Appendage.html">link</a>.</p>
+<p>Atrial Fibrillation - Heart Left Ventricle Results <a href="Atrial_Fibrillation_Heart_Left_Ventricle.html">link</a>.</p>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -1176,6 +557,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -1208,6 +591,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
