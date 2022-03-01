@@ -101,7 +101,6 @@ for(i in 1:dim(ctwas_gene_res)[1]){
 }
 ```
 
-
 ```{r}
 #add z scores to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
@@ -115,6 +114,11 @@ ctwas_snp_res$genename=NA
 ctwas_snp_res$gene_type=NA
 ctwas_snp_res$intron_id=NA
 
+saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+```
+
+```{r}
 ctwas_res <- rbind(ctwas_gene_res,
                    ctwas_snp_res[,colnames(ctwas_gene_res)])
 
