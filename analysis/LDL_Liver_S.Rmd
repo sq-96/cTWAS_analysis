@@ -79,7 +79,7 @@ ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
 ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
-```{r}
+```{r echo=F, message=FALSE}
 ctwas_gene_res$genename <- NA
 ctwas_gene_res$intron_id <- ctwas_gene_res$id
 
