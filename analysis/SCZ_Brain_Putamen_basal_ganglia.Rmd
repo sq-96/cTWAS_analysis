@@ -492,36 +492,36 @@ lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
 
 ## cTWAS is more precise than TWAS in distinguishing silver standard and bystander genes
 ```{r echo=FALSE, message=FALSE}
-library(biomaRt)
-library(GenomicRanges)
-
-ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
-G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
-G_list <- G_list[G_list$hgnc_symbol!="",]
-G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
-G_list$start <- G_list$start_position
-G_list$end <- G_list$end_position
-G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
-
-#remove genes without imputed expression from gene lists
-known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename]
-
-known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,]
-half_window <- 1000000
-known_annotations_positions$start <- known_annotations_positions$start_position - half_window
-known_annotations_positions$end <- known_annotations_positions$end_position + half_window
-known_annotations_positions$start[known_annotations_positions$start<1] <- 1
-known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
-
-bystanders <- findOverlaps(known_annotations_granges,G_list_granges)
-bystanders <- unique(subjectHits(bystanders))
-bystanders <- G_list$hgnc_symbol[bystanders]
-bystanders <- unique(bystanders[!(bystanders %in% known_annotations)])
-unrelated_genes <- bystanders
-
-#save gene lists
-save(known_annotations, file=paste0(results_dir, "/known_annotations.Rd"))
-save(unrelated_genes, file=paste0(results_dir, "/bystanders.Rd"))
+# library(biomaRt)
+# library(GenomicRanges)
+# 
+# ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+# G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
+# G_list <- G_list[G_list$hgnc_symbol!="",]
+# G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
+# G_list$start <- G_list$start_position
+# G_list$end <- G_list$end_position
+# G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
+# 
+# #remove genes without imputed expression from gene lists
+# known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename]
+# 
+# known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,]
+# half_window <- 1000000
+# known_annotations_positions$start <- known_annotations_positions$start_position - half_window
+# known_annotations_positions$end <- known_annotations_positions$end_position + half_window
+# known_annotations_positions$start[known_annotations_positions$start<1] <- 1
+# known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
+# 
+# bystanders <- findOverlaps(known_annotations_granges,G_list_granges)
+# bystanders <- unique(subjectHits(bystanders))
+# bystanders <- G_list$hgnc_symbol[bystanders]
+# bystanders <- unique(bystanders[!(bystanders %in% known_annotations)])
+# unrelated_genes <- bystanders
+# 
+# #save gene lists
+# save(known_annotations, file=paste0(results_dir, "/known_annotations.Rd"))
+# save(unrelated_genes, file=paste0(results_dir, "/bystanders.Rd"))
 ```
 
 ```{r echo=FALSE}
@@ -543,24 +543,43 @@ sensitivity <- rep(NA,2)
 names(sensitivity) <- c("ctwas", "TWAS")
 sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
 sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
-sensitivity
 
 #specificity / (1 - False Positive Rate)
 specificity <- rep(NA,2)
 names(specificity) <- c("ctwas", "TWAS")
 specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
 specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
-specificity
 
 #precision / PPV / (1 - False Discovery Rate)
 precision <- rep(NA,2)
 names(precision) <- c("ctwas", "TWAS")
 precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
 precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes)
-precision
 ```
 
 ```{r}
+#number of genes in known annotations (with imputed expression)
+print(length(known_annotations))
+
+#number of bystander genes (with imputed expression)
+print(length(unrelated_genes))
+
+#subset results to genes in known annotations or bystanders
+ctwas_gene_res_subset <- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),]
+
+#assign ctwas and TWAS genes
+ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8]
+twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh]
+
+#significance threshold for TWAS
+print(sig_thresh)
+
+#number of ctwas genes (in known annotations or bystanders)
+length(ctwas_genes)
+
+#number of TWAS genes (in known annotations or bystanders)
+length(twas_genes)
+
 #sensitivity / recall
 sensitivity
 
