@@ -80,42 +80,42 @@ ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
 ```{r echo=F, message=FALSE}
-ctwas_gene_res$genename <- NA
-ctwas_gene_res$intron_id <- ctwas_gene_res$id
-
-library(EnsDb.Hsapiens.v79)
-edb <- EnsDb.Hsapiens.v79
-
-for(i in 1:dim(ctwas_gene_res)[1]){
-  info <- strsplit(ctwas_gene_res[i,'id'], "_")[[1]]
-  chr = as.numeric(info[2])
-  start.pos = as.numeric(info[3])
-  end.pos = as.numeric(info[4])
-  grf <- GRangesFilter(GRanges(chr, ranges = IRanges(start.pos, end.pos)), type = "any")
-  gn <- genes(edb, filter = grf)
-  if(length(gn$gene_id)!=0){
-    ctwas_gene_res[i,"id"] <- gn$gene_id[1]
-    ctwas_gene_res[i,"genename"] <- gn$gene_name[1]
-    ctwas_gene_res[i,"type"] <- gn$gene_biotype[1]
-    }
-}
+# ctwas_gene_res$genename <- NA
+# ctwas_gene_res$intron_id <- ctwas_gene_res$id
+# 
+# library(EnsDb.Hsapiens.v79)
+# edb <- EnsDb.Hsapiens.v79
+# 
+# for(i in 1:dim(ctwas_gene_res)[1]){
+#   info <- strsplit(ctwas_gene_res[i,'id'], "_")[[1]]
+#   chr = as.numeric(info[2])
+#   start.pos = as.numeric(info[3])
+#   end.pos = as.numeric(info[4])
+#   grf <- GRangesFilter(GRanges(chr, ranges = IRanges(start.pos, end.pos)), type = "any")
+#   gn <- genes(edb, filter = grf)
+#   if(length(gn$gene_id)!=0){
+#     ctwas_gene_res[i,"id"] <- gn$gene_id[1]
+#     ctwas_gene_res[i,"genename"] <- gn$gene_name[1]
+#     ctwas_gene_res[i,"type"] <- gn$gene_biotype[1]
+#     }
+# }
 ```
 
 ```{r}
 #add z scores to results
-load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
-ctwas_gene_res$z <- z_gene[ctwas_gene_res$intron_id,]$z
-
-z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
-ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
-
-#merge gene and snp results with added information
-ctwas_snp_res$genename=NA
-ctwas_snp_res$gene_type=NA
-ctwas_snp_res$intron_id=NA
-
-saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
-saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+# load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+# ctwas_gene_res$z <- z_gene[ctwas_gene_res$intron_id,]$z
+# 
+# z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
+# ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+# 
+# #merge gene and snp results with added information
+# ctwas_snp_res$genename=NA
+# ctwas_snp_res$gene_type=NA
+# ctwas_snp_res$intron_id=NA
+# 
+# saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+# saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
 ```
 
 ```{r eval=FALSE}
