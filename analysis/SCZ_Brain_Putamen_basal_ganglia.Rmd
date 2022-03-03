@@ -745,3 +745,17 @@ locus_plot("15_42", label="TWAS")
 locus_plot5("19_34", focus="IRF3")
 ```
 
+#### Locus 1_6: The neurodevelopmental disorder gene RERE has insignificant z-score
+```{r}
+locus_plot5("1_6", focus="RERE")
+```
+
+#### Locus 17_37: ACE encoding angiotensin converting enzyme, the target of a major class of anti-hypertensive drugs (schizophrenia under expression), has insignificant z-score
+```{r}
+locus_plot5("17_37", focus="ACE")
+```
+
+#### Locus 3_27: DCLK3 encoding a neuroprotective kinase (schizophrenia under-expression), has insignificant z-score. Both cTWAS and TWAS identify another gene LINC02033, which might be of interest. 
+```{r}
+locus_plot("3_27", label="TWAS")
+```
