@@ -507,16 +507,16 @@ code/ctwas_config.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree08b7e6f23c05ffa11524bad21d72b426eb9550edtargetblank08b7e6fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/08b7e6f23c05ffa11524bad21d72b426eb9550ed" target="_blank">08b7e6f</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef93f4b793ca8f036244ef550efe46166587d1353targetblankf93f4b7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/f93f4b793ca8f036244ef550efe46166587d1353" target="_blank">f93f4b7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree08b7e6f23c05ffa11524bad21d72b426eb9550edtargetblank08b7e6fa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef93f4b793ca8f036244ef550efe46166587d1353targetblankf93f4b7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/08b7e6f23c05ffa11524bad21d72b426eb9550ed" target="_blank">08b7e6f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/f93f4b793ca8f036244ef550efe46166587d1353" target="_blank">f93f4b7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -524,7 +524,6 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .ipynb_checkpoints/
-    Ignored:    analysis/figure/
     Ignored:    data/AF/
 
 Untracked files:
@@ -595,7 +594,6 @@ Untracked files:
 
 Unstaged changes:
     Modified:   analysis/SCZ_Brain_Putamen_basal_ganglia.Rmd
-    Modified:   analysis/SCZ_Brain_Putamen_basal_ganglia_S.Rmd
 
 </code></pre>
 <p>
@@ -634,6 +632,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f93f4b793ca8f036244ef550efe46166587d1353/analysis/SCZ_Brain_Putamen_basal_ganglia.Rmd" target="_blank">f93f4b7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-03-02
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/f93f4b793ca8f036244ef550efe46166587d1353/docs/SCZ_Brain_Putamen_basal_ganglia.html" target="_blank">f93f4b7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-03-02
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1597,6 +1629,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f93f4b793ca8f036244ef550efe46166587d1353/docs/figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-29-1.png" target="_blank">f93f4b7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-03-02
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/3f6d4107d70179d8f092dcd1001c81e26fee346f/docs/figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-29-1.png" target="_blank">3f6d410</a>
 </td>
 <td>
@@ -1610,117 +1653,12 @@ sq-96
 </table>
 </div>
 </div>
-<pre class="r"><code>locus_plot &lt;- function(region_tag, rerun_ctwas = F, plot_eqtl = T, label=&quot;cTWAS&quot;){
-  region_tag1 &lt;- unlist(strsplit(region_tag, &quot;_&quot;))[1]
-  region_tag2 &lt;- unlist(strsplit(region_tag, &quot;_&quot;))[2]
-  
-  a &lt;- ctwas_res[ctwas_res$region_tag==region_tag,]
-  
-  regionlist &lt;- readRDS(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.regionlist.RDS&quot;))
-  region &lt;- regionlist[[as.numeric(region_tag1)]][[region_tag2]]
-  
-  R_snp_info &lt;- do.call(rbind, lapply(region$regRDS, function(x){data.table::fread(paste0(tools::file_path_sans_ext(x), &quot;.Rvar&quot;))}))
-  
-  if (isTRUE(rerun_ctwas)){
-    ld_exprfs &lt;- paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_chr&quot;, 1:22, &quot;.expr.gz&quot;)
-    temp_reg &lt;- data.frame(&quot;chr&quot; = paste0(&quot;chr&quot;,region_tag1), &quot;start&quot; = region$start, &quot;stop&quot; = region$stop)
-  
-    write.table(temp_reg, 
-                #file= paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.temp.reg.txt&quot;) , 
-                file= &quot;temp_reg.txt&quot;,
-                row.names=F, col.names=T, sep=&quot;\t&quot;, quote = F)
-  
-    load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_z_snp.Rd&quot;))
-  
-    z_gene_temp &lt;-  z_gene[z_gene$id %in% a$id[a$type==&quot;gene&quot;],]
-    z_snp_temp &lt;-  z_snp[z_snp$id %in% R_snp_info$id,]
-  
-    ctwas_rss(z_gene_temp, z_snp_temp, ld_exprfs, ld_pgenfs = NULL, 
-              ld_R_dir = dirname(region$regRDS)[1],
-              ld_regions_custom = &quot;temp_reg.txt&quot;, thin = 1, 
-              outputdir = &quot;.&quot;, outname = &quot;temp&quot;, ncore = 1, ncore.rerun = 1, prob_single = 0,
-              group_prior = estimated_group_prior, group_prior_var = estimated_group_prior_var,
-              estimate_group_prior = F, estimate_group_prior_var = F)
-            
-            
-    a &lt;- data.table::fread(&quot;temp.susieIrss.txt&quot;, header = T)
-    
-    rownames(z_snp_temp) &lt;- z_snp_temp$id
-    z_snp_temp &lt;- z_snp_temp[a$id[a$type==&quot;SNP&quot;],]
-    z_gene_temp &lt;- z_gene_temp[a$id[a$type==&quot;gene&quot;],]
-    
-    a$z &lt;- NA
-    a$z[a$type==&quot;SNP&quot;] &lt;- z_snp_temp$z
-    a$z[a$type==&quot;gene&quot;] &lt;- z_gene_temp$z
-  }
-  
-  a$ifcausal &lt;- 0
-  focus &lt;- a$id[a$type==&quot;gene&quot;][which.max(abs(a$z[a$type==&quot;gene&quot;]))]
-  a$ifcausal &lt;- as.numeric(a$id==focus)
-    
-  a$PVALUE &lt;- (-log(2) - pnorm(abs(a$z), lower.tail=F, log.p=T))/log(10)
-  
-  R_gene &lt;- readRDS(region$R_g_file)
-  R_snp_gene &lt;- readRDS(region$R_sg_file)
-  R_snp &lt;- as.matrix(Matrix::bdiag(lapply(region$regRDS, readRDS)))
-  
-  rownames(R_gene) &lt;- region$gid
-  colnames(R_gene) &lt;- region$gid
-  rownames(R_snp_gene) &lt;- R_snp_info$id
-  colnames(R_snp_gene) &lt;- region$gid
-  rownames(R_snp) &lt;- R_snp_info$id
-  colnames(R_snp) &lt;- R_snp_info$id
-  
-  a$r2max &lt;- NA
-  
-  a$r2max[a$type==&quot;gene&quot;] &lt;- R_gene[focus,a$id[a$type==&quot;gene&quot;]]
-  a$r2max[a$type==&quot;SNP&quot;] &lt;- R_snp_gene[a$id[a$type==&quot;SNP&quot;],focus]
-  
-  r2cut &lt;- 0.4
-  colorsall &lt;- c(&quot;#7fc97f&quot;, &quot;#beaed4&quot;, &quot;#fdc086&quot;)
-  
-  layout(matrix(1:2, ncol = 1), widths = 1, heights = c(1.5,1.5), respect = FALSE)
-  par(mar = c(0, 4.1, 4.1, 2.1))
-  plot(a$pos[a$type==&quot;SNP&quot;], a$PVALUE[a$type == &quot;SNP&quot;], pch = 19, xlab=paste0(&quot;Chromosome &quot;, region_tag1, &quot; Position&quot;),frame.plot=FALSE, col = &quot;white&quot;, ylim= c(-0.1,1.1), ylab = &quot;cTWAS PIP&quot;, xaxt = &#39;n&#39;)
-  
-  grid()
-  points(a$pos[a$type==&quot;SNP&quot;], a$susie_pip[a$type == &quot;SNP&quot;], pch = 21, xlab=&quot;Genomic position&quot;, bg = colorsall[1])
-  points(a$pos[a$type==&quot;SNP&quot; &amp; a$r2max &gt; r2cut], a$susie_pip[a$type == &quot;SNP&quot;  &amp; a$r2max &gt;r2cut], pch = 21, bg = &quot;purple&quot;)
-  points(a$pos[a$type==&quot;SNP&quot; &amp; a$ifcausal == 1], a$susie_pip[a$type == &quot;SNP&quot; &amp; a$ifcausal == 1], pch = 21, bg = &quot;salmon&quot;)
-  points(a$pos[a$type==&quot;gene&quot;], a$susie_pip[a$type == &quot;gene&quot;], pch = 22, bg = colorsall[1], cex = 2)
-  points(a$pos[a$type==&quot;gene&quot; &amp; a$r2max &gt; r2cut], a$susie_pip[a$type == &quot;gene&quot;  &amp; a$r2max &gt; r2cut], pch = 22, bg = &quot;purple&quot;, cex = 2)
-  points(a$pos[a$type==&quot;gene&quot; &amp; a$ifcausal == 1], a$susie_pip[a$type == &quot;gene&quot; &amp; a$ifcausal == 1], pch = 22, bg = &quot;salmon&quot;, cex = 2)
-  
-  if (isTRUE(plot_eqtl)){
-    for (cgene in a[a$type==&quot;gene&quot; &amp; a$ifcausal == 1, ]$id){
-      load(paste0(results_dir, &quot;/&quot;,analysis_id, &quot;_expr_chr&quot;, region_tag1, &quot;.exprqc.Rd&quot;))
-      eqtls &lt;- rownames(wgtlist[[cgene]])
-      points(a[a$id %in% eqtls,]$pos, rep( -0.15, nrow(a[a$id %in% eqtls,])), pch = &quot;|&quot;, col = &quot;salmon&quot;, cex = 1.5)
-    }
-  }
-  
-  legend(min(a$pos), y= 1.1 ,c(&quot;Gene&quot;, &quot;SNP&quot;), pch = c(22,21), title=&quot;Shape Legend&quot;, bty =&#39;n&#39;, cex=0.6, title.adj = 0)
-  legend(min(a$pos), y= 0.7 ,c(&quot;Lead TWAS Gene&quot;, &quot;R2 &gt; 0.4&quot;, &quot;R2 &lt;= 0.4&quot;), pch = 19, col = c(&quot;salmon&quot;, &quot;purple&quot;, colorsall[1]), title=&quot;Color Legend&quot;, bty =&#39;n&#39;, cex=0.6, title.adj = 0)
-  
-  if (label==&quot;cTWAS&quot;){
-    text(a$pos[a$id==focus], a$susie_pip[a$id==focus], labels=ctwas_gene_res$genename[ctwas_gene_res$id==focus], pos=3, cex=0.6)
-  }
-  
-  par(mar = c(4.1, 4.1, 0.5, 2.1))
-  plot(a$pos[a$type==&quot;SNP&quot;], a$PVALUE[a$type == &quot;SNP&quot;], pch = 21, xlab=paste0(&quot;Chromosome &quot;, region_tag1, &quot; Position&quot;), frame.plot=FALSE, bg = colorsall[1], ylab = &quot;TWAS -log10(p value)&quot;, panel.first = grid(), ylim =c(0, max(a$PVALUE)*1.2))
-  points(a$pos[a$type==&quot;SNP&quot; &amp; a$r2max &gt; r2cut], a$PVALUE[a$type == &quot;SNP&quot;  &amp; a$r2max &gt; r2cut], pch = 21, bg = &quot;purple&quot;)
-  points(a$pos[a$type==&quot;SNP&quot; &amp; a$ifcausal == 1], a$PVALUE[a$type == &quot;SNP&quot; &amp; a$ifcausal == 1], pch = 21, bg = &quot;salmon&quot;)
-  points(a$pos[a$type==&quot;gene&quot;], a$PVALUE[a$type == &quot;gene&quot;], pch = 22, bg = colorsall[1], cex = 2)
-  points(a$pos[a$type==&quot;gene&quot; &amp; a$r2max &gt; r2cut], a$PVALUE[a$type == &quot;gene&quot;  &amp; a$r2max &gt; r2cut], pch = 22, bg = &quot;purple&quot;, cex = 2)
-  points(a$pos[a$type==&quot;gene&quot; &amp; a$ifcausal == 1], a$PVALUE[a$type == &quot;gene&quot; &amp; a$ifcausal == 1], pch = 22, bg = &quot;salmon&quot;, cex = 2)
-  abline(h=-log10(alpha/nrow(ctwas_gene_res)), col =&quot;red&quot;, lty = 2)
-  
-  if (label==&quot;TWAS&quot;){
-    text(a$pos[a$id==focus], a$PVALUE[a$id==focus], labels=ctwas_gene_res$genename[ctwas_gene_res$id==focus], pos=3, cex=0.6)
-  }
-}
-
-locus_plot(&quot;15_42&quot;, label=&quot;TWAS&quot;)</code></pre>
+</div>
+<div id="locus-plot-for-three-silver-standard-genes-that-ctwas-identifies" class="section level2">
+<h2>Locus plot for three silver standard genes that cTWAS identifies</h2>
+<div id="locus-2_117-the-output-of-ctwas-is-very-clear.-only-gene-sf3b1-has-signal." class="section level3">
+<h3>Locus 2_117: The output of cTWAS is very clear. Only gene SF3B1 has signal.</h3>
+<pre class="r"><code>locus_plot(&quot;2_117&quot;, label=&quot;TWAS&quot;)</code></pre>
 <p><img src="figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-30-1">
@@ -1746,6 +1684,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f93f4b793ca8f036244ef550efe46166587d1353/docs/figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-30-1.png" target="_blank">f93f4b7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-03-02
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/3f6d4107d70179d8f092dcd1001c81e26fee346f/docs/figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-30-1.png" target="_blank">3f6d410</a>
 </td>
 <td>
@@ -1759,6 +1708,24 @@ sq-96
 </table>
 </div>
 </div>
+</div>
+<div id="locus-17_27-in-twas-no-snp-or-gene-passes-the-threshold.-but-ctwas-is-able-to-identify-gene-crhr1-with-high-pip." class="section level3">
+<h3>Locus 17_27: In TWAS, no SNP or gene passes the threshold. But cTWAS is able to identify gene CRHR1 with high PIP.</h3>
+<pre class="r"><code>locus_plot(&quot;17_27&quot;, label=&quot;TWAS&quot;)</code></pre>
+<p><img src="figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="locus-19_10-both-twas-and-ctwas-work-well-in-this-locus." class="section level3">
+<h3>Locus 19_10: Both TWAS and cTWAS work well in this locus.</h3>
+<pre class="r"><code>locus_plot(&quot;19_10&quot;, label=&quot;TWAS&quot;)</code></pre>
+<p><img src="figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="locus-15_42-ctwas-assign-higher-pip-to-the-snp-rs8032315-rather-than-the-gene-furin.-this-snp-is-both-eqtl-and-sqtl-of-fes-in-nerve-tibial-and-sqtl-of-furin-in-nerve-tibial" class="section level2">
+<h2>Locus 15_42: cTWAS assign higher PIP to the SNP rs8032315 rather than the gene FURIN. This SNP is both eQTL and sQTL of FES in Nerve-Tibial and sQTL of FURIN in Nerve-Tibial</h2>
+<pre class="r"><code>locus_plot(&quot;15_42&quot;, label=&quot;TWAS&quot;)</code></pre>
+<p><img src="figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>locus_plot5(&quot;2_117&quot;, focus=&quot;SF3B1&quot;)</code></pre>
+<p><img src="figure/SCZ_Brain_Putamen_basal_ganglia.Rmd/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
