@@ -242,13 +242,11 @@ abline(a=0,b=1)
 #plot z score vs PIP
 plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP")
 abline(v=sig_thresh, col="red", lty=2)
+```
 
+```{r}
 #proportion of significant z scores
 mean(abs(ctwas_gene_res$z) > sig_thresh)
-
-#genes with most significant z scores
-head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
-
 ```
 
 ## GO enrichment analysis for genes with PIP>0.5
