@@ -718,29 +718,30 @@ pie
 
 ## Locus plot for three silver standard genes that cTWAS identifies
 
-### Locus 2_117: The output of cTWAS is very clear. Only gene SF3B1 has signal.
+#### Locus 2_117: The output of cTWAS is very clear. Only gene SF3B1 has signal.
 ```{r}
 locus_plot("2_117", label="TWAS")
 ```
 
-### Locus 17_27: In TWAS, no SNP or gene passes the threshold. But cTWAS is able to identify gene CRHR1 with high PIP.
+#### Locus 17_27: In TWAS, no SNP or gene passes the threshold. But cTWAS is able to identify gene CRHR1 with high PIP.
 ```{r}
 locus_plot("17_27", label="TWAS")
 ```
 
-### Locus 19_10: Both TWAS and cTWAS work well in this locus.
+#### Locus 19_10: Both TWAS and cTWAS work well in this locus.
 ```{r}
 locus_plot("19_10", label="TWAS")
 ```
 
+## Some know SCZ risk genes that cTWAS does not find
 
-## Locus 15_42: cTWAS assign higher PIP to the SNP rs8032315 rather than the gene FURIN. This SNP is both eQTL and sQTL of FES in Nerve-Tibial and sQTL of FURIN in Nerve-Tibial
+#### Locus 15_42: cTWAS assign higher PIP to the SNP rs8032315 rather than the gene FURIN. This SNP is both eQTL and sQTL of FES in Nerve-Tibial and sQTL of FURIN in Nerve-Tibial
 ```{r}
 locus_plot("15_42", label="TWAS")
 ```
 
-
+#### Locus 19_34: Gene IRF3 is around the threshold in TWAS. There are other two genes of similar value. In ctwas, all of them get intermediate PIPs. 
 ```{r}
-locus_plot5("2_117", focus="SF3B1")
+locus_plot5("19_34", focus="IRF3")
 ```
 
