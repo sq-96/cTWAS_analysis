@@ -57,26 +57,26 @@ mean(qclist_all$nmiss==0)
 
 
 ```{r echo=F}
-#load ctwas results
-ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
-
-#make unique identifier for regions
-ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
-
-#load z scores for SNPs and collect sample size
+# #load ctwas results
+# ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
+# 
+# #make unique identifier for regions
+# ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+# 
+# #load z scores for SNPs and collect sample size
 load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
 
 sample_size <- z_snp$ss
 sample_size <- as.numeric(names(which.max(table(sample_size))))
 
-#compute PVE for each gene/SNP
-ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
-
-#separate gene and SNP results
-ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
-ctwas_gene_res <- data.frame(ctwas_gene_res)
-ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
-ctwas_snp_res <- data.frame(ctwas_snp_res)
+# #compute PVE for each gene/SNP
+# ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+# 
+# #separate gene and SNP results
+# ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
+# ctwas_gene_res <- data.frame(ctwas_gene_res)
+# ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+# ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
 ```{r echo=F, message=FALSE}
