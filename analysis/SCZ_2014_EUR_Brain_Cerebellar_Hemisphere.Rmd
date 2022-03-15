@@ -1,0 +1,755 @@
+---
+title: "SCZ - Brain Cerebellar Hemisphere"
+author: "sheng Qian"
+date: "2021-2-6"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+params:
+  analysis_id: "SCZ_Brain_Cerebellar_Hemisphere"
+  trait_id: "SCZ_2014_EUR"
+  weight: "Brain_Cerebellar_Hemisphere"
+---
+
+```{r echo=F}
+analysis_id <- params$analysis_id
+trait_id <- params$trait_id
+weight <- params$weight
+
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
+
+source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
+options(digits = 4)
+```
+
+## Weight QC
+
+```{r echo=F}
+qclist_all <- list()
+
+qc_files <- paste0(results_dir, "/", list.files(results_dir, pattern="exprqc.Rd"))
+
+for (i in 1:length(qc_files)){
+  load(qc_files[i])
+  chr <- unlist(strsplit(rev(unlist(strsplit(qc_files[i], "_")))[1], "[.]"))[1]
+  qclist_all[[chr]] <- cbind(do.call(rbind, lapply(qclist,unlist)), as.numeric(substring(chr,4)))
+}
+
+qclist_all <- data.frame(do.call(rbind, qclist_all))
+colnames(qclist_all)[ncol(qclist_all)] <- "chr"
+
+rm(qclist, wgtlist, z_gene_chr)
+```
+
+```{r}
+#number of imputed weights
+nrow(qclist_all)
+
+#number of imputed weights by chromosome
+table(qclist_all$chr)
+
+#number of imputed weights without missing variants
+sum(qclist_all$nmiss==0)
+
+#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)
+```
+
+```{r echo=F}
+#load ctwas results
+ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
+
+#make unique identifier for regions
+ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+
+#load z scores for SNPs and collect sample size
+load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+
+sample_size <- z_snp$ss
+sample_size <- as.numeric(names(which.max(table(sample_size))))
+
+#compute PVE for each gene/SNP
+ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+
+#separate gene and SNP results
+ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
+ctwas_gene_res <- data.frame(ctwas_gene_res)
+ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+ctwas_snp_res <- data.frame(ctwas_snp_res)
+
+#add gene information to results
+sqlite <- RSQLite::dbDriver("SQLite")
+db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
+query <- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info <- query("select gene, genename, gene_type from extra")
+RSQLite::dbDisconnect(db)
+
+ctwas_gene_res <- cbind(ctwas_gene_res, gene_info[sapply(ctwas_gene_res$id, match, gene_info$gene), c("genename", "gene_type")])
+
+#add z scores to results
+load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
+
+z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
+ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+
+#merge gene and snp results with added information
+ctwas_snp_res$genename=NA
+ctwas_snp_res$gene_type=NA
+
+ctwas_res <- rbind(ctwas_gene_res,
+                   ctwas_snp_res[,colnames(ctwas_gene_res)])
+
+#get number of eQTL for geens
+num_eqtl <- c()
+for (i in 1:22){
+  load(paste0(results_dir, "/", analysis_id, "_expr_chr", i, ".exprqc.Rd"))
+  num_eqtl <- c(num_eqtl, unlist(lapply(wgtlist, nrow)))
+}
+ctwas_gene_res$num_eqtl <- num_eqtl[ctwas_gene_res$id]
+
+#store columns to report
+report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "gene_type", "z_flag", "id", "chrom", "pos"))]
+first_cols <- c("genename", "region_tag")
+report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
+
+report_cols_snps <- c("id", report_cols[-1])
+report_cols_snps <- report_cols_snps[!(report_cols_snps %in% "num_eqtl")]
+
+#get number of SNPs from s1 results; adjust for thin argument
+ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
+n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
+rm(ctwas_res_s1)
+```
+
+```{r echo=FALSE}
+# saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+# saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+```
+
+## Check convergence of parameters
+
+```{r echo=F,message=F}
+library(ggplot2)
+library(cowplot)
+
+load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd"))
+
+df <- data.frame(niter = rep(1:ncol(group_prior_rec), 2),
+                 value = c(group_prior_rec[1,], group_prior_rec[2,]),
+                 group = rep(c("Gene", "SNP"), each = ncol(group_prior_rec)))
+df$group <- as.factor(df$group)
+
+df$value[df$group=="SNP"] <- df$value[df$group=="SNP"]*thin #adjust parameter to account for thin argument
+
+p_pi <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(pi)) +
+  ggtitle("Prior mean") +
+  theme_cowplot()
+
+df <- data.frame(niter = rep(1:ncol(group_prior_var_rec), 2),
+                 value = c(group_prior_var_rec[1,], group_prior_var_rec[2,]),
+                 group = rep(c("Gene", "SNP"), each = ncol(group_prior_var_rec)))
+df$group <- as.factor(df$group)
+p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(sigma^2)) +
+  ggtitle("Prior variance") +
+  theme_cowplot()
+
+plot_grid(p_pi, p_sigma2)
+```
+
+```{r}
+#estimated group prior
+estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
+names(estimated_group_prior) <- c("gene", "snp")
+estimated_group_prior["snp"] <- estimated_group_prior["snp"]*thin #adjust parameter to account for thin argument
+print(estimated_group_prior)
+
+#estimated group prior variance
+estimated_group_prior_var <- group_prior_var_rec[,ncol(group_prior_var_rec)]
+names(estimated_group_prior_var) <- c("gene", "snp")
+print(estimated_group_prior_var)
+
+#report sample size
+print(sample_size)
+
+#report group size
+group_size <- c(nrow(ctwas_gene_res), n_snps)
+print(group_size)
+
+#estimated group PVE
+estimated_group_pve <- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+names(estimated_group_pve) <- c("gene", "snp")
+print(estimated_group_pve)
+
+#compare sum(PIP*mu2/sample_size) with above PVE calculation
+c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
+```
+
+## Genes with highest PIPs
+
+```{r echo=F}
+#distribution of PIPs
+hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
+
+#genes with PIP>0.8 or 20 highest PIPs
+head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+```
+
+## Genes with largest effect sizes
+
+```{r echo=F}
+#plot PIP vs effect size
+plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
+
+#genes with 20 largest effect sizes
+head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
+
+```
+
+## Genes with highest PVE
+
+```{r echo=F}
+#genes with 20 highest pve
+head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
+
+```
+
+## Genes with largest z scores
+
+```{r echo=F}
+#genes with 20 largest z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
+```
+
+## Comparing z scores and PIPs
+
+```{r echo=F}
+#set nominal signifiance threshold for z scores
+alpha <- 0.05
+
+#bonferroni adjusted threshold for z scores
+sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
+
+#Q-Q plot for z scores
+obs_z <- ctwas_gene_res$z[order(ctwas_gene_res$z)]
+exp_z <- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res))
+
+plot(exp_z, obs_z, xlab="Expected z", ylab="Observed z", main="Gene z score Q-Q plot")
+abline(a=0,b=1)
+
+#plot z score vs PIP
+plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP")
+abline(v=sig_thresh, col="red", lty=2)
+
+#proportion of significant z scores
+mean(abs(ctwas_gene_res$z) > sig_thresh)
+
+```
+
+## GO enrichment analysis for genes with PIP>0.5
+
+```{r echo=FALSE, message=FALSE}
+#GO enrichment analysis
+library(enrichR)
+
+dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecular_Function_2021")
+genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.5]
+```
+
+```{r}
+#number of genes for gene set enrichment
+length(genes)
+```
+
+```{r echo=F, message=FALSE}
+if (length(genes)>0){
+  GO_enrichment <- enrichr(genes, dbs)
+
+  for (db in dbs){
+    print(db)
+    df <- GO_enrichment[[db]]
+    print(plotEnrich(GO_enrichment[[db]]))
+    df <- df[df$Adjusted.P.value<0.05,c("Term", "Overlap", "Adjusted.P.value", "Genes")]
+    print(df)
+  }
+}
+
+```
+
+## DisGeNET enrichment analysis for genes with PIP>0.5
+```{r echo=F, message=FALSE}
+if (length(genes)>0){
+  library(disgenet2r)
+
+  disgenet_api_key <- get_disgenet_api_key(
+                    email = "wesleycrouse@gmail.com",
+                    password = "uchicago1" )
+
+  Sys.setenv(DISGENET_API_KEY= disgenet_api_key)
+
+  res_enrich <-disease_enrichment(entities=genes, vocabulary = "HGNC",
+                               database = "CURATED" )
+
+  df <- res_enrich@qresult[1:10, c("Description", "FDR", "Ratio",  "BgRatio")]
+  print(df)
+}
+
+```
+
+## WebGestalt enrichment analysis for genes with PIP>0.5
+```{r echo=F, message=FALSE}
+if (length(genes)>0){
+  #WebGestalt enrichment
+  library(WebGestaltR)
+
+  background <- ctwas_gene_res$genename
+
+  #listGeneSet()
+  databases <- c("pathway_KEGG", "disease_GLAD4U", "disease_OMIM")
+
+  enrichResult <- WebGestaltR(enrichMethod="ORA", organism="hsapiens",
+                              interestGene=genes, referenceGene=background,
+                              enrichDatabase=databases, interestGeneType="genesymbol",
+                              referenceGeneType="genesymbol", isOutput=F)
+  print(enrichResult[,c("description", "size", "overlap", "FDR", "database", "userId")])
+}
+
+```
+
+## PIP Manhattan Plot
+
+```{r echo=F, message=F}
+library(tibble)
+library(tidyverse)
+
+full.gene.pip.summary <- data.frame(gene_name = ctwas_gene_res$genename,
+                                    gene_pip = ctwas_gene_res$susie_pip,
+                                    gene_id = ctwas_gene_res$id,
+                                    chr = as.integer(ctwas_gene_res$chrom),
+                                    start = ctwas_gene_res$pos / 1e3,
+                                    is_highlight = F, stringsAsFactors = F) %>% as_tibble()
+full.gene.pip.summary$is_highlight <- full.gene.pip.summary$gene_pip > 0.50
+
+don <- full.gene.pip.summary %>%
+
+  # Compute chromosome size
+  group_by(chr) %>%
+  summarise(chr_len=max(start)) %>%
+
+  # Calculate cumulative position of each chromosome
+  mutate(tot=cumsum(chr_len)-chr_len) %>%
+  dplyr::select(-chr_len) %>%
+
+  # Add this info to the initial dataset
+  left_join(full.gene.pip.summary, ., by=c("chr"="chr")) %>%
+
+  # Add a cumulative position of each SNP
+  arrange(chr, start) %>%
+  mutate( BPcum=start+tot)
+
+axisdf <- don %>% group_by(chr) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 )
+
+x_axis_labels <- axisdf$chr
+x_axis_labels[seq(1,21,2)] <- ""
+
+ggplot(don, aes(x=BPcum, y=gene_pip)) +
+
+  # Show all points
+  ggrastr::geom_point_rast(aes(color=as.factor(chr)), size=2) +
+  scale_color_manual(values = rep(c("grey", "skyblue"), 22 )) +
+
+  # custom X axis:
+  # scale_x_continuous(label = axisdf$chr,
+  #                    breaks= axisdf$center,
+  #                    guide = guide_axis(n.dodge = 2)) +
+  scale_x_continuous(label = x_axis_labels,
+                     breaks = axisdf$center) +
+
+  scale_y_continuous(expand = c(0, 0), limits = c(0,1.25), breaks=(1:5)*0.2, minor_breaks=(1:10)*0.1) + # remove space between plot area and x axis
+
+  # Add highlighted points
+  ggrastr::geom_point_rast(data=subset(don, is_highlight==T), color="orange", size=2) +
+
+  # Add label using ggrepel to avoid overlapping
+  ggrepel::geom_label_repel(data=subset(don, is_highlight==T),
+                            aes(label=gene_name),
+                            size=4,
+                            min.segment.length = 0,
+                            label.size = NA,
+                            fill = alpha(c("white"),0)) +
+
+  # Custom the theme:
+  theme_bw() +
+  theme(
+    text = element_text(size = 14),
+    legend.position="none",
+    panel.border = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  xlab("Chromosome") +
+  ylab("cTWAS PIP")
+
+```
+
+## Sensitivity, specificity and precision for silver standard genes
+
+```{r echo=F}
+library("readxl")
+
+known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ")
+known_annotations <- unique(known_annotations$`Gene Symbol`)
+
+unrelated_genes <- ctwas_gene_res$genename[!(ctwas_gene_res$genename %in% known_annotations)]
+
+#assign ctwas, TWAS, and bystander genes
+ctwas_genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.8]
+twas_genes <- ctwas_gene_res$genename[abs(ctwas_gene_res$z)>sig_thresh]
+novel_genes <- ctwas_genes[!(ctwas_genes %in% twas_genes)]
+
+#sensitivity / recall
+sensitivity <- rep(NA,2)
+names(sensitivity) <- c("ctwas", "TWAS")
+sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
+#sensitivity
+
+#specificity
+specificity <- rep(NA,2)
+names(specificity) <- c("ctwas", "TWAS")
+specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+#specificity
+
+#precision / PPV
+precision <- rep(NA,2)
+names(precision) <- c("ctwas", "TWAS")
+precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes)
+#precision
+```
+
+```{r}
+#number of genes in known annotations
+print(length(known_annotations))
+
+#number of genes in known annotations with imputed expression
+print(sum(known_annotations %in% ctwas_gene_res$genename))
+
+#significance threshold for TWAS
+print(sig_thresh)
+
+#number of ctwas genes
+length(ctwas_genes)
+
+#number of TWAS genes
+length(twas_genes)
+
+#show novel genes (ctwas genes with not in TWAS genes)
+ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]
+
+#sensitivity / recall
+print(sensitivity)
+
+#specificity
+print(specificity)
+
+#precision / PPV
+print(precision)
+```
+
+```{r,echo=FALSE}
+#ROC curves
+pip_range <- (0:1000)/1000
+sensitivity <- rep(NA, length(pip_range))
+specificity <- rep(NA, length(pip_range))
+
+for (index in 1:length(pip_range)){
+  pip <- pip_range[index]
+  ctwas_genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>=pip]
+  sensitivity[index] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+}
+
+plot(1-specificity, sensitivity, type="l", xlim=c(0,1), ylim=c(0,1))
+
+sig_thresh_range <- seq(from=0, to=max(abs(ctwas_gene_res$z)), length.out=length(pip_range))
+
+for (index in 1:length(sig_thresh_range)){
+  sig_thresh_plot <- sig_thresh_range[index]
+  twas_genes <- ctwas_gene_res$genename[abs(ctwas_gene_res$z)>=sig_thresh_plot]
+  sensitivity[index] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+}
+
+lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
+```
+
+## cTWAS is more precise than TWAS in distinguishing silver standard and bystander genes
+```{r echo=FALSE, message=FALSE}
+library(biomaRt)
+library(GenomicRanges)
+
+ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
+G_list <- G_list[G_list$hgnc_symbol!="",]
+G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
+G_list$start <- G_list$start_position
+G_list$end <- G_list$end_position
+G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
+
+#remove genes without imputed expression from gene lists
+known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename]
+
+known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,]
+half_window <- 1000000
+known_annotations_positions$start <- known_annotations_positions$start_position - half_window
+known_annotations_positions$end <- known_annotations_positions$end_position + half_window
+known_annotations_positions$start[known_annotations_positions$start<1] <- 1
+known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
+
+bystanders <- findOverlaps(known_annotations_granges,G_list_granges)
+bystanders <- unique(subjectHits(bystanders))
+bystanders <- G_list$hgnc_symbol[bystanders]
+bystanders <- unique(bystanders[!(bystanders %in% known_annotations)])
+unrelated_genes <- bystanders
+
+#save gene lists
+save(known_annotations, file=paste0(results_dir, "/known_annotations.Rd"))
+save(unrelated_genes, file=paste0(results_dir, "/bystanders.Rd"))
+```
+
+```{r echo=FALSE}
+load(paste0(results_dir, "/known_annotations.Rd"))
+load(paste0(results_dir, "/bystanders.Rd"))
+
+#remove genes without imputed expression from bystander list
+unrelated_genes <- unrelated_genes[unrelated_genes %in% ctwas_gene_res$genename]
+
+#subset results to genes in known annotations or bystanders
+ctwas_gene_res_subset <- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),]
+
+#assign ctwas and TWAS genes
+ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8]
+twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh]
+
+#sensitivity / recall
+sensitivity <- rep(NA,2)
+names(sensitivity) <- c("ctwas", "TWAS")
+sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
+
+#specificity / (1 - False Positive Rate)
+specificity <- rep(NA,2)
+names(specificity) <- c("ctwas", "TWAS")
+specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+
+#precision / PPV / (1 - False Discovery Rate)
+precision <- rep(NA,2)
+names(precision) <- c("ctwas", "TWAS")
+precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes)
+```
+
+```{r}
+#number of genes in known annotations (with imputed expression)
+print(length(known_annotations))
+
+#number of bystander genes (with imputed expression)
+print(length(unrelated_genes))
+
+#subset results to genes in known annotations or bystanders
+ctwas_gene_res_subset <- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),]
+
+#assign ctwas and TWAS genes
+ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8]
+twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh]
+
+#significance threshold for TWAS
+print(sig_thresh)
+
+#number of ctwas genes (in known annotations or bystanders)
+length(ctwas_genes)
+
+#number of TWAS genes (in known annotations or bystanders)
+length(twas_genes)
+
+#sensitivity / recall
+sensitivity
+
+#specificity / (1 - False Positive Rate)
+specificity
+
+#precision / PPV / (1 - False Discovery Rate)
+precision
+```
+
+```{r echo=FALSE}
+#store sensitivity and specificity calculations for plots
+sensitivity_plot <- sensitivity
+specificity_plot <- specificity
+
+#precision / PPV by PIP threshold
+pip_range <- c(0.5, 0.8, 1)
+precision_range <- rep(NA, length(pip_range))
+number_detected <- rep(NA, length(pip_range))
+
+for (i in 1:length(pip_range)){
+  pip_upper <- pip_range[i]
+
+  if (i==1){
+    pip_lower <- 0
+  } else {
+    pip_lower <- pip_range[i-1]
+  }
+
+  #assign ctwas genes using PIP threshold
+  ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>=pip_lower]
+
+  number_detected[i] <- length(ctwas_genes)
+  precision_range[i] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+}
+
+names(precision_range) <- paste0(">= ", c(0, pip_range[-length(pip_range)]))
+
+precision_range <- precision_range*100
+
+precision_range <- c(precision_range, precision["TWAS"]*100)
+names(precision_range)[4] <- "TWAS Bonferroni"
+number_detected <- c(number_detected, length(twas_genes))
+
+barplot(precision_range, ylim=c(0,100), main="Precision for Distinguishing Silver Standard and Bystander Genes", xlab="PIP Threshold for Detection", ylab="% of Detected Genes in Silver Standard")
+abline(h=20, lty=2)
+abline(h=40, lty=2)
+abline(h=60, lty=2)
+abline(h=80, lty=2)
+xx <- barplot(precision_range, add=T, col=c(rep("darkgrey",3), "white"))
+text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, " detected"), pos = 3, cex=0.8)
+```
+
+```{r echo=FALSE}
+barplot(100-precision_range, ylim=c(0,100), main="False Discovery Rate for Distinguishing Silver Standard and Bystander Genes", xlab="PIP Threshold for Detection", ylab="% Bystanders in Detected Genes")
+abline(h=20, lty=2)
+abline(h=40, lty=2)
+abline(h=60, lty=2)
+abline(h=80, lty=2)
+xx <- barplot(100-precision_range, add=T, col=c(rep("darkgrey",3), "white"))
+text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, " detected"), pos = 3, cex=0.8)
+```
+
+```{r}
+pip_range <- (0:1000)/1000
+sensitivity <- rep(NA, length(pip_range))
+specificity <- rep(NA, length(pip_range))
+
+for (index in 1:length(pip_range)){
+  pip <- pip_range[index]
+  ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>=pip]
+  sensitivity[index] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+}
+
+plot(1-specificity, sensitivity, type="l", xlim=c(0,1), ylim=c(0,1), main="", xlab="1 - Specificity", ylab="Sensitivity")
+title(expression("ROC Curve for cTWAS (black) and TWAS (" * phantom("red") * ")"))
+title(expression(phantom("ROC Curve for cTWAS (black) and TWAS (") * "red" * phantom(")")), col.main="red")
+
+sig_thresh_range <- seq(from=0, to=max(abs(ctwas_gene_res_subset$z)), length.out=length(pip_range))
+
+for (index in 1:length(sig_thresh_range)){
+  sig_thresh_plot <- sig_thresh_range[index]
+  twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>=sig_thresh_plot]
+  sensitivity[index] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+}
+
+lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=1)
+
+abline(a=0,b=1,lty=3)
+
+#add previously computed points from the analysis
+ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8]
+twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh]
+
+points(1-specificity_plot["ctwas"], sensitivity_plot["ctwas"], pch=21, bg="black")
+points(1-specificity_plot["TWAS"], sensitivity_plot["TWAS"], pch=21, bg="red")
+```
+
+## Undetected silver standard genes have low TWAS z-scores or stronger signal from nearby variants
+```{r echo=FALSE,message=FALSE}
+known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ")
+known_annotations <- unique(known_annotations$`Gene Symbol`)
+
+#categorize silver standard genes by case
+silver_standard_case <- c()
+uncertain_regions <- matrix(NA, 0, 2)
+
+for (i in 1:length(known_annotations)){
+  current_gene <- known_annotations[i]
+
+  if (current_gene %in% ctwas_gene_res$genename) {
+    if (ctwas_gene_res$susie_pip[ctwas_gene_res$genename == current_gene] > 0.8){
+      silver_standard_case <- c(silver_standard_case, "Detected (PIP > 0.8)")
+    } else {
+      if (abs(ctwas_gene_res$z[ctwas_gene_res$genename == current_gene]) < sig_thresh){
+        silver_standard_case <- c(silver_standard_case, "Insignificant z-score")
+      } else {
+        current_region <- ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene]
+        current_gene_res <- ctwas_gene_res[ctwas_gene_res$region_tag==current_region,]
+        current_snp_res <- ctwas_snp_res[ctwas_snp_res$region_tag==current_region,]
+
+        if (any(current_gene_res$susie_pip>0.8)){
+          if (any(current_gene_res$genename[current_gene_res$susie_pip>0.8] %in% known_annotations)){
+            silver_standard_case <- c(silver_standard_case, "Nearby Silver Standard Gene")
+          } else {
+            silver_standard_case <- c(silver_standard_case, "Nearby Bystander Gene")
+          }
+        } else {
+          #if (any(current_snp_res$susie_pip>0.8)){
+          if (sum(current_snp_res$susie_pip)>0.8){
+            silver_standard_case <- c(silver_standard_case, "Nearby SNP(s)")
+          } else {
+            silver_standard_case <- c(silver_standard_case, "Inconclusive")
+
+            uncertain_regions <- rbind(uncertain_regions, c(current_gene, ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene]))
+
+            print(c(current_gene, ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene]))
+          }
+        }
+      }
+    }
+  } else {
+    silver_standard_case <- c(silver_standard_case, "Not Imputed")
+  }
+}
+names(silver_standard_case) <- known_annotations
+```
+
+```{r}
+#table of outcomes for silver standard genes
+-sort(-table(silver_standard_case))
+```
+
+```{r}
+#show inconclusive genes
+silver_standard_case[silver_standard_case=="Inconclusive"]
+```
+
+```{r echo=FALSE}
+#pie chart of outcomes for silver standard genes
+df <- data.frame(-sort(-table(silver_standard_case)))
+names(df) <- c("Outcome", "Frequency")
+#df <- df[df$Outcome!="Not Imputed",] #exclude genes not imputed
+df$Outcome <- droplevels(df$Outcome) #exclude genes not imputed
+
+pie <- ggplot(df, aes(x="", y=Frequency, fill=Outcome)) + geom_bar(width = 1, stat = "identity")
+pie <- pie + coord_polar("y", start=0) + theme_minimal() + theme(axis.title.y=element_blank())
+pie
+```

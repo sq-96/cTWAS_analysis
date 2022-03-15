@@ -122,6 +122,11 @@ n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
 rm(ctwas_res_s1)
 ```
 
+```{r echo=FALSE}
+# saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+# saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+```
+
 ## Check convergence of parameters
 
 ```{r echo=F,message=F}
@@ -129,7 +134,7 @@ library(ggplot2)
 library(cowplot)
 
 load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd"))
-  
+
 df <- data.frame(niter = rep(1:ncol(group_prior_rec), 2),
                  value = c(group_prior_rec[1,], group_prior_rec[2,]),
                  group = rep(c("Gene", "SNP"), each = ncol(group_prior_rec)))
@@ -186,7 +191,7 @@ print(estimated_group_pve)
 c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
 ```
 
-## Genes with highest PIPs 
+## Genes with highest PIPs
 
 ```{r echo=F}
 #distribution of PIPs
@@ -196,7 +201,7 @@ hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 ```
 
-## Genes with largest effect sizes 
+## Genes with largest effect sizes
 
 ```{r echo=F}
 #plot PIP vs effect size
@@ -207,7 +212,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
 
 ```
 
-## Genes with highest PVE 
+## Genes with highest PVE
 
 ```{r echo=F}
 #genes with 20 highest pve
@@ -215,7 +220,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
 
 ```
 
-## Genes with largest z scores 
+## Genes with largest z scores
 
 ```{r echo=F}
 #genes with 20 largest z scores
@@ -246,6 +251,19 @@ abline(v=sig_thresh, col="red", lty=2)
 #proportion of significant z scores
 mean(abs(ctwas_gene_res$z) > sig_thresh)
 
+```
+
+## Gene with high z-score but low PIP, assign to SNP or to gene?
+```{r}
+high_z_genes_region <- unique(head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],40)$region_tag)
+sum <- 0
+for(i in high_z_genes_region){
+  locus <- ctwas_res[ctwas_res$region_tag==i,]
+  locus <- head(locus[order(-locus$susie_pip),],20)
+  snp_pip <- sum(locus[locus$type == 'SNP','susie_pip'])
+  gene_pip <- sum(locus[locus$type == 'gene','susie_pip'])
+  print(snp_pip/(snp_pip+gene_pip))
+}
 ```
 
 ## GO enrichment analysis for genes with PIP>0.5
@@ -282,16 +300,16 @@ if (length(genes)>0){
 ```{r echo=F, message=FALSE}
 if (length(genes)>0){
   library(disgenet2r)
-  
+
   disgenet_api_key <- get_disgenet_api_key(
-                    email = "wesleycrouse@gmail.com", 
+                    email = "wesleycrouse@gmail.com",
                     password = "uchicago1" )
-  
+
   Sys.setenv(DISGENET_API_KEY= disgenet_api_key)
-  
+
   res_enrich <-disease_enrichment(entities=genes, vocabulary = "HGNC",
                                database = "CURATED" )
-  
+
   df <- res_enrich@qresult[1:10, c("Description", "FDR", "Ratio",  "BgRatio")]
   print(df)
 }
@@ -303,12 +321,12 @@ if (length(genes)>0){
 if (length(genes)>0){
   #WebGestalt enrichment
   library(WebGestaltR)
-  
+
   background <- ctwas_gene_res$genename
-  
+
   #listGeneSet()
   databases <- c("pathway_KEGG", "disease_GLAD4U", "disease_OMIM")
-  
+
   enrichResult <- WebGestaltR(enrichMethod="ORA", organism="hsapiens",
                               interestGene=genes, referenceGene=background,
                               enrichDatabase=databases, interestGeneType="genesymbol",
@@ -324,27 +342,27 @@ if (length(genes)>0){
 library(tibble)
 library(tidyverse)
 
-full.gene.pip.summary <- data.frame(gene_name = ctwas_gene_res$genename, 
-                                    gene_pip = ctwas_gene_res$susie_pip, 
-                                    gene_id = ctwas_gene_res$id, 
+full.gene.pip.summary <- data.frame(gene_name = ctwas_gene_res$genename,
+                                    gene_pip = ctwas_gene_res$susie_pip,
+                                    gene_id = ctwas_gene_res$id,
                                     chr = as.integer(ctwas_gene_res$chrom),
                                     start = ctwas_gene_res$pos / 1e3,
                                     is_highlight = F, stringsAsFactors = F) %>% as_tibble()
 full.gene.pip.summary$is_highlight <- full.gene.pip.summary$gene_pip > 0.50
 
-don <- full.gene.pip.summary %>% 
-  
+don <- full.gene.pip.summary %>%
+
   # Compute chromosome size
-  group_by(chr) %>% 
-  summarise(chr_len=max(start)) %>% 
-  
+  group_by(chr) %>%
+  summarise(chr_len=max(start)) %>%
+
   # Calculate cumulative position of each chromosome
   mutate(tot=cumsum(chr_len)-chr_len) %>%
   dplyr::select(-chr_len) %>%
-  
+
   # Add this info to the initial dataset
   left_join(full.gene.pip.summary, ., by=c("chr"="chr")) %>%
-  
+
   # Add a cumulative position of each SNP
   arrange(chr, start) %>%
   mutate( BPcum=start+tot)
@@ -355,41 +373,41 @@ x_axis_labels <- axisdf$chr
 x_axis_labels[seq(1,21,2)] <- ""
 
 ggplot(don, aes(x=BPcum, y=gene_pip)) +
-  
+
   # Show all points
   ggrastr::geom_point_rast(aes(color=as.factor(chr)), size=2) +
   scale_color_manual(values = rep(c("grey", "skyblue"), 22 )) +
-  
+
   # custom X axis:
-  # scale_x_continuous(label = axisdf$chr, 
+  # scale_x_continuous(label = axisdf$chr,
   #                    breaks= axisdf$center,
   #                    guide = guide_axis(n.dodge = 2)) +
   scale_x_continuous(label = x_axis_labels,
                      breaks = axisdf$center) +
-  
+
   scale_y_continuous(expand = c(0, 0), limits = c(0,1.25), breaks=(1:5)*0.2, minor_breaks=(1:10)*0.1) + # remove space between plot area and x axis
-  
+
   # Add highlighted points
   ggrastr::geom_point_rast(data=subset(don, is_highlight==T), color="orange", size=2) +
-  
+
   # Add label using ggrepel to avoid overlapping
-  ggrepel::geom_label_repel(data=subset(don, is_highlight==T), 
-                            aes(label=gene_name), 
+  ggrepel::geom_label_repel(data=subset(don, is_highlight==T),
+                            aes(label=gene_name),
                             size=4,
-                            min.segment.length = 0, 
+                            min.segment.length = 0,
                             label.size = NA,
                             fill = alpha(c("white"),0)) +
-  
+
   # Custom the theme:
   theme_bw() +
-  theme( 
+  theme(
     text = element_text(size = 14),
     legend.position="none",
     panel.border = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
   ) +
-  xlab("Chromosome") + 
+  xlab("Chromosome") +
   ylab("cTWAS PIP")
 
 ```
@@ -491,7 +509,7 @@ lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
 ```{r echo=FALSE, message=FALSE}
 # library(biomaRt)
 # library(GenomicRanges)
-# 
+#
 # ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
 # G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
 # G_list <- G_list[G_list$hgnc_symbol!="",]
@@ -499,23 +517,23 @@ lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
 # G_list$start <- G_list$start_position
 # G_list$end <- G_list$end_position
 # G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
-# 
+#
 # #remove genes without imputed expression from gene lists
 # known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename]
-# 
+#
 # known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,]
 # half_window <- 1000000
 # known_annotations_positions$start <- known_annotations_positions$start_position - half_window
 # known_annotations_positions$end <- known_annotations_positions$end_position + half_window
 # known_annotations_positions$start[known_annotations_positions$start<1] <- 1
 # known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T)
-# 
+#
 # bystanders <- findOverlaps(known_annotations_granges,G_list_granges)
 # bystanders <- unique(subjectHits(bystanders))
 # bystanders <- G_list$hgnc_symbol[bystanders]
 # bystanders <- unique(bystanders[!(bystanders %in% known_annotations)])
 # unrelated_genes <- bystanders
-# 
+#
 # #save gene lists
 # save(known_annotations, file=paste0(results_dir, "/known_annotations.Rd"))
 # save(unrelated_genes, file=paste0(results_dir, "/bystanders.Rd"))
@@ -605,10 +623,10 @@ for (i in 1:length(pip_range)){
   } else {
     pip_lower <- pip_range[i-1]
   }
-  
+
   #assign ctwas genes using PIP threshold
   ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>=pip_lower]
-  
+
   number_detected[i] <- length(ctwas_genes)
   precision_range[i] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
 }
@@ -676,7 +694,7 @@ twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_th
 points(1-specificity_plot["ctwas"], sensitivity_plot["ctwas"], pch=21, bg="black")
 points(1-specificity_plot["TWAS"], sensitivity_plot["TWAS"], pch=21, bg="red")
 ```
-      
+
 ## Undetected silver standard genes have low TWAS z-scores or stronger signal from nearby variants
 ```{r echo=FALSE,message=FALSE}
 known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ")
@@ -688,7 +706,7 @@ uncertain_regions <- matrix(NA, 0, 2)
 
 for (i in 1:length(known_annotations)){
   current_gene <- known_annotations[i]
-  
+
   if (current_gene %in% ctwas_gene_res$genename) {
     if (ctwas_gene_res$susie_pip[ctwas_gene_res$genename == current_gene] > 0.8){
       silver_standard_case <- c(silver_standard_case, "Detected (PIP > 0.8)")
@@ -699,7 +717,7 @@ for (i in 1:length(known_annotations)){
         current_region <- ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene]
         current_gene_res <- ctwas_gene_res[ctwas_gene_res$region_tag==current_region,]
         current_snp_res <- ctwas_snp_res[ctwas_snp_res$region_tag==current_region,]
-        
+
         if (any(current_gene_res$susie_pip>0.8)){
           if (any(current_gene_res$genename[current_gene_res$susie_pip>0.8] %in% known_annotations)){
             silver_standard_case <- c(silver_standard_case, "Nearby Silver Standard Gene")
@@ -712,9 +730,9 @@ for (i in 1:length(known_annotations)){
             silver_standard_case <- c(silver_standard_case, "Nearby SNP(s)")
           } else {
             silver_standard_case <- c(silver_standard_case, "Inconclusive")
-            
+
             uncertain_regions <- rbind(uncertain_regions, c(current_gene, ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene]))
-            
+
             print(c(current_gene, ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene]))
           }
         }

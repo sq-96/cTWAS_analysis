@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="sheng Qian" />
+
+
+<title>SCZ - Brain Amygdala</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">cTWAS_analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/sq-96/cTWAS_analysis">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">SCZ - Brain Amygdala</h1>
+<h4 class="author">sheng Qian</h4>
+<h4 class="date">2021-2-6</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2022-03-14
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
+</p>
+<p>
+<strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211220code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20211220)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20211220code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20211220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+</p>
+</div>
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/
+</td>
+<td style="text-align:left;">
+data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R
+</td>
+<td style="text-align:left;">
+code/ctwas_config.R
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4c71b117a1f6bb96076f2ee0a3081596af1b2bb4targetblank4c71b11a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/4c71b117a1f6bb96076f2ee0a3081596af1b2bb4" target="_blank">4c71b11</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4c71b117a1f6bb96076f2ee0a3081596af1b2bb4targetblank4c71b11a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/4c71b117a1f6bb96076f2ee0a3081596af1b2bb4" target="_blank">4c71b11</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .ipynb_checkpoints/
+    Ignored:    analysis/figure/
+    Ignored:    data/AF/
+
+Untracked files:
+    Untracked:  Rplot.png
+    Untracked:  analysis/.ipynb_checkpoints/
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Amygdala.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Anterior_cingulate_cortex_BA24.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Caudate_basal_ganglia.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Cerebellar_Hemisphere.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Cerebellum.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Cortex.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Frontal_Cortex_BA9.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Hippocampus.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Hypothalamus.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Nucleus_accumbens_basal_ganglia.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Putamen_basal_ganglia.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Spinal_cord_cervical_c-1.Rmd
+    Untracked:  analysis/SCZ_2014_EUR_Brain_Substantia_nigra.Rmd
+    Untracked:  analysis/SCZ_2020_Brain_Cortex.Rmd
+    Untracked:  analysis/SCZ_2020_Brain_Frontal_Cortex_BA9.Rmd
+    Untracked:  analysis/SCZ_2020_Brain_Hypothalamus.Rmd
+    Untracked:  analysis/SCZ_2020_Brain_Putamen_basal_ganglia.Rmd
+    Untracked:  analysis/SCZ_Cross_Tissue_Analysis.Rmd
+    Untracked:  code/.ipynb_checkpoints/
+    Untracked:  code/AF_out/
+    Untracked:  code/Autism_out/
+    Untracked:  code/BMI_S_out/
+    Untracked:  code/BMI_out/
+    Untracked:  code/Glucose_out/
+    Untracked:  code/LDL_S_out/
+    Untracked:  code/SCZ_2014_EUR_out/
+    Untracked:  code/SCZ_2020_out/
+    Untracked:  code/SCZ_S_out/
+    Untracked:  code/SCZ_out/
+    Untracked:  code/T2D_out/
+    Untracked:  code/ctwas_config.R
+    Untracked:  code/mapping.R
+    Untracked:  code/out/
+    Untracked:  code/run_AF_analysis.sbatch
+    Untracked:  code/run_AF_analysis.sh
+    Untracked:  code/run_AF_ctwas_rss_LDR.R
+    Untracked:  code/run_Autism_analysis.sbatch
+    Untracked:  code/run_Autism_analysis.sh
+    Untracked:  code/run_Autism_ctwas_rss_LDR.R
+    Untracked:  code/run_BMI_analysis.sbatch
+    Untracked:  code/run_BMI_analysis.sh
+    Untracked:  code/run_BMI_analysis_S.sbatch
+    Untracked:  code/run_BMI_analysis_S.sh
+    Untracked:  code/run_BMI_ctwas_rss_LDR.R
+    Untracked:  code/run_BMI_ctwas_rss_LDR_S.R
+    Untracked:  code/run_Glucose_analysis.sbatch
+    Untracked:  code/run_Glucose_analysis.sh
+    Untracked:  code/run_Glucose_ctwas_rss_LDR.R
+    Untracked:  code/run_LDL_analysis_S.sbatch
+    Untracked:  code/run_LDL_analysis_S.sh
+    Untracked:  code/run_LDL_ctwas_rss_LDR_S.R
+    Untracked:  code/run_SCZ_2014_EUR_analysis.sbatch
+    Untracked:  code/run_SCZ_2014_EUR_analysis.sh
+    Untracked:  code/run_SCZ_2014_EUR_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_2020_analysis.sbatch
+    Untracked:  code/run_SCZ_2020_analysis.sh
+    Untracked:  code/run_SCZ_2020_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_analysis.sbatch
+    Untracked:  code/run_SCZ_analysis.sh
+    Untracked:  code/run_SCZ_analysis_S.sbatch
+    Untracked:  code/run_SCZ_analysis_S.sh
+    Untracked:  code/run_SCZ_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_ctwas_rss_LDR_S.R
+    Untracked:  code/run_T2D_analysis.sbatch
+    Untracked:  code/run_T2D_analysis.sh
+    Untracked:  code/run_T2D_ctwas_rss_LDR.R
+    Untracked:  code/wflow_build.R
+    Untracked:  code/wflow_build.sbatch
+    Untracked:  data/.ipynb_checkpoints/
+    Untracked:  data/BMI/
+    Untracked:  data/PGC3_SCZ_wave3_public.v2.tsv
+    Untracked:  data/SCZ/
+    Untracked:  data/SCZ_2014_EUR/
+    Untracked:  data/SCZ_2020/
+    Untracked:  data/SCZ_S/
+    Untracked:  data/T2D/
+    Untracked:  data/UKBB/
+    Untracked:  data/UKBB_SNPs_Info.text
+    Untracked:  data/gene_OMIM.txt
+    Untracked:  data/gene_pip_0.8.txt
+    Untracked:  data/mashr_Heart_Atrial_Appendage.db
+    Untracked:  data/mashr_sqtl/
+    Untracked:  data/summary_known_genes_annotations.xlsx
+    Untracked:  data/untitled.txt
+
+Unstaged changes:
+    Modified:   analysis/SCZ_Brain_Amygdala.Rmd
+    Modified:   analysis/SCZ_Brain_Anterior_cingulate_cortex_BA24.Rmd
+    Modified:   analysis/SCZ_Brain_Caudate_basal_ganglia.Rmd
+    Modified:   analysis/SCZ_Brain_Cerebellar_Hemisphere.Rmd
+    Modified:   analysis/SCZ_Brain_Cerebellum.Rmd
+    Modified:   analysis/SCZ_Brain_Cortex.Rmd
+    Modified:   analysis/SCZ_Brain_Frontal_Cortex_BA9.Rmd
+    Modified:   analysis/SCZ_Brain_Hippocampus.Rmd
+    Modified:   analysis/SCZ_Brain_Hypothalamus.Rmd
+    Modified:   analysis/SCZ_Brain_Nucleus_accumbens_basal_ganglia.Rmd
+    Modified:   analysis/SCZ_Brain_Putamen_basal_ganglia.Rmd
+    Modified:   analysis/SCZ_Brain_Spinal_cord_cervical_c-1.Rmd
+    Modified:   analysis/SCZ_Brain_Substantia_nigra.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="weight-qc" class="section level2">
+<h2>Weight QC</h2>
+<pre class="r"><code>#number of imputed weights
+nrow(qclist_all)</code></pre>
+<pre><code>[1] 9924</code></pre>
+<pre class="r"><code>#number of imputed weights by chromosome
+table(qclist_all$chr)</code></pre>
+<pre><code>
+  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
+978 708 563 386 486 590 469 358 376 379 592 578 217 311 325 437 581 153 766 299 
+ 21  22 
+116 256 </code></pre>
+<pre class="r"><code>#number of imputed weights without missing variants
+sum(qclist_all$nmiss==0)</code></pre>
+<pre><code>[1] 7824</code></pre>
+<pre class="r"><code>#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)</code></pre>
+<pre><code>[1] 0.7884</code></pre>
+</div>
+<div id="check-convergence-of-parameters" class="section level2">
+<h2>Check convergence of parameters</h2>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#estimated group prior
+estimated_group_prior &lt;- group_prior_rec[,ncol(group_prior_rec)]
+names(estimated_group_prior) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+estimated_group_prior[&quot;snp&quot;] &lt;- estimated_group_prior[&quot;snp&quot;]*thin #adjust parameter to account for thin argument
+print(estimated_group_prior)</code></pre>
+<pre><code>     gene       snp 
+0.0049685 0.0002741 </code></pre>
+<pre class="r"><code>#estimated group prior variance
+estimated_group_prior_var &lt;- group_prior_var_rec[,ncol(group_prior_var_rec)]
+names(estimated_group_prior_var) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+print(estimated_group_prior_var)</code></pre>
+<pre><code>  gene    snp 
+12.644  8.111 </code></pre>
+<pre class="r"><code>#report sample size
+print(sample_size)</code></pre>
+<pre><code>[1] 77096</code></pre>
+<pre class="r"><code>#report group size
+group_size &lt;- c(nrow(ctwas_gene_res), n_snps)
+print(group_size)</code></pre>
+<pre><code>[1]    9924 7352670</code></pre>
+<pre class="r"><code>#estimated group PVE
+estimated_group_pve &lt;- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+names(estimated_group_pve) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+print(estimated_group_pve)</code></pre>
+<pre><code>    gene      snp 
+0.008087 0.212030 </code></pre>
+<pre class="r"><code>#compare sum(PIP*mu2/sample_size) with above PVE calculation
+c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))</code></pre>
+<pre><code>[1] 0.03525 1.76138</code></pre>
+</div>
+<div id="genes-with-highest-pips" class="section level2">
+<h2>Genes with highest PIPs</h2>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>          genename region_tag susie_pip   mu2       PVE      z num_eqtl
+10169       ZNF823      19_10    0.9579 30.33 0.0003769  5.485        1
+11222   AC012074.2       2_15    0.8420 23.94 0.0002615  4.648        2
+5798       ARFGAP2      11_29    0.7653 25.77 0.0002558  4.839        1
+5997        TMEM56       1_58    0.7542 24.38 0.0002385 -4.357        1
+2362        B3GAT1      11_84    0.6276 26.35 0.0002145 -4.621        2
+3172         HSDL2       9_57    0.6099 27.04 0.0002139 -4.378        1
+2406           MDK      11_28    0.5655 39.32 0.0002884 -6.344        1
+10520        TCTN1      12_67    0.5139 24.23 0.0001615  4.673        1
+9014        FAM83H       8_94    0.4727 25.19 0.0001544  4.308        2
+3822        SPECC1      17_17    0.4581 31.53 0.0001873  4.357        2
+3251        CYSTM1       5_83    0.4432 21.51 0.0001237 -3.750        1
+677        PPP2R5B      11_36    0.4411 25.94 0.0001484 -4.610        1
+6937      SERPINI1      3_103    0.4351 20.80 0.0001174 -4.030        1
+2728        PDCD10      3_103    0.4351 20.80 0.0001174 -4.030        1
+11888 RP11-220I1.5       9_28    0.4231 23.87 0.0001310 -4.442        1
+454        TRAPPC3       1_22    0.4136 25.69 0.0001378  5.058        1
+2983        MAP7D1       1_22    0.4136 25.69 0.0001378  5.058        1
+377         CTNNA1       5_82    0.4065 24.74 0.0001304  4.946        1
+11703 RP11-65M17.3      11_66    0.4043 23.18 0.0001216  4.340        1
+9316         ACOT1      14_34    0.4036 30.20 0.0001581  4.148        2</code></pre>
+</div>
+<div id="genes-with-largest-effect-sizes" class="section level2">
+<h2>Genes with largest effect sizes</h2>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>       genename region_tag susie_pip    mu2       PVE        z num_eqtl
+11179 HIST1H2BN       6_21 1.281e-06 998.37 1.659e-08 10.77288        1
+6279      MMP16       8_63 0.000e+00 527.12 0.000e+00  3.64776        1
+10468   ABHD16A       6_27 3.563e-05 159.90 7.389e-08  8.93412        1
+10465      MSH5       6_27 2.583e-05 158.53 5.311e-08  8.87309        1
+2719       PCCB       3_84 0.000e+00 148.08 0.000e+00 -4.36131        1
+11458       C4A       6_27 5.314e-07 145.82 1.005e-09  8.44500        1
+11188    TRIM26       6_24 1.998e-15 137.32 3.559e-18 -5.53874        1
+10707     DDAH2       6_27 1.151e-11 134.83 2.014e-14  7.66104        1
+1315     ZNF184       6_21 0.000e+00 125.18 0.000e+00  1.10170        2
+2033       MPP6       7_21 4.756e-03 113.19 6.982e-06 -3.30235        1
+10473      APOM       6_27 9.090e-12 105.50 1.244e-14  7.02253        2
+4693       IER3       6_24 4.070e-07  90.59 4.783e-10  7.63213        1
+3563  HIST1H2BJ       6_21 0.000e+00  84.55 0.000e+00  0.02624        2
+10444      RNF5       6_27 4.741e-14  83.06 5.108e-17  7.92121        1
+9573     BTN3A2       6_20 8.678e-03  69.94 7.872e-06  9.17987        3
+5592    PPP1R18       6_24 1.332e-15  68.21 1.179e-18  1.41699        2
+10458   SLC44A4       6_27 1.993e-12  67.92 1.756e-15  6.41397        1
+10443      AGER       6_27 5.118e-14  64.02 4.250e-17 -2.62745        1
+10448     FKBPL       6_27 3.605e-12  59.03 2.760e-15 -4.22665        1
+8984  HIST1H2BC       6_20 8.247e-03  52.71 5.638e-06 -7.97807        1</code></pre>
+</div>
+<div id="genes-with-highest-pve" class="section level2">
+<h2>Genes with highest PVE</h2>
+<pre><code>          genename region_tag susie_pip   mu2       PVE      z num_eqtl
+10169       ZNF823      19_10    0.9579 30.33 0.0003769  5.485        1
+2406           MDK      11_28    0.5655 39.32 0.0002884 -6.344        1
+11222   AC012074.2       2_15    0.8420 23.94 0.0002615  4.648        2
+5798       ARFGAP2      11_29    0.7653 25.77 0.0002558  4.839        1
+5997        TMEM56       1_58    0.7542 24.38 0.0002385 -4.357        1
+2362        B3GAT1      11_84    0.6276 26.35 0.0002145 -4.621        2
+3172         HSDL2       9_57    0.6099 27.04 0.0002139 -4.378        1
+3822        SPECC1      17_17    0.4581 31.53 0.0001873  4.357        2
+2782        LMAN2L       2_57    0.3026 42.92 0.0001684 -4.484        2
+10520        TCTN1      12_67    0.5139 24.23 0.0001615  4.673        1
+9316         ACOT1      14_34    0.4036 30.20 0.0001581  4.148        2
+10971    LINC00390      13_17    0.2831 42.17 0.0001549 -3.799        1
+9014        FAM83H       8_94    0.4727 25.19 0.0001544  4.308        2
+677        PPP2R5B      11_36    0.4411 25.94 0.0001484 -4.610        1
+10685        SIPA1      11_36    0.3694 30.57 0.0001465  3.824        1
+9695      HIST1H1C       6_20    0.2654 41.65 0.0001434  4.329        2
+454        TRAPPC3       1_22    0.4136 25.69 0.0001378  5.058        1
+2983        MAP7D1       1_22    0.4136 25.69 0.0001378  5.058        1
+437       MPHOSPH9      12_75    0.2358 43.39 0.0001327  6.650        1
+11888 RP11-220I1.5       9_28    0.4231 23.87 0.0001310 -4.442        1</code></pre>
+</div>
+<div id="genes-with-largest-z-scores" class="section level2">
+<h2>Genes with largest z scores</h2>
+<pre><code>       genename region_tag susie_pip    mu2       PVE      z num_eqtl
+11179 HIST1H2BN       6_21 1.281e-06 998.37 1.659e-08 10.773        1
+9573     BTN3A2       6_20 8.678e-03  69.94 7.872e-06  9.180        3
+10468   ABHD16A       6_27 3.563e-05 159.90 7.389e-08  8.934        1
+10465      MSH5       6_27 2.583e-05 158.53 5.311e-08  8.873        1
+11458       C4A       6_27 5.314e-07 145.82 1.005e-09  8.445        1
+8984  HIST1H2BC       6_20 8.247e-03  52.71 5.638e-06 -7.978        1
+10444      RNF5       6_27 4.741e-14  83.06 5.108e-17  7.921        1
+5778      CNNM2      10_66 1.121e-01  41.42 6.021e-05 -7.876        1
+10707     DDAH2       6_27 1.151e-11 134.83 2.014e-14  7.661        1
+4693       IER3       6_24 4.070e-07  90.59 4.783e-10  7.632        1
+10473      APOM       6_27 9.090e-12 105.50 1.244e-14  7.023        2
+11226   ZSCAN31       6_22 4.605e-03  35.18 2.101e-06 -6.706        2
+437    MPHOSPH9      12_75 2.358e-01  43.39 1.327e-04  6.650        1
+9777       DPYD       1_60 5.668e-03  39.51 2.904e-06 -6.455        1
+10458   SLC44A4       6_27 1.993e-12  67.92 1.756e-15  6.414        1
+2406        MDK      11_28 5.655e-01  39.32 2.884e-04 -6.344        1
+10231   ZKSCAN8       6_22 2.107e-03  42.30 1.156e-06  6.135        1
+8969     HARBI1      11_28 1.319e-01  35.67 6.100e-05  6.084        1
+10486    CCHCR1       6_25 3.405e-03  27.92 1.233e-06 -5.868        3
+3264      SNX19      11_81 3.857e-02  39.37 1.970e-05  5.837        3</code></pre>
+</div>
+<div id="comparing-z-scores-and-pips" class="section level2">
+<h2>Comparing z scores and PIPs</h2>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-12-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0.006046</code></pre>
+</div>
+<div id="go-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>GO enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre class="r"><code>#number of genes for gene set enrichment
+length(genes)</code></pre>
+<pre><code>[1] 8</code></pre>
+<pre><code>Uploading data to Enrichr... Done.
+  Querying GO_Biological_Process_2021... Done.
+  Querying GO_Cellular_Component_2021... Done.
+  Querying GO_Molecular_Function_2021... Done.
+Parsing results... Done.
+[1] &quot;GO_Biological_Process_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>                                                                                  Term
+1                         positive regulation of neutrophil extravasation (GO:2000391)
+2                         regulation of inflammatory response to wounding (GO:0106014)
+3                negative regulation of regulatory T cell differentiation (GO:0045590)
+4                                         Golgi transport vesicle coating (GO:0048200)
+5            negative regulation of cardiac muscle cell apoptotic process (GO:0010667)
+6                  leukocyte chemotaxis involved in inflammatory response (GO:0002232)
+7                                  regulation of hepatocyte proliferation (GO:2000345)
+8                                  regulation of neutrophil extravasation (GO:2000389)
+9                                           COPI coating of Golgi vesicle (GO:0048205)
+10                                            COPI-coated vesicle budding (GO:0035964)
+11                        protein localization to ciliary transition zone (GO:1904491)
+12                                          regulation of bone remodeling (GO:0046850)
+13          negative regulation of striated muscle cell apoptotic process (GO:0010664)
+14                 positive regulation of oligodendrocyte differentiation (GO:0048714)
+15                                              adrenal gland development (GO:0030325)
+16                     chondroitin sulfate proteoglycan metabolic process (GO:0050654)
+17                        regulation of epithelial cell apoptotic process (GO:1904035)
+18                    regulation of cardiac muscle cell apoptotic process (GO:0010665)
+19                                          aminoglycan metabolic process (GO:0006022)
+20                          positive regulation of cellular extravasation (GO:0002693)
+21                      positive regulation of keratinocyte proliferation (GO:0010838)
+22                             regulation of leukocyte cell-cell adhesion (GO:1903037)
+23                                positive regulation of neuron migration (GO:2001224)
+24         positive regulation of vascular endothelial cell proliferation (GO:1905564)
+25          regulation of leukocyte adhesion to vascular endothelial cell (GO:1904994)
+26                          negative regulation of T cell differentiation (GO:0045581)
+27                           positive regulation of macrophage chemotaxis (GO:0010759)
+28                                                              oogenesis (GO:0048477)
+29 positive regulation of leukocyte adhesion to vascular endothelial cell (GO:1904996)
+30                    positive regulation of smooth muscle cell migration (GO:0014911)
+31                                    regulation of cartilage development (GO:0061035)
+32                      positive regulation of glial cell differentiation (GO:0045687)
+33                           positive regulation of cartilage development (GO:0061036)
+34                  regulation of vascular endothelial cell proliferation (GO:1905562)
+35                           positive regulation of neutrophil chemotaxis (GO:0090023)
+36                          regulation of oligodendrocyte differentiation (GO:0048713)
+37                            positive regulation of macrophage migration (GO:1905523)
+38                                     regulation of leukocyte chemotaxis (GO:0002688)
+39                                   regulation of granulocyte chemotaxis (GO:0071622)
+40                                        regulation of tissue remodeling (GO:0034103)
+41                      positive regulation of lymphocyte differentiation (GO:0045621)
+42                            negative regulation of response to wounding (GO:1903035)
+43             positive regulation of neural precursor cell proliferation (GO:2000179)
+44                            positive regulation of neutrophil migration (GO:1902624)
+45                          positive regulation of granulocyte chemotaxis (GO:0071624)
+46                                    regulation of macrophage chemotaxis (GO:0010758)
+47                               regulation of mononuclear cell migration (GO:0071675)
+48                      regulation of neural precursor cell proliferation (GO:2000177)
+49                  positive regulation of morphogenesis of an epithelium (GO:1905332)
+50                      lymphocyte activation involved in immune response (GO:0002285)
+51                                    negative regulation of ossification (GO:0030279)
+52                               regulation of keratinocyte proliferation (GO:0010837)
+53                                           endocrine system development (GO:0035270)
+54                                    regulation of neutrophil chemotaxis (GO:0090022)
+55                        regulation of regulatory T cell differentiation (GO:0045589)
+56                              regulation of chondrocyte differentiation (GO:0032330)
+57                                                 glial cell development (GO:0021782)
+58                  chondroitin sulfate proteoglycan biosynthetic process (GO:0050650)
+59                                         regulation of neuron migration (GO:2001222)
+60                          T cell activation involved in immune response (GO:0002286)
+61                            positive regulation of response to wounding (GO:1903036)
+62                             positive regulation of leukocyte migration (GO:0002687)
+63                                      proteoglycan biosynthetic process (GO:0030166)
+64                    positive regulation of leukocyte cell-cell adhesion (GO:1903039)
+65                       positive regulation of interleukin-12 production (GO:0032735)
+66                                               female gamete generation (GO:0007292)
+67                                         protein localization to cilium (GO:0061512)
+68                                             regulation of ossification (GO:0030278)
+69     positive regulation of substrate adhesion-dependent cell spreading (GO:1900026)
+70                        regulation of actin cytoskeleton reorganization (GO:2000249)
+71               negative regulation of epithelial cell apoptotic process (GO:1904036)
+72                                   regulation of T cell differentiation (GO:0045580)
+73            positive regulation of epithelial to mesenchymal transition (GO:0010718)
+74                          positive regulation of T cell differentiation (GO:0045582)
+75                                      positive regulation of chemotaxis (GO:0050921)
+76                              positive regulation of cell-cell adhesion (GO:0022409)
+77  positive regulation of cell morphogenesis involved in differentiation (GO:0010770)
+78              regulation of substrate adhesion-dependent cell spreading (GO:1900024)
+79                                regulation of interleukin-12 production (GO:0032655)
+80                                    glycosaminoglycan metabolic process (GO:0030203)
+81                            positive regulation of leukocyte chemotaxis (GO:0002690)
+82                                                Notch signaling pathway (GO:0007219)
+83                         positive regulation of cell-substrate adhesion (GO:0010811)
+84                        negative regulation of neuron apoptotic process (GO:0043524)
+85                                                      gland development (GO:0048732)
+86                                   negative regulation of cell adhesion (GO:0007162)
+87                               positive regulation of T cell activation (GO:0050870)
+88                     regulation of epithelial to mesenchymal transition (GO:0010717)
+89                  positive regulation of endothelial cell proliferation (GO:0001938)
+90                                   positive regulation of cell adhesion (GO:0045785)
+91  retrograde vesicle-mediated transport, Golgi to endoplasmic reticulum (GO:0006890)
+   Overlap Adjusted.P.value   Genes
+1      1/5          0.02399     MDK
+2      1/5          0.02399     MDK
+3      1/5          0.02399     MDK
+4      1/6          0.02399 ARFGAP2
+5      1/6          0.02399     MDK
+6      1/6          0.02399     MDK
+7      1/6          0.02399     MDK
+8      1/6          0.02399     MDK
+9      1/6          0.02399 ARFGAP2
+10     1/6          0.02399 ARFGAP2
+11     1/6          0.02399   TCTN1
+12     1/7          0.02399     MDK
+13     1/8          0.02399     MDK
+14     1/8          0.02399     MDK
+15    1/10          0.02399     MDK
+16    1/10          0.02399  B3GAT1
+17    1/10          0.02399     MDK
+18    1/11          0.02399     MDK
+19    1/11          0.02399  B3GAT1
+20    1/11          0.02399     MDK
+21    1/11          0.02399     MDK
+22    1/12          0.02399     MDK
+23    1/13          0.02399     MDK
+24    1/13          0.02399     MDK
+25    1/13          0.02399     MDK
+26    1/14          0.02399     MDK
+27    1/14          0.02399     MDK
+28    1/16          0.02399     MDK
+29    1/16          0.02399     MDK
+30    1/17          0.02399     MDK
+31    1/18          0.02399     MDK
+32    1/18          0.02399     MDK
+33    1/18          0.02399     MDK
+34    1/18          0.02399     MDK
+35    1/19          0.02399     MDK
+36    1/19          0.02399     MDK
+37    1/19          0.02399     MDK
+38    1/19          0.02399     MDK
+39    1/20          0.02399     MDK
+40    1/20          0.02399     MDK
+41    1/20          0.02399     MDK
+42    1/21          0.02399     MDK
+43    1/22          0.02399     MDK
+44    1/22          0.02399     MDK
+45    1/22          0.02399     MDK
+46    1/22          0.02399     MDK
+47    1/23          0.02399     MDK
+48    1/23          0.02399     MDK
+49    1/23          0.02399     MDK
+50    1/24          0.02399     MDK
+51    1/24          0.02399     MDK
+52    1/24          0.02399     MDK
+53    1/24          0.02399     MDK
+54    1/25          0.02416     MDK
+55    1/26          0.02416     MDK
+56    1/26          0.02416     MDK
+57    1/26          0.02416     MDK
+58    1/27          0.02430  B3GAT1
+59    1/28          0.02430     MDK
+60    1/28          0.02430     MDK
+61    1/28          0.02430     MDK
+62    1/29          0.02476     MDK
+63    1/31          0.02563  B3GAT1
+64    1/31          0.02563     MDK
+65    1/34          0.02725     MDK
+66    1/34          0.02725     MDK
+67    1/35          0.02755   TCTN1
+68    1/36          0.02755     MDK
+69    1/36          0.02755     MDK
+70    1/37          0.02755     MDK
+71    1/37          0.02755     MDK
+72    1/39          0.02863     MDK
+73    1/42          0.03039     MDK
+74    1/43          0.03069     MDK
+75    1/45          0.03168     MDK
+76    1/47          0.03264     MDK
+77    1/50          0.03404     MDK
+78    1/51          0.03404     MDK
+79    1/51          0.03404     MDK
+80    1/54          0.03514  B3GAT1
+81    1/54          0.03514     MDK
+82    1/60          0.03853     MDK
+83    1/70          0.04390     MDK
+84    1/71          0.04390     MDK
+85    1/71          0.04390     MDK
+86    1/73          0.04459     MDK
+87    1/75          0.04527     MDK
+88    1/76          0.04535     MDK
+89    1/77          0.04542     MDK
+90    1/80          0.04664     MDK
+91    1/85          0.04897 ARFGAP2
+[1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Molecular_Function_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-15-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+<div id="disgenet-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>DisGeNET enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>                      Description     FDR Ratio BgRatio
+31            JOUBERT SYNDROME 13 0.01958   1/5  1/9703
+1               Anxiety Disorders 0.06101   1/5 44/9703
+2            Diabetic Nephropathy 0.06101   1/5 44/9703
+5      Nodular glomerulosclerosis 0.06101   1/5 41/9703
+9                Memory Disorders 0.06101   1/5 43/9703
+12              Memory impairment 0.06101   1/5 44/9703
+17       Anxiety States, Neurotic 0.06101   1/5 44/9703
+19 Familial aplasia of the vermis 0.06101   1/5 30/9703
+21   Age-Related Memory Disorders 0.06101   1/5 43/9703
+22      Memory Disorder, Semantic 0.06101   1/5 43/9703</code></pre>
+</div>
+<div id="webgestalt-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>WebGestalt enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>Loading the functional categories...
+Loading the ID list...
+Loading the reference list...
+Performing the enrichment analysis...</code></pre>
+<pre><code>Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<pre><code>NULL</code></pre>
+</div>
+<div id="pip-manhattan-plot" class="section level2">
+<h2>PIP Manhattan Plot</h2>
+<pre><code>Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;</code></pre>
+<pre><code>Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink</code></pre>
+<pre><code>Warning: It is strongly recommended to set envionment variable TZ to &#39;America/
+Chicago&#39; (or equivalent)</code></pre>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sensitivity-specificity-and-precision-for-silver-standard-genes" class="section level2">
+<h2>Sensitivity, specificity and precision for silver standard genes</h2>
+<pre class="r"><code>#number of genes in known annotations
+print(length(known_annotations))</code></pre>
+<pre><code>[1] 130</code></pre>
+<pre class="r"><code>#number of genes in known annotations with imputed expression
+print(sum(known_annotations %in% ctwas_gene_res$genename))</code></pre>
+<pre><code>[1] 52</code></pre>
+<pre class="r"><code>#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.563</code></pre>
+<pre class="r"><code>#number of ctwas genes
+length(ctwas_genes)</code></pre>
+<pre><code>[1] 2</code></pre>
+<pre class="r"><code>#number of TWAS genes
+length(twas_genes)</code></pre>
+<pre><code>[1] 60</code></pre>
+<pre class="r"><code>#show novel genes (ctwas genes with not in TWAS genes)
+ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]</code></pre>
+<pre><code>[1] genename   region_tag susie_pip  mu2        PVE        z          num_eqtl  
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<pre class="r"><code>#sensitivity / recall
+print(sensitivity)</code></pre>
+<pre><code>   ctwas     TWAS 
+0.007692 0.023077 </code></pre>
+<pre class="r"><code>#specificity
+print(specificity)</code></pre>
+<pre><code> ctwas   TWAS 
+0.9999 0.9942 </code></pre>
+<pre class="r"><code>#precision / PPV
+print(precision)</code></pre>
+<pre><code>ctwas  TWAS 
+ 0.50  0.05 </code></pre>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ctwas-is-more-precise-than-twas-in-distinguishing-silver-standard-and-bystander-genes" class="section level2">
+<h2>cTWAS is more precise than TWAS in distinguishing silver standard and bystander genes</h2>
+<pre class="r"><code>#number of genes in known annotations (with imputed expression)
+print(length(known_annotations))</code></pre>
+<pre><code>[1] 52</code></pre>
+<pre class="r"><code>#number of bystander genes (with imputed expression)
+print(length(unrelated_genes))</code></pre>
+<pre><code>[1] 584</code></pre>
+<pre class="r"><code>#subset results to genes in known annotations or bystanders
+ctwas_gene_res_subset &lt;- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),]
+
+#assign ctwas and TWAS genes
+ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;0.8]
+twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;sig_thresh]
+
+#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.563</code></pre>
+<pre class="r"><code>#number of ctwas genes (in known annotations or bystanders)
+length(ctwas_genes)</code></pre>
+<pre><code>[1] 1</code></pre>
+<pre class="r"><code>#number of TWAS genes (in known annotations or bystanders)
+length(twas_genes)</code></pre>
+<pre><code>[1] 8</code></pre>
+<pre class="r"><code>#sensitivity / recall
+sensitivity</code></pre>
+<pre><code>  ctwas    TWAS 
+0.01923 0.05769 </code></pre>
+<pre class="r"><code>#specificity / (1 - False Positive Rate)
+specificity</code></pre>
+<pre><code> ctwas   TWAS 
+1.0000 0.9914 </code></pre>
+<pre class="r"><code>#precision / PPV / (1 - False Discovery Rate)
+precision</code></pre>
+<pre><code>ctwas  TWAS 
+1.000 0.375 </code></pre>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>pip_range &lt;- (0:1000)/1000
+sensitivity &lt;- rep(NA, length(pip_range))
+specificity &lt;- rep(NA, length(pip_range))
+
+for (index in 1:length(pip_range)){
+  pip &lt;- pip_range[index]
+  ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;=pip]
+  sensitivity[index] &lt;- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] &lt;- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+}
+
+plot(1-specificity, sensitivity, type=&quot;l&quot;, xlim=c(0,1), ylim=c(0,1), main=&quot;&quot;, xlab=&quot;1 - Specificity&quot;, ylab=&quot;Sensitivity&quot;)
+title(expression(&quot;ROC Curve for cTWAS (black) and TWAS (&quot; * phantom(&quot;red&quot;) * &quot;)&quot;))
+title(expression(phantom(&quot;ROC Curve for cTWAS (black) and TWAS (&quot;) * &quot;red&quot; * phantom(&quot;)&quot;)), col.main=&quot;red&quot;)
+
+sig_thresh_range &lt;- seq(from=0, to=max(abs(ctwas_gene_res_subset$z)), length.out=length(pip_range))
+
+for (index in 1:length(sig_thresh_range)){
+  sig_thresh_plot &lt;- sig_thresh_range[index]
+  twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;=sig_thresh_plot]
+  sensitivity[index] &lt;- sum(twas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] &lt;- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+}
+
+lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col=&quot;red&quot;, lty=1)
+
+abline(a=0,b=1,lty=3)
+
+#add previously computed points from the analysis
+ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;0.8]
+twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;sig_thresh]
+
+points(1-specificity_plot[&quot;ctwas&quot;], sensitivity_plot[&quot;ctwas&quot;], pch=21, bg=&quot;black&quot;)
+points(1-specificity_plot[&quot;TWAS&quot;], sensitivity_plot[&quot;TWAS&quot;], pch=21, bg=&quot;red&quot;)</code></pre>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="undetected-silver-standard-genes-have-low-twas-z-scores-or-stronger-signal-from-nearby-variants" class="section level2">
+<h2>Undetected silver standard genes have low TWAS z-scores or stronger signal from nearby variants</h2>
+<pre class="r"><code>#table of outcomes for silver standard genes
+-sort(-table(silver_standard_case))</code></pre>
+<pre><code>silver_standard_case
+          Not Imputed Insignificant z-score         Nearby SNP(s) 
+                   78                    49                     2 
+ Detected (PIP &gt; 0.8) 
+                    1 </code></pre>
+<pre class="r"><code>#show inconclusive genes
+silver_standard_case[silver_standard_case==&quot;Inconclusive&quot;]</code></pre>
+<pre><code>named character(0)</code></pre>
+<p><img src="figure/SCZ_2014_EUR_Brain_Amygdala.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Scientific Linux 7.4 (Nitrogen)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.2.19-el7-x86_64/lib/libopenblas_haswellp-r0.2.19.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] GenomicRanges_1.36.1 GenomeInfoDb_1.20.0  IRanges_2.18.1      
+ [4] S4Vectors_0.22.1     BiocGenerics_0.30.0  biomaRt_2.40.1      
+ [7] readxl_1.3.1         forcats_0.5.1        stringr_1.4.0       
+[10] dplyr_1.0.7          purrr_0.3.4          readr_2.1.1         
+[13] tidyr_1.1.4          tidyverse_1.3.1      tibble_3.1.6        
+[16] WebGestaltR_0.4.4    disgenet2r_0.99.2    enrichR_3.0         
+[19] cowplot_1.0.0        ggplot2_3.3.5        workflowr_1.7.0     
+
+loaded via a namespace (and not attached):
+  [1] ggbeeswarm_0.6.0       colorspace_2.0-2       rjson_0.2.20          
+  [4] ellipsis_0.3.2         rprojroot_2.0.2        XVector_0.24.0        
+  [7] fs_1.5.2               rstudioapi_0.13        farver_2.1.0          
+ [10] ggrepel_0.9.1          bit64_4.0.5            AnnotationDbi_1.46.0  
+ [13] fansi_1.0.2            lubridate_1.8.0        xml2_1.3.3            
+ [16] codetools_0.2-16       doParallel_1.0.17      cachem_1.0.6          
+ [19] knitr_1.36             jsonlite_1.7.2         apcluster_1.4.8       
+ [22] Cairo_1.5-12.2         broom_0.7.10           dbplyr_2.1.1          
+ [25] compiler_3.6.1         httr_1.4.2             backports_1.4.1       
+ [28] assertthat_0.2.1       Matrix_1.2-18          fastmap_1.1.0         
+ [31] cli_3.1.0              later_0.8.0            prettyunits_1.1.1     
+ [34] htmltools_0.5.2        tools_3.6.1            igraph_1.2.10         
+ [37] GenomeInfoDbData_1.2.1 gtable_0.3.0           glue_1.6.2            
+ [40] reshape2_1.4.4         doRNG_1.8.2            Rcpp_1.0.8            
+ [43] Biobase_2.44.0         cellranger_1.1.0       jquerylib_0.1.4       
+ [46] vctrs_0.3.8            svglite_1.2.2          iterators_1.0.14      
+ [49] xfun_0.29              ps_1.6.0               rvest_1.0.2           
+ [52] lifecycle_1.0.1        rngtools_1.5.2         XML_3.99-0.3          
+ [55] zlibbioc_1.30.0        getPass_0.2-2          scales_1.1.1          
+ [58] vroom_1.5.7            hms_1.1.1              promises_1.0.1        
+ [61] yaml_2.2.1             curl_4.3.2             memoise_2.0.1         
+ [64] ggrastr_1.0.1          gdtools_0.1.9          stringi_1.7.6         
+ [67] RSQLite_2.2.8          highr_0.9              foreach_1.5.2         
+ [70] rlang_1.0.1            pkgconfig_2.0.3        bitops_1.0-7          
+ [73] evaluate_0.14          lattice_0.20-38        labeling_0.4.2        
+ [76] bit_4.0.4              processx_3.5.2         tidyselect_1.1.1      
+ [79] plyr_1.8.6             magrittr_2.0.2         R6_2.5.1              
+ [82] generics_0.1.1         DBI_1.1.2              pillar_1.6.4          
+ [85] haven_2.4.3            whisker_0.3-2          withr_2.4.3           
+ [88] RCurl_1.98-1.5         modelr_0.1.8           crayon_1.5.0          
+ [91] utf8_1.2.2             tzdb_0.2.0             rmarkdown_2.11        
+ [94] progress_1.2.2         grid_3.6.1             data.table_1.14.2     
+ [97] blob_1.2.2             callr_3.7.0            git2r_0.26.1          
+[100] reprex_2.0.1           digest_0.6.29          httpuv_1.5.1          
+[103] munsell_0.5.0          beeswarm_0.2.3         vipor_0.4.5           </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
