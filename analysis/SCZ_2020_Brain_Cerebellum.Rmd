@@ -1,14 +1,14 @@
 ---
-title: "SCZ - Brain Cortex"
+title: "SCZ - Brain Cerebellum"
 author: "sheng Qian"
 date: "2021-2-6"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "SCZ_Brain_Cortex"
+  analysis_id: "SCZ_Brain_Cerebellum"
   trait_id: "SCZ_2020"
-  weight: "Brain_Cortex"
+  weight: "Brain_Cerebellum"
 ---
 
 ```{r echo=F}
@@ -251,6 +251,19 @@ abline(v=sig_thresh, col="red", lty=2)
 #proportion of significant z scores
 mean(abs(ctwas_gene_res$z) > sig_thresh)
 
+```
+
+## Gene with high z-score but low PIP, assign to SNP or to gene?
+```{r}
+high_z_genes_region <- unique(head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],40)$region_tag)
+sum <- 0
+for(i in high_z_genes_region){
+  locus <- ctwas_res[ctwas_res$region_tag==i,]
+  locus <- head(locus[order(-locus$susie_pip),],20)
+  snp_pip <- sum(locus[locus$type == 'SNP','susie_pip'])
+  gene_pip <- sum(locus[locus$type == 'gene','susie_pip'])
+  print(snp_pip/(snp_pip+gene_pip))
+}
 ```
 
 ## GO enrichment analysis for genes with PIP>0.5

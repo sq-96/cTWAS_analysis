@@ -1,14 +1,14 @@
 ---
-title: "SCZ - Brain Cortex"
+title: "SCZ - Brain Anterior cingulate cortex BA24"
 author: "sheng Qian"
 date: "2021-2-6"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "SCZ_Brain_Cortex"
+  analysis_id: "SCZ_Brain_Anterior_cingulate_cortex_BA24"
   trait_id: "SCZ_2020"
-  weight: "Brain_Cortex"
+  weight: "Brain_Anterior_cingulate_cortex_BA24"
 ---
 
 ```{r echo=F}
@@ -398,6 +398,7 @@ ggplot(don, aes(x=BPcum, y=gene_pip)) +
   ylab("cTWAS PIP")
 
 ```
+
 
 ## Sensitivity, specificity and precision for silver standard genes
 
