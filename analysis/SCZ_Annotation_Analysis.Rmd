@@ -8,11 +8,11 @@ editor_options:
 ---
 
 ```{r}
-brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018//")
+brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/")
 top_genes <- c()
 all_genes <- c()
 for(i in brain_tissue){
-  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
+  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
   all_genes <- c(all_genes,df$genename)
   df <- df[df$susie_pip>=0.8,]
   top_genes <- c(top_genes,df$genename)
@@ -82,3 +82,38 @@ fisher.test(matrix(c(sum(top_genes %in% PGC3_genes),length(top_genes)-sum(top_ge
 fisher.test(matrix(c(sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),length(top_genes)-sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),sum(random_genes %in% setdiff(PGC3_genes,SMR_genes)),1000-sum(random_genes %in% setdiff(PGC3_genes,SMR_genes))),ncol=2))
 ```
 
+```{r}
+library(enrichR)
+
+dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecular_Function_2021")
+
+if (length(top_genes)>0){
+  GO_enrichment <- enrichr(top_genes, dbs)
+
+  for (db in dbs){
+    print(db)
+    df <- GO_enrichment[[db]]
+    print(plotEnrich(GO_enrichment[[db]]))
+    df <- df[df$Adjusted.P.value<0.05,c("Term", "Overlap", "Adjusted.P.value", "Genes")]
+    print(df)
+  }
+}
+```
+
+```{r echo=F, message=FALSE}
+if (length(top_genes)>0){
+  library(disgenet2r)
+
+  disgenet_api_key <- get_disgenet_api_key(
+                    email = "wesleycrouse@gmail.com",
+                    password = "uchicago1" )
+
+  Sys.setenv(DISGENET_API_KEY= disgenet_api_key)
+
+  res_enrich <-disease_enrichment(entities=top_genes, vocabulary = "HGNC",
+                               database = "CURATED" )
+
+  df <- res_enrich@qresult[1:10, c("Description", "FDR", "Ratio",  "BgRatio")]
+  print(df)
+}
+```
