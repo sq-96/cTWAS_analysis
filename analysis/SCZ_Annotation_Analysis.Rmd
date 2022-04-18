@@ -8,11 +8,11 @@ editor_options:
 ---
 
 ```{r}
-brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020//")
+brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018//")
 top_genes <- c()
 all_genes <- c()
 for(i in brain_tissue){
-  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
+  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
   all_genes <- c(all_genes,df$genename)
   df <- df[df$susie_pip>=0.8,]
   top_genes <- c(top_genes,df$genename)
