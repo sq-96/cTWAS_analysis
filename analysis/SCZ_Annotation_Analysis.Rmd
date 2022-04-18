@@ -1,0 +1,84 @@
+---
+title: "SCZ - Annotation Analysis"
+author: "sheng Qian"
+date: "2022-4-11"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020//")
+top_genes <- c()
+all_genes <- c()
+for(i in brain_tissue){
+  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
+  all_genes <- c(all_genes,df$genename)
+  df <- df[df$susie_pip>=0.8,]
+  top_genes <- c(top_genes,df$genename)
+}
+top_genes <- unique(top_genes)
+all_genes <- unique(all_genes)
+set.seed(2022)
+random_genes <- sample(all_genes,1000)
+```
+
+```{r}
+library(readxl)
+Supplementary_Table_15_MAGMA <- read_excel("data/Supplementary Table 15 - MAGMA.xlsx", 
+    sheet = "Gene Lists")
+
+summary_known_genes_annotations <- read_excel("data/summary_known_genes_annotations.xlsx", 
+    sheet = "SCZ")
+
+SCHEMA_genes <- Supplementary_Table_15_MAGMA$`SCHEMA (p<0.001)`
+SCHEMA_genes <- SCHEMA_genes[!is.na(SCHEMA_genes)]
+
+ASD_genes <- Supplementary_Table_15_MAGMA$`ASD (Satterstrom et al. 2019)`
+ASD_genes <- ASD_genes[!is.na(ASD_genes)]
+
+DDD_genes <- Supplementary_Table_15_MAGMA$`DDD (Kaplanis et al. 2019)`
+DDD_genes <- DDD_genes[!is.na(DDD_genes)]
+
+
+PGC3_genes <- summary_known_genes_annotations$`Gene Symbol`
+PGC3_genes <- PGC3_genes[!is.na(PGC3_genes)]
+```
+
+```{r}
+Supplementary_Table_20_Prioritised_Genes <- read_excel("data/Supplementary Table 20 - Prioritised Genes.xlsx", 
+    sheet = "ST20 all criteria")
+
+SMR_genes <- Supplementary_Table_20_Prioritised_Genes[,c("Symbol.ID","SMRmap","SMRsingleGene","HI.C.SMR")]
+SMR_genes["index"] <- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SMR_genes$HI.C.SMR==1)
+SMR_genes <- SMR_genes[SMR_genes$index==1,]$Symbol.ID
+```
+
+```{r}
+sum(top_genes %in% SCHEMA_genes)
+sum(top_genes %in% ASD_genes)
+sum(top_genes %in% DDD_genes)
+sum(top_genes %in% PGC3_genes)
+sum(top_genes %in% setdiff(PGC3_genes,SMR_genes))
+```
+
+```{r}
+sum(random_genes %in% SCHEMA_genes)
+sum(random_genes %in% ASD_genes)
+sum(random_genes %in% DDD_genes)
+sum(random_genes %in% PGC3_genes)
+sum(random_genes %in% setdiff(PGC3_genes,SMR_genes))
+```
+
+```{r}
+fisher.test(matrix(c(sum(top_genes %in% SCHEMA_genes),length(top_genes)-sum(top_genes %in% SCHEMA_genes),sum(random_genes %in% SCHEMA_genes),1000-sum(random_genes %in% SCHEMA_genes)),ncol=2))
+
+fisher.test(matrix(c(sum(top_genes %in% ASD_genes),length(top_genes)-sum(top_genes %in% ASD_genes),sum(random_genes %in% ASD_genes),1000-sum(random_genes %in% ASD_genes)),ncol=2))
+
+fisher.test(matrix(c(sum(top_genes %in% DDD_genes),length(top_genes)-sum(top_genes %in% DDD_genes),sum(random_genes %in% DDD_genes),1000-sum(random_genes %in% DDD_genes)),ncol=2))
+
+fisher.test(matrix(c(sum(top_genes %in% PGC3_genes),length(top_genes)-sum(top_genes %in% PGC3_genes),sum(random_genes %in% PGC3_genes),1000-sum(random_genes %in% PGC3_genes)),ncol=2))
+
+fisher.test(matrix(c(sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),length(top_genes)-sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),sum(random_genes %in% setdiff(PGC3_genes,SMR_genes)),1000-sum(random_genes %in% setdiff(PGC3_genes,SMR_genes))),ncol=2))
+```
+

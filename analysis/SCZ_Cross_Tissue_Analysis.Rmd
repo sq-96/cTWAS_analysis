@@ -8,10 +8,10 @@ editor_options:
 ---
 
 ```{r}
-brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ/")
+brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/")
 top_genes <- c()
 for(i in brain_tissue){
-  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
+  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
   df <- df[df$susie_pip>=0.8,]
   top_genes <- c(top_genes,df$genename)
 }
@@ -23,7 +23,7 @@ df <- matrix(-1,nrow = length(top_genes),ncol = length(brain_tissue))
 colnames(df) <- brain_tissue
 rownames(df) <- top_genes
 for(i in colnames(df)){
-  tmp_df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
+  tmp_df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
   for(j in rownames(df)){
     if(j %in% tmp_df$genename){
       df[j,i] <- tmp_df[tmp_df$genename==j,"susie_pip"]
