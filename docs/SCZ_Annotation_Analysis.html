@@ -499,16 +499,16 @@ data/SCZ_2014_EUR
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree9ddc9c43289519afecd05bdf0af20b8c7dce3423targetblank9ddc9c4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/9ddc9c43289519afecd05bdf0af20b8c7dce3423" target="_blank">9ddc9c4</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree0552ba2bf4d6456fb9b0087f6c077c0a7cd6720dtargetblank0552ba2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d" target="_blank">0552ba2</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree9ddc9c43289519afecd05bdf0af20b8c7dce3423targetblank9ddc9c4a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree0552ba2bf4d6456fb9b0087f6c077c0a7cd6720dtargetblank0552ba2a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/9ddc9c43289519afecd05bdf0af20b8c7dce3423" target="_blank">9ddc9c4</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d" target="_blank">0552ba2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -516,7 +516,6 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .ipynb_checkpoints/
-    Ignored:    analysis/figure/
     Ignored:    data/AF/
 
 Untracked files:
@@ -609,7 +608,6 @@ Untracked files:
 
 Unstaged changes:
     Modified:   analysis/SCZ_Annotation_Analysis.Rmd
-    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -648,6 +646,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d/analysis/SCZ_Annotation_Analysis.Rmd" target="_blank">0552ba2</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d/docs/SCZ_Annotation_Analysis.html" target="_blank">0552ba2</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -695,7 +727,7 @@ all_genes &lt;- c()
 for(i in brain_tissue){
   df &lt;- readRDS(paste0(&quot;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/&quot;,i,&quot;/SCZ_&quot;,i,&quot;_ctwas_gene_res.RDS&quot;))
   all_genes &lt;- c(all_genes,df$genename)
-  df &lt;- df[df$susie_pip&gt;=0.8,]
+  df &lt;- df[df$susie_pip&gt;=0.5,]
   top_genes &lt;- c(top_genes,df$genename)
 }
 top_genes &lt;- unique(top_genes)
@@ -728,15 +760,15 @@ SMR_genes &lt;- Supplementary_Table_20_Prioritised_Genes[,c(&quot;Symbol.ID&quot
 SMR_genes[&quot;index&quot;] &lt;- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SMR_genes$HI.C.SMR==1)
 SMR_genes &lt;- SMR_genes[SMR_genes$index==1,]$Symbol.ID</code></pre>
 <pre class="r"><code>sum(top_genes %in% SCHEMA_genes)</code></pre>
-<pre><code>[1] 1</code></pre>
+<pre><code>[1] 2</code></pre>
 <pre class="r"><code>sum(top_genes %in% ASD_genes)</code></pre>
-<pre><code>[1] 0</code></pre>
-<pre class="r"><code>sum(top_genes %in% DDD_genes)</code></pre>
 <pre><code>[1] 1</code></pre>
-<pre class="r"><code>sum(top_genes %in% PGC3_genes)</code></pre>
+<pre class="r"><code>sum(top_genes %in% DDD_genes)</code></pre>
 <pre><code>[1] 5</code></pre>
+<pre class="r"><code>sum(top_genes %in% PGC3_genes)</code></pre>
+<pre><code>[1] 9</code></pre>
 <pre class="r"><code>sum(top_genes %in% setdiff(PGC3_genes,SMR_genes))</code></pre>
-<pre><code>[1] 0</code></pre>
+<pre><code>[1] 1</code></pre>
 <pre class="r"><code>sum(random_genes %in% SCHEMA_genes)</code></pre>
 <pre><code>[1] 3</code></pre>
 <pre class="r"><code>sum(random_genes %in% ASD_genes)</code></pre>
@@ -752,13 +784,13 @@ SMR_genes &lt;- SMR_genes[SMR_genes$index==1,]$Symbol.ID</code></pre>
     Fisher&#39;s Exact Test for Count Data
 
 data:  
-p-value = 0.1354
+p-value = 0.1413
 alternative hypothesis: true odds ratio is not equal to 1
 95 percent confidence interval:
-   0.1711393 117.4160714
+  0.350347 37.179757
 sample estimates:
 odds ratio 
-  9.175783 </code></pre>
+  4.225739 </code></pre>
 <pre class="r"><code>fisher.test(matrix(c(sum(top_genes %in% ASD_genes),length(top_genes)-sum(top_genes %in% ASD_genes),sum(random_genes %in% ASD_genes),1000-sum(random_genes %in% ASD_genes)),ncol=2))</code></pre>
 <pre><code>
     Fisher&#39;s Exact Test for Count Data
@@ -767,46 +799,46 @@ data:
 p-value = 1
 alternative hypothesis: true odds ratio is not equal to 1
 95 percent confidence interval:
-  0.00000 19.30366
+ 0.01979746 7.06655191
 sample estimates:
 odds ratio 
-         0 </code></pre>
+  0.897886 </code></pre>
 <pre class="r"><code>fisher.test(matrix(c(sum(top_genes %in% DDD_genes),length(top_genes)-sum(top_genes %in% DDD_genes),sum(random_genes %in% DDD_genes),1000-sum(random_genes %in% DDD_genes)),ncol=2))</code></pre>
 <pre><code>
     Fisher&#39;s Exact Test for Count Data
 
 data:  
-p-value = 0.4223
+p-value = 0.1657
 alternative hypothesis: true odds ratio is not equal to 1
 95 percent confidence interval:
-  0.04503188 13.53902640
+ 0.6348484 6.8334851
 sample estimates:
 odds ratio 
-  1.954633 </code></pre>
+  2.284503 </code></pre>
 <pre class="r"><code>fisher.test(matrix(c(sum(top_genes %in% PGC3_genes),length(top_genes)-sum(top_genes %in% PGC3_genes),sum(random_genes %in% PGC3_genes),1000-sum(random_genes %in% PGC3_genes)),ncol=2))</code></pre>
 <pre><code>
     Fisher&#39;s Exact Test for Count Data
 
 data:  
-p-value = 1.739e-05
+p-value = 3.34e-05
 alternative hypothesis: true odds ratio is not equal to 1
 95 percent confidence interval:
-   5.852185 106.928166
+  3.09800 34.34657
 sample estimates:
 odds ratio 
-  25.56233 </code></pre>
+  9.904212 </code></pre>
 <pre class="r"><code>fisher.test(matrix(c(sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),length(top_genes)-sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),sum(random_genes %in% setdiff(PGC3_genes,SMR_genes)),1000-sum(random_genes %in% setdiff(PGC3_genes,SMR_genes))),ncol=2))</code></pre>
 <pre><code>
     Fisher&#39;s Exact Test for Count Data
 
 data:  
-p-value = 1
+p-value = 0.5225
 alternative hypothesis: true odds ratio is not equal to 1
 95 percent confidence interval:
-  0.0000 41.8512
+  0.03180166 16.04506772
 sample estimates:
 odds ratio 
-         0 </code></pre>
+  1.575219 </code></pre>
 <pre class="r"><code>library(enrichR)</code></pre>
 <pre><code>Welcome to enrichR
 Checking connection ... </code></pre>
@@ -835,42 +867,138 @@ if (length(top_genes)&gt;0){
 Parsing results... Done.
 [1] &quot;GO_Biological_Process_2021&quot;</code></pre>
 <p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>                                        Term Overlap Adjusted.P.value
-1 mitochondrial tRNA processing (GO:0090646)     2/8       0.02165807
-2     signal peptide processing (GO:0006465)    2/11       0.02165807
-        Genes
-1 ELAC2;TRIT1
-2 SPCS1;FURIN
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-1.png" target="_blank">0552ba2</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
 [1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
 <p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-2">
+Past versions of unnamed-chunk-7-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-2.png" target="_blank">0552ba2</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
 &lt;0 rows&gt; (or 0-length row.names)
 [1] &quot;GO_Molecular_Function_2021&quot;</code></pre>
 <p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-3">
+Past versions of unnamed-chunk-7-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-3.png" target="_blank">0552ba2</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
 &lt;0 rows&gt; (or 0-length row.names)</code></pre>
-<pre><code>                                                 Description        FDR Ratio
-68                                  Amaurosis hypertrichosis 0.01183261  1/14
-69 Familial encephalopathy with neuroserpin inclusion bodies 0.01183261  1/14
-72                Cone rod dystrophy amelogenesis imperfecta 0.01183261  1/14
-75                                           Jalili syndrome 0.01183261  1/14
-76                            PROSTATE CANCER, HEREDITARY, 2 0.01183261  1/14
-77                SPASTIC PARAPLEGIA 53, AUTOSOMAL RECESSIVE 0.01183261  1/14
-79          COMBINED OXIDATIVE PHOSPHORYLATION DEFICIENCY 17 0.01183261  1/14
-80                SPASTIC PARAPLEGIA 45, AUTOSOMAL RECESSIVE 0.01183261  1/14
-81  HYPOGONADOTROPIC HYPOGONADISM 22 WITH OR WITHOUT ANOSMIA 0.01183261  1/14
-82          COMBINED OXIDATIVE PHOSPHORYLATION DEFICIENCY 35 0.01183261  1/14
-   BgRatio
-68  1/9703
-69  1/9703
-72  1/9703
-75  1/9703
-76  1/9703
-77  1/9703
-79  1/9703
-80  1/9703
-81  1/9703
-82  1/9703</code></pre>
+<pre><code>                                       Description        FDR Ratio  BgRatio
+84                                         Measles 0.04999924  1/65   1/9703
+106                                  Schizophrenia 0.04999924 13/65 883/9703
+108                                   Spasmophilia 0.04999924  1/65   1/9703
+116                                    Tachycardia 0.04999924  2/65  18/9703
+117                                         Tetany 0.04999924  1/65   1/9703
+123                                Tachyarrhythmia 0.04999924  2/65  18/9703
+179                               Alstrom Syndrome 0.04999924  1/65   1/9703
+180                               Tetany, Neonatal 0.04999924  1/65   1/9703
+210 Renal dysplasia and retinal aplasia (disorder) 0.04999924  2/65  12/9703
+277                          Bardet-Biedl Syndrome 0.04999924  2/65  13/9703</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
