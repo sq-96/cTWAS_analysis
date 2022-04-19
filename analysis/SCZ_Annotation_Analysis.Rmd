@@ -8,13 +8,13 @@ editor_options:
 ---
 
 ```{r}
-brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/")
+brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/")
 top_genes <- c()
 all_genes <- c()
 for(i in brain_tissue){
-  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
+  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
   all_genes <- c(all_genes,df$genename)
-  df <- df[df$susie_pip>=0.5,]
+  df <- df[df$susie_pip>=0.8,]
   top_genes <- c(top_genes,df$genename)
 }
 top_genes <- unique(top_genes)
@@ -117,3 +117,21 @@ if (length(top_genes)>0){
   print(df)
 }
 ```
+
+
+```{r}
+GO_terms <- list.files("data/GO_Terms", pattern="*.txt", full.names=F)
+annotation_table <- matrix(0,nrow = length(top_genes),ncol = length(GO_terms))
+colnames(annotation_table) <- GO_terms
+annotation_table <- cbind(top_genes,annotation_table)
+for(i in 1:length(GO_terms)){
+  GO_list <- fread(paste0("data/GO_Terms/",GO_terms[i]),header = F)
+  for(j in (1:length(top_genes))){
+    target_gene <- top_genes[j]
+    if(target_gene %in% GO_list$V2){
+      annotation_table[j,i] = 1
+    }
+  }
+}
+```
+

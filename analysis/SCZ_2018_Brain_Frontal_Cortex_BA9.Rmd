@@ -123,8 +123,8 @@ rm(ctwas_res_s1)
 ```
 
 ```{r echo=FALSE}
-#saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
-#saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
 ```
 
 ## Check convergence of parameters

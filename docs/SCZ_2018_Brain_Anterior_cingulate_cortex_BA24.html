@@ -384,7 +384,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-04-17
+<strong>Last updated:</strong> 2022-04-19
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
@@ -408,7 +408,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -507,16 +507,16 @@ code/ctwas_config.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree8b00ee6c948b09e1fa8984748374f513a6bdb5a8targetblank8b00ee6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/8b00ee6c948b09e1fa8984748374f513a6bdb5a8" target="_blank">8b00ee6</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreeba919abfb2eff52f4763cf3ec83a1388df6280dftargetblankba919aba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/ba919abfb2eff52f4763cf3ec83a1388df6280df" target="_blank">ba919ab</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree8b00ee6c948b09e1fa8984748374f513a6bdb5a8targetblank8b00ee6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreeba919abfb2eff52f4763cf3ec83a1388df6280dftargetblankba919aba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/8b00ee6c948b09e1fa8984748374f513a6bdb5a8" target="_blank">8b00ee6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/ba919abfb2eff52f4763cf3ec83a1388df6280df" target="_blank">ba919ab</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -529,22 +529,6 @@ Ignored files:
 Untracked files:
     Untracked:  Rplot.png
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/SCZ_2018_Brain_Amygdala.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Caudate_basal_ganglia.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Cerebellar_Hemisphere.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Cerebellum.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Cortex.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Frontal_Cortex_BA9.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Hippocampus.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Hypothalamus.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Nucleus_accumbens_basal_ganglia.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Putamen_basal_ganglia.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Spinal_cord_cervical_c-1.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Substantia_nigra.Rmd
-    Untracked:  analysis/SCZ_2020_Single_Brain_Cortex.Rmd
-    Untracked:  analysis/SCZ_2020_Single_Brain_Hippocampus.Rmd
-    Untracked:  analysis/SCZ_Annotation_Analysis.Rmd
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  code/AF_out/
     Untracked:  code/Autism_out/
@@ -606,6 +590,7 @@ Untracked files:
     Untracked:  code/wflow_build.sbatch
     Untracked:  data/.ipynb_checkpoints/
     Untracked:  data/BMI/
+    Untracked:  data/GO_Terms/
     Untracked:  data/PGC3_SCZ_wave3_public.v2.tsv
     Untracked:  data/SCZ/
     Untracked:  data/SCZ_2014_EUR/
@@ -627,11 +612,24 @@ Untracked files:
     Untracked:  data/untitled.txt
     Untracked:  top_genes_32.txt
     Untracked:  top_genes_37.txt
+    Untracked:  top_genes_43.txt
     Untracked:  top_genes_81.txt
 
 Unstaged changes:
-    Modified:   analysis/SCZ_2020_Brain_Cortex.Rmd
-    Modified:   analysis/SCZ_Cross_Tissue_Analysis.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Amygdala.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Caudate_basal_ganglia.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Cerebellar_Hemisphere.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Cerebellum.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Cortex.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Frontal_Cortex_BA9.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Hippocampus.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Hypothalamus.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Nucleus_accumbens_basal_ganglia.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Putamen_basal_ganglia.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Spinal_cord_cervical_c-1.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Substantia_nigra.Rmd
+    Modified:   analysis/SCZ_Annotation_Analysis.Rmd
 
 </code></pre>
 <p>
@@ -644,9 +642,86 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd</code>) and HTML (<code>docs/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ddc9c43289519afecd05bdf0af20b8c7dce3423/analysis/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd" target="_blank">9ddc9c4</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f6e706244abe0551d3eeb27a443f44bfe3fe34db/analysis/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd" target="_blank">f6e7062</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-17
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/f6e706244abe0551d3eeb27a443f44bfe3fe34db/docs/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.html" target="_blank">f6e7062</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-17
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -669,485 +744,317 @@ sum(qclist_all$nmiss==0)</code></pre>
 <pre class="r"><code>#proportion of imputed weights without missing variants
 mean(qclist_all$nmiss==0)</code></pre>
 <pre><code>[1] 0.7186</code></pre>
-<!-- ## Check convergence of parameters -->
-<!-- ```{r echo=F,message=F} -->
-<!-- library(ggplot2) -->
-<!-- library(cowplot) -->
-<!-- load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd")) -->
-<!-- df <- data.frame(niter = rep(1:ncol(group_prior_rec), 2), -->
-<!--                  value = c(group_prior_rec[1,], group_prior_rec[2,]), -->
-<!--                  group = rep(c("Gene", "SNP"), each = ncol(group_prior_rec))) -->
-<!-- df$group <- as.factor(df$group) -->
-<!-- df$value[df$group=="SNP"] <- df$value[df$group=="SNP"]*thin #adjust parameter to account for thin argument -->
-<!-- p_pi <- ggplot(df, aes(x=niter, y=value, group=group)) + -->
-<!--   geom_line(aes(color=group)) + -->
-<!--   geom_point(aes(color=group)) + -->
-<!--   xlab("Iteration") + ylab(bquote(pi)) + -->
-<!--   ggtitle("Prior mean") + -->
-<!--   theme_cowplot() -->
-<!-- df <- data.frame(niter = rep(1:ncol(group_prior_var_rec), 2), -->
-<!--                  value = c(group_prior_var_rec[1,], group_prior_var_rec[2,]), -->
-<!--                  group = rep(c("Gene", "SNP"), each = ncol(group_prior_var_rec))) -->
-<!-- df$group <- as.factor(df$group) -->
-<!-- p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) + -->
-<!--   geom_line(aes(color=group)) + -->
-<!--   geom_point(aes(color=group)) + -->
-<!--   xlab("Iteration") + ylab(bquote(sigma^2)) + -->
-<!--   ggtitle("Prior variance") + -->
-<!--   theme_cowplot() -->
-<!-- plot_grid(p_pi, p_sigma2) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #estimated group prior -->
-<!-- estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)] -->
-<!-- names(estimated_group_prior) <- c("gene", "snp") -->
-<!-- estimated_group_prior["snp"] <- estimated_group_prior["snp"]*thin #adjust parameter to account for thin argument -->
-<!-- print(estimated_group_prior) -->
-<!-- #estimated group prior variance -->
-<!-- estimated_group_prior_var <- group_prior_var_rec[,ncol(group_prior_var_rec)] -->
-<!-- names(estimated_group_prior_var) <- c("gene", "snp") -->
-<!-- print(estimated_group_prior_var) -->
-<!-- #report sample size -->
-<!-- print(sample_size) -->
-<!-- #report group size -->
-<!-- group_size <- c(nrow(ctwas_gene_res), n_snps) -->
-<!-- print(group_size) -->
-<!-- #estimated group PVE -->
-<!-- estimated_group_pve <- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation -->
-<!-- names(estimated_group_pve) <- c("gene", "snp") -->
-<!-- print(estimated_group_pve) -->
-<!-- #compare sum(PIP*mu2/sample_size) with above PVE calculation -->
-<!-- c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE)) -->
-<!-- ``` -->
-<!-- ## Genes with highest PIPs -->
-<!-- ```{r echo=F} -->
-<!-- #distribution of PIPs -->
-<!-- hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs") -->
-<!-- #genes with PIP>0.8 or 20 highest PIPs -->
-<!-- head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20)) -->
-<!-- ``` -->
-<!-- ## Genes with largest effect sizes -->
-<!-- ```{r echo=F} -->
-<!-- #plot PIP vs effect size -->
-<!-- plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size") -->
-<!-- #genes with 20 largest effect sizes -->
-<!-- head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20) -->
-<!-- ``` -->
-<!-- ## Genes with highest PVE -->
-<!-- ```{r echo=F} -->
-<!-- #genes with 20 highest pve -->
-<!-- head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20) -->
-<!-- ``` -->
-<!-- ## Genes with largest z scores -->
-<!-- ```{r echo=F} -->
-<!-- #genes with 20 largest z scores -->
-<!-- head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20) -->
-<!-- ``` -->
-<!-- ## Comparing z scores and PIPs -->
-<!-- ```{r echo=F} -->
-<!-- #set nominal signifiance threshold for z scores -->
-<!-- alpha <- 0.05 -->
-<!-- #bonferroni adjusted threshold for z scores -->
-<!-- sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T) -->
-<!-- #Q-Q plot for z scores -->
-<!-- obs_z <- ctwas_gene_res$z[order(ctwas_gene_res$z)] -->
-<!-- exp_z <- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res)) -->
-<!-- plot(exp_z, obs_z, xlab="Expected z", ylab="Observed z", main="Gene z score Q-Q plot") -->
-<!-- abline(a=0,b=1) -->
-<!-- #plot z score vs PIP -->
-<!-- plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP") -->
-<!-- abline(v=sig_thresh, col="red", lty=2) -->
-<!-- #proportion of significant z scores -->
-<!-- mean(abs(ctwas_gene_res$z) > sig_thresh) -->
-<!-- ``` -->
-<!-- ## GO enrichment analysis for genes with PIP>0.5 -->
-<!-- ```{r echo=FALSE, message=FALSE} -->
-<!-- #GO enrichment analysis -->
-<!-- library(enrichR) -->
-<!-- dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecular_Function_2021") -->
-<!-- genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.5] -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #number of genes for gene set enrichment -->
-<!-- length(genes) -->
-<!-- ``` -->
-<!-- ```{r echo=F, message=FALSE} -->
-<!-- if (length(genes)>0){ -->
-<!--   GO_enrichment <- enrichr(genes, dbs) -->
-<!--   for (db in dbs){ -->
-<!--     print(db) -->
-<!--     df <- GO_enrichment[[db]] -->
-<!--     print(plotEnrich(GO_enrichment[[db]])) -->
-<!--     df <- df[df$Adjusted.P.value<0.05,c("Term", "Overlap", "Adjusted.P.value", "Genes")] -->
-<!--     print(df) -->
-<!--   } -->
-<!-- } -->
-<!-- ``` -->
-<!-- ## DisGeNET enrichment analysis for genes with PIP>0.5 -->
-<!-- ```{r echo=F, message=FALSE} -->
-<!-- if (length(genes)>0){ -->
-<!--   library(disgenet2r) -->
-<!--   disgenet_api_key <- get_disgenet_api_key( -->
-<!--                     email = "wesleycrouse@gmail.com", -->
-<!--                     password = "uchicago1" ) -->
-<!--   Sys.setenv(DISGENET_API_KEY= disgenet_api_key) -->
-<!--   res_enrich <-disease_enrichment(entities=genes, vocabulary = "HGNC", -->
-<!--                                database = "CURATED" ) -->
-<!--   df <- res_enrich@qresult[1:10, c("Description", "FDR", "Ratio",  "BgRatio")] -->
-<!--   print(df) -->
-<!-- } -->
-<!-- ``` -->
-<!-- ## WebGestalt enrichment analysis for genes with PIP>0.5 -->
-<!-- ```{r echo=F, message=FALSE} -->
-<!-- if (length(genes)>0){ -->
-<!--   #WebGestalt enrichment -->
-<!--   library(WebGestaltR) -->
-<!--   background <- ctwas_gene_res$genename -->
-<!--   #listGeneSet() -->
-<!--   databases <- c("pathway_KEGG", "disease_GLAD4U", "disease_OMIM") -->
-<!--   enrichResult <- WebGestaltR(enrichMethod="ORA", organism="hsapiens", -->
-<!--                               interestGene=genes, referenceGene=background, -->
-<!--                               enrichDatabase=databases, interestGeneType="genesymbol", -->
-<!--                               referenceGeneType="genesymbol", isOutput=F) -->
-<!--   print(enrichResult[,c("description", "size", "overlap", "FDR", "database", "userId")]) -->
-<!-- } -->
-<!-- ``` -->
-<!-- ## PIP Manhattan Plot -->
-<!-- ```{r echo=F, message=F} -->
-<!-- library(tibble) -->
-<!-- library(tidyverse) -->
-<!-- full.gene.pip.summary <- data.frame(gene_name = ctwas_gene_res$genename, -->
-<!--                                     gene_pip = ctwas_gene_res$susie_pip, -->
-<!--                                     gene_id = ctwas_gene_res$id, -->
-<!--                                     chr = as.integer(ctwas_gene_res$chrom), -->
-<!--                                     start = ctwas_gene_res$pos / 1e3, -->
-<!--                                     is_highlight = F, stringsAsFactors = F) %>% as_tibble() -->
-<!-- full.gene.pip.summary$is_highlight <- full.gene.pip.summary$gene_pip > 0.50 -->
-<!-- don <- full.gene.pip.summary %>% -->
-<!--   # Compute chromosome size -->
-<!--   group_by(chr) %>% -->
-<!--   summarise(chr_len=max(start)) %>% -->
-<!--   # Calculate cumulative position of each chromosome -->
-<!--   mutate(tot=cumsum(chr_len)-chr_len) %>% -->
-<!--   dplyr::select(-chr_len) %>% -->
-<!--   # Add this info to the initial dataset -->
-<!--   left_join(full.gene.pip.summary, ., by=c("chr"="chr")) %>% -->
-<!--   # Add a cumulative position of each SNP -->
-<!--   arrange(chr, start) %>% -->
-<!--   mutate( BPcum=start+tot) -->
-<!-- axisdf <- don %>% group_by(chr) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 ) -->
-<!-- x_axis_labels <- axisdf$chr -->
-<!-- x_axis_labels[seq(1,21,2)] <- "" -->
-<!-- ggplot(don, aes(x=BPcum, y=gene_pip)) + -->
-<!--   # Show all points -->
-<!--   ggrastr::geom_point_rast(aes(color=as.factor(chr)), size=2) + -->
-<!--   scale_color_manual(values = rep(c("grey", "skyblue"), 22 )) + -->
-<!--   # custom X axis: -->
-<!--   # scale_x_continuous(label = axisdf$chr, -->
-<!--   #                    breaks= axisdf$center, -->
-<!--   #                    guide = guide_axis(n.dodge = 2)) + -->
-<!--   scale_x_continuous(label = x_axis_labels, -->
-<!--                      breaks = axisdf$center) + -->
-<!--   scale_y_continuous(expand = c(0, 0), limits = c(0,1.25), breaks=(1:5)*0.2, minor_breaks=(1:10)*0.1) + # remove space between plot area and x axis -->
-<!--   # Add highlighted points -->
-<!--   ggrastr::geom_point_rast(data=subset(don, is_highlight==T), color="orange", size=2) + -->
-<!--   # Add label using ggrepel to avoid overlapping -->
-<!--   ggrepel::geom_label_repel(data=subset(don, is_highlight==T), -->
-<!--                             aes(label=gene_name), -->
-<!--                             size=4, -->
-<!--                             min.segment.length = 0, -->
-<!--                             label.size = NA, -->
-<!--                             fill = alpha(c("white"),0)) + -->
-<!--   # Custom the theme: -->
-<!--   theme_bw() + -->
-<!--   theme( -->
-<!--     text = element_text(size = 14), -->
-<!--     legend.position="none", -->
-<!--     panel.border = element_blank(), -->
-<!--     panel.grid.major.x = element_blank(), -->
-<!--     panel.grid.minor.x = element_blank() -->
-<!--   ) + -->
-<!--   xlab("Chromosome") + -->
-<!--   ylab("cTWAS PIP") -->
-<!-- ``` -->
-<!-- ## Sensitivity, specificity and precision for silver standard genes -->
-<!-- ```{r echo=F} -->
-<!-- library("readxl") -->
-<!-- known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ") -->
-<!-- known_annotations <- unique(known_annotations$`Gene Symbol`) -->
-<!-- unrelated_genes <- ctwas_gene_res$genename[!(ctwas_gene_res$genename %in% known_annotations)] -->
-<!-- #assign ctwas, TWAS, and bystander genes -->
-<!-- ctwas_genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.8] -->
-<!-- twas_genes <- ctwas_gene_res$genename[abs(ctwas_gene_res$z)>sig_thresh] -->
-<!-- novel_genes <- ctwas_genes[!(ctwas_genes %in% twas_genes)] -->
-<!-- #sensitivity / recall -->
-<!-- sensitivity <- rep(NA,2) -->
-<!-- names(sensitivity) <- c("ctwas", "TWAS") -->
-<!-- sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations) -->
-<!-- sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations) -->
-<!-- #sensitivity -->
-<!-- #specificity -->
-<!-- specificity <- rep(NA,2) -->
-<!-- names(specificity) <- c("ctwas", "TWAS") -->
-<!-- specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes) -->
-<!-- specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes) -->
-<!-- #specificity -->
-<!-- #precision / PPV -->
-<!-- precision <- rep(NA,2) -->
-<!-- names(precision) <- c("ctwas", "TWAS") -->
-<!-- precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes) -->
-<!-- precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes) -->
-<!-- #precision -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #number of genes in known annotations -->
-<!-- print(length(known_annotations)) -->
-<!-- #number of genes in known annotations with imputed expression -->
-<!-- print(sum(known_annotations %in% ctwas_gene_res$genename)) -->
-<!-- #significance threshold for TWAS -->
-<!-- print(sig_thresh) -->
-<!-- #number of ctwas genes -->
-<!-- length(ctwas_genes) -->
-<!-- #number of TWAS genes -->
-<!-- length(twas_genes) -->
-<!-- #show novel genes (ctwas genes with not in TWAS genes) -->
-<!-- ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols] -->
-<!-- #sensitivity / recall -->
-<!-- print(sensitivity) -->
-<!-- #specificity -->
-<!-- print(specificity) -->
-<!-- #precision / PPV -->
-<!-- print(precision) -->
-<!-- ``` -->
-<!-- ```{r,echo=FALSE} -->
-<!-- #ROC curves -->
-<!-- pip_range <- (0:1000)/1000 -->
-<!-- sensitivity <- rep(NA, length(pip_range)) -->
-<!-- specificity <- rep(NA, length(pip_range)) -->
-<!-- for (index in 1:length(pip_range)){ -->
-<!--   pip <- pip_range[index] -->
-<!--   ctwas_genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>=pip] -->
-<!--   sensitivity[index] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations) -->
-<!--   specificity[index] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes) -->
-<!-- } -->
-<!-- plot(1-specificity, sensitivity, type="l", xlim=c(0,1), ylim=c(0,1)) -->
-<!-- sig_thresh_range <- seq(from=0, to=max(abs(ctwas_gene_res$z)), length.out=length(pip_range)) -->
-<!-- for (index in 1:length(sig_thresh_range)){ -->
-<!--   sig_thresh_plot <- sig_thresh_range[index] -->
-<!--   twas_genes <- ctwas_gene_res$genename[abs(ctwas_gene_res$z)>=sig_thresh_plot] -->
-<!--   sensitivity[index] <- sum(twas_genes %in% known_annotations)/length(known_annotations) -->
-<!--   specificity[index] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes) -->
-<!-- } -->
-<!-- lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2) -->
-<!-- ``` -->
-<!-- ## cTWAS is more precise than TWAS in distinguishing silver standard and bystander genes -->
-<!-- ```{r echo=FALSE, message=FALSE} -->
-<!-- library(biomaRt) -->
-<!-- library(GenomicRanges) -->
-<!-- ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl") -->
-<!-- G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl) -->
-<!-- G_list <- G_list[G_list$hgnc_symbol!="",] -->
-<!-- G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),] -->
-<!-- G_list$start <- G_list$start_position -->
-<!-- G_list$end <- G_list$end_position -->
-<!-- G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T) -->
-<!-- #remove genes without imputed expression from gene lists -->
-<!-- known_annotations <- known_annotations[known_annotations %in% ctwas_gene_res$genename] -->
-<!-- known_annotations_positions <- G_list[G_list$hgnc_symbol %in% known_annotations,] -->
-<!-- half_window <- 1000000 -->
-<!-- known_annotations_positions$start <- known_annotations_positions$start_position - half_window -->
-<!-- known_annotations_positions$end <- known_annotations_positions$end_position + half_window -->
-<!-- known_annotations_positions$start[known_annotations_positions$start<1] <- 1 -->
-<!-- known_annotations_granges <- makeGRangesFromDataFrame(known_annotations_positions, keep.extra.columns=T) -->
-<!-- bystanders <- findOverlaps(known_annotations_granges,G_list_granges) -->
-<!-- bystanders <- unique(subjectHits(bystanders)) -->
-<!-- bystanders <- G_list$hgnc_symbol[bystanders] -->
-<!-- bystanders <- unique(bystanders[!(bystanders %in% known_annotations)]) -->
-<!-- unrelated_genes <- bystanders -->
-<!-- #save gene lists -->
-<!-- save(known_annotations, file=paste0(results_dir, "/known_annotations.Rd")) -->
-<!-- save(unrelated_genes, file=paste0(results_dir, "/bystanders.Rd")) -->
-<!-- ``` -->
-<!-- ```{r echo=FALSE} -->
-<!-- load(paste0(results_dir, "/known_annotations.Rd")) -->
-<!-- load(paste0(results_dir, "/bystanders.Rd")) -->
-<!-- #remove genes without imputed expression from bystander list -->
-<!-- unrelated_genes <- unrelated_genes[unrelated_genes %in% ctwas_gene_res$genename] -->
-<!-- #subset results to genes in known annotations or bystanders -->
-<!-- ctwas_gene_res_subset <- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),] -->
-<!-- #assign ctwas and TWAS genes -->
-<!-- ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8] -->
-<!-- twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh] -->
-<!-- #sensitivity / recall -->
-<!-- sensitivity <- rep(NA,2) -->
-<!-- names(sensitivity) <- c("ctwas", "TWAS") -->
-<!-- sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations) -->
-<!-- sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations) -->
-<!-- #specificity / (1 - False Positive Rate) -->
-<!-- specificity <- rep(NA,2) -->
-<!-- names(specificity) <- c("ctwas", "TWAS") -->
-<!-- specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes) -->
-<!-- specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes) -->
-<!-- #precision / PPV / (1 - False Discovery Rate) -->
-<!-- precision <- rep(NA,2) -->
-<!-- names(precision) <- c("ctwas", "TWAS") -->
-<!-- precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes) -->
-<!-- precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #number of genes in known annotations (with imputed expression) -->
-<!-- print(length(known_annotations)) -->
-<!-- #number of bystander genes (with imputed expression) -->
-<!-- print(length(unrelated_genes)) -->
-<!-- #subset results to genes in known annotations or bystanders -->
-<!-- ctwas_gene_res_subset <- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),] -->
-<!-- #assign ctwas and TWAS genes -->
-<!-- ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8] -->
-<!-- twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh] -->
-<!-- #significance threshold for TWAS -->
-<!-- print(sig_thresh) -->
-<!-- #number of ctwas genes (in known annotations or bystanders) -->
-<!-- length(ctwas_genes) -->
-<!-- #number of TWAS genes (in known annotations or bystanders) -->
-<!-- length(twas_genes) -->
-<!-- #sensitivity / recall -->
-<!-- sensitivity -->
-<!-- #specificity / (1 - False Positive Rate) -->
-<!-- specificity -->
-<!-- #precision / PPV / (1 - False Discovery Rate) -->
-<!-- precision -->
-<!-- ``` -->
-<!-- ```{r echo=FALSE} -->
-<!-- #store sensitivity and specificity calculations for plots -->
-<!-- sensitivity_plot <- sensitivity -->
-<!-- specificity_plot <- specificity -->
-<!-- #precision / PPV by PIP threshold -->
-<!-- pip_range <- c(0.5, 0.8, 1) -->
-<!-- precision_range <- rep(NA, length(pip_range)) -->
-<!-- number_detected <- rep(NA, length(pip_range)) -->
-<!-- for (i in 1:length(pip_range)){ -->
-<!--   pip_upper <- pip_range[i] -->
-<!--   if (i==1){ -->
-<!--     pip_lower <- 0 -->
-<!--   } else { -->
-<!--     pip_lower <- pip_range[i-1] -->
-<!--   } -->
-<!--   #assign ctwas genes using PIP threshold -->
-<!--   ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>=pip_lower] -->
-<!--   number_detected[i] <- length(ctwas_genes) -->
-<!--   precision_range[i] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes) -->
-<!-- } -->
-<!-- names(precision_range) <- paste0(">= ", c(0, pip_range[-length(pip_range)])) -->
-<!-- precision_range <- precision_range*100 -->
-<!-- precision_range <- c(precision_range, precision["TWAS"]*100) -->
-<!-- names(precision_range)[4] <- "TWAS Bonferroni" -->
-<!-- number_detected <- c(number_detected, length(twas_genes)) -->
-<!-- barplot(precision_range, ylim=c(0,100), main="Precision for Distinguishing Silver Standard and Bystander Genes", xlab="PIP Threshold for Detection", ylab="% of Detected Genes in Silver Standard") -->
-<!-- abline(h=20, lty=2) -->
-<!-- abline(h=40, lty=2) -->
-<!-- abline(h=60, lty=2) -->
-<!-- abline(h=80, lty=2) -->
-<!-- xx <- barplot(precision_range, add=T, col=c(rep("darkgrey",3), "white")) -->
-<!-- text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, " detected"), pos = 3, cex=0.8) -->
-<!-- ``` -->
-<!-- ```{r echo=FALSE} -->
-<!-- barplot(100-precision_range, ylim=c(0,100), main="False Discovery Rate for Distinguishing Silver Standard and Bystander Genes", xlab="PIP Threshold for Detection", ylab="% Bystanders in Detected Genes") -->
-<!-- abline(h=20, lty=2) -->
-<!-- abline(h=40, lty=2) -->
-<!-- abline(h=60, lty=2) -->
-<!-- abline(h=80, lty=2) -->
-<!-- xx <- barplot(100-precision_range, add=T, col=c(rep("darkgrey",3), "white")) -->
-<!-- text(x = xx, y = rep(0, length(number_detected)), label = paste0(number_detected, " detected"), pos = 3, cex=0.8) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- pip_range <- (0:1000)/1000 -->
-<!-- sensitivity <- rep(NA, length(pip_range)) -->
-<!-- specificity <- rep(NA, length(pip_range)) -->
-<!-- for (index in 1:length(pip_range)){ -->
-<!--   pip <- pip_range[index] -->
-<!--   ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>=pip] -->
-<!--   sensitivity[index] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations) -->
-<!--   specificity[index] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes) -->
-<!-- } -->
-<!-- plot(1-specificity, sensitivity, type="l", xlim=c(0,1), ylim=c(0,1), main="", xlab="1 - Specificity", ylab="Sensitivity") -->
-<!-- title(expression("ROC Curve for cTWAS (black) and TWAS (" * phantom("red") * ")")) -->
-<!-- title(expression(phantom("ROC Curve for cTWAS (black) and TWAS (") * "red" * phantom(")")), col.main="red") -->
-<!-- sig_thresh_range <- seq(from=0, to=max(abs(ctwas_gene_res_subset$z)), length.out=length(pip_range)) -->
-<!-- for (index in 1:length(sig_thresh_range)){ -->
-<!--   sig_thresh_plot <- sig_thresh_range[index] -->
-<!--   twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>=sig_thresh_plot] -->
-<!--   sensitivity[index] <- sum(twas_genes %in% known_annotations)/length(known_annotations) -->
-<!--   specificity[index] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes) -->
-<!-- } -->
-<!-- lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=1) -->
-<!-- abline(a=0,b=1,lty=3) -->
-<!-- #add previously computed points from the analysis -->
-<!-- ctwas_genes <- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip>0.8] -->
-<!-- twas_genes <- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)>sig_thresh] -->
-<!-- points(1-specificity_plot["ctwas"], sensitivity_plot["ctwas"], pch=21, bg="black") -->
-<!-- points(1-specificity_plot["TWAS"], sensitivity_plot["TWAS"], pch=21, bg="red") -->
-<!-- ``` -->
-<!-- ## Undetected silver standard genes have low TWAS z-scores or stronger signal from nearby variants -->
-<!-- ```{r echo=FALSE,message=FALSE} -->
-<!-- known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ") -->
-<!-- known_annotations <- unique(known_annotations$`Gene Symbol`) -->
-<!-- #categorize silver standard genes by case -->
-<!-- silver_standard_case <- c() -->
-<!-- uncertain_regions <- matrix(NA, 0, 2) -->
-<!-- for (i in 1:length(known_annotations)){ -->
-<!--   current_gene <- known_annotations[i] -->
-<!--   if (current_gene %in% ctwas_gene_res$genename) { -->
-<!--     if (ctwas_gene_res$susie_pip[ctwas_gene_res$genename == current_gene] > 0.8){ -->
-<!--       silver_standard_case <- c(silver_standard_case, "Detected (PIP > 0.8)") -->
-<!--     } else { -->
-<!--       if (abs(ctwas_gene_res$z[ctwas_gene_res$genename == current_gene]) < sig_thresh){ -->
-<!--         silver_standard_case <- c(silver_standard_case, "Insignificant z-score") -->
-<!--       } else { -->
-<!--         current_region <- ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene] -->
-<!--         current_gene_res <- ctwas_gene_res[ctwas_gene_res$region_tag==current_region,] -->
-<!--         current_snp_res <- ctwas_snp_res[ctwas_snp_res$region_tag==current_region,] -->
-<!--         if (any(current_gene_res$susie_pip>0.8)){ -->
-<!--           if (any(current_gene_res$genename[current_gene_res$susie_pip>0.8] %in% known_annotations)){ -->
-<!--             silver_standard_case <- c(silver_standard_case, "Nearby Silver Standard Gene") -->
-<!--           } else { -->
-<!--             silver_standard_case <- c(silver_standard_case, "Nearby Bystander Gene") -->
-<!--           } -->
-<!--         } else { -->
-<!--           #if (any(current_snp_res$susie_pip>0.8)){ -->
-<!--           if (sum(current_snp_res$susie_pip)>0.8){ -->
-<!--             silver_standard_case <- c(silver_standard_case, "Nearby SNP(s)") -->
-<!--           } else { -->
-<!--             silver_standard_case <- c(silver_standard_case, "Inconclusive") -->
-<!--             uncertain_regions <- rbind(uncertain_regions, c(current_gene, ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene])) -->
-<!--             print(c(current_gene, ctwas_gene_res$region_tag[ctwas_gene_res$genename == current_gene])) -->
-<!--           } -->
-<!--         } -->
-<!--       } -->
-<!--     } -->
-<!--   } else { -->
-<!--     silver_standard_case <- c(silver_standard_case, "Not Imputed") -->
-<!--   } -->
-<!-- } -->
-<!-- names(silver_standard_case) <- known_annotations -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #table of outcomes for silver standard genes -->
-<!-- -sort(-table(silver_standard_case)) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #show inconclusive genes -->
-<!-- silver_standard_case[silver_standard_case=="Inconclusive"] -->
-<!-- ``` -->
-<!-- ```{r echo=FALSE} -->
-<!-- #pie chart of outcomes for silver standard genes -->
-<!-- df <- data.frame(-sort(-table(silver_standard_case))) -->
-<!-- names(df) <- c("Outcome", "Frequency") -->
-<!-- #df <- df[df$Outcome!="Not Imputed",] #exclude genes not imputed -->
-<!-- df$Outcome <- droplevels(df$Outcome) #exclude genes not imputed -->
-<!-- pie <- ggplot(df, aes(x="", y=Frequency, fill=Outcome)) + geom_bar(width = 1, stat = "identity") -->
-<!-- pie <- pie + coord_polar("y", start=0) + theme_minimal() + theme(axis.title.y=element_blank()) -->
-<!-- pie -->
-<!-- ``` -->
+</div>
+<div id="check-convergence-of-parameters" class="section level2">
+<h2>Check convergence of parameters</h2>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#estimated group prior
+estimated_group_prior &lt;- group_prior_rec[,ncol(group_prior_rec)]
+names(estimated_group_prior) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+estimated_group_prior[&quot;snp&quot;] &lt;- estimated_group_prior[&quot;snp&quot;]*thin #adjust parameter to account for thin argument
+print(estimated_group_prior)</code></pre>
+<pre><code>     gene       snp 
+0.0108717 0.0003169 </code></pre>
+<pre class="r"><code>#estimated group prior variance
+estimated_group_prior_var &lt;- group_prior_var_rec[,ncol(group_prior_var_rec)]
+names(estimated_group_prior_var) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+print(estimated_group_prior_var)</code></pre>
+<pre><code> gene   snp 
+16.97 10.04 </code></pre>
+<pre class="r"><code>#report sample size
+print(sample_size)</code></pre>
+<pre><code>[1] 105318</code></pre>
+<pre class="r"><code>#report group size
+group_size &lt;- c(nrow(ctwas_gene_res), n_snps)
+print(group_size)</code></pre>
+<pre><code>[1]    9453 6309950</code></pre>
+<pre class="r"><code>#estimated group PVE
+estimated_group_pve &lt;- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+names(estimated_group_pve) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+print(estimated_group_pve)</code></pre>
+<pre><code>   gene     snp 
+0.01656 0.19057 </code></pre>
+<pre class="r"><code>#compare sum(PIP*mu2/sample_size) with above PVE calculation
+c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))</code></pre>
+<pre><code>[1] 0.04975 1.07745</code></pre>
+</div>
+<div id="genes-with-highest-pips" class="section level2">
+<h2>Genes with highest PIPs</h2>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>           genename region_tag susie_pip    mu2       PVE      z num_eqtl
+10719        ZNF823      19_10    0.9845  38.35 0.0003585  6.180        2
+12952  RP11-230C9.4      6_102    0.9510  23.70 0.0002140 -4.685        2
+11817    AC012074.2       2_15    0.9399  23.13 0.0002064  4.655        1
+7971          JSRP1       19_3    0.8892  27.65 0.0002335  4.825        1
+3590        BHLHE41      12_18    0.8795  24.00 0.0002004  4.516        1
+2969          SF3B1      2_117    0.8722  51.50 0.0004265  7.265        1
+11773     HIST1H2BN       6_21    0.8722 108.20 0.0008960 13.396        1
+10112       TMEM222       1_19    0.8254  22.21 0.0001740  4.303        1
+108           ELAC2      17_11    0.7888  22.90 0.0001715  4.752        1
+10725         RPL12       9_66    0.7031  22.54 0.0001505  4.070        2
+10939     LINC00862      1_101    0.6920  24.02 0.0001578  4.314        2
+2898         LMAN2L       2_57    0.6699  25.27 0.0001607 -4.313        2
+11543     LINC00390      13_17    0.6653  23.17 0.0001464 -4.540        1
+8291         INO80E      16_24    0.6644  48.98 0.0003090  6.995        1
+12860 RP11-247A12.7       9_66    0.6323  23.31 0.0001400  4.468        2
+2584         DUSP16      12_11    0.6315  21.72 0.0001302 -3.779        1
+7048          DBF4B      17_26    0.6202  20.50 0.0001207  3.890        1
+8043          PRDX2      19_10    0.6098  22.76 0.0001318 -4.020        1
+12334  RP11-65M17.3      11_66    0.6040  22.85 0.0001311  4.414        1
+2524            MDK      11_28    0.5704  49.01 0.0002654 -7.159        1</code></pre>
+</div>
+<div id="genes-with-largest-effect-sizes" class="section level2">
+<h2>Genes with largest effect sizes</h2>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>         genename region_tag susie_pip    mu2       PVE       z num_eqtl
+11039        APOM       6_26 4.046e-01 132.87 5.104e-04  11.590        1
+12066         C4A       6_26 4.639e-02 131.28 5.783e-05  11.341        2
+11035     ABHD16A       6_26 2.649e-01 131.06 3.296e-04  11.526        1
+4944        VARS2       6_25 1.322e-01 123.89 1.555e-04  11.413        1
+11773   HIST1H2BN       6_21 8.722e-01 108.20 8.960e-04  13.396        1
+11008      NOTCH4       6_26 5.774e-04 103.58 5.679e-07   7.712        2
+4935        FLOT1       6_24 8.245e-02  85.77 6.715e-05 -10.981        1
+11034      LY6G6C       6_26 1.682e-05  82.01 1.310e-08   9.781        2
+10534    HLA-DQA1       6_26 4.276e-06  75.34 3.059e-09   3.389        1
+13060 RP1-86C11.7       6_21 4.090e-02  74.64 2.899e-05  10.889        1
+9388     HLA-DQB1       6_26 7.594e-08  74.18 5.349e-11   4.986        1
+11000     HLA-DMA       6_27 3.928e-02  71.09 2.652e-05  -8.720        2
+10109      BTN3A2       6_20 1.638e-02  71.09 1.106e-05   9.166        2
+10416    HLA-DRB1       6_26 8.466e-09  58.17 4.676e-12   1.359        2
+1184     PPP1R13B      14_54 2.996e-01  56.68 1.612e-04  -6.610        2
+455      MPHOSPH9      12_75 2.270e-01  56.53 1.219e-04   7.662        1
+11277       DDAH2       6_26 1.744e-07  55.33 9.159e-11   8.149        1
+10785     ZKSCAN8       6_22 1.025e-02  54.32 5.285e-06   7.317        2
+10253     ZSCAN23       6_22 5.184e-02  51.54 2.537e-05  -7.854        1
+2969        SF3B1      2_117 8.722e-01  51.50 4.265e-04   7.265        1</code></pre>
+</div>
+<div id="genes-with-highest-pve" class="section level2">
+<h2>Genes with highest PVE</h2>
+<pre><code>           genename region_tag susie_pip    mu2       PVE      z num_eqtl
+11773     HIST1H2BN       6_21    0.8722 108.20 0.0008960 13.396        1
+11039          APOM       6_26    0.4046 132.87 0.0005104 11.590        1
+2969          SF3B1      2_117    0.8722  51.50 0.0004265  7.265        1
+10719        ZNF823      19_10    0.9845  38.35 0.0003585  6.180        2
+11035       ABHD16A       6_26    0.2649 131.06 0.0003296 11.526        1
+8291         INO80E      16_24    0.6644  48.98 0.0003090  6.995        1
+2524            MDK      11_28    0.5704  49.01 0.0002654 -7.159        1
+7971          JSRP1       19_3    0.8892  27.65 0.0002335  4.825        1
+12952  RP11-230C9.4      6_102    0.9510  23.70 0.0002140 -4.685        2
+11817    AC012074.2       2_15    0.9399  23.13 0.0002064  4.655        1
+3590        BHLHE41      12_18    0.8795  24.00 0.0002004  4.516        1
+7325          THOC7       3_43    0.4734  41.15 0.0001850 -6.249        1
+5786         CCDC39      3_111    0.4142  45.15 0.0001776 -6.797        1
+10112       TMEM222       1_19    0.8254  22.21 0.0001740  4.303        1
+108           ELAC2      17_11    0.7888  22.90 0.0001715  4.752        1
+5316          FURIN      15_42    0.4801  35.91 0.0001637 -5.772        1
+7973        GATAD2A      19_15    0.3678  46.83 0.0001636 -6.577        2
+1184       PPP1R13B      14_54    0.2996  56.68 0.0001612 -6.610        2
+13014 RP11-350N15.5       8_34    0.4475  37.89 0.0001610  5.963        1
+2898         LMAN2L       2_57    0.6699  25.27 0.0001607 -4.313        2</code></pre>
+</div>
+<div id="genes-with-largest-z-scores" class="section level2">
+<h2>Genes with largest z scores</h2>
+<pre><code>         genename region_tag susie_pip    mu2       PVE       z num_eqtl
+11773   HIST1H2BN       6_21 8.722e-01 108.20 8.960e-04  13.396        1
+11039        APOM       6_26 4.046e-01 132.87 5.104e-04  11.590        1
+11035     ABHD16A       6_26 2.649e-01 131.06 3.296e-04  11.526        1
+4944        VARS2       6_25 1.322e-01 123.89 1.555e-04  11.413        1
+12066         C4A       6_26 4.639e-02 131.28 5.783e-05  11.341        2
+4935        FLOT1       6_24 8.245e-02  85.77 6.715e-05 -10.981        1
+13060 RP1-86C11.7       6_21 4.090e-02  74.64 2.899e-05  10.889        1
+11034      LY6G6C       6_26 1.682e-05  82.01 1.310e-08   9.781        2
+10109      BTN3A2       6_20 1.638e-02  71.09 1.106e-05   9.166        2
+11000     HLA-DMA       6_27 3.928e-02  71.09 2.652e-05  -8.720        2
+6075        CNNM2      10_66 1.072e-01  48.24 4.911e-05  -8.161        1
+11277       DDAH2       6_26 1.744e-07  55.33 9.159e-11   8.149        1
+10253     ZSCAN23       6_22 5.184e-02  51.54 2.537e-05  -7.854        1
+11008      NOTCH4       6_26 5.774e-04 103.58 5.679e-07   7.712        2
+455      MPHOSPH9      12_75 2.270e-01  56.53 1.219e-04   7.662        1
+10785     ZKSCAN8       6_22 1.025e-02  54.32 5.285e-06   7.317        2
+2969        SF3B1      2_117 8.722e-01  51.50 4.265e-04   7.265        1
+11051      POU5F1       6_25 1.734e-02  42.28 6.962e-06  -7.217        2
+2524          MDK      11_28 5.704e-01  49.01 2.654e-04  -7.159        1
+10542     ZSCAN16       6_22 1.090e-02  48.26 4.994e-06   7.135        1</code></pre>
+</div>
+<div id="comparing-z-scores-and-pips" class="section level2">
+<h2>Comparing z scores and PIPs</h2>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-12-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0.01195</code></pre>
+</div>
+<div id="go-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>GO enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre class="r"><code>#number of genes for gene set enrichment
+length(genes)</code></pre>
+<pre><code>[1] 23</code></pre>
+<pre><code>Uploading data to Enrichr... Done.
+  Querying GO_Biological_Process_2021... Done.
+  Querying GO_Cellular_Component_2021... Done.
+  Querying GO_Molecular_Function_2021... Done.
+Parsing results... Done.
+[1] &quot;GO_Biological_Process_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Molecular_Function_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-15-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+<div id="disgenet-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>DisGeNET enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>                                        Description     FDR Ratio  BgRatio
+29                              Prostatic Neoplasms 0.02411   4/9 616/9703
+45                   Malignant neoplasm of prostate 0.02411   4/9 616/9703
+62       Refractory anemia with ringed sideroblasts 0.02411   1/9   2/9703
+74                   PROSTATE CANCER, HEREDITARY, 2 0.02411   1/9   1/9703
+76 COMBINED OXIDATIVE PHOSPHORYLATION DEFICIENCY 17 0.02411   1/9   1/9703
+78       MENTAL RETARDATION, AUTOSOMAL RECESSIVE 52 0.02411   1/9   1/9703
+41                           Malignant mesothelioma 0.03368   2/9 109/9703
+42                       Malignant melanoma of iris 0.03368   1/9   5/9703
+43                    Malignant melanoma of choroid 0.03368   1/9   5/9703
+55                            Long Sleeper Syndrome 0.03368   1/9   7/9703</code></pre>
+</div>
+<div id="webgestalt-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>WebGestalt enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>Loading the functional categories...
+Loading the ID list...
+Loading the reference list...
+Performing the enrichment analysis...</code></pre>
+<pre><code>Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<pre><code>NULL</code></pre>
+</div>
+<div id="pip-manhattan-plot" class="section level2">
+<h2>PIP Manhattan Plot</h2>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sensitivity-specificity-and-precision-for-silver-standard-genes" class="section level2">
+<h2>Sensitivity, specificity and precision for silver standard genes</h2>
+<pre class="r"><code>#number of genes in known annotations
+print(length(known_annotations))</code></pre>
+<pre><code>[1] 130</code></pre>
+<pre class="r"><code>#number of genes in known annotations with imputed expression
+print(sum(known_annotations %in% ctwas_gene_res$genename))</code></pre>
+<pre><code>[1] 49</code></pre>
+<pre class="r"><code>#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.553</code></pre>
+<pre class="r"><code>#number of ctwas genes
+length(ctwas_genes)</code></pre>
+<pre><code>[1] 8</code></pre>
+<pre class="r"><code>#number of TWAS genes
+length(twas_genes)</code></pre>
+<pre><code>[1] 113</code></pre>
+<pre class="r"><code>#show novel genes (ctwas genes with not in TWAS genes)
+ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]</code></pre>
+<pre><code>      genename region_tag susie_pip   mu2       PVE     z num_eqtl
+10112  TMEM222       1_19    0.8254 22.21 0.0001740 4.303        1
+3590   BHLHE41      12_18    0.8795 24.00 0.0002004 4.516        1</code></pre>
+<pre class="r"><code>#sensitivity / recall
+print(sensitivity)</code></pre>
+<pre><code>  ctwas    TWAS 
+0.01538 0.11538 </code></pre>
+<pre class="r"><code>#specificity
+print(specificity)</code></pre>
+<pre><code> ctwas   TWAS 
+0.9994 0.9896 </code></pre>
+<pre class="r"><code>#precision / PPV
+print(precision)</code></pre>
+<pre><code> ctwas   TWAS 
+0.2500 0.1327 </code></pre>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ctwas-is-more-precise-than-twas-in-distinguishing-silver-standard-and-bystander-genes" class="section level2">
+<h2>cTWAS is more precise than TWAS in distinguishing silver standard and bystander genes</h2>
+<pre class="r"><code>#number of genes in known annotations (with imputed expression)
+print(length(known_annotations))</code></pre>
+<pre><code>[1] 49</code></pre>
+<pre class="r"><code>#number of bystander genes (with imputed expression)
+print(length(unrelated_genes))</code></pre>
+<pre><code>[1] 518</code></pre>
+<pre class="r"><code>#subset results to genes in known annotations or bystanders
+ctwas_gene_res_subset &lt;- ctwas_gene_res[ctwas_gene_res$genename %in% c(known_annotations, unrelated_genes),]
+
+#assign ctwas and TWAS genes
+ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;0.8]
+twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;sig_thresh]
+
+#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.553</code></pre>
+<pre class="r"><code>#number of ctwas genes (in known annotations or bystanders)
+length(ctwas_genes)</code></pre>
+<pre><code>[1] 2</code></pre>
+<pre class="r"><code>#number of TWAS genes (in known annotations or bystanders)
+length(twas_genes)</code></pre>
+<pre><code>[1] 38</code></pre>
+<pre class="r"><code>#sensitivity / recall
+sensitivity</code></pre>
+<pre><code>  ctwas    TWAS 
+0.04082 0.30612 </code></pre>
+<pre class="r"><code>#specificity / (1 - False Positive Rate)
+specificity</code></pre>
+<pre><code> ctwas   TWAS 
+1.0000 0.9556 </code></pre>
+<pre class="r"><code>#precision / PPV / (1 - False Discovery Rate)
+precision</code></pre>
+<pre><code> ctwas   TWAS 
+1.0000 0.3947 </code></pre>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>pip_range &lt;- (0:1000)/1000
+sensitivity &lt;- rep(NA, length(pip_range))
+specificity &lt;- rep(NA, length(pip_range))
+
+for (index in 1:length(pip_range)){
+  pip &lt;- pip_range[index]
+  ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;=pip]
+  sensitivity[index] &lt;- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] &lt;- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+}
+
+plot(1-specificity, sensitivity, type=&quot;l&quot;, xlim=c(0,1), ylim=c(0,1), main=&quot;&quot;, xlab=&quot;1 - Specificity&quot;, ylab=&quot;Sensitivity&quot;)
+title(expression(&quot;ROC Curve for cTWAS (black) and TWAS (&quot; * phantom(&quot;red&quot;) * &quot;)&quot;))
+title(expression(phantom(&quot;ROC Curve for cTWAS (black) and TWAS (&quot;) * &quot;red&quot; * phantom(&quot;)&quot;)), col.main=&quot;red&quot;)
+
+sig_thresh_range &lt;- seq(from=0, to=max(abs(ctwas_gene_res_subset$z)), length.out=length(pip_range))
+
+for (index in 1:length(sig_thresh_range)){
+  sig_thresh_plot &lt;- sig_thresh_range[index]
+  twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;=sig_thresh_plot]
+  sensitivity[index] &lt;- sum(twas_genes %in% known_annotations)/length(known_annotations)
+  specificity[index] &lt;- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+}
+
+lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col=&quot;red&quot;, lty=1)
+
+abline(a=0,b=1,lty=3)
+
+#add previously computed points from the analysis
+ctwas_genes &lt;- ctwas_gene_res_subset$genename[ctwas_gene_res_subset$susie_pip&gt;0.8]
+twas_genes &lt;- ctwas_gene_res_subset$genename[abs(ctwas_gene_res_subset$z)&gt;sig_thresh]
+
+points(1-specificity_plot[&quot;ctwas&quot;], sensitivity_plot[&quot;ctwas&quot;], pch=21, bg=&quot;black&quot;)
+points(1-specificity_plot[&quot;TWAS&quot;], sensitivity_plot[&quot;TWAS&quot;], pch=21, bg=&quot;red&quot;)</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="undetected-silver-standard-genes-have-low-twas-z-scores-or-stronger-signal-from-nearby-variants" class="section level2">
+<h2>Undetected silver standard genes have low TWAS z-scores or stronger signal from nearby variants</h2>
+<pre class="r"><code>#table of outcomes for silver standard genes
+-sort(-table(silver_standard_case))</code></pre>
+<pre><code>silver_standard_case
+          Not Imputed Insignificant z-score         Nearby SNP(s) 
+                   81                    34                    13 
+ Detected (PIP &gt; 0.8) 
+                    2 </code></pre>
+<pre class="r"><code>#show inconclusive genes
+silver_standard_case[silver_standard_case==&quot;Inconclusive&quot;]</code></pre>
+<pre><code>named character(0)</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1172,25 +1079,54 @@ locale:
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
 
 other attached packages:
-[1] workflowr_1.7.0
+ [1] GenomicRanges_1.36.1 GenomeInfoDb_1.20.0  IRanges_2.18.1      
+ [4] S4Vectors_0.22.1     BiocGenerics_0.30.0  biomaRt_2.40.1      
+ [7] readxl_1.3.1         forcats_0.5.1        stringr_1.4.0       
+[10] dplyr_1.0.7          purrr_0.3.4          readr_2.1.1         
+[13] tidyr_1.1.4          tidyverse_1.3.1      tibble_3.1.6        
+[16] WebGestaltR_0.4.4    disgenet2r_0.99.2    enrichR_3.0         
+[19] cowplot_1.1.1        ggplot2_3.3.5        workflowr_1.7.0     
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.8        highr_0.9         jquerylib_0.1.4   compiler_3.6.1   
- [5] pillar_1.6.4      later_0.8.0       git2r_0.26.1      tools_3.6.1      
- [9] getPass_0.2-2     bit_4.0.4         digest_0.6.29     memoise_2.0.1    
-[13] RSQLite_2.2.8     evaluate_0.14     tibble_3.1.6      lifecycle_1.0.1  
-[17] pkgconfig_2.0.3   rlang_1.0.1       DBI_1.1.2         cli_3.1.0        
-[21] rstudioapi_0.13   yaml_2.2.1        xfun_0.29         fastmap_1.1.0    
-[25] httr_1.4.2        stringr_1.4.0     knitr_1.36        fs_1.5.2         
-[29] vctrs_0.3.8       bit64_4.0.5       rprojroot_2.0.2   data.table_1.14.2
-[33] glue_1.6.2        R6_2.5.1          processx_3.5.2    fansi_1.0.2      
-[37] rmarkdown_2.11    blob_1.2.2        callr_3.7.0       magrittr_2.0.2   
-[41] whisker_0.3-2     ps_1.6.0          promises_1.0.1    htmltools_0.5.2  
-[45] ellipsis_0.3.2    httpuv_1.5.1      utf8_1.2.2        stringi_1.7.6    
-[49] cachem_1.0.6      crayon_1.5.0     </code></pre>
+  [1] ggbeeswarm_0.6.0       colorspace_2.0-2       rjson_0.2.20          
+  [4] ellipsis_0.3.2         rprojroot_2.0.2        XVector_0.24.0        
+  [7] fs_1.5.2               rstudioapi_0.13        farver_2.1.0          
+ [10] ggrepel_0.9.1          bit64_4.0.5            AnnotationDbi_1.46.0  
+ [13] fansi_1.0.2            lubridate_1.8.0        xml2_1.3.3            
+ [16] codetools_0.2-16       doParallel_1.0.17      cachem_1.0.6          
+ [19] knitr_1.36             jsonlite_1.7.2         apcluster_1.4.8       
+ [22] Cairo_1.5-12.2         broom_0.7.10           dbplyr_2.1.1          
+ [25] compiler_3.6.1         httr_1.4.2             backports_1.4.1       
+ [28] assertthat_0.2.1       Matrix_1.2-18          fastmap_1.1.0         
+ [31] cli_3.1.0              later_0.8.0            prettyunits_1.1.1     
+ [34] htmltools_0.5.2        tools_3.6.1            igraph_1.2.10         
+ [37] GenomeInfoDbData_1.2.1 gtable_0.3.0           glue_1.6.2            
+ [40] reshape2_1.4.4         doRNG_1.8.2            Rcpp_1.0.8            
+ [43] Biobase_2.44.0         cellranger_1.1.0       jquerylib_0.1.4       
+ [46] vctrs_0.3.8            svglite_1.2.2          iterators_1.0.14      
+ [49] xfun_0.29              ps_1.6.0               rvest_1.0.2           
+ [52] lifecycle_1.0.1        rngtools_1.5.2         XML_3.99-0.3          
+ [55] zlibbioc_1.30.0        getPass_0.2-2          scales_1.1.1          
+ [58] vroom_1.5.7            hms_1.1.1              promises_1.0.1        
+ [61] yaml_2.2.1             curl_4.3.2             memoise_2.0.1         
+ [64] ggrastr_1.0.1          gdtools_0.1.9          stringi_1.7.6         
+ [67] RSQLite_2.2.8          highr_0.9              foreach_1.5.2         
+ [70] rlang_1.0.1            pkgconfig_2.0.3        bitops_1.0-7          
+ [73] evaluate_0.14          lattice_0.20-38        labeling_0.4.2        
+ [76] bit_4.0.4              processx_3.5.2         tidyselect_1.1.1      
+ [79] plyr_1.8.6             magrittr_2.0.2         R6_2.5.1              
+ [82] generics_0.1.1         DBI_1.1.2              pillar_1.6.4          
+ [85] haven_2.4.3            whisker_0.3-2          withr_2.4.3           
+ [88] RCurl_1.98-1.5         modelr_0.1.8           crayon_1.5.0          
+ [91] utf8_1.2.2             tzdb_0.2.0             rmarkdown_2.11        
+ [94] progress_1.2.2         grid_3.6.1             data.table_1.14.2     
+ [97] blob_1.2.2             callr_3.7.0            git2r_0.26.1          
+[100] reprex_2.0.1           digest_0.6.29          httpuv_1.5.1          
+[103] munsell_0.5.0          beeswarm_0.2.3         vipor_0.4.5           </code></pre>
 </div>
 </div>
 
