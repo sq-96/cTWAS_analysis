@@ -8,11 +8,11 @@ editor_options:
 ---
 
 ```{r}
-brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/")
+brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018")
 top_genes <- c()
 all_genes <- c()
 for(i in brain_tissue){
-  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
+  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
   all_genes <- c(all_genes,df$genename)
   df <- df[df$susie_pip>=0.8,]
   top_genes <- c(top_genes,df$genename)
@@ -53,6 +53,40 @@ SMR_genes <- Supplementary_Table_20_Prioritised_Genes[,c("Symbol.ID","SMRmap","S
 SMR_genes["index"] <- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SMR_genes$HI.C.SMR==1)
 SMR_genes <- SMR_genes[SMR_genes$index==1,]$Symbol.ID
 ```
+
+```{r}
+GO_terms <- list.files("data/GO_Terms", pattern="*.txt", full.names=F)
+annotation_table <- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_terms)))
+colnames(annotation_table) <- GO_terms
+
+annotation_table["SCHEMA_genes"] = as.integer(top_genes %in% SCHEMA_genes)
+annotation_table["ASD_genes"] = as.integer(top_genes %in% ASD_genes)
+annotation_table["DDD_genes"] = as.integer(top_genes %in% DDD_genes)
+annotation_table["PGC3_genes"] = as.integer(top_genes %in% PGC3_genes)
+annotation_table["PGC3_genes_without_SMR"] = as.integer(top_genes %in% setdiff(PGC3_genes,SMR_genes))
+
+annotation_table <- cbind(top_genes,annotation_table)
+annotation_table$top_genes <- as.character(annotation_table$top_genes)
+
+for(i in 1:length(GO_terms)){
+  GO_list <- data.table::fread(paste0("data/GO_Terms/",GO_terms[i]),header = F)
+  for(j in (1:length(top_genes))){
+    target_gene <- top_genes[j]
+    if(target_gene %in% GO_list$V2){
+      annotation_table[j,i] = 1
+    }
+  }
+}
+
+annotation_table <- annotation_table[,c("top_genes","SCHEMA_genes","ASD_genes","DDD_genes",
+                                        "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
+```
+
+```{r}
+library(reactable)
+reactable(annotation_table)
+```
+
 
 ```{r}
 sum(top_genes %in% SCHEMA_genes)
@@ -125,7 +159,7 @@ annotation_table <- matrix(0,nrow = length(top_genes),ncol = length(GO_terms))
 colnames(annotation_table) <- GO_terms
 annotation_table <- cbind(top_genes,annotation_table)
 for(i in 1:length(GO_terms)){
-  GO_list <- fread(paste0("data/GO_Terms/",GO_terms[i]),header = F)
+  GO_list <- data.table::fread(paste0("data/GO_Terms/",GO_terms[i]),header = F)
   for(j in (1:length(top_genes))){
     target_gene <- top_genes[j]
     if(target_gene %in% GO_list$V2){
