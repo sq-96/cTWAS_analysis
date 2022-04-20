@@ -505,16 +505,16 @@ data/SCZ_2018
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6336dc664c06c74bbd511a96b3930ca1eef4e5d9targetblank6336dc6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/6336dc664c06c74bbd511a96b3930ca1eef4e5d9" target="_blank">6336dc6</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree186d0ac56dbffaf9f44850399cb653a74299e27btargetblank186d0aca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/186d0ac56dbffaf9f44850399cb653a74299e27b" target="_blank">186d0ac</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6336dc664c06c74bbd511a96b3930ca1eef4e5d9targetblank6336dc6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree186d0ac56dbffaf9f44850399cb653a74299e27btargetblank186d0aca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/6336dc664c06c74bbd511a96b3930ca1eef4e5d9" target="_blank">6336dc6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/186d0ac56dbffaf9f44850399cb653a74299e27b" target="_blank">186d0ac</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -522,7 +522,6 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .ipynb_checkpoints/
-    Ignored:    analysis/figure/
     Ignored:    data/AF/
 
 Untracked files:
@@ -654,6 +653,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/186d0ac56dbffaf9f44850399cb653a74299e27b/analysis/SCZ_Annotation_Analysis.Rmd" target="_blank">186d0ac</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-20
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/186d0ac56dbffaf9f44850399cb653a74299e27b/docs/SCZ_Annotation_Analysis.html" target="_blank">186d0ac</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-20
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -818,8 +851,11 @@ PGC3_genes &lt;- PGC3_genes[!is.na(PGC3_genes)]</code></pre>
 SMR_genes &lt;- Supplementary_Table_20_Prioritised_Genes[,c(&quot;Symbol.ID&quot;,&quot;SMRmap&quot;,&quot;SMRsingleGene&quot;,&quot;HI.C.SMR&quot;)]
 SMR_genes[&quot;index&quot;] &lt;- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SMR_genes$HI.C.SMR==1)
 SMR_genes &lt;- SMR_genes[SMR_genes$index==1,]$Symbol.ID</code></pre>
-<pre class="r"><code>GO_terms &lt;- list.files(&quot;data/GO_Terms&quot;, pattern=&quot;*.txt&quot;, full.names=F)
-annotation_table &lt;- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_terms)))
+<pre class="r"><code>GO_files &lt;- list.files(&quot;data/GO_Terms&quot;, pattern=&quot;*.txt&quot;, full.names=F)
+annotation_table &lt;- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_files)))
+GO_terms = c()
+for(i in GO_files){GO_terms &lt;- c(GO_terms,unlist(strsplit(i, &quot;\\.&quot;))[1])}
+
 colnames(annotation_table) &lt;- GO_terms
 
 annotation_table[&quot;SCHEMA_genes&quot;] = as.integer(top_genes %in% SCHEMA_genes)
@@ -831,8 +867,8 @@ annotation_table[&quot;PGC3_genes_without_SMR&quot;] = as.integer(top_genes %in%
 annotation_table &lt;- cbind(top_genes,annotation_table)
 annotation_table$top_genes &lt;- as.character(annotation_table$top_genes)
 
-for(i in 1:length(GO_terms)){
-  GO_list &lt;- data.table::fread(paste0(&quot;data/GO_Terms/&quot;,GO_terms[i]),header = F)
+for(i in 1:length(GO_files)){
+  GO_list &lt;- data.table::fread(paste0(&quot;data/GO_Terms/&quot;,GO_files[i]),header = F)
   for(j in (1:length(top_genes))){
     target_gene &lt;- top_genes[j]
     if(target_gene %in% GO_list$V2){
@@ -849,27 +885,7 @@ reactable(annotation_table)</code></pre>
   method            from   
   print.key_missing fastmap</code></pre>
 <div id="htmlwidget-2c491e341ec6212824ab" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-2c491e341ec6212824ab">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","HIST1H2BN","RP11-408A13.3","RP11-247A12.7","B3GAT1","ZNF823","TMEM222","SF3B1","RP11-230C9.4","BHLHE41","JSRP1","SYTL1","PACSIN3","GALNT2","FEZF1","ELAC2","1","MAP3K11","SSPN","NPIPA1","PTK6","TRIT1","SPCS1","PCBP2","RCBTB1","ARMC7","FOXO6","THOC7","NT5DC3","GRID1","C19orf35","VRK2","VPS8","LINC00242","GAL","FANCI","FURIN","RRN3","SPECC1","IRF3","TMEM56","ZNF844","PDXDC1"],"SCHEMA_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],"axon.txt":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex.txt":[0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development.txt":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"neuronal_cell_body.txt":[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity.txt":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation.txt":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"somatodendritic_compartment.txt":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],"synapse.txt":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity.txt":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon.txt","name":"axon.txt","type":"numeric"},{"accessor":"ion_channel_complex.txt","name":"ion_channel_complex.txt","type":"numeric"},{"accessor":"nervous_system_development.txt","name":"nervous_system_development.txt","type":"numeric"},{"accessor":"neuronal_cell_body.txt","name":"neuronal_cell_body.txt","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity.txt","name":"regulation_of_cation_channel_activity.txt","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation.txt","name":"regulation_of_neuron_differentiation.txt","type":"numeric"},{"accessor":"somatodendritic_compartment.txt","name":"somatodendritic_compartment.txt","type":"numeric"},{"accessor":"synapse.txt","name":"synapse.txt","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity.txt","name":"voltage-gated_calcium_channel_activity.txt","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"2b381ff472f24f13e0148baec0c208b2","key":"2b381ff472f24f13e0148baec0c208b2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>sum(top_genes %in% SCHEMA_genes)</code></pre>
-<pre><code>[1] 0</code></pre>
-<pre class="r"><code>sum(top_genes %in% ASD_genes)</code></pre>
-<pre><code>[1] 0</code></pre>
-<pre class="r"><code>sum(top_genes %in% DDD_genes)</code></pre>
-<pre><code>[1] 1</code></pre>
-<pre class="r"><code>sum(top_genes %in% PGC3_genes)</code></pre>
-<pre><code>[1] 6</code></pre>
-<pre class="r"><code>sum(top_genes %in% setdiff(PGC3_genes,SMR_genes))</code></pre>
-<pre><code>[1] 1</code></pre>
-<pre class="r"><code>sum(random_genes %in% SCHEMA_genes)</code></pre>
-<pre><code>[1] 1</code></pre>
-<pre class="r"><code>sum(random_genes %in% ASD_genes)</code></pre>
-<pre><code>[1] 2</code></pre>
-<pre class="r"><code>sum(random_genes %in% DDD_genes)</code></pre>
-<pre><code>[1] 9</code></pre>
-<pre class="r"><code>sum(random_genes %in% PGC3_genes)</code></pre>
-<pre><code>[1] 5</code></pre>
-<pre class="r"><code>sum(random_genes %in% setdiff(PGC3_genes,SMR_genes))</code></pre>
-<pre><code>[1] 3</code></pre>
+<script type="application/json" data-for="htmlwidget-2c491e341ec6212824ab">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","HIST1H2BN","RP11-408A13.3","RP11-247A12.7","B3GAT1","ZNF823","TMEM222","SF3B1","RP11-230C9.4","BHLHE41","JSRP1","SYTL1","PACSIN3","GALNT2","FEZF1","ELAC2","1","MAP3K11","SSPN","NPIPA1","PTK6","TRIT1","SPCS1","PCBP2","RCBTB1","ARMC7","FOXO6","THOC7","NT5DC3","GRID1","C19orf35","VRK2","VPS8","LINC00242","GAL","FANCI","FURIN","RRN3","SPECC1","IRF3","TMEM56","ZNF844","PDXDC1"],"SCHEMA_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"5320ae0f5b4ee111259baec7046f5d45","key":"5320ae0f5b4ee111259baec7046f5d45"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>fisher.test(matrix(c(sum(top_genes %in% SCHEMA_genes),length(top_genes)-sum(top_genes %in% SCHEMA_genes),sum(random_genes %in% SCHEMA_genes),1000-sum(random_genes %in% SCHEMA_genes)),ncol=2))</code></pre>
 <pre><code>
     Fisher&#39;s Exact Test for Count Data
@@ -957,7 +973,66 @@ if (length(top_genes)&gt;0){
   Querying GO_Molecular_Function_2021... Done.
 Parsing results... Done.
 [1] &quot;GO_Biological_Process_2021&quot;</code></pre>
-<p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/186d0ac56dbffaf9f44850399cb653a74299e27b/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-1.png" target="_blank">186d0ac</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-20
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/ba919abfb2eff52f4763cf3ec83a1388df6280df/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-1.png" target="_blank">ba919ab</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-1.png" target="_blank">0552ba2</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>                                                                         Term
 1                                  mitochondrial tRNA processing (GO:0090646)
 2                                      signal peptide processing (GO:0006465)
@@ -967,11 +1042,129 @@ Parsing results... Done.
 2    2/11       0.03299186   SPCS1;FURIN
 3    2/15       0.04176107 PACSIN3;FURIN
 [1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
-<p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-9-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-2">
+Past versions of unnamed-chunk-7-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/186d0ac56dbffaf9f44850399cb653a74299e27b/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-2.png" target="_blank">186d0ac</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-20
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/ba919abfb2eff52f4763cf3ec83a1388df6280df/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-2.png" target="_blank">ba919ab</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-2.png" target="_blank">0552ba2</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
 &lt;0 rows&gt; (or 0-length row.names)
 [1] &quot;GO_Molecular_Function_2021&quot;</code></pre>
-<p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-9-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-3">
+Past versions of unnamed-chunk-7-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/186d0ac56dbffaf9f44850399cb653a74299e27b/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-3.png" target="_blank">186d0ac</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-20
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/ba919abfb2eff52f4763cf3ec83a1388df6280df/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-3.png" target="_blank">ba919ab</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/0552ba2bf4d6456fb9b0087f6c077c0a7cd6720d/docs/figure/SCZ_Annotation_Analysis.Rmd/unnamed-chunk-7-3.png" target="_blank">0552ba2</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
 &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 <pre><code>                                                                         Description
@@ -996,19 +1189,6 @@ Parsing results... Done.
 115 0.02411874  1/18  1/9703
 116 0.02411874  1/18  1/9703
 88  0.04337569  1/18  2/9703</code></pre>
-<pre class="r"><code>GO_terms &lt;- list.files(&quot;data/GO_Terms&quot;, pattern=&quot;*.txt&quot;, full.names=F)
-annotation_table &lt;- matrix(0,nrow = length(top_genes),ncol = length(GO_terms))
-colnames(annotation_table) &lt;- GO_terms
-annotation_table &lt;- cbind(top_genes,annotation_table)
-for(i in 1:length(GO_terms)){
-  GO_list &lt;- data.table::fread(paste0(&quot;data/GO_Terms/&quot;,GO_terms[i]),header = F)
-  for(j in (1:length(top_genes))){
-    target_gene &lt;- top_genes[j]
-    if(target_gene %in% GO_list$V2){
-      annotation_table[j,i] = 1
-    }
-  }
-}</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

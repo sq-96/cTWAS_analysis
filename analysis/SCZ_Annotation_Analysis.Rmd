@@ -55,8 +55,11 @@ SMR_genes <- SMR_genes[SMR_genes$index==1,]$Symbol.ID
 ```
 
 ```{r}
-GO_terms <- list.files("data/GO_Terms", pattern="*.txt", full.names=F)
-annotation_table <- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_terms)))
+GO_files <- list.files("data/GO_Terms", pattern="*.txt", full.names=F)
+annotation_table <- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_files)))
+GO_terms = c()
+for(i in GO_files){GO_terms <- c(GO_terms,unlist(strsplit(i, "\\."))[1])}
+
 colnames(annotation_table) <- GO_terms
 
 annotation_table["SCHEMA_genes"] = as.integer(top_genes %in% SCHEMA_genes)
@@ -68,8 +71,8 @@ annotation_table["PGC3_genes_without_SMR"] = as.integer(top_genes %in% setdiff(P
 annotation_table <- cbind(top_genes,annotation_table)
 annotation_table$top_genes <- as.character(annotation_table$top_genes)
 
-for(i in 1:length(GO_terms)){
-  GO_list <- data.table::fread(paste0("data/GO_Terms/",GO_terms[i]),header = F)
+for(i in 1:length(GO_files)){
+  GO_list <- data.table::fread(paste0("data/GO_Terms/",GO_files[i]),header = F)
   for(j in (1:length(top_genes))){
     target_gene <- top_genes[j]
     if(target_gene %in% GO_list$V2){
@@ -85,23 +88,6 @@ annotation_table <- annotation_table[,c("top_genes","SCHEMA_genes","ASD_genes","
 ```{r}
 library(reactable)
 reactable(annotation_table)
-```
-
-
-```{r}
-sum(top_genes %in% SCHEMA_genes)
-sum(top_genes %in% ASD_genes)
-sum(top_genes %in% DDD_genes)
-sum(top_genes %in% PGC3_genes)
-sum(top_genes %in% setdiff(PGC3_genes,SMR_genes))
-```
-
-```{r}
-sum(random_genes %in% SCHEMA_genes)
-sum(random_genes %in% ASD_genes)
-sum(random_genes %in% DDD_genes)
-sum(random_genes %in% PGC3_genes)
-sum(random_genes %in% setdiff(PGC3_genes,SMR_genes))
 ```
 
 ```{r}
@@ -151,21 +137,3 @@ if (length(top_genes)>0){
   print(df)
 }
 ```
-
-
-```{r}
-GO_terms <- list.files("data/GO_Terms", pattern="*.txt", full.names=F)
-annotation_table <- matrix(0,nrow = length(top_genes),ncol = length(GO_terms))
-colnames(annotation_table) <- GO_terms
-annotation_table <- cbind(top_genes,annotation_table)
-for(i in 1:length(GO_terms)){
-  GO_list <- data.table::fread(paste0("data/GO_Terms/",GO_terms[i]),header = F)
-  for(j in (1:length(top_genes))){
-    target_gene <- top_genes[j]
-    if(target_gene %in% GO_list$V2){
-      annotation_table[j,i] = 1
-    }
-  }
-}
-```
-
