@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r}
+```{r,echo=FALSE}
 brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018")
 top_genes <- c()
 all_genes <- c()
@@ -23,7 +23,7 @@ set.seed(2022)
 random_genes <- sample(all_genes,1000)
 ```
 
-```{r}
+```{r,echo=FALSE}
 library(readxl)
 Supplementary_Table_15_MAGMA <- read_excel("data/Supplementary Table 15 - MAGMA.xlsx", 
     sheet = "Gene Lists")
@@ -54,7 +54,7 @@ SMR_genes["index"] <- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SM
 SMR_genes <- SMR_genes[SMR_genes$index==1,]$Symbol.ID
 ```
 
-```{r}
+```{r,echo=FALSE}
 GO_files <- list.files("data/GO_Terms", pattern="*.txt", full.names=F)
 annotation_table <- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_files)))
 GO_terms = c()
@@ -83,14 +83,14 @@ for(i in 1:length(GO_files)){
 
 annotation_table <- annotation_table[,c("top_genes","SCHEMA_genes","ASD_genes","DDD_genes",
                                         "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
-```
 
-```{r}
 library(reactable)
 reactable(annotation_table)
 ```
 
-```{r}
+
+
+```{r,echo=F,eval=F}
 fisher.test(matrix(c(sum(top_genes %in% SCHEMA_genes),length(top_genes)-sum(top_genes %in% SCHEMA_genes),sum(random_genes %in% SCHEMA_genes),1000-sum(random_genes %in% SCHEMA_genes)),ncol=2))
 
 fisher.test(matrix(c(sum(top_genes %in% ASD_genes),length(top_genes)-sum(top_genes %in% ASD_genes),sum(random_genes %in% ASD_genes),1000-sum(random_genes %in% ASD_genes)),ncol=2))
@@ -102,38 +102,4 @@ fisher.test(matrix(c(sum(top_genes %in% PGC3_genes),length(top_genes)-sum(top_ge
 fisher.test(matrix(c(sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),length(top_genes)-sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),sum(random_genes %in% setdiff(PGC3_genes,SMR_genes)),1000-sum(random_genes %in% setdiff(PGC3_genes,SMR_genes))),ncol=2))
 ```
 
-```{r}
-library(enrichR)
 
-dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecular_Function_2021")
-
-if (length(top_genes)>0){
-  GO_enrichment <- enrichr(top_genes, dbs)
-
-  for (db in dbs){
-    print(db)
-    df <- GO_enrichment[[db]]
-    print(plotEnrich(GO_enrichment[[db]]))
-    df <- df[df$Adjusted.P.value<0.05,c("Term", "Overlap", "Adjusted.P.value", "Genes")]
-    print(df)
-  }
-}
-```
-
-```{r echo=F, message=FALSE}
-if (length(top_genes)>0){
-  library(disgenet2r)
-
-  disgenet_api_key <- get_disgenet_api_key(
-                    email = "wesleycrouse@gmail.com",
-                    password = "uchicago1" )
-
-  Sys.setenv(DISGENET_API_KEY= disgenet_api_key)
-
-  res_enrich <-disease_enrichment(entities=top_genes, vocabulary = "HGNC",
-                               database = "CURATED" )
-
-  df <- res_enrich@qresult[1:10, c("Description", "FDR", "Ratio",  "BgRatio")]
-  print(df)
-}
-```
