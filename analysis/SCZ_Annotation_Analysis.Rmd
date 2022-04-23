@@ -45,7 +45,7 @@ PGC3_genes <- summary_known_genes_annotations$`Gene Symbol`
 PGC3_genes <- PGC3_genes[!is.na(PGC3_genes)]
 ```
 
-```{r}
+```{r,echo=FALSE}
 Supplementary_Table_20_Prioritised_Genes <- read_excel("data/Supplementary Table 20 - Prioritised Genes.xlsx", 
     sheet = "ST20 all criteria")
 
@@ -54,6 +54,7 @@ SMR_genes["index"] <- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SM
 SMR_genes <- SMR_genes[SMR_genes$index==1,]$Symbol.ID
 ```
 
+## 2018 SCZ GWAS
 ```{r,echo=FALSE}
 GO_files <- list.files("data/GO_Terms", pattern="*.txt", full.names=F)
 annotation_table <- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_files)))

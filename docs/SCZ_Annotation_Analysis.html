@@ -505,16 +505,16 @@ data/SCZ_2018
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree574cbff555708eadcffb2eaf716acd427d7ecd0ftargetblank574cbffa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/574cbff555708eadcffb2eaf716acd427d7ecd0f" target="_blank">574cbff</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefdb83b6623af6dc4adf77946511a32fa0901a000targetblankfdb83b6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/fdb83b6623af6dc4adf77946511a32fa0901a000" target="_blank">fdb83b6</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree574cbff555708eadcffb2eaf716acd427d7ecd0ftargetblank574cbffa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefdb83b6623af6dc4adf77946511a32fa0901a000targetblankfdb83b6a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/574cbff555708eadcffb2eaf716acd427d7ecd0f" target="_blank">574cbff</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/fdb83b6623af6dc4adf77946511a32fa0901a000" target="_blank">fdb83b6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -653,6 +653,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/fdb83b6623af6dc4adf77946511a32fa0901a000/analysis/SCZ_Annotation_Analysis.Rmd" target="_blank">fdb83b6</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-23
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/fdb83b6623af6dc4adf77946511a32fa0901a000/docs/SCZ_Annotation_Analysis.html" target="_blank">fdb83b6</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-23
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -847,12 +881,8 @@ update
 </div>
 </div>
 </div>
-<pre class="r"><code>Supplementary_Table_20_Prioritised_Genes &lt;- read_excel(&quot;data/Supplementary Table 20 - Prioritised Genes.xlsx&quot;, 
-    sheet = &quot;ST20 all criteria&quot;)
-
-SMR_genes &lt;- Supplementary_Table_20_Prioritised_Genes[,c(&quot;Symbol.ID&quot;,&quot;SMRmap&quot;,&quot;SMRsingleGene&quot;,&quot;HI.C.SMR&quot;)]
-SMR_genes[&quot;index&quot;] &lt;- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SMR_genes$HI.C.SMR==1)
-SMR_genes &lt;- SMR_genes[SMR_genes$index==1,]$Symbol.ID</code></pre>
+<div id="scz-gwas" class="section level2">
+<h2>2018 SCZ GWAS</h2>
 <div id="htmlwidget-2c491e341ec6212824ab" class="reactable html-widget" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-2c491e341ec6212824ab">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","HIST1H2BN","RP11-408A13.3","RP11-247A12.7","B3GAT1","ZNF823","TMEM222","SF3B1","RP11-230C9.4","BHLHE41","JSRP1","SYTL1","PACSIN3","GALNT2","FEZF1","ELAC2","1","MAP3K11","SSPN","NPIPA1","PTK6","TRIT1","SPCS1","PCBP2","RCBTB1","ARMC7","FOXO6","THOC7","NT5DC3","GRID1","C19orf35","VRK2","VPS8","LINC00242","GAL","FANCI","FURIN","RRN3","SPECC1","IRF3","TMEM56","ZNF844","PDXDC1"],"SCHEMA_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"5320ae0f5b4ee111259baec7046f5d45","key":"5320ae0f5b4ee111259baec7046f5d45"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 <br>
@@ -896,6 +926,7 @@ loaded via a namespace (and not attached):
 [33] rmarkdown_2.9     magrittr_2.0.1    whisker_0.4       promises_1.2.0.1 
 [37] ellipsis_0.3.2    htmltools_0.5.1.1 httpuv_1.6.1      utf8_1.2.1       
 [41] stringi_1.6.2     crayon_1.4.1     </code></pre>
+</div>
 </div>
 
 
