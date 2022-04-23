@@ -69,111 +69,50 @@ summary_table <- function(data_path){
 }
 ```
 
+
+## 2014 SCZ GWAS
+```{r,echo=FALSE}
+library(reactable)
+SCZ_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ/")
+reactable(SCZ_annotation)
+
+for(i in 2:15){
+  print(paste0("Number of genes in ",colnames(SCZ_annotation)[i],": ",sum(SCZ_annotation[,i])))
+}
+```
+
+## 2014 SCZ EUR ONLY GWAS
+```{r,echo=FALSE}
+library(reactable)
+SCZ_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/")
+reactable(SCZ_annotation,resizable = TRUE)
+
+for(i in 2:15){
+  print(paste0("Number of genes in ",colnames(SCZ_annotation)[i],": ",sum(SCZ_annotation[,i])))
+}
+```
+
 ## 2018 SCZ GWAS
 ```{r,echo=FALSE}
 library(reactable)
-SCZ_2018_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/")
-reactable(SCZ_2018_annotation)
+SCZ_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/")
+reactable(SCZ_annotation,resizable = TRUE)
 
 for(i in 2:15){
-  print(paste0("Number of genes in ",colnames(SCZ_2018_annotation)[i],": ",sum(SCZ_2018_annotation[,i])))
+  print(paste0("Number of genes in ",colnames(SCZ_annotation)[i],": ",sum(SCZ_annotation[,i])))
 }
 ```
 
-
+## 2020 SCZ GWAS
 ```{r,echo=FALSE}
-brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018")
-top_genes <- c()
-all_genes <- c()
-for(i in brain_tissue){
-  df <- readRDS(paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/",i,"/SCZ_",i,"_ctwas_gene_res.RDS"))
-  all_genes <- c(all_genes,df$genename)
-  df <- df[df$susie_pip>=0.8,]
-  top_genes <- c(top_genes,df$genename)
-}
-top_genes <- unique(top_genes)
-all_genes <- unique(all_genes)
-set.seed(2022)
-random_genes <- sample(all_genes,1000)
-```
-
-```{r,echo=FALSE}
-library(readxl)
-Supplementary_Table_15_MAGMA <- read_excel("data/Supplementary Table 15 - MAGMA.xlsx", 
-    sheet = "Gene Lists")
-
-summary_known_genes_annotations <- read_excel("data/summary_known_genes_annotations.xlsx", 
-    sheet = "SCZ")
-
-SCHEMA_genes <- Supplementary_Table_15_MAGMA$`SCHEMA (p<0.001)`
-SCHEMA_genes <- SCHEMA_genes[!is.na(SCHEMA_genes)]
-
-ASD_genes <- Supplementary_Table_15_MAGMA$`ASD (Satterstrom et al. 2019)`
-ASD_genes <- ASD_genes[!is.na(ASD_genes)]
-
-DDD_genes <- Supplementary_Table_15_MAGMA$`DDD (Kaplanis et al. 2019)`
-DDD_genes <- DDD_genes[!is.na(DDD_genes)]
-
-
-PGC3_genes <- summary_known_genes_annotations$`Gene Symbol`
-PGC3_genes <- PGC3_genes[!is.na(PGC3_genes)]
-```
-
-```{r,echo=FALSE}
-Supplementary_Table_20_Prioritised_Genes <- read_excel("data/Supplementary Table 20 - Prioritised Genes.xlsx", 
-    sheet = "ST20 all criteria")
-
-SMR_genes <- Supplementary_Table_20_Prioritised_Genes[,c("Symbol.ID","SMRmap","SMRsingleGene","HI.C.SMR")]
-SMR_genes["index"] <- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SMR_genes$HI.C.SMR==1)
-SMR_genes <- SMR_genes[SMR_genes$index==1,]$Symbol.ID
-```
-
-```{r,echo=FALSE}
-GO_files <- list.files("data/GO_Terms", pattern="*.txt", full.names=F)
-annotation_table <- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_files)))
-GO_terms = c()
-for(i in GO_files){GO_terms <- c(GO_terms,unlist(strsplit(i, "\\."))[1])}
-
-colnames(annotation_table) <- GO_terms
-
-annotation_table["SCHEMA_genes"] = as.integer(top_genes %in% SCHEMA_genes)
-annotation_table["ASD_genes"] = as.integer(top_genes %in% ASD_genes)
-annotation_table["DDD_genes"] = as.integer(top_genes %in% DDD_genes)
-annotation_table["PGC3_genes"] = as.integer(top_genes %in% PGC3_genes)
-annotation_table["PGC3_genes_without_SMR"] = as.integer(top_genes %in% setdiff(PGC3_genes,SMR_genes))
-
-annotation_table <- cbind(top_genes,annotation_table)
-annotation_table$top_genes <- as.character(annotation_table$top_genes)
-
-for(i in 1:length(GO_files)){
-  GO_list <- data.table::fread(paste0("data/GO_Terms/",GO_files[i]),header = F)
-  for(j in (1:length(top_genes))){
-    target_gene <- top_genes[j]
-    if(target_gene %in% GO_list$V2){
-      annotation_table[j,i] = 1
-    }
-  }
-}
-
-annotation_table <- annotation_table[,c("top_genes","SCHEMA_genes","ASD_genes","DDD_genes",
-                                        "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
-
 library(reactable)
-reactable(annotation_table)
+SCZ_2020_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/")
+reactable(SCZ_2020_annotation,resizable = TRUE)
+
+for(i in 2:15){
+  print(paste0("Number of genes in ",colnames(SCZ_2020_annotation)[i],": ",sum(SCZ_2020_annotation[,i])))
+}
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
