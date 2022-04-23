@@ -491,7 +491,7 @@ relative
 <tbody>
 <tr>
 <td style="text-align:left;">
-/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/
 </td>
 <td style="text-align:left;">
 data/SCZ_2018
@@ -505,16 +505,16 @@ data/SCZ_2018
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefdb83b6623af6dc4adf77946511a32fa0901a000targetblankfdb83b6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/fdb83b6623af6dc4adf77946511a32fa0901a000" target="_blank">fdb83b6</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree3526ce6646cbdf37d50a31b0695e941c03721f5dtargetblank3526ce6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/3526ce6646cbdf37d50a31b0695e941c03721f5d" target="_blank">3526ce6</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefdb83b6623af6dc4adf77946511a32fa0901a000targetblankfdb83b6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree3526ce6646cbdf37d50a31b0695e941c03721f5dtargetblank3526ce6a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/fdb83b6623af6dc4adf77946511a32fa0901a000" target="_blank">fdb83b6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/3526ce6646cbdf37d50a31b0695e941c03721f5d" target="_blank">3526ce6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -653,6 +653,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/3526ce6646cbdf37d50a31b0695e941c03721f5d/analysis/SCZ_Annotation_Analysis.Rmd" target="_blank">3526ce6</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-23
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/3526ce6646cbdf37d50a31b0695e941c03721f5d/docs/SCZ_Annotation_Analysis.html" target="_blank">3526ce6</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-23
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -881,10 +915,85 @@ update
 </div>
 </div>
 </div>
+<pre class="r"><code>summary_table &lt;- function(data_path){
+  brain_tissue &lt;- list.files(data_path)
+  top_genes &lt;- c()
+  all_genes &lt;- c()
+  for(i in brain_tissue){
+    df &lt;- readRDS(paste0(data_path,i,&quot;/SCZ_&quot;,i,&quot;_ctwas_gene_res.RDS&quot;))
+    all_genes &lt;- c(all_genes,df$genename)
+    df &lt;- df[df$susie_pip&gt;=0.8,]
+    top_genes &lt;- c(top_genes,df$genename)
+  }
+  top_genes &lt;- unique(top_genes)
+  all_genes &lt;- unique(all_genes)
+  set.seed(2022)
+  random_genes &lt;- sample(all_genes,1000)
+  
+  library(readxl)
+  Supplementary_Table_15_MAGMA &lt;- read_excel(&quot;data/Supplementary Table 15 - MAGMA.xlsx&quot;, sheet = &quot;Gene Lists&quot;)
+  summary_known_genes_annotations &lt;- read_excel(&quot;data/summary_known_genes_annotations.xlsx&quot;, sheet = &quot;SCZ&quot;)
+  SCHEMA_genes &lt;- Supplementary_Table_15_MAGMA$`SCHEMA (p&lt;0.001)`
+  SCHEMA_genes &lt;- SCHEMA_genes[!is.na(SCHEMA_genes)]
+  ASD_genes &lt;- Supplementary_Table_15_MAGMA$`ASD (Satterstrom et al. 2019)`
+  ASD_genes &lt;- ASD_genes[!is.na(ASD_genes)]
+  DDD_genes &lt;- Supplementary_Table_15_MAGMA$`DDD (Kaplanis et al. 2019)`
+  DDD_genes &lt;- DDD_genes[!is.na(DDD_genes)]
+  PGC3_genes &lt;- summary_known_genes_annotations$`Gene Symbol`
+  PGC3_genes &lt;- PGC3_genes[!is.na(PGC3_genes)]
+  
+  Supplementary_Table_20_Prioritised_Genes &lt;- read_excel(&quot;data/Supplementary Table 20 - Prioritised Genes.xlsx&quot;, sheet = &quot;ST20 all criteria&quot;)
+  SMR_genes &lt;- Supplementary_Table_20_Prioritised_Genes[,c(&quot;Symbol.ID&quot;,&quot;SMRmap&quot;,&quot;SMRsingleGene&quot;,&quot;HI.C.SMR&quot;)]
+  SMR_genes[&quot;index&quot;] &lt;- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SMR_genes$HI.C.SMR==1)
+  SMR_genes &lt;- SMR_genes[SMR_genes$index==1,]$Symbol.ID
+  
+  GO_files &lt;- list.files(&quot;data/GO_Terms&quot;, pattern=&quot;*.txt&quot;, full.names=F)
+  annotation_table &lt;- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_files)))
+  GO_terms = c()
+  for(i in GO_files){GO_terms &lt;- c(GO_terms,unlist(strsplit(i, &quot;\\.&quot;))[1])}
+  colnames(annotation_table) &lt;- GO_terms
+  annotation_table[&quot;SCHEMA_genes&quot;] = as.integer(top_genes %in% SCHEMA_genes)
+  annotation_table[&quot;ASD_genes&quot;] = as.integer(top_genes %in% ASD_genes)
+  annotation_table[&quot;DDD_genes&quot;] = as.integer(top_genes %in% DDD_genes)
+  annotation_table[&quot;PGC3_genes&quot;] = as.integer(top_genes %in% PGC3_genes)
+  annotation_table[&quot;PGC3_genes_without_SMR&quot;] = as.integer(top_genes %in% setdiff(PGC3_genes,SMR_genes))
+  annotation_table &lt;- cbind(top_genes,annotation_table)
+  annotation_table$top_genes &lt;- as.character(annotation_table$top_genes)
+
+  for(i in 1:length(GO_files)){
+    GO_list &lt;- data.table::fread(paste0(&quot;data/GO_Terms/&quot;,GO_files[i]),header = F)
+    for(j in (1:length(top_genes))){
+      target_gene &lt;- top_genes[j]
+      if(target_gene %in% GO_list$V2){
+        annotation_table[j,i] = 1
+      }
+    }
+  }
+  annotation_table &lt;- annotation_table[,c(&quot;top_genes&quot;,&quot;SCHEMA_genes&quot;,&quot;ASD_genes&quot;,&quot;DDD_genes&quot;,
+                                        &quot;PGC3_genes&quot;,&quot;PGC3_genes_without_SMR&quot;,GO_terms)]
+  
+  return(annotation_table)
+}</code></pre>
 <div id="scz-gwas" class="section level2">
 <h2>2018 SCZ GWAS</h2>
 <div id="htmlwidget-2c491e341ec6212824ab" class="reactable html-widget" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-2c491e341ec6212824ab">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","HIST1H2BN","RP11-408A13.3","RP11-247A12.7","B3GAT1","ZNF823","TMEM222","SF3B1","RP11-230C9.4","BHLHE41","JSRP1","SYTL1","PACSIN3","GALNT2","FEZF1","ELAC2","1","MAP3K11","SSPN","NPIPA1","PTK6","TRIT1","SPCS1","PCBP2","RCBTB1","ARMC7","FOXO6","THOC7","NT5DC3","GRID1","C19orf35","VRK2","VPS8","LINC00242","GAL","FANCI","FURIN","RRN3","SPECC1","IRF3","TMEM56","ZNF844","PDXDC1"],"SCHEMA_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"5320ae0f5b4ee111259baec7046f5d45","key":"5320ae0f5b4ee111259baec7046f5d45"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<pre><code>[1] &quot;Number of genes in SCHEMA_genes: 0&quot;
+[1] &quot;Number of genes in ASD_genes: 0&quot;
+[1] &quot;Number of genes in DDD_genes: 1&quot;
+[1] &quot;Number of genes in PGC3_genes: 6&quot;
+[1] &quot;Number of genes in PGC3_genes_without_SMR: 1&quot;
+[1] &quot;Number of genes in axon: 0&quot;
+[1] &quot;Number of genes in ion_channel_complex: 3&quot;
+[1] &quot;Number of genes in nervous_system_development: 2&quot;
+[1] &quot;Number of genes in neuronal_cell_body: 2&quot;
+[1] &quot;Number of genes in regulation_of_cation_channel_activity: 1&quot;
+[1] &quot;Number of genes in regulation_of_neuron_differentiation: 2&quot;
+[1] &quot;Number of genes in somatodendritic_compartment: 4&quot;
+[1] &quot;Number of genes in synapse: 0&quot;
+[1] &quot;Number of genes in voltage-gated_calcium_channel_activity: 0&quot;</code></pre>
+<div id="htmlwidget-ddb42ff58199a165d10b" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ddb42ff58199a165d10b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","HIST1H2BN","RP11-408A13.3","RP11-247A12.7","B3GAT1","ZNF823","TMEM222","SF3B1","RP11-230C9.4","BHLHE41","JSRP1","SYTL1","PACSIN3","GALNT2","FEZF1","ELAC2","1","MAP3K11","SSPN","NPIPA1","PTK6","TRIT1","SPCS1","PCBP2","RCBTB1","ARMC7","FOXO6","THOC7","NT5DC3","GRID1","C19orf35","VRK2","VPS8","LINC00242","GAL","FANCI","FURIN","RRN3","SPECC1","IRF3","TMEM56","ZNF844","PDXDC1"],"SCHEMA_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"5320ae0f5b4ee111259baec7046f5d45","key":"5320ae0f5b4ee111259baec7046f5d45"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -912,17 +1021,17 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] reactable_0.2.3 readxl_1.3.1    workflowr_1.6.2
+[1] readxl_1.3.1    reactable_0.2.3 workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.7        pillar_1.6.1      compiler_4.1.0    bslib_0.2.5.1    
- [5] cellranger_1.1.0  later_1.2.0       jquerylib_0.1.4   git2r_0.28.0     
+ [1] Rcpp_1.0.7        cellranger_1.1.0  pillar_1.6.1      compiler_4.1.0   
+ [5] bslib_0.2.5.1     later_1.2.0       jquerylib_0.1.4   git2r_0.28.0     
  [9] highr_0.9         tools_4.1.0       digest_0.6.27     jsonlite_1.7.2   
 [13] evaluate_0.14     lifecycle_1.0.0   tibble_3.1.2      pkgconfig_2.0.3  
 [17] rlang_0.4.11      crosstalk_1.1.1   yaml_2.2.1        xfun_0.24        
-[21] reactR_0.4.4      stringr_1.4.0     knitr_1.33        htmlwidgets_1.5.3
-[25] fs_1.5.0          vctrs_0.3.8       sass_0.4.0        rprojroot_2.0.2  
-[29] glue_1.4.2        data.table_1.14.0 R6_2.5.0          fansi_0.5.0      
+[21] reactR_0.4.4      stringr_1.4.0     knitr_1.33        fs_1.5.0         
+[25] vctrs_0.3.8       sass_0.4.0        htmlwidgets_1.5.3 rprojroot_2.0.2  
+[29] data.table_1.14.0 glue_1.4.2        R6_2.5.0          fansi_0.5.0      
 [33] rmarkdown_2.9     magrittr_2.0.1    whisker_0.4       promises_1.2.0.1 
 [37] ellipsis_0.3.2    htmltools_0.5.1.1 httpuv_1.6.1      utf8_1.2.1       
 [41] stringi_1.6.2     crayon_1.4.1     </code></pre>
