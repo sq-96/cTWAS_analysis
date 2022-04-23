@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r}
+```{r,echo=FALSE}
 summary_table <- function(data_path){
   brain_tissue <- list.files(data_path)
   top_genes <- c()
@@ -65,7 +65,32 @@ summary_table <- function(data_path){
   annotation_table <- annotation_table[,c("top_genes","SCHEMA_genes","ASD_genes","DDD_genes",
                                         "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
   
-  return(annotation_table)
+  
+  random_table <- as.data.frame(matrix(0,nrow = length(random_genes),ncol = length(GO_files)))
+  colnames(random_table) <- GO_terms
+  random_table["SCHEMA_genes"] = as.integer(random_genes %in% SCHEMA_genes)
+  random_table["ASD_genes"] = as.integer(random_genes %in% ASD_genes)
+  random_table["DDD_genes"] = as.integer(random_genes %in% DDD_genes)
+  random_table["PGC3_genes"] = as.integer(random_genes %in% PGC3_genes)
+  random_table["PGC3_genes_without_SMR"] = as.integer(random_genes %in% setdiff(PGC3_genes,SMR_genes))
+  random_table <- cbind(random_genes,random_table)
+  random_table$random_genes <- as.character(random_table$random_genes)
+
+  for(i in 1:length(GO_files)){
+    GO_list <- data.table::fread(paste0("data/GO_Terms/",GO_files[i]),header = F)
+    for(j in (1:length(random_genes))){
+      target_gene <- random_genes[j]
+      if(target_gene %in% GO_list$V2){
+        random_table[j,i] = 1
+      }
+    }
+  }
+  random_table <- random_table[,c("random_genes","SCHEMA_genes","ASD_genes","DDD_genes",
+                                        "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
+  
+  
+  
+  return(list(annotation_table,random_table))
 }
 ```
 
@@ -73,59 +98,58 @@ summary_table <- function(data_path){
 ## 2014 SCZ GWAS
 ```{r,echo=FALSE}
 library(reactable)
-SCZ_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ/")
-reactable(SCZ_annotation)
+result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ/")
+top_annotation <- result[[1]]
+random_annotation <- result[[2]]
+reactable(top_annotation,resizable = TRUE)
 
 for(i in 2:15){
-  print(paste0("Number of genes in ",colnames(SCZ_annotation)[i],": ",sum(SCZ_annotation[,i])))
+  fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+  print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+               sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
 }
 ```
 
 ## 2014 SCZ EUR ONLY GWAS
 ```{r,echo=FALSE}
-library(reactable)
-SCZ_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/")
-reactable(SCZ_annotation,resizable = TRUE)
+result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/")
+top_annotation <- result[[1]]
+random_annotation <- result[[2]]
+reactable(top_annotation,resizable = TRUE)
 
 for(i in 2:15){
-  print(paste0("Number of genes in ",colnames(SCZ_annotation)[i],": ",sum(SCZ_annotation[,i])))
+  fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+  print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+               sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
 }
 ```
 
 ## 2018 SCZ GWAS
 ```{r,echo=FALSE}
-library(reactable)
-SCZ_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/")
-reactable(SCZ_annotation,resizable = TRUE)
+result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/")
+top_annotation <- result[[1]]
+random_annotation <- result[[2]]
+reactable(top_annotation,resizable = TRUE)
 
 for(i in 2:15){
-  print(paste0("Number of genes in ",colnames(SCZ_annotation)[i],": ",sum(SCZ_annotation[,i])))
+  fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+  print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+               sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
 }
 ```
 
 ## 2020 SCZ GWAS
 ```{r,echo=FALSE}
-library(reactable)
-SCZ_2020_annotation <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/")
-reactable(SCZ_2020_annotation,resizable = TRUE)
+result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/")
+top_annotation <- result[[1]]
+random_annotation <- result[[2]]
+reactable(top_annotation,resizable = TRUE)
 
 for(i in 2:15){
-  print(paste0("Number of genes in ",colnames(SCZ_2020_annotation)[i],": ",sum(SCZ_2020_annotation[,i])))
+  fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+  print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+               sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
 }
-```
-
-
-
-```{r,echo=F,eval=F}
-fisher.test(matrix(c(sum(top_genes %in% SCHEMA_genes),length(top_genes)-sum(top_genes %in% SCHEMA_genes),sum(random_genes %in% SCHEMA_genes),1000-sum(random_genes %in% SCHEMA_genes)),ncol=2))
-
-fisher.test(matrix(c(sum(top_genes %in% ASD_genes),length(top_genes)-sum(top_genes %in% ASD_genes),sum(random_genes %in% ASD_genes),1000-sum(random_genes %in% ASD_genes)),ncol=2))
-
-fisher.test(matrix(c(sum(top_genes %in% DDD_genes),length(top_genes)-sum(top_genes %in% DDD_genes),sum(random_genes %in% DDD_genes),1000-sum(random_genes %in% DDD_genes)),ncol=2))
-
-fisher.test(matrix(c(sum(top_genes %in% PGC3_genes),length(top_genes)-sum(top_genes %in% PGC3_genes),sum(random_genes %in% PGC3_genes),1000-sum(random_genes %in% PGC3_genes)),ncol=2))
-
-fisher.test(matrix(c(sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),length(top_genes)-sum(top_genes %in% setdiff(PGC3_genes,SMR_genes)),sum(random_genes %in% setdiff(PGC3_genes,SMR_genes)),1000-sum(random_genes %in% setdiff(PGC3_genes,SMR_genes))),ncol=2))
 ```
 
 

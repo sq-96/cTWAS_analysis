@@ -529,16 +529,16 @@ data/SCZ_2020
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef9d573ecb62fb09064452e92e7ea4b2432f2b6fbtargetblankf9d573ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/f9d573ecb62fb09064452e92e7ea4b2432f2b6fb" target="_blank">f9d573e</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreee9c06cf4d262428c36c57124e2e3aedcdf389bd0targetblanke9c06cfa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/e9c06cf4d262428c36c57124e2e3aedcdf389bd0" target="_blank">e9c06cf</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef9d573ecb62fb09064452e92e7ea4b2432f2b6fbtargetblankf9d573ea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreee9c06cf4d262428c36c57124e2e3aedcdf389bd0targetblanke9c06cfa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/f9d573ecb62fb09064452e92e7ea4b2432f2b6fb" target="_blank">f9d573e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/e9c06cf4d262428c36c57124e2e3aedcdf389bd0" target="_blank">e9c06cf</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -677,6 +677,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e9c06cf4d262428c36c57124e2e3aedcdf389bd0/analysis/SCZ_Annotation_Analysis.Rmd" target="_blank">e9c06cf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-23
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/e9c06cf4d262428c36c57124e2e3aedcdf389bd0/docs/SCZ_Annotation_Analysis.html" target="_blank">e9c06cf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-04-23
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -973,140 +1007,81 @@ update
 </div>
 </div>
 </div>
-<pre class="r"><code>summary_table &lt;- function(data_path){
-  brain_tissue &lt;- list.files(data_path)
-  top_genes &lt;- c()
-  all_genes &lt;- c()
-  for(i in brain_tissue){
-    df &lt;- readRDS(paste0(data_path,i,&quot;/SCZ_&quot;,i,&quot;_ctwas_gene_res.RDS&quot;))
-    all_genes &lt;- c(all_genes,df$genename)
-    df &lt;- df[df$susie_pip&gt;=0.8,]
-    top_genes &lt;- c(top_genes,df$genename)
-  }
-  top_genes &lt;- unique(top_genes)
-  all_genes &lt;- unique(all_genes)
-  set.seed(2022)
-  random_genes &lt;- sample(all_genes,1000)
-  
-  library(readxl)
-  Supplementary_Table_15_MAGMA &lt;- read_excel(&quot;data/Supplementary Table 15 - MAGMA.xlsx&quot;, sheet = &quot;Gene Lists&quot;)
-  summary_known_genes_annotations &lt;- read_excel(&quot;data/summary_known_genes_annotations.xlsx&quot;, sheet = &quot;SCZ&quot;)
-  SCHEMA_genes &lt;- Supplementary_Table_15_MAGMA$`SCHEMA (p&lt;0.001)`
-  SCHEMA_genes &lt;- SCHEMA_genes[!is.na(SCHEMA_genes)]
-  ASD_genes &lt;- Supplementary_Table_15_MAGMA$`ASD (Satterstrom et al. 2019)`
-  ASD_genes &lt;- ASD_genes[!is.na(ASD_genes)]
-  DDD_genes &lt;- Supplementary_Table_15_MAGMA$`DDD (Kaplanis et al. 2019)`
-  DDD_genes &lt;- DDD_genes[!is.na(DDD_genes)]
-  PGC3_genes &lt;- summary_known_genes_annotations$`Gene Symbol`
-  PGC3_genes &lt;- PGC3_genes[!is.na(PGC3_genes)]
-  
-  Supplementary_Table_20_Prioritised_Genes &lt;- read_excel(&quot;data/Supplementary Table 20 - Prioritised Genes.xlsx&quot;, sheet = &quot;ST20 all criteria&quot;)
-  SMR_genes &lt;- Supplementary_Table_20_Prioritised_Genes[,c(&quot;Symbol.ID&quot;,&quot;SMRmap&quot;,&quot;SMRsingleGene&quot;,&quot;HI.C.SMR&quot;)]
-  SMR_genes[&quot;index&quot;] &lt;- (SMR_genes$SMRmap==1) | (SMR_genes$SMRsingleGene==1) | (SMR_genes$HI.C.SMR==1)
-  SMR_genes &lt;- SMR_genes[SMR_genes$index==1,]$Symbol.ID
-  
-  GO_files &lt;- list.files(&quot;data/GO_Terms&quot;, pattern=&quot;*.txt&quot;, full.names=F)
-  annotation_table &lt;- as.data.frame(matrix(0,nrow = length(top_genes),ncol = length(GO_files)))
-  GO_terms = c()
-  for(i in GO_files){GO_terms &lt;- c(GO_terms,unlist(strsplit(i, &quot;\\.&quot;))[1])}
-  colnames(annotation_table) &lt;- GO_terms
-  annotation_table[&quot;SCHEMA_genes&quot;] = as.integer(top_genes %in% SCHEMA_genes)
-  annotation_table[&quot;ASD_genes&quot;] = as.integer(top_genes %in% ASD_genes)
-  annotation_table[&quot;DDD_genes&quot;] = as.integer(top_genes %in% DDD_genes)
-  annotation_table[&quot;PGC3_genes&quot;] = as.integer(top_genes %in% PGC3_genes)
-  annotation_table[&quot;PGC3_genes_without_SMR&quot;] = as.integer(top_genes %in% setdiff(PGC3_genes,SMR_genes))
-  annotation_table &lt;- cbind(top_genes,annotation_table)
-  annotation_table$top_genes &lt;- as.character(annotation_table$top_genes)
-
-  for(i in 1:length(GO_files)){
-    GO_list &lt;- data.table::fread(paste0(&quot;data/GO_Terms/&quot;,GO_files[i]),header = F)
-    for(j in (1:length(top_genes))){
-      target_gene &lt;- top_genes[j]
-      if(target_gene %in% GO_list$V2){
-        annotation_table[j,i] = 1
-      }
-    }
-  }
-  annotation_table &lt;- annotation_table[,c(&quot;top_genes&quot;,&quot;SCHEMA_genes&quot;,&quot;ASD_genes&quot;,&quot;DDD_genes&quot;,
-                                        &quot;PGC3_genes&quot;,&quot;PGC3_genes_without_SMR&quot;,GO_terms)]
-  
-  return(annotation_table)
-}</code></pre>
 <div id="scz-gwas" class="section level2">
 <h2>2014 SCZ GWAS</h2>
 <div id="htmlwidget-8e6b770f23671000d46f" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8e6b770f23671000d46f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","HIST1H2BN","ZNF823","SF3B1","RP11-230C9.4","ARFGAP2","ELAC2","DIRAS1","KB-226F1.2","CRHR1","DISP3","GALNT2","RUNDC3B","FEZF1","PIK3IP1","SPCS1","THOC7","MAP3K11","ACOT1","ZSCAN12","ZKSCAN8","TBC1D29","CDC25C","CAAP1","FURIN","RRN3","SPECC1","TMEM56","LINC00390","CWC25","NPTXR","GNG12"],"SCHEMA_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"f08d7c1f5387bab246856e73e9c2a020","key":"f08d7c1f5387bab246856e73e9c2a020"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
-<pre><code>[1] &quot;Number of genes in SCHEMA_genes: 0&quot;
-[1] &quot;Number of genes in ASD_genes: 0&quot;
-[1] &quot;Number of genes in DDD_genes: 0&quot;
-[1] &quot;Number of genes in PGC3_genes: 6&quot;
-[1] &quot;Number of genes in PGC3_genes_without_SMR: 0&quot;
-[1] &quot;Number of genes in axon: 0&quot;
-[1] &quot;Number of genes in ion_channel_complex: 1&quot;
-[1] &quot;Number of genes in nervous_system_development: 0&quot;
-[1] &quot;Number of genes in neuronal_cell_body: 1&quot;
-[1] &quot;Number of genes in regulation_of_cation_channel_activity: 2&quot;
-[1] &quot;Number of genes in regulation_of_neuron_differentiation: 0&quot;
-[1] &quot;Number of genes in somatodendritic_compartment: 1&quot;
-[1] &quot;Number of genes in synapse: 0&quot;
-[1] &quot;Number of genes in voltage-gated_calcium_channel_activity: 0&quot;</code></pre>
+<script type="application/json" data-for="htmlwidget-8e6b770f23671000d46f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","HIST1H2BN","ZNF823","SF3B1","RP11-230C9.4","ARFGAP2","ELAC2","DIRAS1","KB-226F1.2","CRHR1","DISP3","GALNT2","RUNDC3B","FEZF1","PIK3IP1","SPCS1","THOC7","MAP3K11","ACOT1","ZSCAN12","ZKSCAN8","TBC1D29","CDC25C","CAAP1","FURIN","RRN3","SPECC1","TMEM56","LINC00390","CWC25","NPTXR","GNG12"],"SCHEMA_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"f08d7c1f5387bab246856e73e9c2a020","key":"f08d7c1f5387bab246856e73e9c2a020"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<pre><code>[1] &quot;# genes in SCHEMA_genes: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in ASD_genes: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in DDD_genes: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in PGC3_genes: 6 (P-value: 0, Odds Ratio: 75.039)&quot;
+[1] &quot;# genes in PGC3_genes_without_SMR: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in axon: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in ion_channel_complex: 1 (P-value: 0.982, Odds Ratio: 0.239)&quot;
+[1] &quot;# genes in nervous_system_development: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in neuronal_cell_body: 1 (P-value: 0.173, Odds Ratio: 6.391)&quot;
+[1] &quot;# genes in regulation_of_cation_channel_activity: 2 (P-value: 0.043, Odds Ratio: 7.303)&quot;
+[1] &quot;# genes in regulation_of_neuron_differentiation: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in somatodendritic_compartment: 1 (P-value: 0.925, Odds Ratio: 0.382)&quot;
+[1] &quot;# genes in synapse: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in voltage-gated_calcium_channel_activity: 0 (P-value: 1, Odds Ratio: 0)&quot;</code></pre>
 </div>
 <div id="scz-eur-only-gwas" class="section level2">
 <h2>2014 SCZ EUR ONLY GWAS</h2>
 <div id="htmlwidget-e957e35bb3718d7343dc" class="reactable html-widget" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-e957e35bb3718d7343dc">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","ZNF823","TRAPPC3","SF3B1","RP11-230C9.4","FAM120A","KB-226F1.2","ELAC2","DISP3","GALNT2","CNNM4","RUNDC3B","FEZF1","ARFGAP2","DIRAS1","TRIM28","MAP7D1","SERPINI1","PIK3IP1","TRIT1","SPCS1","ZNF354C","HLA-DMB","NT5C2","PCBP2","LINC01415","DDTL","THOC7","ENDOG","MAP3K11","FURIN","RRN3","SPECC1","VPS37A","COX8A","GNG12","AS3MT"],"SCHEMA_genes":[0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"e587bddaf243512e279e2120af662232","key":"e587bddaf243512e279e2120af662232"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
-<pre><code>[1] &quot;Number of genes in SCHEMA_genes: 1&quot;
-[1] &quot;Number of genes in ASD_genes: 0&quot;
-[1] &quot;Number of genes in DDD_genes: 1&quot;
-[1] &quot;Number of genes in PGC3_genes: 5&quot;
-[1] &quot;Number of genes in PGC3_genes_without_SMR: 0&quot;
-[1] &quot;Number of genes in axon: 0&quot;
-[1] &quot;Number of genes in ion_channel_complex: 2&quot;
-[1] &quot;Number of genes in nervous_system_development: 2&quot;
-[1] &quot;Number of genes in neuronal_cell_body: 0&quot;
-[1] &quot;Number of genes in regulation_of_cation_channel_activity: 2&quot;
-[1] &quot;Number of genes in regulation_of_neuron_differentiation: 2&quot;
-[1] &quot;Number of genes in somatodendritic_compartment: 1&quot;
-[1] &quot;Number of genes in synapse: 0&quot;
-[1] &quot;Number of genes in voltage-gated_calcium_channel_activity: 0&quot;</code></pre>
+<pre><code>[1] &quot;# genes in SCHEMA_genes: 1 (P-value: 0.135, Odds Ratio: 9.176)&quot;
+[1] &quot;# genes in ASD_genes: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in DDD_genes: 1 (P-value: 0.422, Odds Ratio: 1.955)&quot;
+[1] &quot;# genes in PGC3_genes: 5 (P-value: 0, Odds Ratio: 25.562)&quot;
+[1] &quot;# genes in PGC3_genes_without_SMR: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in axon: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in ion_channel_complex: 2 (P-value: 0.885, Odds Ratio: 0.532)&quot;
+[1] &quot;# genes in nervous_system_development: 2 (P-value: 0.291, Odds Ratio: 1.982)&quot;
+[1] &quot;# genes in neuronal_cell_body: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in regulation_of_cation_channel_activity: 2 (P-value: 0.086, Odds Ratio: 4.69)&quot;
+[1] &quot;# genes in regulation_of_neuron_differentiation: 2 (P-value: 0.423, Odds Ratio: 1.446)&quot;
+[1] &quot;# genes in somatodendritic_compartment: 1 (P-value: 0.89, Odds Ratio: 0.451)&quot;
+[1] &quot;# genes in synapse: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in voltage-gated_calcium_channel_activity: 0 (P-value: 1, Odds Ratio: 0)&quot;</code></pre>
 </div>
 <div id="scz-gwas-1" class="section level2">
 <h2>2018 SCZ GWAS</h2>
 <div id="htmlwidget-46b73ee12cef28ca6e99" class="reactable html-widget" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-46b73ee12cef28ca6e99">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["AC012074.2","HIST1H2BN","RP11-408A13.3","RP11-247A12.7","B3GAT1","ZNF823","TMEM222","SF3B1","RP11-230C9.4","BHLHE41","JSRP1","SYTL1","PACSIN3","GALNT2","FEZF1","ELAC2","1","MAP3K11","SSPN","NPIPA1","PTK6","TRIT1","SPCS1","PCBP2","RCBTB1","ARMC7","FOXO6","THOC7","NT5DC3","GRID1","C19orf35","VRK2","VPS8","LINC00242","GAL","FANCI","FURIN","RRN3","SPECC1","IRF3","TMEM56","ZNF844","PDXDC1"],"SCHEMA_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"PGC3_genes":[0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"5320ae0f5b4ee111259baec7046f5d45","key":"5320ae0f5b4ee111259baec7046f5d45"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
-<pre><code>[1] &quot;Number of genes in SCHEMA_genes: 0&quot;
-[1] &quot;Number of genes in ASD_genes: 0&quot;
-[1] &quot;Number of genes in DDD_genes: 1&quot;
-[1] &quot;Number of genes in PGC3_genes: 6&quot;
-[1] &quot;Number of genes in PGC3_genes_without_SMR: 1&quot;
-[1] &quot;Number of genes in axon: 0&quot;
-[1] &quot;Number of genes in ion_channel_complex: 3&quot;
-[1] &quot;Number of genes in nervous_system_development: 2&quot;
-[1] &quot;Number of genes in neuronal_cell_body: 2&quot;
-[1] &quot;Number of genes in regulation_of_cation_channel_activity: 1&quot;
-[1] &quot;Number of genes in regulation_of_neuron_differentiation: 2&quot;
-[1] &quot;Number of genes in somatodendritic_compartment: 4&quot;
-[1] &quot;Number of genes in synapse: 0&quot;
-[1] &quot;Number of genes in voltage-gated_calcium_channel_activity: 0&quot;</code></pre>
+<pre><code>[1] &quot;# genes in SCHEMA_genes: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in ASD_genes: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in DDD_genes: 1 (P-value: 0.345, Odds Ratio: 2.618)&quot;
+[1] &quot;# genes in PGC3_genes: 6 (P-value: 0, Odds Ratio: 31.867)&quot;
+[1] &quot;# genes in PGC3_genes_without_SMR: 1 (P-value: 0.155, Odds Ratio: 7.874)&quot;
+[1] &quot;# genes in axon: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in ion_channel_complex: 3 (P-value: 0.856, Odds Ratio: 0.62)&quot;
+[1] &quot;# genes in nervous_system_development: 2 (P-value: 0.323, Odds Ratio: 1.826)&quot;
+[1] &quot;# genes in neuronal_cell_body: 2 (P-value: 0.124, Odds Ratio: 3.695)&quot;
+[1] &quot;# genes in regulation_of_cation_channel_activity: 1 (P-value: 0.224, Odds Ratio: 4.724)&quot;
+[1] &quot;# genes in regulation_of_neuron_differentiation: 2 (P-value: 0.499, Odds Ratio: 1.235)&quot;
+[1] &quot;# genes in somatodendritic_compartment: 4 (P-value: 0.17, Odds Ratio: 1.989)&quot;
+[1] &quot;# genes in synapse: 0 (P-value: 1, Odds Ratio: 0)&quot;
+[1] &quot;# genes in voltage-gated_calcium_channel_activity: 0 (P-value: 1, Odds Ratio: 0)&quot;</code></pre>
 </div>
 <div id="scz-gwas-2" class="section level2">
 <h2>2020 SCZ GWAS</h2>
 <div id="htmlwidget-f229e59809a3ef7a5ad4" class="reactable html-widget" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-f229e59809a3ef7a5ad4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"top_genes":["TMEM56","AC012074.2","HIST1H2BN","UBXN2B","PIGO","TLE4","RPL12","1","SNX19","B3GAT1","1","CPNE2","ACE","ZNF823","CD40","1","RETSAT","CELSR3","LSMEM2","GNL3","PDCD10","ABCG2","HLA-DMA","LINC01268","KMT2E","FAM135B","FANCG","KCTD21","KRT81","C12orf10","ACADVL","ELAC2","LINC00320","METTL21A","FARP2","HLA-DMB","PACSIN3","SPPL3","GTF2A1","MYO19","MPPED1","GALNT2","ACTR1B","KCNMB3","NSUN2","SEMA3D","RUNDC3B","FEZF1","SLC4A2","SLF2","C11orf80","MLF2","SNTB2","YWHAE","ATP1B3","SERPINI1","MAP3K11","ACY3","FANCI","MMD","EDEM3","RASSF1","RCBTB1","CEP95","LINC01415","NUDT4","APC2","CACNB3","NUP88","METTL23","FURIN","IRF3","1","BTN2A2","RIT1","1","VSIG2","C1orf122","DNAH7","LY6H","PUF60"],"SCHEMA_genes":[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ASD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"DDD_genes":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1],"PGC3_genes":[0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0],"PGC3_genes_without_SMR":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],"axon":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0,0,0],"ion_channel_complex":[0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,1,0],"nervous_system_development":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0],"neuronal_cell_body":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0,0,0],"regulation_of_cation_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],"regulation_of_neuron_differentiation":[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0],"somatodendritic_compartment":[0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,1,0,0,0,1,0],"synapse":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0],"voltage-gated_calcium_channel_activity":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"columns":[{"accessor":"top_genes","name":"top_genes","type":"character"},{"accessor":"SCHEMA_genes","name":"SCHEMA_genes","type":"numeric"},{"accessor":"ASD_genes","name":"ASD_genes","type":"numeric"},{"accessor":"DDD_genes","name":"DDD_genes","type":"numeric"},{"accessor":"PGC3_genes","name":"PGC3_genes","type":"numeric"},{"accessor":"PGC3_genes_without_SMR","name":"PGC3_genes_without_SMR","type":"numeric"},{"accessor":"axon","name":"axon","type":"numeric"},{"accessor":"ion_channel_complex","name":"ion_channel_complex","type":"numeric"},{"accessor":"nervous_system_development","name":"nervous_system_development","type":"numeric"},{"accessor":"neuronal_cell_body","name":"neuronal_cell_body","type":"numeric"},{"accessor":"regulation_of_cation_channel_activity","name":"regulation_of_cation_channel_activity","type":"numeric"},{"accessor":"regulation_of_neuron_differentiation","name":"regulation_of_neuron_differentiation","type":"numeric"},{"accessor":"somatodendritic_compartment","name":"somatodendritic_compartment","type":"numeric"},{"accessor":"synapse","name":"synapse","type":"numeric"},{"accessor":"voltage-gated_calcium_channel_activity","name":"voltage-gated_calcium_channel_activity","type":"numeric"}],"resizable":true,"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"47aa45847fc3a42de06d3f8cd504b657","key":"47aa45847fc3a42de06d3f8cd504b657"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
-<pre><code>[1] &quot;Number of genes in SCHEMA_genes: 2&quot;
-[1] &quot;Number of genes in ASD_genes: 1&quot;
-[1] &quot;Number of genes in DDD_genes: 3&quot;
-[1] &quot;Number of genes in PGC3_genes: 7&quot;
-[1] &quot;Number of genes in PGC3_genes_without_SMR: 2&quot;
-[1] &quot;Number of genes in axon: 4&quot;
-[1] &quot;Number of genes in ion_channel_complex: 11&quot;
-[1] &quot;Number of genes in nervous_system_development: 3&quot;
-[1] &quot;Number of genes in neuronal_cell_body: 3&quot;
-[1] &quot;Number of genes in regulation_of_cation_channel_activity: 3&quot;
-[1] &quot;Number of genes in regulation_of_neuron_differentiation: 5&quot;
-[1] &quot;Number of genes in somatodendritic_compartment: 8&quot;
-[1] &quot;Number of genes in synapse: 2&quot;
-[1] &quot;Number of genes in voltage-gated_calcium_channel_activity: 0&quot;</code></pre>
+<pre><code>[1] &quot;# genes in SCHEMA_genes: 2 (P-value: 0.068, Odds Ratio: 6.282)&quot;
+[1] &quot;# genes in ASD_genes: 1 (P-value: 0.421, Odds Ratio: 2.069)&quot;
+[1] &quot;# genes in DDD_genes: 3 (P-value: 0.067, Odds Ratio: 3.799)&quot;
+[1] &quot;# genes in PGC3_genes: 7 (P-value: 0, Odds Ratio: 23.363)&quot;
+[1] &quot;# genes in PGC3_genes_without_SMR: 2 (P-value: 0.006, Odds Ratio: Inf)&quot;
+[1] &quot;# genes in axon: 4 (P-value: 0.021, Odds Ratio: 4.658)&quot;
+[1] &quot;# genes in ion_channel_complex: 11 (P-value: 0.191, Odds Ratio: 1.43)&quot;
+[1] &quot;# genes in nervous_system_development: 3 (P-value: 0.266, Odds Ratio: 1.792)&quot;
+[1] &quot;# genes in neuronal_cell_body: 3 (P-value: 0.054, Odds Ratio: 4.225)&quot;
+[1] &quot;# genes in regulation_of_cation_channel_activity: 3 (P-value: 0.011, Odds Ratio: 9.532)&quot;
+[1] &quot;# genes in regulation_of_neuron_differentiation: 5 (P-value: 0.174, Odds Ratio: 1.813)&quot;
+[1] &quot;# genes in somatodendritic_compartment: 8 (P-value: 0.047, Odds Ratio: 2.22)&quot;
+[1] &quot;# genes in synapse: 2 (P-value: 0.006, Odds Ratio: Inf)&quot;
+[1] &quot;# genes in voltage-gated_calcium_channel_activity: 0 (P-value: 1, Odds Ratio: 0)&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
