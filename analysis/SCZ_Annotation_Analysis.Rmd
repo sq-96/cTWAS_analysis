@@ -58,7 +58,7 @@ summary_table <- function(data_path){
     for(j in (1:length(top_genes))){
       target_gene <- top_genes[j]
       if(target_gene %in% GO_list$V2){
-        annotation_table[j,i] = 1
+        annotation_table[j,i+1] = 1
       }
     }
   }
