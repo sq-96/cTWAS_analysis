@@ -62,8 +62,8 @@ summary_table <- function(data_path){
       }
     }
   }
-  annotation_table <- annotation_table[,c("top_genes","SCHEMA_genes","ASD_genes","DDD_genes",
-                                        "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
+  #annotation_table <- annotation_table[,c("top_genes","SCHEMA_genes","ASD_genes","DDD_genes",
+  #                                      "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
   
   
   random_table <- as.data.frame(matrix(0,nrow = length(random_genes),ncol = length(GO_files)))
@@ -81,12 +81,12 @@ summary_table <- function(data_path){
     for(j in (1:length(random_genes))){
       target_gene <- random_genes[j]
       if(target_gene %in% GO_list$V2){
-        random_table[j,i] = 1
+        random_table[j,i+1] = 1
       }
     }
   }
-  random_table <- random_table[,c("random_genes","SCHEMA_genes","ASD_genes","DDD_genes",
-                                        "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
+  #random_table <- random_table[,c("random_genes","SCHEMA_genes","ASD_genes","DDD_genes",
+  #                                      "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
   
   
   
