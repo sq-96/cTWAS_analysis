@@ -62,6 +62,22 @@ summary_table <- function(data_path){
       }
     }
   }
+  
+  
+  pip_table <- as.data.frame(matrix(NA,nrow = length(top_genes),ncol = length(brain_tissue)))
+  colnames(pip_table) <- brain_tissue
+  
+  for(i in 1:length(brain_tissue)){
+    df <- readRDS(paste0(data_path,brain_tissue[i],"/SCZ_",brain_tissue[i],"_ctwas_gene_res.RDS"))
+    for(j in (1:length(top_genes))){
+      target_gene <- top_genes[j]
+      if(target_gene %in% df$genename){
+        pip_table[j,i] = round(df[df$genename==target_gene,]$susie_pip,3)
+      }
+    }
+  }
+  
+  annotation_table <- cbind(annotation_table,pip_table)
   #annotation_table <- annotation_table[,c("top_genes","SCHEMA_genes","ASD_genes","DDD_genes",
   #                                      "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
   
@@ -89,6 +105,63 @@ summary_table <- function(data_path){
   #                                      "PGC3_genes","PGC3_genes_without_SMR",GO_terms)]
   
   
+  # snpz_table <- as.data.frame(matrix(NA,nrow = length(top_genes),ncol = length(brain_tissue)))
+  # colnames(snpz_table) <- paste(brain_tissue, "_no_significant_snp", sep="")
+  # for(i in 1:length(brain_tissue)){
+  #   gene_df <- readRDS(paste0(data_path,brain_tissue[i],"/SCZ_",brain_tissue[i],"_ctwas_gene_res.RDS"))
+  #   snp_df <- readRDS(paste0(data_path,brain_tissue[i],"/SCZ_",brain_tissue[i],"_ctwas_snp_res.RDS"))
+  #   for(j in (1:length(top_genes))){
+  #     target_gene <- top_genes[j]
+  #     if(target_gene %in% gene_df$genename){
+  #       location <- gene_df[gene_df$genename==target_gene,]$region_tag
+  #       snp_maxz <- max(abs(snp_df[snp_df$region_tag==location,]$z))
+  #       if(snp_maxz<qnorm(1-(5E-8/2))){
+  #         snpz_table[j,i] = 1
+  #       }
+  #       else{
+  #         snpz_table[j,i] = 0
+  #       }
+  #     }
+  #   }
+  # }
+  # 
+  # annotation_table["no_significant_SNP"] <- 0
+  # for(j in (1:length(top_genes))){
+  #   if(length(which(snpz_table[j,]==0))==0){
+  #     annotation_table[j,"no_significant_SNP"]=TRUE
+  #   }
+  # }
+  # 
+  # neargene_table <- as.data.frame(matrix(NA,nrow = length(top_genes),ncol = length(brain_tissue)))
+  # colnames(neargene_table) <- paste(brain_tissue, "_nearest_gene", sep="")
+  # for(i in 1:length(brain_tissue)){
+  #   gene_df <- readRDS(paste0(data_path,brain_tissue[i],"/SCZ_",brain_tissue[i],"_ctwas_gene_res.RDS"))
+  #   snp_df <- readRDS(paste0(data_path,brain_tissue[i],"/SCZ_",brain_tissue[i],"_ctwas_snp_res.RDS"))
+  #   for(j in (1:length(top_genes))){
+  #     target_gene <- top_genes[j]
+  #     if(target_gene %in% gene_df$genename){
+  #       location <- gene_df[gene_df$genename==target_gene,]$region_tag
+  #       snp_region <- snp_df[snp_df$region_tag==location,]
+  #       gene_region <- gene_df[gene_df$region_tag==location,]
+  #       lead_pos <- snp_region[which.max(abs(snp_region$z)),]$pos
+  #       gene_region["distance"] <- abs(gene_region$pos-lead_pos)
+  #       closest_gene <- gene_region[which.min(gene_region$distance),]$genename
+  #       if(target_gene == closest_gene){
+  #         neargene_table[j,i]=1
+  #       }
+  #       else{
+  #         neargene_table[j,i]=0
+  #       }
+  #     }
+  #   }
+  # }
+  # 
+  # annotation_table["nearest_gene"] <- 1
+  # for(j in (1:length(top_genes))){
+  #   if(length(which(neargene_table[j,]==0))==0){
+  #     annotation_table[j,"nearest_gene"]=0
+  #   }
+  # }
   
   return(list(annotation_table,random_table))
 }
@@ -98,58 +171,218 @@ summary_table <- function(data_path){
 ## 2014 SCZ GWAS
 ```{r,echo=FALSE}
 library(reactable)
+library("xlsx")
 result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ/")
 top_annotation <- result[[1]]
-random_annotation <- result[[2]]
-reactable(top_annotation,resizable = TRUE)
+# random_annotation <- result[[2]]
+# reactable(top_annotation,resizable = TRUE)
+# 
+# for(i in 2:15){
+#   fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+#   print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+#                sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
+# }
 
-for(i in 2:15){
-  fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
-  print(paste0("# genes in ",colnames(top_annotation)[i],": ",
-               sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
-}
+top_annotation <- merge(top_annotation,G_list,by = "top_genes",all.x = T)
+
+write.xlsx(top_annotation, "SCZ_annotation.xlsx", sheetName = "SCZ_2014", 
+  col.names = T, row.names = F, append = FALSE)
 ```
 
 ## 2014 SCZ EUR ONLY GWAS
 ```{r,echo=FALSE}
 result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR/")
 top_annotation <- result[[1]]
-random_annotation <- result[[2]]
-reactable(top_annotation,resizable = TRUE)
+# random_annotation <- result[[2]]
+# reactable(top_annotation,resizable = TRUE)
 
-for(i in 2:15){
-  fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
-  print(paste0("# genes in ",colnames(top_annotation)[i],": ",
-               sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
-}
+# for(i in 2:15){
+#   fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+#   print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+#                sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
+# }
+top_annotation <- merge(top_annotation,G_list,by = "top_genes",all.x = T)
+
+write.xlsx(top_annotation, "SCZ_annotation.xlsx", sheetName = "SCZ_2014_EUR_ONLY", 
+  col.names = T, row.names = F, append = T)
 ```
 
 ## 2018 SCZ GWAS
 ```{r,echo=FALSE}
 result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/")
 top_annotation <- result[[1]]
-random_annotation <- result[[2]]
-reactable(top_annotation,resizable = TRUE)
+# random_annotation <- result[[2]]
+# reactable(top_annotation,resizable = TRUE)
+# 
+# for(i in 2:15){
+#   fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+#   print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+#                sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
+# }
+top_annotation <- merge(top_annotation,G_list,by = "top_genes",all.x = T)
 
-for(i in 2:15){
-  fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
-  print(paste0("# genes in ",colnames(top_annotation)[i],": ",
-               sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
-}
+write.xlsx(top_annotation, "SCZ_annotation.xlsx", sheetName = "SCZ_2018", 
+  col.names = T, row.names = F, append = T)
 ```
 
 ## 2020 SCZ GWAS
 ```{r,echo=FALSE}
 result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/")
 top_annotation <- result[[1]]
-random_annotation <- result[[2]]
-reactable(top_annotation,resizable = TRUE)
+# random_annotation <- result[[2]]
+# reactable(top_annotation,resizable = TRUE)
+# 
+# for(i in 2:15){
+#   fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+#   print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+#                sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
+# }
+top_annotation <- merge(top_annotation,G_list,by = "top_genes",all.x = T)
 
-for(i in 2:15){
-  fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
-  print(paste0("# genes in ",colnames(top_annotation)[i],": ",
-               sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
+write.xlsx(top_annotation, "SCZ_annotation.xlsx", sheetName = "SCZ_2020", 
+  col.names = T, row.names = F, append = T)
+```
+
+
+```{r}
+trait_id <- "SCZ_2020"
+load(paste0("G_list.RData"))
+load(paste0("z_snp_pos_", trait_id, ".RData"))
+```
+
+```{r}
+# trait_id <- "SCZ_2020"
+# source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
+# trait_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id)
+# results_dirs <- list.dirs(trait_dir, recursive=F)
+```
+
+```{r}
+# results_dir <- results_dirs[1]
+# weight <- rev(unlist(strsplit(results_dir, "/")))[1]
+# analysis_id <- paste("SCZ", weight, sep="_")
+# load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+# 
+# LDR_dir <- "/project2/mstephens/wcrouse/UKB_LDR_0.1/"
+# LDR_files <- list.files(LDR_dir)
+# LDR_files <- LDR_files[grep(".Rvar" ,LDR_files)]
+# 
+# z_snp$chrom <- as.integer(NA)
+# z_snp$pos <- as.integer(NA)
+# 
+# ptm <- proc.time()
+# 
+# for (i in 1:length(LDR_files)){
+#   print(i)
+#   
+#   LDR_info <- read.table(paste0(LDR_dir, LDR_files[i]), header=T)
+#   z_snp_index <- which(z_snp$id %in% LDR_info$id)
+#   z_snp[z_snp_index,c("chrom", "pos")] <- as.data.frame(t(sapply(z_snp_index, function(x){unlist(LDR_info[match(z_snp$id[x], LDR_info$id),c("chrom", "pos")])})))
+# }
+# 
+# 
+# proc.time() - ptm
+# 
+# z_snp <- z_snp[,c("id", "z", "chrom","pos")]
+# save(z_snp, file=paste0("z_snp_pos_", trait_id, ".RData"))
+```
+
+```{r}
+G_list$nearby <- NA
+
+window_size <- 500000
+
+for (chr in 1:22){
+  #index genes on chromosome
+  G_list_index <- which(G_list$chromosome_name==chr)
+  
+  #subset z_snp to chromosome, then subset to significant genome-wide significant variants
+  z_snp_chr <- z_snp[z_snp$chrom==chr,,drop=F]
+  z_snp_chr <- z_snp_chr[abs(z_snp_chr$z)>qnorm(1-(5E-8/2), lower=T),,drop=F]
+  
+  #iterate over genes on chromsome and check if a genome-wide significant SNP is within the window
+  for (i in G_list_index){
+    window_start <- G_list$start_position[i] - window_size
+    window_end <- G_list$end_position[i] + window_size
+    G_list$nearby[i] <- any(z_snp_chr$pos>=window_start & z_snp_chr$pos<=window_end)
+  }
+}
+
+```
+
+```{r}
+####################
+#identify genes that are nearest to lead genome-wide significant variant ("nearest")
+G_list$nearest <- F
+
+window_size <- 500000
+
+for (chr in 1:22){
+  #index genes on chromosome
+  G_list_index <- which(G_list$chromosome_name==chr)
+  
+  #subset z_snp to chromosome, then subset to significant genome-wide significant variants
+  z_snp_chr <- z_snp[z_snp$chrom==chr,,drop=F]
+  z_snp_chr <- z_snp_chr[abs(z_snp_chr$z)>qnorm(1-(5E-8/2), lower=T),,drop=F]
+  
+  count <- 0
+  
+  while (nrow(z_snp_chr)>0){
+    lead_index <- which.max(abs(z_snp_chr$z))
+    lead_position <- z_snp_chr$pos[lead_index]
+    
+    distances <- sapply(G_list_index, function(i){
+      if (lead_position >= G_list$start_position[i] & lead_position <= G_list$end_position[i]){
+        distance <- 0
+      } else {
+        distance <- min(abs(G_list$start_position[i] - lead_position), abs(G_list$end_position[i] - lead_position))
+      }
+      distance
+    })
+    
+    min_distance <- min(distances)
+    
+    G_list$nearest[G_list_index[distances==min_distance]] <- 1
+    
+    window_start <- lead_position - window_size
+    window_end <- lead_position + window_size
+    z_snp_chr <- z_snp_chr[!(z_snp_chr$pos>=window_start & z_snp_chr$pos<=window_end),,drop=F]
+  }
 }
 ```
 
+```{r}
+G_list <- G_list[,c("hgnc_symbol","nearby","nearest")]
+colnames(G_list) <- c("top_genes","nearby","nearest")
+```
+
+```{r}
+library(reticulate)
+use_python("/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python",required=T)
+```
+
+```{r}
+a = 1
+b = c(1,2,3)
+```
+
+
+```{python}
+from pyensembl import EnsemblRelease
+
+# release 77 uses human reference genome GRCh38
+data = EnsemblRelease(77)
+
+# will return ['HLA-A']
+gene_names = data.gene_names_at_locus(contig=6, position=29945884)
+
+# get all exons associated with HLA-A
+exon_ids  = data.exon_ids_of_gene_name('HLA-A')
+```
+
+```{python}
+r.b[1]
+
+genes_at_locus(contig, position, end=None, strand=None)
+```
 

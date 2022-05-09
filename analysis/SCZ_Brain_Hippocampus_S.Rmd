@@ -86,6 +86,7 @@ ctwas_gene_res$intron_id <- ctwas_gene_res$id
 library(EnsDb.Hsapiens.v79)
 edb <- EnsDb.Hsapiens.v79
 
+start_time <- Sys.time()
 for(i in 1:dim(ctwas_gene_res)[1]){
   info <- strsplit(ctwas_gene_res[i,'id'], "_")[[1]]
   chr = as.numeric(info[2])
@@ -99,6 +100,8 @@ for(i in 1:dim(ctwas_gene_res)[1]){
     ctwas_gene_res[i,"type"] <- gn$gene_biotype[1]
     }
 }
+end_time <- Sys.time()
+end_time - start_time
 ```
 
 ```{r}
@@ -114,8 +117,8 @@ ctwas_snp_res$genename=NA
 ctwas_snp_res$gene_type=NA
 ctwas_snp_res$intron_id=NA
 
-saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
-saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+#saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+#saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
 ```
 
 ```{r eval=FALSE}

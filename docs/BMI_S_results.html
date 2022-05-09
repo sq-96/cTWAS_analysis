@@ -385,7 +385,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-03-01
+<strong>Last updated:</strong> 2022-05-09
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -409,55 +409,39 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree8ba9d7da6c75f3fab885e504ba3029027b5dcbb5targetblank8ba9d7da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/8ba9d7da6c75f3fab885e504ba3029027b5dcbb5" target="_blank">8ba9d7d</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree622ebe776ee61718d107ccc0059205b8074fb329targetblank622ebe7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/622ebe776ee61718d107ccc0059205b8074fb329" target="_blank">622ebe7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree8ba9d7da6c75f3fab885e504ba3029027b5dcbb5targetblank8ba9d7da" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree622ebe776ee61718d107ccc0059205b8074fb329targetblank622ebe7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/8ba9d7da6c75f3fab885e504ba3029027b5dcbb5" target="_blank">8ba9d7d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/622ebe776ee61718d107ccc0059205b8074fb329" target="_blank">622ebe7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
     Ignored:    .ipynb_checkpoints/
     Ignored:    data/AF/
 
 Untracked files:
+    Untracked:  G_list.RData
     Untracked:  Rplot.png
+    Untracked:  SCZ_annotation.xlsx
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/AF_results.Rmd
-    Untracked:  analysis/Autism_Brain_Amygdala.Rmd
-    Untracked:  analysis/Autism_Brain_Anterior_cingulate_cortex_BA24.Rmd
-    Untracked:  analysis/Autism_Brain_Caudate_basal_ganglia.Rmd
-    Untracked:  analysis/Autism_Brain_Cerebellar_Hemisphere.Rmd
-    Untracked:  analysis/Autism_Brain_Cerebellum.Rmd
-    Untracked:  analysis/Autism_Brain_Cortex.Rmd
-    Untracked:  analysis/Autism_Brain_Frontal_Cortex_BA9.Rmd
-    Untracked:  analysis/Autism_Brain_Hippocampus.Rmd
-    Untracked:  analysis/Autism_Brain_Hypothalamus.Rmd
-    Untracked:  analysis/Autism_Brain_Nucleus_accumbens_basal_ganglia.Rmd
-    Untracked:  analysis/Autism_Brain_Putamen_basal_ganglia.Rmd
-    Untracked:  analysis/Autism_Brain_Spinal_cord_cervical_c-1.Rmd
-    Untracked:  analysis/Autism_Brain_Substantia_nigra.Rmd
-    Untracked:  analysis/Autism_results.Rmd
-    Untracked:  analysis/BMI_S_results.Rmd
-    Untracked:  analysis/Glucose_Adipose_Subcutaneous.Rmd
-    Untracked:  analysis/Glucose_Adipose_Visceral_Omentum.Rmd
-    Untracked:  analysis/Splicing_Test.Rmd
-    Untracked:  analysis/T2D_results.Rmd
+    Untracked:  analysis/Untitled.ipynb
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  code/AF_out/
     Untracked:  code/Autism_out/
@@ -465,12 +449,17 @@ Untracked files:
     Untracked:  code/BMI_out/
     Untracked:  code/Glucose_out/
     Untracked:  code/LDL_S_out/
+    Untracked:  code/SCZ_2014_EUR_out/
+    Untracked:  code/SCZ_2018_out/
+    Untracked:  code/SCZ_2020_Single_out/
+    Untracked:  code/SCZ_2020_out/
     Untracked:  code/SCZ_S_out/
     Untracked:  code/SCZ_out/
     Untracked:  code/T2D_out/
     Untracked:  code/ctwas_config.R
     Untracked:  code/mapping.R
     Untracked:  code/out/
+    Untracked:  code/process_scz_2018_snps.R
     Untracked:  code/run_AF_analysis.sbatch
     Untracked:  code/run_AF_analysis.sh
     Untracked:  code/run_AF_ctwas_rss_LDR.R
@@ -489,6 +478,18 @@ Untracked files:
     Untracked:  code/run_LDL_analysis_S.sbatch
     Untracked:  code/run_LDL_analysis_S.sh
     Untracked:  code/run_LDL_ctwas_rss_LDR_S.R
+    Untracked:  code/run_SCZ_2014_EUR_analysis.sbatch
+    Untracked:  code/run_SCZ_2014_EUR_analysis.sh
+    Untracked:  code/run_SCZ_2014_EUR_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_2018_analysis.sbatch
+    Untracked:  code/run_SCZ_2018_analysis.sh
+    Untracked:  code/run_SCZ_2018_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_2020_Single_analysis.sbatch
+    Untracked:  code/run_SCZ_2020_Single_analysis.sh
+    Untracked:  code/run_SCZ_2020_Single_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_2020_analysis.sbatch
+    Untracked:  code/run_SCZ_2020_analysis.sh
+    Untracked:  code/run_SCZ_2020_ctwas_rss_LDR.R
     Untracked:  code/run_SCZ_analysis.sbatch
     Untracked:  code/run_SCZ_analysis.sh
     Untracked:  code/run_SCZ_analysis_S.sbatch
@@ -498,27 +499,44 @@ Untracked files:
     Untracked:  code/run_T2D_analysis.sbatch
     Untracked:  code/run_T2D_analysis.sh
     Untracked:  code/run_T2D_ctwas_rss_LDR.R
+    Untracked:  code/wflow_build.R
+    Untracked:  code/wflow_build.sbatch
     Untracked:  data/.ipynb_checkpoints/
-    Untracked:  data/Autism/
     Untracked:  data/BMI/
-    Untracked:  data/BMI_S/
-    Untracked:  data/Glucose/
-    Untracked:  data/LDL_S/
+    Untracked:  data/GO_Terms/
+    Untracked:  data/PGC3_SCZ_wave3_public.v2.tsv
     Untracked:  data/SCZ/
+    Untracked:  data/SCZ_2014_EUR/
+    Untracked:  data/SCZ_2018/
+    Untracked:  data/SCZ_2020/
+    Untracked:  data/SCZ_2020_Single/
     Untracked:  data/SCZ_S/
+    Untracked:  data/Supplementary Table 15 - MAGMA.xlsx
+    Untracked:  data/Supplementary Table 20 - Prioritised Genes.xlsx
     Untracked:  data/T2D/
-    Untracked:  data/TEST/
     Untracked:  data/UKBB/
     Untracked:  data/UKBB_SNPs_Info.text
     Untracked:  data/gene_OMIM.txt
     Untracked:  data/gene_pip_0.8.txt
     Untracked:  data/mashr_Heart_Atrial_Appendage.db
     Untracked:  data/mashr_sqtl/
+    Untracked:  data/scz_2018.RDS
     Untracked:  data/summary_known_genes_annotations.xlsx
     Untracked:  data/untitled.txt
+    Untracked:  top_genes_32.txt
+    Untracked:  top_genes_37.txt
+    Untracked:  top_genes_43.txt
+    Untracked:  top_genes_81.txt
+    Untracked:  z_snp_pos_SCZ.RData
+    Untracked:  z_snp_pos_SCZ_2014_EUR.RData
+    Untracked:  z_snp_pos_SCZ_2018.RData
+    Untracked:  z_snp_pos_SCZ_2020.RData
 
 Unstaged changes:
-    Modified:   analysis/index.Rmd
+    Modified:   analysis/BMI_S_results.Rmd
+    Modified:   analysis/SCZ_Annotation_Analysis.Rmd
+    Modified:   analysis/SCZ_Brain_Cerebellum_S.Rmd
+    Modified:   analysis/SCZ_Brain_Hippocampus_S.Rmd
 
 </code></pre>
 <p>
@@ -531,9 +549,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/BMI_S_results.Rmd</code>) and HTML (<code>docs/BMI_S_results.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9f9aa752ef630a936a70a2c84129063ca33aebd2/analysis/BMI_S_results.Rmd" target="_blank">9f9aa75</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-03-01
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/b9d5714c809341fe50f29324e137caad491d56c8/docs/BMI_S_results.html" target="_blank">b9d5714</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-03-01
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -546,7 +624,7 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <p>BMI - Brain Hypothalamus <a href="BMI_Brain_Hypothalamus_S.html">link</a>.</p>
 <p>BMI - Brain Hippocampus <a href="BMI_Brain_Hippocampus_S.html">link</a>.</p>
 <p>BMI - Brain Frontal Cortex BA9 <a href="BMI_Brain_Frontal_Cortex_BA9_S.html">link</a>.</p>
-<p>BMI - Brain Cerebellum <a href="BMI_Brain_Cerebellum_S.html">link</a>.</p>
+<p>BMI - Brain Cerebellum <a href="SCZ_Brain_Cerebellum_S.html">link</a>.</p>
 <p>BMI - Brain Cerebellar Hemisphere <a href="BMI_Brain_Cerebellar_Hemisphere_S.html">link</a>.</p>
 <p>BMI - Brain Caudate basal ganglia <a href="BMI_Brain_Caudate_basal_ganglia_S.html">link</a>.</p>
 <p>BMI - Brain Anterior cingulate cortex BA24 <a href="BMI_Brain_Anterior_cingulate_cortex_BA24_S.html">link</a>.</p>
