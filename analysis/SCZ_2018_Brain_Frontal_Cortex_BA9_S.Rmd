@@ -1,14 +1,14 @@
 ---
-title: "SCZ - Brain_Cerebellum"
+title: "SCZ 2018 - Brain_Frontal_Cortex_BA9"
 author: "sheng Qian"
 date: "2021-2-6"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "SCZ_Brain_Cerebellum"
-  trait_id: "SCZ_S"
-  weight: "Brain_Cerebellum"
+  analysis_id: "SCZ_Brain_Frontal_Cortex_BA9"
+  trait_id: "SCZ_2018_S"
+  weight: "Brain_Frontal_Cortex_BA9"
 ---
 
 ```{r}
@@ -254,6 +254,7 @@ print(estimated_group_pve)
 #compare sum(PIP*mu2/sample_size) with above PVE calculation
 c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
 ```
+
 
 ## Genes with highest PIPs 
 

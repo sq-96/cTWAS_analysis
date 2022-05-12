@@ -11,6 +11,11 @@ params:
   weight: "Brain_Hypothalamus"
 ---
 
+```{r}
+library(reticulate)
+use_python("/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python",required=T)
+```
+
 ```{r echo=F}
 analysis_id <- params$analysis_id
 trait_id <- params$trait_id
@@ -79,31 +84,40 @@ ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
 ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
-```{r echo=F, message=FALSE}
-ctwas_gene_res$genename <- NA
-ctwas_gene_res$intron_id <- ctwas_gene_res$id
+```{python}
+from pyensembl import EnsemblRelease #repl_python()
+import math
+import time
+import numpy as np
+import pandas as pd
 
-library(EnsDb.Hsapiens.v79)
-edb <- EnsDb.Hsapiens.v79
+data = EnsemblRelease(104)
+ctwas_gene_res_df = r.ctwas_gene_res
+ctwas_gene_res_df['intron_pos'] = ctwas_gene_res_df['id'].apply(lambda x: math.floor((int(x.split("_")[2])+int(x.split("_")[3]))/2))
+ctwas_gene_res_df['genename'] = np.nan
+ctwas_gene_res_df['intron_id'] = ctwas_gene_res_df['id']
+```
 
-for(i in 1:dim(ctwas_gene_res)[1]){
-  info <- strsplit(ctwas_gene_res[i,'id'], "_")[[1]]
-  chr = as.numeric(info[2])
-  start.pos = as.numeric(info[3])
-  end.pos = as.numeric(info[4])
-  grf <- GRangesFilter(GRanges(chr, ranges = IRanges(start.pos, end.pos)), type = "any")
-  gn <- genes(edb, filter = grf)
-  if(length(gn$gene_id)!=0){
-    ctwas_gene_res[i,"id"] <- gn$gene_id[1]
-    ctwas_gene_res[i,"genename"] <- gn$gene_name[1]
-    ctwas_gene_res[i,"type"] <- gn$gene_biotype[1]
-    }
-}
+```{python}
+for index, row in ctwas_gene_res_df.iterrows():
+  gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["intron_pos"]))
+  if len(gene_names)!=0:
+    for i in gene_names:
+      if i != '':
+        gene_info = data.genes_by_name(i)[0]
+        ctwas_gene_res_df.loc[index,'genename'] = gene_info.gene_name
+        ctwas_gene_res_df.loc[index,'id'] = gene_info.gene_id
+        ctwas_gene_res_df.loc[index,'type'] = gene_info.biotype
+        break
+      
+ctwas_gene_res_df = ctwas_gene_res_df.dropna(subset=['genename'])
+print("finish")
 ```
 
 ```{r}
 #add z scores to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+ctwas_gene_res <- py$ctwas_gene_res_df
 ctwas_gene_res$z <- z_gene[ctwas_gene_res$intron_id,]$z
 
 z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
@@ -113,6 +127,7 @@ ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
 ctwas_snp_res$genename=NA
 ctwas_snp_res$gene_type=NA
 ctwas_snp_res$intron_id=NA
+ctwas_snp_res$intron_pos=NA
 
 saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
@@ -259,7 +274,6 @@ head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas
 ```{r echo=F, eval=FALSE}
 #genes with 20 highest pve
 head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
-
 ```
 
 
@@ -444,7 +458,7 @@ ggplot(don, aes(x=BPcum, y=gene_pip)) +
 ```{r echo=F, eval=FALSE}
 library("readxl")
 
-known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="BMI")
+known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ")
 known_annotations <- unique(known_annotations$`Gene Symbol`)
 
 unrelated_genes <- ctwas_gene_res$genename[!(ctwas_gene_res$genename %in% known_annotations)]

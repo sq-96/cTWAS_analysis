@@ -1,15 +1,20 @@
 ---
-title: "BMI - Brain Cortex"
+title: "SCZ - Brain Cortex"
 author: "sheng Qian"
 date: "2021-2-6"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "BMI_Brain_Cortex"
-  trait_id: "BMI_S"
+  analysis_id: "SCZ_Brain_Cortex"
+  trait_id: "SCZ_S"
   weight: "Brain_Cortex"
 ---
+
+```{r}
+library(reticulate)
+use_python("/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python",required=T)
+```
 
 ```{r echo=F}
 analysis_id <- params$analysis_id
@@ -57,65 +62,75 @@ mean(qclist_all$nmiss==0)
 
 
 ```{r echo=F}
-# #load ctwas results
-# ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
-# 
-# #make unique identifier for regions
-# ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
-# 
-# #load z scores for SNPs and collect sample size
-# load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+#load ctwas results
+ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
+
+#make unique identifier for regions
+ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+
+#load z scores for SNPs and collect sample size
+load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
 
 sample_size <- z_snp$ss
 sample_size <- as.numeric(names(which.max(table(sample_size))))
 
-# #compute PVE for each gene/SNP
-# ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
-# 
-# #separate gene and SNP results
-# ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
-# ctwas_gene_res <- data.frame(ctwas_gene_res)
-# ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
-# ctwas_snp_res <- data.frame(ctwas_snp_res)
+#compute PVE for each gene/SNP
+ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+
+#separate gene and SNP results
+ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
+ctwas_gene_res <- data.frame(ctwas_gene_res)
+ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
-```{r echo=F, message=FALSE}
-# ctwas_gene_res$genename <- NA
-# ctwas_gene_res$intron_id <- ctwas_gene_res$id
-# 
-# library(EnsDb.Hsapiens.v79)
-# edb <- EnsDb.Hsapiens.v79
-# 
-# for(i in 1:dim(ctwas_gene_res)[1]){
-#   info <- strsplit(ctwas_gene_res[i,'id'], "_")[[1]]
-#   chr = as.numeric(info[2])
-#   start.pos = as.numeric(info[3])
-#   end.pos = as.numeric(info[4])
-#   grf <- GRangesFilter(GRanges(chr, ranges = IRanges(start.pos, end.pos)), type = "any")
-#   gn <- genes(edb, filter = grf)
-#   if(length(gn$gene_id)!=0){
-#     ctwas_gene_res[i,"id"] <- gn$gene_id[1]
-#     ctwas_gene_res[i,"genename"] <- gn$gene_name[1]
-#     ctwas_gene_res[i,"gene_type"] <- gn$gene_biotype[1]
-#     }
-# }
+```{python}
+from pyensembl import EnsemblRelease #repl_python()
+import math
+import time
+import numpy as np
+import pandas as pd
+
+data = EnsemblRelease(104)
+ctwas_gene_res_df = r.ctwas_gene_res
+ctwas_gene_res_df['intron_pos'] = ctwas_gene_res_df['id'].apply(lambda x: math.floor((int(x.split("_")[2])+int(x.split("_")[3]))/2))
+ctwas_gene_res_df['genename'] = np.nan
+ctwas_gene_res_df['intron_id'] = ctwas_gene_res_df['id']
+```
+
+```{python}
+for index, row in ctwas_gene_res_df.iterrows():
+  gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["intron_pos"]))
+  if len(gene_names)!=0:
+    for i in gene_names:
+      if i != '':
+        gene_info = data.genes_by_name(i)[0]
+        ctwas_gene_res_df.loc[index,'genename'] = gene_info.gene_name
+        ctwas_gene_res_df.loc[index,'id'] = gene_info.gene_id
+        ctwas_gene_res_df.loc[index,'type'] = gene_info.biotype
+        break
+      
+ctwas_gene_res_df = ctwas_gene_res_df.dropna(subset=['genename'])
+print("finish")
 ```
 
 ```{r}
-# #add z scores to results
-# load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
-# ctwas_gene_res$z <- z_gene[ctwas_gene_res$intron_id,]$z
-# 
-# z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
-# ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
-# 
-# #merge gene and snp results with added information
-# ctwas_snp_res$genename=NA
-# ctwas_snp_res$gene_type=NA
-# ctwas_snp_res$intron_id=NA
-# 
-# saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
-# saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+#add z scores to results
+load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+ctwas_gene_res <- py$ctwas_gene_res_df
+ctwas_gene_res$z <- z_gene[ctwas_gene_res$intron_id,]$z
+
+z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
+ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+
+#merge gene and snp results with added information
+ctwas_snp_res$genename=NA
+ctwas_snp_res$gene_type=NA
+ctwas_snp_res$intron_id=NA
+ctwas_snp_res$intron_pos=NA
+
+saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
 ```
 
 ```{r eval=FALSE}
@@ -239,6 +254,7 @@ print(estimated_group_pve)
 #compare sum(PIP*mu2/sample_size) with above PVE calculation
 c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
 ```
+
 
 ## Genes with highest PIPs 
 
@@ -444,7 +460,7 @@ ggplot(don, aes(x=BPcum, y=gene_pip)) +
 ```{r echo=F, eval=FALSE}
 library("readxl")
 
-known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="BMI")
+known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ")
 known_annotations <- unique(known_annotations$`Gene Symbol`)
 
 unrelated_genes <- ctwas_gene_res$genename[!(ctwas_gene_res$genename %in% known_annotations)]
