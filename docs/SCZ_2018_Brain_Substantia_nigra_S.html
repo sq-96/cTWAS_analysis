@@ -14,8 +14,8 @@
 
 <title>SCZ 2018 - Brain_Substantia_nigra</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -39,7 +39,7 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -393,8 +393,8 @@ div.tocify {
 <strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -408,7 +408,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -507,16 +507,16 @@ code/ctwas_config.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree687aaead9eeeefb3d44feba1137472948b610937targetblank687aaeaa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/687aaead9eeeefb3d44feba1137472948b610937" target="_blank">687aaea</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree011327d95727f257c7807d62218d5256ace3f7actargetblank011327da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/011327d95727f257c7807d62218d5256ace3f7ac" target="_blank">011327d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree687aaead9eeeefb3d44feba1137472948b610937targetblank687aaeaa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree011327d95727f257c7807d62218d5256ace3f7actargetblank011327da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/687aaead9eeeefb3d44feba1137472948b610937" target="_blank">687aaea</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/011327d95727f257c7807d62218d5256ace3f7ac" target="_blank">011327d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -532,19 +532,6 @@ Untracked files:
     Untracked:  Rplot.png
     Untracked:  SCZ_annotation.xlsx
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/SCZ_2018_Brain_Amygdala_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Caudate_basal_ganglia_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Cerebellar_Hemisphere_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Cerebellum_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Cortex_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Frontal_Cortex_BA9_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Hippocampus_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Hypothalamus_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Nucleus_accumbens_basal_ganglia_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Putamen_basal_ganglia_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Spinal_cord_cervical_c-1_S.Rmd
-    Untracked:  analysis/SCZ_2018_Brain_Substantia_nigra_S.Rmd
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  code/AF_out/
     Untracked:  code/Autism_out/
@@ -641,11 +628,20 @@ Untracked files:
     Untracked:  z_snp_pos_SCZ_2020.RData
 
 Unstaged changes:
-    Modified:   analysis/BMI_Brain_Cerebellum_S.Rmd
-    Modified:   analysis/SCZ_Brain_Cerebellum_S.Rmd
-    Modified:   analysis/SCZ_Brain_Cortex.Rmd
-    Modified:   analysis/SCZ_Brain_Cortex_S.Rmd
-    Modified:   analysis/SCZ_Brain_Hypothalamus_S.Rmd
+    Deleted:    analysis/BMI_S_results.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Amygdala_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Anterior_cingulate_cortex_BA24_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Caudate_basal_ganglia_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Cerebellar_Hemisphere_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Cerebellum_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Cortex_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Frontal_Cortex_BA9_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Hippocampus_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Hypothalamus_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Nucleus_accumbens_basal_ganglia_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Putamen_basal_ganglia_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Spinal_cord_cervical_c-1_S.Rmd
+    Modified:   analysis/SCZ_2018_Brain_Substantia_nigra_S.Rmd
 
 </code></pre>
 <p>
@@ -658,9 +654,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/SCZ_2018_Brain_Substantia_nigra_S.Rmd</code>) and HTML (<code>docs/SCZ_2018_Brain_Substantia_nigra_S.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/011327d95727f257c7807d62218d5256ace3f7ac/docs/SCZ_2018_Brain_Substantia_nigra_S.html" target="_blank">011327d</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-05-12
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/6c6abbde38c4b39636b2eb5c8f5679b8dc8f3768/analysis/SCZ_2018_Brain_Substantia_nigra_S.Rmd" target="_blank">6c6abbd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-05-12
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -685,174 +741,258 @@ sum(qclist_all$nmiss==0)</code></pre>
 <pre class="r"><code>#proportion of imputed weights without missing variants
 mean(qclist_all$nmiss==0)</code></pre>
 <pre><code>[1] 0.8968</code></pre>
-<pre class="python"><code>from pyensembl import EnsemblRelease #repl_python()
-import math
-import time
-import numpy as np
-import pandas as pd
-
-data = EnsemblRelease(104)
-ctwas_gene_res_df = r.ctwas_gene_res
-ctwas_gene_res_df[&#39;intron_pos&#39;] = ctwas_gene_res_df[&#39;id&#39;].apply(lambda x: math.floor((int(x.split(&quot;_&quot;)[2])+int(x.split(&quot;_&quot;)[3]))/2))
-ctwas_gene_res_df[&#39;genename&#39;] = np.nan
-ctwas_gene_res_df[&#39;intron_id&#39;] = ctwas_gene_res_df[&#39;id&#39;]</code></pre>
-<pre class="python"><code>for index, row in ctwas_gene_res_df.iterrows():
-  gene_names = data.gene_names_at_locus(contig=int(row[&quot;chrom&quot;]), position=int(row[&quot;intron_pos&quot;]))
-  if len(gene_names)!=0:
-    for i in gene_names:
-      if i != &#39;&#39;:
-        gene_info = data.genes_by_name(i)[0]
-        ctwas_gene_res_df.loc[index,&#39;genename&#39;] = gene_info.gene_name
-        ctwas_gene_res_df.loc[index,&#39;id&#39;] = gene_info.gene_id
-        ctwas_gene_res_df.loc[index,&#39;type&#39;] = gene_info.biotype
-        break
-      
-ctwas_gene_res_df = ctwas_gene_res_df.dropna(subset=[&#39;genename&#39;])
-print(&quot;finish&quot;)</code></pre>
 <pre><code>finish</code></pre>
-<pre class="r"><code>#add z scores to results
-load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_z_gene.Rd&quot;))
-ctwas_gene_res &lt;- py$ctwas_gene_res_df
-ctwas_gene_res$z &lt;- z_gene[ctwas_gene_res$intron_id,]$z
+<pre><code>
+Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
 
-z_snp &lt;- z_snp[z_snp$id %in% ctwas_snp_res$id,]
-ctwas_snp_res$z &lt;- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+    filter, lag</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
 
-#merge gene and snp results with added information
-ctwas_snp_res$genename=NA
-ctwas_snp_res$gene_type=NA
-ctwas_snp_res$intron_id=NA
-ctwas_snp_res$intron_pos=NA
-
-saveRDS(ctwas_gene_res, file = paste0(results_dir,&quot;/&quot;,analysis_id,&quot;_ctwas_gene_res.RDS&quot;))
-saveRDS(ctwas_snp_res, file =  paste0(results_dir,&quot;/&quot;,analysis_id,&quot;_ctwas_snp_res.RDS&quot;))</code></pre>
-<pre class="r"><code>ctwas_intron_res &lt;- readRDS(paste0(results_dir,&quot;/&quot;,analysis_id,&quot;_ctwas_gene_res.RDS&quot;))
-ctwas_intron_res &lt;- ctwas_intron_res[!is.na(ctwas_intron_res$genename),]
-ctwas_snp_res &lt;- readRDS(paste0(results_dir,&quot;/&quot;,analysis_id,&quot;_ctwas_snp_res.RDS&quot;))
-
-#get number of eQTL for inrtons
-num_sqtl &lt;- c()
-for (i in 1:22){
-  load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_chr&quot;, i, &quot;.exprqc.Rd&quot;))
-  num_sqtl &lt;- c(num_sqtl, unlist(lapply(wgtlist, nrow)))
-}
-ctwas_intron_res$num_sqtl &lt;- num_sqtl[ctwas_intron_res$intron_id]</code></pre>
-<pre class="r"><code>library(dplyr)
-by_genename &lt;- ctwas_intron_res %&gt;% group_by(genename)
-ctwas_gene_res &lt;- data.frame(by_genename %&gt;% summarise(
-  chrom = chrom[1],
-  id = id[1],
-  pos = min(pos),
-  type = type[1],
-  region_tag1 = region_tag1[1],
-  region_tag2 = region_tag2[1],
-  cs_index = cs_index[1],
-  susie_pip = sum(susie_pip),
-  mu2 = mu2[which.max(abs(mu2))],
-  region_tag = region_tag[1],
-  PVE = sum(susie_pip*PVE),
-  z = z[which.max(abs(z))],
-  gene_type = type[1],
-  num_intron = length(intron_id),
-  num_sqtl = sum(num_sqtl)))
-
-ctwas_snp_res$num_intron &lt;- NA
-ctwas_snp_res$num_sqtl &lt;- NA</code></pre>
-<pre class="r"><code>ctwas_res &lt;- rbind(ctwas_gene_res,
-                   ctwas_snp_res[,colnames(ctwas_gene_res)])
-
-#store columns to report
-report_cols &lt;- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c(&quot;type&quot;, &quot;region_tag1&quot;, &quot;region_tag2&quot;, &quot;cs_index&quot;, &quot;gene_type&quot;, &quot;z_flag&quot;, &quot;id&quot;, &quot;chrom&quot;, &quot;pos&quot;))]
-first_cols &lt;- c(&quot;genename&quot;, &quot;region_tag&quot;)
-report_cols &lt;- c(first_cols, report_cols[!(report_cols %in% first_cols)])
-
-report_cols_snps &lt;- c(&quot;id&quot;, report_cols[-1])
-report_cols_snps &lt;- report_cols_snps[!(report_cols_snps %in% &quot;num_sqtl&quot;)]
-
-#get number of SNPs from s1 results; adjust for thin argument
-ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.s1.susieIrss.txt&quot;))
-n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
-rm(ctwas_res_s1)</code></pre>
+    intersect, setdiff, setequal, union</code></pre>
 </div>
 <div id="check-convergence-of-parameters" class="section level2">
 <h2>Check convergence of parameters</h2>
-<pre class="r"><code>#estimated group prior
-estimated_group_prior &lt;- group_prior_rec[,ncol(group_prior_rec)]
-names(estimated_group_prior) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-estimated_group_prior[&quot;snp&quot;] &lt;- estimated_group_prior[&quot;snp&quot;]*thin #adjust parameter to account for thin argument
-print(estimated_group_prior)
-
-#estimated group prior variance
-estimated_group_prior_var &lt;- group_prior_var_rec[,ncol(group_prior_var_rec)]
-names(estimated_group_prior_var) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-print(estimated_group_prior_var)
-
-#report sample size
-print(sample_size)
-
-#report group size
-group_size &lt;- c(nrow(ctwas_gene_res), n_snps)
-print(group_size)
-
-#estimated group PVE
-estimated_group_pve &lt;- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
-names(estimated_group_pve) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-print(estimated_group_pve)
-
-#compare sum(PIP*mu2/sample_size) with above PVE calculation
-c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Substantia_nigra_S.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>     gene       snp 
+0.0065597 0.0003205 </code></pre>
+<pre><code>  gene    snp 
+ 9.522 10.339 </code></pre>
+<pre><code>[1] 105318</code></pre>
+<pre><code>[1]    6393 6309950</code></pre>
+<pre><code>    gene      snp 
+0.003791 0.198505 </code></pre>
+<pre><code>[1] 0.009054 1.088938</code></pre>
 </div>
 <div id="genes-with-highest-pips" class="section level2">
 <h2>Genes with highest PIPs</h2>
+<p><img src="figure/SCZ_2018_Brain_Substantia_nigra_S.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>     genename region_tag susie_pip   mu2       PVE      z num_intron num_sqtl
+3010     LRP8       1_33    1.0645 32.61 2.549e-04 -4.624          6        6
+1337    CRTAP       3_24    0.8430 20.01 1.343e-04  3.929          2        2
+5499    THAP8      19_25    0.8114 20.21 1.261e-04  3.847          2        2
+1220     COA8      14_54    0.8024 44.24 2.642e-04  7.429          6        9
+1639   DPYSL3       5_86    0.7628 23.36 1.291e-04  4.157          1        1
+596      BDNF      11_19    0.7481 22.63 1.203e-04  4.348          1        1
+540    B3GAT1      11_84    0.6722 31.39 1.272e-04 -4.516          6       10
+214      AKT3      1_128    0.6638 34.01 1.337e-04 -6.291          5        5
+4063    PLCB2      15_14    0.6378 24.42 8.300e-05  4.470          3        4
+3677 NPIPB14P      16_37    0.6317 17.28 6.162e-05  3.742         10       11
+6007    VPS41       7_28    0.6151 25.12 8.874e-05 -4.509          2        2
+99     ACTR1B       2_57    0.5934 22.34 7.367e-05  3.978          3        3
+2360  GUSBP11       22_6    0.5870 19.36 4.733e-05  2.862         16       20
+2270    GON4L       1_76    0.5783 27.63 8.773e-05  4.084          1        1
+3185      MDK      11_28    0.5743 45.88 1.437e-04  7.159          1        1
+2847    LAMA5      20_36    0.5692 32.47 8.011e-05  3.967         10       15
+4383  PYROXD2      10_62    0.5608 33.32 7.427e-05 -3.718         10       11
+2122     FXR1      3_111    0.5532 42.91 1.221e-04 -6.873          4        4
+972      CD46      1_105    0.5515 18.45 5.268e-05 -3.654          6        6
+4336    PTK2B       8_27    0.5318 26.09 6.953e-05  4.730          2        3</code></pre>
 </div>
 <div id="genes-with-highest-pve" class="section level2">
 <h2>Genes with highest PVE</h2>
+<pre><code>     genename region_tag susie_pip   mu2       PVE      z num_intron num_sqtl
+1220     COA8      14_54    0.8024 44.24 2.642e-04  7.429          6        9
+3010     LRP8       1_33    1.0645 32.61 2.549e-04 -4.624          6        6
+3185      MDK      11_28    0.5743 45.88 1.437e-04  7.159          1        1
+1337    CRTAP       3_24    0.8430 20.01 1.343e-04  3.929          2        2
+214      AKT3      1_128    0.6638 34.01 1.337e-04 -6.291          5        5
+1639   DPYSL3       5_86    0.7628 23.36 1.291e-04  4.157          1        1
+540    B3GAT1      11_84    0.6722 31.39 1.272e-04 -4.516          6       10
+5499    THAP8      19_25    0.8114 20.21 1.261e-04  3.847          2        2
+2122     FXR1      3_111    0.5532 42.91 1.221e-04 -6.873          4        4
+596      BDNF      11_19    0.7481 22.63 1.203e-04  4.348          1        1
+2163  GATAD2A      19_15    0.4632 45.09 9.073e-05 -6.640          4        4
+6007    VPS41       7_28    0.6151 25.12 8.874e-05 -4.509          2        2
+2270    GON4L       1_76    0.5783 27.63 8.773e-05  4.084          1        1
+4063    PLCB2      15_14    0.6378 24.42 8.300e-05  4.470          3        4
+2847    LAMA5      20_36    0.5692 32.47 8.011e-05  3.967         10       15
+4383  PYROXD2      10_62    0.5608 33.32 7.427e-05 -3.718         10       11
+99     ACTR1B       2_57    0.5934 22.34 7.367e-05  3.978          3        3
+4336    PTK2B       8_27    0.5318 26.09 6.953e-05  4.730          2        3
+5440    TCAIM       3_31    0.4480 35.10 6.170e-05  4.053          5        5
+3677 NPIPB14P      16_37    0.6317 17.28 6.162e-05  3.742         10       11</code></pre>
 </div>
 <div id="comparing-z-scores-and-pips" class="section level2">
 <h2>Comparing z scores and PIPs</h2>
+<p><img src="figure/SCZ_2018_Brain_Substantia_nigra_S.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/SCZ_2018_Brain_Substantia_nigra_S.Rmd/unnamed-chunk-16-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0.01502</code></pre>
+<pre><code>        genename region_tag susie_pip    mu2       PVE       z num_intron
+3981       PGBD1       6_22 4.087e-02 155.68 9.882e-07 -13.087          2
+1471        DDR1       6_25 1.261e-01 100.79 1.477e-05  11.175          3
+2072       FLOT1       6_24 1.104e-01  77.49 8.920e-06 -10.944          5
+672       BTN3A2       6_20 1.060e-01  88.48 4.796e-06 -10.665          4
+551         BAG6       6_26 3.830e-05 160.21 1.660e-12 -10.247          6
+932       CCHCR1       6_25 2.958e-02  62.23 3.774e-07  -9.378          5
+2303       GPSM3       6_26 1.690e-06 118.03 3.202e-15  -9.377          1
+6388     ZSCAN31       6_22 1.677e-02  55.20 8.559e-08  -9.321          2
+3726       NT5C2      10_66 3.297e-01  46.96 4.551e-05  -8.541          8
+6386     ZSCAN26       6_22 3.391e-02  45.29 3.198e-07  -8.313          4
+3082      MAD1L1        7_3 3.735e-01  62.14 5.662e-05   8.215          4
+434        AS3MT      10_66 2.402e-01  44.47 2.402e-05   8.051          3
+6381     ZSCAN16       6_22 2.003e-02  52.38 1.007e-07   7.468          2
+1220        COA8      14_54 8.024e-01  44.24 2.642e-04   7.429          6
+6382 ZSCAN16-AS1       6_22 7.565e-03  51.85 2.817e-08  -7.421          1
+6220    ZNF192P1       6_22 1.526e-02  51.40 1.136e-07   7.378          2
+3185         MDK      11_28 5.743e-01  45.88 1.437e-04   7.159          1
+181         AIF1       6_26 1.311e-02  59.25 9.670e-08  -7.131          5
+5600     TMEM219      16_24 3.359e-01  45.65 4.891e-05  -7.020          1
+1524        DGKZ      11_28 1.388e-01  43.55 7.970e-06  -6.964          1
+     num_sqtl
+3981        2
+1471        3
+2072        5
+672         4
+551         8
+932         8
+2303        1
+6388        2
+3726       11
+6386        5
+3082        6
+434         3
+6381        2
+1220        9
+6382        1
+6220        2
+3185        1
+181         5
+5600        1
+1524        2</code></pre>
 </div>
 <div id="go-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
 <h2>GO enrichment analysis for genes with PIP&gt;0.5</h2>
 <pre class="r"><code>#number of genes for gene set enrichment
 length(genes)</code></pre>
+<pre><code>[1] 22</code></pre>
+<pre><code>Uploading data to Enrichr... Done.
+  Querying GO_Biological_Process_2021... Done.
+  Querying GO_Cellular_Component_2021... Done.
+  Querying GO_Molecular_Function_2021... Done.
+Parsing results... Done.
+[1] &quot;GO_Biological_Process_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Substantia_nigra_S.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>                                                                          Term
+1            positive regulation of neuron projection development (GO:0010976)
+2             positive regulation of cell projection organization (GO:0031346)
+3                     regulation of neuron projection development (GO:0010975)
+4                 negative regulation of neuron apoptotic process (GO:0043524)
+5  positive regulation of vascular endothelial cell proliferation (GO:1905564)
+6                             negative regulation of neuron death (GO:1901215)
+7                          regulation of neuron apoptotic process (GO:0043523)
+8           regulation of vascular endothelial cell proliferation (GO:1905562)
+9                              regulation of leukocyte chemotaxis (GO:0002688)
+10                            regulation of macrophage chemotaxis (GO:0010758)
+11                            negative regulation of ossification (GO:0030279)
+12                regulation of regulatory T cell differentiation (GO:0045589)
+13                         activation of phospholipase C activity (GO:0007202)
+14                 positive regulation of protein phosphorylation (GO:0001934)
+15                         regulation of trans-synaptic signaling (GO:0099177)
+16                regulation of actin cytoskeleton reorganization (GO:2000249)
+17                              regulation of filopodium assembly (GO:0051489)
+18        positive regulation of protein tyrosine kinase activity (GO:0061098)
+19                positive regulation of phospholipase C activity (GO:0010863)
+20                  positive regulation of T cell differentiation (GO:0045582)
+21                       negative regulation of apoptotic process (GO:0043066)
+22                                              apoptotic process (GO:0006915)
+23                 positive regulation of cell-substrate adhesion (GO:0010811)
+   Overlap Adjusted.P.value                      Genes
+1     5/88        1.565e-05 BDNF;MDK;DPYSL3;PTK2B;LRP8
+2    4/117        1.609e-03      BDNF;MDK;DPYSL3;PTK2B
+3    4/165        4.161e-03      BDNF;MDK;DPYSL3;PTK2B
+4     3/71        6.746e-03             BDNF;MDK;PTK2B
+5     2/13        7.673e-03                   MDK;AKT3
+6     3/98        9.308e-03             BDNF;MDK;PTK2B
+7     3/98        9.308e-03             BDNF;MDK;PTK2B
+8     2/18        9.308e-03                   MDK;AKT3
+9     2/19        9.308e-03                  MDK;PTK2B
+10    2/22        1.129e-02                  MDK;PTK2B
+11    2/24        1.225e-02                  MDK;PTK2B
+12    2/26        1.321e-02                   MDK;CD46
+13    2/32        1.853e-02                 BDNF;PLCB2
+14   4/371        1.923e-02       FXR1;BDNF;PTK2B;LRP8
+15    2/35        1.923e-02                  BDNF;LRP8
+16    2/37        2.015e-02                  MDK;PTK2B
+17    2/41        2.177e-02                FXR1;DPYSL3
+18    2/42        2.177e-02                  BDNF;LRP8
+19    2/43        2.177e-02                 BDNF;PLCB2
+20    2/43        2.177e-02                   MDK;CD46
+21   4/485        3.607e-02       BDNF;MDK;CASP2;PTK2B
+22   3/231        3.883e-02           FXR1;CASP2;PTK2B
+23    2/70        4.973e-02                  MDK;PTK2B
+[1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Substantia_nigra_S.Rmd/unnamed-chunk-19-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Molecular_Function_2021&quot;</code></pre>
+<p><img src="figure/SCZ_2018_Brain_Substantia_nigra_S.Rmd/unnamed-chunk-19-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
 <div id="disgenet-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
 <h2>DisGeNET enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>                         Description     FDR Ratio  BgRatio
+3    Alcoholic Intoxication, Chronic 0.02335  4/14 268/9703
+34       Profound Mental Retardation 0.02335  3/14 139/9703
+41                           Measles 0.02335  1/14   1/9703
+44                  Memory Disorders 0.02335  2/14  43/9703
+45  Mental Retardation, Psychosocial 0.02335  3/14 139/9703
+77                 Memory impairment 0.02335  2/14  44/9703
+135     Age-Related Memory Disorders 0.02335  2/14  43/9703
+136        Memory Disorder, Semantic 0.02335  2/14  43/9703
+137         Memory Disorder, Spatial 0.02335  2/14  43/9703
+138                      Memory Loss 0.02335  2/14  43/9703</code></pre>
 </div>
 <div id="webgestalt-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
 <h2>WebGestalt enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre><code>Warning: replacing previous import &#39;lifecycle::last_warnings&#39; by
+&#39;rlang::last_warnings&#39; when loading &#39;hms&#39;</code></pre>
+<pre><code>Loading the functional categories...
+Loading the ID list...
+Loading the reference list...
+Performing the enrichment analysis...</code></pre>
+<pre><code>Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<pre><code>NULL</code></pre>
 </div>
 <div id="pip-manhattan-plot" class="section level2">
 <h2>PIP Manhattan Plot</h2>
+<p><img src="figure/SCZ_2018_Brain_Substantia_nigra_S.Rmd/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sensitivity-specificity-and-precision-for-silver-standard-genes" class="section level2">
 <h2>Sensitivity, specificity and precision for silver standard genes</h2>
 <pre class="r"><code>#number of genes in known annotations
-print(length(known_annotations))
-
-#number of genes in known annotations with imputed expression
-print(sum(known_annotations %in% ctwas_gene_res$genename))
-
-#significance threshold for TWAS
-print(sig_thresh)
-
-#number of ctwas genes
-length(ctwas_genes)
-
-#number of TWAS genes
-length(twas_genes)
-
-#show novel genes (ctwas genes with not in TWAS genes)
-ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]
-
-#sensitivity / recall
-print(sensitivity)
-
-#specificity
-print(specificity)
-
-#precision / PPV
+print(length(known_annotations))</code></pre>
+<pre><code>[1] 130</code></pre>
+<pre class="r"><code>#number of genes in known annotations with imputed expression
+print(sum(known_annotations %in% ctwas_gene_res$genename))</code></pre>
+<pre><code>[1] 44</code></pre>
+<pre class="r"><code>#significance threshold for TWAS
+print(sig_thresh)</code></pre>
+<pre><code>[1] 4.47</code></pre>
+<pre class="r"><code>#number of ctwas genes
+length(ctwas_genes)</code></pre>
+<pre><code>[1] 4</code></pre>
+<pre class="r"><code>#number of TWAS genes
+length(twas_genes)</code></pre>
+<pre><code>[1] 96</code></pre>
+<pre class="r"><code>#show novel genes (ctwas genes with not in TWAS genes)
+ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]</code></pre>
+<pre><code>     genename region_tag susie_pip   mu2       PVE     z num_intron num_sqtl
+1337    CRTAP       3_24    0.8430 20.01 0.0001343 3.929          2        2
+5499    THAP8      19_25    0.8114 20.21 0.0001261 3.847          2        2</code></pre>
+<pre class="r"><code>#sensitivity / recall
+print(sensitivity)</code></pre>
+<pre><code>   ctwas     TWAS 
+0.007692 0.076923 </code></pre>
+<pre class="r"><code>#specificity
+print(specificity)</code></pre>
+<pre><code> ctwas   TWAS 
+0.9995 0.9865 </code></pre>
+<pre class="r"><code>#precision / PPV
 print(precision)</code></pre>
+<pre><code> ctwas   TWAS 
+0.2500 0.1042 </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -861,12 +1001,12 @@ print(precision)</code></pre>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.6.1 (2019-07-05)
+<pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Scientific Linux 7.4 (Nitrogen)
 
 Matrix products: default
-BLAS/LAPACK: /software/openblas-0.2.19-el7-x86_64/lib/libopenblas_haswellp-r0.2.19.so
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -880,28 +1020,41 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] reticulate_1.16 workflowr_1.7.0
+ [1] readxl_1.4.0      forcats_0.5.1     stringr_1.4.0     purrr_0.3.4      
+ [5] readr_1.4.0       tidyr_1.1.3       tidyverse_1.3.1   tibble_3.1.7     
+ [9] WebGestaltR_0.4.4 disgenet2r_0.99.2 enrichR_3.0       cowplot_1.1.1    
+[13] ggplot2_3.3.5     dplyr_1.0.7       reticulate_1.20   workflowr_1.6.2  
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.8        highr_0.9         jquerylib_0.1.4   compiler_3.6.1   
- [5] pillar_1.6.4      later_0.8.0       git2r_0.26.1      tools_3.6.1      
- [9] getPass_0.2-2     digest_0.6.29     jsonlite_1.7.2    lattice_0.20-38  
-[13] evaluate_0.14     tibble_3.1.6      lifecycle_1.0.1   pkgconfig_2.0.3  
-[17] rlang_1.0.1       Matrix_1.2-18     cli_3.1.0         rstudioapi_0.13  
-[21] yaml_2.2.1        xfun_0.29         fastmap_1.1.0     httr_1.4.2       
-[25] stringr_1.4.0     knitr_1.36        fs_1.5.2          vctrs_0.3.8      
-[29] grid_3.6.1        rprojroot_2.0.2   data.table_1.14.2 glue_1.6.2       
-[33] R6_2.5.1          processx_3.5.2    fansi_1.0.2       rmarkdown_2.11   
-[37] callr_3.7.0       magrittr_2.0.2    whisker_0.3-2     ps_1.6.0         
-[41] promises_1.0.1    htmltools_0.5.2   ellipsis_0.3.2    httpuv_1.5.1     
-[45] utf8_1.2.2        stringi_1.7.6     crayon_1.5.0     </code></pre>
+ [1] fs_1.5.0          lubridate_1.7.10  doParallel_1.0.16 httr_1.4.2       
+ [5] rprojroot_2.0.2   tools_4.1.0       backports_1.2.1   doRNG_1.8.2      
+ [9] bslib_0.2.5.1     utf8_1.2.1        R6_2.5.0          vipor_0.4.5      
+[13] DBI_1.1.1         colorspace_2.0-2  withr_2.4.2       ggrastr_1.0.1    
+[17] tidyselect_1.1.1  curl_4.3.2        compiler_4.1.0    git2r_0.28.0     
+[21] rvest_1.0.0       cli_3.0.0         Cairo_1.5-15      xml2_1.3.2       
+[25] labeling_0.4.2    sass_0.4.0        scales_1.1.1      systemfonts_1.0.4
+[29] apcluster_1.4.9   digest_0.6.27     rmarkdown_2.9     svglite_2.0.0    
+[33] pkgconfig_2.0.3   htmltools_0.5.1.1 dbplyr_2.1.1      highr_0.9        
+[37] rlang_1.0.2       rstudioapi_0.13   jquerylib_0.1.4   farver_2.1.0     
+[41] generics_0.1.0    jsonlite_1.7.2    magrittr_2.0.1    Matrix_1.3-3     
+[45] ggbeeswarm_0.6.0  Rcpp_1.0.7        munsell_0.5.0     fansi_0.5.0      
+[49] lifecycle_1.0.0   stringi_1.6.2     whisker_0.4       yaml_2.2.1       
+[53] plyr_1.8.6        grid_4.1.0        ggrepel_0.9.1     parallel_4.1.0   
+[57] promises_1.2.0.1  crayon_1.4.1      lattice_0.20-44   haven_2.4.1      
+[61] hms_1.1.0         knitr_1.33        pillar_1.7.0      igraph_1.2.6     
+[65] rjson_0.2.20      rngtools_1.5      reshape2_1.4.4    codetools_0.2-18 
+[69] reprex_2.0.0      glue_1.4.2        evaluate_0.14     data.table_1.14.0
+[73] modelr_0.1.8      png_0.1-7         vctrs_0.3.8       httpuv_1.6.1     
+[77] foreach_1.5.1     cellranger_1.1.0  gtable_0.3.0      assertthat_0.2.1 
+[81] xfun_0.24         broom_0.7.8       later_1.2.0       iterators_1.0.13 
+[85] beeswarm_0.4.0    ellipsis_0.3.2   </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->

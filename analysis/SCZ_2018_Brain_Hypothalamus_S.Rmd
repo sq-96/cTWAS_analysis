@@ -60,7 +60,6 @@ sum(qclist_all$nmiss==0)
 mean(qclist_all$nmiss==0)
 ```
 
-
 ```{r echo=F}
 #load ctwas results
 ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
@@ -84,7 +83,7 @@ ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
 ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
-```{python}
+```{python echo=F}
 from pyensembl import EnsemblRelease #repl_python()
 import math
 import time
@@ -98,7 +97,7 @@ ctwas_gene_res_df['genename'] = np.nan
 ctwas_gene_res_df['intron_id'] = ctwas_gene_res_df['id']
 ```
 
-```{python}
+```{python echo=F}
 for index, row in ctwas_gene_res_df.iterrows():
   gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["intron_pos"]))
   if len(gene_names)!=0:
@@ -114,7 +113,7 @@ ctwas_gene_res_df = ctwas_gene_res_df.dropna(subset=['genename'])
 print("finish")
 ```
 
-```{r}
+```{r echo=F, eval=FALSE}
 #add z scores to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
 ctwas_gene_res <- py$ctwas_gene_res_df
@@ -133,7 +132,7 @@ saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_r
 saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
 ```
 
-```{r eval=FALSE}
+```{r echo=F}
 ctwas_intron_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 ctwas_intron_res <- ctwas_intron_res[!is.na(ctwas_intron_res$genename),]
 ctwas_snp_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
@@ -147,7 +146,7 @@ for (i in 1:22){
 ctwas_intron_res$num_sqtl <- num_sqtl[ctwas_intron_res$intron_id]
 ```
 
-```{r eval=FALSE}
+```{r echo=F}
 library(dplyr)
 by_genename <- ctwas_intron_res %>% group_by(genename)
 ctwas_gene_res <- data.frame(by_genename %>% summarise(
@@ -171,7 +170,7 @@ ctwas_snp_res$num_intron <- NA
 ctwas_snp_res$num_sqtl <- NA
 ```
 
-```{r eval=FALSE}
+```{r echo=F}
 ctwas_res <- rbind(ctwas_gene_res,
                    ctwas_snp_res[,colnames(ctwas_gene_res)])
 
@@ -192,7 +191,7 @@ rm(ctwas_res_s1)
 
 ## Check convergence of parameters
 
-```{r echo=F,message=F,eval=FALSE}
+```{r echo=F,message=F}
 library(ggplot2)
 library(cowplot)
 
@@ -227,7 +226,7 @@ plot_grid(p_pi, p_sigma2)
 ```
 
 
-```{r eval=FALSE}
+```{r echo=F}
 #estimated group prior
 estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
 names(estimated_group_prior) <- c("gene", "snp")
@@ -258,7 +257,7 @@ c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
 
 ## Genes with highest PIPs 
 
-```{r echo=F,eval=FALSE}
+```{r echo=F}
 #distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 #ctwas_gene_level_res <- aggregate(ctwas_gene_res$susie_pip, by=list(genename=ctwas_gene_res$genename), FUN=sum)
@@ -272,7 +271,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas
 
 ## Genes with highest PVE 
 
-```{r echo=F, eval=FALSE}
+```{r echo=F}
 #genes with 20 highest pve
 head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
 
@@ -281,7 +280,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
 
 ## Comparing z scores and PIPs
 
-```{r echo=F, eval=FALSE}
+```{r echo=F}
 #set nominal signifiance threshold for z scores
 alpha <- 0.05
 
@@ -309,7 +308,7 @@ head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
 ## GO enrichment analysis for genes with PIP>0.5
 
-```{r echo=FALSE, message=FALSE, eval=FALSE}
+```{r echo=FALSE, message=FALSE}
 #GO enrichment analysis
 library(enrichR)
 
@@ -317,12 +316,12 @@ dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecul
 genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.5]
 ```
 
-```{r eval=FALSE}
+```{r}
 #number of genes for gene set enrichment
 length(genes)
 ```
 
-```{r echo=F, message=FALSE, eval=FALSE}
+```{r echo=F, message=FALSE}
 if (length(genes)>0){
   GO_enrichment <- enrichr(genes, dbs)
 
@@ -338,7 +337,7 @@ if (length(genes)>0){
 ```
 
 ## DisGeNET enrichment analysis for genes with PIP>0.5
-```{r echo=F, message=FALSE, eval=FALSE}
+```{r echo=F, message=FALSE}
 if (length(genes)>0){
   library(disgenet2r)
   
@@ -358,7 +357,7 @@ if (length(genes)>0){
 ```
 
 ## WebGestalt enrichment analysis for genes with PIP>0.5
-```{r echo=F, message=FALSE, eval=FALSE}
+```{r echo=F, message=FALSE}
 if (length(genes)>0){
   #WebGestalt enrichment
   library(WebGestaltR)
@@ -380,7 +379,7 @@ if (length(genes)>0){
 
 ## PIP Manhattan Plot
 
-```{r echo=F, message=F, eval=FALSE}
+```{r echo=F, message=F}
 library(tibble)
 library(tidyverse)
 
@@ -457,7 +456,7 @@ ggplot(don, aes(x=BPcum, y=gene_pip)) +
 
 ## Sensitivity, specificity and precision for silver standard genes
 
-```{r echo=F, eval=FALSE}
+```{r echo=F}
 library("readxl")
 
 known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="SCZ")
@@ -492,7 +491,7 @@ precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes)
 #precision
 ```
 
-```{r eval=FALSE}
+```{r}
 #number of genes in known annotations
 print(length(known_annotations))
 
