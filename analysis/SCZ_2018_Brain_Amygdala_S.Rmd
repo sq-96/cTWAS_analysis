@@ -90,24 +90,27 @@ import time
 import numpy as np
 import pandas as pd
 
-data = EnsemblRelease(104)
+data = EnsemblRelease(88)
 ctwas_gene_res_df = r.ctwas_gene_res
-ctwas_gene_res_df['intron_pos'] = ctwas_gene_res_df['id'].apply(lambda x: math.floor((int(x.split("_")[2])+int(x.split("_")[3]))/2))
+ctwas_gene_res_df['intron_start'] = ctwas_gene_res_df['id'].apply(lambda x: int(x.split("_")[2]))
+ctwas_gene_res_df['intron_end'] = ctwas_gene_res_df['id'].apply(lambda x: int(x.split("_")[3]))
 ctwas_gene_res_df['genename'] = np.nan
 ctwas_gene_res_df['intron_id'] = ctwas_gene_res_df['id']
 ```
 
 ```{python echo=F}
 for index, row in ctwas_gene_res_df.iterrows():
-  gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["intron_pos"]))
+  gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["intron_start"]), end=int(row["intron_end"]))
   if len(gene_names)!=0:
     for i in gene_names:
       if i != '':
         gene_info = data.genes_by_name(i)[0]
-        ctwas_gene_res_df.loc[index,'genename'] = gene_info.gene_name
-        ctwas_gene_res_df.loc[index,'id'] = gene_info.gene_id
-        ctwas_gene_res_df.loc[index,'type'] = gene_info.biotype
-        break
+        if (gene_info.biotype=="lincRNA") | (gene_info.biotype=="protein_coding"):
+        #if gene_info.biotype=="protein_coding":
+          ctwas_gene_res_df.loc[index,'genename'] = gene_info.gene_name
+          ctwas_gene_res_df.loc[index,'id'] = gene_info.gene_id
+          ctwas_gene_res_df.loc[index,'type'] = gene_info.biotype
+          break
       
 ctwas_gene_res_df = ctwas_gene_res_df.dropna(subset=['genename'])
 print("finish")
@@ -155,11 +158,11 @@ ctwas_gene_res <- data.frame(by_genename %>% summarise(
   pos = min(pos),
   type = type[1],
   region_tag1 = region_tag1[1],
-  region_tag2 = region_tag2[1],
+  region_tag2 = names(sort(table(region_tag2),decreasing = TRUE)[1]),
   cs_index = cs_index[1],
   susie_pip = sum(susie_pip),
   mu2 = mu2[which.max(abs(mu2))],
-  region_tag = region_tag[1],
+  region_tag = names(sort(table(region_tag),decreasing = TRUE)[1]),
   PVE = sum(susie_pip*PVE),
   z = z[which.max(abs(z))],
   gene_type = type[1],

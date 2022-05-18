@@ -1,0 +1,78 @@
+---
+title: "SCZ - Annotation Analysis"
+author: "sheng Qian"
+date: "2022-4-11"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r}
+get_E_S <- function(tissue){
+  S_path <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018_S/",tissue,"/SCZ_",tissue)
+  E_path <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/",tissue,"/SCZ_",tissue)
+  source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
+  options(digits = 4)
+  
+  ctwas_intron_res <- readRDS(paste0(S_path,"_ctwas_gene_res.RDS"))
+  ctwas_intron_res <- ctwas_intron_res[!is.na(ctwas_intron_res$genename),]
+  ctwas_snp_res <- readRDS(paste0(S_path,"_ctwas_snp_res.RDS"))
+
+  #get number of eQTL for inrtons
+  num_sqtl <- c()
+  for (i in 1:22){
+    load(paste0(S_path, "_expr_chr", i, ".exprqc.Rd"))
+    num_sqtl <- c(num_sqtl, unlist(lapply(wgtlist, nrow)))
+  }
+  ctwas_intron_res$num_sqtl <- num_sqtl[ctwas_intron_res$intron_id]
+  
+  library(dplyr)
+  by_genename <- ctwas_intron_res %>% group_by(genename)
+  ctwas_gene_res <- data.frame(by_genename %>% summarise(
+    chrom = chrom[1],
+    id = id[1],
+    pos = min(pos),
+    type = type[1],
+    region_tag1 = region_tag1[1],
+    region_tag2 = region_tag2[1],
+    cs_index = cs_index[1],
+    susie_pip = sum(susie_pip),
+    mu2 = mu2[which.max(abs(mu2))],
+    region_tag = region_tag[1],
+    PVE = sum(susie_pip*PVE),
+    z = z[which.max(abs(z))],
+    gene_type = type[1],
+    num_intron = length(intron_id),
+    num_sqtl = sum(num_sqtl)))
+
+  ctwas_snp_res$num_intron <- NA
+  ctwas_snp_res$num_sqtl <- NA
+  
+  splicing_gene <- ctwas_gene_res
+  expression_gene <- readRDS(paste0(E_path,"_ctwas_gene_res.RDS"))
+  
+  return(list(splicing_gene,expression_gene))
+}
+```
+
+```{r}
+brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018_S/")
+for(i in brain_tissue){
+  results <- get_E_S(i)
+  splicing_gene <- results[[1]]
+  expression_gene <- results[[2]]
+  expression_gene['test_id'] <- sapply(expression_gene$id, function(i){strsplit(i,"[.]")[[1]][1]})
+  #print(c(length(intersect(expression_gene$test_id,splicing_gene$id)),length(intersect(expression_gene$genename,splicing_gene$genename))))
+  df <- merge(expression_gene[,c("genename","susie_pip")],splicing_gene[,c("genename","susie_pip")],by = "genename")
+  colnames(df) <- c("genename","Expression_PIP","Splicing_PIP")
+  print(cor(df$Expression_PIP,df$Splicing_PIP))
+}
+```
+4999
+
+```{r}
+df <- merge(expression_gene[,c("genename","susie_pip")],splicing_gene[,c("genename","susie_pip")],by = "genename")
+colnames(df) <- c("genename","Expression_PIP","Splicing_PIP")
+```
+

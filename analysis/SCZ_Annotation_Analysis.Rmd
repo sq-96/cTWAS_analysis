@@ -355,34 +355,3 @@ for (chr in 1:22){
 G_list <- G_list[,c("hgnc_symbol","nearby","nearest")]
 colnames(G_list) <- c("top_genes","nearby","nearest")
 ```
-
-```{r}
-library(reticulate)
-use_python("/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python",required=T)
-```
-
-```{r}
-a = 1
-b = c(1,2,3)
-```
-
-
-```{python}
-from pyensembl import EnsemblRelease
-
-# release 77 uses human reference genome GRCh38
-data = EnsemblRelease(77)
-
-# will return ['HLA-A']
-gene_names = data.gene_names_at_locus(contig=6, position=29945884)
-
-# get all exons associated with HLA-A
-exon_ids  = data.exon_ids_of_gene_name('HLA-A')
-```
-
-```{python}
-r.b[1]
-
-genes_at_locus(contig, position, end=None, strand=None)
-```
-
