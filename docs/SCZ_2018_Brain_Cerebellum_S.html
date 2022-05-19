@@ -507,16 +507,16 @@ code/ctwas_config.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree7d08c9ba1c682ee3e1fbb5c8dea3fc6dace6d9c5targetblank7d08c9ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/7d08c9ba1c682ee3e1fbb5c8dea3fc6dace6d9c5" target="_blank">7d08c9b</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreebe614ede37e6ed9f95b0d359f083e32f53defaadtargetblankbe614eda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/be614ede37e6ed9f95b0d359f083e32f53defaad" target="_blank">be614ed</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree7d08c9ba1c682ee3e1fbb5c8dea3fc6dace6d9c5targetblank7d08c9ba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreebe614ede37e6ed9f95b0d359f083e32f53defaadtargetblankbe614eda" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/7d08c9ba1c682ee3e1fbb5c8dea3fc6dace6d9c5" target="_blank">7d08c9b</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/be614ede37e6ed9f95b0d359f083e32f53defaad" target="_blank">be614ed</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -531,7 +531,6 @@ Untracked files:
     Untracked:  Rplot.png
     Untracked:  SCZ_annotation.xlsx
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/ttt.Rmd
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  code/AF_out/
     Untracked:  code/Autism_out/
@@ -619,6 +618,7 @@ Untracked files:
     Untracked:  top_genes_32.txt
     Untracked:  top_genes_37.txt
     Untracked:  top_genes_43.txt
+    Untracked:  top_genes_54.txt
     Untracked:  top_genes_81.txt
     Untracked:  z_snp_pos_SCZ.RData
     Untracked:  z_snp_pos_SCZ_2014_EUR.RData
@@ -640,7 +640,7 @@ Unstaged changes:
     Modified:   analysis/SCZ_2018_Brain_Putamen_basal_ganglia_S.Rmd
     Modified:   analysis/SCZ_2018_Brain_Spinal_cord_cervical_c-1_S.Rmd
     Modified:   analysis/SCZ_2018_Brain_Substantia_nigra_S.Rmd
-    Modified:   analysis/SCZ_Annotation_Analysis.Rmd
+    Modified:   analysis/ttt.Rmd
 
 </code></pre>
 <p>
@@ -679,6 +679,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/be614ede37e6ed9f95b0d359f083e32f53defaad/analysis/SCZ_2018_Brain_Cerebellum_S.Rmd" target="_blank">be614ed</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-05-19
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/be614ede37e6ed9f95b0d359f083e32f53defaad/docs/SCZ_2018_Brain_Cerebellum_S.html" target="_blank">be614ed</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-05-19
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -867,7 +901,7 @@ sq-96
 <pre><code>[1]    8002 6309950</code></pre>
 <pre><code>    gene      snp 
 0.008389 0.177721 </code></pre>
-<pre><code>[1] 0.02987 1.06067</code></pre>
+<pre><code>[1] 0.01561 1.06067</code></pre>
 </div>
 <div id="genes-with-highest-pips" class="section level2">
 <h2>Genes with highest PIPs</h2>
@@ -920,76 +954,93 @@ sq-96
 </table>
 </div>
 </div>
-<pre><code>       genename region_tag susie_pip   mu2       PVE      z num_intron num_sqtl
-3723       LRP8       1_33    1.2179 33.07 0.0003523 -4.820         10       11
-5397     R3HDM2      12_36    1.1443 44.06 0.0004924  6.634         10       12
-3563      LAMA5      20_36    1.1434 23.61 0.0002517  4.603         24       38
-7577      WDR27      6_111    1.0487 17.72 0.0001014 -2.341         29       37
-2782     GIGYF1       7_62    0.9748 26.79 0.0002375 -5.266          5        5
-854  BUB1B-PAK6      15_14    0.9723 30.33 0.0002604 -5.588          4        5
-299        AKT3      1_128    0.9654 35.61 0.0003005  6.350          6        7
-4166     MRPS33       7_87    0.9654 20.31 0.0001744 -4.304          6        6
-7712    ZDHHC20       13_2    0.9572 24.94 0.0002118 -4.784          3        4
-4518     NPIPA1      16_15    0.9556 24.97 0.0002096  4.689          3        3
-3632  LINC00320       21_6    0.9542 29.24 0.0002419 -5.336          3        3
-6119      SF3B1      2_117    0.9478 45.88 0.0003746  7.053          5        5
-1668      CRTAP       3_24    0.9010 19.87 0.0001503  3.929          3        3
-1179     CCDC57      17_47    0.8904 20.00 0.0001041  3.022         36       46
-7231    TSNARE1       8_93    0.8894 34.70 0.0002087  6.287         10       12
-469      APOPT1      14_54    0.8857 43.21 0.0003125  7.429          6        7
-765        BDNF      11_19    0.8820 23.81 0.0001695  4.348          3        3
-5383    PYROXD2      10_62    0.8732 20.71 0.0001347 -3.755         12       14
-4756       PATJ       1_39    0.8686 23.29 0.0001371 -2.798         16       19
-360      ANAPC7      12_67    0.8369 37.61 0.0002240  6.385          7        7
-640      ATP2B2        3_8    0.8241 26.05 0.0001568  4.229          7        8
-698      B3GAT1      11_84    0.8157 23.68 0.0001377  4.324          6        9
-4586      NTRK3      15_41    0.8046 24.66 0.0001392  4.457          2        2
-1126      CBWD1        9_1    0.8033 20.46 0.0001186  4.060          3        4</code></pre>
+<pre><code>        genename region_tag susie_pip    mu2       PVE      z num_intron
+5397      R3HDM2      12_36    0.9739  44.06 4.190e-04  6.634         10
+854   BUB1B-PAK6      15_14    0.9156  30.33 2.452e-04 -5.588          4
+4518      NPIPA1      16_15    0.9142  24.97 2.005e-04  4.689          3
+3632   LINC00320       21_6    0.8839  29.24 2.240e-04 -5.336          3
+1449       CLCN3      4_110    0.7913  29.64 1.762e-04  5.470          1
+2078      DPYSL3       5_86    0.7675  21.98 1.229e-04  4.157          1
+4586       NTRK3      15_41    0.7571  24.66 1.310e-04  4.457          2
+1318       CENPM      22_17    0.7509  57.80 3.094e-04 -6.506          1
+765         BDNF      11_19    0.7364  23.81 1.415e-04  4.348          3
+1952        DHPS      19_10    0.7273  24.50 1.241e-04 -4.396          3
+6899       THAP8      19_25    0.7268  22.04 1.105e-04 -3.840          1
+6497      SPECC1      17_16    0.7238  25.92 1.289e-04 -4.822          1
+3563       LAMA5      20_36    0.7061  23.61 1.554e-04  4.603         24
+6429      SNRPA1      15_50    0.6840  21.86 1.028e-04 -3.896          6
+360       ANAPC7      12_67    0.6619  37.61 1.771e-04  6.385          7
+151        ACTG1      17_46    0.6582  25.43 1.074e-04 -4.250          2
+849       BTN3A1       6_20    0.6374 146.39 5.732e-04 13.091          8
+1700 CTB-31O20.2       19_2    0.6348  22.98 8.791e-05  4.456          1
+1109       CASP2       7_89    0.6145  20.64 7.400e-05 -3.889          1
+7160      TRANK1       3_27    0.6112  39.04 1.565e-04 -6.365          8
+     num_sqtl
+5397       12
+854         5
+4518        3
+3632        3
+1449        2
+2078        1
+4586        2
+1318        1
+765         3
+1952        3
+6899        1
+6497        1
+3563       38
+6429        7
+360         7
+151         4
+849         8
+1700        1
+1109        1
+7160        8</code></pre>
 </div>
 <div id="genes-with-highest-pve" class="section level2">
 <h2>Genes with highest PVE</h2>
-<pre><code>       genename region_tag susie_pip    mu2       PVE      z num_intron
-468        APOM       6_26    0.3686 623.03 0.0008033 11.590          3
-849      BTN3A1       6_20    0.7393 146.39 0.0006649 13.091          8
-5397     R3HDM2      12_36    1.1443  44.06 0.0004924  6.634         10
-6119      SF3B1      2_117    0.9478  45.88 0.0003746  7.053          5
-3723       LRP8       1_33    1.2179  33.07 0.0003523 -4.820         10
-469      APOPT1      14_54    0.8857  43.21 0.0003125  7.429          6
-1318      CENPM      22_17    0.7509  57.80 0.0003094 -6.506          1
-299        AKT3      1_128    0.9654  35.61 0.0003005  6.350          6
-854  BUB1B-PAK6      15_14    0.9723  30.33 0.0002604 -5.588          4
-3563      LAMA5      20_36    1.1434  23.61 0.0002517  4.603         24
-3632  LINC00320       21_6    0.9542  29.24 0.0002419 -5.336          3
-2782     GIGYF1       7_62    0.9748  26.79 0.0002375 -5.266          5
-7547       VWA7       6_26    0.1940 627.25 0.0002242 11.553          1
-360      ANAPC7      12_67    0.8369  37.61 0.0002240  6.385          7
-7712    ZDHHC20       13_2    0.9572  24.94 0.0002118 -4.784          3
-4518     NPIPA1      16_15    0.9556  24.97 0.0002096  4.689          3
-7231    TSNARE1       8_93    0.8894  34.70 0.0002087  6.287         10
-7160     TRANK1       3_27    0.7490  39.04 0.0001917 -6.365          8
-1449      CLCN3      4_110    0.7913  29.64 0.0001762  5.470          1
-4166     MRPS33       7_87    0.9654  20.31 0.0001744 -4.304          6
+<pre><code>       genename region_tag susie_pip    mu2       PVE       z num_intron
+849      BTN3A1       6_20    0.6374 146.39 0.0005732  13.091          8
+468        APOM       6_26    0.2337 623.03 0.0005094  11.590          3
+5397     R3HDM2      12_36    0.9739  44.06 0.0004190   6.634         10
+1318      CENPM      22_17    0.7509  57.80 0.0003094  -6.506          1
+854  BUB1B-PAK6      15_14    0.9156  30.33 0.0002452  -5.588          4
+7547       VWA7       6_26    0.1940 627.25 0.0002242  11.553          1
+3632  LINC00320       21_6    0.8839  29.24 0.0002240  -5.336          3
+4518     NPIPA1      16_15    0.9142  24.97 0.0002005   4.689          3
+360      ANAPC7      12_67    0.6619  37.61 0.0001771   6.385          7
+1449      CLCN3      4_110    0.7913  29.64 0.0001762   5.470          1
+6119      SF3B1      2_117    0.4372  45.88 0.0001728   7.053          5
+299        AKT3      1_128    0.5124  35.61 0.0001595   6.350          6
+7160     TRANK1       3_27    0.6112  39.04 0.0001565  -6.365          8
+3563      LAMA5      20_36    0.7061  23.61 0.0001554   4.603         24
+4179       MSH5       6_26    0.1588 627.91 0.0001503 -11.538          3
+469      APOPT1      14_54    0.4092  43.21 0.0001444   7.429          6
+765        BDNF      11_19    0.7364  23.81 0.0001415   4.348          3
+4586      NTRK3      15_41    0.7571  24.66 0.0001310   4.457          2
+6497     SPECC1      17_16    0.7238  25.92 0.0001289  -4.822          1
+1952       DHPS      19_10    0.7273  24.50 0.0001241  -4.396          3
      num_sqtl
-468         3
 849         8
+468         3
 5397       12
-6119        5
-3723       11
-469         7
 1318        1
-299         7
 854         5
-3563       38
-3632        3
-2782        5
 7547        1
-360         7
-7712        4
+3632        3
 4518        3
-7231       12
-7160        8
+360         7
 1449        2
-4166        6</code></pre>
+6119        5
+299         7
+7160        8
+3563       38
+4179        3
+469         7
+765         3
+4586        2
+6497        1
+1952        3</code></pre>
 </div>
 <div id="comparing-z-scores-and-pips" class="section level2">
 <h2>Comparing z scores and PIPs</h2>
@@ -1093,26 +1144,26 @@ sq-96
 </div>
 <pre><code>[1] 0.02124</code></pre>
 <pre><code>         genename region_tag susie_pip    mu2       PVE       z num_intron
-849        BTN3A1       6_20 7.393e-01 146.39 6.649e-04  13.091          8
-4876        PGBD1       6_22 1.007e-01 160.95 7.079e-06  13.087          5
-468          APOM       6_26 3.686e-01 623.03 8.033e-04  11.590          3
+849        BTN3A1       6_20 6.374e-01 146.39 5.732e-04  13.091          8
+4876        PGBD1       6_22 3.519e-02 160.95 2.473e-06  13.087          5
+468          APOM       6_26 2.337e-01 623.03 5.094e-04  11.590          3
 7547         VWA7       6_26 1.940e-01 627.25 2.242e-04  11.553          1
 7489         VARS       6_26 1.402e-01 623.95 1.165e-04 -11.548          2
 4179         MSH5       6_26 1.588e-01 627.91 1.503e-04 -11.538          3
-1888         DDR1       6_25 1.570e-01 105.86 2.456e-05 -11.175          3
-7490        VARS2       6_25 1.118e-01 104.74 1.206e-05  11.137          2
-979      C6orf136       6_25 7.591e-02  87.21 4.771e-06 -11.031          2
-2623        FLOT1       6_25 1.547e-01  87.22 1.952e-05 -10.981          7
-850        BTN3A2       6_20 1.644e-01  94.96 1.183e-05 -10.694          3
+1888         DDR1       6_25 1.531e-01 105.86 2.397e-05 -11.175          3
+7490        VARS2       6_25 1.076e-01 104.74 1.161e-05  11.137          2
+979      C6orf136       6_25 3.795e-02  87.21 2.386e-06 -11.031          2
+2623        FLOT1       6_25 2.776e-02  87.22 3.503e-06 -10.981          7
+850        BTN3A2       6_20 1.254e-01  94.96 9.019e-06 -10.694          3
 2841         GNL1       6_25 2.920e-03  78.25 6.334e-09 -10.645          1
 7183       TRIM39       6_25 7.839e-03  82.27 4.800e-08 -10.616          1
 716          BAG6       6_26 1.491e-09 498.08 1.051e-20  10.247          6
-5195         PPT2       6_26 7.799e-12 464.25 2.681e-25 -10.061         10
+5195         PPT2       6_26 3.900e-12 464.25 1.341e-25 -10.061         10
 5261        PRRT1       6_26 2.706e-12 462.51 3.216e-26 -10.018          1
 2909        GPSM3       6_26 8.360e-14 414.68 2.752e-29  -9.377          1
-1203       CCHCR1       6_25 4.718e-02  69.57 6.124e-07  -9.358         17
+1203       CCHCR1       6_25 1.796e-02  69.57 2.332e-07  -9.358         17
 7105         TNXB       6_26 1.527e-13 452.13 1.000e-28   9.001          6
-5832 RP5-874C20.8       6_22 6.731e-02  53.73 1.605e-06   8.672          6
+5832 RP5-874C20.8       6_22 1.377e-02  53.73 3.284e-07   8.672          6
      num_sqtl
 849         8
 4876        6
@@ -1139,7 +1190,7 @@ sq-96
 <h2>GO enrichment analysis for genes with PIP&gt;0.5</h2>
 <pre class="r"><code>#number of genes for gene set enrichment
 length(genes)</code></pre>
-<pre><code>[1] 109</code></pre>
+<pre><code>[1] 29</code></pre>
 <pre><code>Uploading data to Enrichr... Done.
   Querying GO_Biological_Process_2021... Done.
   Querying GO_Cellular_Component_2021... Done.
@@ -1195,10 +1246,16 @@ sq-96
 </table>
 </div>
 </div>
-<pre><code>                                                  Term Overlap Adjusted.P.value
-1 morphogenesis of a polarized epithelium (GO:0001738)    3/12          0.02988
-             Genes
-1 AHI1;LAMA5;ACTG1
+<pre><code>                                                               Term Overlap
+1              morphogenesis of a polarized epithelium (GO:0001738)    2/12
+2 positive regulation of neuron projection development (GO:0010976)    3/88
+3    cellular response to nerve growth factor stimulus (GO:1990090)    2/22
+4  positive regulation of cell projection organization (GO:0031346)   3/117
+  Adjusted.P.value             Genes
+1          0.03944       LAMA5;ACTG1
+2          0.04111 BDNF;NTRK3;DPYSL3
+3          0.04560        BDNF;NTRK3
+4          0.04737 BDNF;NTRK3;DPYSL3
 [1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
 <p><img src="figure/SCZ_2018_Brain_Cerebellum_S.Rmd/unnamed-chunk-19-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
@@ -1306,17 +1363,17 @@ sq-96
 </div>
 <div id="disgenet-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
 <h2>DisGeNET enrichment analysis for genes with PIP&gt;0.5</h2>
-<pre><code>                           Description     FDR Ratio  BgRatio
-62                              Glioma 0.04106  4/58  87/9703
-90                             Measles 0.04106  1/58   1/9703
-128                      Schizophrenia 0.04106 12/58 883/9703
-156      Electroencephalogram abnormal 0.04106  1/58   1/9703
-160                        Polydactyly 0.04106  4/58 117/9703
-196                Short upturned nose 0.04106  1/58   1/9703
-199                      mixed gliomas 0.04106  4/58  70/9703
-218      Hypoglycemia, leucine-induced 0.04106  1/58   1/9703
-276 Interfrontal craniofaciosynostosis 0.04106  1/58   1/9703
-277            Osteoglophonic dwarfism 0.04106  1/58   1/9703</code></pre>
+<pre><code>                                       Description      FDR Ratio BgRatio
+78                   Electroencephalogram abnormal 0.009968  1/15  1/9703
+97                             Short upturned nose 0.009968  1/15  1/9703
+159                       Abnormality of the pinna 0.009968  1/15  1/9703
+176   Progressive sensorineural hearing impairment 0.009968  1/15  1/9703
+177                                   Pointed chin 0.009968  1/15  1/9703
+178                         Long palpebral fissure 0.009968  1/15  1/9703
+182                Deafness, Autosomal Dominant 20 0.009968  1/15  1/9703
+183 TOBACCO ADDICTION, SUSCEPTIBILITY TO (finding) 0.009968  2/15 12/9703
+185                                  Long philtrum 0.009968  1/15  1/9703
+186                       Thin upper lip vermilion 0.009968  1/15  1/9703</code></pre>
 </div>
 <div id="webgestalt-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
 <h2>WebGestalt enrichment analysis for genes with PIP&gt;0.5</h2>
@@ -1332,7 +1389,7 @@ minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
 </div>
 <div id="pip-manhattan-plot" class="section level2">
 <h2>PIP Manhattan Plot</h2>
-<pre><code>Warning: ggrepel: 66 unlabeled data points (too many overlaps). Consider
+<pre><code>Warning: ggrepel: 5 unlabeled data points (too many overlaps). Consider
 increasing max.overlaps</code></pre>
 <p><img src="figure/SCZ_2018_Brain_Cerebellum_S.Rmd/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
@@ -1357,6 +1414,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/be614ede37e6ed9f95b0d359f083e32f53defaad/docs/figure/SCZ_2018_Brain_Cerebellum_S.Rmd/unnamed-chunk-22-1.png" target="_blank">be614ed</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-05-19
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/7d08c9ba1c682ee3e1fbb5c8dea3fc6dace6d9c5/docs/figure/SCZ_2018_Brain_Cerebellum_S.Rmd/unnamed-chunk-22-1.png" target="_blank">7d08c9b</a>
@@ -1397,36 +1465,27 @@ print(sig_thresh)</code></pre>
 <pre><code>[1] 4.518</code></pre>
 <pre class="r"><code>#number of ctwas genes
 length(ctwas_genes)</code></pre>
-<pre><code>[1] 24</code></pre>
+<pre><code>[1] 4</code></pre>
 <pre class="r"><code>#number of TWAS genes
 length(twas_genes)</code></pre>
 <pre><code>[1] 170</code></pre>
 <pre class="r"><code>#show novel genes (ctwas genes with not in TWAS genes)
 ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]</code></pre>
-<pre><code>     genename region_tag susie_pip   mu2       PVE      z num_intron num_sqtl
-640    ATP2B2        3_8    0.8241 26.05 0.0001568  4.229          7        8
-698    B3GAT1      11_84    0.8157 23.68 0.0001377  4.324          6        9
-765      BDNF      11_19    0.8820 23.81 0.0001695  4.348          3        3
-1126    CBWD1        9_1    0.8033 20.46 0.0001186  4.060          3        4
-1179   CCDC57      17_47    0.8904 20.00 0.0001041  3.022         36       46
-1668    CRTAP       3_24    0.9010 19.87 0.0001503  3.929          3        3
-4166   MRPS33       7_87    0.9654 20.31 0.0001744 -4.304          6        6
-4586    NTRK3      15_41    0.8046 24.66 0.0001392  4.457          2        2
-4756     PATJ       1_39    0.8686 23.29 0.0001371 -2.798         16       19
-5383  PYROXD2      10_62    0.8732 20.71 0.0001347 -3.755         12       14
-7577    WDR27      6_111    1.0487 17.72 0.0001014 -2.341         29       37</code></pre>
+<pre><code>[1] genename   region_tag susie_pip  mu2        PVE        z          num_intron
+[8] num_sqtl  
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
 <pre class="r"><code>#sensitivity / recall
 print(sensitivity)</code></pre>
 <pre><code>  ctwas    TWAS 
-0.03846 0.17692 </code></pre>
+0.01538 0.17692 </code></pre>
 <pre class="r"><code>#specificity
 print(specificity)</code></pre>
 <pre><code> ctwas   TWAS 
-0.9976 0.9815 </code></pre>
+0.9997 0.9815 </code></pre>
 <pre class="r"><code>#precision / PPV
 print(precision)</code></pre>
 <pre><code> ctwas   TWAS 
-0.2083 0.1353 </code></pre>
+0.5000 0.1353 </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

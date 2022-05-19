@@ -160,7 +160,7 @@ ctwas_gene_res <- data.frame(by_genename %>% summarise(
   region_tag1 = region_tag1[1],
   region_tag2 = names(sort(table(region_tag2),decreasing = TRUE)[1]),
   cs_index = cs_index[1],
-  susie_pip = sum(susie_pip),
+  susie_pip = max(susie_pip),
   mu2 = mu2[which.max(abs(mu2))],
   region_tag = names(sort(table(region_tag),decreasing = TRUE)[1]),
   PVE = sum(susie_pip*PVE),
