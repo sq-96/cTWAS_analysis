@@ -1,0 +1,100 @@
+---
+title: "SCZ 2018 - Brain_Amygdala"
+author: "sheng Qian"
+date: "2021-2-6"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+params:
+  analysis_id: "SCZ_Brain_Amygdala"
+  trait_id: "SCZ_2018_S"
+  weight: "Brain_Amygdala"
+---
+
+```{r}
+library(reticulate)
+use_python("/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python",required=T)
+```
+
+
+```{r echo=F}
+analysis_id <- params$analysis_id
+trait_id <- params$trait_id
+weight <- params$weight
+
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
+
+source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
+options(digits = 4)
+```
+
+## Weight QC
+
+```{r echo=F}
+qclist_all <- list()
+
+qc_files <- paste0(results_dir, "/", list.files(results_dir, pattern="exprqc.Rd"))
+
+for (i in 1:length(qc_files)){
+  load(qc_files[i])
+  chr <- unlist(strsplit(rev(unlist(strsplit(qc_files[i], "_")))[1], "[.]"))[1]
+  qclist_all[[chr]] <- cbind(do.call(rbind, lapply(qclist,unlist)), as.numeric(substring(chr,4)))
+}
+
+qclist_all <- data.frame(do.call(rbind, qclist_all))
+colnames(qclist_all)[ncol(qclist_all)] <- "chr"
+
+rm(qclist, wgtlist, z_gene_chr)
+```
+
+```{r}
+#number of imputed weights
+nrow(qclist_all)
+
+#number of imputed weights by chromosome
+table(qclist_all$chr)
+
+#number of imputed weights without missing variants
+sum(qclist_all$nmiss==0)
+
+#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)
+```
+
+```{r echo=F}
+#load ctwas results
+ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
+
+#make unique identifier for regions
+ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+
+#load z scores for SNPs and collect sample size
+load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+
+sample_size <- z_snp$ss
+sample_size <- as.numeric(names(which.max(table(sample_size))))
+
+#compute PVE for each gene/SNP
+ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+
+#separate gene and SNP results
+ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
+ctwas_gene_res <- data.frame(ctwas_gene_res)
+ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+ctwas_snp_res <- data.frame(ctwas_snp_res)
+```
+
+```{python echo=F}
+from pyensembl import EnsemblRelease #repl_python()
+import math
+import time
+import numpy as np
+import pandas as pd
+
+data = EnsemblRelease(88)
+ctwas_gene_res_df = r.ctwas_gene_res
+ctwas_gene_res_df['intron_start'] = ctwas_gene_res_df['id'].apply(lambda x: int(x.split("_")[2]))
+ctwas_gene_res_df['intron_end'] = ctwas_gene_res_df['id'].apply(lambda x: int(x.split("_")[3]))
+ctwas_gene_res_df['genename'] = np.nan
+ctwas_gene_res_df['intron_id'] = ctwas_gene_res_df['id']
+```

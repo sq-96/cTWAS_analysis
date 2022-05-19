@@ -116,7 +116,7 @@ ctwas_gene_res_df = ctwas_gene_res_df.dropna(subset=['genename'])
 print("finish")
 ```
 
-```{r echo=F, eval=FALSE}
+```{r echo=F}
 #add z scores to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
 ctwas_gene_res <- py$ctwas_gene_res_df
@@ -131,12 +131,12 @@ ctwas_snp_res$gene_type=NA
 ctwas_snp_res$intron_id=NA
 ctwas_snp_res$intron_pos=NA
 
-saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_intron_res.RDS"))
 saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
 ```
 
 ```{r echo=F}
-ctwas_intron_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+ctwas_intron_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_intron_res.RDS"))
 ctwas_intron_res <- ctwas_intron_res[!is.na(ctwas_intron_res$genename),]
 ctwas_snp_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
 
@@ -171,6 +171,8 @@ ctwas_gene_res <- data.frame(by_genename %>% summarise(
 
 ctwas_snp_res$num_intron <- NA
 ctwas_snp_res$num_sqtl <- NA
+
+saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 ```
 
 ```{r echo=F}

@@ -225,6 +225,22 @@ write.xlsx(top_annotation, "SCZ_annotation.xlsx", sheetName = "SCZ_2018",
   col.names = T, row.names = F, append = T)
 ```
 
+## 2018 SCZ GWAS Splicing
+```{r,echo=FALSE}
+result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018_S/")
+top_annotation <- result[[1]]
+# random_annotation <- result[[2]]
+# reactable(top_annotation,resizable = TRUE)
+# 
+# for(i in 2:15){
+#   fisher_result <- fisher.test(matrix(c(sum(top_annotation[,i]),dim(top_annotation)[1]-sum(top_annotation[,i]),sum(random_annotation[,i]),dim(random_annotation)[1]-sum(random_annotation[,i])),ncol=2),alternative="greater")
+#   print(paste0("# genes in ",colnames(top_annotation)[i],": ",
+#                sum(top_annotation[,i])," (P-value: ",round(fisher_result$p.value,3),", Odds Ratio: ",round(fisher_result$estimate,3),")"))
+# }
+#top_annotation <- merge(top_annotation,G_list,by = "top_genes",all.x = T)
+```
+
+
 ## 2020 SCZ GWAS
 ```{r,echo=FALSE}
 result <- summary_table("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/")
