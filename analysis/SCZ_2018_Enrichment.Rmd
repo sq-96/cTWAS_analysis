@@ -1,0 +1,66 @@
+---
+title: "SCZ 2018 Enrichment"
+author: "shengqian"
+date: "2022-05-16"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r, message=FALSE, results='hide'}
+library(gseasusie)
+library(tidyverse)
+```
+
+```{r load.gene.sets, message=FALSE}
+genesets <- gseasusie::load_gene_sets(c('gobp'))
+```
+
+```{r load.data, message=FALSE}
+library(data.table)
+library("AnnotationDbi")
+library("org.Hs.eg.db")
+data <- fread(file = "data/magma.genes.out")
+data$entrez = mapIds(org.Hs.eg.db,
+                    keys=data$GENE, #Column containing Ensembl gene ids
+                    column="ENTREZID",
+                    keytype="ENSEMBL",
+                    multiVals="first")
+
+data <- na.omit(data)
+data$beta <- 1
+data$se <- 1
+
+data <- data[,c("GENE","entrez","P","beta","se","ZSTAT")]
+colnames(data) <- c("ENSEMBL","ENTREZID","pvalue","beta","se","threshold.on")
+```
+
+```{r binarize.data, message=FALSE}
+db <- 'gobp' 
+thresh = 2  # threshold for binarizing the data
+bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
+
+X <- bin.data$X
+y <- bin.data$y
+```
+
+```{r fit.models, message=FALSE}
+# fit logistic susie
+logistic.fit <- gseasusie::fit_logistic_susie_veb_boost(X, y, L=20)
+
+# fit linear susie
+linear.fit <- susieR::susie(X, y)
+
+# compute odds ratios, and pvalues under hypergeometric (one-sided) and fishers exact (two-sided) tests
+ora <- gseasusie::fit_ora(X, y)
+```
+
+```{r make.volcano, message=FALSE}
+gseasusie::enrichment_volcano(logistic.fit, ora)
+```
+
+```{r make.itable, message=FALSE}
+gseasusie::interactive_table(logistic.fit, ora)
+```
+
+
