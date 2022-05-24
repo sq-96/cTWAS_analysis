@@ -20,7 +20,7 @@ get_E_S <- function(tissue){
 
 ```{r, fig.height=10, figure.width=16, echo=FALSE}
 brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018_S/")
-par(mfrow=c(4,4),mar = c(4, 4, .1, .1))
+par(mfrow=c(4,4))
 for(i in brain_tissue){
   results <- get_E_S(i)
   splicing_gene <- results[[1]]
@@ -30,7 +30,7 @@ for(i in brain_tissue){
   df <- merge(expression_gene[,c("genename","susie_pip")],splicing_gene[,c("genename","susie_pip")],by = "genename")
   colnames(df) <- c("genename","Expression_PIP","Splicing_PIP")
   #print(paste0(i," : ",as.character(round(cor(df$Expression_PIP,df$Splicing_PIP),3))))
-  plot(df$Expression_PIP,df$Splicing_PIP, main=paste0(i," : ",as.character(round(cor(df$Expression_PIP,df$Splicing_PIP),3))),
+  plot(df$Expression_PIP,df$Splicing_PIP, main=as.character(round(cor(df$Expression_PIP,df$Splicing_PIP),3)),
        xlab = "Expression PIP", ylab = "Splicing PIP")
 }
 ```
