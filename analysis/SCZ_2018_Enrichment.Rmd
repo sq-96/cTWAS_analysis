@@ -7,16 +7,18 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r, message=FALSE, results='hide'}
+## Load gene sets
+
+```{r, message=FALSE, results='hide', warning=FALSE}
 library(gseasusie)
 library(tidyverse)
+
+genesets <- gseasusie::load_gene_sets(c('gobp','gomf','gocc'))
 ```
 
-```{r load.gene.sets, message=FALSE}
-genesets <- gseasusie::load_gene_sets(c('gobp'))
-```
+## Load gene list
 
-```{r load.data, message=FALSE}
+```{r, message=FALSE}
 library(data.table)
 library("AnnotationDbi")
 library("org.Hs.eg.db")
@@ -35,32 +37,80 @@ data <- data[,c("GENE","entrez","P","beta","se","ZSTAT")]
 colnames(data) <- c("ENSEMBL","ENTREZID","pvalue","beta","se","threshold.on")
 ```
 
-```{r binarize.data, message=FALSE}
+## Gene Ontology Biological Process
+
+```{r, message=FALSE, echo=FALSE}
 db <- 'gobp' 
 thresh = 2  # threshold for binarizing the data
 bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
 
 X <- bin.data$X
 y <- bin.data$y
-```
 
-```{r fit.models, message=FALSE}
 # fit logistic susie
 logistic.fit <- gseasusie::fit_logistic_susie_veb_boost(X, y, L=20)
 
 # fit linear susie
-linear.fit <- susieR::susie(X, y)
+#linear.fit <- susieR::susie(X, y)
 
 # compute odds ratios, and pvalues under hypergeometric (one-sided) and fishers exact (two-sided) tests
 ora <- gseasusie::fit_ora(X, y)
 ```
 
-```{r make.volcano, message=FALSE}
+```{r, message=FALSE, echo=FALSE}
 gseasusie::enrichment_volcano(logistic.fit, ora)
 ```
 
-```{r make.itable, message=FALSE}
+```{r, message=FALSE, echo=FALSE}
 gseasusie::interactive_table(logistic.fit, ora)
 ```
 
+## Gene Ontology Molecular Function
 
+```{r, message=FALSE, echo=FALSE}
+db <- 'gomf' 
+thresh = 2  # threshold for binarizing the data
+bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
+
+X <- bin.data$X
+y <- bin.data$y
+
+# fit logistic susie
+logistic.fit <- gseasusie::fit_logistic_susie_veb_boost(X, y, L=20)
+
+# compute odds ratios, and pvalues under hypergeometric (one-sided) and fishers exact (two-sided) tests
+ora <- gseasusie::fit_ora(X, y)
+```
+
+```{r, message=FALSE}
+gseasusie::enrichment_volcano(logistic.fit, ora)
+```
+
+```{r, message=FALSE}
+gseasusie::interactive_table(logistic.fit, ora)
+```
+
+## Gene Ontology Cellular Component
+
+```{r, message=FALSE, echo=FALSE}
+db <- 'gocc' 
+thresh = 2  # threshold for binarizing the data
+bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
+
+X <- bin.data$X
+y <- bin.data$y
+
+# fit logistic susie
+logistic.fit <- gseasusie::fit_logistic_susie_veb_boost(X, y, L=20)
+
+# compute odds ratios, and pvalues under hypergeometric (one-sided) and fishers exact (two-sided) tests
+ora <- gseasusie::fit_ora(X, y)
+```
+
+```{r, message=FALSE}
+gseasusie::enrichment_volcano(logistic.fit, ora)
+```
+
+```{r, message=FALSE}
+gseasusie::interactive_table(logistic.fit, ora)
+```
