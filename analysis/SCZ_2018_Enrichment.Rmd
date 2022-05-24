@@ -14,6 +14,7 @@ library(gseasusie)
 library(tidyverse)
 
 genesets <- gseasusie::load_gene_sets(c('gobp','gomf','gocc'))
+#genesets <- gseasusie::load_gene_sets(c('c2'))
 ```
 
 ## Load gene list
@@ -35,13 +36,14 @@ data$se <- 1
 
 data <- data[,c("GENE","entrez","P","beta","se","ZSTAT")]
 colnames(data) <- c("ENSEMBL","ENTREZID","pvalue","beta","se","threshold.on")
+data$threshold.on <- -1*data$threshold.on
 ```
 
 ## Gene Ontology Biological Process
 
 ```{r, message=FALSE, echo=FALSE}
 db <- 'gobp' 
-thresh = 2  # threshold for binarizing the data
+thresh = -2  # threshold for binarizing the data
 bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
 
 X <- bin.data$X
@@ -69,7 +71,7 @@ gseasusie::interactive_table(logistic.fit, ora)
 
 ```{r, message=FALSE, echo=FALSE}
 db <- 'gomf' 
-thresh = 2  # threshold for binarizing the data
+thresh = -2  # threshold for binarizing the data
 bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
 
 X <- bin.data$X
@@ -94,7 +96,7 @@ gseasusie::interactive_table(logistic.fit, ora)
 
 ```{r, message=FALSE, echo=FALSE}
 db <- 'gocc' 
-thresh = 2  # threshold for binarizing the data
+thresh = -2  # threshold for binarizing the data
 bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
 
 X <- bin.data$X
