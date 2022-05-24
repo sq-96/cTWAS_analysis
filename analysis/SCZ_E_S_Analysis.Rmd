@@ -18,7 +18,7 @@ get_E_S <- function(tissue){
 }
 ```
 
-```{r, fig.height=16, figure.width=16, echo=FALSE}
+```{r, fig.height=10, figure.width=16, echo=FALSE}
 brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018_S/")
 par(mfrow=c(4,4))
 for(i in brain_tissue){
