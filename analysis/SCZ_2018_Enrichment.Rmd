@@ -13,7 +13,7 @@ editor_options:
 library(gseasusie)
 library(tidyverse)
 
-genesets <- gseasusie::load_gene_sets(c('gobp','gomf','gocc'))
+genesets <- gseasusie::load_gene_sets(c('gobp','gomf','gocc','kegg'))
 #genesets <- gseasusie::load_gene_sets(c('c2'))
 ```
 
@@ -96,6 +96,31 @@ gseasusie::interactive_table(logistic.fit, ora)
 
 ```{r, message=FALSE, echo=FALSE}
 db <- 'gocc' 
+thresh = -2  # threshold for binarizing the data
+bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
+
+X <- bin.data$X
+y <- bin.data$y
+
+# fit logistic susie
+logistic.fit <- gseasusie::fit_logistic_susie_veb_boost(X, y, L=20)
+
+# compute odds ratios, and pvalues under hypergeometric (one-sided) and fishers exact (two-sided) tests
+ora <- gseasusie::fit_ora(X, y)
+```
+
+```{r, message=FALSE}
+gseasusie::enrichment_volcano(logistic.fit, ora)
+```
+
+```{r, message=FALSE}
+gseasusie::interactive_table(logistic.fit, ora)
+```
+
+# KEGG
+
+```{r, message=FALSE, echo=FALSE}
+db <- 'kegg' 
 thresh = -2  # threshold for binarizing the data
 bin.data <- gseasusie::prep_binary_data(genesets[[db]], data, thresh)
 
