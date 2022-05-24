@@ -18,9 +18,9 @@ get_E_S <- function(tissue){
 }
 ```
 
-```{r, fig.height=10, figure.width=16, echo=FALSE}
+```{r, fig.height=12, figure.width=16, echo=FALSE}
 brain_tissue <- list.files("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018_S/")
-par(mfrow=c(4,4))
+par(mfrow=c(4,4),mar = c(4, 4, .1, .1))
 for(i in brain_tissue){
   results <- get_E_S(i)
   splicing_gene <- results[[1]]
