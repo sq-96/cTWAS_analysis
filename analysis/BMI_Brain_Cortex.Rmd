@@ -1,13 +1,13 @@
 ---
-title: "BMI - Brain Cortex"
+title: "SCZ - Brain Cortex"
 author: "sheng Qian"
 date: "2021-2-6"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "BMI_Brain_Cortex"
-  trait_id: "BMI"
+  analysis_id: "SCZ_ME"
+  trait_id: "ieu-b-42"
   weight: "Brain_Cortex"
 ---
 
@@ -16,9 +16,24 @@ analysis_id <- params$analysis_id
 trait_id <- params$trait_id
 weight <- params$weight
 
-results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR_ME_EUR/")
 
-source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R")
+source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b37.R")
+options(digits = 4)
+
+vcf_file <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ieu-b-42.vcf.gz"
+#sample_size <- unlist(VariantAnnotation::readGeno(vcf_file, "SS"))
+#sample_size <- as.numeric(names(which.max(table(sample_size))))
+```
+
+```{r echo=F}
+analysis_id <- params$analysis_id
+trait_id <- params$trait_id
+weight <- params$weight
+
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR_ME_EUR/")
+
+source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b37.R")
 options(digits = 4)
 ```
 
@@ -39,37 +54,25 @@ qclist_all <- data.frame(do.call(rbind, qclist_all))
 colnames(qclist_all)[ncol(qclist_all)] <- "chr"
 
 rm(qclist, wgtlist, z_gene_chr)
-```
 
-```{r}
 #number of imputed weights
 nrow(qclist_all)
 
 #number of imputed weights by chromosome
 table(qclist_all$chr)
 
-#number of imputed weights without missing variants
-sum(qclist_all$nmiss==0)
-
 #proportion of imputed weights without missing variants
 mean(qclist_all$nmiss==0)
 ```
 
 ```{r echo=F}
-#load ctwas results
 ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
 
 #make unique identifier for regions
 ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
 
-#load z scores for SNPs and collect sample size
-load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
-
-sample_size <- z_snp$ss
-sample_size <- as.numeric(names(which.max(table(sample_size))))
-
 #compute PVE for each gene/SNP
-ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size #check PVE calculation
 
 #separate gene and SNP results
 ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
@@ -81,32 +84,39 @@ ctwas_snp_res <- data.frame(ctwas_snp_res)
 sqlite <- RSQLite::dbDriver("SQLite")
 db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
 query <- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info <- query("select gene, genename from extra")
 gene_info <- query("select gene, genename, gene_type from extra")
 RSQLite::dbDisconnect(db)
 
 ctwas_gene_res <- cbind(ctwas_gene_res, gene_info[sapply(ctwas_gene_res$id, match, gene_info$gene), c("genename", "gene_type")])
 
-#add z scores to results
+#add z score to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
 ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
 
-z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
-ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+z_snp <- readRDS(paste0(results_dir, "/", trait_id, ".RDS")) #for old version, unharmonized
+
+z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,] #subset snps to those included in analysis, note some are duplicated, need to match which allele was used
+ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)] #for duplicated snps, this arbitrarily uses the first allele
+ctwas_snp_res$z_flag <- as.numeric(ctwas_snp_res$id %in% z_snp$id[duplicated(z_snp$id)]) #mark the unclear z scores, flag=1
+
+#formatting and rounding for tables
+ctwas_gene_res$z <- round(ctwas_gene_res$z,2)
+ctwas_snp_res$z <- round(ctwas_snp_res$z,2)
+ctwas_gene_res$susie_pip <- round(ctwas_gene_res$susie_pip,3)
+ctwas_snp_res$susie_pip <- round(ctwas_snp_res$susie_pip,3)
+ctwas_gene_res$mu2 <- round(ctwas_gene_res$mu2,2)
+ctwas_snp_res$mu2 <- round(ctwas_snp_res$mu2,2)
+ctwas_gene_res$PVE <- signif(ctwas_gene_res$PVE, 2)
+ctwas_snp_res$PVE <- signif(ctwas_snp_res$PVE, 2)
 
 #merge gene and snp results with added information
+ctwas_gene_res$z_flag=NA
 ctwas_snp_res$genename=NA
 ctwas_snp_res$gene_type=NA
 
 ctwas_res <- rbind(ctwas_gene_res,
                    ctwas_snp_res[,colnames(ctwas_gene_res)])
-
-#get number of eQTL for geens
-num_eqtl <- c()
-for (i in 1:22){
-  load(paste0(results_dir, "/", analysis_id, "_expr_chr", i, ".exprqc.Rd"))
-  num_eqtl <- c(num_eqtl, unlist(lapply(wgtlist, nrow)))
-}
-ctwas_gene_res$num_eqtl <- num_eqtl[ctwas_gene_res$id]
 
 #store columns to report
 report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "gene_type", "z_flag", "id", "chrom", "pos"))]
@@ -114,9 +124,8 @@ first_cols <- c("genename", "region_tag")
 report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
 
 report_cols_snps <- c("id", report_cols[-1])
-report_cols_snps <- report_cols_snps[!(report_cols_snps %in% "num_eqtl")]
 
-#get number of SNPs from s1 results; adjust for thin argument
+#get number of SNPs from s1 results; adjust for thin
 ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
 n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
 rm(ctwas_res_s1)
@@ -156,9 +165,7 @@ p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
   theme_cowplot()
 
 plot_grid(p_pi, p_sigma2)
-```
 
-```{r}
 #estimated group prior
 estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
 names(estimated_group_prior) <- c("gene", "snp")
@@ -185,6 +192,7 @@ print(estimated_group_pve)
 #compare sum(PIP*mu2/sample_size) with above PVE calculation
 c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
 ```
+
 
 ## Genes with highest PIPs 
 
