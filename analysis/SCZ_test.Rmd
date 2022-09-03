@@ -287,7 +287,7 @@ G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
 G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
 ```
 
-```{r}
+```{r echo=FALSE}
 locus_plot_final_pub <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, label_panel="TWAS", label_genes=NULL, label_pos=NULL, plot_eqtl=NULL, rerun_ctwas=F, rerun_load_only=F, legend_side="right", legend_panel="cTWAS", twas_ymax=NULL){
   region_tag1 <- unlist(strsplit(region_tag, "_"))[1]
   region_tag2 <- unlist(strsplit(region_tag, "_"))[2]

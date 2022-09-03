@@ -507,16 +507,16 @@ code/ctwas_config_b37.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6a8a5fdf09a21ab0752fa71c518fb4201ad987d5targetblank6a8a5fda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/6a8a5fdf09a21ab0752fa71c518fb4201ad987d5" target="_blank">6a8a5fd</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree7e27e4571387369d177f30925a54da8df602cec8targetblank7e27e45a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/7e27e4571387369d177f30925a54da8df602cec8" target="_blank">7e27e45</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6a8a5fdf09a21ab0752fa71c518fb4201ad987d5targetblank6a8a5fda" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree7e27e4571387369d177f30925a54da8df602cec8targetblank7e27e45a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/6a8a5fdf09a21ab0752fa71c518fb4201ad987d5" target="_blank">6a8a5fd</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/7e27e4571387369d177f30925a54da8df602cec8" target="_blank">7e27e45</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -678,6 +678,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/7e27e4571387369d177f30925a54da8df602cec8/analysis/SCZ_test.Rmd" target="_blank">7e27e45</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/7e27e4571387369d177f30925a54da8df602cec8/docs/SCZ_test.html" target="_blank">7e27e45</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -851,202 +885,6 @@ NA.3017     &lt;NA&gt;      20_38    0.6812 21.85 0.0001413  3.659        1</cod
 </div>
 <div id="comparing-z-scores-and-pips" class="section level2">
 <h2>Comparing z scores and PIPs</h2>
-<pre class="r"><code>locus_plot_final_pub &lt;- function(region_tag, xlim=NULL, return_table=F, focus=NULL, label_panel=&quot;TWAS&quot;, label_genes=NULL, label_pos=NULL, plot_eqtl=NULL, rerun_ctwas=F, rerun_load_only=F, legend_side=&quot;right&quot;, legend_panel=&quot;cTWAS&quot;, twas_ymax=NULL){
-  region_tag1 &lt;- unlist(strsplit(region_tag, &quot;_&quot;))[1]
-  region_tag2 &lt;- unlist(strsplit(region_tag, &quot;_&quot;))[2]
-  
-  a &lt;- ctwas_res[ctwas_res$region_tag==region_tag,]
-  
-  regionlist &lt;- readRDS(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.regionlist.RDS&quot;))
-  region &lt;- regionlist[[as.numeric(region_tag1)]][[region_tag2]]
-  
-  R_snp_info &lt;- do.call(rbind, lapply(region$regRDS, function(x){data.table::fread(paste0(tools::file_path_sans_ext(x), &quot;.Rvar&quot;))}))
-  
-  if (isTRUE(rerun_ctwas)){
-    ld_exprfs &lt;- paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_chr&quot;, 1:22, &quot;.expr.gz&quot;)
-    temp_reg &lt;- data.frame(&quot;chr&quot; = paste0(&quot;chr&quot;,region_tag1), &quot;start&quot; = region$start, &quot;stop&quot; = region$stop)
-  
-    write.table(temp_reg, 
-                #file= paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.temp.reg.txt&quot;) , 
-                file= &quot;temp_reg.txt&quot;,
-                row.names=F, col.names=T, sep=&quot;\t&quot;, quote = F)
-  
-    load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_z_snp.Rd&quot;))
-  
-    z_gene_temp &lt;-  z_gene[z_gene$id %in% a$id[a$type==&quot;gene&quot;],]
-    z_snp_temp &lt;-  z_snp[z_snp$id %in% R_snp_info$id,]
-    
-    if (!rerun_load_only){
-      ctwas::ctwas_rss(z_gene_temp, z_snp_temp, ld_exprfs, ld_pgenfs = NULL, 
-                       ld_R_dir = dirname(region$regRDS)[1],
-                       ld_regions_custom = &quot;temp_reg.txt&quot;, thin = 1, 
-                       outputdir = &quot;.&quot;, outname = &quot;temp&quot;, ncore = 1, ncore.rerun = 1, prob_single = 0,
-                       group_prior = estimated_group_prior, group_prior_var = estimated_group_prior_var,
-                       estimate_group_prior = F, estimate_group_prior_var = F)
-    }
-    
-    a_bkup &lt;- a         
-    a &lt;- as.data.frame(data.table::fread(&quot;temp.susieIrss.txt&quot;, header = T))
-    
-    rownames(z_snp_temp) &lt;- z_snp_temp$id
-    z_snp_temp &lt;- z_snp_temp[a$id[a$type==&quot;SNP&quot;],]
-    z_gene_temp &lt;- z_gene_temp[a$id[a$type==&quot;gene&quot;],]
-    
-    a$genename &lt;- NA
-    a$gene_type &lt;- NA
-
-    a[a$type==&quot;gene&quot;,c(&quot;genename&quot;, &quot;gene_type&quot;)] &lt;- a_bkup[match(a$id[a$type==&quot;gene&quot;], a_bkup$id),c(&quot;genename&quot;,&quot;gene_type&quot;)]
-    
-    a$z &lt;- NA
-    a$z[a$type==&quot;SNP&quot;] &lt;- z_snp_temp$z
-    a$z[a$type==&quot;gene&quot;] &lt;- z_gene_temp$z
-  }
-  
-  a_pos_bkup &lt;- a$pos
-  a$pos[a$type==&quot;gene&quot;] &lt;- G_list$tss[match(sapply(a$id[a$type==&quot;gene&quot;], function(x){unlist(strsplit(x, &quot;[.]&quot;))[1]}) ,G_list$ensembl_gene_id)]
-  a$pos[is.na(a$pos)] &lt;- a_pos_bkup[is.na(a$pos)]
-  a$pos &lt;- a$pos/1000000
-  
-  if (!is.null(xlim)){
-    
-    if (is.na(xlim[1])){
-      xlim[1] &lt;- min(a$pos)
-    }
-    
-    if (is.na(xlim[2])){
-      xlim[2] &lt;- max(a$pos)
-    }
-    
-    a &lt;- a[a$pos&gt;=xlim[1] &amp; a$pos&lt;=xlim[2],,drop=F]
-  }
-  
-  if (is.null(focus)){
-    focus &lt;- a$genename[a$z==max(abs(a$z)[a$type==&quot;gene&quot;])]
-  }
-  
-  if (is.null(label_genes)){
-    label_genes &lt;- focus
-  }
-  
-  if (is.null(label_pos)){
-    label_pos &lt;- rep(3, length(label_genes))
-  }
-  
-  if (is.null(plot_eqtl)){
-    plot_eqtl &lt;- focus
-  }
-  
-  focus &lt;- a$id[which(a$genename==focus)]
-  a$focus &lt;- 0
-  a$focus &lt;- as.numeric(a$id==focus)
-    
-  a$PVALUE &lt;- (-log(2) - pnorm(abs(a$z), lower.tail=F, log.p=T))/log(10)
-  
-  R_gene &lt;- readRDS(region$R_g_file)
-  R_snp_gene &lt;- readRDS(region$R_sg_file)
-  R_snp &lt;- as.matrix(Matrix::bdiag(lapply(region$regRDS, readRDS)))
-  
-  rownames(R_gene) &lt;- region$gid
-  colnames(R_gene) &lt;- region$gid
-  rownames(R_snp_gene) &lt;- R_snp_info$id
-  colnames(R_snp_gene) &lt;- region$gid
-  rownames(R_snp) &lt;- R_snp_info$id
-  colnames(R_snp) &lt;- R_snp_info$id
-  
-  a$r2max &lt;- NA
-  a$r2max[a$type==&quot;gene&quot;] &lt;- R_gene[focus,a$id[a$type==&quot;gene&quot;]]
-  a$r2max[a$type==&quot;SNP&quot;] &lt;- R_snp_gene[a$id[a$type==&quot;SNP&quot;],focus]
-  
-  r2cut &lt;- 0.4
-  colorsall &lt;- c(&quot;#7fc97f&quot;, &quot;#beaed4&quot;, &quot;#fdc086&quot;)
-  
-  start &lt;- min(a$pos)
-  end &lt;- max(a$pos)
-  
-  layout(matrix(1:4, ncol = 1), widths = 1, heights = c(1.5,0.25,1.75,0.75), respect = FALSE)
-  
-  par(mar = c(0, 4.1, 0, 2.1))
-  
-  if (is.null(twas_ymax)){
-    twas_ymax &lt;- max(a$PVALUE)*1.1
-  }
-  
-  plot(a$pos[a$type==&quot;SNP&quot;], a$PVALUE[a$type == &quot;SNP&quot;], pch = 21, xlab=paste0(&quot;Chromosome &quot;, region_tag1, &quot; position (Mb)&quot;), frame.plot=FALSE, bg = colorsall[1], ylab = &quot;-log10(p value)&quot;, panel.first = grid(), ylim =c(0, twas_ymax), xaxt = &#39;n&#39;, xlim=c(start, end))
-  
-  abline(h=-log10(alpha/nrow(ctwas_gene_res)), col =&quot;red&quot;, lty = 2)
-  points(a$pos[a$type==&quot;SNP&quot; &amp; a$r2max &gt; r2cut], a$PVALUE[a$type == &quot;SNP&quot;  &amp; a$r2max &gt; r2cut], pch = 21, bg = &quot;purple&quot;)
-  points(a$pos[a$type==&quot;SNP&quot; &amp; a$focus == 1], a$PVALUE[a$type == &quot;SNP&quot; &amp; a$focus == 1], pch = 21, bg = &quot;salmon&quot;)
-  points(a$pos[a$type==&quot;gene&quot;], a$PVALUE[a$type == &quot;gene&quot;], pch = 22, bg = colorsall[1], cex = 2)
-  points(a$pos[a$type==&quot;gene&quot; &amp; a$r2max &gt; r2cut], a$PVALUE[a$type == &quot;gene&quot;  &amp; a$r2max &gt; r2cut], pch = 22, bg = &quot;purple&quot;, cex = 2)
-  points(a$pos[a$type==&quot;gene&quot; &amp; a$focus == 1], a$PVALUE[a$type == &quot;gene&quot; &amp; a$focus == 1], pch = 22, bg = &quot;salmon&quot;, cex = 2)
-  
-  if (legend_panel==&quot;TWAS&quot;){
-    x_pos &lt;- ifelse(legend_side==&quot;right&quot;, max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
-    legend(x_pos, y= twas_ymax*0.95, c(&quot;Gene&quot;, &quot;SNP&quot;,&quot;Lead TWAS Gene&quot;, &quot;R2 &gt; 0.4&quot;, &quot;R2 &lt;= 0.4&quot;), pch = c(22,21,19,19,19), col = c(&quot;black&quot;, &quot;black&quot;, &quot;salmon&quot;, &quot;purple&quot;, colorsall[1]), cex=0.7, title.adj = 0)
-  }
-  
-  if (label_panel==&quot;TWAS&quot; | label_panel==&quot;both&quot;){
-    for (i in 1:length(label_genes)){
-      text(a$pos[a$genename==label_genes[i]], a$PVALUE[a$genename==label_genes[i]], labels=label_genes[i], pos=label_pos[i], cex=0.7)
-    }
-  }
-  
-  par(mar = c(0.25, 4.1, 0.25, 2.1))
-  
-  plot(NA, xlim = c(start, end), ylim = c(0, length(plot_eqtl)), frame.plot = F, axes = F, xlab = NA, ylab = NA)
-  
-  for (i in 1:length(plot_eqtl)){
-    cgene &lt;- a$id[which(a$genename==plot_eqtl[i])]
-    load(paste0(results_dir, &quot;/&quot;,analysis_id, &quot;_expr_chr&quot;, region_tag1, &quot;.exprqc.Rd&quot;))
-    eqtls &lt;- rownames(wgtlist[[cgene]])
-    eqtl_pos &lt;- a$pos[a$id %in% eqtls]
-    
-    #col=&quot;grey&quot;
-    col=&quot;#c6e8f0&quot;
-    
-    rect(start, length(plot_eqtl)+1-i-0.8, end, length(plot_eqtl)+1-i-0.2, col = col, border = T, lwd = 1)
-  
-    if (length(eqtl_pos)&gt;0){
-      for (j in 1:length(eqtl_pos)){
-        segments(x0=eqtl_pos[j], x1=eqtl_pos[j], y0=length(plot_eqtl)+1-i-0.2, length(plot_eqtl)+1-i-0.8, lwd=1.5)  
-      }
-    }
-  }
-  
-  text(start, length(plot_eqtl)-(1:length(plot_eqtl))+0.5,  
-       labels = paste0(plot_eqtl, &quot; eQTL&quot;), srt = 0, pos = 2, xpd = TRUE, cex=0.7)
-  
-  par(mar = c(4.1, 4.1, 0, 2.1))
-  
-  plot(a$pos[a$type==&quot;SNP&quot;], a$susie_pip[a$type == &quot;SNP&quot;], pch = 19, xlab=paste0(&quot;Chromosome &quot;, region_tag1, &quot; position (Mb)&quot;),frame.plot=FALSE, col = &quot;white&quot;, ylim= c(0,1.1), ylab = &quot;cTWAS PIP&quot;, xlim = c(start, end))
-  
-  grid()
-  points(a$pos[a$type==&quot;SNP&quot;], a$susie_pip[a$type == &quot;SNP&quot;], pch = 21, xlab=&quot;Genomic position&quot;, bg = colorsall[1])
-  points(a$pos[a$type==&quot;SNP&quot; &amp; a$r2max &gt; r2cut], a$susie_pip[a$type == &quot;SNP&quot;  &amp; a$r2max &gt;r2cut], pch = 21, bg = &quot;purple&quot;)
-  points(a$pos[a$type==&quot;SNP&quot; &amp; a$focus == 1], a$susie_pip[a$type == &quot;SNP&quot; &amp; a$focus == 1], pch = 21, bg = &quot;salmon&quot;)
-  points(a$pos[a$type==&quot;gene&quot;], a$susie_pip[a$type == &quot;gene&quot;], pch = 22, bg = colorsall[1], cex = 2)
-  points(a$pos[a$type==&quot;gene&quot; &amp; a$r2max &gt; r2cut], a$susie_pip[a$type == &quot;gene&quot;  &amp; a$r2max &gt; r2cut], pch = 22, bg = &quot;purple&quot;, cex = 2)
-  points(a$pos[a$type==&quot;gene&quot; &amp; a$focus == 1], a$susie_pip[a$type == &quot;gene&quot; &amp; a$focus == 1], pch = 22, bg = &quot;salmon&quot;, cex = 2)
-  
-  if (legend_panel==&quot;cTWAS&quot;){
-    x_pos &lt;- ifelse(legend_side==&quot;right&quot;, max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
-    legend(x_pos, y= 1 ,c(&quot;Gene&quot;, &quot;SNP&quot;,&quot;Lead TWAS Gene&quot;, &quot;R2 &gt; 0.4&quot;, &quot;R2 &lt;= 0.4&quot;), pch = c(22,21,19,19,19), col = c(&quot;black&quot;, &quot;black&quot;, &quot;salmon&quot;, &quot;purple&quot;, colorsall[1]), cex=0.7, title.adj = 0)
-  }
-  
-  if (label_panel==&quot;cTWAS&quot; | label_panel==&quot;both&quot;){
-    for (i in 1:length(label_genes)){
-      text(a$pos[a$genename==label_genes[i]], a$susie_pip[a$genename==label_genes[i]], labels=label_genes[i], pos=label_pos[i], cex=0.7)
-    }
-  }
-  
-  if (return_table){
-    return(a)
-  }
-}
-
-####################
-
-library(Gviz)</code></pre>
 <pre><code>Loading required package: S4Vectors</code></pre>
 <pre><code>Loading required package: stats4</code></pre>
 <pre><code>Loading required package: BiocGenerics</code></pre>
@@ -1072,30 +910,6 @@ Attaching package: &#39;S4Vectors&#39;</code></pre>
 <pre><code>Loading required package: GenomicRanges</code></pre>
 <pre><code>Loading required package: GenomeInfoDb</code></pre>
 <pre><code>Loading required package: grid</code></pre>
-<pre class="r"><code>locus_plot_gene_track_pub &lt;- function(a, label_pos=NULL){
-  chr &lt;- unique(a$chrom)
-  start &lt;- min(a$pos)*1000000
-  end &lt;- max(a$pos)*1000000
-  
-  biomTrack &lt;- BiomartGeneRegionTrack(chromosome = chr,
-                                      start = start,
-                                      end = end,
-                                      name = &quot;ENSEMBL&quot;,
-                                      biomart = ensembl,
-                                      filters=list(biotype=&quot;protein_coding&quot;))
-  
-  
-  biomTrack &lt;- as(biomTrack, &quot;GeneRegionTrack&quot;)
-  biomTrack &lt;- biomTrack[biomTrack@range@elementMetadata@listData$feature %in% c(&quot;protein_coding&quot;, &quot;utr3&quot;, &quot;utr5&quot;)]
-  
-  if (isTRUE(label_pos==&quot;above&quot;)){
-    displayPars(biomTrack)$just.group &lt;- &quot;above&quot;
-  }
-  
-  grid.newpage()
-  
-  plotTracks(biomTrack, collapseTranscripts = &quot;meta&quot;, transcriptAnnotation = &quot;symbol&quot;, from=start, to=end, panel.only=T, add=F)
-}</code></pre>
 <pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;19_10&quot;, return_table=T,
                       focus=&quot;ZNF823&quot;,
                       label_genes=c(&quot;ZNF823&quot;),
@@ -1129,6 +943,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/7e27e4571387369d177f30925a54da8df602cec8/docs/figure/SCZ_test.Rmd/unnamed-chunk-9-1.png" target="_blank">7e27e45</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/2b787bd5f55ed93b4a29d744636c53b14af8287c/docs/figure/SCZ_test.Rmd/unnamed-chunk-9-1.png" target="_blank">2b787bd</a>
 </td>
 <td>
@@ -1144,6 +969,43 @@ sq-96
 </div>
 <pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
 <p><img src="figure/SCZ_test.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
+Past versions of unnamed-chunk-10-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-10-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/7e27e4571387369d177f30925a54da8df602cec8/docs/figure/SCZ_test.Rmd/unnamed-chunk-10-1.png" target="_blank">7e27e45</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
