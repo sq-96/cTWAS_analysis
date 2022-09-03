@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="sheng Qian" />
+
+
+<title>SCZ - Brain Cortex</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">cTWAS_analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/sq-96/cTWAS_analysis">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">SCZ - Brain Cortex</h1>
+<h4 class="author">sheng Qian</h4>
+<h4 class="date">2021-2-6</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2022-09-03
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
+</p>
+<p>
+<strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211220code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20211220)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20211220code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20211220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+</p>
+</div>
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/
+</td>
+<td style="text-align:left;">
+data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b37.R
+</td>
+<td style="text-align:left;">
+code/ctwas_config_b37.R
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreeb4b5f19c2bfc5d4e1a5f140d252b51b9be7e724ctargetblankb4b5f19a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/b4b5f19c2bfc5d4e1a5f140d252b51b9be7e724c" target="_blank">b4b5f19</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreeb4b5f19c2bfc5d4e1a5f140d252b51b9be7e724ctargetblankb4b5f19a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/b4b5f19c2bfc5d4e1a5f140d252b51b9be7e724c" target="_blank">b4b5f19</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .ipynb_checkpoints/
+    Ignored:    analysis/figure/
+
+Untracked files:
+    Untracked:  G_list.RData
+    Untracked:  Rplot.png
+    Untracked:  SCZ_annotation.xlsx
+    Untracked:  analysis/.ipynb_checkpoints/
+    Untracked:  cache/
+    Untracked:  code/.ipynb_checkpoints/
+    Untracked:  code/AF_out/
+    Untracked:  code/IBD_ME_out/
+    Untracked:  code/LDL_S_out/
+    Untracked:  code/SCZ_2014_EUR_ME_EUR_out/
+    Untracked:  code/SCZ_2014_EUR_out/
+    Untracked:  code/SCZ_2018_ME_out/
+    Untracked:  code/SCZ_2018_S_out/
+    Untracked:  code/SCZ_2018_out/
+    Untracked:  code/SCZ_2020_out/
+    Untracked:  code/SCZ_S_out/
+    Untracked:  code/SCZ_out/
+    Untracked:  code/T2D_out/
+    Untracked:  code/ctwas_config_b37.R
+    Untracked:  code/ctwas_config_b38.R
+    Untracked:  code/mapping.R
+    Untracked:  code/out/
+    Untracked:  code/process_scz_2018_snps.R
+    Untracked:  code/run_AF_analysis.sbatch
+    Untracked:  code/run_AF_analysis.sh
+    Untracked:  code/run_AF_ctwas_rss_LDR.R
+    Untracked:  code/run_Autism_analysis.sbatch
+    Untracked:  code/run_Autism_analysis.sh
+    Untracked:  code/run_Autism_ctwas_rss_LDR.R
+    Untracked:  code/run_BMI_analysis.sbatch
+    Untracked:  code/run_BMI_analysis.sh
+    Untracked:  code/run_BMI_analysis_S.sbatch
+    Untracked:  code/run_BMI_analysis_S.sh
+    Untracked:  code/run_BMI_ctwas_rss_LDR.R
+    Untracked:  code/run_BMI_ctwas_rss_LDR_S.R
+    Untracked:  code/run_Glucose_analysis.sbatch
+    Untracked:  code/run_Glucose_analysis.sh
+    Untracked:  code/run_Glucose_ctwas_rss_LDR.R
+    Untracked:  code/run_IBD_analysis_ME.sbatch
+    Untracked:  code/run_IBD_analysis_ME.sh
+    Untracked:  code/run_IBD_ctwas_rss_LDR_ME.R
+    Untracked:  code/run_LDL_analysis_S.sbatch
+    Untracked:  code/run_LDL_analysis_S.sh
+    Untracked:  code/run_LDL_ctwas_rss_LDR_S.R
+    Untracked:  code/run_SCZ_2014_EUR_analysis.sbatch
+    Untracked:  code/run_SCZ_2014_EUR_analysis.sh
+    Untracked:  code/run_SCZ_2014_EUR_analysis_ME.sbatch
+    Untracked:  code/run_SCZ_2014_EUR_analysis_ME.sh
+    Untracked:  code/run_SCZ_2014_EUR_ctwas_rss_LDR_ME.R
+    Untracked:  code/run_SCZ_2018_analysis.sbatch
+    Untracked:  code/run_SCZ_2018_analysis.sh
+    Untracked:  code/run_SCZ_2018_analysis_ME.sbatch
+    Untracked:  code/run_SCZ_2018_analysis_ME.sh
+    Untracked:  code/run_SCZ_2018_analysis_S.sbatch
+    Untracked:  code/run_SCZ_2018_analysis_S.sh
+    Untracked:  code/run_SCZ_2018_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_2018_ctwas_rss_LDR_ME.R
+    Untracked:  code/run_SCZ_2018_ctwas_rss_LDR_S.R
+    Untracked:  code/run_SCZ_2020_analysis.sbatch
+    Untracked:  code/run_SCZ_2020_analysis.sh
+    Untracked:  code/run_SCZ_2020_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_analysis.sbatch
+    Untracked:  code/run_SCZ_analysis.sh
+    Untracked:  code/run_SCZ_analysis_S.sbatch
+    Untracked:  code/run_SCZ_analysis_S.sh
+    Untracked:  code/run_SCZ_ctwas_rss_LDR.R
+    Untracked:  code/run_SCZ_ctwas_rss_LDR_S.R
+    Untracked:  code/run_T2D_analysis.sbatch
+    Untracked:  code/run_T2D_analysis.sh
+    Untracked:  code/run_T2D_ctwas_rss_LDR.R
+    Untracked:  code/trackplot.R
+    Untracked:  code/wflow_build.R
+    Untracked:  code/wflow_build.sbatch
+    Untracked:  data/.ipynb_checkpoints/
+    Untracked:  data/FUMA_output/
+    Untracked:  data/GO_Terms/
+    Untracked:  data/IBD_ME/
+    Untracked:  data/PGC3_SCZ_wave3_public.v2.tsv
+    Untracked:  data/SCZ/
+    Untracked:  data/SCZ_2014_EUR/
+    Untracked:  data/SCZ_2014_EUR_ME/
+    Untracked:  data/SCZ_2018/
+    Untracked:  data/SCZ_2018_ME/
+    Untracked:  data/SCZ_2018_S/
+    Untracked:  data/SCZ_2020/
+    Untracked:  data/SCZ_S/
+    Untracked:  data/Supplementary Table 15 - MAGMA.xlsx
+    Untracked:  data/Supplementary Table 20 - Prioritised Genes.xlsx
+    Untracked:  data/T2D/
+    Untracked:  data/UKBB/
+    Untracked:  data/UKBB_SNPs_Info.text
+    Untracked:  data/gene_OMIM.txt
+    Untracked:  data/gene_pip_0.8.txt
+    Untracked:  data/gwas_sumstats/
+    Untracked:  data/magma.genes.out
+    Untracked:  data/mashr_Heart_Atrial_Appendage.db
+    Untracked:  data/mashr_sqtl/
+    Untracked:  data/notes.txt
+    Untracked:  data/scz_2018.RDS
+    Untracked:  data/summary_known_genes_annotations.xlsx
+    Untracked:  top_genes_32.txt
+    Untracked:  top_genes_37.txt
+    Untracked:  top_genes_43.txt
+    Untracked:  top_genes_54.txt
+    Untracked:  top_genes_81.txt
+    Untracked:  z_snp_pos_SCZ.RData
+    Untracked:  z_snp_pos_SCZ_2014_EUR.RData
+    Untracked:  z_snp_pos_SCZ_2018.RData
+    Untracked:  z_snp_pos_SCZ_2020.RData
+
+Unstaged changes:
+    Deleted:    analysis/BMI_S_results.Rmd
+    Modified:   analysis/SCZ_S_test.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/SCZ_S_test.Rmd</code>) and HTML (<code>docs/SCZ_S_test.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2b787bd5f55ed93b4a29d744636c53b14af8287c/analysis/SCZ_S_test.Rmd" target="_blank">2b787bd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="weight-qc" class="section level2">
+<h2>Weight QC</h2>
+<pre class="r"><code>#number of imputed weights
+nrow(qclist_all)</code></pre>
+<pre><code>[1] 23372</code></pre>
+<pre class="r"><code>#number of imputed weights by chromosome
+table(qclist_all$chr)</code></pre>
+<pre><code>
+   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+2106 1670 1401  900  973 1205 1349  834  978 1043 1384 1297  477  810  795  919 
+  17   18   19   20   21   22 
+1718  307 1661  776   45  724 </code></pre>
+<pre class="r"><code>#number of imputed weights without missing variants
+sum(qclist_all$nmiss==0)</code></pre>
+<pre><code>[1] 20390</code></pre>
+<pre class="r"><code>#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)</code></pre>
+<pre><code>[1] 0.8724114</code></pre>
+<pre class="r"><code>#add z scores to results
+load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_z_gene.Rd&quot;))
+ctwas_gene_res$z &lt;- z_gene[ctwas_gene_res$id,]$z
+
+z_snp &lt;- z_snp[z_snp$id %in% ctwas_snp_res$id,]
+ctwas_snp_res$z &lt;- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+
+#merge gene and snp results with added information
+ctwas_gene_res$genename=NA
+ctwas_gene_res$gene_type=NA
+ctwas_snp_res$genename=NA
+ctwas_snp_res$gene_type=NA
+
+ctwas_res &lt;- rbind(ctwas_gene_res,
+                   ctwas_snp_res[,colnames(ctwas_gene_res)])
+
+#get number of sQTL for geens
+num_sqtl &lt;- c()
+for (i in 1:22){
+  load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_chr&quot;, i, &quot;.exprqc.Rd&quot;))
+  num_sqtl &lt;- c(num_sqtl, unlist(lapply(wgtlist, nrow)))
+}
+ctwas_gene_res$num_sqtl &lt;- num_sqtl[ctwas_gene_res$id]
+
+#store columns to report
+report_cols &lt;- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c(&quot;type&quot;, &quot;region_tag1&quot;, &quot;region_tag2&quot;, &quot;cs_index&quot;, &quot;gene_type&quot;, &quot;z_flag&quot;))]
+first_cols &lt;- c(&quot;genename&quot;, &quot;region_tag&quot;)
+report_cols &lt;- c(first_cols, report_cols[!(report_cols %in% first_cols)])
+
+report_cols_snps &lt;- c(&quot;id&quot;, report_cols[-1])
+report_cols_snps &lt;- report_cols_snps[!(report_cols_snps %in% &quot;num_sqtl&quot;)]
+
+#get number of SNPs from s1 results; adjust for thin argument
+ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.s1.susieIrss.txt&quot;))
+n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+rm(ctwas_res_s1)</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(cowplot)
+
+load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.s2.susieIrssres.Rd&quot;))
+
+group_size &lt;- c(nrow(ctwas_gene_res), n_snps)
+
+#estimated group prior (all iterations)
+estimated_group_prior_all &lt;- group_prior_rec
+rownames(estimated_group_prior_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+estimated_group_prior_all[&quot;snp&quot;,] &lt;- estimated_group_prior_all[&quot;snp&quot;,]*thin #adjust parameter to account for thin argument
+
+#estimated group prior variance (all iterations)
+estimated_group_prior_var_all &lt;- group_prior_var_rec
+rownames(estimated_group_prior_var_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+
+#estimated group PVE (all iterations)
+estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+rownames(estimated_group_pve_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
+
+#estimated enrichment of genes (all iterations)
+estimated_enrichment_all &lt;- estimated_group_prior_all[&quot;gene&quot;,]/estimated_group_prior_all[&quot;snp&quot;,]
+
+title_size &lt;- 12
+
+df &lt;- data.frame(niter = rep(1:ncol(estimated_group_prior_all), 2),
+                 value = c(estimated_group_prior_all[&quot;gene&quot;,], estimated_group_prior_all[&quot;snp&quot;,]),
+                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_prior_all)))
+df$group &lt;- as.factor(df$group)
+
+p_pi &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab(&quot;Iteration&quot;) + ylab(bquote(pi)) +
+  ggtitle(&quot;Proportion Causal&quot;) +
+  theme_cowplot()
+
+p_pi &lt;- p_pi + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
+
+df &lt;- data.frame(niter = rep(1:ncol(estimated_group_prior_var_all ), 2),
+                 value = c(estimated_group_prior_var_all[&quot;gene&quot;,], estimated_group_prior_var_all[&quot;snp&quot;,]),
+                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_prior_var_all)))
+df$group &lt;- as.factor(df$group)
+p_sigma2 &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab(&quot;Iteration&quot;) + ylab(bquote(sigma^2)) +
+  ggtitle(&quot;Effect Size&quot;) +
+  theme_cowplot()
+
+p_sigma2 &lt;- p_sigma2 + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
+
+df &lt;- data.frame(niter = rep(1:ncol(estimated_group_pve_all ), 2),
+                 value = c(estimated_group_pve_all[&quot;gene&quot;,], estimated_group_pve_all[&quot;snp&quot;,]),
+                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_pve_all)))
+df$group &lt;- as.factor(df$group)
+p_pve &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab(&quot;Iteration&quot;) + ylab(bquote(h^2[G])) +
+  ggtitle(&quot;PVE&quot;) +
+  theme_cowplot()
+
+p_pve &lt;- p_pve + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
+
+df &lt;- data.frame(niter = 1:length(estimated_enrichment_all),
+                 value = estimated_enrichment_all,
+                 group = rep(&quot;Gene&quot;, length(estimated_enrichment_all)))
+df$group &lt;- as.factor(df$group)
+p_enrich &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab(&quot;Iteration&quot;) + ylab(bquote(pi[G]/pi[S])) +
+  ggtitle(&quot;Enrichment&quot;) +
+  theme_cowplot()
+
+p_enrich &lt;- p_enrich + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
+
+plot_grid(p_pi, p_sigma2, p_enrich, p_pve)</code></pre>
+<p><img src="figure/SCZ_S_test.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#estimated group prior
+estimated_group_prior &lt;- estimated_group_prior_all[,ncol(group_prior_rec)]
+print(estimated_group_prior)</code></pre>
+<pre><code>        gene          snp 
+0.0082337835 0.0003052267 </code></pre>
+<pre class="r"><code>#estimated group prior variance
+estimated_group_prior_var &lt;- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
+print(estimated_group_prior_var)</code></pre>
+<pre><code>    gene      snp 
+10.47522 10.43821 </code></pre>
+<pre class="r"><code>#estimated enrichment
+estimated_enrichment &lt;- estimated_enrichment_all[ncol(group_prior_var_rec)]
+print(estimated_enrichment)</code></pre>
+<pre><code>[1] 26.97596</code></pre>
+<pre class="r"><code>#report sample size
+print(sample_size)</code></pre>
+<pre><code>[1] 105318</code></pre>
+<pre class="r"><code>#report group size
+print(group_size)</code></pre>
+<pre><code>[1]   23372 6309950</code></pre>
+<pre class="r"><code>#estimated group PVE
+estimated_group_pve &lt;- estimated_group_pve_all[,ncol(group_prior_rec)] #check PVE calculation
+print(estimated_group_pve)</code></pre>
+<pre><code>      gene        snp 
+0.01914061 0.19088499 </code></pre>
+<pre class="r"><code>#compare sum(PIP*mu2/sample_size) with above PVE calculation
+#c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
+
+#total PVE
+sum(estimated_group_pve)</code></pre>
+<pre><code>[1] 0.2100256</code></pre>
+<pre class="r"><code>#PVE attributable to gene expression
+estimated_group_pve[&quot;gene&quot;]/sum(estimated_group_pve)</code></pre>
+<pre><code>      gene 
+0.09113464 </code></pre>
+</div>
+<div id="genes-with-highest-pips" class="section level2">
+<h2>Genes with highest PIPs</h2>
+<pre class="r"><code>#distribution of PIPs
+hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main=&quot;Distribution of Gene PIPs&quot;)</code></pre>
+<p><img src="figure/SCZ_S_test.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#genes with PIP&gt;0.8 or 20 highest PIPs
+head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip&gt;0.8), 20))</code></pre>
+<pre><code>      genename region_tag chrom                            id       pos
+23124       NA      12_36    12   intron_12_57289040_57292572  57289173
+23207       NA      12_68    12 intron_12_113320686_113320850 113320361
+23219       NA      15_14    15   intron_15_40274276_40275927  40274558
+22855       NA       1_27     1    intron_1_43612800_43613618  43612713
+16793       NA      15_50    15 intron_15_101287010_101287656 101286714
+20669       NA      19_25    19   intron_19_36039718_36054135  36039430
+22883       NA       5_86     5  intron_5_147424963_147509478 147424612
+16676       NA      15_41    15   intron_15_87940753_88032857  87940363
+3551        NA      2_132     2  intron_2_224535641_224557659 224535147
+15432       NA       14_9    14   intron_14_35046406_35046505  35050161
+23308       NA      19_34    19   intron_19_49663514_49664674  49665614
+14559       NA      12_74    12 intron_12_121244129_121244573 121243733
+18235       NA      17_16    17   intron_17_20009424_20096631  20009397
+3332        NA      2_117     2  intron_2_197418588_197418896 197418581
+2040        NA      1_128     1  intron_1_243497959_243499756 243498440
+7870        NA       6_85     6  intron_6_128000330_128001196 128001292
+14433       NA      12_67    12 intron_12_110377617_110377705 110378117
+9282        NA       7_87     7  intron_7_141006535_141014911 141006357
+15999       NA      14_54    14 intron_14_103574170_103587274 103573728
+17228       NA      16_19    16   intron_16_21979251_21980547  21979439
+      susie_pip      mu2          PVE         z num_sqtl
+23124 0.9625689 42.83057 0.0003914561 -6.633958        1
+23207 0.9203431 22.26379 0.0001945567 -4.047300        1
+23219 0.8865814 29.76619 0.0002505759  5.588443        1
+22855 0.7922159 35.71238 0.0002686332  6.679706        1
+16793 0.7821729 20.88355 0.0001550974 -4.098246        2
+20669 0.7522261 21.58779 0.0001541892 -3.846292        2
+22883 0.7391800 22.22253 0.0001559700 -4.156523        1
+16676 0.7287305 22.27428 0.0001541232  4.456558        1
+3551  0.7051285 30.34916 0.0002031947  5.777011        1
+15432 0.7009065 23.30743 0.0001551143  4.849278        1
+23308 0.6989769 39.57142 0.0002626285 -6.460538        1
+14559 0.6971263 25.44703 0.0001684403  4.059962        2
+18235 0.6836768 25.23536 0.0001638165 -4.821555        1
+3332  0.6755248 45.11586 0.0002893796  7.053464        1
+2040  0.6494652 33.31793 0.0002054619 -6.291199        1
+7870  0.6489625 28.19797 0.0001737540 -5.058522        1
+14433 0.5921211 39.17508 0.0002202510  6.385407        1
+9282  0.5692339 26.28823 0.0001420854 -4.304399        1
+15999 0.5393272 43.76857 0.0002241362  7.429290        1
+17228 0.5210778 22.84861 0.0001130472  4.716159        1</code></pre>
+</div>
+<div id="comparing-z-scores-and-pips" class="section level2">
+<h2>Comparing z scores and PIPs</h2>
+<pre class="r"><code>#set nominal signifiance threshold for z scores
+alpha &lt;- 0.05
+
+#bonferroni adjusted threshold for z scores
+sig_thresh &lt;- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)</code></pre>
+<pre><code>Loading required package: S4Vectors</code></pre>
+<pre><code>Loading required package: stats4</code></pre>
+<pre><code>Loading required package: BiocGenerics</code></pre>
+<pre><code>
+Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which.max, which.min</code></pre>
+<pre><code>
+Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    expand.grid</code></pre>
+<pre><code>Loading required package: IRanges</code></pre>
+<pre><code>Loading required package: GenomicRanges</code></pre>
+<pre><code>Loading required package: GenomeInfoDb</code></pre>
+<pre><code>Loading required package: grid</code></pre>
+<pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;12_36&quot;, return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      label_panel=&quot;both&quot;,
+                      legend_side=&quot;right&quot;,
+                      legend_panel=&quot;cTWAS&quot;)</code></pre>
+<p><img src="figure/SCZ_S_test.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
+<p><img src="figure/SCZ_S_test.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Scientific Linux 7.4 (Nitrogen)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] grid      stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] Gviz_1.38.4          GenomicRanges_1.46.0 GenomeInfoDb_1.26.7 
+ [4] IRanges_2.24.1       S4Vectors_0.28.1     BiocGenerics_0.40.0 
+ [7] biomaRt_2.50.0       cowplot_1.1.1        ggplot2_3.3.6       
+[10] workflowr_1.7.0     
+
+loaded via a namespace (and not attached):
+  [1] colorspace_2.0-3            rjson_0.2.20               
+  [3] ellipsis_0.3.2              rprojroot_2.0.3            
+  [5] htmlTable_2.2.1             biovizBase_1.42.0          
+  [7] XVector_0.34.0              base64enc_0.1-3            
+  [9] fs_1.5.2                    dichromat_2.0-0.1          
+ [11] rstudioapi_0.13             farver_2.1.0               
+ [13] bit64_4.0.5                 AnnotationDbi_1.56.1       
+ [15] fansi_1.0.3                 xml2_1.3.2                 
+ [17] splines_4.1.0               cachem_1.0.6               
+ [19] knitr_1.33                  Formula_1.2-4              
+ [21] jsonlite_1.8.0              Rsamtools_2.10.0           
+ [23] cluster_2.1.2               dbplyr_2.1.1               
+ [25] png_0.1-7                   compiler_4.1.0             
+ [27] httr_1.4.3                  backports_1.2.1            
+ [29] lazyeval_0.2.2              assertthat_0.2.1           
+ [31] Matrix_1.3-3                fastmap_1.1.0              
+ [33] cli_3.3.0                   later_1.2.0                
+ [35] htmltools_0.5.3             prettyunits_1.1.1          
+ [37] tools_4.1.0                 gtable_0.3.0               
+ [39] glue_1.6.2                  GenomeInfoDbData_1.2.7     
+ [41] dplyr_1.0.9                 rappdirs_0.3.3             
+ [43] Rcpp_1.0.9                  Biobase_2.54.0             
+ [45] jquerylib_0.1.4             vctrs_0.4.1                
+ [47] Biostrings_2.62.0           rtracklayer_1.54.0         
+ [49] xfun_0.24                   stringr_1.4.0              
+ [51] ps_1.7.0                    lifecycle_1.0.1            
+ [53] ensembldb_2.18.4            restfulr_0.0.13            
+ [55] XML_3.99-0.6                getPass_0.2-2              
+ [57] zlibbioc_1.40.0             scales_1.2.0               
+ [59] BSgenome_1.62.0             VariantAnnotation_1.40.0   
+ [61] ProtGenerics_1.26.0         hms_1.1.1                  
+ [63] promises_1.2.0.1            MatrixGenerics_1.6.0       
+ [65] parallel_4.1.0              SummarizedExperiment_1.24.0
+ [67] AnnotationFilter_1.18.0     RColorBrewer_1.1-3         
+ [69] yaml_2.2.1                  curl_4.3.2                 
+ [71] gridExtra_2.3               memoise_2.0.1              
+ [73] sass_0.4.0                  rpart_4.1-15               
+ [75] latticeExtra_0.6-29         stringi_1.7.6              
+ [77] RSQLite_2.2.14              highr_0.9                  
+ [79] BiocIO_1.4.0                checkmate_2.0.0            
+ [81] GenomicFeatures_1.46.1      filelock_1.0.2             
+ [83] BiocParallel_1.28.0         rlang_1.0.4                
+ [85] pkgconfig_2.0.3             bitops_1.0-7               
+ [87] matrixStats_0.62.0          evaluate_0.15              
+ [89] lattice_0.20-44             purrr_0.3.4                
+ [91] htmlwidgets_1.5.3           GenomicAlignments_1.30.0   
+ [93] labeling_0.4.2              bit_4.0.4                  
+ [95] processx_3.5.3              tidyselect_1.1.2           
+ [97] magrittr_2.0.3              R6_2.5.1                   
+ [99] generics_0.1.2              Hmisc_4.5-0                
+[101] DelayedArray_0.20.0         DBI_1.1.2                  
+[103] foreign_0.8-81              pillar_1.7.0               
+[105] whisker_0.4                 withr_2.5.0                
+[107] nnet_7.3-16                 survival_3.2-11            
+[109] KEGGREST_1.34.0             RCurl_1.98-1.6             
+[111] tibble_3.1.7                crayon_1.5.1               
+[113] utf8_1.2.2                  BiocFileCache_2.2.0        
+[115] rmarkdown_2.9               jpeg_0.1-8.1               
+[117] progress_1.2.2              data.table_1.14.2          
+[119] blob_1.2.3                  callr_3.7.0                
+[121] git2r_0.28.0                digest_0.6.29              
+[123] httpuv_1.6.1                munsell_0.5.0              
+[125] bslib_0.4.0                </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

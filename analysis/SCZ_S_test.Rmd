@@ -20,7 +20,7 @@ weight <- params$weight
 results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
 
 source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b37.R")
-options(digits = 4)
+#options(digits = 4)
 ```
 
 ## Weight QC
@@ -251,32 +251,7 @@ hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 ```
 
-## Genes with largest effect sizes 
 
-```{r}
-#plot PIP vs effect size
-plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
-
-#genes with 20 largest effect sizes
-head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
-
-```
-
-## Genes with highest PVE 
-
-```{r}
-#genes with 20 highest pve
-head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
-
-```
-
-## Genes with largest z scores 
-
-```{r}
-#genes with 20 largest z scores
-head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
-
-```
 
 ## Comparing z scores and PIPs
 
@@ -287,85 +262,27 @@ alpha <- 0.05
 #bonferroni adjusted threshold for z scores
 sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
 
-#Q-Q plot for z scores
-obs_z <- ctwas_gene_res$z[order(ctwas_gene_res$z)]
-exp_z <- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res))
-
-plot(exp_z, obs_z, xlab="Expected z", ylab="Observed z", main="Gene z score Q-Q plot")
-abline(a=0,b=1)
-
-#plot z score vs PIP
-plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP")
-abline(v=sig_thresh, col="red", lty=2)
-
-#number of significant z scores
-sum(abs(ctwas_gene_res$z) > sig_thresh)
-
-#proportion of significant z scores
-mean(abs(ctwas_gene_res$z) > sig_thresh)
-
-#genes with most significant z scores
-head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
 ```
 
-## SNPs with highest PIPs 
-
-```{r}
-#snps with PIP>0.8 or 20 highest PIPs
-head(ctwas_snp_res[order(-ctwas_snp_res$susie_pip),report_cols_snps],
-max(sum(ctwas_snp_res$susie_pip>0.8), 20))
-
-```
-
-## SNPs with largest effect sizes 
-
-```{r}
-#plot PIP vs effect size
-#plot(ctwas_snp_res$susie_pip, ctwas_snp_res$mu2, xlab="PIP", ylab="mu^2", main="SNP PIPs vs Effect Size")
-
-#SNPs with 50 largest effect sizes
-head(ctwas_snp_res[order(-ctwas_snp_res$mu2),report_cols_snps],50)
-
-```
-
-## SNPs with highest PVE 
-
-```{r}
-#SNPs with 50 highest pve
-head(ctwas_snp_res[order(-ctwas_snp_res$PVE),report_cols_snps],50)
-
-```
-
-## SNPs with largest z scores 
-
-```{r}
-#histogram of (abs) SNP z scores
-hist(abs(ctwas_snp_res$z))
-
-#SNPs with 50 largest z scores
-head(ctwas_snp_res[order(-abs(ctwas_snp_res$z)),report_cols_snps],50)
-
-```
-
-## Load gene positions
-```{r}
+```{r echo=FALSE}
 library(biomaRt)
-library(GenomicRanges)
-#ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
-#G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype"), values=1:22, mart=ensembl)
-#G_list <- G_list[G_list$hgnc_symbol!="",]
-#G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
-#G_list$start <- G_list$start_position
-#G_list$end <- G_list$end_position
-#save(G_list,file="G_list.RData")
+
+ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+# G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype", "ensembl_gene_id", "strand"), values=1:22, mart=ensembl)
+# 
+# save(G_list, file=paste0("G_list_", trait_id, ".RData"))
 
 load(paste0(results_dir,"/G_list.RData"))
-G_list_granges <- makeGRangesFromDataFrame(G_list, keep.extra.columns=T)
+
+G_list <- G_list[G_list$gene_biotype %in% c("protein_coding"),]
+G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
+G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
 ```
 
-```{r}
-locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, label_panel="TWAS", label_genes=NULL, label_pos=NULL, plot_eqtl=NULL, draw_gene_track=T, rerun_ctwas=F, rerun_load_only=F, legend_side="right", legend_panel="cTWAS"){
+
+```{r echo=FALSE}
+locus_plot_final_pub <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, label_panel="TWAS", label_genes=NULL, label_pos=NULL, plot_eqtl=NULL, rerun_ctwas=F, rerun_load_only=F, legend_side="right", legend_panel="cTWAS", twas_ymax=NULL){
   region_tag1 <- unlist(strsplit(region_tag, "_"))[1]
   region_tag2 <- unlist(strsplit(region_tag, "_"))[2]
   
@@ -376,49 +293,9 @@ locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, 
   
   R_snp_info <- do.call(rbind, lapply(region$regRDS, function(x){data.table::fread(paste0(tools::file_path_sans_ext(x), ".Rvar"))}))
   
-  if (isTRUE(rerun_ctwas)){
-    ld_exprfs <- paste0(results_dir, "/", analysis_id, "_expr_chr", 1:22, ".expr.gz")
-    temp_reg <- data.frame("chr" = paste0("chr",region_tag1), "start" = region$start, "stop" = region$stop)
-  
-    write.table(temp_reg, 
-                #file= paste0(results_dir, "/", analysis_id, "_ctwas.temp.reg.txt") , 
-                file= "temp_reg.txt",
-                row.names=F, col.names=T, sep="\t", quote = F)
-  
-    load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
-  
-    z_gene_temp <-  z_gene[z_gene$id %in% a$id[a$type=="gene"],]
-    z_snp_temp <-  z_snp[z_snp$id %in% R_snp_info$id,]
-    
-    if (!rerun_load_only){
-      ctwas::ctwas_rss(z_gene_temp, z_snp_temp, ld_exprfs, ld_pgenfs = NULL, 
-                       ld_R_dir = dirname(region$regRDS)[1],
-                       ld_regions_custom = "temp_reg.txt", thin = 1, 
-                       outputdir = ".", outname = "temp", ncore = 1, ncore.rerun = 1, prob_single = 0,
-                       group_prior = estimated_group_prior, group_prior_var = estimated_group_prior_var,
-                       estimate_group_prior = F, estimate_group_prior_var = F)
-    }
-    
-    a_bkup <- a         
-    a <- as.data.frame(data.table::fread("temp.susieIrss.txt", header = T))
-    
-    rownames(z_snp_temp) <- z_snp_temp$id
-    z_snp_temp <- z_snp_temp[a$id[a$type=="SNP"],]
-    z_gene_temp <- z_gene_temp[a$id[a$type=="gene"],]
-    
-    a$genename <- NA
-    a$gene_type <- NA
-
-    a[a$type=="gene",c("genename", "gene_type")] <- a_bkup[match(a$id[a$type=="gene"], a_bkup$id),c("genename","gene_type")]
-    
-    a$z <- NA
-    a$z[a$type=="SNP"] <- z_snp_temp$z
-    a$z[a$type=="gene"] <- z_gene_temp$z
-  }
-  
-  a_pos_bkup <- a$pos
-  a$pos[a$type=="gene"] <- G_list$tss[match(sapply(a$id[a$type=="gene"], function(x){unlist(strsplit(x, "[.]"))[1]}) ,G_list$ensembl_gene_id)]
-  a$pos[is.na(a$pos)] <- a_pos_bkup[is.na(a$pos)]
+  #a_pos_bkup <- a$pos
+  #a$pos[a$type=="gene"] <- G_list$tss[match(sapply(a$id[a$type=="gene"], function(x){unlist(strsplit(x, "[.]"))[1]}) ,G_list$ensembl_gene_id)]
+  #a$pos[is.na(a$pos)] <- a_pos_bkup[is.na(a$pos)]
   a$pos <- a$pos/1000000
   
   if (!is.null(xlim)){
@@ -435,7 +312,7 @@ locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, 
   }
   
   if (is.null(focus)){
-    focus <- a$genename[a$z==max(abs(a$z)[a$type=="gene"])]
+    focus <- a$id[which.max(abs(a$z)[a$type=="gene"])] #
   }
   
   if (is.null(label_genes)){
@@ -450,7 +327,7 @@ locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, 
     plot_eqtl <- focus
   }
   
-  focus <- a$id[which(a$genename==focus)]
+  focus <- a$id[which(a$id==focus)]
   a$focus <- 0
   a$focus <- as.numeric(a$id==focus)
     
@@ -477,29 +354,29 @@ locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, 
   start <- min(a$pos)
   end <- max(a$pos)
   
-  if (draw_gene_track){
-    layout(matrix(1:4, ncol = 1), widths = 1, heights = c(1.5,0.25,1.5,0.75), respect = FALSE)
-  } else {
-    layout(matrix(1:3, ncol = 1), widths = 1, heights = c(1.5,0.25,1.5), respect = FALSE)
-  }
+  layout(matrix(1:4, ncol = 1), widths = 1, heights = c(1.5,0.25,1.75,0.75), respect = FALSE)
   
   par(mar = c(0, 4.1, 0, 2.1))
   
-  plot(a$pos[a$type=="SNP"], a$PVALUE[a$type == "SNP"], pch = 21, xlab=paste0("Chromosome ", region_tag1, " position (Mb)"), frame.plot=FALSE, bg = colorsall[1], ylab = "-log10(p value)", panel.first = grid(), ylim =c(0, max(a$PVALUE)*1.1), xaxt = 'n', xlim=c(start, end))
+  if (is.null(twas_ymax)){
+    twas_ymax <- max(a$PVALUE)*1.1
+  }
   
+  plot(a$pos[a$type=="SNP"], a$PVALUE[a$type == "SNP"], pch = 21, xlab=paste0("Chromosome ", region_tag1, " position (Mb)"), frame.plot=FALSE, bg = colorsall[1], ylab = "-log10(p value)", panel.first = grid(), ylim =c(0, twas_ymax), xaxt = 'n', xlim=c(start, end))
+  
+  abline(h=-log10(alpha/nrow(ctwas_gene_res)), col ="red", lty = 2)
   points(a$pos[a$type=="SNP" & a$r2max > r2cut], a$PVALUE[a$type == "SNP"  & a$r2max > r2cut], pch = 21, bg = "purple")
   points(a$pos[a$type=="SNP" & a$focus == 1], a$PVALUE[a$type == "SNP" & a$focus == 1], pch = 21, bg = "salmon")
   points(a$pos[a$type=="gene"], a$PVALUE[a$type == "gene"], pch = 22, bg = colorsall[1], cex = 2)
   points(a$pos[a$type=="gene" & a$r2max > r2cut], a$PVALUE[a$type == "gene"  & a$r2max > r2cut], pch = 22, bg = "purple", cex = 2)
   points(a$pos[a$type=="gene" & a$focus == 1], a$PVALUE[a$type == "gene" & a$focus == 1], pch = 22, bg = "salmon", cex = 2)
-  abline(h=-log10(alpha/nrow(ctwas_gene_res)), col ="red", lty = 2)
   
   if (legend_panel=="TWAS"){
-    x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos)+0.05*(max(a$pos)-min(a$pos)))
-    legend(x_pos, y= max(a$PVALUE), c("Gene", "SNP","Lead TWAS Gene", "R2 > 0.4", "R2 <= 0.4"), pch = c(22,21,19,19,19), col = c("black", "black", "salmon", "purple", colorsall[1]), cex=0.7, title.adj = 0)
+    x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
+    legend(x_pos, y= twas_ymax*0.95, c("Gene", "SNP","Lead TWAS Gene", "R2 > 0.4", "R2 <= 0.4"), pch = c(22,21,19,19,19), col = c("black", "black", "salmon", "purple", colorsall[1]), cex=0.7, title.adj = 0)
   }
   
-  if (label_panel=="TWAS"){
+  if (label_panel=="TWAS" | label_panel=="both"){
     for (i in 1:length(label_genes)){
       text(a$pos[a$genename==label_genes[i]], a$PVALUE[a$genename==label_genes[i]], labels=label_genes[i], pos=label_pos[i], cex=0.7)
     }
@@ -510,12 +387,13 @@ locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, 
   plot(NA, xlim = c(start, end), ylim = c(0, length(plot_eqtl)), frame.plot = F, axes = F, xlab = NA, ylab = NA)
   
   for (i in 1:length(plot_eqtl)){
-    cgene <- a$id[which(a$genename==plot_eqtl[i])]
+    cgene <- a$id[which(a$id==plot_eqtl[i])]
     load(paste0(results_dir, "/",analysis_id, "_expr_chr", region_tag1, ".exprqc.Rd"))
     eqtls <- rownames(wgtlist[[cgene]])
     eqtl_pos <- a$pos[a$id %in% eqtls]
     
-    col="grey"
+    #col="grey"
+    col="#c6e8f0"
     
     rect(start, length(plot_eqtl)+1-i-0.8, end, length(plot_eqtl)+1-i-0.2, col = col, border = T, lwd = 1)
   
@@ -527,11 +405,11 @@ locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, 
   }
   
   text(start, length(plot_eqtl)-(1:length(plot_eqtl))+0.5,  
-       labels = plot_eqtl, srt = 0, pos = 2, xpd = TRUE, cex=0.7)
+       labels = paste0(plot_eqtl, " eQTL"), srt = 0, pos = 2, xpd = TRUE, cex=0.7)
   
   par(mar = c(4.1, 4.1, 0, 2.1))
   
-  plot(a$pos[a$type=="SNP"], a$PVALUE[a$type == "SNP"], pch = 19, xlab=paste0("Chromosome ", region_tag1, " position (Mb)"),frame.plot=FALSE, col = "white", ylim= c(0,1.1), ylab = "cTWAS PIP", xlim = c(start, end))
+  plot(a$pos[a$type=="SNP"], a$susie_pip[a$type == "SNP"], pch = 19, xlab=paste0("Chromosome ", region_tag1, " position (Mb)"),frame.plot=FALSE, col = "white", ylim= c(0,1.1), ylab = "cTWAS PIP", xlim = c(start, end))
   
   grid()
   points(a$pos[a$type=="SNP"], a$susie_pip[a$type == "SNP"], pch = 21, xlab="Genomic position", bg = colorsall[1])
@@ -542,109 +420,13 @@ locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, 
   points(a$pos[a$type=="gene" & a$focus == 1], a$susie_pip[a$type == "gene" & a$focus == 1], pch = 22, bg = "salmon", cex = 2)
   
   if (legend_panel=="cTWAS"){
-    x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos)+0.05*(max(a$pos)-min(a$pos)))
+    x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
     legend(x_pos, y= 1 ,c("Gene", "SNP","Lead TWAS Gene", "R2 > 0.4", "R2 <= 0.4"), pch = c(22,21,19,19,19), col = c("black", "black", "salmon", "purple", colorsall[1]), cex=0.7, title.adj = 0)
   }
   
-  if (label_panel=="cTWAS"){
+  if (label_panel=="cTWAS" | label_panel=="both"){
     for (i in 1:length(label_genes)){
-      text(a$pos[a$genename==label_genes[i]], a$susie_pip[a$genename==label_genes[i]], labels=label_genes[i], pos=label_pos[i], cex=0.7)
-    }
-  }
-  
-  if (draw_gene_track){
-    source("code/trackplot.R")
-  
-    query_ucsc = TRUE
-    build = "hg38"
-    col = "gray70"
-    txname = NULL
-    genename = NULL
-    collapse_txs = TRUE
-    gene_model = "data/hg38.ensGene.gtf.gz"
-    isGTF = T
-    
-    ##########
-    start <- min(a$pos)*1000000
-    end <- max(a$pos)*1000000
-    chr <- paste0("chr",as.character(unique(a$chrom)))
-  
-    #collect gene models
-    if(is.null(gene_model)){
-      if(query_ucsc){
-        message("Missing gene model. Trying to query UCSC genome browser..")
-        etbl = .extract_geneModel_ucsc(chr, start = start, end = end, refBuild = build, txname = txname, genename = genename)
-      } else{
-        etbl = NULL
-      }
-    } else{
-      if(isGTF){
-        etbl = .parse_gtf(gtf = gene_model, chr = chr, start = start, end = end, txname = txname, genename = genename)  
-      } else{
-        etbl = .extract_geneModel(ucsc_tbl = gene_model, chr = chr, start = start, end = end, txname = txname, genename = genename)  
-      }
-    }
-    
-    #draw gene models
-    if(!is.null(etbl)){
-      if(collapse_txs){
-        etbl = .collapse_tx(etbl)
-      }
-      
-      #subset to protein coding genes in ensembl and lincRNAs included in the analysis
-      #etbl <- etbl[names(etbl) %in% G_list$ensembl_gene_id]
-      etbl <- etbl[names(etbl) %in% c(G_list$ensembl_gene_id[G_list$gene_biotype=="protein_coding"], sapply(a$id[a$type=="gene"], function(x){unlist(strsplit(x, split="[.]"))[1]}))]
-      
-      for (i in 1:length(etbl)){
-        ensembl_name <- attr(etbl[[i]], "gene")
-        gene_name <- G_list$hgnc_symbol[match(ensembl_name, G_list$ensembl_gene_id)]
-        if (gene_name==""){
-          gene_name <- a$genename[sapply(a$id, function(x){unlist(strsplit(x,split="[.]"))[1]})==ensembl_name]
-        }
-        if (length(gene_name)>0){
-          attr(etbl[[i]], "gene") <- gene_name
-        }
-        
-        attr(etbl[[i]], "imputed") <- ensembl_name %in% sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x, split="[.]"))[1]})
-        
-      }
-      
-      par(mar = c(0, 4.1, 0, 2.1))
-      
-      plot(NA, xlim = c(start, end), ylim = c(0, length(etbl)), frame.plot = FALSE, axes = FALSE, xlab = NA, ylab = NA)
-      
-      etbl <- etbl[order(-sapply(etbl, function(x){attr(x, "start")}))]
-      
-      for(tx_id in 1:length(etbl)){
-        txtbl = etbl[[tx_id]]
-        
-        if (attr(txtbl, "imputed")){
-          exon_col = "#192a56"
-        } else {
-          exon_col = "darkred"
-        }
-
-        segments(x0 = attr(txtbl, "start"), y0 = tx_id-0.45, x1 = attr(txtbl, "end"), y1 = tx_id-0.45, col = exon_col, lwd = 1)
-    
-        if(is.na(attr(txtbl, "tx"))){
-          text(x = start, y = tx_id-0.45, labels = paste0(attr(txtbl, "gene")), cex = 0.7, adj = 0, srt = 0, pos = 2, xpd = TRUE)
-        } else {
-          text(x = start, y = tx_id-0.45, labels = paste0(attr(txtbl, "tx"), " [", attr(txtbl, "gene"), "]"), cex = 0.7, adj = 0, srt = 0, pos = 2, xpd = TRUE)
-        }
-        
-        rect(xleft = txtbl[[1]], ybottom = tx_id-0.75, xright = txtbl[[2]], ytop = tx_id-0.25, col = exon_col, border = NA)
-        if(attr(txtbl, "strand") == "+"){
-          dirat = pretty(x = c(min(txtbl[[1]]), max(txtbl[[2]])))
-          dirat[1] = min(txtbl[[1]]) #Avoid drawing arrows outside gene length
-          dirat[length(dirat)] = max(txtbl[[2]])
-          points(x = dirat, y = rep(tx_id-0.45, length(dirat)), pch = ">", col = exon_col)
-        }else{
-          dirat = pretty(x = c(min(txtbl[[1]]), max(txtbl[[2]])))
-          dirat[1] = min(txtbl[[1]]) #Avoid drawing arrows outside gene length
-          dirat[length(dirat)] = max(txtbl[[2]])
-          points(x = dirat, y = rep(tx_id-0.45, length(dirat)), pch = "<", col = exon_col)
-        }
-      }
+      text(a$pos[a$id==label_genes[i]], a$susie_pip[a$id==label_genes[i]], labels=label_genes[i], pos=label_pos[i], cex=0.7)
     }
   }
   
@@ -653,20 +435,48 @@ locus_plot_final <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, 
   }
 }
 
+####################
+
+library(Gviz)
+
+locus_plot_gene_track_pub <- function(a, label_pos=NULL){
+  chr <- unique(a$chrom)
+  start <- min(a$pos)*1000000
+  end <- max(a$pos)*1000000
+  
+  biomTrack <- BiomartGeneRegionTrack(chromosome = chr,
+                                      start = start,
+                                      end = end,
+                                      name = "ENSEMBL",
+                                      biomart = ensembl,
+                                      filters=list(biotype="protein_coding"))
+  
+  
+  biomTrack <- as(biomTrack, "GeneRegionTrack")
+  biomTrack <- biomTrack[biomTrack@range@elementMetadata@listData$feature %in% c("protein_coding", "utr3", "utr5")]
+  
+  if (isTRUE(label_pos=="above")){
+    displayPars(biomTrack)$just.group <- "above"
+  }
+  
+  grid.newpage()
+  
+  plotTracks(biomTrack, collapseTranscripts = "meta", transcriptAnnotation = "symbol", from=start, to=end, panel.only=T, add=F)
+}
+
+```
+
+
+```{r}
+a <- locus_plot_final_pub(region_tag="12_36", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      label_panel="both",
+                      legend_side="right",
+                      legend_panel="cTWAS")
 ```
 
 ```{r}
-a <- locus_plot_final(region_tag="16_38", xlim=c(71.6,72.4), return_table=T,
-                      focus="HPR",
-                      label_genes=c("MARVELD3", "PHLPP2", "ATXN1L", "ZNF821", "PKD1L3", "HPR"),
-                      label_pos=c(3,3,3,3,3,3),
-                      plot_eqtl=c("HPR"),
-                      label_panel="cTWAS")
-
-a[a$type=="gene",]
-
-weights_table[weights_table$gene=="ENSG00000261701.6",]
-a[a$id %in% c("rs150367531", "rs3794695"),]
-
+locus_plot_gene_track_pub(a, label_pos="above")
 ```
 
