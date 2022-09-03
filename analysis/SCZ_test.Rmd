@@ -522,7 +522,9 @@ a <- locus_plot_final_pub(region_tag="19_10", return_table=T,
                       plot_eqtl=c("ZNF823"),
                       legend_side="left",
                       legend_panel="cTWAS")
+```
 
+```{r}
 locus_plot_gene_track_pub(a, label_pos="above")
 ```
 

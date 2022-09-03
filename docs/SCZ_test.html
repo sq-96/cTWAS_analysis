@@ -408,7 +408,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -507,16 +507,16 @@ code/ctwas_config_b37.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreebcbc2f44024d3e6f502cd78b343f7507d6e25e52targetblankbcbc2f4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/bcbc2f44024d3e6f502cd78b343f7507d6e25e52" target="_blank">bcbc2f4</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6a8a5fdf09a21ab0752fa71c518fb4201ad987d5targetblank6a8a5fda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/6a8a5fdf09a21ab0752fa71c518fb4201ad987d5" target="_blank">6a8a5fd</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreebcbc2f44024d3e6f502cd78b343f7507d6e25e52targetblankbcbc2f4a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6a8a5fdf09a21ab0752fa71c518fb4201ad987d5targetblank6a8a5fda" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/bcbc2f44024d3e6f502cd78b343f7507d6e25e52" target="_blank">bcbc2f4</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/6a8a5fdf09a21ab0752fa71c518fb4201ad987d5" target="_blank">6a8a5fd</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -525,15 +525,12 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .ipynb_checkpoints/
-    Ignored:    analysis/figure/
 
 Untracked files:
     Untracked:  G_list.RData
     Untracked:  Rplot.png
     Untracked:  SCZ_annotation.xlsx
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/SCZ_S_test.Rmd
-    Untracked:  analysis/SCZ_test.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  code/AF_out/
@@ -642,9 +639,7 @@ Untracked files:
 
 Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
-    Modified:   analysis/SCZ_2014_EUR_ME.Rmd
-    Modified:   analysis/SCZ_2018_Brain_Hypothalamus_S.Rmd
-    Modified:   analysis/index.Rmd
+    Modified:   analysis/SCZ_test.Rmd
 
 </code></pre>
 <p>
@@ -657,9 +652,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/SCZ_test.Rmd</code>) and HTML (<code>docs/SCZ_test.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2b787bd5f55ed93b4a29d744636c53b14af8287c/analysis/SCZ_test.Rmd" target="_blank">2b787bd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/2b787bd5f55ed93b4a29d744636c53b14af8287c/docs/SCZ_test.html" target="_blank">2b787bd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -678,6 +733,43 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <div id="check-convergence-of-parameters" class="section level2">
 <h2>Check convergence of parameters</h2>
 <p><img src="figure/SCZ_test.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2b787bd5f55ed93b4a29d744636c53b14af8287c/docs/figure/SCZ_test.Rmd/unnamed-chunk-4-1.png" target="_blank">2b787bd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>     gene       snp 
 0.0131343 0.0003062 </code></pre>
 <pre><code> gene   snp 
@@ -696,6 +788,43 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <pre class="r"><code>#distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main=&quot;Distribution of Gene PIPs&quot;)</code></pre>
 <p><img src="figure/SCZ_test.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2b787bd5f55ed93b4a29d744636c53b14af8287c/docs/figure/SCZ_test.Rmd/unnamed-chunk-5-1.png" target="_blank">2b787bd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#genes with PIP&gt;0.8 or 20 highest PIPs
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip&gt;0.8), 20))</code></pre>
 <pre><code>        genename region_tag susie_pip   mu2       PVE      z num_eqtl
@@ -974,10 +1103,47 @@ Attaching package: &#39;S4Vectors&#39;</code></pre>
                       label_panel=&quot;both&quot;,
                       plot_eqtl=c(&quot;ZNF823&quot;),
                       legend_side=&quot;left&quot;,
-                      legend_panel=&quot;cTWAS&quot;)
-
-locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
+                      legend_panel=&quot;cTWAS&quot;)</code></pre>
 <p><img src="figure/SCZ_test.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
+Past versions of unnamed-chunk-9-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-9-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2b787bd5f55ed93b4a29d744636c53b14af8287c/docs/figure/SCZ_test.Rmd/unnamed-chunk-9-1.png" target="_blank">2b787bd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
+<p><img src="figure/SCZ_test.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
