@@ -61,6 +61,7 @@ table(qclist_all$chr)
 mean(qclist_all$nmiss==0)
 ```
 
+
 ```{r echo=F}
 ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
 
@@ -76,6 +77,129 @@ ctwas_gene_res <- data.frame(ctwas_gene_res)
 ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
 ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
+
+```{r}
+#add z score to results
+load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
+
+#load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd")) #for new version, stored after harmonization
+z_snp <- readRDS(paste0(results_dir, "/", trait_id, ".RDS")) #for old version, unharmonized
+
+z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,] #subset snps to those included in analysis, note some are duplicated, need to match which allele was used
+ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)] #for duplicated snps, this arbitrarily uses the first allele
+ctwas_snp_res$z_flag <- as.numeric(ctwas_snp_res$id %in% z_snp$id[duplicated(z_snp$id)]) #mark the unclear z scores, flag=1
+```
+
+
+```{r}
+#formatting and rounding for tables
+ctwas_gene_res$z <- round(ctwas_gene_res$z,2)
+ctwas_snp_res$z <- round(ctwas_snp_res$z,2)
+ctwas_gene_res$susie_pip <- round(ctwas_gene_res$susie_pip,3)
+ctwas_snp_res$susie_pip <- round(ctwas_snp_res$susie_pip,3)
+ctwas_gene_res$mu2 <- round(ctwas_gene_res$mu2,2)
+ctwas_snp_res$mu2 <- round(ctwas_snp_res$mu2,2)
+ctwas_gene_res$PVE <- signif(ctwas_gene_res$PVE, 2)
+ctwas_snp_res$PVE <- signif(ctwas_snp_res$PVE, 2)
+
+#merge gene and snp results with added information
+ctwas_gene_res$z_flag=NA
+ctwas_gene_res$genename=NA
+ctwas_gene_res$gene_type=NA
+ctwas_snp_res$genename=NA
+ctwas_snp_res$gene_type=NA
+
+ctwas_res <- rbind(ctwas_gene_res,
+                   ctwas_snp_res[,colnames(ctwas_gene_res)])
+
+#store columns to report
+report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "gene_type", "z_flag", "id", "chrom", "pos"))]
+first_cols <- c("genename", "region_tag")
+report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
+
+report_cols_snps <- c("id", report_cols[-1])
+
+#get number of SNPs from s1 results; adjust for thin
+ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
+n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
+rm(ctwas_res_s1)
+```
+
+```{r}
+library(ggplot2)
+library(cowplot)
+
+load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd"))
+  
+df <- data.frame(niter = rep(1:ncol(group_prior_rec), 2),
+                 value = c(group_prior_rec[1,], group_prior_rec[2,]),
+                 group = rep(c("Gene", "SNP"), each = ncol(group_prior_rec)))
+df$group <- as.factor(df$group)
+
+df$value[df$group=="SNP"] <- df$value[df$group=="SNP"]*thin #adjust parameter to account for thin argument
+
+p_pi <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(pi)) +
+  ggtitle("Prior mean") +
+  theme_cowplot()
+
+df <- data.frame(niter = rep(1:ncol(group_prior_var_rec), 2),
+                 value = c(group_prior_var_rec[1,], group_prior_var_rec[2,]),
+                 group = rep(c("Gene", "SNP"), each = ncol(group_prior_var_rec)))
+df$group <- as.factor(df$group)
+p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(sigma^2)) +
+  ggtitle("Prior variance") +
+  theme_cowplot()
+
+plot_grid(p_pi, p_sigma2)
+
+#estimated group prior
+estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
+names(estimated_group_prior) <- c("gene", "snp")
+estimated_group_prior["snp"] <- estimated_group_prior["snp"]*thin #adjust parameter to account for thin argument
+print(estimated_group_prior)
+
+#estimated group prior variance
+estimated_group_prior_var <- group_prior_var_rec[,ncol(group_prior_var_rec)]
+names(estimated_group_prior_var) <- c("gene", "snp")
+print(estimated_group_prior_var)
+
+#report sample size
+print(sample_size)
+
+#report group size
+group_size <- c(nrow(ctwas_gene_res), n_snps)
+print(group_size)
+
+#estimated group PVE
+estimated_group_pve <- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+names(estimated_group_pve) <- c("gene", "snp")
+print(estimated_group_pve)
+
+#compare sum(PIP*mu2/sample_size) with above PVE calculation
+c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{python echo=F}
 from pyensembl import EnsemblRelease #repl_python()
