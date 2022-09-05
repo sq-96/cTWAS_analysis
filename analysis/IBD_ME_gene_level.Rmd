@@ -1,0 +1,254 @@
+---
+title: "SCZ-ME"
+author: "sheng Qian"
+date: "2021-8-31"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+params:
+  analysis_id: "IBD_ME"
+  trait_id: "ebi-a-GCST004131"
+  weight: "ME"
+---
+
+```{r}
+library(reticulate)
+use_python("/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python",required=T)
+```
+
+```{r echo=F}
+analysis_id <- params$analysis_id
+trait_id <- params$trait_id
+weight <- params$weight
+
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/IBD_ME/")
+
+source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b37.R")
+options(digits = 4)
+
+sample_size <- 59957
+#vcf_file <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ebi-a-GCST004131.vcf.gz"
+#sample_size <- unlist(VariantAnnotation::readGeno(vcf_file, "SS"))
+#sample_size <- as.numeric(names(which.max(table(sample_size))))
+```
+
+
+## Weight QC
+
+```{r echo=F}
+qclist_all <- list()
+
+qc_files <- paste0(results_dir, "/", list.files(results_dir, pattern="exprqc.Rd"))
+
+for (i in 1:length(qc_files)){
+  load(qc_files[i])
+  chr <- unlist(strsplit(rev(unlist(strsplit(qc_files[i], "_")))[1], "[.]"))[1]
+  qclist_all[[chr]] <- cbind(do.call(rbind, lapply(qclist,unlist)), as.numeric(substring(chr,4)))
+}
+
+qclist_all <- data.frame(do.call(rbind, qclist_all))
+colnames(qclist_all)[ncol(qclist_all)] <- "chr"
+
+rm(qclist, wgtlist, z_gene_chr)
+
+#number of imputed weights
+nrow(qclist_all)
+
+#number of imputed weights by chromosome
+table(qclist_all$chr)
+
+#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)
+```
+
+```{r echo=F}
+ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
+
+#make unique identifier for regions
+ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+
+#compute PVE for each gene/SNP
+ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size #check PVE calculation
+
+#separate gene and SNP results
+ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
+ctwas_gene_res <- data.frame(ctwas_gene_res)
+ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+ctwas_snp_res <- data.frame(ctwas_snp_res)
+```
+
+```{python echo=F}
+from pyensembl import EnsemblRelease #repl_python()
+import math
+import time
+import numpy as np
+import pandas as pd
+
+data = EnsemblRelease(75)
+ctwas_gene_res_df = r.ctwas_gene_res
+ctwas_gene_res_df['methylation_pos'] = ctwas_gene_res_df['id'].apply(lambda x: int(x.split("_")[1]))
+ctwas_gene_res_df['genename'] = np.nan
+ctwas_gene_res_df['methylation_id'] = ctwas_gene_res_df['id']
+```
+
+
+```{python echo=F}
+for index, row in ctwas_gene_res_df.iterrows():
+  gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["methylation_pos"]))
+  if len(gene_names)!=0:
+    for i in gene_names:
+      if i != '':
+        gene_info = data.genes_by_name(i)[0]
+        if (gene_info.biotype=="lincRNA") | (gene_info.biotype=="protein_coding"):
+        #if gene_info.biotype=="protein_coding":
+          ctwas_gene_res_df.loc[index,'genename'] = gene_info.gene_name
+          ctwas_gene_res_df.loc[index,'id'] = gene_info.gene_id
+          ctwas_gene_res_df.loc[index,'type'] = gene_info.biotype
+          break
+      
+ctwas_gene_res_df = ctwas_gene_res_df.dropna(subset=['genename'])
+print("finish")
+```
+
+```{r echo=F}
+load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+ctwas_gene_res <- py$ctwas_gene_res_df
+ctwas_gene_res$z <- z_gene[ctwas_gene_res$methylation_id,]$z
+
+
+z_snp <- readRDS(paste0(results_dir, "/", trait_id, ".RDS")) #for old version, unharmonized
+z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
+ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+
+#merge gene and snp results with added information
+ctwas_snp_res$genename=NA
+ctwas_snp_res$gene_type=NA
+ctwas_snp_res$methylation_id=NA
+ctwas_snp_res$methylation_pos=NA
+
+saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_methylation_res.RDS"))
+saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+```
+
+```{r echo=F}
+ctwas_methylation_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_methylation_res.RDS"))
+ctwas_methylation_res <- ctwas_methylation_res[!is.na(ctwas_gene_res$genename),]
+ctwas_snp_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
+
+#get number of meQTL for CpG sites
+num_meqtl <- c()
+for (i in 1:22){
+  load(paste0(results_dir, "/", analysis_id, "_expr_chr", i, ".exprqc.Rd"))
+  num_meqtl <- c(num_meqtl, unlist(lapply(wgtlist, nrow)))
+}
+ctwas_methylation_res$num_meqtl <- num_meqtl[ctwas_methylation_res$methylation_id]
+```
+
+```{r echo=F}
+library(dplyr)
+by_genename <- ctwas_methylation_res %>% group_by(genename)
+ctwas_gene_res <- data.frame(by_genename %>% summarise(
+  chrom = chrom[1],
+  id = id[1],
+  pos = min(pos),
+  type = type[1],
+  region_tag1 = region_tag1[1],
+  region_tag2 = names(sort(table(region_tag2),decreasing = TRUE)[1]),
+  cs_index = cs_index[1],
+  susie_pip = sum(susie_pip),
+  mu2 = mu2[which.max(abs(mu2))],
+  region_tag = names(sort(table(region_tag),decreasing = TRUE)[1]),
+  PVE = sum(susie_pip*PVE),
+  z = z[which.max(abs(z))],
+  gene_type = type[1],
+  num_methylation = length(methylation_id),
+  num_meqtl = sum(num_meqtl)))
+
+ctwas_snp_res$num_methylation <- NA
+ctwas_snp_res$num_meqtl <- NA
+
+saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+```
+
+```{r echo=F}
+ctwas_res <- rbind(ctwas_gene_res,
+                   ctwas_snp_res[,colnames(ctwas_gene_res)])
+
+#store columns to report
+report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "gene_type", "z_flag", "id", "chrom", "pos"))]
+first_cols <- c("genename", "region_tag")
+report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
+
+report_cols_snps <- c("id", report_cols[-1])
+report_cols_snps <- report_cols_snps[!(report_cols_snps %in% "num_sqtl")]
+
+#get number of SNPs from s1 results; adjust for thin argument
+ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
+n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
+rm(ctwas_res_s1)
+```
+
+## Genes with highest PIPs 
+
+```{r echo=F}
+#distribution of PIPs
+hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
+
+#genes with PIP>0.8 or 20 highest PIPs
+head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+```
+
+## Genes with largest effect sizes 
+
+```{r echo=F}
+#plot PIP vs effect size
+plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
+
+#genes with 20 largest effect sizes
+head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
+
+```
+
+## Genes with highest PVE 
+
+```{r echo=F}
+#genes with 20 highest pve
+head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
+
+```
+
+## Genes with largest z scores 
+
+```{r echo=F}
+#genes with 20 largest z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
+```
+
+## Comparing z scores and PIPs
+
+```{r echo=F}
+#set nominal signifiance threshold for z scores
+alpha <- 0.05
+
+#bonferroni adjusted threshold for z scores
+sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
+
+#Q-Q plot for z scores
+obs_z <- ctwas_gene_res$z[order(ctwas_gene_res$z)]
+exp_z <- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res))
+
+plot(exp_z, obs_z, xlab="Expected z", ylab="Observed z", main="Gene z score Q-Q plot")
+abline(a=0,b=1)
+
+#plot z score vs PIP
+plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP")
+abline(v=sig_thresh, col="red", lty=2)
+
+#proportion of significant z scores
+mean(abs(ctwas_gene_res$z) > sig_thresh)
+
+#genes with most significant z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
+```

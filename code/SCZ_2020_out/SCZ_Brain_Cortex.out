@@ -1,0 +1,883 @@
+[1] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/PGC3_SCZ_wave3_public.v2.tsv"
+[2] "/project2/mstephens/wcrouse/UKB_LDR_0.1"                                         
+[3] "/project2/compbio/predictdb/mashr_models/mashr_Brain_Cortex.db"                  
+[4] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R"              
+[5] "SCZ_Brain_Cortex_expr"                                                           
+[6] "SCZ_Brain_Cortex_ctwas"                                                          
+[7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2020/Brain_Cortex"       
+2022-03-11 22:29:02 INFO::Flipping z scores to match LD reference
+2022-03-11 22:29:05 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-11 22:50:02 INFO::Reading weights for chromosome 1
+2022-03-11 22:50:04 INFO::Number of genes with weights provided: 14284
+2022-03-11 22:50:04 INFO::Collecting gene weight information ...
+2022-03-11 22:50:04 INFO::Flipping weights to match LD reference
+2022-03-11 22:50:04 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-11 23:08:34 INFO::Start gene z score imputation ...
+2022-03-11 23:08:34 INFO::Using given LD matrices to impute gene z score.
+2022-03-11 23:21:59 INFO::Imputation done, writing results to output...
+2022-03-11 23:21:59 INFO::Imputation done: number of genes with imputed expression: 1186 for chr 1
+2022-03-11 23:22:00 INFO::Flipping z scores to match LD reference
+2022-03-11 23:22:03 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-11 23:46:22 INFO::Reading weights for chromosome 2
+2022-03-11 23:46:22 INFO::Number of genes with weights provided: 14284
+2022-03-11 23:46:22 INFO::Collecting gene weight information ...
+2022-03-11 23:46:22 INFO::Flipping weights to match LD reference
+2022-03-11 23:46:22 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-11 23:59:10 INFO::Start gene z score imputation ...
+2022-03-11 23:59:10 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 00:10:34 INFO::Imputation done, writing results to output...
+2022-03-12 00:10:34 INFO::Imputation done: number of genes with imputed expression: 815 for chr 2
+2022-03-12 00:10:35 INFO::Flipping z scores to match LD reference
+2022-03-12 00:10:36 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 00:27:59 INFO::Reading weights for chromosome 3
+2022-03-12 00:27:59 INFO::Number of genes with weights provided: 14284
+2022-03-12 00:27:59 INFO::Collecting gene weight information ...
+2022-03-12 00:27:59 INFO::Flipping weights to match LD reference
+2022-03-12 00:27:59 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 00:36:48 INFO::Start gene z score imputation ...
+2022-03-12 00:36:48 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 00:47:17 INFO::Imputation done, writing results to output...
+2022-03-12 00:47:18 INFO::Imputation done: number of genes with imputed expression: 684 for chr 3
+2022-03-12 00:47:18 INFO::Flipping z scores to match LD reference
+2022-03-12 00:47:21 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 01:06:40 INFO::Reading weights for chromosome 4
+2022-03-12 01:06:40 INFO::Number of genes with weights provided: 14284
+2022-03-12 01:06:40 INFO::Collecting gene weight information ...
+2022-03-12 01:06:40 INFO::Flipping weights to match LD reference
+2022-03-12 01:06:40 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 01:13:54 INFO::Start gene z score imputation ...
+2022-03-12 01:13:54 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 01:21:47 INFO::Imputation done, writing results to output...
+2022-03-12 01:21:48 INFO::Imputation done: number of genes with imputed expression: 457 for chr 4
+2022-03-12 01:21:48 INFO::Flipping z scores to match LD reference
+2022-03-12 01:21:51 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 01:38:13 INFO::Reading weights for chromosome 5
+2022-03-12 01:38:13 INFO::Number of genes with weights provided: 14284
+2022-03-12 01:38:13 INFO::Collecting gene weight information ...
+2022-03-12 01:38:13 INFO::Flipping weights to match LD reference
+2022-03-12 01:38:13 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 01:46:21 INFO::Start gene z score imputation ...
+2022-03-12 01:46:21 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 01:53:58 INFO::Imputation done, writing results to output...
+2022-03-12 01:53:59 INFO::Imputation done: number of genes with imputed expression: 554 for chr 5
+2022-03-12 01:53:59 INFO::Flipping z scores to match LD reference
+2022-03-12 01:54:01 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 02:11:20 INFO::Reading weights for chromosome 6
+2022-03-12 02:11:20 INFO::Number of genes with weights provided: 14284
+2022-03-12 02:11:20 INFO::Collecting gene weight information ...
+2022-03-12 02:11:20 INFO::Flipping weights to match LD reference
+2022-03-12 02:11:20 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 02:24:57 INFO::Start gene z score imputation ...
+2022-03-12 02:24:57 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 02:36:33 INFO::Imputation done, writing results to output...
+2022-03-12 02:36:34 INFO::Imputation done: number of genes with imputed expression: 665 for chr 6
+2022-03-12 02:36:35 INFO::Flipping z scores to match LD reference
+2022-03-12 02:36:36 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 02:53:09 INFO::Reading weights for chromosome 7
+2022-03-12 02:53:09 INFO::Number of genes with weights provided: 14284
+2022-03-12 02:53:09 INFO::Collecting gene weight information ...
+2022-03-12 02:53:09 INFO::Flipping weights to match LD reference
+2022-03-12 02:53:09 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 03:02:41 INFO::Start gene z score imputation ...
+2022-03-12 03:02:41 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 03:10:18 INFO::Imputation done, writing results to output...
+2022-03-12 03:10:18 INFO::Imputation done: number of genes with imputed expression: 563 for chr 7
+2022-03-12 03:10:19 INFO::Flipping z scores to match LD reference
+2022-03-12 03:10:21 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 03:26:29 INFO::Reading weights for chromosome 8
+2022-03-12 03:26:29 INFO::Number of genes with weights provided: 14284
+2022-03-12 03:26:29 INFO::Collecting gene weight information ...
+2022-03-12 03:26:29 INFO::Flipping weights to match LD reference
+2022-03-12 03:26:29 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 03:32:23 INFO::Start gene z score imputation ...
+2022-03-12 03:32:23 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 03:38:45 INFO::Imputation done, writing results to output...
+2022-03-12 03:38:45 INFO::Imputation done: number of genes with imputed expression: 437 for chr 8
+2022-03-12 03:38:46 INFO::Flipping z scores to match LD reference
+2022-03-12 03:38:48 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 03:50:40 INFO::Reading weights for chromosome 9
+2022-03-12 03:50:40 INFO::Number of genes with weights provided: 14284
+2022-03-12 03:50:40 INFO::Collecting gene weight information ...
+2022-03-12 03:50:40 INFO::Flipping weights to match LD reference
+2022-03-12 03:50:40 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 03:58:18 INFO::Start gene z score imputation ...
+2022-03-12 03:58:18 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 04:04:18 INFO::Imputation done, writing results to output...
+2022-03-12 04:04:18 INFO::Imputation done: number of genes with imputed expression: 444 for chr 9
+2022-03-12 04:04:19 INFO::Flipping z scores to match LD reference
+2022-03-12 04:04:21 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 04:19:00 INFO::Reading weights for chromosome 10
+2022-03-12 04:19:00 INFO::Number of genes with weights provided: 14284
+2022-03-12 04:19:00 INFO::Collecting gene weight information ...
+2022-03-12 04:19:00 INFO::Flipping weights to match LD reference
+2022-03-12 04:19:00 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 04:26:58 INFO::Start gene z score imputation ...
+2022-03-12 04:26:58 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 04:33:39 INFO::Imputation done, writing results to output...
+2022-03-12 04:33:40 INFO::Imputation done: number of genes with imputed expression: 482 for chr 10
+2022-03-12 04:33:41 INFO::Flipping z scores to match LD reference
+2022-03-12 04:33:43 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 04:49:07 INFO::Reading weights for chromosome 11
+2022-03-12 04:49:07 INFO::Number of genes with weights provided: 14284
+2022-03-12 04:49:07 INFO::Collecting gene weight information ...
+2022-03-12 04:49:07 INFO::Flipping weights to match LD reference
+2022-03-12 04:49:07 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 04:58:43 INFO::Start gene z score imputation ...
+2022-03-12 04:58:43 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 05:08:03 INFO::Imputation done, writing results to output...
+2022-03-12 05:08:04 INFO::Imputation done: number of genes with imputed expression: 707 for chr 11
+2022-03-12 05:08:05 INFO::Flipping z scores to match LD reference
+2022-03-12 05:08:06 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 05:21:34 INFO::Reading weights for chromosome 12
+2022-03-12 05:21:34 INFO::Number of genes with weights provided: 14284
+2022-03-12 05:21:34 INFO::Collecting gene weight information ...
+2022-03-12 05:21:34 INFO::Flipping weights to match LD reference
+2022-03-12 05:21:34 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 05:31:34 INFO::Start gene z score imputation ...
+2022-03-12 05:31:34 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 05:41:43 INFO::Imputation done, writing results to output...
+2022-03-12 05:41:43 INFO::Imputation done: number of genes with imputed expression: 665 for chr 12
+2022-03-12 05:41:44 INFO::Flipping z scores to match LD reference
+2022-03-12 05:41:46 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 05:52:19 INFO::Reading weights for chromosome 13
+2022-03-12 05:52:19 INFO::Number of genes with weights provided: 14284
+2022-03-12 05:52:19 INFO::Collecting gene weight information ...
+2022-03-12 05:52:19 INFO::Flipping weights to match LD reference
+2022-03-12 05:52:19 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 05:55:42 INFO::Start gene z score imputation ...
+2022-03-12 05:55:42 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 05:59:39 INFO::Imputation done, writing results to output...
+2022-03-12 05:59:39 INFO::Imputation done: number of genes with imputed expression: 228 for chr 13
+2022-03-12 05:59:40 INFO::Flipping z scores to match LD reference
+2022-03-12 05:59:41 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 06:08:19 INFO::Reading weights for chromosome 14
+2022-03-12 06:08:19 INFO::Number of genes with weights provided: 14284
+2022-03-12 06:08:19 INFO::Collecting gene weight information ...
+2022-03-12 06:08:19 INFO::Flipping weights to match LD reference
+2022-03-12 06:08:19 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 06:15:07 INFO::Start gene z score imputation ...
+2022-03-12 06:15:07 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 06:19:45 INFO::Imputation done, writing results to output...
+2022-03-12 06:19:45 INFO::Imputation done: number of genes with imputed expression: 388 for chr 14
+2022-03-12 06:19:46 INFO::Flipping z scores to match LD reference
+2022-03-12 06:19:47 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 06:26:28 INFO::Reading weights for chromosome 15
+2022-03-12 06:26:28 INFO::Number of genes with weights provided: 14284
+2022-03-12 06:26:28 INFO::Collecting gene weight information ...
+2022-03-12 06:26:28 INFO::Flipping weights to match LD reference
+2022-03-12 06:26:28 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 06:31:01 INFO::Start gene z score imputation ...
+2022-03-12 06:31:01 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 06:35:31 INFO::Imputation done, writing results to output...
+2022-03-12 06:35:32 INFO::Imputation done: number of genes with imputed expression: 388 for chr 15
+2022-03-12 06:35:33 INFO::Flipping z scores to match LD reference
+2022-03-12 06:35:34 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 06:42:45 INFO::Reading weights for chromosome 16
+2022-03-12 06:42:45 INFO::Number of genes with weights provided: 14284
+2022-03-12 06:42:45 INFO::Collecting gene weight information ...
+2022-03-12 06:42:45 INFO::Flipping weights to match LD reference
+2022-03-12 06:42:45 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 06:48:51 INFO::Start gene z score imputation ...
+2022-03-12 06:48:51 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 06:53:31 INFO::Imputation done, writing results to output...
+2022-03-12 06:53:31 INFO::Imputation done: number of genes with imputed expression: 542 for chr 16
+2022-03-12 06:53:32 INFO::Flipping z scores to match LD reference
+2022-03-12 06:53:36 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 07:00:22 INFO::Reading weights for chromosome 17
+2022-03-12 07:00:22 INFO::Number of genes with weights provided: 14284
+2022-03-12 07:00:22 INFO::Collecting gene weight information ...
+2022-03-12 07:00:22 INFO::Flipping weights to match LD reference
+2022-03-12 07:00:22 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 07:09:57 INFO::Start gene z score imputation ...
+2022-03-12 07:09:57 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 07:16:14 INFO::Imputation done, writing results to output...
+2022-03-12 07:16:15 INFO::Imputation done: number of genes with imputed expression: 708 for chr 17
+2022-03-12 07:16:15 INFO::Flipping z scores to match LD reference
+2022-03-12 07:16:17 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 07:24:58 INFO::Reading weights for chromosome 18
+2022-03-12 07:24:58 INFO::Number of genes with weights provided: 14284
+2022-03-12 07:24:58 INFO::Collecting gene weight information ...
+2022-03-12 07:24:58 INFO::Flipping weights to match LD reference
+2022-03-12 07:24:58 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 07:28:36 INFO::Start gene z score imputation ...
+2022-03-12 07:28:36 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 07:31:44 INFO::Imputation done, writing results to output...
+2022-03-12 07:31:45 INFO::Imputation done: number of genes with imputed expression: 183 for chr 18
+2022-03-12 07:31:46 INFO::Flipping z scores to match LD reference
+2022-03-12 07:31:47 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 07:37:33 INFO::Reading weights for chromosome 19
+2022-03-12 07:37:33 INFO::Number of genes with weights provided: 14284
+2022-03-12 07:37:33 INFO::Collecting gene weight information ...
+2022-03-12 07:37:33 INFO::Flipping weights to match LD reference
+2022-03-12 07:37:33 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 07:51:18 INFO::Start gene z score imputation ...
+2022-03-12 07:51:18 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 07:58:47 INFO::Imputation done, writing results to output...
+2022-03-12 07:58:48 INFO::Imputation done: number of genes with imputed expression: 889 for chr 19
+2022-03-12 07:58:49 INFO::Flipping z scores to match LD reference
+2022-03-12 07:58:51 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 08:05:24 INFO::Reading weights for chromosome 20
+2022-03-12 08:05:24 INFO::Number of genes with weights provided: 14284
+2022-03-12 08:05:24 INFO::Collecting gene weight information ...
+2022-03-12 08:05:24 INFO::Flipping weights to match LD reference
+2022-03-12 08:05:24 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 08:11:19 INFO::Start gene z score imputation ...
+2022-03-12 08:11:19 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 08:16:06 INFO::Imputation done, writing results to output...
+2022-03-12 08:16:06 INFO::Imputation done: number of genes with imputed expression: 368 for chr 20
+2022-03-12 08:16:07 INFO::Flipping z scores to match LD reference
+2022-03-12 08:16:10 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 08:19:29 INFO::Reading weights for chromosome 21
+2022-03-12 08:19:29 INFO::Number of genes with weights provided: 14284
+2022-03-12 08:19:29 INFO::Collecting gene weight information ...
+2022-03-12 08:19:29 INFO::Flipping weights to match LD reference
+2022-03-12 08:19:29 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 08:21:31 INFO::Start gene z score imputation ...
+2022-03-12 08:21:31 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 08:23:07 INFO::Imputation done, writing results to output...
+2022-03-12 08:23:07 INFO::Imputation done: number of genes with imputed expression: 129 for chr 21
+2022-03-12 08:23:08 INFO::Flipping z scores to match LD reference
+2022-03-12 08:23:10 INFO::Harmonizing strand-ambiguous z scores using imputation by region
+2022-03-12 08:26:12 INFO::Reading weights for chromosome 22
+2022-03-12 08:26:12 INFO::Number of genes with weights provided: 14284
+2022-03-12 08:26:12 INFO::Collecting gene weight information ...
+2022-03-12 08:26:12 INFO::Flipping weights to match LD reference
+2022-03-12 08:26:12 INFO::Harmonizing strand ambiguous weights using correlations with unambiguous variants
+2022-03-12 08:30:07 INFO::Start gene z score imputation ...
+2022-03-12 08:30:07 INFO::Using given LD matrices to impute gene z score.
+2022-03-12 08:32:52 INFO::Imputation done, writing results to output...
+2022-03-12 08:32:52 INFO::Imputation done: number of genes with imputed expression: 299 for chr 22
+2022-03-12 08:33:17 INFO::ctwas started ...
+2022-03-12 08:33:40 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/3.6/ctwas/extdata/ldetect/EUR.b38.bed
+2022-03-12 08:33:41 INFO::No. LD regions: 1700
+2022-03-12 08:33:47 INFO::No. regions with at least one SNP/gene for chr1: 131
+2022-03-12 08:33:47 INFO::Merge regions for chr1
+2022-03-12 08:33:47 INFO::No. regions with at least one SNP/gene for chr1 after merging: 127
+2022-03-12 08:33:54 INFO::No. regions with at least one SNP/gene for chr2: 144
+2022-03-12 08:33:54 INFO::Merge regions for chr2
+2022-03-12 08:33:54 INFO::No. regions with at least one SNP/gene for chr2 after merging: 143
+2022-03-12 08:33:58 INFO::No. regions with at least one SNP/gene for chr3: 122
+2022-03-12 08:33:58 INFO::Merge regions for chr3
+2022-03-12 08:33:58 INFO::No. regions with at least one SNP/gene for chr3 after merging: 116
+2022-03-12 08:34:04 INFO::No. regions with at least one SNP/gene for chr4: 122
+2022-03-12 08:34:04 INFO::Merge regions for chr4
+2022-03-12 08:34:04 INFO::No. regions with at least one SNP/gene for chr4 after merging: 121
+2022-03-12 08:34:08 INFO::No. regions with at least one SNP/gene for chr5: 110
+2022-03-12 08:34:08 INFO::Merge regions for chr5
+2022-03-12 08:34:08 INFO::No. regions with at least one SNP/gene for chr5 after merging: 109
+2022-03-12 08:34:13 INFO::No. regions with at least one SNP/gene for chr6: 112
+2022-03-12 08:34:13 INFO::Merge regions for chr6
+2022-03-12 08:34:13 INFO::No. regions with at least one SNP/gene for chr6 after merging: 110
+2022-03-12 08:34:18 INFO::No. regions with at least one SNP/gene for chr7: 99
+2022-03-12 08:34:18 INFO::Merge regions for chr7
+2022-03-12 08:34:18 INFO::No. regions with at least one SNP/gene for chr7 after merging: 97
+2022-03-12 08:34:21 INFO::No. regions with at least one SNP/gene for chr8: 94
+2022-03-12 08:34:21 INFO::Merge regions for chr8
+2022-03-12 08:34:21 INFO::No. regions with at least one SNP/gene for chr8 after merging: 93
+2022-03-12 08:34:24 INFO::No. regions with at least one SNP/gene for chr9: 74
+2022-03-12 08:34:24 INFO::Merge regions for chr9
+2022-03-12 08:34:24 INFO::No. regions with at least one SNP/gene for chr9 after merging: 73
+2022-03-12 08:34:27 INFO::No. regions with at least one SNP/gene for chr10: 85
+2022-03-12 08:34:27 INFO::Merge regions for chr10
+2022-03-12 08:34:27 INFO::No. regions with at least one SNP/gene for chr10 after merging: 84
+2022-03-12 08:34:31 INFO::No. regions with at least one SNP/gene for chr11: 84
+2022-03-12 08:34:31 INFO::Merge regions for chr11
+2022-03-12 08:34:31 INFO::No. regions with at least one SNP/gene for chr11 after merging: 79
+2022-03-12 08:34:33 INFO::No. regions with at least one SNP/gene for chr12: 82
+2022-03-12 08:34:33 INFO::Merge regions for chr12
+2022-03-12 08:34:33 INFO::No. regions with at least one SNP/gene for chr12 after merging: 79
+2022-03-12 08:34:36 INFO::No. regions with at least one SNP/gene for chr13: 62
+2022-03-12 08:34:36 INFO::Merge regions for chr13
+2022-03-12 08:34:36 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2022-03-12 08:34:38 INFO::No. regions with at least one SNP/gene for chr14: 56
+2022-03-12 08:34:38 INFO::Merge regions for chr14
+2022-03-12 08:34:38 INFO::No. regions with at least one SNP/gene for chr14 after merging: 54
+2022-03-12 08:34:41 INFO::No. regions with at least one SNP/gene for chr15: 50
+2022-03-12 08:34:41 INFO::Merge regions for chr15
+2022-03-12 08:34:41 INFO::No. regions with at least one SNP/gene for chr15 after merging: 48
+2022-03-12 08:34:43 INFO::No. regions with at least one SNP/gene for chr16: 54
+2022-03-12 08:34:43 INFO::Merge regions for chr16
+2022-03-12 08:34:43 INFO::No. regions with at least one SNP/gene for chr16 after merging: 53
+2022-03-12 08:34:45 INFO::No. regions with at least one SNP/gene for chr17: 47
+2022-03-12 08:34:45 INFO::Merge regions for chr17
+2022-03-12 08:34:45 INFO::No. regions with at least one SNP/gene for chr17 after merging: 45
+2022-03-12 08:34:48 INFO::No. regions with at least one SNP/gene for chr18: 47
+2022-03-12 08:34:48 INFO::Merge regions for chr18
+2022-03-12 08:34:48 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2022-03-12 08:34:49 INFO::No. regions with at least one SNP/gene for chr19: 39
+2022-03-12 08:34:49 INFO::Merge regions for chr19
+2022-03-12 08:34:49 INFO::No. regions with at least one SNP/gene for chr19 after merging: 36
+2022-03-12 08:34:51 INFO::No. regions with at least one SNP/gene for chr20: 38
+2022-03-12 08:34:51 INFO::Merge regions for chr20
+2022-03-12 08:34:51 INFO::No. regions with at least one SNP/gene for chr20 after merging: 36
+2022-03-12 08:34:53 INFO::No. regions with at least one SNP/gene for chr21: 24
+2022-03-12 08:34:53 INFO::Merge regions for chr21
+2022-03-12 08:34:53 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2022-03-12 08:34:55 INFO::No. regions with at least one SNP/gene for chr22: 24
+2022-03-12 08:34:55 INFO::Merge regions for chr22
+2022-03-12 08:34:55 INFO::No. regions with at least one SNP/gene for chr22 after merging: 23
+2022-03-12 08:34:55 INFO::Trim regions with SNPs more than Inf
+2022-03-12 08:34:55 INFO::Adding R matrix info, as genotype is not given
+2022-03-12 08:34:55 INFO::Adding R matrix info for chrom 1
+2022-03-12 08:46:18 INFO::Adding R matrix info for chrom 2
+2022-03-12 08:56:21 INFO::Adding R matrix info for chrom 3
+2022-03-12 09:05:59 INFO::Adding R matrix info for chrom 4
+2022-03-12 09:14:10 INFO::Adding R matrix info for chrom 5
+2022-03-12 09:21:41 INFO::Adding R matrix info for chrom 6
+2022-03-12 09:31:35 INFO::Adding R matrix info for chrom 7
+2022-03-12 09:38:34 INFO::Adding R matrix info for chrom 8
+2022-03-12 09:44:51 INFO::Adding R matrix info for chrom 9
+2022-03-12 09:50:16 INFO::Adding R matrix info for chrom 10
+2022-03-12 09:56:30 INFO::Adding R matrix info for chrom 11
+2022-03-12 10:04:45 INFO::Adding R matrix info for chrom 12
+2022-03-12 10:11:41 INFO::Adding R matrix info for chrom 13
+2022-03-12 10:15:29 INFO::Adding R matrix info for chrom 14
+2022-03-12 10:19:47 INFO::Adding R matrix info for chrom 15
+2022-03-12 10:23:40 INFO::Adding R matrix info for chrom 16
+2022-03-12 10:27:40 INFO::Adding R matrix info for chrom 17
+2022-03-12 10:32:26 INFO::Adding R matrix info for chrom 18
+2022-03-12 10:35:34 INFO::Adding R matrix info for chrom 19
+2022-03-12 10:41:18 INFO::Adding R matrix info for chrom 20
+2022-03-12 10:45:03 INFO::Adding R matrix info for chrom 21
+2022-03-12 10:46:31 INFO::Adding R matrix info for chrom 22
+2022-03-12 10:48:43 INFO::Run susie iteratively, getting rough estimate ...
+2022-03-12 10:48:43 INFO::run iteration 1
+starting worker pid=13314 on localhost:11568 at 10:48:44.364
+starting worker pid=13327 on localhost:11568 at 10:48:44.874
+starting worker pid=13341 on localhost:11568 at 10:48:45.356
+starting worker pid=13355 on localhost:11568 at 10:48:45.831
+starting worker pid=13368 on localhost:11568 at 10:48:46.313
+starting worker pid=13382 on localhost:11568 at 10:48:46.793
+starting worker pid=13395 on localhost:11568 at 10:48:47.273
+starting worker pid=13410 on localhost:11568 at 10:48:47.752
+starting worker pid=13423 on localhost:11568 at 10:48:48.224
+starting worker pid=13436 on localhost:11568 at 10:48:48.700
+2022-03-12 10:56:44 INFO::After iteration 1, gene prior 0.00347259763004606:, SNP prior:0.00218828981652166
+2022-03-12 10:56:44 INFO::run iteration 2
+starting worker pid=13982 on localhost:11568 at 10:56:45.002
+starting worker pid=14000 on localhost:11568 at 10:56:45.535
+starting worker pid=14013 on localhost:11568 at 10:56:46.063
+starting worker pid=14027 on localhost:11568 at 10:56:46.546
+starting worker pid=14040 on localhost:11568 at 10:56:47.025
+starting worker pid=14054 on localhost:11568 at 10:56:47.502
+starting worker pid=14067 on localhost:11568 at 10:56:47.980
+starting worker pid=14080 on localhost:11568 at 10:56:48.459
+starting worker pid=14094 on localhost:11568 at 10:56:48.938
+starting worker pid=14107 on localhost:11568 at 10:56:49.413
+2022-03-12 11:04:45 INFO::After iteration 2, gene prior 0.00435922022441696:, SNP prior:0.00194332070777794
+2022-03-12 11:04:45 INFO::run iteration 3
+starting worker pid=14655 on localhost:11568 at 11:04:46.152
+starting worker pid=14668 on localhost:11568 at 11:04:46.669
+starting worker pid=14682 on localhost:11568 at 11:04:47.142
+starting worker pid=14699 on localhost:11568 at 11:04:47.622
+starting worker pid=14712 on localhost:11568 at 11:04:48.093
+starting worker pid=14726 on localhost:11568 at 11:04:48.565
+starting worker pid=14739 on localhost:11568 at 11:04:49.077
+starting worker pid=14753 on localhost:11568 at 11:04:49.576
+starting worker pid=14766 on localhost:11568 at 11:04:50.055
+starting worker pid=14779 on localhost:11568 at 11:04:50.530
+2022-03-12 11:12:47 INFO::After iteration 3, gene prior 0.00539174596726881:, SNP prior:0.00186775362377728
+2022-03-12 11:12:48 INFO::Blocks are filtered: 804 blocks left
+2022-03-12 11:12:48 INFO::Run susie iteratively, getting accurate estimate ...
+2022-03-12 11:12:48 INFO::run iteration 1
+starting worker pid=15263 on localhost:11568 at 11:12:48.774
+starting worker pid=15276 on localhost:11568 at 11:12:49.316
+starting worker pid=15290 on localhost:11568 at 11:12:49.841
+starting worker pid=15303 on localhost:11568 at 11:12:50.332
+starting worker pid=15317 on localhost:11568 at 11:12:50.816
+starting worker pid=15330 on localhost:11568 at 11:12:51.292
+starting worker pid=15343 on localhost:11568 at 11:12:51.763
+starting worker pid=15357 on localhost:11568 at 11:12:52.238
+starting worker pid=15370 on localhost:11568 at 11:12:52.721
+starting worker pid=15384 on localhost:11568 at 11:12:53.204
+2022-03-12 11:17:12 INFO::After iteration 1, gene prior 0.00817135872760218:, SNP prior:0.00228338663294079
+2022-03-12 11:17:12 INFO::run iteration 2
+starting worker pid=16191 on localhost:11568 at 11:17:12.944
+starting worker pid=16205 on localhost:11568 at 11:17:13.443
+starting worker pid=16218 on localhost:11568 at 11:17:13.943
+starting worker pid=16232 on localhost:11568 at 11:17:14.424
+starting worker pid=16245 on localhost:11568 at 11:17:14.899
+starting worker pid=16258 on localhost:11568 at 11:17:15.373
+starting worker pid=16272 on localhost:11568 at 11:17:15.853
+starting worker pid=16285 on localhost:11568 at 11:17:16.328
+starting worker pid=16299 on localhost:11568 at 11:17:16.803
+starting worker pid=16312 on localhost:11568 at 11:17:17.272
+2022-03-12 11:21:32 INFO::After iteration 2, gene prior 0.0102397593028522:, SNP prior:0.00252336204294076
+2022-03-12 11:21:32 INFO::run iteration 3
+starting worker pid=16840 on localhost:11568 at 11:21:32.664
+starting worker pid=16854 on localhost:11568 at 11:21:33.192
+starting worker pid=16867 on localhost:11568 at 11:21:33.711
+starting worker pid=16881 on localhost:11568 at 11:21:34.214
+starting worker pid=16894 on localhost:11568 at 11:21:34.693
+starting worker pid=16909 on localhost:11568 at 11:21:35.170
+starting worker pid=16923 on localhost:11568 at 11:21:35.650
+starting worker pid=16936 on localhost:11568 at 11:21:36.124
+starting worker pid=16950 on localhost:11568 at 11:21:36.602
+starting worker pid=16963 on localhost:11568 at 11:21:37.073
+2022-03-12 11:25:52 INFO::After iteration 3, gene prior 0.0115760844353198:, SNP prior:0.00263862950544041
+2022-03-12 11:25:52 INFO::run iteration 4
+starting worker pid=17264 on localhost:11568 at 11:25:52.913
+starting worker pid=17277 on localhost:11568 at 11:25:53.365
+starting worker pid=17290 on localhost:11568 at 11:25:53.844
+starting worker pid=17304 on localhost:11568 at 11:25:54.320
+starting worker pid=17317 on localhost:11568 at 11:25:54.802
+starting worker pid=17331 on localhost:11568 at 11:25:55.280
+starting worker pid=17344 on localhost:11568 at 11:25:55.754
+starting worker pid=17357 on localhost:11568 at 11:25:56.234
+starting worker pid=17371 on localhost:11568 at 11:25:56.713
+starting worker pid=17384 on localhost:11568 at 11:25:57.189
+2022-03-12 11:30:11 INFO::After iteration 4, gene prior 0.0123824424803733:, SNP prior:0.00267916408936907
+2022-03-12 11:30:12 INFO::run iteration 5
+starting worker pid=17680 on localhost:11568 at 11:30:12.671
+starting worker pid=17693 on localhost:11568 at 11:30:13.168
+starting worker pid=17706 on localhost:11568 at 11:30:13.644
+starting worker pid=17720 on localhost:11568 at 11:30:14.120
+starting worker pid=17733 on localhost:11568 at 11:30:14.600
+starting worker pid=17746 on localhost:11568 at 11:30:15.075
+starting worker pid=17760 on localhost:11568 at 11:30:15.556
+starting worker pid=17773 on localhost:11568 at 11:30:16.035
+starting worker pid=17787 on localhost:11568 at 11:30:16.513
+starting worker pid=17800 on localhost:11568 at 11:30:16.991
+2022-03-12 11:34:33 INFO::After iteration 5, gene prior 0.0128819164340634:, SNP prior:0.00268949868176727
+2022-03-12 11:34:33 INFO::run iteration 6
+starting worker pid=18101 on localhost:11568 at 11:34:33.755
+starting worker pid=18114 on localhost:11568 at 11:34:34.288
+starting worker pid=18127 on localhost:11568 at 11:34:34.803
+starting worker pid=18141 on localhost:11568 at 11:34:35.290
+starting worker pid=18154 on localhost:11568 at 11:34:35.770
+starting worker pid=18168 on localhost:11568 at 11:34:36.241
+starting worker pid=18181 on localhost:11568 at 11:34:36.719
+starting worker pid=18194 on localhost:11568 at 11:34:37.192
+starting worker pid=18208 on localhost:11568 at 11:34:37.675
+starting worker pid=18221 on localhost:11568 at 11:34:38.147
+2022-03-12 11:38:53 INFO::After iteration 6, gene prior 0.0132106108684259:, SNP prior:0.00268998411782281
+2022-03-12 11:38:53 INFO::run iteration 7
+starting worker pid=18449 on localhost:11568 at 11:38:53.867
+starting worker pid=18462 on localhost:11568 at 11:38:54.366
+starting worker pid=18476 on localhost:11568 at 11:38:54.874
+starting worker pid=18489 on localhost:11568 at 11:38:55.371
+starting worker pid=18503 on localhost:11568 at 11:38:55.848
+starting worker pid=18517 on localhost:11568 at 11:38:56.321
+starting worker pid=18530 on localhost:11568 at 11:38:56.793
+starting worker pid=18544 on localhost:11568 at 11:38:57.270
+starting worker pid=18557 on localhost:11568 at 11:38:57.749
+starting worker pid=18570 on localhost:11568 at 11:38:58.224
+2022-03-12 11:43:12 INFO::After iteration 7, gene prior 0.0134368378106974:, SNP prior:0.00268790789356806
+2022-03-12 11:43:12 INFO::run iteration 8
+starting worker pid=18867 on localhost:11568 at 11:43:13.205
+starting worker pid=18881 on localhost:11568 at 11:43:13.671
+starting worker pid=18894 on localhost:11568 at 11:43:14.145
+starting worker pid=18908 on localhost:11568 at 11:43:14.626
+starting worker pid=18921 on localhost:11568 at 11:43:15.108
+starting worker pid=18934 on localhost:11568 at 11:43:15.583
+starting worker pid=18948 on localhost:11568 at 11:43:16.060
+starting worker pid=18961 on localhost:11568 at 11:43:16.534
+starting worker pid=18975 on localhost:11568 at 11:43:17.015
+starting worker pid=18988 on localhost:11568 at 11:43:17.491
+2022-03-12 11:47:32 INFO::After iteration 8, gene prior 0.0135964953115971:, SNP prior:0.00268557764412109
+2022-03-12 11:47:33 INFO::run iteration 9
+starting worker pid=19791 on localhost:11568 at 11:47:33.496
+starting worker pid=19804 on localhost:11568 at 11:47:33.991
+starting worker pid=19818 on localhost:11568 at 11:47:34.492
+starting worker pid=19831 on localhost:11568 at 11:47:34.975
+starting worker pid=19845 on localhost:11568 at 11:47:35.464
+starting worker pid=19858 on localhost:11568 at 11:47:35.945
+starting worker pid=19871 on localhost:11568 at 11:47:36.420
+starting worker pid=19885 on localhost:11568 at 11:47:36.900
+starting worker pid=19898 on localhost:11568 at 11:47:37.375
+starting worker pid=19911 on localhost:11568 at 11:47:37.851
+2022-03-12 11:51:54 INFO::After iteration 9, gene prior 0.0137105123435174:, SNP prior:0.00268360281766574
+2022-03-12 11:51:54 INFO::run iteration 10
+starting worker pid=20724 on localhost:11568 at 11:51:54.675
+starting worker pid=20737 on localhost:11568 at 11:51:55.182
+starting worker pid=20751 on localhost:11568 at 11:51:55.682
+starting worker pid=20764 on localhost:11568 at 11:51:56.160
+starting worker pid=20778 on localhost:11568 at 11:51:56.639
+starting worker pid=20792 on localhost:11568 at 11:51:57.119
+starting worker pid=20805 on localhost:11568 at 11:51:57.591
+starting worker pid=20819 on localhost:11568 at 11:51:58.060
+starting worker pid=20832 on localhost:11568 at 11:51:58.531
+starting worker pid=20845 on localhost:11568 at 11:51:59.014
+2022-03-12 11:56:15 INFO::After iteration 10, gene prior 0.0137923877913627:, SNP prior:0.00268207669339461
+2022-03-12 11:56:15 INFO::run iteration 11
+starting worker pid=21145 on localhost:11568 at 11:56:16.220
+starting worker pid=21159 on localhost:11568 at 11:56:16.695
+starting worker pid=21172 on localhost:11568 at 11:56:17.193
+starting worker pid=21185 on localhost:11568 at 11:56:17.691
+starting worker pid=21199 on localhost:11568 at 11:56:18.183
+starting worker pid=21212 on localhost:11568 at 11:56:18.658
+starting worker pid=21225 on localhost:11568 at 11:56:19.133
+starting worker pid=21239 on localhost:11568 at 11:56:19.614
+starting worker pid=21252 on localhost:11568 at 11:56:20.090
+starting worker pid=21266 on localhost:11568 at 11:56:20.566
+2022-03-12 12:00:35 INFO::After iteration 11, gene prior 0.0138513129048522:, SNP prior:0.00268094113284353
+2022-03-12 12:00:35 INFO::run iteration 12
+starting worker pid=21596 on localhost:11568 at 12:00:35.729
+starting worker pid=21609 on localhost:11568 at 12:00:36.238
+starting worker pid=21623 on localhost:11568 at 12:00:36.731
+starting worker pid=21636 on localhost:11568 at 12:00:37.221
+starting worker pid=21650 on localhost:11568 at 12:00:37.703
+starting worker pid=21663 on localhost:11568 at 12:00:38.184
+starting worker pid=21676 on localhost:11568 at 12:00:38.660
+starting worker pid=21690 on localhost:11568 at 12:00:39.132
+starting worker pid=21703 on localhost:11568 at 12:00:39.600
+starting worker pid=21716 on localhost:11568 at 12:00:40.081
+2022-03-12 12:04:55 INFO::After iteration 12, gene prior 0.0138937501181537:, SNP prior:0.00268011047054805
+2022-03-12 12:04:55 INFO::run iteration 13
+starting worker pid=22015 on localhost:11568 at 12:04:56.112
+starting worker pid=22029 on localhost:11568 at 12:04:56.623
+starting worker pid=22042 on localhost:11568 at 12:04:57.135
+starting worker pid=22056 on localhost:11568 at 12:04:57.611
+starting worker pid=22069 on localhost:11568 at 12:04:58.072
+starting worker pid=22082 on localhost:11568 at 12:04:58.559
+starting worker pid=22096 on localhost:11568 at 12:04:59.035
+starting worker pid=22109 on localhost:11568 at 12:04:59.511
+starting worker pid=22123 on localhost:11568 at 12:04:59.994
+starting worker pid=22136 on localhost:11568 at 12:05:00.472
+2022-03-12 12:09:16 INFO::After iteration 13, gene prior 0.0139243146687869:, SNP prior:0.00267950775002607
+2022-03-12 12:09:16 INFO::run iteration 14
+starting worker pid=22435 on localhost:11568 at 12:09:17.068
+starting worker pid=22448 on localhost:11568 at 12:09:17.529
+starting worker pid=22461 on localhost:11568 at 12:09:18.000
+starting worker pid=22475 on localhost:11568 at 12:09:18.476
+starting worker pid=22488 on localhost:11568 at 12:09:18.950
+starting worker pid=22502 on localhost:11568 at 12:09:19.423
+starting worker pid=22515 on localhost:11568 at 12:09:19.899
+starting worker pid=22528 on localhost:11568 at 12:09:20.371
+starting worker pid=22542 on localhost:11568 at 12:09:20.852
+starting worker pid=22555 on localhost:11568 at 12:09:21.331
+2022-03-12 12:13:35 INFO::After iteration 14, gene prior 0.0139463244275765:, SNP prior:0.00267907217070819
+2022-03-12 12:13:36 INFO::run iteration 15
+starting worker pid=22785 on localhost:11568 at 12:13:36.550
+starting worker pid=22799 on localhost:11568 at 12:13:37.027
+starting worker pid=22812 on localhost:11568 at 12:13:37.511
+starting worker pid=22825 on localhost:11568 at 12:13:37.992
+starting worker pid=22840 on localhost:11568 at 12:13:38.469
+starting worker pid=22854 on localhost:11568 at 12:13:38.948
+starting worker pid=22868 on localhost:11568 at 12:13:39.420
+starting worker pid=22881 on localhost:11568 at 12:13:39.899
+starting worker pid=22894 on localhost:11568 at 12:13:40.379
+starting worker pid=22908 on localhost:11568 at 12:13:40.860
+2022-03-12 12:17:56 INFO::After iteration 15, gene prior 0.0139621702812408:, SNP prior:0.00267875802673859
+2022-03-12 12:17:56 INFO::run iteration 16
+starting worker pid=23770 on localhost:11568 at 12:17:57.423
+starting worker pid=23783 on localhost:11568 at 12:17:57.917
+starting worker pid=23797 on localhost:11568 at 12:17:58.411
+starting worker pid=23810 on localhost:11568 at 12:17:58.901
+starting worker pid=23823 on localhost:11568 at 12:17:59.375
+starting worker pid=23837 on localhost:11568 at 12:17:59.852
+starting worker pid=23850 on localhost:11568 at 12:18:00.331
+starting worker pid=23864 on localhost:11568 at 12:18:00.790
+starting worker pid=23877 on localhost:11568 at 12:18:01.263
+starting worker pid=23890 on localhost:11568 at 12:18:01.762
+2022-03-12 12:22:16 INFO::After iteration 16, gene prior 0.0139735760740602:, SNP prior:0.00267853170919219
+2022-03-12 12:22:16 INFO::run iteration 17
+starting worker pid=24353 on localhost:11568 at 12:22:17.243
+starting worker pid=24366 on localhost:11568 at 12:22:17.733
+starting worker pid=24380 on localhost:11568 at 12:22:18.214
+starting worker pid=24393 on localhost:11568 at 12:22:18.691
+starting worker pid=24406 on localhost:11568 at 12:22:19.172
+starting worker pid=24420 on localhost:11568 at 12:22:19.650
+starting worker pid=24433 on localhost:11568 at 12:22:20.129
+starting worker pid=24446 on localhost:11568 at 12:22:20.607
+starting worker pid=24460 on localhost:11568 at 12:22:21.080
+starting worker pid=24473 on localhost:11568 at 12:22:21.561
+2022-03-12 12:26:36 INFO::After iteration 17, gene prior 0.0139817845083903:, SNP prior:0.0026783687619636
+2022-03-12 12:26:36 INFO::run iteration 18
+starting worker pid=24773 on localhost:11568 at 12:26:37.157
+starting worker pid=24786 on localhost:11568 at 12:26:37.646
+starting worker pid=24800 on localhost:11568 at 12:26:38.141
+starting worker pid=24813 on localhost:11568 at 12:26:38.630
+starting worker pid=24826 on localhost:11568 at 12:26:39.111
+starting worker pid=24840 on localhost:11568 at 12:26:39.589
+starting worker pid=24853 on localhost:11568 at 12:26:40.063
+starting worker pid=24867 on localhost:11568 at 12:26:40.541
+starting worker pid=24880 on localhost:11568 at 12:26:41.021
+starting worker pid=24893 on localhost:11568 at 12:26:41.500
+2022-03-12 12:30:57 INFO::After iteration 18, gene prior 0.0139876910947408:, SNP prior:0.00267825148161341
+2022-03-12 12:30:57 INFO::run iteration 19
+starting worker pid=25190 on localhost:11568 at 12:30:57.979
+starting worker pid=25203 on localhost:11568 at 12:30:58.481
+starting worker pid=25216 on localhost:11568 at 12:30:58.949
+starting worker pid=25230 on localhost:11568 at 12:30:59.427
+starting worker pid=25243 on localhost:11568 at 12:30:59.905
+starting worker pid=25256 on localhost:11568 at 12:31:00.384
+starting worker pid=25270 on localhost:11568 at 12:31:00.861
+starting worker pid=25283 on localhost:11568 at 12:31:01.332
+starting worker pid=25297 on localhost:11568 at 12:31:01.810
+starting worker pid=25310 on localhost:11568 at 12:31:02.293
+2022-03-12 12:35:18 INFO::After iteration 19, gene prior 0.0139919408938848:, SNP prior:0.00267816708737541
+2022-03-12 12:35:18 INFO::run iteration 20
+starting worker pid=25614 on localhost:11568 at 12:35:19.327
+starting worker pid=25627 on localhost:11568 at 12:35:19.833
+starting worker pid=25640 on localhost:11568 at 12:35:20.313
+starting worker pid=25654 on localhost:11568 at 12:35:20.812
+starting worker pid=25667 on localhost:11568 at 12:35:21.287
+starting worker pid=25681 on localhost:11568 at 12:35:21.764
+starting worker pid=25694 on localhost:11568 at 12:35:22.249
+starting worker pid=25707 on localhost:11568 at 12:35:22.710
+starting worker pid=25721 on localhost:11568 at 12:35:23.180
+starting worker pid=25734 on localhost:11568 at 12:35:23.652
+2022-03-12 12:39:37 INFO::After iteration 20, gene prior 0.0139949983996078:, SNP prior:0.00267810636575537
+2022-03-12 12:39:38 INFO::run iteration 21
+starting worker pid=26031 on localhost:11568 at 12:39:38.563
+starting worker pid=26044 on localhost:11568 at 12:39:39.058
+starting worker pid=26058 on localhost:11568 at 12:39:39.535
+starting worker pid=26071 on localhost:11568 at 12:39:40.008
+starting worker pid=26085 on localhost:11568 at 12:39:40.480
+starting worker pid=26098 on localhost:11568 at 12:39:40.951
+starting worker pid=26111 on localhost:11568 at 12:39:41.421
+starting worker pid=26125 on localhost:11568 at 12:39:41.891
+starting worker pid=26138 on localhost:11568 at 12:39:42.377
+starting worker pid=26151 on localhost:11568 at 12:39:42.852
+2022-03-12 12:43:59 INFO::After iteration 21, gene prior 0.0139971979906297:, SNP prior:0.00267806268030395
+2022-03-12 12:43:59 INFO::run iteration 22
+starting worker pid=26397 on localhost:11568 at 12:43:59.956
+starting worker pid=26411 on localhost:11568 at 12:44:00.438
+starting worker pid=26424 on localhost:11568 at 12:44:00.918
+starting worker pid=26437 on localhost:11568 at 12:44:01.400
+starting worker pid=26518 on localhost:11568 at 12:44:01.874
+starting worker pid=26531 on localhost:11568 at 12:44:02.354
+starting worker pid=26544 on localhost:11568 at 12:44:02.833
+starting worker pid=26558 on localhost:11568 at 12:44:03.310
+starting worker pid=26571 on localhost:11568 at 12:44:03.789
+starting worker pid=26585 on localhost:11568 at 12:44:04.262
+2022-03-12 12:48:20 INFO::After iteration 22, gene prior 0.0139987803274934:, SNP prior:0.00267803125311826
+2022-03-12 12:48:20 INFO::run iteration 23
+starting worker pid=27383 on localhost:11568 at 12:48:21.200
+starting worker pid=27496 on localhost:11568 at 12:48:21.717
+starting worker pid=27572 on localhost:11568 at 12:48:22.219
+starting worker pid=27586 on localhost:11568 at 12:48:22.720
+starting worker pid=27599 on localhost:11568 at 12:48:23.195
+starting worker pid=27613 on localhost:11568 at 12:48:23.670
+starting worker pid=27626 on localhost:11568 at 12:48:24.143
+starting worker pid=27639 on localhost:11568 at 12:48:24.612
+starting worker pid=27653 on localhost:11568 at 12:48:25.093
+starting worker pid=27666 on localhost:11568 at 12:48:25.572
+2022-03-12 12:52:39 INFO::After iteration 23, gene prior 0.0139999185918726:, SNP prior:0.00267800864537646
+2022-03-12 12:52:39 INFO::run iteration 24
+starting worker pid=28002 on localhost:11568 at 12:52:39.727
+starting worker pid=28015 on localhost:11568 at 12:52:40.211
+starting worker pid=28028 on localhost:11568 at 12:52:40.684
+starting worker pid=28042 on localhost:11568 at 12:52:41.164
+starting worker pid=28055 on localhost:11568 at 12:52:41.640
+starting worker pid=28068 on localhost:11568 at 12:52:42.113
+starting worker pid=28093 on localhost:11568 at 12:52:42.587
+starting worker pid=28106 on localhost:11568 at 12:52:43.081
+starting worker pid=28120 on localhost:11568 at 12:52:43.561
+starting worker pid=28133 on localhost:11568 at 12:52:44.037
+2022-03-12 12:57:00 INFO::After iteration 24, gene prior 0.0140007373923347:, SNP prior:0.00267799238251035
+2022-03-12 12:57:00 INFO::run iteration 25
+starting worker pid=28431 on localhost:11568 at 12:57:01.336
+starting worker pid=28444 on localhost:11568 at 12:57:01.842
+starting worker pid=28458 on localhost:11568 at 12:57:02.340
+starting worker pid=28471 on localhost:11568 at 12:57:02.830
+starting worker pid=28485 on localhost:11568 at 12:57:03.310
+starting worker pid=28503 on localhost:11568 at 12:57:03.782
+starting worker pid=28516 on localhost:11568 at 12:57:04.257
+starting worker pid=28530 on localhost:11568 at 12:57:04.734
+starting worker pid=28543 on localhost:11568 at 12:57:05.209
+starting worker pid=28558 on localhost:11568 at 12:57:05.690
+2022-03-12 13:01:17 INFO::After iteration 25, gene prior 0.0140013263801674:, SNP prior:0.00267798068405007
+2022-03-12 13:01:17 INFO::run iteration 26
+starting worker pid=28856 on localhost:11568 at 13:01:18.458
+starting worker pid=28869 on localhost:11568 at 13:01:18.927
+starting worker pid=28883 on localhost:11568 at 13:01:19.401
+starting worker pid=28896 on localhost:11568 at 13:01:19.879
+starting worker pid=28909 on localhost:11568 at 13:01:20.360
+starting worker pid=28923 on localhost:11568 at 13:01:20.833
+starting worker pid=28936 on localhost:11568 at 13:01:21.304
+starting worker pid=28949 on localhost:11568 at 13:01:21.814
+starting worker pid=28963 on localhost:11568 at 13:01:22.312
+starting worker pid=28976 on localhost:11568 at 13:01:22.789
+2022-03-12 13:05:37 INFO::After iteration 26, gene prior 0.0140017500521488:, SNP prior:0.00267797226904354
+2022-03-12 13:05:38 INFO::run iteration 27
+starting worker pid=29350 on localhost:11568 at 13:05:38.526
+starting worker pid=29363 on localhost:11568 at 13:05:38.974
+starting worker pid=29377 on localhost:11568 at 13:05:39.452
+starting worker pid=29390 on localhost:11568 at 13:05:39.931
+starting worker pid=29403 on localhost:11568 at 13:05:40.411
+starting worker pid=29417 on localhost:11568 at 13:05:40.882
+starting worker pid=29430 on localhost:11568 at 13:05:41.361
+starting worker pid=29443 on localhost:11568 at 13:05:41.806
+starting worker pid=29457 on localhost:11568 at 13:05:42.319
+starting worker pid=29470 on localhost:11568 at 13:05:42.808
+2022-03-12 13:09:57 INFO::After iteration 27, gene prior 0.0140020548063417:, SNP prior:0.00267796621596881
+2022-03-12 13:09:57 INFO::run iteration 28
+starting worker pid=29768 on localhost:11568 at 13:09:58.119
+starting worker pid=29781 on localhost:11568 at 13:09:58.618
+starting worker pid=29794 on localhost:11568 at 13:09:59.101
+starting worker pid=29808 on localhost:11568 at 13:09:59.570
+starting worker pid=29867 on localhost:11568 at 13:10:00.043
+starting worker pid=29881 on localhost:11568 at 13:10:00.523
+starting worker pid=29894 on localhost:11568 at 13:10:01.004
+starting worker pid=29907 on localhost:11568 at 13:10:01.483
+starting worker pid=29921 on localhost:11568 at 13:10:01.963
+starting worker pid=29934 on localhost:11568 at 13:10:02.439
+2022-03-12 13:14:17 INFO::After iteration 28, gene prior 0.0140022740197591:, SNP prior:0.00267796186190658
+2022-03-12 13:14:17 INFO::run iteration 29
+starting worker pid=30234 on localhost:11568 at 13:14:17.918
+starting worker pid=30247 on localhost:11568 at 13:14:18.410
+starting worker pid=30260 on localhost:11568 at 13:14:18.907
+starting worker pid=30274 on localhost:11568 at 13:14:19.381
+starting worker pid=30287 on localhost:11568 at 13:14:19.859
+starting worker pid=30300 on localhost:11568 at 13:14:20.334
+starting worker pid=30314 on localhost:11568 at 13:14:20.811
+starting worker pid=30327 on localhost:11568 at 13:14:21.285
+starting worker pid=30341 on localhost:11568 at 13:14:21.761
+starting worker pid=30354 on localhost:11568 at 13:14:22.235
+2022-03-12 13:18:38 INFO::After iteration 29, gene prior 0.0140024317019969:, SNP prior:0.00267795872998346
+2022-03-12 13:18:38 INFO::run iteration 30
+starting worker pid=30651 on localhost:11568 at 13:18:38.843
+starting worker pid=30665 on localhost:11568 at 13:18:39.357
+starting worker pid=30678 on localhost:11568 at 13:18:39.865
+starting worker pid=30692 on localhost:11568 at 13:18:40.365
+starting worker pid=30705 on localhost:11568 at 13:18:40.841
+starting worker pid=30718 on localhost:11568 at 13:18:41.319
+starting worker pid=30732 on localhost:11568 at 13:18:41.800
+starting worker pid=30745 on localhost:11568 at 13:18:42.279
+starting worker pid=30759 on localhost:11568 at 13:18:42.752
+starting worker pid=30772 on localhost:11568 at 13:18:43.230
+2022-03-12 13:22:57 INFO::After iteration 30, gene prior 0.0140025451239498:, SNP prior:0.0026779564771659
+2022-03-12 13:22:57 INFO::Run susie for all regions.
+2022-03-12 13:22:57 INFO::run iteration 1
+starting worker pid=31069 on localhost:11568 at 13:22:58.017
+starting worker pid=31092 on localhost:11568 at 13:22:58.517
+starting worker pid=31105 on localhost:11568 at 13:22:59.034
+starting worker pid=31118 on localhost:11568 at 13:22:59.521
+starting worker pid=31132 on localhost:11568 at 13:22:59.994
+starting worker pid=31145 on localhost:11568 at 13:23:00.468
+starting worker pid=31159 on localhost:11568 at 13:23:00.943
+starting worker pid=31172 on localhost:11568 at 13:23:01.423
+starting worker pid=31185 on localhost:11568 at 13:23:01.900
+starting worker pid=31199 on localhost:11568 at 13:23:02.371
+2022-03-12 13:31:22 INFO::After iteration 1, gene prior 0.0428521848769509:, SNP prior:0.00932777674552288
+2022-03-12 13:31:22 INFO::No. LD regions: 1700
+2022-03-12 13:31:29 INFO::No. regions with at least one SNP/gene for chr1: 131
+2022-03-12 13:31:29 INFO::Merge regions for chr1
+2022-03-12 13:31:29 INFO::No. regions with at least one SNP/gene for chr1 after merging: 127
+2022-03-12 13:31:36 INFO::No. regions with at least one SNP/gene for chr2: 144
+2022-03-12 13:31:36 INFO::Merge regions for chr2
+2022-03-12 13:31:36 INFO::No. regions with at least one SNP/gene for chr2 after merging: 143
+2022-03-12 13:31:41 INFO::No. regions with at least one SNP/gene for chr3: 122
+2022-03-12 13:31:41 INFO::Merge regions for chr3
+2022-03-12 13:31:41 INFO::No. regions with at least one SNP/gene for chr3 after merging: 116
+2022-03-12 13:31:46 INFO::No. regions with at least one SNP/gene for chr4: 122
+2022-03-12 13:31:46 INFO::Merge regions for chr4
+2022-03-12 13:31:46 INFO::No. regions with at least one SNP/gene for chr4 after merging: 121
+2022-03-12 13:31:52 INFO::No. regions with at least one SNP/gene for chr5: 110
+2022-03-12 13:31:52 INFO::Merge regions for chr5
+2022-03-12 13:31:52 INFO::No. regions with at least one SNP/gene for chr5 after merging: 109
+2022-03-12 13:31:56 INFO::No. regions with at least one SNP/gene for chr6: 112
+2022-03-12 13:31:56 INFO::Merge regions for chr6
+2022-03-12 13:31:56 INFO::No. regions with at least one SNP/gene for chr6 after merging: 110
+2022-03-12 13:32:01 INFO::No. regions with at least one SNP/gene for chr7: 99
+2022-03-12 13:32:01 INFO::Merge regions for chr7
+2022-03-12 13:32:01 INFO::No. regions with at least one SNP/gene for chr7 after merging: 97
+2022-03-12 13:32:06 INFO::No. regions with at least one SNP/gene for chr8: 94
+2022-03-12 13:32:06 INFO::Merge regions for chr8
+2022-03-12 13:32:06 INFO::No. regions with at least one SNP/gene for chr8 after merging: 93
+2022-03-12 13:32:08 INFO::No. regions with at least one SNP/gene for chr9: 74
+2022-03-12 13:32:08 INFO::Merge regions for chr9
+2022-03-12 13:32:08 INFO::No. regions with at least one SNP/gene for chr9 after merging: 73
+2022-03-12 13:32:12 INFO::No. regions with at least one SNP/gene for chr10: 85
+2022-03-12 13:32:12 INFO::Merge regions for chr10
+2022-03-12 13:32:12 INFO::No. regions with at least one SNP/gene for chr10 after merging: 84
+2022-03-12 13:32:16 INFO::No. regions with at least one SNP/gene for chr11: 84
+2022-03-12 13:32:16 INFO::Merge regions for chr11
+2022-03-12 13:32:16 INFO::No. regions with at least one SNP/gene for chr11 after merging: 79
+2022-03-12 13:32:20 INFO::No. regions with at least one SNP/gene for chr12: 82
+2022-03-12 13:32:20 INFO::Merge regions for chr12
+2022-03-12 13:32:20 INFO::No. regions with at least one SNP/gene for chr12 after merging: 79
+2022-03-12 13:32:23 INFO::No. regions with at least one SNP/gene for chr13: 62
+2022-03-12 13:32:23 INFO::Merge regions for chr13
+2022-03-12 13:32:23 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2022-03-12 13:32:25 INFO::No. regions with at least one SNP/gene for chr14: 56
+2022-03-12 13:32:25 INFO::Merge regions for chr14
+2022-03-12 13:32:25 INFO::No. regions with at least one SNP/gene for chr14 after merging: 54
+2022-03-12 13:32:28 INFO::No. regions with at least one SNP/gene for chr15: 50
+2022-03-12 13:32:28 INFO::Merge regions for chr15
+2022-03-12 13:32:28 INFO::No. regions with at least one SNP/gene for chr15 after merging: 48
+2022-03-12 13:32:30 INFO::No. regions with at least one SNP/gene for chr16: 54
+2022-03-12 13:32:30 INFO::Merge regions for chr16
+2022-03-12 13:32:30 INFO::No. regions with at least one SNP/gene for chr16 after merging: 53
+2022-03-12 13:32:33 INFO::No. regions with at least one SNP/gene for chr17: 47
+2022-03-12 13:32:33 INFO::Merge regions for chr17
+2022-03-12 13:32:33 INFO::No. regions with at least one SNP/gene for chr17 after merging: 45
+2022-03-12 13:32:35 INFO::No. regions with at least one SNP/gene for chr18: 47
+2022-03-12 13:32:35 INFO::Merge regions for chr18
+2022-03-12 13:32:35 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2022-03-12 13:32:38 INFO::No. regions with at least one SNP/gene for chr19: 39
+2022-03-12 13:32:38 INFO::Merge regions for chr19
+2022-03-12 13:32:38 INFO::No. regions with at least one SNP/gene for chr19 after merging: 36
+2022-03-12 13:32:40 INFO::No. regions with at least one SNP/gene for chr20: 38
+2022-03-12 13:32:40 INFO::Merge regions for chr20
+2022-03-12 13:32:40 INFO::No. regions with at least one SNP/gene for chr20 after merging: 36
+2022-03-12 13:32:42 INFO::No. regions with at least one SNP/gene for chr21: 24
+2022-03-12 13:32:42 INFO::Merge regions for chr21
+2022-03-12 13:32:42 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2022-03-12 13:32:44 INFO::No. regions with at least one SNP/gene for chr22: 24
+2022-03-12 13:32:44 INFO::Merge regions for chr22
+2022-03-12 13:32:44 INFO::No. regions with at least one SNP/gene for chr22 after merging: 23
+2022-03-12 13:32:44 INFO::Trim regions with SNPs more than 20000
+2022-03-12 13:32:44 INFO::Adding R matrix info, as genotype is not given
+2022-03-12 13:32:45 INFO::Adding R matrix info for chrom 1
+2022-03-12 13:44:01 INFO::Adding R matrix info for chrom 2
+2022-03-12 13:54:20 INFO::Adding R matrix info for chrom 3
+2022-03-12 14:04:01 INFO::Adding R matrix info for chrom 4
+2022-03-12 14:12:36 INFO::Adding R matrix info for chrom 5
+2022-03-12 14:20:10 INFO::Adding R matrix info for chrom 6
+2022-03-12 14:30:22 INFO::Adding R matrix info for chrom 7
+2022-03-12 14:37:27 INFO::Adding R matrix info for chrom 8
+2022-03-12 14:43:48 INFO::Adding R matrix info for chrom 9
+2022-03-12 14:49:16 INFO::Adding R matrix info for chrom 10
+2022-03-12 14:55:34 INFO::Adding R matrix info for chrom 11
+2022-03-12 15:03:56 INFO::Adding R matrix info for chrom 12
+2022-03-12 15:10:54 INFO::Adding R matrix info for chrom 13
+2022-03-12 15:14:49 INFO::Adding R matrix info for chrom 14
+2022-03-12 15:19:13 INFO::Adding R matrix info for chrom 15
+2022-03-12 15:23:08 INFO::Adding R matrix info for chrom 16
+2022-03-12 15:27:08 INFO::Adding R matrix info for chrom 17
+2022-03-12 15:32:01 INFO::Adding R matrix info for chrom 18
+2022-03-12 15:35:14 INFO::Adding R matrix info for chrom 19
+2022-03-12 15:40:54 INFO::Adding R matrix info for chrom 20
+2022-03-12 15:44:37 INFO::Adding R matrix info for chrom 21
+2022-03-12 15:46:05 INFO::Adding R matrix info for chrom 22
+2022-03-12 15:50:09 INFO::Number of regions that contains strong gene signals: 17
+2022-03-12 15:50:09 INFO::Rerun susie for regions with strong gene signals using full SNPs.
+2022-03-12 15:50:09 INFO::run iteration 1
+starting worker pid=40409 on localhost:11568 at 15:50:10.103
+2022-03-12 15:55:33 INFO::After iteration 1, gene prior 0.0759796249450749:, SNP prior:0.000795833345148862
+$group_prior
+[1] 0.0140025451 0.0002677956
+
+$group_prior_var
+[1] 12.74152 12.76457
+
+R version 3.6.1 (2019-07-05)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Scientific Linux 7.4 (Nitrogen)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.2.19-el7-x86_64/lib/libopenblas_haswellp-r0.2.19.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.14.2 ctwas_0.1.32     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.8        magrittr_2.0.2    pgenlibr_0.3.1    hms_1.1.1        
+ [5] doParallel_1.0.17 bit_4.0.4         lattice_0.20-38   R6_2.5.1         
+ [9] rlang_1.0.1       fastmap_1.1.0     foreach_1.5.2     fansi_1.0.2      
+[13] blob_1.2.2        tools_3.6.1       parallel_3.6.1    grid_3.6.1       
+[17] logging_0.10-108  utf8_1.2.2        cli_3.1.0         DBI_1.1.2        
+[21] iterators_1.0.14  ellipsis_0.3.2    bit64_4.0.5       tibble_3.1.6     
+[25] lifecycle_1.0.1   crayon_1.5.0      Matrix_1.2-18     tzdb_0.2.0       
+[29] readr_2.1.1       vctrs_0.3.8       codetools_0.2-16  memoise_2.0.1    
+[33] cachem_1.0.6      RSQLite_2.2.8     pillar_1.6.4      compiler_3.6.1   
+[37] pkgconfig_2.0.3  

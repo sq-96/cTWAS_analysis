@@ -1,27 +1,32 @@
 ---
-title: "SCZ - Brain Cortex"
+title: "SCZ-ME"
 author: "sheng Qian"
-date: "2021-2-6"
+date: "2021-8-31"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "SCZ_Brain_Cortex"
-  trait_id: "SCZ_2018_S"
-  weight: "Brain_Cortex"
+  analysis_id: "IBD_ME"
+  trait_id: "ebi-a-GCST004131"
+  weight: "ME"
 ---
-
 
 ```{r echo=F}
 analysis_id <- params$analysis_id
 trait_id <- params$trait_id
 weight <- params$weight
 
-results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/IBD_ME/")
 
 source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b37.R")
-#options(digits = 4)
+options(digits = 4)
+
+sample_size <- 59957
+#vcf_file <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ebi-a-GCST004131.vcf.gz"
+#sample_size <- unlist(VariantAnnotation::readGeno(vcf_file, "SS"))
+#sample_size <- as.numeric(names(which.max(table(sample_size))))
 ```
+
 
 ## Weight QC
 
@@ -40,37 +45,26 @@ qclist_all <- data.frame(do.call(rbind, qclist_all))
 colnames(qclist_all)[ncol(qclist_all)] <- "chr"
 
 rm(qclist, wgtlist, z_gene_chr)
-```
 
-```{r}
 #number of imputed weights
 nrow(qclist_all)
 
 #number of imputed weights by chromosome
 table(qclist_all$chr)
 
-#number of imputed weights without missing variants
-sum(qclist_all$nmiss==0)
-
 #proportion of imputed weights without missing variants
 mean(qclist_all$nmiss==0)
 ```
 
+
 ```{r echo=F}
-#load ctwas results
 ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
 
 #make unique identifier for regions
 ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
 
-#load z scores for SNPs and collect sample size
-load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
-
-sample_size <- z_snp$ss
-sample_size <- as.numeric(names(which.max(table(sample_size))))
-
 #compute PVE for each gene/SNP
-ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size #check PVE calculation
 
 #separate gene and SNP results
 ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
@@ -80,14 +74,32 @@ ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
 ```{r}
-#add z scores to results
+#add z score to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
 ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
 
-z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
-ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+#load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd")) #for new version, stored after harmonization
+z_snp <- readRDS(paste0(results_dir, "/", trait_id, ".RDS")) #for old version, unharmonized
+
+z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,] #subset snps to those included in analysis, note some are duplicated, need to match which allele was used
+ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)] #for duplicated snps, this arbitrarily uses the first allele
+ctwas_snp_res$z_flag <- as.numeric(ctwas_snp_res$id %in% z_snp$id[duplicated(z_snp$id)]) #mark the unclear z scores, flag=1
+```
+
+
+```{r}
+#formatting and rounding for tables
+ctwas_gene_res$z <- round(ctwas_gene_res$z,2)
+ctwas_snp_res$z <- round(ctwas_snp_res$z,2)
+ctwas_gene_res$susie_pip <- round(ctwas_gene_res$susie_pip,3)
+ctwas_snp_res$susie_pip <- round(ctwas_snp_res$susie_pip,3)
+ctwas_gene_res$mu2 <- round(ctwas_gene_res$mu2,2)
+ctwas_snp_res$mu2 <- round(ctwas_snp_res$mu2,2)
+ctwas_gene_res$PVE <- signif(ctwas_gene_res$PVE, 2)
+ctwas_snp_res$PVE <- signif(ctwas_snp_res$PVE, 2)
 
 #merge gene and snp results with added information
+ctwas_gene_res$z_flag=NA
 ctwas_gene_res$genename=NA
 ctwas_gene_res$gene_type=NA
 ctwas_snp_res$genename=NA
@@ -97,12 +109,12 @@ ctwas_res <- rbind(ctwas_gene_res,
                    ctwas_snp_res[,colnames(ctwas_gene_res)])
 
 #get number of sQTL for geens
-num_sqtl <- c()
+num_meqtl <- c()
 for (i in 1:22){
   load(paste0(results_dir, "/", analysis_id, "_expr_chr", i, ".exprqc.Rd"))
-  num_sqtl <- c(num_sqtl, unlist(lapply(wgtlist, nrow)))
+  num_meqtl <- c(num_meqtl, unlist(lapply(wgtlist, nrow)))
 }
-ctwas_gene_res$num_sqtl <- num_sqtl[ctwas_gene_res$id]
+ctwas_gene_res$num_meqtl <- num_meqtl[ctwas_gene_res$id]
 
 #store columns to report
 report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "gene_type", "z_flag"))]
@@ -110,9 +122,8 @@ first_cols <- c("genename", "region_tag")
 report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
 
 report_cols_snps <- c("id", report_cols[-1])
-report_cols_snps <- report_cols_snps[!(report_cols_snps %in% "num_sqtl")]
 
-#get number of SNPs from s1 results; adjust for thin argument
+#get number of SNPs from s1 results; adjust for thin
 ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
 n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
 rm(ctwas_res_s1)
@@ -241,6 +252,7 @@ sum(estimated_group_pve)
 estimated_group_pve["gene"]/sum(estimated_group_pve)
 ```
 
+
 ## Genes with highest PIPs 
 
 ```{r}
@@ -265,6 +277,7 @@ sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
 
 ```
 
+
 ```{r echo=FALSE}
 library(biomaRt)
 
@@ -288,10 +301,24 @@ locus_plot_final_pub <- function(region_tag, xlim=NULL, return_table=F, focus=NU
   
   a <- ctwas_res[ctwas_res$region_tag==region_tag,]
   
-  regionlist <- readRDS(paste0(results_dir, "/", analysis_id, "_ctwas.regionlist.RDS"))
-  region <- regionlist[[as.numeric(region_tag1)]][[region_tag2]]
+  #regionlist <- readRDS(paste0(results_dir, "/", analysis_id, "_ctwas.regionlist.RDS"))
+  #region <- regionlist[[as.numeric(region_tag1)]][[region_tag2]]
+  region <- list()
+  region_df <- data.table::fread(paste0(results_dir,analysis_id,"_ctwas_ld_R_chr",as.character(region_tag1),".txt"))
+  region_df <- region_df[region_df$region_name==region_tag2,]
+  region$start <- region_df$start
+  region$stop <- region_df$stop
+  region$regRDS <- region_df$RDS_file
+  region$R_g_file <- paste0(results_dir,analysis_id,"_ctwas_LDR/chr",as.character(region_tag1),"_reg",as.character(region_tag2),".R_gene.RDS")
+  region$R_sg_file <- paste0(results_dir,analysis_id,"_ctwas_LDR/chr",as.character(region_tag1),"_reg",as.character(region_tag2),".R_snp_gene.RDS")
+  
+  expr_df <- data.table::fread(paste0(results_dir,analysis_id,"_expr_chr",as.character(region_tag1),".exprvar"))
+  expr_df <- expr_df[expr_df$p0>=region$start & expr_df$p1<=region$stop,]
+  region$gid <- expr_df$id
   
   R_snp_info <- do.call(rbind, lapply(region$regRDS, function(x){data.table::fread(paste0(tools::file_path_sans_ext(x), ".Rvar"))}))
+  
+  region$sidx <- R_snp_info[R_snp_info$pos>=region$start & R_snp_info$pos<=region$stop,]$id
   
   if (isTRUE(rerun_ctwas)){
     ld_exprfs <- paste0(results_dir, "/", analysis_id, "_expr_chr", 1:22, ".expr.gz")
@@ -431,8 +458,6 @@ locus_plot_final_pub <- function(region_tag, xlim=NULL, return_table=F, focus=NU
     load(paste0(results_dir, "/",analysis_id, "_expr_chr", region_tag1, ".exprqc.Rd"))
     eqtls <- rownames(wgtlist[[cgene]])
     eqtl_pos <- a$pos[a$id %in% eqtls]
-    #eqtl_pos <- c(101.2867,101.4873)
-    #col="grey"
     col="#c6e8f0"
     
     rect(start, length(plot_eqtl)+1-i-0.8, end, length(plot_eqtl)+1-i-0.2, col = col, border = T, lwd = 1)
@@ -445,7 +470,7 @@ locus_plot_final_pub <- function(region_tag, xlim=NULL, return_table=F, focus=NU
   }
   
   text(start, length(plot_eqtl)-(1:length(plot_eqtl))+0.5,  
-       labels = paste0(plot_eqtl, " eQTL"), srt = 0, pos = 2, xpd = TRUE, cex=0.7)
+       labels = paste0(plot_eqtl, " meQTL"), srt = 0, pos = 2, xpd = TRUE, cex=0.7)
   
   par(mar = c(4.1, 4.1, 0, 2.1))
   
@@ -508,22 +533,46 @@ locus_plot_gene_track_pub <- function(a, label_pos=NULL){
 
 
 ```{r}
-a <- locus_plot_final_pub(region_tag="15_50", return_table=T,
+a <- locus_plot_final_pub(region_tag="5_106", return_table=T,
                       focus=NULL,
                       label_genes=NULL,
-                      rerun_ctwas=T,
+                      rerun_ctwas=F,
                       rerun_load_only=F,
                       label_panel="both",
                       legend_side="right",
                       legend_panel="cTWAS")
-```
 
-```{r}
 locus_plot_gene_track_pub(a, label_pos="above")
 ```
 
 ```{r}
-region_tag = "15_50"
+a <- locus_plot_final_pub(region_tag="1_13", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="right",
+                      legend_panel="cTWAS")
+
+locus_plot_gene_track_pub(a, label_pos="above")
+```
+
+```{r}
+a <- locus_plot_final_pub(region_tag="19_12", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="right",
+                      legend_panel="cTWAS")
+
+locus_plot_gene_track_pub(a, label_pos="above")
+```
+
+```{r eval=F}
+region_tag = "5_106"
 xlim=NULL
 return_table=T
 focus=NULL
@@ -531,14 +580,14 @@ label_panel="both"
 label_genes=NULL
 label_pos=NULL
 plot_eqtl=NULL
-rerun_ctwas=T
+rerun_ctwas=F
 rerun_load_only=F
 legend_side="right"
 legend_panel="cTWAS"
 twas_ymax=NULL
 ```
 
-```{r}
+```{r eval=F}
 #distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 
