@@ -1,5 +1,5 @@
 ---
-title: "SCZ-ME"
+title: "IBD-ME"
 author: "sheng Qian"
 date: "2021-8-31"
 output: workflowr::wflow_html
@@ -73,7 +73,7 @@ ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
 ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
-```{r}
+```{r echo=F}
 #add z score to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
 ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
@@ -537,7 +537,7 @@ a <- locus_plot_final_pub(region_tag="5_106", return_table=T,
                       rerun_ctwas=F,
                       rerun_load_only=F,
                       label_panel="both",
-                      legend_side="right",
+                      legend_side="left",
                       legend_panel="cTWAS")
 ```
 
@@ -552,7 +552,7 @@ a <- locus_plot_final_pub(region_tag="1_13", return_table=T,
                       rerun_ctwas=F,
                       rerun_load_only=F,
                       label_panel="both",
-                      legend_side="right",
+                      legend_side="left",
                       legend_panel="cTWAS")
 ```
 
@@ -567,7 +567,7 @@ a <- locus_plot_final_pub(region_tag="19_12", return_table=T,
                       rerun_ctwas=F,
                       rerun_load_only=F,
                       label_panel="both",
-                      legend_side="right",
+                      legend_side="left",
                       legend_panel="cTWAS")
 ```
 
