@@ -1,13 +1,13 @@
 ---
-title: "IBD-ME"
+title: "SCZ-ME"
 author: "sheng Qian"
 date: "2021-8-31"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "IBD_ME"
-  trait_id: "ebi-a-GCST004131"
+  analysis_id: "SCZ_ME"
+  trait_id: "ieu-b-42"
   weight: "ME"
 ---
 
@@ -16,13 +16,13 @@ analysis_id <- params$analysis_id
 trait_id <- params$trait_id
 weight <- params$weight
 
-results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/IBD_ME/")
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2014_EUR_ME/")
 
 source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b37.R")
 options(digits = 4)
 
-sample_size <- 59957
-#vcf_file <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ebi-a-GCST004131.vcf.gz"
+sample_size <- 77096
+#vcf_file <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ieu-b-42.vcf.gz"
 #sample_size <- unlist(VariantAnnotation::readGeno(vcf_file, "SS"))
 #sample_size <- as.numeric(names(which.max(table(sample_size))))
 ```
@@ -616,7 +616,7 @@ locus_plot_gene_track_pub <- function(a, label_pos=NULL){
 
 
 ```{r}
-a <- locus_plot_final_pub(region_tag="5_106", return_table=T,
+a <- locus_plot_final_pub(region_tag="11_28", return_table=T,
                       focus=NULL,
                       label_genes=NULL,
                       rerun_ctwas=F,
@@ -631,7 +631,7 @@ locus_plot_gene_track_pub(a, label_pos="above")
 ```
 
 ```{r}
-a <- locus_plot_final_pub(region_tag="1_13", return_table=T,
+a <- locus_plot_final_pub(region_tag="1_42", return_table=T,
                       focus=NULL,
                       label_genes=NULL,
                       rerun_ctwas=F,
@@ -642,7 +642,7 @@ a <- locus_plot_final_pub(region_tag="1_13", return_table=T,
 ```
 
 ```{r}
-a <- locus_plot_final_pub(region_tag="19_12", return_table=T,
+a <- locus_plot_final_pub(region_tag="1_5", return_table=T,
                       focus=NULL,
                       label_genes=NULL,
                       rerun_ctwas=F,
@@ -650,28 +650,4 @@ a <- locus_plot_final_pub(region_tag="19_12", return_table=T,
                       label_panel="both",
                       legend_side="left",
                       legend_panel="cTWAS")
-```
-
-```{r eval=F, echo=FALSE}
-region_tag = "5_106"
-xlim=NULL
-return_table=T
-focus=NULL
-label_panel="both"
-label_genes=NULL
-label_pos=NULL
-plot_eqtl=NULL
-rerun_ctwas=F
-rerun_load_only=F
-legend_side="right"
-legend_panel="cTWAS"
-twas_ymax=NULL
-```
-
-```{r eval=F, echo=FALSE}
-#distribution of PIPs
-hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
-
-#genes with PIP>0.8 or 20 highest PIPs
-head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 ```

@@ -515,16 +515,16 @@ data/UKBB/ebi-a-GCST004131.vcf.gz
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree66ecf6313929054f555ed562e31e8f88318d8554targetblank66ecf63a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/66ecf6313929054f555ed562e31e8f88318d8554" target="_blank">66ecf63</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree91f41cdf64d6a2de1da76ebd4a76c6ccc83dafa5targetblank91f41cda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/91f41cdf64d6a2de1da76ebd4a76c6ccc83dafa5" target="_blank">91f41cd</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree66ecf6313929054f555ed562e31e8f88318d8554targetblank66ecf63a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree91f41cdf64d6a2de1da76ebd4a76c6ccc83dafa5targetblank91f41cda" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/66ecf6313929054f555ed562e31e8f88318d8554" target="_blank">66ecf63</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/91f41cdf64d6a2de1da76ebd4a76c6ccc83dafa5" target="_blank">91f41cd</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -539,6 +539,8 @@ Untracked files:
     Untracked:  Rplot.png
     Untracked:  SCZ_annotation.xlsx
     Untracked:  analysis/.ipynb_checkpoints/
+    Untracked:  analysis/SCZ_2014_EUR_ME_CpG_level.Rmd
+    Untracked:  analysis/SCZ_2018_ME_CpG_level.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  data/.ipynb_checkpoints/
@@ -652,6 +654,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/91f41cdf64d6a2de1da76ebd4a76c6ccc83dafa5/analysis/IBD_ME_CpG_level.Rmd" target="_blank">91f41cd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/91f41cdf64d6a2de1da76ebd4a76c6ccc83dafa5/docs/IBD_ME_CpG_level.html" target="_blank">91f41cd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/66ecf6313929054f555ed562e31e8f88318d8554/analysis/IBD_ME_CpG_level.Rmd" target="_blank">66ecf63</a>
 </td>
 <td>
@@ -758,182 +794,58 @@ update
 </div>
 <div id="weight-qc" class="section level2">
 <h2>Weight QC</h2>
+<pre class="r"><code>#number of imputed weights
+nrow(qclist_all)</code></pre>
 <pre><code>[1] 3580</code></pre>
+<pre class="r"><code>#number of imputed weights by chromosome
+table(qclist_all$chr)</code></pre>
 <pre><code>
   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
 555 224 141 118 136 214 198 136  28 194 207 142  62  79  83 109 234  31 427 114 
  21  22 
  50  98 </code></pre>
+<pre class="r"><code>#proportion of imputed weights without missing variants
+mean(qclist_all$nmiss==0)</code></pre>
 <pre><code>[1] 0.1335</code></pre>
-<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-6-1.png" target="_blank">4901caf</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-09-05
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<pre class="r"><code>library(reticulate)
+use_python(&quot;/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python&quot;,required=T)</code></pre>
+<pre><code>finish</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#estimated group prior
+estimated_group_prior &lt;- estimated_group_prior_all[,ncol(group_prior_rec)]
+print(estimated_group_prior)</code></pre>
 <pre><code>     gene       snp 
 0.0151490 0.0002849 </code></pre>
+<pre class="r"><code>#estimated group prior variance
+estimated_group_prior_var &lt;- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
+print(estimated_group_prior_var)</code></pre>
 <pre><code> gene   snp 
 8.183 8.659 </code></pre>
+<pre class="r"><code>#estimated enrichment
+estimated_enrichment &lt;- estimated_enrichment_all[ncol(group_prior_var_rec)]
+print(estimated_enrichment)</code></pre>
 <pre><code>[1] 53.17</code></pre>
+<pre class="r"><code>#report sample size
+print(sample_size)</code></pre>
 <pre><code>[1] 59957</code></pre>
+<pre class="r"><code>#report group size
+print(group_size)</code></pre>
 <pre><code>[1]    3580 6348060</code></pre>
+<pre class="r"><code>#estimated group PVE
+estimated_group_pve &lt;- estimated_group_pve_all[,ncol(group_prior_rec)] #check PVE calculation
+print(estimated_group_pve)</code></pre>
 <pre><code>    gene      snp 
 0.007402 0.261223 </code></pre>
+<pre class="r"><code>#total PVE
+sum(estimated_group_pve)</code></pre>
 <pre><code>[1] 0.2686</code></pre>
+<pre class="r"><code>#PVE attributable to gene expression
+estimated_group_pve[&quot;gene&quot;]/sum(estimated_group_pve)</code></pre>
 <pre><code>   gene 
 0.02756 </code></pre>
 </div>
 <div id="genes-with-highest-pips" class="section level2">
 <h2>Genes with highest PIPs</h2>
-<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
-Past versions of unnamed-chunk-8-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-8-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-8-1.png" target="_blank">4901caf</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-09-05
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre><code>     genename region_tag chrom             id       pos susie_pip   mu2     PVE
-3565       NA      5_106     5 chr5_176797920 176796765     0.959 38.59 0.00062
-3560       NA       1_13     1  chr1_20142562  20140036     0.947 48.87 0.00077
-3008       NA      19_12    19 chr19_15543806  15541091     0.789 20.89 0.00027
-3571       NA       6_23     6  chr6_29365078  29363697     0.784 27.15 0.00036
-3144       NA      19_32    19 chr19_46382992  46382745     0.776 20.42 0.00026
-1134       NA      5_100     5 chr5_167718524 167717734     0.756 19.14 0.00024
-1496       NA       7_61     7  chr7_98741946  98739231     0.748 18.70 0.00023
-3580       NA       7_66     7 chr7_107437656 107435465     0.718 25.06 0.00030
-2825       NA      17_47    17 chr17_81042782  81043039     0.657 22.24 0.00024
-374        NA       1_57     1  chr1_93811570  93810649     0.602 24.08 0.00024
-1125       NA       5_88     5 chr5_149625104 149625087     0.546 30.43 0.00028
-1629       NA       8_54     8  chr8_74282865  74281152     0.532 22.54 0.00020
-273        NA       1_34     1  chr1_56394286  56391806     0.515 19.67 0.00017
-1223       NA       6_24     6  chr6_29976071  29978027     0.467 18.66 0.00015
-252        NA       1_29     1  chr1_46937902  46936423     0.416 30.26 0.00021
-2362       NA      14_23    14 chr14_55227154  55225186     0.367 29.22 0.00018
-3481       NA      22_12    22 chr22_32749962  32747253     0.361 30.04 0.00018
-950        NA       4_17     4  chr4_17513338  17510707     0.350 24.71 0.00014
-1206       NA       6_20     6  chr6_26446387  26444862     0.326 27.56 0.00015
-1445       NA       7_34     7  chr7_46400029  46398911     0.320 23.70 0.00013
-         z num_meqtl
-3565  6.40         8
-3560 -8.53         6
-3008  4.30         2
-3571 -5.74         1
-3144 -4.09         4
-1134 -3.93         3
-1496  3.08         2
-3580  5.56         3
-2825 -3.75         1
-374   4.77         4
-1125  5.41         2
-1629 -3.90         7
-273  -4.11         7
-1223 -1.79         1
-252   3.65         7
-2362 -3.27         4
-3481 -3.57         5
-950  -3.06         5
-1206  3.12         7
-1445  3.02         5</code></pre>
-</div>
-<div id="comparing-z-scores-and-pips" class="section level2">
-<h2>Comparing z scores and PIPs</h2>
-<pre><code>Loading required package: S4Vectors</code></pre>
-<pre><code>Loading required package: stats4</code></pre>
-<pre><code>Loading required package: BiocGenerics</code></pre>
-<pre><code>
-Attaching package: &#39;BiocGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-    union, unique, unsplit, which.max, which.min</code></pre>
-<pre><code>
-Attaching package: &#39;S4Vectors&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:base&#39;:
-
-    expand.grid</code></pre>
-<pre><code>Loading required package: IRanges</code></pre>
-<pre><code>Loading required package: GenomicRanges</code></pre>
-<pre><code>Loading required package: GenomeInfoDb</code></pre>
-<pre><code>Loading required package: grid</code></pre>
-<pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;5_106&quot;, return_table=T,
-                      focus=NULL,
-                      label_genes=NULL,
-                      rerun_ctwas=F,
-                      rerun_load_only=F,
-                      label_panel=&quot;both&quot;,
-                      legend_side=&quot;left&quot;,
-                      legend_panel=&quot;cTWAS&quot;)</code></pre>
 <p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
@@ -994,7 +906,51 @@ sq-96
 </table>
 </div>
 </div>
-<pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
+<pre><code>        genename region_tag chrom             id       pos susie_pip   mu2
+3565       RGS14      5_106     5 chr5_176797920 176796765     0.959 38.59
+3560         NaN       1_13     1  chr1_20142562  20140036     0.947 48.87
+3008         WIZ      19_12    19 chr19_15543806  15541091     0.789 20.89
+3571      OR12D2       6_23     6  chr6_29365078  29363697     0.784 27.15
+3144         NaN      19_32    19 chr19_46382992  46382745     0.776 20.42
+1134         NaN      5_100     5 chr5_167718524 167717734     0.756 19.14
+1496         NaN       7_61     7  chr7_98741946  98739231     0.748 18.70
+3580     SLC26A3       7_66     7 chr7_107437656 107435465     0.718 25.06
+2825      METRNL      17_47    17 chr17_81042782  81043039     0.657 22.24
+374          DR1       1_57     1  chr1_93811570  93810649     0.602 24.08
+1125      CAMK2A       5_88     5 chr5_149625104 149625087     0.546 30.43
+1629         NaN       8_54     8  chr8_74282865  74281152     0.532 22.54
+273  RP11-90C4.2       1_34     1  chr1_56394286  56391806     0.515 19.67
+1223         NaN       6_24     6  chr6_29976071  29978027     0.467 18.66
+252    LINC00505       1_29     1  chr1_46937902  46936423     0.416 30.26
+2362      SAMD4A      14_23    14 chr14_55227154  55225186     0.367 29.22
+3481         NaN      22_12    22 chr22_32749962  32747253     0.361 30.04
+950         QDPR       4_17     4  chr4_17513338  17510707     0.350 24.71
+1206      BTN3A3       6_20     6  chr6_26446387  26444862     0.326 27.56
+1445         NaN       7_34     7  chr7_46400029  46398911     0.320 23.70
+         PVE     z num_meqtl
+3565 0.00062  6.40         8
+3560 0.00077 -8.53         6
+3008 0.00027  4.30         2
+3571 0.00036 -5.74         1
+3144 0.00026 -4.09         4
+1134 0.00024 -3.93         3
+1496 0.00023  3.08         2
+3580 0.00030  5.56         3
+2825 0.00024 -3.75         1
+374  0.00024  4.77         4
+1125 0.00028  5.41         2
+1629 0.00020 -3.90         7
+273  0.00017 -4.11         7
+1223 0.00015 -1.79         1
+252  0.00021  3.65         7
+2362 0.00018 -3.27         4
+3481 0.00018 -3.57         5
+950  0.00014 -3.06         5
+1206 0.00015  3.12         7
+1445 0.00013  3.02         5</code></pre>
+</div>
+<div id="genes-with-largest-effect-sizes" class="section level2">
+<h2>Genes with largest effect sizes</h2>
 <p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
@@ -1018,6 +974,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/91f41cdf64d6a2de1da76ebd4a76c6ccc83dafa5/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-13-1.png" target="_blank">91f41cd</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/34f8900d03704c9d598997aaf8a23b5f83a0c103/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-13-1.png" target="_blank">34f8900</a>
@@ -1044,121 +1011,141 @@ sq-96
 </table>
 </div>
 </div>
-<pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;1_13&quot;, return_table=T,
-                      focus=NULL,
-                      label_genes=NULL,
-                      rerun_ctwas=F,
-                      rerun_load_only=F,
-                      label_panel=&quot;both&quot;,
-                      legend_side=&quot;left&quot;,
-                      legend_panel=&quot;cTWAS&quot;)</code></pre>
-<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
-Past versions of unnamed-chunk-14-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-14-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/66ecf6313929054f555ed562e31e8f88318d8554/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-14-1.png" target="_blank">66ecf63</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-09-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/34f8900d03704c9d598997aaf8a23b5f83a0c103/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-14-1.png" target="_blank">34f8900</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-09-05
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-14-1.png" target="_blank">4901caf</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-09-05
-</td>
-</tr>
-</tbody>
-</table>
+<pre><code>          genename region_tag chrom             id       pos susie_pip   mu2
+1349       RNASET2      6_109     6 chr6_167368657 167370230     0.089 57.48
+3560           NaN       1_13     1  chr1_20142562  20140036     0.947 48.87
+2702        STARD3      17_23    17 chr17_37793426  37790781     0.153 39.33
+3565         RGS14      5_106     5 chr5_176797920 176796765     0.959 38.59
+2512          IL27      16_23    16 chr16_28511362  28508447     0.055 38.30
+2901           NaN       19_2    19  chr19_1174667   1175396     0.191 33.77
+1818         ZMIZ1      10_51    10 chr10_81070689  81069413     0.078 33.72
+2709 RP11-387H17.4      17_23    17 chr17_38084377  38085791     0.017 32.17
+807            NaN       3_35     3  chr3_49711089  49708502     0.087 32.11
+3402           NaN      20_38    20 chr20_62496515  62496511     0.247 32.10
+2710           NaN      17_23    17 chr17_38097707  38098027     0.013 31.92
+1786        ZNF365      10_42    10 chr10_64397076  64395186     0.007 31.45
+731           AAMP      2_129     2 chr2_219133847 219132731     0.114 31.44
+3563         OTUD3       1_13     1  chr1_20210269  20207622     0.002 31.03
+2511       SULT1A1      16_23    16 chr16_28622037  28621311     0.084 30.97
+3264         BRSK1      19_38    19 chr19_55823827  55822165     0.271 30.63
+1125        CAMK2A       5_88     5 chr5_149625104 149625087     0.546 30.43
+252      LINC00505       1_29     1  chr1_46937902  46936423     0.416 30.26
+2023         NEAT1      11_36    11 chr11_65195039  65195255     0.269 30.10
+3481           NaN      22_12    22 chr22_32749962  32747253     0.361 30.04
+         PVE     z num_meqtl
+1349 8.6e-05  7.94         3
+3560 7.7e-04 -8.53         6
+2702 1.0e-04 -5.13         4
+3565 6.2e-04  6.40         8
+2512 3.5e-05  6.38         4
+2901 1.1e-04  3.36         5
+1818 4.4e-05 -4.58         4
+2709 9.0e-06  5.72         1
+807  4.6e-05  5.34         2
+3402 1.3e-04  3.55         3
+2710 7.1e-06  6.03         4
+1786 3.8e-06 -2.93         4
+731  6.0e-05 -5.49         4
+3563 8.5e-07 -5.86        10
+2511 4.4e-05 -5.25         1
+3264 1.4e-04  3.44         3
+1125 2.8e-04  5.41         2
+252  2.1e-04  3.65         7
+2023 1.3e-04  3.51         2
+3481 1.8e-04 -3.57         5</code></pre>
 </div>
+<div id="genes-with-highest-pve" class="section level2">
+<h2>Genes with highest PVE</h2>
+<pre><code>        genename region_tag chrom             id       pos susie_pip   mu2
+3560         NaN       1_13     1  chr1_20142562  20140036     0.947 48.87
+3565       RGS14      5_106     5 chr5_176797920 176796765     0.959 38.59
+3571      OR12D2       6_23     6  chr6_29365078  29363697     0.784 27.15
+3580     SLC26A3       7_66     7 chr7_107437656 107435465     0.718 25.06
+1125      CAMK2A       5_88     5 chr5_149625104 149625087     0.546 30.43
+3008         WIZ      19_12    19 chr19_15543806  15541091     0.789 20.89
+3144         NaN      19_32    19 chr19_46382992  46382745     0.776 20.42
+374          DR1       1_57     1  chr1_93811570  93810649     0.602 24.08
+1134         NaN      5_100     5 chr5_167718524 167717734     0.756 19.14
+2825      METRNL      17_47    17 chr17_81042782  81043039     0.657 22.24
+1496         NaN       7_61     7  chr7_98741946  98739231     0.748 18.70
+252    LINC00505       1_29     1  chr1_46937902  46936423     0.416 30.26
+1629         NaN       8_54     8  chr8_74282865  74281152     0.532 22.54
+2362      SAMD4A      14_23    14 chr14_55227154  55225186     0.367 29.22
+3481         NaN      22_12    22 chr22_32749962  32747253     0.361 30.04
+273  RP11-90C4.2       1_34     1  chr1_56394286  56391806     0.515 19.67
+1206      BTN3A3       6_20     6  chr6_26446387  26444862     0.326 27.56
+1223         NaN       6_24     6  chr6_29976071  29978027     0.467 18.66
+950         QDPR       4_17     4  chr4_17513338  17510707     0.350 24.71
+1716         NaN       9_62     9 chr9_124315614 124314010     0.298 27.97
+         PVE     z num_meqtl
+3560 0.00077 -8.53         6
+3565 0.00062  6.40         8
+3571 0.00036 -5.74         1
+3580 0.00030  5.56         3
+1125 0.00028  5.41         2
+3008 0.00027  4.30         2
+3144 0.00026 -4.09         4
+374  0.00024  4.77         4
+1134 0.00024 -3.93         3
+2825 0.00024 -3.75         1
+1496 0.00023  3.08         2
+252  0.00021  3.65         7
+1629 0.00020 -3.90         7
+2362 0.00018 -3.27         4
+3481 0.00018 -3.57         5
+273  0.00017 -4.11         7
+1206 0.00015  3.12         7
+1223 0.00015 -1.79         1
+950  0.00014 -3.06         5
+1716 0.00014 -3.32         2</code></pre>
 </div>
-<pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
-<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
-Past versions of unnamed-chunk-15-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-15-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/34f8900d03704c9d598997aaf8a23b5f83a0c103/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-15-1.png" target="_blank">34f8900</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-09-05
-</td>
-</tr>
-</tbody>
-</table>
+<div id="genes-with-largest-z-scores" class="section level2">
+<h2>Genes with largest z scores</h2>
+<pre><code>          genename region_tag chrom             id       pos susie_pip   mu2
+3560           NaN       1_13     1  chr1_20142562  20140036     0.947 48.87
+1349       RNASET2      6_109     6 chr6_167368657 167370230     0.089 57.48
+3565         RGS14      5_106     5 chr5_176797920 176796765     0.959 38.59
+2512          IL27      16_23    16 chr16_28511362  28508447     0.055 38.30
+2710           NaN      17_23    17 chr17_38097707  38098027     0.013 31.92
+3563         OTUD3       1_13     1  chr1_20210269  20207622     0.002 31.03
+3571        OR12D2       6_23     6  chr6_29365078  29363697     0.784 27.15
+2709 RP11-387H17.4      17_23    17 chr17_38084377  38085791     0.017 32.17
+3580       SLC26A3       7_66     7 chr7_107437656 107435465     0.718 25.06
+731           AAMP      2_129     2 chr2_219133847 219132731     0.114 31.44
+1769           NaN      10_26    10 chr10_35535785  35535311     0.030 26.62
+1109         P4HA2       5_79     5 chr5_131592959 131592870     0.021 18.54
+1125        CAMK2A       5_88     5 chr5_149625104 149625087     0.546 30.43
+589        C2orf74       2_40     2  chr2_61389282  61387388     0.026 24.60
+807            NaN       3_35     3  chr3_49711089  49708502     0.087 32.11
+590        C2orf74       2_40     2  chr2_61391174  61388355     0.026 24.14
+2511       SULT1A1      16_23    16 chr16_28622037  28621311     0.084 30.97
+3577           NaN       7_66     7 chr7_107483786 107480901     0.017 27.81
+3500           NaN      22_16    22 chr22_39641154  39639853     0.068 28.84
+2702        STARD3      17_23    17 chr17_37793426  37790781     0.153 39.33
+         PVE     z num_meqtl
+3560 7.7e-04 -8.53         6
+1349 8.6e-05  7.94         3
+3565 6.2e-04  6.40         8
+2512 3.5e-05  6.38         4
+2710 7.1e-06  6.03         4
+3563 8.5e-07 -5.86        10
+3571 3.6e-04 -5.74         1
+2709 9.0e-06  5.72         1
+3580 3.0e-04  5.56         3
+731  6.0e-05 -5.49         4
+1769 1.3e-05  5.49         3
+1109 6.5e-06  5.41         2
+1125 2.8e-04  5.41         2
+589  1.1e-05  5.34         8
+807  4.6e-05  5.34         2
+590  1.0e-05  5.30         6
+2511 4.4e-05 -5.25         1
+3577 7.8e-06 -5.22         4
+3500 3.3e-05  5.16         3
+2702 1.0e-04 -5.13         4</code></pre>
 </div>
-</div>
-<pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;19_12&quot;, return_table=T,
-                      focus=NULL,
-                      label_genes=NULL,
-                      rerun_ctwas=F,
-                      rerun_load_only=F,
-                      label_panel=&quot;both&quot;,
-                      legend_side=&quot;left&quot;,
-                      legend_panel=&quot;cTWAS&quot;)</code></pre>
+<div id="comparing-z-scores-and-pips" class="section level2">
+<h2>Comparing z scores and PIPs</h2>
 <p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
@@ -1208,63 +1195,102 @@ sq-96
 </table>
 </div>
 </div>
-<pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
-<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-1">
-Past versions of unnamed-chunk-17-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-17-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/34f8900d03704c9d598997aaf8a23b5f83a0c103/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-17-1.png" target="_blank">34f8900</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-09-05
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>region_tag = &quot;5_106&quot;
-xlim=NULL
-return_table=T
-focus=NULL
-label_panel=&quot;both&quot;
-label_genes=NULL
-label_pos=NULL
-plot_eqtl=NULL
-rerun_ctwas=F
-rerun_load_only=F
-legend_side=&quot;right&quot;
-legend_panel=&quot;cTWAS&quot;
-twas_ymax=NULL</code></pre>
-<pre class="r"><code>#distribution of PIPs
-hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main=&quot;Distribution of Gene PIPs&quot;)
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-16-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 0.008659</code></pre>
+<pre><code>          genename region_tag chrom             id       pos susie_pip   mu2
+3560           NaN       1_13     1  chr1_20142562  20140036     0.947 48.87
+1349       RNASET2      6_109     6 chr6_167368657 167370230     0.089 57.48
+3565         RGS14      5_106     5 chr5_176797920 176796765     0.959 38.59
+2512          IL27      16_23    16 chr16_28511362  28508447     0.055 38.30
+2710           NaN      17_23    17 chr17_38097707  38098027     0.013 31.92
+3563         OTUD3       1_13     1  chr1_20210269  20207622     0.002 31.03
+3571        OR12D2       6_23     6  chr6_29365078  29363697     0.784 27.15
+2709 RP11-387H17.4      17_23    17 chr17_38084377  38085791     0.017 32.17
+3580       SLC26A3       7_66     7 chr7_107437656 107435465     0.718 25.06
+731           AAMP      2_129     2 chr2_219133847 219132731     0.114 31.44
+1769           NaN      10_26    10 chr10_35535785  35535311     0.030 26.62
+1109         P4HA2       5_79     5 chr5_131592959 131592870     0.021 18.54
+1125        CAMK2A       5_88     5 chr5_149625104 149625087     0.546 30.43
+589        C2orf74       2_40     2  chr2_61389282  61387388     0.026 24.60
+807            NaN       3_35     3  chr3_49711089  49708502     0.087 32.11
+590        C2orf74       2_40     2  chr2_61391174  61388355     0.026 24.14
+2511       SULT1A1      16_23    16 chr16_28622037  28621311     0.084 30.97
+3577           NaN       7_66     7 chr7_107483786 107480901     0.017 27.81
+3500           NaN      22_16    22 chr22_39641154  39639853     0.068 28.84
+2702        STARD3      17_23    17 chr17_37793426  37790781     0.153 39.33
+         PVE     z num_meqtl
+3560 7.7e-04 -8.53         6
+1349 8.6e-05  7.94         3
+3565 6.2e-04  6.40         8
+2512 3.5e-05  6.38         4
+2710 7.1e-06  6.03         4
+3563 8.5e-07 -5.86        10
+3571 3.6e-04 -5.74         1
+2709 9.0e-06  5.72         1
+3580 3.0e-04  5.56         3
+731  6.0e-05 -5.49         4
+1769 1.3e-05  5.49         3
+1109 6.5e-06  5.41         2
+1125 2.8e-04  5.41         2
+589  1.1e-05  5.34         8
+807  4.6e-05  5.34         2
+590  1.0e-05  5.30         6
+2511 4.4e-05 -5.25         1
+3577 7.8e-06 -5.22         4
+3500 3.3e-05  5.16         3
+2702 1.0e-04 -5.13         4</code></pre>
+<pre><code>Loading required package: S4Vectors</code></pre>
+<pre><code>Loading required package: stats4</code></pre>
+<pre><code>Loading required package: BiocGenerics</code></pre>
+<pre><code>
+Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
 
-#genes with PIP&gt;0.8 or 20 highest PIPs
-head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip&gt;0.8), 20))</code></pre>
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which.max, which.min</code></pre>
+<pre><code>
+Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    expand.grid</code></pre>
+<pre><code>Loading required package: IRanges</code></pre>
+<pre><code>Loading required package: GenomicRanges</code></pre>
+<pre><code>Loading required package: GenomeInfoDb</code></pre>
+<pre><code>Loading required package: grid</code></pre>
+<pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;5_106&quot;, return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel=&quot;both&quot;,
+                      legend_side=&quot;left&quot;,
+                      legend_panel=&quot;cTWAS&quot;)</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;1_13&quot;, return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel=&quot;both&quot;,
+                      legend_side=&quot;left&quot;,
+                      legend_panel=&quot;cTWAS&quot;)</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;19_12&quot;, return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel=&quot;both&quot;,
+                      legend_side=&quot;left&quot;,
+                      legend_panel=&quot;cTWAS&quot;)</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1296,72 +1322,72 @@ other attached packages:
  [1] Gviz_1.38.4          GenomicRanges_1.46.0 GenomeInfoDb_1.26.7 
  [4] IRanges_2.24.1       S4Vectors_0.28.1     BiocGenerics_0.40.0 
  [7] biomaRt_2.50.0       cowplot_1.1.1        ggplot2_3.3.6       
-[10] workflowr_1.7.0     
+[10] reticulate_1.26      workflowr_1.7.0     
 
 loaded via a namespace (and not attached):
-  [1] colorspace_2.0-3            rjson_0.2.20               
-  [3] ellipsis_0.3.2              rprojroot_2.0.3            
-  [5] htmlTable_2.2.1             biovizBase_1.42.0          
-  [7] XVector_0.34.0              base64enc_0.1-3            
-  [9] fs_1.5.2                    dichromat_2.0-0.1          
- [11] rstudioapi_0.13             farver_2.1.0               
- [13] bit64_4.0.5                 AnnotationDbi_1.56.1       
- [15] fansi_1.0.3                 xml2_1.3.2                 
- [17] splines_4.1.0               cachem_1.0.6               
- [19] knitr_1.33                  Formula_1.2-4              
- [21] jsonlite_1.8.0              Rsamtools_2.10.0           
- [23] cluster_2.1.2               dbplyr_2.1.1               
- [25] png_0.1-7                   compiler_4.1.0             
- [27] httr_1.4.3                  backports_1.2.1            
- [29] lazyeval_0.2.2              assertthat_0.2.1           
- [31] Matrix_1.3-3                fastmap_1.1.0              
- [33] cli_3.3.0                   later_1.2.0                
- [35] htmltools_0.5.3             prettyunits_1.1.1          
- [37] tools_4.1.0                 gtable_0.3.0               
- [39] glue_1.6.2                  GenomeInfoDbData_1.2.7     
- [41] dplyr_1.0.9                 rappdirs_0.3.3             
- [43] Rcpp_1.0.9                  Biobase_2.54.0             
- [45] jquerylib_0.1.4             vctrs_0.4.1                
- [47] Biostrings_2.62.0           rtracklayer_1.54.0         
- [49] xfun_0.24                   stringr_1.4.0              
- [51] ps_1.7.0                    lifecycle_1.0.1            
- [53] ensembldb_2.18.4            restfulr_0.0.13            
- [55] XML_3.99-0.6                getPass_0.2-2              
- [57] zlibbioc_1.40.0             scales_1.2.0               
- [59] BSgenome_1.62.0             VariantAnnotation_1.40.0   
- [61] ProtGenerics_1.26.0         hms_1.1.1                  
- [63] promises_1.2.0.1            MatrixGenerics_1.6.0       
- [65] parallel_4.1.0              SummarizedExperiment_1.24.0
- [67] AnnotationFilter_1.18.0     RColorBrewer_1.1-3         
- [69] yaml_2.2.1                  curl_4.3.2                 
- [71] gridExtra_2.3               memoise_2.0.1              
- [73] sass_0.4.0                  rpart_4.1-15               
- [75] latticeExtra_0.6-29         stringi_1.7.6              
- [77] RSQLite_2.2.14              highr_0.9                  
- [79] BiocIO_1.4.0                checkmate_2.0.0            
- [81] GenomicFeatures_1.46.1      filelock_1.0.2             
- [83] BiocParallel_1.28.0         rlang_1.0.4                
- [85] pkgconfig_2.0.3             bitops_1.0-7               
- [87] matrixStats_0.62.0          evaluate_0.15              
- [89] lattice_0.20-44             purrr_0.3.4                
- [91] htmlwidgets_1.5.3           GenomicAlignments_1.30.0   
- [93] labeling_0.4.2              bit_4.0.4                  
- [95] processx_3.5.3              tidyselect_1.1.2           
- [97] magrittr_2.0.3              R6_2.5.1                   
- [99] generics_0.1.2              Hmisc_4.5-0                
-[101] DelayedArray_0.20.0         DBI_1.1.2                  
-[103] foreign_0.8-81              pillar_1.7.0               
-[105] whisker_0.4                 withr_2.5.0                
-[107] nnet_7.3-16                 survival_3.2-11            
-[109] KEGGREST_1.34.0             RCurl_1.98-1.6             
-[111] tibble_3.1.7                crayon_1.5.1               
-[113] utf8_1.2.2                  BiocFileCache_2.2.0        
-[115] rmarkdown_2.9               jpeg_0.1-8.1               
-[117] progress_1.2.2              data.table_1.14.2          
-[119] blob_1.2.3                  callr_3.7.0                
-[121] git2r_0.28.0                digest_0.6.29              
-[123] httpuv_1.6.1                munsell_0.5.0              
-[125] bslib_0.4.0                </code></pre>
+  [1] backports_1.2.1             Hmisc_4.5-0                
+  [3] BiocFileCache_2.2.0         lazyeval_0.2.2             
+  [5] splines_4.1.0               BiocParallel_1.28.0        
+  [7] digest_0.6.29               ensembldb_2.18.4           
+  [9] htmltools_0.5.3             fansi_1.0.3                
+ [11] magrittr_2.0.3              checkmate_2.0.0            
+ [13] memoise_2.0.1               BSgenome_1.62.0            
+ [15] cluster_2.1.2               Biostrings_2.62.0          
+ [17] matrixStats_0.62.0          prettyunits_1.1.1          
+ [19] jpeg_0.1-8.1                colorspace_2.0-3           
+ [21] blob_1.2.3                  rappdirs_0.3.3             
+ [23] xfun_0.24                   dplyr_1.0.9                
+ [25] callr_3.7.0                 crayon_1.5.1               
+ [27] RCurl_1.98-1.6              jsonlite_1.8.0             
+ [29] survival_3.2-11             VariantAnnotation_1.40.0   
+ [31] glue_1.6.2                  gtable_0.3.0               
+ [33] zlibbioc_1.40.0             XVector_0.34.0             
+ [35] DelayedArray_0.20.0         scales_1.2.0               
+ [37] DBI_1.1.2                   Rcpp_1.0.9                 
+ [39] progress_1.2.2              htmlTable_2.2.1            
+ [41] foreign_0.8-81              bit_4.0.4                  
+ [43] Formula_1.2-4               htmlwidgets_1.5.3          
+ [45] httr_1.4.3                  RColorBrewer_1.1-3         
+ [47] ellipsis_0.3.2              pkgconfig_2.0.3            
+ [49] XML_3.99-0.6                farver_2.1.0               
+ [51] nnet_7.3-16                 sass_0.4.0                 
+ [53] dbplyr_2.1.1                utf8_1.2.2                 
+ [55] here_1.0.1                  tidyselect_1.1.2           
+ [57] labeling_0.4.2              rlang_1.0.4                
+ [59] later_1.2.0                 AnnotationDbi_1.56.1       
+ [61] munsell_0.5.0               tools_4.1.0                
+ [63] cachem_1.0.6                cli_3.3.0                  
+ [65] generics_0.1.2              RSQLite_2.2.14             
+ [67] evaluate_0.15               stringr_1.4.0              
+ [69] fastmap_1.1.0               yaml_2.2.1                 
+ [71] processx_3.5.3              knitr_1.33                 
+ [73] bit64_4.0.5                 fs_1.5.2                   
+ [75] purrr_0.3.4                 KEGGREST_1.34.0            
+ [77] AnnotationFilter_1.18.0     whisker_0.4                
+ [79] xml2_1.3.2                  compiler_4.1.0             
+ [81] rstudioapi_0.13             filelock_1.0.2             
+ [83] curl_4.3.2                  png_0.1-7                  
+ [85] tibble_3.1.7                bslib_0.4.0                
+ [87] stringi_1.7.6               highr_0.9                  
+ [89] ps_1.7.0                    GenomicFeatures_1.46.1     
+ [91] lattice_0.20-44             ProtGenerics_1.26.0        
+ [93] Matrix_1.3-3                vctrs_0.4.1                
+ [95] pillar_1.7.0                lifecycle_1.0.1            
+ [97] jquerylib_0.1.4             data.table_1.14.2          
+ [99] bitops_1.0-7                httpuv_1.6.1               
+[101] rtracklayer_1.54.0          R6_2.5.1                   
+[103] BiocIO_1.4.0                latticeExtra_0.6-29        
+[105] promises_1.2.0.1            gridExtra_2.3              
+[107] dichromat_2.0-0.1           assertthat_0.2.1           
+[109] SummarizedExperiment_1.24.0 rprojroot_2.0.3            
+[111] rjson_0.2.20                withr_2.5.0                
+[113] GenomicAlignments_1.30.0    Rsamtools_2.10.0           
+[115] GenomeInfoDbData_1.2.7      parallel_4.1.0             
+[117] hms_1.1.1                   rpart_4.1-15               
+[119] rmarkdown_2.9               MatrixGenerics_1.6.0       
+[121] git2r_0.28.0                biovizBase_1.42.0          
+[123] getPass_0.2-2               Biobase_2.54.0             
+[125] base64enc_0.1-3             restfulr_0.0.13            </code></pre>
 </div>
 </div>
 
