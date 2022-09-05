@@ -279,7 +279,7 @@ sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
 ```{r echo=FALSE}
 library(biomaRt)
 
-ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl",GRCh=37)
 # G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype", "ensembl_gene_id", "strand"), values=1:22, mart=ensembl)
 # 
 # save(G_list, file=paste0("G_list_", trait_id, ".RData"))
