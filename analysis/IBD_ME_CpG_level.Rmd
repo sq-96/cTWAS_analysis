@@ -87,7 +87,7 @@ ctwas_snp_res$z_flag <- as.numeric(ctwas_snp_res$id %in% z_snp$id[duplicated(z_s
 ```
 
 
-```{r}
+```{r echo=FALSE}
 #formatting and rounding for tables
 ctwas_gene_res$z <- round(ctwas_gene_res$z,2)
 ctwas_snp_res$z <- round(ctwas_snp_res$z,2)
@@ -129,7 +129,7 @@ n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
 rm(ctwas_res_s1)
 ```
 
-```{r}
+```{r echo=FALSE}
 library(ggplot2)
 library(cowplot)
 
@@ -219,7 +219,7 @@ p_enrich <- p_enrich + theme(plot.title=element_text(size=title_size)) +
 plot_grid(p_pi, p_sigma2, p_enrich, p_pve)
 ```
 
-```{r}
+```{r echo=FALSE}
 #estimated group prior
 estimated_group_prior <- estimated_group_prior_all[,ncol(group_prior_rec)]
 print(estimated_group_prior)
@@ -255,7 +255,7 @@ estimated_group_pve["gene"]/sum(estimated_group_pve)
 
 ## Genes with highest PIPs 
 
-```{r}
+```{r echo=FALSE}
 #distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 
@@ -267,14 +267,12 @@ head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas
 
 ## Comparing z scores and PIPs
 
-```{r}
+```{r echo=FALSE}
 #set nominal signifiance threshold for z scores
 alpha <- 0.05
 
 #bonferroni adjusted threshold for z scores
 sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
-
-
 ```
 
 
@@ -541,7 +539,9 @@ a <- locus_plot_final_pub(region_tag="5_106", return_table=T,
                       label_panel="both",
                       legend_side="right",
                       legend_panel="cTWAS")
+```
 
+```{r}
 locus_plot_gene_track_pub(a, label_pos="above")
 ```
 
@@ -554,7 +554,9 @@ a <- locus_plot_final_pub(region_tag="1_13", return_table=T,
                       label_panel="both",
                       legend_side="right",
                       legend_panel="cTWAS")
+```
 
+```{r}
 locus_plot_gene_track_pub(a, label_pos="above")
 ```
 
@@ -567,7 +569,9 @@ a <- locus_plot_final_pub(region_tag="19_12", return_table=T,
                       label_panel="both",
                       legend_side="right",
                       legend_panel="cTWAS")
+```
 
+```{r}
 locus_plot_gene_track_pub(a, label_pos="above")
 ```
 

@@ -408,7 +408,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -515,16 +515,16 @@ data/UKBB/ebi-a-GCST004131.vcf.gz
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree15ced8ecc34946b3abf9487b3361d29145b77344targetblank15ced8ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/15ced8ecc34946b3abf9487b3361d29145b77344" target="_blank">15ced8e</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4901caf1722e7ede0eb63ea45c03655624429cd0targetblank4901cafa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/4901caf1722e7ede0eb63ea45c03655624429cd0" target="_blank">4901caf</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree15ced8ecc34946b3abf9487b3361d29145b77344targetblank15ced8ea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4901caf1722e7ede0eb63ea45c03655624429cd0targetblank4901cafa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/15ced8ecc34946b3abf9487b3361d29145b77344" target="_blank">15ced8e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/4901caf1722e7ede0eb63ea45c03655624429cd0" target="_blank">4901caf</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -533,86 +533,14 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .ipynb_checkpoints/
-    Ignored:    analysis/figure/
 
 Untracked files:
     Untracked:  G_list.RData
     Untracked:  Rplot.png
     Untracked:  SCZ_annotation.xlsx
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/IBD_ME_CpG_level.Rmd
-    Untracked:  analysis/IBD_ME_gene_level.Rmd
-    Untracked:  analysis/SCZ_2018_ME_gene_level.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
-    Untracked:  code/AF_out/
-    Untracked:  code/IBD_ME_out/
-    Untracked:  code/LDL_S_out/
-    Untracked:  code/SCZ_2014_EUR_ME_EUR_out/
-    Untracked:  code/SCZ_2014_EUR_out/
-    Untracked:  code/SCZ_2018_ME_out/
-    Untracked:  code/SCZ_2018_S_out/
-    Untracked:  code/SCZ_2018_out/
-    Untracked:  code/SCZ_2020_out/
-    Untracked:  code/SCZ_S_out/
-    Untracked:  code/SCZ_out/
-    Untracked:  code/T2D_out/
-    Untracked:  code/ctwas_config_b37.R
-    Untracked:  code/ctwas_config_b38.R
-    Untracked:  code/mapping.R
-    Untracked:  code/out/
-    Untracked:  code/process_scz_2018_snps.R
-    Untracked:  code/run_AF_analysis.sbatch
-    Untracked:  code/run_AF_analysis.sh
-    Untracked:  code/run_AF_ctwas_rss_LDR.R
-    Untracked:  code/run_Autism_analysis.sbatch
-    Untracked:  code/run_Autism_analysis.sh
-    Untracked:  code/run_Autism_ctwas_rss_LDR.R
-    Untracked:  code/run_BMI_analysis.sbatch
-    Untracked:  code/run_BMI_analysis.sh
-    Untracked:  code/run_BMI_analysis_S.sbatch
-    Untracked:  code/run_BMI_analysis_S.sh
-    Untracked:  code/run_BMI_ctwas_rss_LDR.R
-    Untracked:  code/run_BMI_ctwas_rss_LDR_S.R
-    Untracked:  code/run_Glucose_analysis.sbatch
-    Untracked:  code/run_Glucose_analysis.sh
-    Untracked:  code/run_Glucose_ctwas_rss_LDR.R
-    Untracked:  code/run_IBD_analysis_ME.sbatch
-    Untracked:  code/run_IBD_analysis_ME.sh
-    Untracked:  code/run_IBD_ctwas_rss_LDR_ME.R
-    Untracked:  code/run_LDL_analysis_S.sbatch
-    Untracked:  code/run_LDL_analysis_S.sh
-    Untracked:  code/run_LDL_ctwas_rss_LDR_S.R
-    Untracked:  code/run_SCZ_2014_EUR_analysis.sbatch
-    Untracked:  code/run_SCZ_2014_EUR_analysis.sh
-    Untracked:  code/run_SCZ_2014_EUR_analysis_ME.sbatch
-    Untracked:  code/run_SCZ_2014_EUR_analysis_ME.sh
-    Untracked:  code/run_SCZ_2014_EUR_ctwas_rss_LDR_ME.R
-    Untracked:  code/run_SCZ_2018_analysis.sbatch
-    Untracked:  code/run_SCZ_2018_analysis.sh
-    Untracked:  code/run_SCZ_2018_analysis_ME.sbatch
-    Untracked:  code/run_SCZ_2018_analysis_ME.sh
-    Untracked:  code/run_SCZ_2018_analysis_ME_gene_level.sh
-    Untracked:  code/run_SCZ_2018_analysis_S.sbatch
-    Untracked:  code/run_SCZ_2018_analysis_S.sh
-    Untracked:  code/run_SCZ_2018_ctwas_rss_LDR.R
-    Untracked:  code/run_SCZ_2018_ctwas_rss_LDR_ME.R
-    Untracked:  code/run_SCZ_2018_ctwas_rss_LDR_S.R
-    Untracked:  code/run_SCZ_2020_analysis.sbatch
-    Untracked:  code/run_SCZ_2020_analysis.sh
-    Untracked:  code/run_SCZ_2020_ctwas_rss_LDR.R
-    Untracked:  code/run_SCZ_analysis.sbatch
-    Untracked:  code/run_SCZ_analysis.sh
-    Untracked:  code/run_SCZ_analysis_S.sbatch
-    Untracked:  code/run_SCZ_analysis_S.sh
-    Untracked:  code/run_SCZ_ctwas_rss_LDR.R
-    Untracked:  code/run_SCZ_ctwas_rss_LDR_S.R
-    Untracked:  code/run_T2D_analysis.sbatch
-    Untracked:  code/run_T2D_analysis.sh
-    Untracked:  code/run_T2D_ctwas_rss_LDR.R
-    Untracked:  code/trackplot.R
-    Untracked:  code/wflow_build.R
-    Untracked:  code/wflow_build.sbatch
     Untracked:  data/.ipynb_checkpoints/
     Untracked:  data/FUMA_output/
     Untracked:  data/GO_Terms/
@@ -680,7 +608,7 @@ Untracked files:
 
 Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
-    Modified:   analysis/SCZ_S_test.Rmd
+    Modified:   analysis/IBD_ME_CpG_level.Rmd
 
 </code></pre>
 <p>
@@ -693,9 +621,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/IBD_ME_CpG_level.Rmd</code>) and HTML (<code>docs/IBD_ME_CpG_level.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/analysis/IBD_ME_CpG_level.Rmd" target="_blank">4901caf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/IBD_ME_CpG_level.html" target="_blank">4901caf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -719,176 +707,97 @@ z_snp &lt;- readRDS(paste0(results_dir, &quot;/&quot;, trait_id, &quot;.RDS&quot
 z_snp &lt;- z_snp[z_snp$id %in% ctwas_snp_res$id,] #subset snps to those included in analysis, note some are duplicated, need to match which allele was used
 ctwas_snp_res$z &lt;- z_snp$z[match(ctwas_snp_res$id, z_snp$id)] #for duplicated snps, this arbitrarily uses the first allele
 ctwas_snp_res$z_flag &lt;- as.numeric(ctwas_snp_res$id %in% z_snp$id[duplicated(z_snp$id)]) #mark the unclear z scores, flag=1</code></pre>
-<pre class="r"><code>#formatting and rounding for tables
-ctwas_gene_res$z &lt;- round(ctwas_gene_res$z,2)
-ctwas_snp_res$z &lt;- round(ctwas_snp_res$z,2)
-ctwas_gene_res$susie_pip &lt;- round(ctwas_gene_res$susie_pip,3)
-ctwas_snp_res$susie_pip &lt;- round(ctwas_snp_res$susie_pip,3)
-ctwas_gene_res$mu2 &lt;- round(ctwas_gene_res$mu2,2)
-ctwas_snp_res$mu2 &lt;- round(ctwas_snp_res$mu2,2)
-ctwas_gene_res$PVE &lt;- signif(ctwas_gene_res$PVE, 2)
-ctwas_snp_res$PVE &lt;- signif(ctwas_snp_res$PVE, 2)
-
-#merge gene and snp results with added information
-ctwas_gene_res$z_flag=NA
-ctwas_gene_res$genename=NA
-ctwas_gene_res$gene_type=NA
-ctwas_snp_res$genename=NA
-ctwas_snp_res$gene_type=NA
-
-ctwas_res &lt;- rbind(ctwas_gene_res,
-                   ctwas_snp_res[,colnames(ctwas_gene_res)])
-
-#get number of sQTL for geens
-num_meqtl &lt;- c()
-for (i in 1:22){
-  load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_chr&quot;, i, &quot;.exprqc.Rd&quot;))
-  num_meqtl &lt;- c(num_meqtl, unlist(lapply(wgtlist, nrow)))
-}
-ctwas_gene_res$num_meqtl &lt;- num_meqtl[ctwas_gene_res$id]
-
-#store columns to report
-report_cols &lt;- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c(&quot;type&quot;, &quot;region_tag1&quot;, &quot;region_tag2&quot;, &quot;cs_index&quot;, &quot;gene_type&quot;, &quot;z_flag&quot;))]
-first_cols &lt;- c(&quot;genename&quot;, &quot;region_tag&quot;)
-report_cols &lt;- c(first_cols, report_cols[!(report_cols %in% first_cols)])
-
-report_cols_snps &lt;- c(&quot;id&quot;, report_cols[-1])
-
-#get number of SNPs from s1 results; adjust for thin
-ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.s1.susieIrss.txt&quot;))
-n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
-rm(ctwas_res_s1)</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(cowplot)
-
-load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.s2.susieIrssres.Rd&quot;))
-
-group_size &lt;- c(nrow(ctwas_gene_res), n_snps)
-
-#estimated group prior (all iterations)
-estimated_group_prior_all &lt;- group_prior_rec
-rownames(estimated_group_prior_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-estimated_group_prior_all[&quot;snp&quot;,] &lt;- estimated_group_prior_all[&quot;snp&quot;,]*thin #adjust parameter to account for thin argument
-
-#estimated group prior variance (all iterations)
-estimated_group_prior_var_all &lt;- group_prior_var_rec
-rownames(estimated_group_prior_var_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-
-#estimated group PVE (all iterations)
-estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
-rownames(estimated_group_pve_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-
-#estimated enrichment of genes (all iterations)
-estimated_enrichment_all &lt;- estimated_group_prior_all[&quot;gene&quot;,]/estimated_group_prior_all[&quot;snp&quot;,]
-
-title_size &lt;- 12
-
-df &lt;- data.frame(niter = rep(1:ncol(estimated_group_prior_all), 2),
-                 value = c(estimated_group_prior_all[&quot;gene&quot;,], estimated_group_prior_all[&quot;snp&quot;,]),
-                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_prior_all)))
-df$group &lt;- as.factor(df$group)
-
-p_pi &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
-  geom_line(aes(color=group)) +
-  geom_point(aes(color=group)) +
-  xlab(&quot;Iteration&quot;) + ylab(bquote(pi)) +
-  ggtitle(&quot;Proportion Causal&quot;) +
-  theme_cowplot()
-
-p_pi &lt;- p_pi + theme(plot.title=element_text(size=title_size)) + 
-  expand_limits(y=0) + 
-  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
-
-df &lt;- data.frame(niter = rep(1:ncol(estimated_group_prior_var_all ), 2),
-                 value = c(estimated_group_prior_var_all[&quot;gene&quot;,], estimated_group_prior_var_all[&quot;snp&quot;,]),
-                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_prior_var_all)))
-df$group &lt;- as.factor(df$group)
-p_sigma2 &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
-  geom_line(aes(color=group)) +
-  geom_point(aes(color=group)) +
-  xlab(&quot;Iteration&quot;) + ylab(bquote(sigma^2)) +
-  ggtitle(&quot;Effect Size&quot;) +
-  theme_cowplot()
-
-p_sigma2 &lt;- p_sigma2 + theme(plot.title=element_text(size=title_size)) + 
-  expand_limits(y=0) + 
-  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
-
-df &lt;- data.frame(niter = rep(1:ncol(estimated_group_pve_all ), 2),
-                 value = c(estimated_group_pve_all[&quot;gene&quot;,], estimated_group_pve_all[&quot;snp&quot;,]),
-                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_pve_all)))
-df$group &lt;- as.factor(df$group)
-p_pve &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
-  geom_line(aes(color=group)) +
-  geom_point(aes(color=group)) +
-  xlab(&quot;Iteration&quot;) + ylab(bquote(h^2[G])) +
-  ggtitle(&quot;PVE&quot;) +
-  theme_cowplot()
-
-p_pve &lt;- p_pve + theme(plot.title=element_text(size=title_size)) + 
-  expand_limits(y=0) + 
-  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
-
-df &lt;- data.frame(niter = 1:length(estimated_enrichment_all),
-                 value = estimated_enrichment_all,
-                 group = rep(&quot;Gene&quot;, length(estimated_enrichment_all)))
-df$group &lt;- as.factor(df$group)
-p_enrich &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
-  geom_line(aes(color=group)) +
-  geom_point(aes(color=group)) +
-  xlab(&quot;Iteration&quot;) + ylab(bquote(pi[G]/pi[S])) +
-  ggtitle(&quot;Enrichment&quot;) +
-  theme_cowplot()
-
-p_enrich &lt;- p_enrich + theme(plot.title=element_text(size=title_size)) + 
-  expand_limits(y=0) + 
-  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
-
-plot_grid(p_pi, p_sigma2, p_enrich, p_pve)</code></pre>
 <p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#estimated group prior
-estimated_group_prior &lt;- estimated_group_prior_all[,ncol(group_prior_rec)]
-print(estimated_group_prior)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-6-1.png" target="_blank">4901caf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>     gene       snp 
 0.0151490 0.0002849 </code></pre>
-<pre class="r"><code>#estimated group prior variance
-estimated_group_prior_var &lt;- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
-print(estimated_group_prior_var)</code></pre>
 <pre><code> gene   snp 
 8.183 8.659 </code></pre>
-<pre class="r"><code>#estimated enrichment
-estimated_enrichment &lt;- estimated_enrichment_all[ncol(group_prior_var_rec)]
-print(estimated_enrichment)</code></pre>
 <pre><code>[1] 53.17</code></pre>
-<pre class="r"><code>#report sample size
-print(sample_size)</code></pre>
 <pre><code>[1] 59957</code></pre>
-<pre class="r"><code>#report group size
-print(group_size)</code></pre>
 <pre><code>[1]    3580 6348060</code></pre>
-<pre class="r"><code>#estimated group PVE
-estimated_group_pve &lt;- estimated_group_pve_all[,ncol(group_prior_rec)] #check PVE calculation
-print(estimated_group_pve)</code></pre>
 <pre><code>    gene      snp 
 0.007402 0.261223 </code></pre>
-<pre class="r"><code>#compare sum(PIP*mu2/sample_size) with above PVE calculation
-#c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
-
-#total PVE
-sum(estimated_group_pve)</code></pre>
 <pre><code>[1] 0.2686</code></pre>
-<pre class="r"><code>#PVE attributable to gene expression
-estimated_group_pve[&quot;gene&quot;]/sum(estimated_group_pve)</code></pre>
 <pre><code>   gene 
 0.02756 </code></pre>
 </div>
 <div id="genes-with-highest-pips" class="section level2">
 <h2>Genes with highest PIPs</h2>
-<pre class="r"><code>#distribution of PIPs
-hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main=&quot;Distribution of Gene PIPs&quot;)</code></pre>
 <p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#genes with PIP&gt;0.8 or 20 highest PIPs
-head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip&gt;0.8), 20))</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
+Past versions of unnamed-chunk-8-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-8-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-8-1.png" target="_blank">4901caf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>     genename region_tag chrom             id       pos susie_pip   mu2     PVE
 3565       NA      5_106     5 chr5_176797920 176796765     0.959 38.59 0.00062
 3560       NA       1_13     1  chr1_20142562  20140036     0.947 48.87 0.00077
@@ -934,11 +843,6 @@ head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas
 </div>
 <div id="comparing-z-scores-and-pips" class="section level2">
 <h2>Comparing z scores and PIPs</h2>
-<pre class="r"><code>#set nominal signifiance threshold for z scores
-alpha &lt;- 0.05
-
-#bonferroni adjusted threshold for z scores
-sig_thresh &lt;- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)</code></pre>
 <pre><code>Loading required package: S4Vectors</code></pre>
 <pre><code>Loading required package: stats4</code></pre>
 <pre><code>Loading required package: BiocGenerics</code></pre>
@@ -971,10 +875,84 @@ Attaching package: &#39;S4Vectors&#39;</code></pre>
                       rerun_load_only=F,
                       label_panel=&quot;both&quot;,
                       legend_side=&quot;right&quot;,
-                      legend_panel=&quot;cTWAS&quot;)
-
-locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
+                      legend_panel=&quot;cTWAS&quot;)</code></pre>
 <p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
+Past versions of unnamed-chunk-12-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-12-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-12-1.png" target="_blank">4901caf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
+Past versions of unnamed-chunk-13-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-13-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-13-1.png" target="_blank">4901caf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;1_13&quot;, return_table=T,
                       focus=NULL,
                       label_genes=NULL,
@@ -982,10 +960,47 @@ locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
                       rerun_load_only=F,
                       label_panel=&quot;both&quot;,
                       legend_side=&quot;right&quot;,
-                      legend_panel=&quot;cTWAS&quot;)
-
-locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
-<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+                      legend_panel=&quot;cTWAS&quot;)</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
+Past versions of unnamed-chunk-14-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-14-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4901caf1722e7ede0eb63ea45c03655624429cd0/docs/figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-14-1.png" target="_blank">4901caf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;19_12&quot;, return_table=T,
                       focus=NULL,
                       label_genes=NULL,
@@ -993,10 +1008,10 @@ locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
                       rerun_load_only=F,
                       label_panel=&quot;both&quot;,
                       legend_side=&quot;right&quot;,
-                      legend_panel=&quot;cTWAS&quot;)
-
-locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
-<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+                      legend_panel=&quot;cTWAS&quot;)</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>locus_plot_gene_track_pub(a, label_pos=&quot;above&quot;)</code></pre>
+<p><img src="figure/IBD_ME_CpG_level.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>region_tag = &quot;5_106&quot;
 xlim=NULL
 return_table=T
