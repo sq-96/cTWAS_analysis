@@ -12,7 +12,7 @@
 <meta name="author" content="sheng Qian" />
 
 
-<title>SCZ - Brain Cortex</title>
+<title>SCZ - All brain tissues - expression weights</title>
 
 <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -357,9 +357,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">SCZ - Brain Cortex</h1>
+<h1 class="title toc-ignore">SCZ - All brain tissues - expression weights</h1>
 <h4 class="author">sheng Qian</h4>
-<h4 class="date">2021-2-6</h4>
+<h4 class="date">2021-9-6</h4>
 
 </div>
 
@@ -408,7 +408,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -507,16 +507,16 @@ data
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree73feb49d57a728498a8fa29ae5cae4299585e9fetargetblank73feb49a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/73feb49d57a728498a8fa29ae5cae4299585e9fe" target="_blank">73feb49</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree2d27e1e78161ba93bfffef447f6f5c6a754cc6d1targetblank2d27e1ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1" target="_blank">2d27e1e</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree73feb49d57a728498a8fa29ae5cae4299585e9fetargetblank73feb49a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree2d27e1e78161ba93bfffef447f6f5c6a754cc6d1targetblank2d27e1ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/73feb49d57a728498a8fa29ae5cae4299585e9fe" target="_blank">73feb49</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1" target="_blank">2d27e1e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -525,15 +525,12 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .ipynb_checkpoints/
-    Ignored:    analysis/figure/
 
 Untracked files:
     Untracked:  G_list.RData
     Untracked:  Rplot.png
     Untracked:  SCZ_annotation.xlsx
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/SCZ_2018_all_tissues.Rmd
-    Untracked:  analysis/SCZ_2018_all_tissues_S.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  data/.ipynb_checkpoints/
@@ -603,7 +600,8 @@ Untracked files:
 
 Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
-    Modified:   analysis/IBD_ME_CpG_level.Rmd
+    Modified:   analysis/SCZ_2018_all_tissues.Rmd
+    Modified:   analysis/SCZ_2018_all_tissues_S.Rmd
 
 </code></pre>
 <p>
@@ -616,38 +614,239 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/SCZ_2018_all_tissues.Rmd</code>) and HTML (<code>docs/SCZ_2018_all_tissues.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1/analysis/SCZ_2018_all_tissues.Rmd" target="_blank">2d27e1e</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-06
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1/docs/SCZ_2018_all_tissues.html" target="_blank">2d27e1e</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-06
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
 </div>
 <div id="load-ctwas-results-for-all-weights" class="section level2">
 <h2>Load cTWAS results for all weights</h2>
-<pre><code>[1] 1
-[1] 2
-[1] 3
-[1] 4
-[1] 5
-[1] 6
-[1] 7
-[1] 8
-[1] 9
-[1] 10
-[1] 11
-[1] 12
-[1] 13</code></pre>
 </div>
 <div id="plot-estimated-prior-parameters-and-pve" class="section level2">
 <h2>Plot estimated prior parameters and PVE</h2>
-<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1/docs/figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-1.png" target="_blank">2d27e1e</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-2">
+Past versions of unnamed-chunk-4-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1/docs/figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-2.png" target="_blank">2d27e1e</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-3">
+Past versions of unnamed-chunk-4-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1/docs/figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-4-3.png" target="_blank">2d27e1e</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="number-of-ctwas-and-twas-genes" class="section level2">
 <h2>Number of cTWAS and TWAS genes</h2>
 <p>cTWAS genes are the set of genes with PIP&gt;0.8 in any tissue. TWAS genes are the set of genes with significant z score (Bonferroni within tissue) in any tissue.</p>
 <p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1/docs/figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-5-1.png" target="_blank">2d27e1e</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>#number of ctwas_genes
+length(ctwas_genes)</code></pre>
 <pre><code>[1] 43</code></pre>
+<pre class="r"><code>#number of twas_genes
+length(twas_genes)</code></pre>
 <pre><code>[1] 380</code></pre>
 </div>
 <div id="summary-of-results-across-tissues" class="section level2">
@@ -666,11 +865,85 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 11           Brain_Putamen_basal_ganglia   CNS
 12        Brain_Spinal_cord_cervical_c-1   CNS
 13                Brain_Substantia_nigra   CNS</code></pre>
-<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1/docs/figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-7-1.png" target="_blank">2d27e1e</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="tissue-specificity-for-ctwas-genes" class="section level2">
 <h2>Tissue-specificity for cTWAS genes</h2>
-<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
+Past versions of unnamed-chunk-8-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-8-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/2d27e1e78161ba93bfffef447f6f5c6a754cc6d1/docs/figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-8-1.png" target="_blank">2d27e1e</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2022-09-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ctwas-genes-with-highest-proportion-of-total-pip-on-a-single-tissue" class="section level2">
 <h2>cTWAS genes with highest proportion of total PIP on a single tissue</h2>
@@ -722,7 +995,7 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <h3>cTWAS finds fewer genes than TWAS</h3>
 <p>Trend lines are fit with (red) and without (blue) an intercept.</p>
 <pre><code>Loading required package: ggplot2</code></pre>
-<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SCZ_2018_all_tissues.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -753,23 +1026,21 @@ other attached packages:
 [1] ggrepel_0.9.1   ggplot2_3.3.6   workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.1.2  xfun_0.24         bslib_0.4.0       purrr_0.3.4      
- [5] generics_0.1.2    colorspace_2.0-3  vctrs_0.4.1       htmltools_0.5.3  
- [9] yaml_2.2.1        utf8_1.2.2        blob_1.2.3        rlang_1.0.4      
-[13] later_1.2.0       pillar_1.7.0      jquerylib_0.1.4   withr_2.5.0      
-[17] glue_1.6.2        DBI_1.1.2         bit64_4.0.5       lifecycle_1.0.1  
-[21] stringr_1.4.0     munsell_0.5.0     gtable_0.3.0      evaluate_0.15    
-[25] memoise_2.0.1     knitr_1.33        callr_3.7.0       fastmap_1.1.0    
-[29] httpuv_1.6.1      ps_1.7.0          fansi_1.0.3       highr_0.9        
-[33] Rcpp_1.0.9        promises_1.2.0.1  scales_1.2.0      cachem_1.0.6     
-[37] jsonlite_1.8.0    farver_2.1.0      fs_1.5.2          bit_4.0.4        
-[41] digest_0.6.29     stringi_1.7.6     dplyr_1.0.9       processx_3.5.3   
-[45] getPass_0.2-2     rprojroot_2.0.3   grid_4.1.0        cli_3.3.0        
-[49] tools_4.1.0       magrittr_2.0.3    sass_0.4.0        tibble_3.1.7     
-[53] RSQLite_2.2.14    crayon_1.5.1      whisker_0.4       pkgconfig_2.0.3  
-[57] ellipsis_0.3.2    data.table_1.14.2 assertthat_0.2.1  rmarkdown_2.9    
-[61] httr_1.4.3        rstudioapi_0.13   R6_2.5.1          git2r_0.28.0     
-[65] compiler_4.1.0   </code></pre>
+ [1] tidyselect_1.1.2 xfun_0.24        bslib_0.4.0      purrr_0.3.4     
+ [5] colorspace_2.0-3 vctrs_0.4.1      generics_0.1.2   htmltools_0.5.3 
+ [9] yaml_2.2.1       utf8_1.2.2       rlang_1.0.4      later_1.2.0     
+[13] pillar_1.7.0     jquerylib_0.1.4  withr_2.5.0      DBI_1.1.2       
+[17] glue_1.6.2       lifecycle_1.0.1  stringr_1.4.0    munsell_0.5.0   
+[21] gtable_0.3.0     evaluate_0.15    knitr_1.33       callr_3.7.0     
+[25] fastmap_1.1.0    httpuv_1.6.1     ps_1.7.0         fansi_1.0.3     
+[29] highr_0.9        Rcpp_1.0.9       promises_1.2.0.1 scales_1.2.0    
+[33] cachem_1.0.6     jsonlite_1.8.0   farver_2.1.0     fs_1.5.2        
+[37] digest_0.6.29    stringi_1.7.6    processx_3.5.3   dplyr_1.0.9     
+[41] getPass_0.2-2    rprojroot_2.0.3  grid_4.1.0       cli_3.3.0       
+[45] tools_4.1.0      magrittr_2.0.3   sass_0.4.0       tibble_3.1.7    
+[49] crayon_1.5.1     whisker_0.4      pkgconfig_2.0.3  ellipsis_0.3.2  
+[53] assertthat_0.2.1 rmarkdown_2.9    httr_1.4.3       rstudioapi_0.13 
+[57] R6_2.5.1         git2r_0.28.0     compiler_4.1.0  </code></pre>
 </div>
 </div>
 </div>

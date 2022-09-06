@@ -1,7 +1,7 @@
 ---
-title: "SCZ - Brain Cortex"
+title: "SCZ - All brain tissues - expression weights"
 author: "sheng Qian"
-date: "2021-2-6"
+date: "2021-9-6"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
@@ -168,12 +168,11 @@ output <- data.frame(weight=names(df),
 ## Plot estimated prior parameters and PVE
 
 ```{r echo=F}
-
 #plot estimated group prior
 
 output <- output[order(-output$prior_g),]
 
-par(mar=c(4.1, 4.1, 4.1, 2.1))
+par(mar=c(10.1, 4.1, 4.1, 2.1))
 
 plot(output$prior_g, type="l", ylim=c(0, max(output$prior_g, output$prior_s)*1.1),
      xlab="", ylab="Estimated Group Prior", xaxt = "n", col="blue")
@@ -187,7 +186,7 @@ axis(1, at = 1:nrow(output),
 ####################
 #plot estimated group prior variance
 
-par(mar=c(4.1, 4.1, 4.1, 2.1))
+par(mar=c(10.1, 4.1, 4.1, 2.1))
 
 plot(output$prior_var_g, type="l", ylim=c(0, max(output$prior_var_g, output$prior_var_s)*1.1),
      xlab="", ylab="Estimated Group Prior Variance", xaxt = "n", col="blue")
@@ -203,7 +202,7 @@ axis(1, at = 1:nrow(output),
 
 output <- output[order(-output$pve_g),]
 
-par(mar=c(4.1, 4.1, 4.1, 2.1))
+par(mar=c(10.1, 4.1, 4.1, 2.1))
 
 plot(output$pve_g, type="l", ylim=c(0, max(output$pve_g+output$pve_s)*1.1),
      xlab="", ylab="Estimated PVE", xaxt = "n", col="blue")
@@ -228,13 +227,19 @@ plot(output$n_ctwas, output$n_twas, xlab="Number of cTWAS Genes", ylab="Number o
 
 #number of ctwas_genes
 ctwas_genes <- unique(unlist(lapply(df, function(x){x$ctwas})))
-length(ctwas_genes)
 
 #number of twas_genes
 twas_genes <- unique(unlist(lapply(df, function(x){x$twas})))
-length(twas_genes)
-
 ```
+
+```{r}
+#number of ctwas_genes
+length(ctwas_genes)
+
+#number of twas_genes
+length(twas_genes)
+```
+
 
 ## Summary of results across tissues
 
@@ -318,7 +323,7 @@ hist(ctwas_frequency, col="grey", breaks=0:max(ctwas_frequency),
      #xlim=c(0,ncol(gene_pips_by_weight)),
      xlab="Number of Tissues\nwith PIP>0.5",
      ylab="Number of cTWAS Genes",
-     main="IBD")
+     main="Schizophrenia")
 
 #dev.off()
 ```
