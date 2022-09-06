@@ -362,9 +362,9 @@ head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
 
 
 ```{r echo=FALSE, message=FALSE}
-library(biomaRt)
+suppressMessages(library(biomaRt))
 
-ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl",GRCh=37)
 # G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype", "ensembl_gene_id", "strand"), values=1:22, mart=ensembl)
 # 
 # save(G_list, file=paste0("G_list_", trait_id, ".RData"))
@@ -648,6 +648,6 @@ a <- locus_plot_final_pub(region_tag="10_50", return_table=T,
                       rerun_ctwas=F,
                       rerun_load_only=F,
                       label_panel="both",
-                      legend_side="left",
+                      legend_side="right",
                       legend_panel="cTWAS")
 ```
