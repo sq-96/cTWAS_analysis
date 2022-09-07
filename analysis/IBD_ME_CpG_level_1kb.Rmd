@@ -98,7 +98,7 @@ ctwas_gene_res_df['methylation_id'] = ctwas_gene_res_df['id']
 
 ```{python echo=F}
 for index, row in ctwas_gene_res_df.iterrows():
-  gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["methylation_pos"]))
+  gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["methylation_pos"])-1000, end=int(row["methylation_pos"])+1000)
   if len(gene_names)!=0:
     for i in gene_names:
       if i != '':
