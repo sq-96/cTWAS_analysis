@@ -148,6 +148,73 @@ options(digits = 4)
 #save(df, file=paste(trait_dir, "results_df.RData", sep="/"))
 ```
 
+```{r}
+for (i in 1:length(results_dirs)){
+  #print(i)
+  results_dir <- results_dirs[i]
+  weight <- rev(unlist(strsplit(results_dir, "/")))[1]
+  print(weight)
+  analysis_id <- paste0("SCZ_",weight)
+
+  #load ctwas results
+  ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
+
+  #make unique identifier for regions and effects
+  ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+  ctwas_res$region_cs_tag <- paste(ctwas_res$region_tag, ctwas_res$cs_index, sep="_")
+
+  #load z scores for SNPs and collect sample size
+  load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+
+  sample_size <- z_snp$ss
+  sample_size <- as.numeric(names(which.max(table(sample_size))))
+
+  #separate gene and SNP results
+  ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
+  ctwas_gene_res <- data.frame(ctwas_gene_res)
+  ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+  ctwas_snp_res <- data.frame(ctwas_snp_res)
+
+  #add z scores to results
+  load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+  ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
+
+  z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
+  ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+
+  ctwas_res <- rbind(ctwas_gene_res, ctwas_snp_res[,colnames(ctwas_gene_res)])
+
+  #get number of sQTL for genes
+  num_sqtl <- c()
+  for (i in 1:22){
+    load(paste0(results_dir, "/", analysis_id, "_expr_chr", i, ".exprqc.Rd"))
+    num_sqtl <- c(num_sqtl, unlist(lapply(wgtlist, nrow)))
+  }
+  ctwas_gene_res$num_sqtl <- num_sqtl[ctwas_gene_res$id]
+
+  #get number of SNPs from s1 results; adjust for thin argument
+  ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
+  n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
+  rm(ctwas_res_s1)
+
+  #load estimated parameters
+  load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd"))
+
+  #estimated group prior
+  estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
+  names(estimated_group_prior) <- c("gene", "snp")
+  estimated_group_prior["snp"] <- estimated_group_prior["snp"]*thin #adjust parameter to account for thin argument
+
+  #estimated group prior variance
+  estimated_group_prior_var <- group_prior_var_rec[,ncol(group_prior_var_rec)]
+  names(estimated_group_prior_var) <- c("gene", "snp")
+
+  #report group size
+  group_size <- c(nrow(ctwas_gene_res), n_snps)
+  print(group_size)
+}
+```
+
 ```{r echo=F}
 load(paste(trait_dir, "results_df.RData", sep="/"))
 
@@ -290,6 +357,14 @@ barplot(output$n_ctwas, names.arg=output$weight, las=2, ylab="Number of cTWAS Ge
 #barplot of number of cTWAS genes in each tissue
 df_plot <- -sort(-sapply(groups[groups!="None"], function(x){length(df_group[[x]][["ctwas"]])}))
 ```
+
+```{r}
+for (i in 1:length(df)){
+  gene_pips <- df[[i]]$gene_pips
+  print(gene_pips[gene_pips$genename=="BDNF",])
+}
+```
+
 
 ## Tissue-specificity for cTWAS genes
 

@@ -275,7 +275,7 @@ sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
 ```{r echo=FALSE}
 library(biomaRt)
 
-ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+#ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
 # G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype", "ensembl_gene_id", "strand"), values=1:22, mart=ensembl)
 # 
 # save(G_list, file=paste0("G_list_", trait_id, ".RData"))
@@ -510,6 +510,17 @@ locus_plot_gene_track_pub <- function(a, label_pos=NULL){
   plotTracks(biomTrack, collapseTranscripts = "meta", transcriptAnnotation = "symbol", from=start, to=end, panel.only=T, add=F)
 }
 
+```
+
+```{r}
+a <- locus_plot_final_pub(region_tag="6_26", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="left",
+                      legend_panel="cTWAS")
 ```
 
 

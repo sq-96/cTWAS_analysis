@@ -408,7 +408,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -525,7 +525,6 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .ipynb_checkpoints/
-    Ignored:    analysis/figure/
 
 Untracked files:
     Untracked:  Proposal plots.R
@@ -646,371 +645,86 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
-
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/LDL_Liver_S.Rmd</code>) and HTML (<code>docs/LDL_Liver_S.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
 </p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/601071b4ceffb4733ad1e5af771d2ef502e28b04/analysis/LDL_Liver_S.Rmd" target="_blank">601071b</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-03-01
-</td>
-<td>
-adadwd
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/143efdd7801ff4c6396ff7b3e862ac02f88fffc8/docs/LDL_Liver_S.html" target="_blank">143efdd</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-22
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/fe3e6a49a7686c1a64077e8fc33be1e1f9afad9f/analysis/LDL_Liver_S.Rmd" target="_blank">fe3e6a4</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-22
-</td>
-<td>
-update
-</td>
-</tr>
-</tbody>
-</table>
-</div>
 <hr>
 </div>
 </div>
 </div>
 <div id="weight-qc" class="section level2">
 <h2>Weight QC</h2>
-<pre class="r"><code>#number of imputed weights
-nrow(qclist_all)</code></pre>
-<pre><code>[1] 21553</code></pre>
-<pre class="r"><code>#number of imputed weights by chromosome
-table(qclist_all$chr)</code></pre>
+<pre><code>[1] 12714</code></pre>
+<pre><code>[1] 10901</code></pre>
 <pre><code>
    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
-2079 1523 1276  769  878 1116 1176  701  854  931 1344 1116  391  772  677 1085 
+1070  768  652  417  494  611  548  408  405  434  634  629  195  365  354  526 
   17   18   19   20   21   22 
-1462  258 1524  659  262  700 </code></pre>
-<pre class="r"><code>#number of imputed weights without missing variants
-sum(qclist_all$nmiss==0)</code></pre>
-<pre><code>[1] 19937</code></pre>
-<pre class="r"><code>#proportion of imputed weights without missing variants
-mean(qclist_all$nmiss==0)</code></pre>
-<pre><code>[1] 0.925</code></pre>
-<pre class="r"><code>library(reticulate)
-use_python(&quot;/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python&quot;,required=T)</code></pre>
-<pre><code>finish</code></pre>
-<pre class="r"><code>#add z scores to results
-load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_z_gene.Rd&quot;))
-ctwas_gene_res &lt;- py$ctwas_gene_res_df 
-ctwas_gene_res$z &lt;- z_gene[ctwas_gene_res$id,]$z
-
-z_snp &lt;- z_snp[z_snp$id %in% ctwas_snp_res$id,]
-ctwas_snp_res$z &lt;- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
-
-#merge gene and snp results with added information
-#ctwas_gene_res$genename=NA
-#ctwas_gene_res$gene_type=NA
-ctwas_snp_res$genename=NA
-ctwas_snp_res$gene_type=NA
-ctwas_gene_res = ctwas_gene_res[,!(colnames(ctwas_gene_res) %in% c(&quot;intron_start&quot;, &quot;intron_end&quot;,&quot;intron_id&quot;))]
-
-
-ctwas_res &lt;- rbind(ctwas_gene_res,
-                   ctwas_snp_res[,colnames(ctwas_gene_res)])
-
-#get number of sQTL for geens
-num_sqtl &lt;- c()
-for (i in 1:22){
-  load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_expr_chr&quot;, i, &quot;.exprqc.Rd&quot;))
-  num_sqtl &lt;- c(num_sqtl, unlist(lapply(wgtlist, nrow)))
-}
-ctwas_gene_res$num_sqtl &lt;- num_sqtl[ctwas_gene_res$id]
-
-#store columns to report
-report_cols &lt;- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c(&quot;type&quot;, &quot;region_tag1&quot;, &quot;region_tag2&quot;, &quot;cs_index&quot;, &quot;gene_type&quot;, &quot;z_flag&quot;))]
-first_cols &lt;- c(&quot;genename&quot;, &quot;region_tag&quot;)
-report_cols &lt;- c(first_cols, report_cols[!(report_cols %in% first_cols)])
-
-report_cols_snps &lt;- c(&quot;id&quot;, report_cols[-1])
-report_cols_snps &lt;- report_cols_snps[!(report_cols_snps %in% &quot;num_sqtl&quot;)]
-
-#get number of SNPs from s1 results; adjust for thin argument
-ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.s1.susieIrss.txt&quot;))
-n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
-rm(ctwas_res_s1)</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(cowplot)
-
-load(paste0(results_dir, &quot;/&quot;, analysis_id, &quot;_ctwas.s2.susieIrssres.Rd&quot;))
-
-group_size &lt;- c(nrow(ctwas_gene_res), n_snps)
-
-#estimated group prior (all iterations)
-estimated_group_prior_all &lt;- group_prior_rec
-rownames(estimated_group_prior_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-estimated_group_prior_all[&quot;snp&quot;,] &lt;- estimated_group_prior_all[&quot;snp&quot;,]*thin #adjust parameter to account for thin argument
-
-#estimated group prior variance (all iterations)
-estimated_group_prior_var_all &lt;- group_prior_var_rec
-rownames(estimated_group_prior_var_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-
-#estimated group PVE (all iterations)
-estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
-rownames(estimated_group_pve_all) &lt;- c(&quot;gene&quot;, &quot;snp&quot;)
-
-#estimated enrichment of genes (all iterations)
-estimated_enrichment_all &lt;- estimated_group_prior_all[&quot;gene&quot;,]/estimated_group_prior_all[&quot;snp&quot;,]
-
-title_size &lt;- 12
-
-df &lt;- data.frame(niter = rep(1:ncol(estimated_group_prior_all), 2),
-                 value = c(estimated_group_prior_all[&quot;gene&quot;,], estimated_group_prior_all[&quot;snp&quot;,]),
-                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_prior_all)))
-df$group &lt;- as.factor(df$group)
-
-p_pi &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
-  geom_line(aes(color=group)) +
-  geom_point(aes(color=group)) +
-  xlab(&quot;Iteration&quot;) + ylab(bquote(pi)) +
-  ggtitle(&quot;Proportion Causal&quot;) +
-  theme_cowplot()
-
-p_pi &lt;- p_pi + theme(plot.title=element_text(size=title_size)) + 
-  expand_limits(y=0) + 
-  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
-
-df &lt;- data.frame(niter = rep(1:ncol(estimated_group_prior_var_all ), 2),
-                 value = c(estimated_group_prior_var_all[&quot;gene&quot;,], estimated_group_prior_var_all[&quot;snp&quot;,]),
-                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_prior_var_all)))
-df$group &lt;- as.factor(df$group)
-p_sigma2 &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
-  geom_line(aes(color=group)) +
-  geom_point(aes(color=group)) +
-  xlab(&quot;Iteration&quot;) + ylab(bquote(sigma^2)) +
-  ggtitle(&quot;Effect Size&quot;) +
-  theme_cowplot()
-
-p_sigma2 &lt;- p_sigma2 + theme(plot.title=element_text(size=title_size)) + 
-  expand_limits(y=0) + 
-  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
-
-df &lt;- data.frame(niter = rep(1:ncol(estimated_group_pve_all ), 2),
-                 value = c(estimated_group_pve_all[&quot;gene&quot;,], estimated_group_pve_all[&quot;snp&quot;,]),
-                 group = rep(c(&quot;Gene&quot;, &quot;SNP&quot;), each = ncol(estimated_group_pve_all)))
-df$group &lt;- as.factor(df$group)
-p_pve &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
-  geom_line(aes(color=group)) +
-  geom_point(aes(color=group)) +
-  xlab(&quot;Iteration&quot;) + ylab(bquote(h^2[G])) +
-  ggtitle(&quot;PVE&quot;) +
-  theme_cowplot()
-
-p_pve &lt;- p_pve + theme(plot.title=element_text(size=title_size)) + 
-  expand_limits(y=0) + 
-  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
-
-df &lt;- data.frame(niter = 1:length(estimated_enrichment_all),
-                 value = estimated_enrichment_all,
-                 group = rep(&quot;Gene&quot;, length(estimated_enrichment_all)))
-df$group &lt;- as.factor(df$group)
-p_enrich &lt;- ggplot(df, aes(x=niter, y=value, group=group)) +
-  geom_line(aes(color=group)) +
-  geom_point(aes(color=group)) +
-  xlab(&quot;Iteration&quot;) + ylab(bquote(pi[G]/pi[S])) +
-  ggtitle(&quot;Enrichment&quot;) +
-  theme_cowplot()
-
-p_enrich &lt;- p_enrich + theme(plot.title=element_text(size=title_size)) + 
-  expand_limits(y=0) + 
-  guides(color = guide_legend(title = &quot;Group&quot;)) + theme (legend.title = element_text(size=12, face=&quot;bold&quot;))
-
-plot_grid(p_pi, p_sigma2, p_enrich, p_pve)</code></pre>
-<p><img src="figure/LDL_Liver_S.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
-Past versions of unnamed-chunk-9-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/143efdd7801ff4c6396ff7b3e862ac02f88fffc8/docs/figure/LDL_Liver_S.Rmd/unnamed-chunk-9-1.png" target="_blank">143efdd</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-22
-</td>
-</tr>
-</tbody>
-</table>
+ 663  160  859  306  114  289 </code></pre>
+<pre><code>[1] 0.8365</code></pre>
 </div>
+<div id="load-ctwas-results" class="section level2">
+<h2>Load ctwas results</h2>
 </div>
-<pre class="r"><code>#estimated group prior
-estimated_group_prior &lt;- estimated_group_prior_all[,ncol(group_prior_rec)]
-print(estimated_group_prior)</code></pre>
+<div id="check-convergence-of-parameters" class="section level2">
+<h2>Check convergence of parameters</h2>
+<p><img src="figure/LDL_Liver.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>     gene       snp 
-1.289e-02 6.246e-05 </code></pre>
-<pre class="r"><code>#estimated group prior variance
-estimated_group_prior_var &lt;- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
-print(estimated_group_prior_var)</code></pre>
-<pre><code> gene   snp 
-13.29 35.66 </code></pre>
-<pre class="r"><code>#estimated enrichment
-estimated_enrichment &lt;- estimated_enrichment_all[ncol(group_prior_var_rec)]
-print(estimated_enrichment)</code></pre>
-<pre><code>[1] 206.3</code></pre>
-<pre class="r"><code>#report sample size
-print(sample_size)</code></pre>
+0.0096829 0.0001743 </code></pre>
+<pre><code>  gene    snp 
+45.772  9.687 </code></pre>
+<pre><code>[1] 55.56</code></pre>
 <pre><code>[1] 343621</code></pre>
-<pre class="r"><code>#report group size
-print(group_size)</code></pre>
-<pre><code>[1]   21553 8696600</code></pre>
-<pre class="r"><code>#estimated group PVE
-estimated_group_pve &lt;- estimated_group_pve_all[,ncol(group_prior_rec)] #check PVE calculation
-print(estimated_group_pve)</code></pre>
+<pre><code>[1]   10901 8696600</code></pre>
 <pre><code>   gene     snp 
-0.01074 0.05638 </code></pre>
-<pre class="r"><code>#compare sum(PIP*mu2/sample_size) with above PVE calculation
-#c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
-
-#total PVE
-sum(estimated_group_pve)</code></pre>
-<pre><code>[1] 0.06712</code></pre>
-<pre class="r"><code>#PVE attributable to gene expression
-estimated_group_pve[&quot;gene&quot;]/sum(estimated_group_pve)</code></pre>
-<pre><code>gene 
-0.16 </code></pre>
+0.01406 0.04273 </code></pre>
+<pre><code>[1] 0.05679</code></pre>
+<pre><code>  gene 
+0.2476 </code></pre>
 </div>
 <div id="genes-with-highest-pips" class="section level2">
 <h2>Genes with highest PIPs</h2>
 <pre class="r"><code>#distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main=&quot;Distribution of Gene PIPs&quot;)</code></pre>
-<p><img src="figure/LDL_Liver_S.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/LDL_Liver.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#genes with PIP&gt;0.8 or 20 highest PIPs
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip&gt;0.8), 20))</code></pre>
-<pre><code>      genename region_tag chrom                            id       pos
-21159     LDLR       19_9    19   intron_19_11120522_11123174  11120205
-20916       HP      16_38    16   intron_16_72057466_72058254  72072066
-20403    HLA-B       6_25     6    intron_6_31270085_31355317  31272369
-20643    LRCH4       7_61     7  intron_7_100575304_100575705 100574936
-20876    ITGAL      16_24    16   intron_16_30505462_30506715  30506720
-21422    BCAT2      19_34    19   intron_19_48800297_48810984  48800483
-20697   KIF13B       8_28     8    intron_8_29092878_29099133  29092792
-20738  ST3GAL4      11_77    11 intron_11_126356302_126406096 126355981
-20310    USP53       4_77     4  intron_4_119217673_119220116 119220165
-21414    SPHK2      19_33    19   intron_19_48624430_48625891  48624233
-20748     PHC1       12_9    12     intron_12_8921750_8922633   8922098
-20245   SPRED2       2_42     2    intron_2_65314169_65316734  65314461
-21287  CYP4F12      19_13    19   intron_19_15685197_15696430  15685032
-20986    ABCA8      17_39    17   intron_17_68883882_68884331  68883786
-20267   UGT1A1      2_137     2  intron_2_233761151_233767034 233761240
-20776   R3HDM2      12_36    12   intron_12_57395818_57430720  57395576
-410      KDM1A       1_16     1    intron_1_23030634_23050387  23030789
-6609   ZSCAN31       6_22     6    intron_6_28327533_28329303  28327111
-18354   ZNF227      19_30    19   intron_19_44213244_44217791  44213516
-20954    FLOT2      17_17    17   intron_17_28889026_28897526  28889154
-      susie_pip    mu2       PVE       z num_sqtl
-21159    1.0000 751.97 2.188e-03  26.898        2
-20916    0.9933 272.19 7.868e-04  21.869        2
-20403    0.9914  62.55 1.805e-04   8.790        4
-20643    0.9895  31.67 9.119e-05   5.294        2
-20876    0.9618  21.82 6.107e-05  -4.428        1
-21422    0.9583  27.94 7.792e-05  -5.197        1
-20697    0.9476  23.56 6.496e-05  -4.718        1
-20738    0.9427  76.58 2.101e-04 -12.154        2
-20310    0.9392  26.01 7.110e-05   4.888        1
-21414    0.9138  42.12 1.120e-04   8.721        1
-20748    0.9054  36.98 9.744e-05   6.156        1
-20245    0.8639  22.11 5.558e-05  -4.438        1
-21287    0.8606  36.25 9.079e-05  -5.868        2
-20986    0.8284  27.86 6.717e-05  -4.775        2
-20267    0.8104  30.83 7.271e-05   5.450        1
-20776    0.8029  36.25 8.469e-05  -5.818        1
-410      0.7924  20.69 4.772e-05   4.158        1
-6609     0.7913  24.62 5.670e-05   2.711        1
-18354    0.7903  30.19 6.943e-05   4.698        1
-20954    0.7864  26.93 6.162e-05  -3.738        1</code></pre>
+<pre><code>         genename region_tag susie_pip     mu2       PVE       z num_eqtl
+4435        PSRC1       1_67    1.0000 1675.70 4.877e-03 -41.687        1
+12008         HPR      16_38    1.0000  164.01 4.773e-04 -17.963        2
+3721       INSIG2       2_69    1.0000   68.69 1.999e-04  -8.983        3
+5563        ABCG8       2_27    1.0000  313.97 9.137e-04 -20.294        1
+5991        FADS1      11_34    0.9999  164.33 4.782e-04  12.926        2
+12687 RP4-781K5.7      1_121    0.9997  203.89 5.932e-04 -15.108        1
+10657      TRIM39       6_24    0.9986   72.24 2.099e-04   8.840        3
+7410        ABCA1       9_53    0.9954   70.43 2.040e-04   7.982        1
+8531         TNKS       8_12    0.9911   76.67 2.211e-04  11.039        2
+9390         GAS6      13_62    0.9883   71.42 2.054e-04  -8.924        1
+1597         PLTP      20_28    0.9877   61.48 1.767e-04  -5.732        1
+1999        PRKD2      19_33    0.9859   30.13 8.645e-05   5.072        2
+7040        INHBB       2_70    0.9824   74.11 2.119e-04  -8.519        1
+5544        CNIH4      1_114    0.9776   40.86 1.163e-04   6.146        2
+2092          SP4       7_19    0.9775  102.48 2.915e-04  10.693        1
+6093      CSNK1G3       5_75    0.9749   84.33 2.392e-04   9.116        1
+8865         FUT2      19_33    0.9665  105.00 2.953e-04 -11.927        1
+11790      CYP2A6      19_28    0.9616   32.05 8.969e-05   5.407        1
+3247         KDSR      18_35    0.9547   24.71 6.865e-05  -4.526        1
+233        NPC1L1       7_32    0.9526   87.19 2.417e-04 -10.762        1
+4704        DDX56       7_32    0.9466   60.02 1.654e-04   9.642        2
+6391       TTC39B       9_13    0.9362   23.31 6.349e-05  -4.334        3
+6778         PKN3       9_66    0.9360   47.70 1.299e-04  -6.621        1
+6220         PELO       5_31    0.9352   70.89 1.929e-04   8.288        2
+1114         SRRT       7_62    0.9336   32.81 8.915e-05   5.425        2
+3300     C10orf88      10_77    0.9322   37.26 1.011e-04  -6.788        2
+8579       STAT5B      17_25    0.9261   30.73 8.281e-05   5.426        2
+3562       ACVR1C       2_94    0.9228   25.91 6.960e-05  -4.687        2
+6957         USP1       1_39    0.8945  254.14 6.616e-04  16.258        1
+9062      KLHDC7A       1_13    0.8163   22.65 5.380e-05   4.124        1
+8418         POP7       7_62    0.8091   40.51 9.539e-05  -5.845        1
+9072      SPTY2D1      11_13    0.8084   33.57 7.898e-05  -5.557        1</code></pre>
 </div>
 <div id="comparing-z-scores-and-pips" class="section level2">
 <h2>Comparing z scores and PIPs</h2>
-<pre class="r"><code>#set nominal signifiance threshold for z scores
-alpha &lt;- 0.05
-
-#bonferroni adjusted threshold for z scores
-sig_thresh &lt;- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)</code></pre>
-</div>
-<div id="pip-manhattan-plot" class="section level2">
-<h2>PIP Manhattan Plot</h2>
 <pre><code>Loading required package: S4Vectors</code></pre>
 <pre><code>Loading required package: stats4</code></pre>
 <pre><code>Loading required package: BiocGenerics</code></pre>
@@ -1036,52 +750,6 @@ Attaching package: &#39;S4Vectors&#39;</code></pre>
 <pre><code>Loading required package: GenomicRanges</code></pre>
 <pre><code>Loading required package: GenomeInfoDb</code></pre>
 <pre><code>Loading required package: grid</code></pre>
-<pre class="r"><code>a &lt;- locus_plot_final_pub(region_tag=&quot;19_9&quot;, return_table=T,
-                      focus=NULL,
-                      label_genes=NULL,
-                      rerun_ctwas=F,
-                      rerun_load_only=F,
-                      label_panel=&quot;both&quot;,
-                      legend_side=&quot;left&quot;,
-                      legend_panel=&quot;cTWAS&quot;)</code></pre>
-<p><img src="figure/LDL_Liver_S.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
-Past versions of unnamed-chunk-16-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-16-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/143efdd7801ff4c6396ff7b3e862ac02f88fffc8/docs/figure/LDL_Liver_S.Rmd/unnamed-chunk-16-1.png" target="_blank">143efdd</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2022-02-22
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1110,76 +778,74 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] Gviz_1.38.4          GenomicRanges_1.46.0 GenomeInfoDb_1.26.7 
- [4] IRanges_2.24.1       S4Vectors_0.28.1     BiocGenerics_0.40.0 
- [7] cowplot_1.1.1        ggplot2_3.3.6        reticulate_1.26     
-[10] workflowr_1.7.0     
+[1] Gviz_1.38.4          GenomicRanges_1.46.0 GenomeInfoDb_1.26.7 
+[4] IRanges_2.24.1       S4Vectors_0.28.1     BiocGenerics_0.40.0 
+[7] cowplot_1.1.1        ggplot2_3.3.6        workflowr_1.7.0     
 
 loaded via a namespace (and not attached):
-  [1] backports_1.2.1             Hmisc_4.5-0                
-  [3] BiocFileCache_2.2.0         lazyeval_0.2.2             
-  [5] splines_4.1.0               BiocParallel_1.28.0        
-  [7] digest_0.6.29               ensembldb_2.18.4           
-  [9] htmltools_0.5.3             fansi_1.0.3                
- [11] magrittr_2.0.3              checkmate_2.0.0            
- [13] memoise_2.0.1               BSgenome_1.62.0            
- [15] cluster_2.1.2               Biostrings_2.62.0          
- [17] matrixStats_0.62.0          prettyunits_1.1.1          
- [19] jpeg_0.1-8.1                colorspace_2.0-3           
- [21] blob_1.2.3                  rappdirs_0.3.3             
- [23] xfun_0.24                   dplyr_1.0.9                
- [25] callr_3.7.0                 crayon_1.5.1               
- [27] RCurl_1.98-1.6              jsonlite_1.8.0             
- [29] survival_3.2-11             VariantAnnotation_1.40.0   
- [31] glue_1.6.2                  gtable_0.3.0               
- [33] zlibbioc_1.40.0             XVector_0.34.0             
- [35] DelayedArray_0.20.0         scales_1.2.0               
- [37] DBI_1.1.2                   Rcpp_1.0.9                 
- [39] progress_1.2.2              htmlTable_2.2.1            
- [41] foreign_0.8-81              bit_4.0.4                  
- [43] Formula_1.2-4               htmlwidgets_1.5.3          
- [45] httr_1.4.3                  RColorBrewer_1.1-3         
- [47] ellipsis_0.3.2              pkgconfig_2.0.3            
- [49] XML_3.99-0.6                farver_2.1.0               
- [51] nnet_7.3-16                 sass_0.4.0                 
- [53] dbplyr_2.1.1                utf8_1.2.2                 
- [55] here_1.0.1                  tidyselect_1.1.2           
- [57] labeling_0.4.2              rlang_1.0.4                
- [59] later_1.2.0                 AnnotationDbi_1.56.1       
- [61] munsell_0.5.0               tools_4.1.0                
- [63] cachem_1.0.6                cli_3.3.0                  
- [65] generics_0.1.2              RSQLite_2.2.14             
- [67] evaluate_0.15               stringr_1.4.0              
- [69] fastmap_1.1.0               yaml_2.2.1                 
- [71] processx_3.5.3              knitr_1.33                 
- [73] bit64_4.0.5                 fs_1.5.2                   
- [75] purrr_0.3.4                 KEGGREST_1.34.0            
- [77] AnnotationFilter_1.18.0     whisker_0.4                
- [79] xml2_1.3.2                  biomaRt_2.50.0             
- [81] compiler_4.1.0              rstudioapi_0.13            
- [83] filelock_1.0.2              curl_4.3.2                 
- [85] png_0.1-7                   tibble_3.1.7               
- [87] bslib_0.4.0                 stringi_1.7.6              
- [89] highr_0.9                   ps_1.7.0                   
- [91] GenomicFeatures_1.46.1      lattice_0.20-44            
- [93] ProtGenerics_1.26.0         Matrix_1.3-3               
- [95] vctrs_0.4.1                 pillar_1.7.0               
- [97] lifecycle_1.0.1             jquerylib_0.1.4            
- [99] data.table_1.14.2           bitops_1.0-7               
-[101] httpuv_1.6.1                rtracklayer_1.54.0         
-[103] R6_2.5.1                    BiocIO_1.4.0               
-[105] latticeExtra_0.6-29         promises_1.2.0.1           
-[107] gridExtra_2.3               dichromat_2.0-0.1          
-[109] assertthat_0.2.1            SummarizedExperiment_1.24.0
-[111] rprojroot_2.0.3             rjson_0.2.20               
-[113] withr_2.5.0                 GenomicAlignments_1.30.0   
-[115] Rsamtools_2.10.0            GenomeInfoDbData_1.2.7     
-[117] parallel_4.1.0              hms_1.1.1                  
-[119] rpart_4.1-15                rmarkdown_2.9              
-[121] MatrixGenerics_1.6.0        git2r_0.28.0               
-[123] biovizBase_1.42.0           getPass_0.2-2              
-[125] Biobase_2.54.0              base64enc_0.1-3            
-[127] restfulr_0.0.13            </code></pre>
+  [1] colorspace_2.0-3            rjson_0.2.20               
+  [3] ellipsis_0.3.2              rprojroot_2.0.3            
+  [5] htmlTable_2.2.1             biovizBase_1.42.0          
+  [7] XVector_0.34.0              base64enc_0.1-3            
+  [9] fs_1.5.2                    dichromat_2.0-0.1          
+ [11] rstudioapi_0.13             farver_2.1.0               
+ [13] bit64_4.0.5                 AnnotationDbi_1.56.1       
+ [15] fansi_1.0.3                 xml2_1.3.2                 
+ [17] splines_4.1.0               cachem_1.0.6               
+ [19] knitr_1.33                  Formula_1.2-4              
+ [21] jsonlite_1.8.0              Rsamtools_2.10.0           
+ [23] cluster_2.1.2               dbplyr_2.1.1               
+ [25] png_0.1-7                   compiler_4.1.0             
+ [27] httr_1.4.3                  backports_1.2.1            
+ [29] lazyeval_0.2.2              assertthat_0.2.1           
+ [31] Matrix_1.3-3                fastmap_1.1.0              
+ [33] cli_3.3.0                   later_1.2.0                
+ [35] htmltools_0.5.3             prettyunits_1.1.1          
+ [37] tools_4.1.0                 gtable_0.3.0               
+ [39] glue_1.6.2                  GenomeInfoDbData_1.2.7     
+ [41] dplyr_1.0.9                 rappdirs_0.3.3             
+ [43] Rcpp_1.0.9                  Biobase_2.54.0             
+ [45] jquerylib_0.1.4             vctrs_0.4.1                
+ [47] Biostrings_2.62.0           rtracklayer_1.54.0         
+ [49] xfun_0.24                   stringr_1.4.0              
+ [51] ps_1.7.0                    lifecycle_1.0.1            
+ [53] ensembldb_2.18.4            restfulr_0.0.13            
+ [55] XML_3.99-0.6                getPass_0.2-2              
+ [57] zlibbioc_1.40.0             scales_1.2.0               
+ [59] BSgenome_1.62.0             VariantAnnotation_1.40.0   
+ [61] ProtGenerics_1.26.0         hms_1.1.1                  
+ [63] promises_1.2.0.1            MatrixGenerics_1.6.0       
+ [65] parallel_4.1.0              SummarizedExperiment_1.24.0
+ [67] AnnotationFilter_1.18.0     RColorBrewer_1.1-3         
+ [69] yaml_2.2.1                  curl_4.3.2                 
+ [71] gridExtra_2.3               memoise_2.0.1              
+ [73] sass_0.4.0                  rpart_4.1-15               
+ [75] biomaRt_2.50.0              latticeExtra_0.6-29        
+ [77] stringi_1.7.6               RSQLite_2.2.14             
+ [79] highr_0.9                   BiocIO_1.4.0               
+ [81] checkmate_2.0.0             GenomicFeatures_1.46.1     
+ [83] filelock_1.0.2              BiocParallel_1.28.0        
+ [85] rlang_1.0.4                 pkgconfig_2.0.3            
+ [87] matrixStats_0.62.0          bitops_1.0-7               
+ [89] evaluate_0.15               lattice_0.20-44            
+ [91] purrr_0.3.4                 htmlwidgets_1.5.3          
+ [93] GenomicAlignments_1.30.0    labeling_0.4.2             
+ [95] bit_4.0.4                   processx_3.5.3             
+ [97] tidyselect_1.1.2            magrittr_2.0.3             
+ [99] R6_2.5.1                    generics_0.1.2             
+[101] Hmisc_4.5-0                 DelayedArray_0.20.0        
+[103] DBI_1.1.2                   foreign_0.8-81             
+[105] pillar_1.7.0                whisker_0.4                
+[107] withr_2.5.0                 nnet_7.3-16                
+[109] survival_3.2-11             KEGGREST_1.34.0            
+[111] RCurl_1.98-1.6              tibble_3.1.7               
+[113] crayon_1.5.1                utf8_1.2.2                 
+[115] BiocFileCache_2.2.0         rmarkdown_2.9              
+[117] jpeg_0.1-8.1                progress_1.2.2             
+[119] data.table_1.14.2           blob_1.2.3                 
+[121] callr_3.7.0                 git2r_0.28.0               
+[123] digest_0.6.29               httpuv_1.6.1               
+[125] munsell_0.5.0               bslib_0.4.0                </code></pre>
 </div>
 </div>
 
