@@ -5,7 +5,7 @@ do
 	TRAIT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ieu-a-22.vcf.gz"
 	LD_DIR="/project2/mstephens/wcrouse/UKB_LDR_0.1"
 	WEIGHT_FILE="/project2/compbio/predictdb/mashr_models/mashr_"$WEIGHT".db"
-	CONFIG_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R"
+	CONFIG_FILE="/project2/mstephens/wcrouse/UKB_analysis_allweights/ctwas_config.R"
 	OUTNAME_E="SCZ_"$WEIGHT"_expr"
 	OUTNAME="SCZ_"$WEIGHT"_ctwas"
 	OUTDIR="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ/"$WEIGHT

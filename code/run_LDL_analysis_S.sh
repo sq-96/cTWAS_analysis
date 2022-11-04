@@ -2,10 +2,10 @@
 
 for WEIGHT in Liver
 do
-	TRAIT_FILE="/project2/compbio/gwas_summary_statistics/ukbb_neale_v3/ukb-d-30780_irnt.vcf"
+	TRAIT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz"
 	LD_DIR="/project2/mstephens/wcrouse/UKB_LDR_0.1"
 	WEIGHT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_"$WEIGHT".db"
-	CONFIG_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config.R"
+	CONFIG_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"
 	OUTNAME_E="LDL_"$WEIGHT"_expr"
 	OUTNAME="LDL_"$WEIGHT"_ctwas"
 	OUTDIR="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_S/"$WEIGHT

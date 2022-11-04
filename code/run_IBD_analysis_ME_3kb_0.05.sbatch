@@ -6,7 +6,7 @@
 #SBATCH --mem=56G
 #SBATCH --time=36:00:00
 
-module load R/4.1.0
+module load R/3.6.1
 
-Rscript run_LDL_ctwas_rss_LDR_S.R $TRAIT_FILE $LD_DIR $WEIGHT_FILE $CONFIG_FILE $OUTNAME_E $OUTNAME $OUTDIR
+Rscript run_IBD_ctwas_rss_LDR_ME_3kb_0.05.R $TRAIT_FILE $LD_DIR $WEIGHT_FILE $CONFIG_FILE $OUTNAME_E $OUTNAME $OUTDIR
 

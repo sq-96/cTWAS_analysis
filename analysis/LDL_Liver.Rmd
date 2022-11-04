@@ -42,8 +42,8 @@ rm(qclist, wgtlist, z_gene_chr)
 
 #load information for all genes
 sqlite <- RSQLite::dbDriver("SQLite")
-db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
-#db = RSQLite::dbConnect(sqlite, "/project2/mstephens/wcrouse/predictdb/mashr_Liver_nolnc.db")
+#db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
+db = RSQLite::dbConnect(sqlite, "/project2/mstephens/wcrouse/predictdb/mashr_Liver_nolnc.db")
 query <- function(...) RSQLite::dbGetQuery(db, ...)
 gene_info <- query("select gene, genename, gene_type from extra")
 RSQLite::dbDisconnect(db)
@@ -59,7 +59,6 @@ table(qclist_all$chr)
 
 #proportion of imputed weights without missing variants
 mean(qclist_all$nmiss==0)
-
 ```
 
 ## Load ctwas results
@@ -219,8 +218,6 @@ p_enrich <- p_enrich + theme(plot.title=element_text(size=title_size)) +
 
 plot_grid(p_pi, p_sigma2, p_enrich, p_pve)
 
-####################
-
 #estimated group prior
 estimated_group_prior <- estimated_group_prior_all[,ncol(group_prior_rec)]
 print(estimated_group_prior)
@@ -251,7 +248,6 @@ sum(estimated_group_pve)
 
 #PVE attributable to gene expression
 estimated_group_pve["gene"]/sum(estimated_group_pve)
-
 ```
 
 ## Genes with highest PIPs 
@@ -264,32 +260,121 @@ hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 ```
 
+## Genes with largest effect sizes 
+
+```{r}
+#plot PIP vs effect size
+plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
+
+#genes with 20 largest effect sizes
+head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
+
+```
+
+## Genes with highest PVE 
+
+```{r}
+#genes with 20 highest pve
+head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
+
+```
+
+## Genes with largest z scores 
+
+```{r}
+#genes with 20 largest z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
+```
+
 ## Comparing z scores and PIPs
 
-```{r echo=FALSE}
+```{r}
 #set nominal signifiance threshold for z scores
 alpha <- 0.05
 
 #bonferroni adjusted threshold for z scores
 sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
+
+#Q-Q plot for z scores
+obs_z <- ctwas_gene_res$z[order(ctwas_gene_res$z)]
+exp_z <- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res))
+
+plot(exp_z, obs_z, xlab="Expected z", ylab="Observed z", main="Gene z score Q-Q plot")
+abline(a=0,b=1)
+
+#plot z score vs PIP
+plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP")
+abline(v=sig_thresh, col="red", lty=2)
+
+#number of significant z scores
+sum(abs(ctwas_gene_res$z) > sig_thresh)
+
+#proportion of significant z scores
+mean(abs(ctwas_gene_res$z) > sig_thresh)
+
+#genes with most significant z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
 ```
 
-```{r echo=FALSE, eval=FALSE}
-library(biomaRt)
+## SNPs with highest PIPs 
+
+```{r}
+#snps with PIP>0.8 or 20 highest PIPs
+head(ctwas_snp_res[order(-ctwas_snp_res$susie_pip),report_cols_snps],
+max(sum(ctwas_snp_res$susie_pip>0.8), 20))
+
+```
+
+## SNPs with largest effect sizes 
+
+```{r}
+#plot PIP vs effect size
+#plot(ctwas_snp_res$susie_pip, ctwas_snp_res$mu2, xlab="PIP", ylab="mu^2", main="SNP PIPs vs Effect Size")
+
+#SNPs with 50 largest effect sizes
+head(ctwas_snp_res[order(-ctwas_snp_res$mu2),report_cols_snps],50)
+
+```
+
+## SNPs with highest PVE 
+
+```{r}
+#SNPs with 50 highest pve
+head(ctwas_snp_res[order(-ctwas_snp_res$PVE),report_cols_snps],50)
+
+```
+
+## SNPs with largest z scores 
+
+```{r}
+#histogram of (abs) SNP z scores
+hist(abs(ctwas_snp_res$z))
+
+#SNPs with 50 largest z scores
+head(ctwas_snp_res[order(-abs(ctwas_snp_res$z)),report_cols_snps],50)
+
+```
+
+
+```{r echo=FALSE}
+#####load positions for all genes on autosomes in ENSEMBL, subset to only protein coding and lncRNA with non-missing HGNC symbol
+#library(biomaRt)
 
 #ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
-# G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype", "ensembl_gene_id", "strand"), values=1:22, mart=ensembl)
-# 
-# save(G_list, file=paste0("G_list_", trait_id, ".RData"))
+#G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype", "ensembl_gene_id", "strand"), values=1:22, mart=ensembl)
+#save(G_list, file=paste0(results_dir, "/G_list_", trait_id, ".RData"))
+load(paste0(results_dir, "/G_list_", trait_id, ".RData"))
 
-load(paste0(results_dir,"/G_list.RData"))
+G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
 
-G_list <- G_list[G_list$gene_biotype %in% c("protein_coding"),]
-G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
 G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
 ```
 
-```{r echo=FALSE}
+## Updated locus plots - for paper
+
+```{r}
 locus_plot_final_pub <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, label_panel="TWAS", label_genes=NULL, label_pos=NULL, plot_eqtl=NULL, rerun_ctwas=F, rerun_load_only=F, legend_side="right", legend_panel="cTWAS", twas_ymax=NULL){
   region_tag1 <- unlist(strsplit(region_tag, "_"))[1]
   region_tag2 <- unlist(strsplit(region_tag, "_"))[2]
@@ -515,3 +600,15 @@ locus_plot_gene_track_pub <- function(a, label_pos=NULL){
 ```
 
 
+```{r, eval=T}
+a <- locus_plot_final_pub(region_tag="2_94", xlim=c(157.4, NA), return_table=T,
+                      focus="ACVR1C",
+                      label_genes=c("ACVR1C", "CYTIP"),
+                      label_pos=c(3,3),
+                      label_panel="both",
+                      plot_eqtl=c("ACVR1C"),
+                      legend_side="left",
+                      legend_panel="cTWAS")
+
+locus_plot_gene_track_pub(a, label_pos="above")
+```

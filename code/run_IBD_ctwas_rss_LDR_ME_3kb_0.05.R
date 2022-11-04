@@ -46,18 +46,24 @@ source(args[4]) # config
 if (file.exists(paste0(outputdir, "/", outname.e, "_z_gene.Rd"))){
   ld_exprfs <- paste0(outputdir, "/", outname.e, "_chr", 1:22, ".expr.gz")
   load(file = paste0(outputdir, "/", outname.e, "_z_gene.Rd"))
-  load(file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
+  #load(file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
 } else {
+  #res <- impute_expr_z(z_snp, weight = weight, ld_R_dir = ld_R_dir,
+  #                     method = "enet", outputdir = outputdir, outname = outname.e,
+  #                     harmonize_z = F, harmonize_wgt = F,
+  #                     strand_ambig_action_z = "none", recover_strand_ambig_wgt = F)
+    
   res <- impute_expr_z(z_snp, weight = weight, ld_R_dir = ld_R_dir,
-                       method = NULL, outputdir = outputdir, outname = outname.e,
-                       harmonize_z = T, harmonize_wgt = T,
-                       strand_ambig_action_z = "recover", recover_strand_ambig_wgt = T)
+                       method = "enet", outputdir = outputdir, outname = outname.e,
+                       harmonize=T)
+      
+    
   z_gene <- res$z_gene
   ld_exprfs <- res$ld_exprfs
-  z_snp <- res$z_snp
+  #z_snp <- res$z_snp
   
   save(z_gene, file = paste0(outputdir, "/", outname.e, "_z_gene.Rd"))
-  save(z_snp, file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
+  #save(z_snp, file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
 }
 
 # run ctwas_rss
