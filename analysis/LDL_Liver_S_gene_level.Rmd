@@ -309,8 +309,6 @@ print(sum(known_annotations %in% ctwas_gene_res$genename))
 
 #assign ctwas, TWAS, and bystander genes
 ctwas_genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.9]
-twas_genes <- ctwas_gene_res$genename[abs(ctwas_gene_res$z)>sig_thresh]
-novel_genes <- ctwas_genes[!(ctwas_genes %in% twas_genes)]
 
 #significance threshold for TWAS
 print(sig_thresh)
@@ -318,31 +316,23 @@ print(sig_thresh)
 #number of ctwas genes
 length(ctwas_genes)
 
-#number of TWAS genes
-length(twas_genes)
-
-#show novel genes (ctwas genes with not in TWAS genes)
-ctwas_gene_res[ctwas_gene_res$genename %in% novel_genes,report_cols]
 
 #sensitivity / recall
-sensitivity <- rep(NA,2)
-names(sensitivity) <- c("ctwas", "TWAS")
+sensitivity <- rep(NA,1)
+names(sensitivity) <- c("ctwas")
 sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
-sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
 sensitivity
 
 #specificity
-specificity <- rep(NA,2)
-names(specificity) <- c("ctwas", "TWAS")
+specificity <- rep(NA,1)
+names(specificity) <- c("ctwas")
 specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
-specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
 specificity
 
 #precision / PPV
-precision <- rep(NA,2)
-names(precision) <- c("ctwas", "TWAS")
+precision <- rep(NA,1)
+names(precision) <- c("ctwas")
 precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
-precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes)
 precision
 
 #ROC curves
@@ -350,25 +340,4 @@ precision
 pip_range <- (0:1000)/1000
 sensitivity <- rep(NA, length(pip_range))
 specificity <- rep(NA, length(pip_range))
-
-for (index in 1:length(pip_range)){
-  pip <- pip_range[index]
-  ctwas_genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>=pip]
-  sensitivity[index] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
-  specificity[index] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
-}
-
-plot(1-specificity, sensitivity, type="l", xlim=c(0,1), ylim=c(0,1))
-
-sig_thresh_range <- seq(from=0, to=max(abs(ctwas_gene_res$z)), length.out=length(pip_range))
-
-for (index in 1:length(sig_thresh_range)){
-  sig_thresh_plot <- sig_thresh_range[index]
-  twas_genes <- ctwas_gene_res$genename[abs(ctwas_gene_res$z)>=sig_thresh_plot]
-  sensitivity[index] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
-  specificity[index] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
-}
-
-lines(1-specificity, sensitivity, xlim=c(0,1), ylim=c(0,1), col="red", lty=2)
-
 ```

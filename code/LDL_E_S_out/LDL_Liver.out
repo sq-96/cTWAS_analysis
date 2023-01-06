@@ -1,0 +1,668 @@
+[1] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz"                                                                         
+[2] "/project2/mstephens/wcrouse/UKB_LDR_0.1"                                                                                                                  
+[3] "/project2/compbio/predictdb/mashr_models/mashr_Liver.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing.db"
+[4] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"                                                                                   
+[5] "LDL_Liver_expr"                                                                                                                                           
+[6] "LDL_Liver_ctwas"                                                                                                                                          
+[7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_E_S/Liver"                                                                                        
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Scientific Linux 7.4 (Nitrogen)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.14.6 ctwas_0.1.35     
+
+loaded via a namespace (and not attached):
+ [1] compiler_4.1.0   Matrix_1.3-3     tools_4.1.0      pgenlibr_0.3.2  
+ [5] Rcpp_1.0.9       logging_0.10-108 codetools_0.2-18 grid_4.1.0      
+ [9] iterators_1.0.14 foreach_1.5.2    lattice_0.20-44 
+                                                           id          z  type
+ENSG00000000457.13|mashr_Liver ENSG00000000457.13|mashr_Liver -0.6554591 Liver
+ENSG00000000938.12|mashr_Liver ENSG00000000938.12|mashr_Liver -0.4280734 Liver
+ENSG00000001460.17|mashr_Liver ENSG00000001460.17|mashr_Liver  0.1166162 Liver
+ENSG00000001461.16|mashr_Liver ENSG00000001461.16|mashr_Liver -0.5802834 Liver
+ENSG00000004455.16|mashr_Liver ENSG00000004455.16|mashr_Liver  0.2236535 Liver
+ENSG00000006555.10|mashr_Liver ENSG00000006555.10|mashr_Liver  3.3288593 Liver
+2022-12-17 02:36:45 INFO::ctwas started ...
+2022-12-17 02:37:51 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/4.1/ctwas/extdata/ldetect/EUR.b38.bed
+2022-12-17 02:38:07 INFO::No. LD regions: 1700
+2022-12-17 02:38:17 INFO::No. regions with at least one SNP/gene for chr1: 131
+2022-12-17 02:38:17 INFO::Merge regions for chr1
+2022-12-17 02:38:17 INFO::No. regions with at least one SNP/gene for chr1 after merging: 130
+2022-12-17 02:38:29 INFO::No. regions with at least one SNP/gene for chr2: 144
+2022-12-17 02:38:29 INFO::Merge regions for chr2
+2022-12-17 02:38:29 INFO::No. regions with at least one SNP/gene for chr2 after merging: 143
+2022-12-17 02:38:39 INFO::No. regions with at least one SNP/gene for chr3: 122
+2022-12-17 02:38:39 INFO::Merge regions for chr3
+2022-12-17 02:38:39 INFO::No. regions with at least one SNP/gene for chr3 after merging: 116
+2022-12-17 02:38:48 INFO::No. regions with at least one SNP/gene for chr4: 122
+2022-12-17 02:38:48 INFO::Merge regions for chr4
+2022-12-17 02:38:48 INFO::No. regions with at least one SNP/gene for chr4 after merging: 120
+2022-12-17 02:38:56 INFO::No. regions with at least one SNP/gene for chr5: 110
+2022-12-17 02:38:56 INFO::Merge regions for chr5
+2022-12-17 02:38:56 INFO::No. regions with at least one SNP/gene for chr5 after merging: 105
+2022-12-17 02:39:04 INFO::No. regions with at least one SNP/gene for chr6: 112
+2022-12-17 02:39:04 INFO::Merge regions for chr6
+2022-12-17 02:39:04 INFO::No. regions with at least one SNP/gene for chr6 after merging: 109
+2022-12-17 02:39:11 INFO::No. regions with at least one SNP/gene for chr7: 99
+2022-12-17 02:39:11 INFO::Merge regions for chr7
+2022-12-17 02:39:11 INFO::No. regions with at least one SNP/gene for chr7 after merging: 93
+2022-12-17 02:39:18 INFO::No. regions with at least one SNP/gene for chr8: 94
+2022-12-17 02:39:18 INFO::Merge regions for chr8
+2022-12-17 02:39:18 INFO::No. regions with at least one SNP/gene for chr8 after merging: 92
+2022-12-17 02:39:23 INFO::No. regions with at least one SNP/gene for chr9: 74
+2022-12-17 02:39:23 INFO::Merge regions for chr9
+2022-12-17 02:39:23 INFO::No. regions with at least one SNP/gene for chr9 after merging: 72
+2022-12-17 02:39:30 INFO::No. regions with at least one SNP/gene for chr10: 85
+2022-12-17 02:39:30 INFO::Merge regions for chr10
+2022-12-17 02:39:30 INFO::No. regions with at least one SNP/gene for chr10 after merging: 84
+2022-12-17 02:39:33 INFO::No. regions with at least one SNP/gene for chr11: 84
+2022-12-17 02:39:33 INFO::Merge regions for chr11
+2022-12-17 02:39:33 INFO::No. regions with at least one SNP/gene for chr11 after merging: 82
+2022-12-17 02:39:37 INFO::No. regions with at least one SNP/gene for chr12: 82
+2022-12-17 02:39:37 INFO::Merge regions for chr12
+2022-12-17 02:39:37 INFO::No. regions with at least one SNP/gene for chr12 after merging: 81
+2022-12-17 02:39:41 INFO::No. regions with at least one SNP/gene for chr13: 62
+2022-12-17 02:39:41 INFO::Merge regions for chr13
+2022-12-17 02:39:41 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2022-12-17 02:39:44 INFO::No. regions with at least one SNP/gene for chr14: 56
+2022-12-17 02:39:44 INFO::Merge regions for chr14
+2022-12-17 02:39:44 INFO::No. regions with at least one SNP/gene for chr14 after merging: 54
+2022-12-17 02:39:46 INFO::No. regions with at least one SNP/gene for chr15: 50
+2022-12-17 02:39:46 INFO::Merge regions for chr15
+2022-12-17 02:39:46 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2022-12-17 02:39:49 INFO::No. regions with at least one SNP/gene for chr16: 54
+2022-12-17 02:39:49 INFO::Merge regions for chr16
+2022-12-17 02:39:49 INFO::No. regions with at least one SNP/gene for chr16 after merging: 51
+2022-12-17 02:39:51 INFO::No. regions with at least one SNP/gene for chr17: 47
+2022-12-17 02:39:51 INFO::Merge regions for chr17
+2022-12-17 02:39:51 INFO::No. regions with at least one SNP/gene for chr17 after merging: 44
+2022-12-17 02:39:54 INFO::No. regions with at least one SNP/gene for chr18: 47
+2022-12-17 02:39:54 INFO::Merge regions for chr18
+2022-12-17 02:39:54 INFO::No. regions with at least one SNP/gene for chr18 after merging: 46
+2022-12-17 02:39:57 INFO::No. regions with at least one SNP/gene for chr19: 39
+2022-12-17 02:39:57 INFO::Merge regions for chr19
+2022-12-17 02:39:57 INFO::No. regions with at least one SNP/gene for chr19 after merging: 38
+2022-12-17 02:39:58 INFO::No. regions with at least one SNP/gene for chr20: 38
+2022-12-17 02:39:58 INFO::Merge regions for chr20
+2022-12-17 02:39:58 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2022-12-17 02:40:00 INFO::No. regions with at least one SNP/gene for chr21: 24
+2022-12-17 02:40:00 INFO::Merge regions for chr21
+2022-12-17 02:40:00 INFO::No. regions with at least one SNP/gene for chr21 after merging: 23
+2022-12-17 02:40:03 INFO::No. regions with at least one SNP/gene for chr22: 24
+2022-12-17 02:40:03 INFO::Merge regions for chr22
+2022-12-17 02:40:03 INFO::No. regions with at least one SNP/gene for chr22 after merging: 22
+2022-12-17 02:40:03 INFO::Trim regions with SNPs more than Inf
+2022-12-17 02:40:03 INFO::Adding R matrix info, as genotype is not given
+2022-12-17 02:40:04 INFO::Adding R matrix info for chrom 1
+2022-12-17 02:56:47 INFO::Adding R matrix info for chrom 2
+2022-12-17 03:12:06 INFO::Adding R matrix info for chrom 3
+2022-12-17 03:25:54 INFO::Adding R matrix info for chrom 4
+2022-12-17 03:37:15 INFO::Adding R matrix info for chrom 5
+2022-12-17 03:49:11 INFO::Adding R matrix info for chrom 6
+2022-12-17 04:05:01 INFO::Adding R matrix info for chrom 7
+2022-12-17 04:17:11 INFO::Adding R matrix info for chrom 8
+2022-12-17 04:26:32 INFO::Adding R matrix info for chrom 9
+2022-12-17 04:34:58 INFO::Adding R matrix info for chrom 10
+2022-12-17 04:44:43 INFO::Adding R matrix info for chrom 11
+2022-12-17 04:56:18 INFO::Adding R matrix info for chrom 12
+2022-12-17 05:06:46 INFO::Adding R matrix info for chrom 13
+2022-12-17 05:12:33 INFO::Adding R matrix info for chrom 14
+2022-12-17 05:20:43 INFO::Adding R matrix info for chrom 15
+2022-12-17 05:26:06 INFO::Adding R matrix info for chrom 16
+2022-12-17 05:34:28 INFO::Adding R matrix info for chrom 17
+2022-12-17 05:44:40 INFO::Adding R matrix info for chrom 18
+2022-12-17 05:49:29 INFO::Adding R matrix info for chrom 19
+2022-12-17 05:59:27 INFO::Adding R matrix info for chrom 20
+2022-12-17 06:04:28 INFO::Adding R matrix info for chrom 21
+2022-12-17 06:07:01 INFO::Adding R matrix info for chrom 22
+2022-12-17 06:11:52 INFO::Run susie iteratively, getting rough estimate ...
+2022-12-17 06:11:52 INFO::run iteration 1
+starting worker pid=53831 on localhost:11201 at 06:11:54.235
+starting worker pid=53830 on localhost:11201 at 06:11:54.235
+starting worker pid=53823 on localhost:11201 at 06:11:54.236
+starting worker pid=53829 on localhost:11201 at 06:11:54.236
+starting worker pid=53826 on localhost:11201 at 06:11:54.236
+starting worker pid=53824 on localhost:11201 at 06:11:54.236
+starting worker pid=53822 on localhost:11201 at 06:11:54.236
+starting worker pid=53825 on localhost:11201 at 06:11:54.237
+starting worker pid=53827 on localhost:11201 at 06:11:54.238
+starting worker pid=53828 on localhost:11201 at 06:11:54.245
+2022-12-17 06:32:11 INFO::After iteration 1, priors {SNP,Liver,Liver_Splicing}: {0.00178879305994087,0.00441078524249019,0.00235198322391031}
+2022-12-17 06:32:11 INFO::run iteration 2
+starting worker pid=55218 on localhost:11201 at 06:32:12.501
+starting worker pid=55209 on localhost:11201 at 06:32:12.501
+starting worker pid=55214 on localhost:11201 at 06:32:12.502
+starting worker pid=55215 on localhost:11201 at 06:32:12.502
+starting worker pid=55212 on localhost:11201 at 06:32:12.502
+starting worker pid=55213 on localhost:11201 at 06:32:12.502
+starting worker pid=55217 on localhost:11201 at 06:32:12.503
+starting worker pid=55210 on localhost:11201 at 06:32:12.503
+starting worker pid=55216 on localhost:11201 at 06:32:12.503
+starting worker pid=55211 on localhost:11201 at 06:32:12.503
+2022-12-17 06:52:29 INFO::After iteration 2, priors {SNP,Liver,Liver_Splicing}: {0.00145981561988852,0.00532672393682838,0.00233409633417535}
+2022-12-17 06:52:29 INFO::run iteration 3
+starting worker pid=56600 on localhost:11201 at 06:52:30.828
+starting worker pid=56603 on localhost:11201 at 06:52:30.828
+starting worker pid=56607 on localhost:11201 at 06:52:30.829
+starting worker pid=56608 on localhost:11201 at 06:52:30.828
+starting worker pid=56601 on localhost:11201 at 06:52:30.829
+starting worker pid=56605 on localhost:11201 at 06:52:30.829
+starting worker pid=56606 on localhost:11201 at 06:52:30.829
+starting worker pid=56602 on localhost:11201 at 06:52:30.829
+starting worker pid=56604 on localhost:11201 at 06:52:30.829
+starting worker pid=56609 on localhost:11201 at 06:52:30.829
+2022-12-17 07:12:42 INFO::After iteration 3, priors {SNP,Liver,Liver_Splicing}: {0.00128983937286541,0.00615630332277742,0.00247203498522257}
+2022-12-17 07:31:54 INFO::Blocks are filtered: 1061 blocks left
+2022-12-17 07:31:54 INFO::Run susie iteratively, getting accurate estimate ...
+2022-12-17 07:31:54 INFO::run iteration 1
+starting worker pid=2243 on localhost:11201 at 07:31:56.019
+starting worker pid=2250 on localhost:11201 at 07:31:56.019
+starting worker pid=2248 on localhost:11201 at 07:31:56.019
+starting worker pid=2247 on localhost:11201 at 07:31:56.019
+starting worker pid=2252 on localhost:11201 at 07:31:56.019
+starting worker pid=2249 on localhost:11201 at 07:31:56.019
+starting worker pid=2244 on localhost:11201 at 07:31:56.019
+starting worker pid=2245 on localhost:11201 at 07:31:56.019
+starting worker pid=2251 on localhost:11201 at 07:31:56.019
+starting worker pid=2246 on localhost:11201 at 07:31:56.019
+2022-12-17 07:46:25 INFO::After iteration 1, priors {SNP,Liver,Liver_Splicing}: {0.00122801439247856,0.00661142980141038,0.00333756619896645}
+2022-12-17 07:46:25 INFO::run iteration 2
+starting worker pid=3339 on localhost:11201 at 07:46:26.352
+starting worker pid=3340 on localhost:11201 at 07:46:26.352
+starting worker pid=3337 on localhost:11201 at 07:46:26.362
+starting worker pid=3342 on localhost:11201 at 07:46:26.365
+starting worker pid=3336 on localhost:11201 at 07:46:26.374
+starting worker pid=3333 on localhost:11201 at 07:46:26.378
+starting worker pid=3334 on localhost:11201 at 07:46:26.382
+starting worker pid=3341 on localhost:11201 at 07:46:26.385
+starting worker pid=3338 on localhost:11201 at 07:46:26.420
+starting worker pid=3335 on localhost:11201 at 07:46:26.428
+2022-12-17 08:00:48 INFO::After iteration 2, priors {SNP,Liver,Liver_Splicing}: {0.00121773654800159,0.00724397802150412,0.00393509407868634}
+2022-12-17 08:00:48 INFO::run iteration 3
+starting worker pid=4303 on localhost:11201 at 08:00:49.266
+starting worker pid=4309 on localhost:11201 at 08:00:49.266
+starting worker pid=4308 on localhost:11201 at 08:00:49.268
+starting worker pid=4306 on localhost:11201 at 08:00:49.268
+starting worker pid=4310 on localhost:11201 at 08:00:49.268
+starting worker pid=4305 on localhost:11201 at 08:00:49.268
+starting worker pid=4307 on localhost:11201 at 08:00:49.268
+starting worker pid=4302 on localhost:11201 at 08:00:49.268
+starting worker pid=4311 on localhost:11201 at 08:00:49.269
+starting worker pid=4304 on localhost:11201 at 08:00:49.269
+2022-12-17 08:15:19 INFO::After iteration 3, priors {SNP,Liver,Liver_Splicing}: {0.00121516826095377,0.00775896138167161,0.00438685587286967}
+2022-12-17 08:15:19 INFO::run iteration 4
+starting worker pid=5476 on localhost:11201 at 08:15:20.359
+starting worker pid=5475 on localhost:11201 at 08:15:20.359
+starting worker pid=5474 on localhost:11201 at 08:15:20.359
+starting worker pid=5470 on localhost:11201 at 08:15:20.359
+starting worker pid=5468 on localhost:11201 at 08:15:20.359
+starting worker pid=5469 on localhost:11201 at 08:15:20.360
+starting worker pid=5472 on localhost:11201 at 08:15:20.360
+starting worker pid=5477 on localhost:11201 at 08:15:20.360
+starting worker pid=5473 on localhost:11201 at 08:15:20.360
+starting worker pid=5471 on localhost:11201 at 08:15:20.361
+2022-12-17 08:29:38 INFO::After iteration 4, priors {SNP,Liver,Liver_Splicing}: {0.00121348824035771,0.00817253985629967,0.00476227176245474}
+2022-12-17 08:29:39 INFO::run iteration 5
+starting worker pid=6518 on localhost:11201 at 08:29:39.814
+starting worker pid=6526 on localhost:11201 at 08:29:39.814
+starting worker pid=6523 on localhost:11201 at 08:29:39.814
+starting worker pid=6519 on localhost:11201 at 08:29:39.814
+starting worker pid=6521 on localhost:11201 at 08:29:39.814
+starting worker pid=6522 on localhost:11201 at 08:29:39.814
+starting worker pid=6517 on localhost:11201 at 08:29:39.815
+starting worker pid=6524 on localhost:11201 at 08:29:39.815
+starting worker pid=6525 on localhost:11201 at 08:29:39.816
+starting worker pid=6520 on localhost:11201 at 08:29:39.816
+2022-12-17 08:44:00 INFO::After iteration 5, priors {SNP,Liver,Liver_Splicing}: {0.00121149446752617,0.00849609596043329,0.00508747600143412}
+2022-12-17 08:44:00 INFO::run iteration 6
+starting worker pid=7584 on localhost:11201 at 08:44:01.264
+starting worker pid=7586 on localhost:11201 at 08:44:01.265
+starting worker pid=7585 on localhost:11201 at 08:44:01.266
+starting worker pid=7583 on localhost:11201 at 08:44:01.267
+starting worker pid=7591 on localhost:11201 at 08:44:01.268
+starting worker pid=7588 on localhost:11201 at 08:44:01.268
+starting worker pid=7590 on localhost:11201 at 08:44:01.268
+starting worker pid=7582 on localhost:11201 at 08:44:01.268
+starting worker pid=7589 on localhost:11201 at 08:44:01.284
+starting worker pid=7587 on localhost:11201 at 08:44:01.301
+2022-12-17 08:58:24 INFO::After iteration 6, priors {SNP,Liver,Liver_Splicing}: {0.00120906388889836,0.00874393942723036,0.00537404973669447}
+2022-12-17 08:58:25 INFO::run iteration 7
+starting worker pid=8625 on localhost:11201 at 08:58:26.028
+starting worker pid=8629 on localhost:11201 at 08:58:26.028
+starting worker pid=8633 on localhost:11201 at 08:58:26.028
+starting worker pid=8632 on localhost:11201 at 08:58:26.028
+starting worker pid=8627 on localhost:11201 at 08:58:26.028
+starting worker pid=8624 on localhost:11201 at 08:58:26.028
+starting worker pid=8631 on localhost:11201 at 08:58:26.028
+starting worker pid=8630 on localhost:11201 at 08:58:26.029
+starting worker pid=8626 on localhost:11201 at 08:58:26.029
+starting worker pid=8628 on localhost:11201 at 08:58:26.029
+2022-12-17 09:12:52 INFO::After iteration 7, priors {SNP,Liver,Liver_Splicing}: {0.001206259208055,0.00893033730729778,0.00562849159147241}
+2022-12-17 09:12:52 INFO::run iteration 8
+starting worker pid=9696 on localhost:11201 at 09:12:53.668
+starting worker pid=9693 on localhost:11201 at 09:12:53.668
+starting worker pid=9698 on localhost:11201 at 09:12:53.668
+starting worker pid=9699 on localhost:11201 at 09:12:53.668
+starting worker pid=9694 on localhost:11201 at 09:12:53.668
+starting worker pid=9697 on localhost:11201 at 09:12:53.668
+starting worker pid=9692 on localhost:11201 at 09:12:53.668
+starting worker pid=9700 on localhost:11201 at 09:12:53.668
+starting worker pid=9701 on localhost:11201 at 09:12:53.668
+starting worker pid=9695 on localhost:11201 at 09:12:53.668
+2022-12-17 09:27:28 INFO::After iteration 8, priors {SNP,Liver,Liver_Splicing}: {0.00120315801118607,0.00906789031861166,0.00585530250770209}
+2022-12-17 09:27:28 INFO::run iteration 9
+starting worker pid=10767 on localhost:11201 at 09:27:29.608
+starting worker pid=10766 on localhost:11201 at 09:27:29.608
+starting worker pid=10762 on localhost:11201 at 09:27:29.608
+starting worker pid=10763 on localhost:11201 at 09:27:29.608
+starting worker pid=10759 on localhost:11201 at 09:27:29.608
+starting worker pid=10760 on localhost:11201 at 09:27:29.608
+starting worker pid=10761 on localhost:11201 at 09:27:29.608
+starting worker pid=10764 on localhost:11201 at 09:27:29.608
+starting worker pid=10768 on localhost:11201 at 09:27:29.608
+starting worker pid=10765 on localhost:11201 at 09:27:29.609
+2022-12-17 09:42:03 INFO::After iteration 9, priors {SNP,Liver,Liver_Splicing}: {0.00119983464360669,0.00916717648445984,0.00605816402493642}
+2022-12-17 09:42:03 INFO::run iteration 10
+starting worker pid=11819 on localhost:11201 at 09:42:04.541
+starting worker pid=11824 on localhost:11201 at 09:42:04.541
+starting worker pid=11816 on localhost:11201 at 09:42:04.541
+starting worker pid=11817 on localhost:11201 at 09:42:04.541
+starting worker pid=11821 on localhost:11201 at 09:42:04.541
+starting worker pid=11823 on localhost:11201 at 09:42:04.541
+starting worker pid=11818 on localhost:11201 at 09:42:04.541
+starting worker pid=11822 on localhost:11201 at 09:42:04.541
+starting worker pid=11815 on localhost:11201 at 09:42:04.541
+starting worker pid=11820 on localhost:11201 at 09:42:04.542
+2022-12-17 09:56:34 INFO::After iteration 10, priors {SNP,Liver,Liver_Splicing}: {0.001196349219217,0.00923682796684591,0.00624013942090629}
+2022-12-17 09:56:34 INFO::run iteration 11
+starting worker pid=12888 on localhost:11201 at 09:56:35.140
+starting worker pid=12891 on localhost:11201 at 09:56:35.140
+starting worker pid=12886 on localhost:11201 at 09:56:35.141
+starting worker pid=12885 on localhost:11201 at 09:56:35.141
+starting worker pid=12882 on localhost:11201 at 09:56:35.150
+starting worker pid=12889 on localhost:11201 at 09:56:35.152
+starting worker pid=12884 on localhost:11201 at 09:56:35.165
+starting worker pid=12890 on localhost:11201 at 09:56:35.178
+starting worker pid=12887 on localhost:11201 at 09:56:35.190
+starting worker pid=12883 on localhost:11201 at 09:56:35.225
+2022-12-17 10:11:10 INFO::After iteration 11, priors {SNP,Liver,Liver_Splicing}: {0.00119275012804784,0.00928379140303877,0.00640382579701003}
+2022-12-17 10:11:10 INFO::run iteration 12
+starting worker pid=13939 on localhost:11201 at 10:11:11.534
+starting worker pid=13932 on localhost:11201 at 10:11:11.534
+starting worker pid=13941 on localhost:11201 at 10:11:11.534
+starting worker pid=13934 on localhost:11201 at 10:11:11.535
+starting worker pid=13933 on localhost:11201 at 10:11:11.535
+starting worker pid=13938 on localhost:11201 at 10:11:11.535
+starting worker pid=13936 on localhost:11201 at 10:11:11.535
+starting worker pid=13935 on localhost:11201 at 10:11:11.536
+starting worker pid=13940 on localhost:11201 at 10:11:11.536
+starting worker pid=13937 on localhost:11201 at 10:11:11.549
+2022-12-17 10:25:46 INFO::After iteration 12, priors {SNP,Liver,Liver_Splicing}: {0.00118907649466599,0.00931359874261711,0.00655144223530217}
+2022-12-17 10:25:47 INFO::run iteration 13
+starting worker pid=14912 on localhost:11201 at 10:25:47.730
+starting worker pid=14908 on localhost:11201 at 10:25:47.731
+starting worker pid=14909 on localhost:11201 at 10:25:47.731
+starting worker pid=14906 on localhost:11201 at 10:25:47.731
+starting worker pid=14910 on localhost:11201 at 10:25:47.731
+starting worker pid=14913 on localhost:11201 at 10:25:47.731
+starting worker pid=14911 on localhost:11201 at 10:25:47.732
+starting worker pid=14905 on localhost:11201 at 10:25:47.732
+starting worker pid=14914 on localhost:11201 at 10:25:47.737
+starting worker pid=14907 on localhost:11201 at 10:25:47.744
+2022-12-17 10:40:21 INFO::After iteration 13, priors {SNP,Liver,Liver_Splicing}: {0.00118536017222727,0.00933061838774984,0.00668489439865862}
+2022-12-17 10:40:21 INFO::run iteration 14
+starting worker pid=15948 on localhost:11201 at 10:40:22.232
+starting worker pid=15956 on localhost:11201 at 10:40:22.232
+starting worker pid=15953 on localhost:11201 at 10:40:22.232
+starting worker pid=15954 on localhost:11201 at 10:40:22.232
+starting worker pid=15951 on localhost:11201 at 10:40:22.232
+starting worker pid=15952 on localhost:11201 at 10:40:22.232
+starting worker pid=15955 on localhost:11201 at 10:40:22.232
+starting worker pid=15950 on localhost:11201 at 10:40:22.232
+starting worker pid=15949 on localhost:11201 at 10:40:22.232
+starting worker pid=15947 on localhost:11201 at 10:40:22.233
+2022-12-17 10:54:53 INFO::After iteration 14, priors {SNP,Liver,Liver_Splicing}: {0.00118162712532585,0.00933826701548318,0.00680581723314207}
+2022-12-17 10:54:53 INFO::run iteration 15
+starting worker pid=16995 on localhost:11201 at 10:54:54.581
+starting worker pid=17000 on localhost:11201 at 10:54:54.581
+starting worker pid=16993 on localhost:11201 at 10:54:54.581
+starting worker pid=16992 on localhost:11201 at 10:54:54.581
+starting worker pid=16999 on localhost:11201 at 10:54:54.581
+starting worker pid=16996 on localhost:11201 at 10:54:54.581
+starting worker pid=16991 on localhost:11201 at 10:54:54.581
+starting worker pid=16997 on localhost:11201 at 10:54:54.581
+starting worker pid=16994 on localhost:11201 at 10:54:54.581
+starting worker pid=16998 on localhost:11201 at 10:54:54.581
+2022-12-17 11:09:21 INFO::After iteration 15, priors {SNP,Liver,Liver_Splicing}: {0.00117789865176144,0.00933919927719155,0.00691562491909021}
+2022-12-17 11:09:22 INFO::run iteration 16
+starting worker pid=18037 on localhost:11201 at 11:09:22.830
+starting worker pid=18038 on localhost:11201 at 11:09:22.830
+starting worker pid=18032 on localhost:11201 at 11:09:22.831
+starting worker pid=18030 on localhost:11201 at 11:09:22.835
+starting worker pid=18031 on localhost:11201 at 11:09:22.838
+starting worker pid=18034 on localhost:11201 at 11:09:22.838
+starting worker pid=18035 on localhost:11201 at 11:09:22.840
+starting worker pid=18029 on localhost:11201 at 11:09:22.842
+starting worker pid=18036 on localhost:11201 at 11:09:22.845
+starting worker pid=18033 on localhost:11201 at 11:09:22.862
+2022-12-17 11:23:48 INFO::After iteration 16, priors {SNP,Liver,Liver_Splicing}: {0.00117419239591031,0.0093354699230464,0.00701556051522491}
+2022-12-17 11:23:49 INFO::run iteration 17
+starting worker pid=19112 on localhost:11201 at 11:23:49.683
+starting worker pid=19110 on localhost:11201 at 11:23:49.683
+starting worker pid=19116 on localhost:11201 at 11:23:49.684
+starting worker pid=19114 on localhost:11201 at 11:23:49.684
+starting worker pid=19115 on localhost:11201 at 11:23:49.684
+starting worker pid=19111 on localhost:11201 at 11:23:49.684
+starting worker pid=19108 on localhost:11201 at 11:23:49.686
+starting worker pid=19109 on localhost:11201 at 11:23:49.688
+starting worker pid=19113 on localhost:11201 at 11:23:49.688
+starting worker pid=19117 on localhost:11201 at 11:23:49.701
+2022-12-17 11:38:13 INFO::After iteration 17, priors {SNP,Liver,Liver_Splicing}: {0.00117052162411499,0.00932842629405082,0.00710667608201855}
+2022-12-17 11:38:13 INFO::run iteration 18
+starting worker pid=20142 on localhost:11201 at 11:38:14.431
+starting worker pid=20150 on localhost:11201 at 11:38:14.431
+starting worker pid=20146 on localhost:11201 at 11:38:14.432
+starting worker pid=20151 on localhost:11201 at 11:38:14.432
+starting worker pid=20147 on localhost:11201 at 11:38:14.432
+starting worker pid=20145 on localhost:11201 at 11:38:14.432
+starting worker pid=20149 on localhost:11201 at 11:38:14.432
+starting worker pid=20143 on localhost:11201 at 11:38:14.432
+starting worker pid=20144 on localhost:11201 at 11:38:14.432
+starting worker pid=20148 on localhost:11201 at 11:38:14.433
+2022-12-17 11:52:39 INFO::After iteration 18, priors {SNP,Liver,Liver_Splicing}: {0.00116689800371904,0.00931923187867885,0.00718991581040745}
+2022-12-17 11:52:40 INFO::run iteration 19
+starting worker pid=21178 on localhost:11201 at 11:52:41.010
+starting worker pid=21182 on localhost:11201 at 11:52:41.010
+starting worker pid=21179 on localhost:11201 at 11:52:41.010
+starting worker pid=21183 on localhost:11201 at 11:52:41.010
+starting worker pid=21185 on localhost:11201 at 11:52:41.010
+starting worker pid=21181 on localhost:11201 at 11:52:41.010
+starting worker pid=21184 on localhost:11201 at 11:52:41.010
+starting worker pid=21186 on localhost:11201 at 11:52:41.010
+starting worker pid=21180 on localhost:11201 at 11:52:41.010
+starting worker pid=21177 on localhost:11201 at 11:52:41.011
+2022-12-17 12:07:12 INFO::After iteration 19, priors {SNP,Liver,Liver_Splicing}: {0.00116333119985368,0.00930884342956128,0.00726612070205483}
+2022-12-17 12:07:13 INFO::run iteration 20
+starting worker pid=22633 on localhost:11201 at 12:07:14.422
+starting worker pid=22640 on localhost:11201 at 12:07:14.422
+starting worker pid=22639 on localhost:11201 at 12:07:14.423
+starting worker pid=22635 on localhost:11201 at 12:07:14.423
+starting worker pid=22638 on localhost:11201 at 12:07:14.423
+starting worker pid=22637 on localhost:11201 at 12:07:14.423
+starting worker pid=22641 on localhost:11201 at 12:07:14.423
+starting worker pid=22636 on localhost:11201 at 12:07:14.423
+starting worker pid=22632 on localhost:11201 at 12:07:14.423
+starting worker pid=22634 on localhost:11201 at 12:07:14.424
+2022-12-17 12:21:51 INFO::After iteration 20, priors {SNP,Liver,Liver_Splicing}: {0.00115982858591074,0.00929794238611075,0.007336025179299}
+2022-12-17 12:21:51 INFO::run iteration 21
+starting worker pid=23679 on localhost:11201 at 12:21:52.188
+starting worker pid=23687 on localhost:11201 at 12:21:52.188
+starting worker pid=23685 on localhost:11201 at 12:21:52.188
+starting worker pid=23684 on localhost:11201 at 12:21:52.188
+starting worker pid=23688 on localhost:11201 at 12:21:52.189
+starting worker pid=23686 on localhost:11201 at 12:21:52.189
+starting worker pid=23680 on localhost:11201 at 12:21:52.190
+starting worker pid=23681 on localhost:11201 at 12:21:52.191
+starting worker pid=23683 on localhost:11201 at 12:21:52.195
+starting worker pid=23682 on localhost:11201 at 12:21:52.242
+2022-12-17 12:36:23 INFO::After iteration 21, priors {SNP,Liver,Liver_Splicing}: {0.00115639107779571,0.00928697350674864,0.00740012006323817}
+2022-12-17 12:36:24 INFO::run iteration 22
+starting worker pid=24723 on localhost:11201 at 12:36:24.755
+starting worker pid=24720 on localhost:11201 at 12:36:24.755
+starting worker pid=24722 on localhost:11201 at 12:36:24.755
+starting worker pid=24725 on localhost:11201 at 12:36:24.756
+starting worker pid=24726 on localhost:11201 at 12:36:24.756
+starting worker pid=24721 on localhost:11201 at 12:36:24.758
+starting worker pid=24718 on localhost:11201 at 12:36:24.758
+starting worker pid=24724 on localhost:11201 at 12:36:24.760
+starting worker pid=24719 on localhost:11201 at 12:36:24.761
+starting worker pid=24727 on localhost:11201 at 12:36:24.768
+2022-12-17 12:51:00 INFO::After iteration 22, priors {SNP,Liver,Liver_Splicing}: {0.001153025413745,0.00927634194266176,0.00745902239726766}
+2022-12-17 12:51:01 INFO::run iteration 23
+starting worker pid=25780 on localhost:11201 at 12:51:01.973
+starting worker pid=25788 on localhost:11201 at 12:51:01.973
+starting worker pid=25786 on localhost:11201 at 12:51:01.974
+starting worker pid=25783 on localhost:11201 at 12:51:01.974
+starting worker pid=25787 on localhost:11201 at 12:51:01.974
+starting worker pid=25779 on localhost:11201 at 12:51:01.974
+starting worker pid=25784 on localhost:11201 at 12:51:01.974
+starting worker pid=25785 on localhost:11201 at 12:51:01.974
+starting worker pid=25782 on localhost:11201 at 12:51:01.975
+starting worker pid=25781 on localhost:11201 at 12:51:01.991
+2022-12-17 13:05:32 INFO::After iteration 23, priors {SNP,Liver,Liver_Splicing}: {0.0011497368116197,0.00926632419937833,0.00751327559666543}
+2022-12-17 13:05:32 INFO::run iteration 24
+starting worker pid=26754 on localhost:11201 at 13:05:33.537
+starting worker pid=26757 on localhost:11201 at 13:05:33.537
+starting worker pid=26758 on localhost:11201 at 13:05:33.537
+starting worker pid=26756 on localhost:11201 at 13:05:33.537
+starting worker pid=26750 on localhost:11201 at 13:05:33.537
+starting worker pid=26751 on localhost:11201 at 13:05:33.537
+starting worker pid=26753 on localhost:11201 at 13:05:33.537
+starting worker pid=26755 on localhost:11201 at 13:05:33.537
+starting worker pid=26752 on localhost:11201 at 13:05:33.538
+starting worker pid=26759 on localhost:11201 at 13:05:33.538
+2022-12-17 13:20:00 INFO::After iteration 24, priors {SNP,Liver,Liver_Splicing}: {0.00114652923072974,0.00925709564746103,0.00756335686250165}
+2022-12-17 13:20:01 INFO::run iteration 25
+starting worker pid=27803 on localhost:11201 at 13:20:01.814
+starting worker pid=27801 on localhost:11201 at 13:20:01.814
+starting worker pid=27794 on localhost:11201 at 13:20:01.814
+starting worker pid=27802 on localhost:11201 at 13:20:01.814
+starting worker pid=27799 on localhost:11201 at 13:20:01.814
+starting worker pid=27800 on localhost:11201 at 13:20:01.814
+starting worker pid=27798 on localhost:11201 at 13:20:01.814
+starting worker pid=27796 on localhost:11201 at 13:20:01.814
+starting worker pid=27797 on localhost:11201 at 13:20:01.814
+starting worker pid=27795 on localhost:11201 at 13:20:01.815
+2022-12-17 13:34:30 INFO::After iteration 25, priors {SNP,Liver,Liver_Splicing}: {0.00114340558771982,0.0092487561966111,0.00760968601305052}
+2022-12-17 13:34:30 INFO::run iteration 26
+starting worker pid=28861 on localhost:11201 at 13:34:31.221
+starting worker pid=28862 on localhost:11201 at 13:34:31.221
+starting worker pid=28860 on localhost:11201 at 13:34:31.221
+starting worker pid=28855 on localhost:11201 at 13:34:31.221
+starting worker pid=28854 on localhost:11201 at 13:34:31.221
+starting worker pid=28858 on localhost:11201 at 13:34:31.221
+starting worker pid=28859 on localhost:11201 at 13:34:31.221
+starting worker pid=28853 on localhost:11201 at 13:34:31.221
+starting worker pid=28857 on localhost:11201 at 13:34:31.221
+starting worker pid=28856 on localhost:11201 at 13:34:31.221
+2022-12-17 13:48:59 INFO::After iteration 26, priors {SNP,Liver,Liver_Splicing}: {0.00114036792281014,0.0092413504469344,0.00765263309440578}
+2022-12-17 13:49:00 INFO::run iteration 27
+starting worker pid=29903 on localhost:11201 at 13:49:01.049
+starting worker pid=29897 on localhost:11201 at 13:49:01.049
+starting worker pid=29905 on localhost:11201 at 13:49:01.049
+starting worker pid=29899 on localhost:11201 at 13:49:01.049
+starting worker pid=29900 on localhost:11201 at 13:49:01.049
+starting worker pid=29902 on localhost:11201 at 13:49:01.049
+starting worker pid=29904 on localhost:11201 at 13:49:01.049
+starting worker pid=29896 on localhost:11201 at 13:49:01.049
+starting worker pid=29898 on localhost:11201 at 13:49:01.049
+starting worker pid=29901 on localhost:11201 at 13:49:01.050
+2022-12-17 14:03:24 INFO::After iteration 27, priors {SNP,Liver,Liver_Splicing}: {0.00113741753715365,0.00923488321132805,0.00769252490535422}
+2022-12-17 14:03:24 INFO::run iteration 28
+starting worker pid=30932 on localhost:11201 at 14:03:25.235
+starting worker pid=30931 on localhost:11201 at 14:03:25.235
+starting worker pid=30928 on localhost:11201 at 14:03:25.235
+starting worker pid=30927 on localhost:11201 at 14:03:25.235
+starting worker pid=30935 on localhost:11201 at 14:03:25.235
+starting worker pid=30926 on localhost:11201 at 14:03:25.235
+starting worker pid=30933 on localhost:11201 at 14:03:25.235
+starting worker pid=30934 on localhost:11201 at 14:03:25.236
+starting worker pid=30930 on localhost:11201 at 14:03:25.236
+starting worker pid=30929 on localhost:11201 at 14:03:25.237
+2022-12-17 14:17:58 INFO::After iteration 28, priors {SNP,Liver,Liver_Splicing}: {0.00113455510862455,0.00922933138059505,0.00772965059090361}
+2022-12-17 14:17:59 INFO::run iteration 29
+starting worker pid=31969 on localhost:11201 at 14:17:59.858
+starting worker pid=31972 on localhost:11201 at 14:17:59.858
+starting worker pid=31971 on localhost:11201 at 14:17:59.858
+starting worker pid=31977 on localhost:11201 at 14:17:59.858
+starting worker pid=31975 on localhost:11201 at 14:17:59.858
+starting worker pid=31976 on localhost:11201 at 14:17:59.858
+starting worker pid=31973 on localhost:11201 at 14:17:59.859
+starting worker pid=31970 on localhost:11201 at 14:17:59.859
+starting worker pid=31968 on localhost:11201 at 14:17:59.859
+starting worker pid=31974 on localhost:11201 at 14:17:59.859
+2022-12-17 14:32:26 INFO::After iteration 29, priors {SNP,Liver,Liver_Splicing}: {0.00113178066249635,0.00922464320965106,0.00776425944623601}
+2022-12-17 14:32:27 INFO::run iteration 30
+starting worker pid=33036 on localhost:11201 at 14:32:27.974
+starting worker pid=33037 on localhost:11201 at 14:32:27.974
+starting worker pid=33035 on localhost:11201 at 14:32:27.974
+starting worker pid=33032 on localhost:11201 at 14:32:27.974
+starting worker pid=33040 on localhost:11201 at 14:32:27.974
+starting worker pid=33033 on localhost:11201 at 14:32:27.974
+starting worker pid=33039 on localhost:11201 at 14:32:27.975
+starting worker pid=33038 on localhost:11201 at 14:32:27.975
+starting worker pid=33034 on localhost:11201 at 14:32:27.975
+starting worker pid=33031 on localhost:11201 at 14:32:27.977
+2022-12-17 14:46:59 INFO::After iteration 30, priors {SNP,Liver,Liver_Splicing}: {0.00112909335534873,0.00922072288127136,0.00779654828604479}
+2022-12-17 14:46:59 INFO::Run susie for all regions.
+2022-12-17 14:47:00 INFO::run iteration 1
+starting worker pid=34077 on localhost:11201 at 14:47:00.785
+starting worker pid=34080 on localhost:11201 at 14:47:00.786
+starting worker pid=34078 on localhost:11201 at 14:47:00.786
+starting worker pid=34083 on localhost:11201 at 14:47:00.786
+starting worker pid=34086 on localhost:11201 at 14:47:00.786
+starting worker pid=34079 on localhost:11201 at 14:47:00.786
+starting worker pid=34081 on localhost:11201 at 14:47:00.787
+starting worker pid=34082 on localhost:11201 at 14:47:00.787
+starting worker pid=34085 on localhost:11201 at 14:47:00.787
+starting worker pid=34084 on localhost:11201 at 14:47:00.787
+2022-12-17 15:07:35 INFO::After iteration 1, priors {SNP,Liver,Liver_Splicing}: {0.00472175147105184,0.0273360087576676,0.0251544112975102}
+2022-12-17 15:07:36 INFO::No. LD regions: 1700
+2022-12-17 15:07:42 INFO::No. regions with at least one SNP/gene for chr1: 131
+2022-12-17 15:07:42 INFO::Merge regions for chr1
+2022-12-17 15:07:42 INFO::No. regions with at least one SNP/gene for chr1 after merging: 130
+2022-12-17 15:07:50 INFO::No. regions with at least one SNP/gene for chr2: 144
+2022-12-17 15:07:50 INFO::Merge regions for chr2
+2022-12-17 15:07:50 INFO::No. regions with at least one SNP/gene for chr2 after merging: 143
+2022-12-17 15:07:56 INFO::No. regions with at least one SNP/gene for chr3: 122
+2022-12-17 15:07:56 INFO::Merge regions for chr3
+2022-12-17 15:07:56 INFO::No. regions with at least one SNP/gene for chr3 after merging: 116
+2022-12-17 15:08:02 INFO::No. regions with at least one SNP/gene for chr4: 122
+2022-12-17 15:08:02 INFO::Merge regions for chr4
+2022-12-17 15:08:02 INFO::No. regions with at least one SNP/gene for chr4 after merging: 120
+2022-12-17 15:08:07 INFO::No. regions with at least one SNP/gene for chr5: 110
+2022-12-17 15:08:07 INFO::Merge regions for chr5
+2022-12-17 15:08:07 INFO::No. regions with at least one SNP/gene for chr5 after merging: 105
+2022-12-17 15:08:13 INFO::No. regions with at least one SNP/gene for chr6: 112
+2022-12-17 15:08:13 INFO::Merge regions for chr6
+2022-12-17 15:08:13 INFO::No. regions with at least one SNP/gene for chr6 after merging: 109
+2022-12-17 15:08:16 INFO::No. regions with at least one SNP/gene for chr7: 99
+2022-12-17 15:08:16 INFO::Merge regions for chr7
+2022-12-17 15:08:16 INFO::No. regions with at least one SNP/gene for chr7 after merging: 93
+2022-12-17 15:08:22 INFO::No. regions with at least one SNP/gene for chr8: 94
+2022-12-17 15:08:22 INFO::Merge regions for chr8
+2022-12-17 15:08:22 INFO::No. regions with at least one SNP/gene for chr8 after merging: 92
+2022-12-17 15:08:25 INFO::No. regions with at least one SNP/gene for chr9: 74
+2022-12-17 15:08:25 INFO::Merge regions for chr9
+2022-12-17 15:08:25 INFO::No. regions with at least one SNP/gene for chr9 after merging: 72
+2022-12-17 15:08:29 INFO::No. regions with at least one SNP/gene for chr10: 85
+2022-12-17 15:08:29 INFO::Merge regions for chr10
+2022-12-17 15:08:29 INFO::No. regions with at least one SNP/gene for chr10 after merging: 84
+2022-12-17 15:08:32 INFO::No. regions with at least one SNP/gene for chr11: 84
+2022-12-17 15:08:32 INFO::Merge regions for chr11
+2022-12-17 15:08:32 INFO::No. regions with at least one SNP/gene for chr11 after merging: 82
+2022-12-17 15:08:36 INFO::No. regions with at least one SNP/gene for chr12: 82
+2022-12-17 15:08:36 INFO::Merge regions for chr12
+2022-12-17 15:08:36 INFO::No. regions with at least one SNP/gene for chr12 after merging: 81
+2022-12-17 15:08:39 INFO::No. regions with at least one SNP/gene for chr13: 62
+2022-12-17 15:08:39 INFO::Merge regions for chr13
+2022-12-17 15:08:39 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2022-12-17 15:08:41 INFO::No. regions with at least one SNP/gene for chr14: 56
+2022-12-17 15:08:41 INFO::Merge regions for chr14
+2022-12-17 15:08:41 INFO::No. regions with at least one SNP/gene for chr14 after merging: 54
+2022-12-17 15:08:44 INFO::No. regions with at least one SNP/gene for chr15: 50
+2022-12-17 15:08:44 INFO::Merge regions for chr15
+2022-12-17 15:08:44 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2022-12-17 15:08:47 INFO::No. regions with at least one SNP/gene for chr16: 54
+2022-12-17 15:08:47 INFO::Merge regions for chr16
+2022-12-17 15:08:47 INFO::No. regions with at least one SNP/gene for chr16 after merging: 51
+2022-12-17 15:08:49 INFO::No. regions with at least one SNP/gene for chr17: 47
+2022-12-17 15:08:49 INFO::Merge regions for chr17
+2022-12-17 15:08:49 INFO::No. regions with at least one SNP/gene for chr17 after merging: 44
+2022-12-17 15:08:52 INFO::No. regions with at least one SNP/gene for chr18: 47
+2022-12-17 15:08:52 INFO::Merge regions for chr18
+2022-12-17 15:08:52 INFO::No. regions with at least one SNP/gene for chr18 after merging: 46
+2022-12-17 15:08:54 INFO::No. regions with at least one SNP/gene for chr19: 39
+2022-12-17 15:08:54 INFO::Merge regions for chr19
+2022-12-17 15:08:54 INFO::No. regions with at least one SNP/gene for chr19 after merging: 38
+2022-12-17 15:08:57 INFO::No. regions with at least one SNP/gene for chr20: 38
+2022-12-17 15:08:57 INFO::Merge regions for chr20
+2022-12-17 15:08:57 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2022-12-17 15:08:59 INFO::No. regions with at least one SNP/gene for chr21: 24
+2022-12-17 15:08:59 INFO::Merge regions for chr21
+2022-12-17 15:08:59 INFO::No. regions with at least one SNP/gene for chr21 after merging: 23
+2022-12-17 15:09:01 INFO::No. regions with at least one SNP/gene for chr22: 24
+2022-12-17 15:09:01 INFO::Merge regions for chr22
+2022-12-17 15:09:01 INFO::No. regions with at least one SNP/gene for chr22 after merging: 22
+2022-12-17 15:09:01 INFO::Trim regions with SNPs more than 20000
+2022-12-17 15:09:01 INFO::Adding R matrix info, as genotype is not given
+2022-12-17 15:09:02 INFO::Adding R matrix info for chrom 1
+2022-12-17 15:25:28 INFO::Adding R matrix info for chrom 2
+2022-12-17 15:40:36 INFO::Adding R matrix info for chrom 3
+2022-12-17 15:54:02 INFO::Adding R matrix info for chrom 4
+2022-12-17 16:05:18 INFO::Adding R matrix info for chrom 5
+2022-12-17 16:17:05 INFO::Adding R matrix info for chrom 6
+2022-12-17 16:32:35 INFO::Adding R matrix info for chrom 7
+2022-12-17 16:44:48 INFO::Adding R matrix info for chrom 8
+2022-12-17 16:53:36 INFO::Adding R matrix info for chrom 9
+2022-12-17 17:01:35 INFO::Adding R matrix info for chrom 10
+2022-12-17 17:11:00 INFO::Adding R matrix info for chrom 11
+2022-12-17 17:22:31 INFO::Adding R matrix info for chrom 12
+2022-12-17 17:32:38 INFO::Adding R matrix info for chrom 13
+2022-12-17 17:38:03 INFO::Adding R matrix info for chrom 14
+2022-12-17 17:45:56 INFO::Adding R matrix info for chrom 15
+2022-12-17 17:51:12 INFO::Adding R matrix info for chrom 16
+2022-12-17 17:59:33 INFO::Adding R matrix info for chrom 17
+2022-12-17 18:09:32 INFO::Adding R matrix info for chrom 18
+2022-12-17 18:14:22 INFO::Adding R matrix info for chrom 19
+2022-12-17 18:24:12 INFO::Adding R matrix info for chrom 20
+2022-12-17 18:29:02 INFO::Adding R matrix info for chrom 21
+2022-12-17 18:31:24 INFO::Adding R matrix info for chrom 22
+2022-12-17 18:38:56 INFO::Number of regions that contain strong gene signals: 56
+2022-12-17 18:38:56 INFO::Rerun susie for regions with strong gene signals using full SNPs.
+2022-12-17 18:38:57 INFO::run iteration 1
+starting worker pid=48683 on localhost:11201 at 18:38:58.589
+2022-12-17 19:06:31 INFO::After iteration 1, priors {SNP,Liver,Liver_Splicing}: {0.000448348263705194,0.056510048855339,0.0229611193361501}
+$group_prior
+           SNP          Liver Liver_Splicing 
+  0.0001129093   0.0092207229   0.0077965483 
+
+$group_prior_var
+           SNP          Liver Liver_Splicing 
+      12.94004       38.07935       19.65923 
+
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Scientific Linux 7.4 (Nitrogen)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.14.6 ctwas_0.1.35     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9        pgenlibr_0.3.2    magrittr_2.0.3    hms_1.1.2        
+ [5] doParallel_1.0.17 lattice_0.20-44   R6_2.5.1          rlang_1.0.6      
+ [9] foreach_1.5.2     fansi_1.0.3       tools_4.1.0       parallel_4.1.0   
+[13] grid_4.1.0        logging_0.10-108  utf8_1.2.2        cli_3.4.1        
+[17] iterators_1.0.14  ellipsis_0.3.2    tibble_3.1.8      lifecycle_1.0.3  
+[21] crayon_1.5.2      Matrix_1.3-3      readr_2.1.3       tzdb_0.3.0       
+[25] vctrs_0.5.1       codetools_0.2-18  glue_1.6.2        compiler_4.1.0   
+[29] pillar_1.8.1      pkgconfig_2.0.3  

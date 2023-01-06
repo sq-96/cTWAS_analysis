@@ -9,8 +9,8 @@ editor_options:
 
 ```{r, echo=FALSE}
 get_E_S <- function(tissue){
-  S_path <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018_S/",tissue,"/SCZ_",tissue)
-  E_path <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/SCZ_2018/",tissue,"/SCZ_",tissue)
+  S_path <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_S/",tissue,"/LDL_",tissue)
+  E_path <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL/",tissue,"/LDL_",tissue)
   splicing_gene <- readRDS(paste0(S_path,"_ctwas_gene_res.RDS"))
   expression_gene <- readRDS(paste0(E_path,"_ctwas_gene_res.RDS"))
   
@@ -83,5 +83,16 @@ venn.diagram(
   fill = myCol,
   cat.cex = 0.8
 )
+```
+
+```{r}
+table_df <- get_E_S("Liver")
+splicing_gene <- table_df[[1]]
+expression_gene <- table_df[[2]]
+table_df <- merge(expression_gene[,c("genename","susie_pip")],splicing_gene[,c("genename","susie_pip")],by = "genename",all = T)
+colnames(table_df) <- c("genename","Expression_PIP","Splicing_PIP")
+table_df["total_PIP"] <- table_df$Expression_PIP+table_df$Splicing_PIP
+plot(table_df$Expression_PIP,table_df$Splicing_PIP, main=paste0("Brain Cortex: ",as.character(round(cor(table_df$Expression_PIP,table_df$Splicing_PIP),3))),
+       xlab = "Expression PIP", ylab = "Splicing PIP",cex=0.8)
 ```
 

@@ -123,7 +123,7 @@ ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.
 n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
 rm(ctwas_res_s1)
 
-saveRDS(ctwas_gene_res, file=paste0(results_dir, "/","ctwas_gene_res.RDS"))
+saveRDS(ctwas_gene_res, paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 
 ```
 
@@ -365,11 +365,11 @@ head(ctwas_snp_res[order(-abs(ctwas_snp_res$z)),report_cols_snps],50)
 #ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
 #G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype", "ensembl_gene_id", "strand"), values=1:22, mart=ensembl)
 #save(G_list, file=paste0(results_dir, "/G_list_", trait_id, ".RData"))
-load(paste0(results_dir, "/G_list_", trait_id, ".RData"))
+#load(paste0(results_dir, "/G_list_", trait_id, ".RData"))
 
-G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
+#G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
 
-G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
+#G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
 ```
 
 ## Updated locus plots - for paper

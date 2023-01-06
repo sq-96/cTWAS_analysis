@@ -302,9 +302,16 @@ sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
 ```
 
 ```{r}
+ctwas_gene_res[ctwas_gene_res$genename=="CNIH4",]
+```
+
+```{r}
 ctwas_gene_res[ctwas_gene_res$genename=="FKRP",]
 ```
 
+```{r}
+ctwas_gene_res[ctwas_gene_res$genename=="CCDC57",]
+```
 
 ```{r echo=FALSE, eval=FALSE}
 library(biomaRt)
