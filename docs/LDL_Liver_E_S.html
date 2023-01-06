@@ -525,16 +525,16 @@ data/LDL_S/Liver/LDL_Liver_ctwas_gene_res.RDS
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefa84ed2f13299bb53c35bd187b85b727a685bfeftargetblankfa84ed2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/fa84ed2f13299bb53c35bd187b85b727a685bfef" target="_blank">fa84ed2</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree486233b3f40b71a2c3fc0525e184f4bfd2835cc4targetblank486233ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/486233b3f40b71a2c3fc0525e184f4bfd2835cc4" target="_blank">486233b</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefa84ed2f13299bb53c35bd187b85b727a685bfeftargetblankfa84ed2a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree486233b3f40b71a2c3fc0525e184f4bfd2835cc4targetblank486233ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/fa84ed2f13299bb53c35bd187b85b727a685bfef" target="_blank">fa84ed2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/486233b3f40b71a2c3fc0525e184f4bfd2835cc4" target="_blank">486233b</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -637,6 +637,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/486233b3f40b71a2c3fc0525e184f4bfd2835cc4/analysis/LDL_Liver_E_S.Rmd" target="_blank">486233b</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-01-06
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/486233b3f40b71a2c3fc0525e184f4bfd2835cc4/docs/LDL_Liver_E_S.html" target="_blank">486233b</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-01-06
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1056,26 +1090,67 @@ print(length(known_annotations))</code></pre>
 print(sum(known_annotations %in% df_gene$genename))</code></pre>
 <pre><code>[1] 60</code></pre>
 <pre class="r"><code>#assign ctwas, TWAS, and bystander genes
-ctwas_genes &lt;- df_gene$genename[df_gene$combined_pip&gt;1]
+ctwas_genes &lt;- df_gene$genename[df_gene$combined_pip&gt;0.95]
 twas_genes &lt;- ctwas_gene_res_E$genename[abs(ctwas_gene_res_E$twas_z)&gt;sig_thresh]
+novel_genes &lt;- ctwas_genes[!(ctwas_genes %in% twas_genes)]
 
 #significance threshold for TWAS
 print(sig_thresh)</code></pre>
 <pre><code>[1] 4.583</code></pre>
 <pre class="r"><code>#number of ctwas genes
 length(ctwas_genes)</code></pre>
-<pre><code>[1] 21</code></pre>
+<pre><code>[1] 37</code></pre>
 <pre class="r"><code>#number of twas genes
 length(twas_genes)</code></pre>
 <pre><code>[1] 221</code></pre>
+<pre class="r"><code>#show novel genes (ctwas genes with not in TWAS genes)
+df_gene[df_gene$genename %in% novel_genes,]</code></pre>
+<pre><code>      genename combined_pip expression_pip splicing_pip expression_only_pip
+8085       PXK       1.2172          0.237        0.980               0.793
+9806   ST3GAL4       1.0781          1.000        0.078                  NA
+7134     PARP9       1.0757          0.028        1.048               0.008
+4661        HP       1.0432          0.000        1.043                  NA
+5559     LRCH4       1.0331          0.002        1.031               0.007
+158       ACP6       1.0327          0.067        0.966               0.798
+9256  SLC22A18       1.0244          0.000        1.024                  NA
+8746     RRBP1       1.0157          0.982        0.034               0.004
+3375    ERGIC3       1.0111          0.000        1.011                  NA
+813      ASGR1       1.0107          0.000        1.011                  NA
+10912   TTC39B       1.0096          0.946        0.064               0.936
+27       ABCA8       1.0070          0.000        1.007                  NA
+2650   CYP4F12       1.0059          0.014        0.992               0.011
+5415      LDLR       1.0000          0.000        1.000                  NA
+6470     NADK2       0.9945          0.013        0.982               0.019
+4583     HLA-B       0.9876          0.000        0.988               0.002
+12050  ZSCAN31       0.9740          0.421        0.553               0.348
+5150      KDSR       0.9671          0.957        0.010               0.955
+       twas_z splicing_only_pip
+8085  -3.7920             1.281
+9806       NA             1.024
+7134  -0.9822             1.159
+4661       NA             1.060
+5559   2.2446             1.095
+158    4.0601             1.161
+9256       NA             1.199
+8746   2.5608             0.056
+3375       NA             1.119
+813        NA             1.034
+10912 -4.3345             0.139
+27         NA             1.051
+2650  -0.5298             1.192
+5415       NA             1.000
+6470   1.0804             1.016
+4583   0.3148             0.992
+12050  1.6961             0.791
+5150  -4.5263             0.152</code></pre>
 <pre class="r"><code>#sensitivity / recall
 sensitivity &lt;- rep(NA,1)
 names(sensitivity) &lt;- c(&quot;ctwas&quot;)
 sensitivity[&quot;ctwas&quot;] &lt;- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
 sensitivity[&quot;TWAS&quot;] &lt;- sum(twas_genes %in% known_annotations)/length(known_annotations)
 sensitivity</code></pre>
-<pre><code>  ctwas    TWAS 
-0.04348 0.27536 </code></pre>
+<pre><code> ctwas   TWAS 
+0.1014 0.2754 </code></pre>
 <pre class="r"><code>#specificity
 specificity &lt;- rep(NA,1)
 names(specificity) &lt;- c(&quot;ctwas&quot;)
@@ -1083,7 +1158,7 @@ specificity[&quot;ctwas&quot;] &lt;- sum(!(unrelated_genes %in% ctwas_genes))/le
 specificity[&quot;TWAS&quot;] &lt;- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
 specificity</code></pre>
 <pre><code> ctwas   TWAS 
-0.9985 0.9839 </code></pre>
+0.9975 0.9839 </code></pre>
 <pre class="r"><code>#precision / PPV
 precision &lt;- rep(NA,1)
 names(precision) &lt;- c(&quot;ctwas&quot;)
@@ -1091,7 +1166,7 @@ precision[&quot;ctwas&quot;] &lt;- sum(ctwas_genes %in% known_annotations)/lengt
 precision[&quot;TWAS&quot;] &lt;- sum(twas_genes %in% known_annotations)/length(twas_genes)
 precision</code></pre>
 <pre><code>  ctwas    TWAS 
-0.14286 0.08597 </code></pre>
+0.18919 0.08597 </code></pre>
 <pre class="r"><code>#ROC curves
 
 pip_range &lt;- (0:1000)/1000

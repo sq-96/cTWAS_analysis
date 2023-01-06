@@ -374,8 +374,9 @@ print(length(known_annotations))
 print(sum(known_annotations %in% df_gene$genename))
 
 #assign ctwas, TWAS, and bystander genes
-ctwas_genes <- df_gene$genename[df_gene$combined_pip>1]
+ctwas_genes <- df_gene$genename[df_gene$combined_pip>0.95]
 twas_genes <- ctwas_gene_res_E$genename[abs(ctwas_gene_res_E$twas_z)>sig_thresh]
+novel_genes <- ctwas_genes[!(ctwas_genes %in% twas_genes)]
 
 #significance threshold for TWAS
 print(sig_thresh)
@@ -385,6 +386,9 @@ length(ctwas_genes)
 
 #number of twas genes
 length(twas_genes)
+
+#show novel genes (ctwas genes with not in TWAS genes)
+df_gene[df_gene$genename %in% novel_genes,]
 
 #sensitivity / recall
 sensitivity <- rep(NA,1)
