@@ -360,13 +360,13 @@ head(df_gene, max(sum(df_gene$combined_pip>0.8), 20))
 ```
 
 
-```{r eval=FALSE}
+```{r}
 library("readxl")
 
 known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="LDL")
 known_annotations <- unique(known_annotations$`Gene Symbol`)
 
-unrelated_genes <- df_gene$genename[!(ctwas_gene_res$genename %in% known_annotations)]
+unrelated_genes <- df_gene$genename[!(df_gene$genename %in% known_annotations)]
 
 #number of genes in known annotations
 print(length(known_annotations))
@@ -376,7 +376,7 @@ print(sum(known_annotations %in% df_gene$genename))
 
 #assign ctwas, TWAS, and bystander genes
 ctwas_genes <- df_gene$genename[df_gene$combined_pip>1]
-twas_genes <- ctwas_gene_res_E$genename[abs(ctwas_gene_res_E$z)>sig_thresh]
+twas_genes <- ctwas_gene_res_E$genename[abs(ctwas_gene_res_E$twas_z)>sig_thresh]
 
 #significance threshold for TWAS
 print(sig_thresh)
