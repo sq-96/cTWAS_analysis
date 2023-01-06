@@ -1,5 +1,5 @@
 ---
-title: "Testing Multigroup cTWAS"
+title: "LDL - Expression and Splicing Jointly"
 author: "Sheng Qian"
 date: "2022-12-17"
 output: workflowr::wflow_html
@@ -324,7 +324,7 @@ ctwas_gene_res_S <- ctwas_gene_res_S[,c("genename","susie_pip")]
 colnames(ctwas_gene_res_S) <- c("genename","splicing_only_pip")
 ```
 
-### Top gene+tissue pairs by PIP
+### Top genes by expression/Splicing PIP
 
 ```{r echo=F}
 #genes with PIP>0.8 or 20 highest PIPs
