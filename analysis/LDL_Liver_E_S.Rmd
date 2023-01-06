@@ -190,9 +190,9 @@ p_enrich <- p_enrich + theme(plot.title=element_text(size=title_size)) +
   guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
 
 plot_grid(p_pi, p_sigma2, p_enrich, p_pve)
+```
 
-####################
-
+```{r}
 #estimated group prior
 estimated_group_prior <- estimated_group_prior_all[,ncol(group_prior_rec)]
 print(estimated_group_prior)
@@ -222,7 +222,6 @@ sum(estimated_group_pve)
 estimated_group_pve/sum(estimated_group_pve)
 ```
 
-
 ```{r echo=F}
 ctwas_gene_res$group[ctwas_gene_res$group=="Liver"] <- "Liver_Expression"
 ctwas_gene_expr_res <- ctwas_gene_res[ctwas_gene_res$group=="Liver_Expression",]
@@ -230,12 +229,12 @@ ctwas_gene_spli_res <- ctwas_gene_res[ctwas_gene_res$group=="Liver_Splicing",]
 ```
 
 
-```{r echo=F}
+```{r echo=F,eval=F}
 library(reticulate)
 use_python("/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python",required=T)
 ```
 
-```{python echo=F}
+```{python echo=F,eval=F}
 from pyensembl import EnsemblRelease #repl_python()
 import math
 import time
@@ -250,7 +249,7 @@ ctwas_gene_spli_res_df['genename'] = np.nan
 ctwas_gene_spli_res_df['intron_id'] = ctwas_gene_spli_res_df['gene_id']
 ```
 
-```{python echo=F}
+```{python echo=F,eval=F}
 for index, row in ctwas_gene_spli_res_df.iterrows():
   gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["intron_start"]), end=int(row["intron_end"]))
   if len(gene_names)!=0:
@@ -268,7 +267,7 @@ ctwas_gene_spli_res_df = ctwas_gene_spli_res_df.dropna(subset=['genename'])
 print("finish")
 ```
 
-```{r echo=F}
+```{r echo=F,eval=F}
 ctwas_gene_expr_res <- ctwas_gene_expr_res[,c("chrom","pos","region_tag1","region_tag2","cs_index","susie_pip","mu2","region_tag","PVE","gene_id","group","alt_name","genename","z")]
 ctwas_gene_expr_res <- na.omit(ctwas_gene_expr_res)
 
@@ -278,7 +277,7 @@ ctwas_gene_spli_res <- ctwas_gene_spli_res[,c("chrom","pos","region_tag1","regio
 ctwas_gene_spli_res <- na.omit(ctwas_gene_spli_res)
 ```
 
-```{r echo=F}
+```{r echo=F,eval=F}
 library(dplyr)
 by_genename <- ctwas_gene_spli_res %>% group_by(genename)
 ctwas_gene_spli_res <- data.frame(by_genename %>% summarise(
@@ -299,14 +298,14 @@ ctwas_gene_spli_res <- data.frame(by_genename %>% summarise(
 ```
 
 
-```{r echo=F}
+```{r echo=F,eval=F}
 ctwas_gene_res <- rbind(ctwas_gene_expr_res,ctwas_gene_spli_res)
 ctwas_gene_res <- na.omit(ctwas_gene_res)
 saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 ```
 
 
-```{r}
+```{r echo=F}
 ctwas_gene_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 
 ctwas_gene_res_E <- readRDS("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL/Liver/ctwas_gene_res.RDS")
