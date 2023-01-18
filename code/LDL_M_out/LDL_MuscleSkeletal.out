@@ -1,0 +1,641 @@
+[1] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz"
+[2] "/project2/mstephens/wcrouse/UKB_LDR_0.1"                                         
+[3] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/MuscleSkeletal.db"      
+[4] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"          
+[5] "LDL_MuscleSkeletal_expr"                                                         
+[6] "LDL_MuscleSkeletal_ctwas"                                                        
+[7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_M/MuscleSkeletal"        
+2023-01-17 02:00:33 INFO::ctwas started ...
+2023-01-17 02:00:53 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/4.1/ctwas/extdata/ldetect/EUR.b38.bed
+2023-01-17 02:01:05 INFO::No. LD regions: 1700
+2023-01-17 02:01:13 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-01-17 02:01:13 INFO::Merge regions for chr1
+2023-01-17 02:01:13 INFO::No. regions with at least one SNP/gene for chr1 after merging: 131
+2023-01-17 02:01:21 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-01-17 02:01:21 INFO::Merge regions for chr2
+2023-01-17 02:01:21 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
+2023-01-17 02:01:27 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-01-17 02:01:27 INFO::Merge regions for chr3
+2023-01-17 02:01:27 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-01-17 02:01:35 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-01-17 02:01:35 INFO::Merge regions for chr4
+2023-01-17 02:01:35 INFO::No. regions with at least one SNP/gene for chr4 after merging: 122
+2023-01-17 02:01:40 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-01-17 02:01:40 INFO::Merge regions for chr5
+2023-01-17 02:01:40 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-01-17 02:01:46 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-01-17 02:01:46 INFO::Merge regions for chr6
+2023-01-17 02:01:46 INFO::No. regions with at least one SNP/gene for chr6 after merging: 112
+2023-01-17 02:01:51 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-01-17 02:01:51 INFO::Merge regions for chr7
+2023-01-17 02:01:51 INFO::No. regions with at least one SNP/gene for chr7 after merging: 99
+2023-01-17 02:01:57 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-01-17 02:01:57 INFO::Merge regions for chr8
+2023-01-17 02:01:57 INFO::No. regions with at least one SNP/gene for chr8 after merging: 94
+2023-01-17 02:02:02 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-01-17 02:02:02 INFO::Merge regions for chr9
+2023-01-17 02:02:02 INFO::No. regions with at least one SNP/gene for chr9 after merging: 74
+2023-01-17 02:02:06 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-01-17 02:02:06 INFO::Merge regions for chr10
+2023-01-17 02:02:06 INFO::No. regions with at least one SNP/gene for chr10 after merging: 85
+2023-01-17 02:02:10 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-01-17 02:02:10 INFO::Merge regions for chr11
+2023-01-17 02:02:10 INFO::No. regions with at least one SNP/gene for chr11 after merging: 84
+2023-01-17 02:02:14 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-01-17 02:02:14 INFO::Merge regions for chr12
+2023-01-17 02:02:14 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-01-17 02:02:18 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-01-17 02:02:18 INFO::Merge regions for chr13
+2023-01-17 02:02:18 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-01-17 02:02:21 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-01-17 02:02:21 INFO::Merge regions for chr14
+2023-01-17 02:02:21 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-01-17 02:02:23 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-01-17 02:02:23 INFO::Merge regions for chr15
+2023-01-17 02:02:23 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-01-17 02:02:26 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-01-17 02:02:26 INFO::Merge regions for chr16
+2023-01-17 02:02:26 INFO::No. regions with at least one SNP/gene for chr16 after merging: 54
+2023-01-17 02:02:29 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-01-17 02:02:29 INFO::Merge regions for chr17
+2023-01-17 02:02:29 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-01-17 02:02:32 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-01-17 02:02:32 INFO::Merge regions for chr18
+2023-01-17 02:02:32 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2023-01-17 02:02:34 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-01-17 02:02:34 INFO::Merge regions for chr19
+2023-01-17 02:02:34 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-01-17 02:02:37 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-01-17 02:02:37 INFO::Merge regions for chr20
+2023-01-17 02:02:37 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-01-17 02:02:39 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-01-17 02:02:39 INFO::Merge regions for chr21
+2023-01-17 02:02:39 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-01-17 02:02:41 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-01-17 02:02:41 INFO::Merge regions for chr22
+2023-01-17 02:02:41 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-01-17 02:02:41 INFO::Trim regions with SNPs more than Inf
+2023-01-17 02:02:41 INFO::Adding R matrix info, as genotype is not given
+2023-01-17 02:02:42 INFO::Adding R matrix info for chrom 1
+2023-01-17 02:11:43 INFO::Adding R matrix info for chrom 2
+2023-01-17 02:21:07 INFO::Adding R matrix info for chrom 3
+2023-01-17 02:28:08 INFO::Adding R matrix info for chrom 4
+2023-01-17 02:35:35 INFO::Adding R matrix info for chrom 5
+2023-01-17 02:42:10 INFO::Adding R matrix info for chrom 6
+2023-01-17 02:49:21 INFO::Adding R matrix info for chrom 7
+2023-01-17 02:55:42 INFO::Adding R matrix info for chrom 8
+2023-01-17 03:01:23 INFO::Adding R matrix info for chrom 9
+2023-01-17 03:05:48 INFO::Adding R matrix info for chrom 10
+2023-01-17 03:11:18 INFO::Adding R matrix info for chrom 11
+2023-01-17 03:16:40 INFO::Adding R matrix info for chrom 12
+2023-01-17 03:21:40 INFO::Adding R matrix info for chrom 13
+2023-01-17 03:25:21 INFO::Adding R matrix info for chrom 14
+2023-01-17 03:28:39 INFO::Adding R matrix info for chrom 15
+2023-01-17 03:31:26 INFO::Adding R matrix info for chrom 16
+2023-01-17 03:34:29 INFO::Adding R matrix info for chrom 17
+2023-01-17 03:37:46 INFO::Adding R matrix info for chrom 18
+2023-01-17 03:40:38 INFO::Adding R matrix info for chrom 19
+2023-01-17 03:43:25 INFO::Adding R matrix info for chrom 20
+2023-01-17 03:45:48 INFO::Adding R matrix info for chrom 21
+2023-01-17 03:47:07 INFO::Adding R matrix info for chrom 22
+2023-01-17 03:48:31 INFO::Run susie iteratively, getting rough estimate ...
+2023-01-17 03:48:31 INFO::run iteration 1
+starting worker pid=27927 on localhost:11529 at 03:48:32.531
+starting worker pid=27920 on localhost:11529 at 03:48:32.532
+starting worker pid=27925 on localhost:11529 at 03:48:32.533
+starting worker pid=27928 on localhost:11529 at 03:48:32.533
+starting worker pid=27922 on localhost:11529 at 03:48:32.534
+starting worker pid=27924 on localhost:11529 at 03:48:32.534
+starting worker pid=27923 on localhost:11529 at 03:48:32.535
+starting worker pid=27921 on localhost:11529 at 03:48:32.535
+starting worker pid=27926 on localhost:11529 at 03:48:32.535
+starting worker pid=27919 on localhost:11529 at 03:48:32.535
+2023-01-17 04:07:10 INFO::After iteration 1, priors {SNP,gene}: {0.00192912980033568,0.00311938736754871}
+2023-01-17 04:07:11 INFO::run iteration 2
+starting worker pid=28983 on localhost:11529 at 04:07:11.931
+starting worker pid=28985 on localhost:11529 at 04:07:11.931
+starting worker pid=28991 on localhost:11529 at 04:07:11.931
+starting worker pid=28984 on localhost:11529 at 04:07:11.931
+starting worker pid=28986 on localhost:11529 at 04:07:11.931
+starting worker pid=28982 on localhost:11529 at 04:07:11.931
+starting worker pid=28988 on localhost:11529 at 04:07:11.931
+starting worker pid=28990 on localhost:11529 at 04:07:11.931
+starting worker pid=28992 on localhost:11529 at 04:07:11.933
+starting worker pid=28987 on localhost:11529 at 04:07:11.934
+2023-01-17 04:25:43 INFO::After iteration 2, priors {SNP,gene}: {0.00162992191719895,0.00267112754661329}
+2023-01-17 04:25:44 INFO::run iteration 3
+starting worker pid=30004 on localhost:11529 at 04:25:44.599
+starting worker pid=30006 on localhost:11529 at 04:25:44.599
+starting worker pid=30007 on localhost:11529 at 04:25:44.599
+starting worker pid=30012 on localhost:11529 at 04:25:44.599
+starting worker pid=30003 on localhost:11529 at 04:25:44.599
+starting worker pid=30008 on localhost:11529 at 04:25:44.600
+starting worker pid=30010 on localhost:11529 at 04:25:44.600
+starting worker pid=30005 on localhost:11529 at 04:25:44.601
+starting worker pid=30009 on localhost:11529 at 04:25:44.605
+starting worker pid=30011 on localhost:11529 at 04:25:44.619
+2023-01-17 04:44:47 INFO::After iteration 3, priors {SNP,gene}: {0.00149269591159415,0.0024549065773869}
+2023-01-17 04:59:50 INFO::Blocks are filtered: 1015 blocks left
+2023-01-17 04:59:50 INFO::Run susie iteratively, getting accurate estimate ...
+2023-01-17 04:59:50 INFO::run iteration 1
+starting worker pid=31789 on localhost:11529 at 04:59:51.016
+starting worker pid=31791 on localhost:11529 at 04:59:51.016
+starting worker pid=31790 on localhost:11529 at 04:59:51.016
+starting worker pid=31793 on localhost:11529 at 04:59:51.016
+starting worker pid=31794 on localhost:11529 at 04:59:51.016
+starting worker pid=31788 on localhost:11529 at 04:59:51.016
+starting worker pid=31796 on localhost:11529 at 04:59:51.016
+starting worker pid=31795 on localhost:11529 at 04:59:51.017
+starting worker pid=31792 on localhost:11529 at 04:59:51.017
+starting worker pid=31787 on localhost:11529 at 04:59:51.017
+2023-01-17 05:12:41 INFO::After iteration 1, priors {SNP,gene}: {0.00148215245596272,0.00244298412890423}
+2023-01-17 05:12:41 INFO::run iteration 2
+starting worker pid=32538 on localhost:11529 at 05:12:42.263
+starting worker pid=32536 on localhost:11529 at 05:12:42.264
+starting worker pid=32540 on localhost:11529 at 05:12:42.266
+starting worker pid=32532 on localhost:11529 at 05:12:42.276
+starting worker pid=32533 on localhost:11529 at 05:12:42.276
+starting worker pid=32539 on localhost:11529 at 05:12:42.277
+starting worker pid=32534 on localhost:11529 at 05:12:42.278
+starting worker pid=32537 on localhost:11529 at 05:12:42.293
+starting worker pid=32531 on localhost:11529 at 05:12:42.298
+starting worker pid=32535 on localhost:11529 at 05:12:42.301
+2023-01-17 05:25:29 INFO::After iteration 2, priors {SNP,gene}: {0.00146587716177999,0.00210344541364953}
+2023-01-17 05:25:30 INFO::run iteration 3
+starting worker pid=33294 on localhost:11529 at 05:25:30.626
+starting worker pid=33287 on localhost:11529 at 05:25:30.626
+starting worker pid=33293 on localhost:11529 at 05:25:30.626
+starting worker pid=33286 on localhost:11529 at 05:25:30.627
+starting worker pid=33295 on localhost:11529 at 05:25:30.627
+starting worker pid=33288 on localhost:11529 at 05:25:30.627
+starting worker pid=33289 on localhost:11529 at 05:25:30.627
+starting worker pid=33290 on localhost:11529 at 05:25:30.628
+starting worker pid=33292 on localhost:11529 at 05:25:30.628
+starting worker pid=33285 on localhost:11529 at 05:25:30.629
+2023-01-17 05:38:24 INFO::After iteration 3, priors {SNP,gene}: {0.00144965657955049,0.001875084687792}
+2023-01-17 05:38:24 INFO::run iteration 4
+starting worker pid=34042 on localhost:11529 at 05:38:25.122
+starting worker pid=34040 on localhost:11529 at 05:38:25.122
+starting worker pid=34047 on localhost:11529 at 05:38:25.122
+starting worker pid=34044 on localhost:11529 at 05:38:25.122
+starting worker pid=34048 on localhost:11529 at 05:38:25.122
+starting worker pid=34050 on localhost:11529 at 05:38:25.122
+starting worker pid=34043 on localhost:11529 at 05:38:25.122
+starting worker pid=34046 on localhost:11529 at 05:38:25.122
+starting worker pid=34041 on localhost:11529 at 05:38:25.125
+starting worker pid=34045 on localhost:11529 at 05:38:25.136
+2023-01-17 05:51:11 INFO::After iteration 4, priors {SNP,gene}: {0.00143433870803157,0.00172608570061416}
+2023-01-17 05:51:15 INFO::run iteration 5
+starting worker pid=34800 on localhost:11529 at 05:51:15.625
+starting worker pid=34801 on localhost:11529 at 05:51:15.625
+starting worker pid=34797 on localhost:11529 at 05:51:15.630
+starting worker pid=34799 on localhost:11529 at 05:51:15.630
+starting worker pid=34798 on localhost:11529 at 05:51:15.630
+starting worker pid=34803 on localhost:11529 at 05:51:15.633
+starting worker pid=34802 on localhost:11529 at 05:51:15.634
+starting worker pid=34795 on localhost:11529 at 05:51:15.636
+starting worker pid=34796 on localhost:11529 at 05:51:15.642
+starting worker pid=34804 on localhost:11529 at 05:51:15.643
+2023-01-17 06:04:00 INFO::After iteration 5, priors {SNP,gene}: {0.00142000577836145,0.00163065939369022}
+2023-01-17 06:04:00 INFO::run iteration 6
+starting worker pid=35545 on localhost:11529 at 06:04:01.118
+starting worker pid=35540 on localhost:11529 at 06:04:01.118
+starting worker pid=35541 on localhost:11529 at 06:04:01.118
+starting worker pid=35544 on localhost:11529 at 06:04:01.119
+starting worker pid=35542 on localhost:11529 at 06:04:01.119
+starting worker pid=35546 on localhost:11529 at 06:04:01.119
+starting worker pid=35548 on localhost:11529 at 06:04:01.119
+starting worker pid=35547 on localhost:11529 at 06:04:01.119
+starting worker pid=35549 on localhost:11529 at 06:04:01.128
+starting worker pid=35543 on localhost:11529 at 06:04:01.137
+2023-01-17 06:16:43 INFO::After iteration 6, priors {SNP,gene}: {0.00140664974973964,0.00157081783230259}
+2023-01-17 06:16:44 INFO::run iteration 7
+starting worker pid=36296 on localhost:11529 at 06:16:44.535
+starting worker pid=36291 on localhost:11529 at 06:16:44.535
+starting worker pid=36290 on localhost:11529 at 06:16:44.535
+starting worker pid=36297 on localhost:11529 at 06:16:44.544
+starting worker pid=36289 on localhost:11529 at 06:16:44.547
+starting worker pid=36288 on localhost:11529 at 06:16:44.558
+starting worker pid=36294 on localhost:11529 at 06:16:44.560
+starting worker pid=36292 on localhost:11529 at 06:16:44.568
+starting worker pid=36295 on localhost:11529 at 06:16:44.571
+starting worker pid=36293 on localhost:11529 at 06:16:44.576
+2023-01-17 06:29:35 INFO::After iteration 7, priors {SNP,gene}: {0.00139424502333528,0.00153434197355131}
+2023-01-17 06:29:35 INFO::run iteration 8
+starting worker pid=37043 on localhost:11529 at 06:29:36.151
+starting worker pid=37044 on localhost:11529 at 06:29:36.153
+starting worker pid=37047 on localhost:11529 at 06:29:36.166
+starting worker pid=37042 on localhost:11529 at 06:29:36.172
+starting worker pid=37045 on localhost:11529 at 06:29:36.173
+starting worker pid=37048 on localhost:11529 at 06:29:36.188
+starting worker pid=37046 on localhost:11529 at 06:29:36.192
+starting worker pid=37049 on localhost:11529 at 06:29:36.197
+starting worker pid=37051 on localhost:11529 at 06:29:36.201
+starting worker pid=37050 on localhost:11529 at 06:29:36.213
+2023-01-17 06:42:18 INFO::After iteration 8, priors {SNP,gene}: {0.00138275743226685,0.00151308517650322}
+2023-01-17 06:42:19 INFO::run iteration 9
+starting worker pid=37836 on localhost:11529 at 06:42:19.742
+starting worker pid=37838 on localhost:11529 at 06:42:19.742
+starting worker pid=37840 on localhost:11529 at 06:42:19.742
+starting worker pid=37833 on localhost:11529 at 06:42:19.746
+starting worker pid=37839 on localhost:11529 at 06:42:19.747
+starting worker pid=37837 on localhost:11529 at 06:42:19.760
+starting worker pid=37835 on localhost:11529 at 06:42:19.761
+starting worker pid=37832 on localhost:11529 at 06:42:19.765
+starting worker pid=37841 on localhost:11529 at 06:42:19.768
+starting worker pid=37834 on localhost:11529 at 06:42:19.770
+2023-01-17 06:55:18 INFO::After iteration 9, priors {SNP,gene}: {0.00137214684594988,0.00150167847535333}
+2023-01-17 06:55:18 INFO::run iteration 10
+starting worker pid=38596 on localhost:11529 at 06:55:19.051
+starting worker pid=38594 on localhost:11529 at 06:55:19.051
+starting worker pid=38598 on localhost:11529 at 06:55:19.051
+starting worker pid=38597 on localhost:11529 at 06:55:19.058
+starting worker pid=38593 on localhost:11529 at 06:55:19.062
+starting worker pid=38595 on localhost:11529 at 06:55:19.062
+starting worker pid=38592 on localhost:11529 at 06:55:19.063
+starting worker pid=38590 on localhost:11529 at 06:55:19.063
+starting worker pid=38591 on localhost:11529 at 06:55:19.064
+starting worker pid=38599 on localhost:11529 at 06:55:19.065
+2023-01-17 07:08:01 INFO::After iteration 10, priors {SNP,gene}: {0.00136236905742139,0.00149660481138863}
+2023-01-17 07:08:01 INFO::run iteration 11
+starting worker pid=39342 on localhost:11529 at 07:08:01.876
+starting worker pid=39336 on localhost:11529 at 07:08:01.876
+starting worker pid=39344 on localhost:11529 at 07:08:01.876
+starting worker pid=39337 on localhost:11529 at 07:08:01.876
+starting worker pid=39343 on localhost:11529 at 07:08:01.876
+starting worker pid=39338 on localhost:11529 at 07:08:01.877
+starting worker pid=39341 on localhost:11529 at 07:08:01.880
+starting worker pid=39339 on localhost:11529 at 07:08:01.893
+starting worker pid=39340 on localhost:11529 at 07:08:01.909
+starting worker pid=39345 on localhost:11529 at 07:08:01.921
+2023-01-17 07:20:51 INFO::After iteration 11, priors {SNP,gene}: {0.0013533773891262,0.00149556538123824}
+2023-01-17 07:20:51 INFO::run iteration 12
+starting worker pid=40093 on localhost:11529 at 07:20:52.207
+starting worker pid=40098 on localhost:11529 at 07:20:52.207
+starting worker pid=40090 on localhost:11529 at 07:20:52.207
+starting worker pid=40092 on localhost:11529 at 07:20:52.208
+starting worker pid=40096 on localhost:11529 at 07:20:52.209
+starting worker pid=40095 on localhost:11529 at 07:20:52.209
+starting worker pid=40094 on localhost:11529 at 07:20:52.210
+starting worker pid=40097 on localhost:11529 at 07:20:52.210
+starting worker pid=40091 on localhost:11529 at 07:20:52.210
+starting worker pid=40089 on localhost:11529 at 07:20:52.231
+2023-01-17 07:33:52 INFO::After iteration 12, priors {SNP,gene}: {0.00134512400749439,0.00149705747555298}
+2023-01-17 07:33:52 INFO::run iteration 13
+starting worker pid=40896 on localhost:11529 at 07:33:52.799
+starting worker pid=40903 on localhost:11529 at 07:33:52.800
+starting worker pid=40897 on localhost:11529 at 07:33:52.811
+starting worker pid=40902 on localhost:11529 at 07:33:52.812
+starting worker pid=40901 on localhost:11529 at 07:33:52.818
+starting worker pid=40898 on localhost:11529 at 07:33:52.826
+starting worker pid=40899 on localhost:11529 at 07:33:52.826
+starting worker pid=40900 on localhost:11529 at 07:33:52.849
+starting worker pid=40904 on localhost:11529 at 07:33:52.853
+starting worker pid=40905 on localhost:11529 at 07:33:52.871
+2023-01-17 07:46:34 INFO::After iteration 13, priors {SNP,gene}: {0.00133756095435256,0.00150009754041608}
+2023-01-17 07:46:34 INFO::run iteration 14
+starting worker pid=41644 on localhost:11529 at 07:46:34.962
+starting worker pid=41649 on localhost:11529 at 07:46:34.962
+starting worker pid=41640 on localhost:11529 at 07:46:34.962
+starting worker pid=41646 on localhost:11529 at 07:46:34.963
+starting worker pid=41645 on localhost:11529 at 07:46:34.963
+starting worker pid=41642 on localhost:11529 at 07:46:34.974
+starting worker pid=41641 on localhost:11529 at 07:46:34.979
+starting worker pid=41648 on localhost:11529 at 07:46:34.982
+starting worker pid=41647 on localhost:11529 at 07:46:34.986
+starting worker pid=41643 on localhost:11529 at 07:46:34.987
+2023-01-17 07:59:22 INFO::After iteration 14, priors {SNP,gene}: {0.00133064093217272,0.00150404092753805}
+2023-01-17 07:59:22 INFO::run iteration 15
+starting worker pid=42389 on localhost:11529 at 07:59:23.032
+starting worker pid=42390 on localhost:11529 at 07:59:23.032
+starting worker pid=42398 on localhost:11529 at 07:59:23.035
+starting worker pid=42392 on localhost:11529 at 07:59:23.048
+starting worker pid=42395 on localhost:11529 at 07:59:23.057
+starting worker pid=42393 on localhost:11529 at 07:59:23.060
+starting worker pid=42394 on localhost:11529 at 07:59:23.066
+starting worker pid=42396 on localhost:11529 at 07:59:23.075
+starting worker pid=42391 on localhost:11529 at 07:59:23.079
+starting worker pid=42397 on localhost:11529 at 07:59:23.085
+2023-01-17 08:12:23 INFO::After iteration 15, priors {SNP,gene}: {0.0013243178877856,0.00150846491123645}
+2023-01-17 08:12:23 INFO::run iteration 16
+starting worker pid=43150 on localhost:11529 at 08:12:24.366
+starting worker pid=43155 on localhost:11529 at 08:12:24.366
+starting worker pid=43156 on localhost:11529 at 08:12:24.366
+starting worker pid=43158 on localhost:11529 at 08:12:24.366
+starting worker pid=43151 on localhost:11529 at 08:12:24.367
+starting worker pid=43153 on localhost:11529 at 08:12:24.369
+starting worker pid=43159 on localhost:11529 at 08:12:24.395
+starting worker pid=43152 on localhost:11529 at 08:12:24.395
+starting worker pid=43154 on localhost:11529 at 08:12:24.397
+starting worker pid=43157 on localhost:11529 at 08:12:24.405
+2023-01-17 08:25:22 INFO::After iteration 16, priors {SNP,gene}: {0.0013185474353284,0.00151309273215779}
+2023-01-17 08:25:22 INFO::run iteration 17
+starting worker pid=43910 on localhost:11529 at 08:25:22.932
+starting worker pid=43911 on localhost:11529 at 08:25:22.932
+starting worker pid=43909 on localhost:11529 at 08:25:22.943
+starting worker pid=43908 on localhost:11529 at 08:25:22.943
+starting worker pid=43913 on localhost:11529 at 08:25:22.944
+starting worker pid=43914 on localhost:11529 at 08:25:22.945
+starting worker pid=43906 on localhost:11529 at 08:25:22.955
+starting worker pid=43912 on localhost:11529 at 08:25:22.956
+starting worker pid=43915 on localhost:11529 at 08:25:22.960
+starting worker pid=43907 on localhost:11529 at 08:25:22.965
+2023-01-17 08:38:21 INFO::After iteration 17, priors {SNP,gene}: {0.00131328715202851,0.00151774414654303}
+2023-01-17 08:38:21 INFO::run iteration 18
+starting worker pid=44670 on localhost:11529 at 08:38:22.371
+starting worker pid=44671 on localhost:11529 at 08:38:22.372
+starting worker pid=44667 on localhost:11529 at 08:38:22.372
+starting worker pid=44674 on localhost:11529 at 08:38:22.372
+starting worker pid=44672 on localhost:11529 at 08:38:22.376
+starting worker pid=44668 on localhost:11529 at 08:38:22.379
+starting worker pid=44666 on localhost:11529 at 08:38:22.385
+starting worker pid=44675 on localhost:11529 at 08:38:22.385
+starting worker pid=44673 on localhost:11529 at 08:38:22.392
+starting worker pid=44669 on localhost:11529 at 08:38:22.399
+2023-01-17 08:51:18 INFO::After iteration 18, priors {SNP,gene}: {0.00130849677355051,0.00152230309339654}
+2023-01-17 08:51:19 INFO::run iteration 19
+starting worker pid=45424 on localhost:11529 at 08:51:19.637
+starting worker pid=45430 on localhost:11529 at 08:51:19.637
+starting worker pid=45431 on localhost:11529 at 08:51:19.638
+starting worker pid=45423 on localhost:11529 at 08:51:19.638
+starting worker pid=45429 on localhost:11529 at 08:51:19.638
+starting worker pid=45427 on localhost:11529 at 08:51:19.638
+starting worker pid=45425 on localhost:11529 at 08:51:19.638
+starting worker pid=45428 on localhost:11529 at 08:51:19.639
+starting worker pid=45432 on localhost:11529 at 08:51:19.644
+starting worker pid=45426 on localhost:11529 at 08:51:19.649
+2023-01-17 09:04:22 INFO::After iteration 19, priors {SNP,gene}: {0.00130413831007577,0.00152669643744513}
+2023-01-17 09:04:22 INFO::run iteration 20
+starting worker pid=46185 on localhost:11529 at 09:04:22.935
+starting worker pid=46190 on localhost:11529 at 09:04:22.936
+starting worker pid=46187 on localhost:11529 at 09:04:22.936
+starting worker pid=46189 on localhost:11529 at 09:04:22.936
+starting worker pid=46188 on localhost:11529 at 09:04:22.937
+starting worker pid=46191 on localhost:11529 at 09:04:22.937
+starting worker pid=46184 on localhost:11529 at 09:04:22.937
+starting worker pid=46182 on localhost:11529 at 09:04:22.937
+starting worker pid=46186 on localhost:11529 at 09:04:22.937
+starting worker pid=46183 on localhost:11529 at 09:04:22.940
+2023-01-17 09:17:29 INFO::After iteration 20, priors {SNP,gene}: {0.00130017610002983,0.0015308799029012}
+2023-01-17 09:17:29 INFO::run iteration 21
+starting worker pid=46947 on localhost:11529 at 09:17:30.119
+starting worker pid=46954 on localhost:11529 at 09:17:30.120
+starting worker pid=46949 on localhost:11529 at 09:17:30.120
+starting worker pid=46951 on localhost:11529 at 09:17:30.129
+starting worker pid=46955 on localhost:11529 at 09:17:30.136
+starting worker pid=46952 on localhost:11529 at 09:17:30.138
+starting worker pid=46950 on localhost:11529 at 09:17:30.151
+starting worker pid=46953 on localhost:11529 at 09:17:30.159
+starting worker pid=46956 on localhost:11529 at 09:17:30.164
+starting worker pid=46948 on localhost:11529 at 09:17:30.166
+2023-01-17 09:30:39 INFO::After iteration 21, priors {SNP,gene}: {0.00129657681513161,0.00153482869708016}
+2023-01-17 09:30:39 INFO::run iteration 22
+starting worker pid=47723 on localhost:11529 at 09:30:40.291
+starting worker pid=47717 on localhost:11529 at 09:30:40.291
+starting worker pid=47716 on localhost:11529 at 09:30:40.292
+starting worker pid=47720 on localhost:11529 at 09:30:40.292
+starting worker pid=47724 on localhost:11529 at 09:30:40.312
+starting worker pid=47719 on localhost:11529 at 09:30:40.315
+starting worker pid=47718 on localhost:11529 at 09:30:40.316
+starting worker pid=47722 on localhost:11529 at 09:30:40.320
+starting worker pid=47725 on localhost:11529 at 09:30:40.328
+starting worker pid=47721 on localhost:11529 at 09:30:40.360
+2023-01-17 09:43:48 INFO::After iteration 22, priors {SNP,gene}: {0.0012933094279195,0.00153853120967945}
+2023-01-17 09:43:49 INFO::run iteration 23
+starting worker pid=48525 on localhost:11529 at 09:43:49.667
+starting worker pid=48522 on localhost:11529 at 09:43:49.668
+starting worker pid=48519 on localhost:11529 at 09:43:49.668
+starting worker pid=48527 on localhost:11529 at 09:43:49.668
+starting worker pid=48521 on localhost:11529 at 09:43:49.670
+starting worker pid=48526 on localhost:11529 at 09:43:49.670
+starting worker pid=48528 on localhost:11529 at 09:43:49.675
+starting worker pid=48520 on localhost:11529 at 09:43:49.676
+starting worker pid=48523 on localhost:11529 at 09:43:49.677
+starting worker pid=48524 on localhost:11529 at 09:43:49.684
+2023-01-17 09:56:46 INFO::After iteration 23, priors {SNP,gene}: {0.00129034515089842,0.00154198474210597}
+2023-01-17 09:56:47 INFO::run iteration 24
+starting worker pid=49281 on localhost:11529 at 09:56:47.657
+starting worker pid=49276 on localhost:11529 at 09:56:47.658
+starting worker pid=49283 on localhost:11529 at 09:56:47.658
+starting worker pid=49278 on localhost:11529 at 09:56:47.658
+starting worker pid=49279 on localhost:11529 at 09:56:47.658
+starting worker pid=49275 on localhost:11529 at 09:56:47.658
+starting worker pid=49280 on localhost:11529 at 09:56:47.658
+starting worker pid=49284 on localhost:11529 at 09:56:47.658
+starting worker pid=49277 on localhost:11529 at 09:56:47.659
+starting worker pid=49282 on localhost:11529 at 09:56:47.664
+2023-01-17 10:10:05 INFO::After iteration 24, priors {SNP,gene}: {0.00128765735480506,0.00154519258657824}
+2023-01-17 10:10:05 INFO::run iteration 25
+starting worker pid=50048 on localhost:11529 at 10:10:06.053
+starting worker pid=50056 on localhost:11529 at 10:10:06.053
+starting worker pid=50052 on localhost:11529 at 10:10:06.053
+starting worker pid=50053 on localhost:11529 at 10:10:06.057
+starting worker pid=50047 on localhost:11529 at 10:10:06.056
+starting worker pid=50055 on localhost:11529 at 10:10:06.058
+starting worker pid=50054 on localhost:11529 at 10:10:06.059
+starting worker pid=50050 on localhost:11529 at 10:10:06.060
+starting worker pid=50051 on localhost:11529 at 10:10:06.060
+starting worker pid=50049 on localhost:11529 at 10:10:06.061
+2023-01-17 10:23:15 INFO::After iteration 25, priors {SNP,gene}: {0.00128522147211609,0.00154816201017744}
+2023-01-17 10:23:15 INFO::run iteration 26
+starting worker pid=50821 on localhost:11529 at 10:23:16.241
+starting worker pid=50824 on localhost:11529 at 10:23:16.241
+starting worker pid=50817 on localhost:11529 at 10:23:16.241
+starting worker pid=50819 on localhost:11529 at 10:23:16.241
+starting worker pid=50822 on localhost:11529 at 10:23:16.241
+starting worker pid=50816 on localhost:11529 at 10:23:16.241
+starting worker pid=50823 on localhost:11529 at 10:23:16.241
+starting worker pid=50825 on localhost:11529 at 10:23:16.241
+starting worker pid=50818 on localhost:11529 at 10:23:16.241
+starting worker pid=50820 on localhost:11529 at 10:23:16.257
+2023-01-17 10:36:31 INFO::After iteration 26, priors {SNP,gene}: {0.00128301489076857,0.00155090285129832}
+2023-01-17 10:36:31 INFO::run iteration 27
+starting worker pid=51596 on localhost:11529 at 10:36:31.812
+starting worker pid=51593 on localhost:11529 at 10:36:31.813
+starting worker pid=51595 on localhost:11529 at 10:36:31.822
+starting worker pid=51591 on localhost:11529 at 10:36:31.827
+starting worker pid=51588 on localhost:11529 at 10:36:31.829
+starting worker pid=51590 on localhost:11529 at 10:36:31.830
+starting worker pid=51589 on localhost:11529 at 10:36:31.844
+starting worker pid=51587 on localhost:11529 at 10:36:31.845
+starting worker pid=51594 on localhost:11529 at 10:36:31.854
+starting worker pid=51592 on localhost:11529 at 10:36:31.859
+2023-01-17 10:49:48 INFO::After iteration 27, priors {SNP,gene}: {0.00128101684208556,0.00155342653483111}
+2023-01-17 10:49:49 INFO::run iteration 28
+starting worker pid=52360 on localhost:11529 at 10:49:49.697
+starting worker pid=52358 on localhost:11529 at 10:49:49.697
+starting worker pid=52363 on localhost:11529 at 10:49:49.697
+starting worker pid=52359 on localhost:11529 at 10:49:49.698
+starting worker pid=52366 on localhost:11529 at 10:49:49.702
+starting worker pid=52361 on localhost:11529 at 10:49:49.706
+starting worker pid=52365 on localhost:11529 at 10:49:49.706
+starting worker pid=52364 on localhost:11529 at 10:49:49.706
+starting worker pid=52362 on localhost:11529 at 10:49:49.706
+starting worker pid=52367 on localhost:11529 at 10:49:49.706
+2023-01-17 11:03:04 INFO::After iteration 28, priors {SNP,gene}: {0.00127920828607633,0.00155574537689462}
+2023-01-17 11:03:05 INFO::run iteration 29
+starting worker pid=53188 on localhost:11529 at 11:03:05.965
+starting worker pid=53187 on localhost:11529 at 11:03:05.965
+starting worker pid=53182 on localhost:11529 at 11:03:05.965
+starting worker pid=53181 on localhost:11529 at 11:03:05.965
+starting worker pid=53185 on localhost:11529 at 11:03:05.965
+starting worker pid=53180 on localhost:11529 at 11:03:05.965
+starting worker pid=53184 on localhost:11529 at 11:03:05.965
+starting worker pid=53186 on localhost:11529 at 11:03:05.965
+starting worker pid=53189 on localhost:11529 at 11:03:05.965
+starting worker pid=53183 on localhost:11529 at 11:03:05.983
+2023-01-17 11:16:20 INFO::After iteration 29, priors {SNP,gene}: {0.001277571796589,0.00155787209220691}
+2023-01-17 11:16:20 INFO::run iteration 30
+starting worker pid=53957 on localhost:11529 at 11:16:21.501
+starting worker pid=53958 on localhost:11529 at 11:16:21.501
+starting worker pid=53961 on localhost:11529 at 11:16:21.501
+starting worker pid=53965 on localhost:11529 at 11:16:21.501
+starting worker pid=53960 on localhost:11529 at 11:16:21.502
+starting worker pid=53959 on localhost:11529 at 11:16:21.502
+starting worker pid=53963 on localhost:11529 at 11:16:21.502
+starting worker pid=53966 on localhost:11529 at 11:16:21.502
+starting worker pid=53964 on localhost:11529 at 11:16:21.504
+starting worker pid=53962 on localhost:11529 at 11:16:21.506
+2023-01-17 11:29:43 INFO::After iteration 30, priors {SNP,gene}: {0.00127609144821661,0.00155981944503181}
+2023-01-17 11:29:43 INFO::Run susie for all regions.
+2023-01-17 11:29:43 INFO::run iteration 1
+starting worker pid=54739 on localhost:11529 at 11:29:44.089
+starting worker pid=54741 on localhost:11529 at 11:29:44.089
+starting worker pid=54732 on localhost:11529 at 11:29:44.089
+starting worker pid=54733 on localhost:11529 at 11:29:44.090
+starting worker pid=54734 on localhost:11529 at 11:29:44.090
+starting worker pid=54736 on localhost:11529 at 11:29:44.092
+starting worker pid=54740 on localhost:11529 at 11:29:44.093
+starting worker pid=54735 on localhost:11529 at 11:29:44.095
+starting worker pid=54737 on localhost:11529 at 11:29:44.097
+starting worker pid=54738 on localhost:11529 at 11:29:44.107
+2023-01-17 11:48:39 INFO::After iteration 1, priors {SNP,gene}: {0.00500770372653257,0.00282558568695052}
+2023-01-17 11:48:40 INFO::No. LD regions: 1700
+2023-01-17 11:48:45 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-01-17 11:48:45 INFO::Merge regions for chr1
+2023-01-17 11:48:45 INFO::No. regions with at least one SNP/gene for chr1 after merging: 131
+2023-01-17 11:48:52 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-01-17 11:48:52 INFO::Merge regions for chr2
+2023-01-17 11:48:52 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
+2023-01-17 11:48:57 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-01-17 11:48:57 INFO::Merge regions for chr3
+2023-01-17 11:48:57 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-01-17 11:49:02 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-01-17 11:49:02 INFO::Merge regions for chr4
+2023-01-17 11:49:02 INFO::No. regions with at least one SNP/gene for chr4 after merging: 122
+2023-01-17 11:49:05 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-01-17 11:49:05 INFO::Merge regions for chr5
+2023-01-17 11:49:05 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-01-17 11:49:10 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-01-17 11:49:10 INFO::Merge regions for chr6
+2023-01-17 11:49:10 INFO::No. regions with at least one SNP/gene for chr6 after merging: 112
+2023-01-17 11:49:14 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-01-17 11:49:14 INFO::Merge regions for chr7
+2023-01-17 11:49:14 INFO::No. regions with at least one SNP/gene for chr7 after merging: 99
+2023-01-17 11:49:17 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-01-17 11:49:17 INFO::Merge regions for chr8
+2023-01-17 11:49:17 INFO::No. regions with at least one SNP/gene for chr8 after merging: 94
+2023-01-17 11:49:20 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-01-17 11:49:20 INFO::Merge regions for chr9
+2023-01-17 11:49:20 INFO::No. regions with at least one SNP/gene for chr9 after merging: 74
+2023-01-17 11:49:23 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-01-17 11:49:23 INFO::Merge regions for chr10
+2023-01-17 11:49:23 INFO::No. regions with at least one SNP/gene for chr10 after merging: 85
+2023-01-17 11:49:26 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-01-17 11:49:26 INFO::Merge regions for chr11
+2023-01-17 11:49:26 INFO::No. regions with at least one SNP/gene for chr11 after merging: 84
+2023-01-17 11:49:30 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-01-17 11:49:30 INFO::Merge regions for chr12
+2023-01-17 11:49:30 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-01-17 11:49:32 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-01-17 11:49:32 INFO::Merge regions for chr13
+2023-01-17 11:49:32 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-01-17 11:49:35 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-01-17 11:49:35 INFO::Merge regions for chr14
+2023-01-17 11:49:35 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-01-17 11:49:36 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-01-17 11:49:36 INFO::Merge regions for chr15
+2023-01-17 11:49:36 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-01-17 11:49:39 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-01-17 11:49:39 INFO::Merge regions for chr16
+2023-01-17 11:49:39 INFO::No. regions with at least one SNP/gene for chr16 after merging: 54
+2023-01-17 11:49:41 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-01-17 11:49:41 INFO::Merge regions for chr17
+2023-01-17 11:49:41 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-01-17 11:49:42 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-01-17 11:49:42 INFO::Merge regions for chr18
+2023-01-17 11:49:42 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2023-01-17 11:49:44 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-01-17 11:49:44 INFO::Merge regions for chr19
+2023-01-17 11:49:44 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-01-17 11:49:46 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-01-17 11:49:46 INFO::Merge regions for chr20
+2023-01-17 11:49:46 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-01-17 11:49:47 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-01-17 11:49:47 INFO::Merge regions for chr21
+2023-01-17 11:49:47 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-01-17 11:49:49 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-01-17 11:49:49 INFO::Merge regions for chr22
+2023-01-17 11:49:49 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-01-17 11:49:49 INFO::Trim regions with SNPs more than 20000
+2023-01-17 11:49:49 INFO::Adding R matrix info, as genotype is not given
+2023-01-17 11:49:50 INFO::Adding R matrix info for chrom 1
+2023-01-17 11:58:06 INFO::Adding R matrix info for chrom 2
+2023-01-17 12:06:51 INFO::Adding R matrix info for chrom 3
+2023-01-17 12:13:23 INFO::Adding R matrix info for chrom 4
+2023-01-17 12:20:26 INFO::Adding R matrix info for chrom 5
+2023-01-17 12:26:36 INFO::Adding R matrix info for chrom 6
+2023-01-17 12:34:29 INFO::Adding R matrix info for chrom 7
+2023-01-17 12:40:52 INFO::Adding R matrix info for chrom 8
+2023-01-17 12:46:40 INFO::Adding R matrix info for chrom 9
+2023-01-17 12:50:55 INFO::Adding R matrix info for chrom 10
+2023-01-17 12:56:35 INFO::Adding R matrix info for chrom 11
+2023-01-17 13:02:11 INFO::Adding R matrix info for chrom 12
+2023-01-17 13:07:27 INFO::Adding R matrix info for chrom 13
+2023-01-17 13:11:18 INFO::Adding R matrix info for chrom 14
+2023-01-17 13:14:46 INFO::Adding R matrix info for chrom 15
+2023-01-17 13:17:39 INFO::Adding R matrix info for chrom 16
+2023-01-17 13:20:48 INFO::Adding R matrix info for chrom 17
+2023-01-17 13:24:03 INFO::Adding R matrix info for chrom 18
+2023-01-17 13:26:52 INFO::Adding R matrix info for chrom 19
+2023-01-17 13:29:34 INFO::Adding R matrix info for chrom 20
+2023-01-17 13:31:56 INFO::Adding R matrix info for chrom 21
+2023-01-17 13:33:13 INFO::Adding R matrix info for chrom 22
+2023-01-17 13:37:21 INFO::Number of regions that contain strong gene signals: 3
+2023-01-17 13:37:21 INFO::Rerun susie for regions with strong gene signals using full SNPs.
+2023-01-17 13:37:22 INFO::run iteration 1
+starting worker pid=4110 on localhost:11529 at 13:37:23.220
+2023-01-17 13:39:08 INFO::After iteration 1, priors {SNP,gene}: {0.000601805640448091,0.118230967698524}
+$group_prior
+         SNP         gene 
+0.0001276091 0.0015598194 
+
+$group_prior_var
+      SNP      gene 
+ 22.59513 378.88521 
+
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.14.6 ctwas_0.1.35     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9        pgenlibr_0.3.2    magrittr_2.0.3    hms_1.1.2        
+ [5] doParallel_1.0.17 lattice_0.20-44   R6_2.5.1          rlang_1.0.6      
+ [9] foreach_1.5.2     fansi_1.0.3       tools_4.1.0       parallel_4.1.0   
+[13] grid_4.1.0        logging_0.10-108  utf8_1.2.2        cli_3.4.1        
+[17] iterators_1.0.14  ellipsis_0.3.2    tibble_3.1.8      lifecycle_1.0.3  
+[21] crayon_1.5.2      Matrix_1.3-3      readr_2.1.3       tzdb_0.3.0       
+[25] vctrs_0.5.1       codetools_0.2-18  glue_1.6.2        compiler_4.1.0   
+[29] pillar_1.8.1      pkgconfig_2.0.3  
