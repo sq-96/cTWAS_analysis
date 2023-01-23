@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for WEIGHT in Liver_GTEX Liver_mashr_lite Liver_mashr
+for WEIGHT in Liver_mashr_har
 do 
 	TRAIT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz"
 	LD_DIR="/project2/mstephens/wcrouse/UKB_LDR_0.1"

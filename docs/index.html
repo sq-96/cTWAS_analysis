@@ -288,7 +288,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -297,7 +297,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -309,7 +309,7 @@ $(document).ready(function () {
 <strong>Last updated:</strong> 2023-01-23
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -325,28 +325,28 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree7bfdf38d6b3147e23dce80abb2fc5ed01c48efbetargetblank7bfdf38a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/7bfdf38d6b3147e23dce80abb2fc5ed01c48efbe" target="_blank">7bfdf38</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4d68754ae1433a40b2b7a89b3397093d596199a9targetblank4d68754a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/4d68754ae1433a40b2b7a89b3397093d596199a9" target="_blank">4d68754</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree7bfdf38d6b3147e23dce80abb2fc5ed01c48efbetargetblank7bfdf38a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4d68754ae1433a40b2b7a89b3397093d596199a9targetblank4d68754a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/7bfdf38d6b3147e23dce80abb2fc5ed01c48efbe" target="_blank">7bfdf38</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/4d68754ae1433a40b2b7a89b3397093d596199a9" target="_blank">4d68754</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -363,20 +363,8 @@ Untracked files:
     Untracked:  SCZ_annotation.xlsx
     Untracked:  SLC8B1.pdf
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/LDL_Liver_GTEX.Rmd
-    Untracked:  analysis/LDL_Liver_mashr.Rmd
-    Untracked:  analysis/LDL_Liver_mashr_lite.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
-    Untracked:  code/LDL_out/LDL_Liver_GTEX.err
-    Untracked:  code/LDL_out/LDL_Liver_GTEX.out
-    Untracked:  code/LDL_out/LDL_Liver_mashr.err
-    Untracked:  code/LDL_out/LDL_Liver_mashr.out
-    Untracked:  code/LDL_out/LDL_Liver_mashr_lite.err
-    Untracked:  code/LDL_out/LDL_Liver_mashr_lite.out
-    Untracked:  code/run_LDL_analysis_single_test.sbatch
-    Untracked:  code/run_LDL_analysis_single_test.sh
-    Untracked:  code/run_LDL_ctwas_rss_LDR_single_test.R
     Untracked:  data/.ipynb_checkpoints/
     Untracked:  data/FUMA_output/
     Untracked:  data/GO_Terms/
@@ -425,8 +413,12 @@ Untracked files:
 
 Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
-    Modified:   analysis/index.Rmd
+    Modified:   analysis/LDL_Liver_GTEX.Rmd
+    Modified:   analysis/LDL_Liver_mashr.Rmd
+    Modified:   analysis/LDL_Liver_mashr_lite.Rmd
     Deleted:    code/run_IBD_ctwas_rss_LDR_ME.R
+    Modified:   code/run_LDL_analysis_single_test.sh
+    Modified:   code/run_LDL_ctwas_rss_LDR_single_test.R
 
 </code></pre>
 <p>
@@ -465,6 +457,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4d68754ae1433a40b2b7a89b3397093d596199a9/analysis/index.Rmd" target="_blank">4d68754</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-01-23
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/4d68754ae1433a40b2b7a89b3397093d596199a9/docs/index.html" target="_blank">4d68754</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-01-23
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
