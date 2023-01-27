@@ -288,7 +288,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -297,7 +297,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -309,7 +309,7 @@ $(document).ready(function () {
 <strong>Last updated:</strong> 2023-01-26
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -325,28 +325,28 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6bad70cf461a8cef710d055c77cbe34a7630bc17targetblank6bad70ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/6bad70cf461a8cef710d055c77cbe34a7630bc17" target="_blank">6bad70c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree5575f7f82e271788a2aa77487a5d20f333ba1330targetblank5575f7fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/5575f7f82e271788a2aa77487a5d20f333ba1330" target="_blank">5575f7f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6bad70cf461a8cef710d055c77cbe34a7630bc17targetblank6bad70ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree5575f7f82e271788a2aa77487a5d20f333ba1330targetblank5575f7fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/6bad70cf461a8cef710d055c77cbe34a7630bc17" target="_blank">6bad70c</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/5575f7f82e271788a2aa77487a5d20f333ba1330" target="_blank">5575f7f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -363,16 +363,8 @@ Untracked files:
     Untracked:  SCZ_annotation.xlsx
     Untracked:  SLC8B1.pdf
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/Single_QTL_Analysis.Rmd
-    Untracked:  analysis/WhiteBlood_Prostate_M.Rmd
-    Untracked:  analysis/WhiteBlood_WholeBlood_M.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
-    Untracked:  code/RedBlood_M_out/
-    Untracked:  code/White_Blood_M_out/
-    Untracked:  code/run_RedBlood_analysis_M.sbatch
-    Untracked:  code/run_RedBlood_analysis_M.sh
-    Untracked:  code/run_RedBlood_ctwas_rss_LDR_M.R
     Untracked:  data/.ipynb_checkpoints/
     Untracked:  data/FUMA_output/
     Untracked:  data/GO_Terms/
@@ -423,18 +415,15 @@ Untracked files:
 
 Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
-    Modified:   analysis/LDL_Blood_M.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   code/LDL_M_out/LDL_BreastMammary.err
-    Modified:   code/LDL_M_out/LDL_BreastMammary.out
-    Modified:   code/LDL_M_out/LDL_ColonTransverse.err
-    Modified:   code/LDL_M_out/LDL_ColonTransverse.out
-    Modified:   code/LDL_M_out/LDL_Lung.err
-    Modified:   code/LDL_M_out/LDL_Lung.out
-    Modified:   code/LDL_M_out/LDL_Ovary.err
-    Modified:   code/LDL_M_out/LDL_Ovary.out
+    Modified:   code/RedBlood_M_out/RedBlood_BreastMammary.out
+    Modified:   code/RedBlood_M_out/RedBlood_KidneyCortex.out
+    Modified:   code/RedBlood_M_out/RedBlood_Lung.out
+    Modified:   code/RedBlood_M_out/RedBlood_MuscleSkeletal.out
+    Modified:   code/RedBlood_M_out/RedBlood_Testis.out
+    Modified:   code/RedBlood_M_out/RedBlood_WholeBlood.out
+    Modified:   code/White_Blood_M_out/White_Blood_KidneyCortex.err
+    Modified:   code/White_Blood_M_out/White_Blood_Ovary.err
     Deleted:    code/run_IBD_ctwas_rss_LDR_ME.R
-    Modified:   code/run_LDL_analysis_M.sh
 
 </code></pre>
 <p>
@@ -473,6 +462,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/684d8067393232af8016d16fb18c1be26f069a77/docs/index.html" target="_blank">684d806</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-01-26
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/363ce6a003e38694e06d7d053fe58a5e8f24d8b5/analysis/index.Rmd" target="_blank">363ce6a</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-01-26
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 html
