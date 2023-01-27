@@ -1,0 +1,24 @@
+---
+title: "Single_QTL_analysis"
+output: html_document
+date: '2023-01-25'
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+GTEx <- readRDS("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL/Liver_GTEX/LDL_Liver_GTEX_ctwas_gene_res.RDS")
+MASHR <- readRDS("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL/Liver_mashr/LDL_Liver_mashr_ctwas_gene_res.RDS")
+#MASHR_lite <- readRDS("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL/Liver_mashr_lite/LDL_Liver_mashr_lite_ctwas_gene_res.RDS")
+```
+
+```{r}
+GTEx <- GTEx[,c("id","susie_pip")]
+colnames(GTEx) <- c("id","GTRx_PIP")
+MASHR <- MASHR[,c("id","susie_pip")]
+colnames(MASHR) <- c("id","MASHR_PIP")
+#MASHR_lite <- MASHR_lite[,c("id","susie_pip")]
+data <- merge(GTEx,MASHR,by = "id")
+plot(data$GTRx_PIP,data$MASHR_PIP)
+```
+

@@ -5,286 +5,84 @@
 [5] "LDL_BreastMammary_expr"                                                          
 [6] "LDL_BreastMammary_ctwas"                                                         
 [7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_M/BreastMammary"         
-2023-01-17 02:06:06 INFO::Reading weights for chromosome 1
-2023-01-17 02:06:07 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 02:06:07 INFO::Number of genes with weights provided: 7527
-2023-01-17 02:06:07 INFO::Collecting gene weight information ...
-2023-01-17 02:07:01 INFO::Start gene z score imputation ...
-2023-01-17 02:07:01 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 02:14:25 INFO::Imputation done, writing results to output...
-2023-01-17 02:14:26 INFO::Imputation done: number of genes with imputed expression: 582 for chr 1
-2023-01-17 02:14:26 INFO::Reading weights for chromosome 2
-2023-01-17 02:14:26 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 02:14:26 INFO::Number of genes with weights provided: 7527
-2023-01-17 02:14:26 INFO::Collecting gene weight information ...
-2023-01-17 02:15:21 INFO::Start gene z score imputation ...
-2023-01-17 02:15:21 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 02:24:00 INFO::Imputation done, writing results to output...
-2023-01-17 02:24:01 INFO::Imputation done: number of genes with imputed expression: 572 for chr 2
-2023-01-17 02:24:01 INFO::Reading weights for chromosome 3
-2023-01-17 02:24:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 02:24:01 INFO::Number of genes with weights provided: 7527
-2023-01-17 02:24:01 INFO::Collecting gene weight information ...
-2023-01-17 02:24:47 INFO::Start gene z score imputation ...
-2023-01-17 02:24:47 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 02:31:23 INFO::Imputation done, writing results to output...
-2023-01-17 02:31:24 INFO::Imputation done: number of genes with imputed expression: 401 for chr 3
-2023-01-17 02:31:24 INFO::Reading weights for chromosome 4
-2023-01-17 02:31:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 02:31:24 INFO::Number of genes with weights provided: 7527
-2023-01-17 02:31:24 INFO::Collecting gene weight information ...
-2023-01-17 02:32:08 INFO::Start gene z score imputation ...
-2023-01-17 02:32:08 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 02:39:03 INFO::Imputation done, writing results to output...
-2023-01-17 02:39:04 INFO::Imputation done: number of genes with imputed expression: 306 for chr 4
-2023-01-17 02:39:05 INFO::Reading weights for chromosome 5
-2023-01-17 02:39:05 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 02:39:05 INFO::Number of genes with weights provided: 7527
-2023-01-17 02:39:05 INFO::Collecting gene weight information ...
-2023-01-17 02:39:56 INFO::Start gene z score imputation ...
-2023-01-17 02:39:56 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 02:45:59 INFO::Imputation done, writing results to output...
-2023-01-17 02:46:00 INFO::Imputation done: number of genes with imputed expression: 347 for chr 5
-2023-01-17 02:46:01 INFO::Reading weights for chromosome 6
-2023-01-17 02:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 02:46:01 INFO::Number of genes with weights provided: 7527
-2023-01-17 02:46:01 INFO::Collecting gene weight information ...
-2023-01-17 02:47:07 INFO::Start gene z score imputation ...
-2023-01-17 02:47:07 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 02:53:44 INFO::Imputation done, writing results to output...
-2023-01-17 02:53:44 INFO::Imputation done: number of genes with imputed expression: 482 for chr 6
-2023-01-17 02:53:45 INFO::Reading weights for chromosome 7
-2023-01-17 02:53:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 02:53:45 INFO::Number of genes with weights provided: 7527
-2023-01-17 02:53:45 INFO::Collecting gene weight information ...
-2023-01-17 02:54:42 INFO::Start gene z score imputation ...
-2023-01-17 02:54:42 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:00:25 INFO::Imputation done, writing results to output...
-2023-01-17 03:00:25 INFO::Imputation done: number of genes with imputed expression: 385 for chr 7
-2023-01-17 03:00:26 INFO::Reading weights for chromosome 8
-2023-01-17 03:00:26 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:00:26 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:00:26 INFO::Collecting gene weight information ...
-2023-01-17 03:01:17 INFO::Start gene z score imputation ...
-2023-01-17 03:01:17 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:06:25 INFO::Imputation done, writing results to output...
-2023-01-17 03:06:25 INFO::Imputation done: number of genes with imputed expression: 319 for chr 8
-2023-01-17 03:06:26 INFO::Reading weights for chromosome 9
-2023-01-17 03:06:26 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:06:26 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:06:26 INFO::Collecting gene weight information ...
-2023-01-17 03:07:04 INFO::Start gene z score imputation ...
-2023-01-17 03:07:04 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:10:54 INFO::Imputation done, writing results to output...
-2023-01-17 03:10:54 INFO::Imputation done: number of genes with imputed expression: 188 for chr 9
-2023-01-17 03:10:55 INFO::Reading weights for chromosome 10
-2023-01-17 03:10:55 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:10:55 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:10:55 INFO::Collecting gene weight information ...
-2023-01-17 03:11:53 INFO::Start gene z score imputation ...
-2023-01-17 03:11:53 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:17:17 INFO::Imputation done, writing results to output...
-2023-01-17 03:17:17 INFO::Imputation done: number of genes with imputed expression: 354 for chr 10
-2023-01-17 03:17:18 INFO::Reading weights for chromosome 11
-2023-01-17 03:17:18 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:17:18 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:17:18 INFO::Collecting gene weight information ...
-2023-01-17 03:18:17 INFO::Start gene z score imputation ...
-2023-01-17 03:18:17 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:23:31 INFO::Imputation done, writing results to output...
-2023-01-17 03:23:32 INFO::Imputation done: number of genes with imputed expression: 356 for chr 11
-2023-01-17 03:23:32 INFO::Reading weights for chromosome 12
-2023-01-17 03:23:32 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:23:32 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:23:32 INFO::Collecting gene weight information ...
-2023-01-17 03:24:31 INFO::Start gene z score imputation ...
-2023-01-17 03:24:31 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:29:46 INFO::Imputation done, writing results to output...
-2023-01-17 03:29:47 INFO::Imputation done: number of genes with imputed expression: 315 for chr 12
-2023-01-17 03:29:47 INFO::Reading weights for chromosome 13
-2023-01-17 03:29:47 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:29:47 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:29:47 INFO::Collecting gene weight information ...
-2023-01-17 03:30:25 INFO::Start gene z score imputation ...
-2023-01-17 03:30:25 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:33:47 INFO::Imputation done, writing results to output...
-2023-01-17 03:33:48 INFO::Imputation done: number of genes with imputed expression: 168 for chr 13
-2023-01-17 03:33:48 INFO::Reading weights for chromosome 14
-2023-01-17 03:33:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:33:48 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:33:48 INFO::Collecting gene weight information ...
-2023-01-17 03:34:32 INFO::Start gene z score imputation ...
-2023-01-17 03:34:32 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:37:48 INFO::Imputation done, writing results to output...
-2023-01-17 03:37:49 INFO::Imputation done: number of genes with imputed expression: 207 for chr 14
-2023-01-17 03:37:49 INFO::Reading weights for chromosome 15
-2023-01-17 03:37:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:37:49 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:37:49 INFO::Collecting gene weight information ...
-2023-01-17 03:38:38 INFO::Start gene z score imputation ...
-2023-01-17 03:38:38 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:41:34 INFO::Imputation done, writing results to output...
-2023-01-17 03:41:34 INFO::Imputation done: number of genes with imputed expression: 233 for chr 15
-2023-01-17 03:41:35 INFO::Reading weights for chromosome 16
-2023-01-17 03:41:35 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:41:35 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:41:35 INFO::Collecting gene weight information ...
-2023-01-17 03:42:43 INFO::Start gene z score imputation ...
-2023-01-17 03:42:43 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:46:18 INFO::Imputation done, writing results to output...
-2023-01-17 03:46:18 INFO::Imputation done: number of genes with imputed expression: 319 for chr 16
-2023-01-17 03:46:19 INFO::Reading weights for chromosome 17
-2023-01-17 03:46:19 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:46:19 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:46:19 INFO::Collecting gene weight information ...
-2023-01-17 03:47:37 INFO::Start gene z score imputation ...
-2023-01-17 03:47:37 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:51:36 INFO::Imputation done, writing results to output...
-2023-01-17 03:51:37 INFO::Imputation done: number of genes with imputed expression: 435 for chr 17
-2023-01-17 03:51:37 INFO::Reading weights for chromosome 18
-2023-01-17 03:51:37 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:51:37 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:51:37 INFO::Collecting gene weight information ...
-2023-01-17 03:52:05 INFO::Start gene z score imputation ...
-2023-01-17 03:52:05 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:54:26 INFO::Imputation done, writing results to output...
-2023-01-17 03:54:26 INFO::Imputation done: number of genes with imputed expression: 77 for chr 18
-2023-01-17 03:54:27 INFO::Reading weights for chromosome 19
-2023-01-17 03:54:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:54:27 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:54:27 INFO::Collecting gene weight information ...
-2023-01-17 03:55:23 INFO::Start gene z score imputation ...
-2023-01-17 03:55:23 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 03:58:34 INFO::Imputation done, writing results to output...
-2023-01-17 03:58:35 INFO::Imputation done: number of genes with imputed expression: 300 for chr 19
-2023-01-17 03:58:35 INFO::Reading weights for chromosome 20
-2023-01-17 03:58:35 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 03:58:35 INFO::Number of genes with weights provided: 7527
-2023-01-17 03:58:35 INFO::Collecting gene weight information ...
-2023-01-17 03:59:15 INFO::Start gene z score imputation ...
-2023-01-17 03:59:15 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 04:01:54 INFO::Imputation done, writing results to output...
-2023-01-17 04:01:55 INFO::Imputation done: number of genes with imputed expression: 165 for chr 20
-2023-01-17 04:01:55 INFO::Reading weights for chromosome 21
-2023-01-17 04:01:55 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 04:01:55 INFO::Number of genes with weights provided: 7527
-2023-01-17 04:01:55 INFO::Collecting gene weight information ...
-2023-01-17 04:02:25 INFO::Start gene z score imputation ...
-2023-01-17 04:02:25 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 04:03:38 INFO::Imputation done, writing results to output...
-2023-01-17 04:03:39 INFO::Imputation done: number of genes with imputed expression: 95 for chr 21
-2023-01-17 04:03:39 INFO::Reading weights for chromosome 22
-2023-01-17 04:03:39 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/BreastMammary.db
-2023-01-17 04:03:39 INFO::Number of genes with weights provided: 7527
-2023-01-17 04:03:39 INFO::Collecting gene weight information ...
-2023-01-17 04:04:21 INFO::Start gene z score imputation ...
-2023-01-17 04:04:21 INFO::Using given LD matrices to impute gene z score.
-2023-01-17 04:06:02 INFO::Imputation done, writing results to output...
-2023-01-17 04:06:03 INFO::Imputation done: number of genes with imputed expression: 179 for chr 22
-2023-01-17 04:06:30 INFO::ctwas started ...
-2023-01-17 04:06:44 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/4.1/ctwas/extdata/ldetect/EUR.b38.bed
-2023-01-17 04:06:54 INFO::No. LD regions: 1700
-2023-01-17 04:07:03 INFO::No. regions with at least one SNP/gene for chr1: 131
-2023-01-17 04:07:03 INFO::Merge regions for chr1
-2023-01-17 04:07:03 INFO::No. regions with at least one SNP/gene for chr1 after merging: 131
-2023-01-17 04:07:12 INFO::No. regions with at least one SNP/gene for chr2: 144
-2023-01-17 04:07:12 INFO::Merge regions for chr2
-2023-01-17 04:07:13 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
-2023-01-17 04:07:19 INFO::No. regions with at least one SNP/gene for chr3: 122
-2023-01-17 04:07:19 INFO::Merge regions for chr3
-2023-01-17 04:07:19 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
-2023-01-17 04:07:27 INFO::No. regions with at least one SNP/gene for chr4: 122
-2023-01-17 04:07:27 INFO::Merge regions for chr4
-2023-01-17 04:07:27 INFO::No. regions with at least one SNP/gene for chr4 after merging: 122
-2023-01-17 04:07:31 INFO::No. regions with at least one SNP/gene for chr5: 110
-2023-01-17 04:07:31 INFO::Merge regions for chr5
-2023-01-17 04:07:31 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
-2023-01-17 04:07:39 INFO::No. regions with at least one SNP/gene for chr6: 112
-2023-01-17 04:07:39 INFO::Merge regions for chr6
-2023-01-17 04:07:39 INFO::No. regions with at least one SNP/gene for chr6 after merging: 112
-2023-01-17 04:07:42 INFO::No. regions with at least one SNP/gene for chr7: 99
-2023-01-17 04:07:42 INFO::Merge regions for chr7
-2023-01-17 04:07:42 INFO::No. regions with at least one SNP/gene for chr7 after merging: 99
-2023-01-17 04:07:45 INFO::No. regions with at least one SNP/gene for chr8: 94
-2023-01-17 04:07:45 INFO::Merge regions for chr8
-2023-01-17 04:07:45 INFO::No. regions with at least one SNP/gene for chr8 after merging: 94
-2023-01-17 04:07:48 INFO::No. regions with at least one SNP/gene for chr9: 74
-2023-01-17 04:07:48 INFO::Merge regions for chr9
-2023-01-17 04:07:48 INFO::No. regions with at least one SNP/gene for chr9 after merging: 74
-2023-01-17 04:07:50 INFO::No. regions with at least one SNP/gene for chr10: 85
-2023-01-17 04:07:50 INFO::Merge regions for chr10
-2023-01-17 04:07:50 INFO::No. regions with at least one SNP/gene for chr10 after merging: 85
-2023-01-17 04:07:53 INFO::No. regions with at least one SNP/gene for chr11: 84
-2023-01-17 04:07:53 INFO::Merge regions for chr11
-2023-01-17 04:07:53 INFO::No. regions with at least one SNP/gene for chr11 after merging: 84
-2023-01-17 04:07:56 INFO::No. regions with at least one SNP/gene for chr12: 82
-2023-01-17 04:07:56 INFO::Merge regions for chr12
-2023-01-17 04:07:56 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
-2023-01-17 04:07:58 INFO::No. regions with at least one SNP/gene for chr13: 62
-2023-01-17 04:07:58 INFO::Merge regions for chr13
-2023-01-17 04:07:58 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
-2023-01-17 04:08:00 INFO::No. regions with at least one SNP/gene for chr14: 56
-2023-01-17 04:08:00 INFO::Merge regions for chr14
-2023-01-17 04:08:00 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
-2023-01-17 04:08:01 INFO::No. regions with at least one SNP/gene for chr15: 50
-2023-01-17 04:08:01 INFO::Merge regions for chr15
-2023-01-17 04:08:01 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
-2023-01-17 04:08:04 INFO::No. regions with at least one SNP/gene for chr16: 54
-2023-01-17 04:08:04 INFO::Merge regions for chr16
-2023-01-17 04:08:04 INFO::No. regions with at least one SNP/gene for chr16 after merging: 54
-2023-01-17 04:08:05 INFO::No. regions with at least one SNP/gene for chr17: 47
-2023-01-17 04:08:05 INFO::Merge regions for chr17
-2023-01-17 04:08:05 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
-2023-01-17 04:08:07 INFO::No. regions with at least one SNP/gene for chr18: 47
-2023-01-17 04:08:07 INFO::Merge regions for chr18
-2023-01-17 04:08:07 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
-2023-01-17 04:08:08 INFO::No. regions with at least one SNP/gene for chr19: 39
-2023-01-17 04:08:08 INFO::Merge regions for chr19
-2023-01-17 04:08:08 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
-2023-01-17 04:08:10 INFO::No. regions with at least one SNP/gene for chr20: 38
-2023-01-17 04:08:10 INFO::Merge regions for chr20
-2023-01-17 04:08:10 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
-2023-01-17 04:08:11 INFO::No. regions with at least one SNP/gene for chr21: 24
-2023-01-17 04:08:11 INFO::Merge regions for chr21
-2023-01-17 04:08:11 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
-2023-01-17 04:08:13 INFO::No. regions with at least one SNP/gene for chr22: 24
-2023-01-17 04:08:13 INFO::Merge regions for chr22
-2023-01-17 04:08:13 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
-2023-01-17 04:08:13 INFO::Trim regions with SNPs more than Inf
-2023-01-17 04:08:13 INFO::Adding R matrix info, as genotype is not given
-2023-01-17 04:08:13 INFO::Adding R matrix info for chrom 1
-2023-01-17 04:18:07 INFO::Adding R matrix info for chrom 2
-2023-01-17 04:28:54 INFO::Adding R matrix info for chrom 3
-2023-01-17 04:37:14 INFO::Adding R matrix info for chrom 4
-2023-01-17 04:46:11 INFO::Adding R matrix info for chrom 5
-2023-01-17 04:53:50 INFO::Adding R matrix info for chrom 6
-2023-01-17 05:02:35 INFO::Adding R matrix info for chrom 7
-2023-01-17 05:10:14 INFO::Adding R matrix info for chrom 8
-2023-01-17 05:17:01 INFO::Adding R matrix info for chrom 9
-2023-01-17 05:22:12 INFO::Adding R matrix info for chrom 10
-2023-01-17 05:28:45 INFO::Adding R matrix info for chrom 11
-2023-01-17 05:35:21 INFO::Adding R matrix info for chrom 12
-2023-01-17 05:41:28 INFO::Adding R matrix info for chrom 13
-2023-01-17 05:46:02 INFO::Adding R matrix info for chrom 14
-2023-01-17 05:49:56 INFO::Adding R matrix info for chrom 15
-2023-01-17 05:53:29 INFO::Adding R matrix info for chrom 16
-2023-01-17 05:56:59 INFO::Adding R matrix info for chrom 17
-2023-01-17 06:00:34 INFO::Adding R matrix info for chrom 18
-2023-01-17 06:04:16 INFO::Adding R matrix info for chrom 19
-2023-01-17 06:07:31 INFO::Adding R matrix info for chrom 20
-2023-01-17 06:10:33 INFO::Adding R matrix info for chrom 21
-2023-01-17 06:12:12 INFO::Adding R matrix info for chrom 22
-2023-01-17 06:13:53 INFO::Run susie iteratively, getting rough estimate ...
-2023-01-17 06:13:53 INFO::run iteration 1
-starting worker pid=50516 on localhost:11356 at 06:13:54.713
-starting worker pid=50519 on localhost:11356 at 06:13:54.714
-starting worker pid=50511 on localhost:11356 at 06:13:54.715
-starting worker pid=50517 on localhost:11356 at 06:13:54.715
-starting worker pid=50518 on localhost:11356 at 06:13:54.715
-starting worker pid=50513 on localhost:11356 at 06:13:54.715
-starting worker pid=50512 on localhost:11356 at 06:13:54.715
-starting worker pid=50514 on localhost:11356 at 06:13:54.715
-starting worker pid=50520 on localhost:11356 at 06:13:54.716
-starting worker pid=50515 on localhost:11356 at 06:13:54.716
-2023-01-17 06:47:11 INFO::After iteration 1, priors {SNP,gene}: {0.0019339006640944,0.00267707420245628}
-2023-01-17 06:47:12 INFO::run iteration 2
+2023-01-25 16:51:33 INFO::ctwas started ...
+2023-01-25 16:52:41 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/4.1/ctwas/extdata/ldetect/EUR.b38.bed
+2023-01-25 16:52:56 INFO::No. LD regions: 1700
+2023-01-25 16:53:06 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-01-25 16:53:06 INFO::Merge regions for chr1
+2023-01-25 16:53:06 INFO::No. regions with at least one SNP/gene for chr1 after merging: 131
+2023-01-25 16:53:15 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-01-25 16:53:15 INFO::Merge regions for chr2
+2023-01-25 16:53:15 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
+2023-01-25 16:53:21 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-01-25 16:53:21 INFO::Merge regions for chr3
+2023-01-25 16:53:21 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-01-25 16:53:28 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-01-25 16:53:28 INFO::Merge regions for chr4
+2023-01-25 16:53:28 INFO::No. regions with at least one SNP/gene for chr4 after merging: 122
+2023-01-25 16:53:33 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-01-25 16:53:33 INFO::Merge regions for chr5
+2023-01-25 16:53:33 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-01-25 16:53:39 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-01-25 16:53:39 INFO::Merge regions for chr6
+2023-01-25 16:53:39 INFO::No. regions with at least one SNP/gene for chr6 after merging: 112
+2023-01-25 16:53:45 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-01-25 16:53:45 INFO::Merge regions for chr7
+2023-01-25 16:53:45 INFO::No. regions with at least one SNP/gene for chr7 after merging: 99
+2023-01-25 16:53:51 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-01-25 16:53:51 INFO::Merge regions for chr8
+2023-01-25 16:53:51 INFO::No. regions with at least one SNP/gene for chr8 after merging: 94
+2023-01-25 16:53:55 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-01-25 16:53:55 INFO::Merge regions for chr9
+2023-01-25 16:53:55 INFO::No. regions with at least one SNP/gene for chr9 after merging: 74
+2023-01-25 16:54:00 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-01-25 16:54:00 INFO::Merge regions for chr10
+2023-01-25 16:54:00 INFO::No. regions with at least one SNP/gene for chr10 after merging: 85
+2023-01-25 16:54:05 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-01-25 16:54:05 INFO::Merge regions for chr11
+2023-01-25 16:54:05 INFO::No. regions with at least one SNP/gene for chr11 after merging: 84
+2023-01-25 16:54:09 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-01-25 16:54:09 INFO::Merge regions for chr12
+2023-01-25 16:54:09 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-01-25 16:54:13 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-01-25 16:54:13 INFO::Merge regions for chr13
+2023-01-25 16:54:13 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-01-25 16:54:16 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-01-25 16:54:16 INFO::Merge regions for chr14
+2023-01-25 16:54:16 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-01-25 16:54:19 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-01-25 16:54:19 INFO::Merge regions for chr15
+2023-01-25 16:54:19 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-01-25 16:54:22 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-01-25 16:54:22 INFO::Merge regions for chr16
+2023-01-25 16:54:22 INFO::No. regions with at least one SNP/gene for chr16 after merging: 54
+2023-01-25 16:54:25 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-01-25 16:54:25 INFO::Merge regions for chr17
+2023-01-25 16:54:25 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-01-25 16:54:28 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-01-25 16:54:28 INFO::Merge regions for chr18
+2023-01-25 16:54:28 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2023-01-25 16:54:31 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-01-25 16:54:31 INFO::Merge regions for chr19
+2023-01-25 16:54:31 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-01-25 16:54:33 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-01-25 16:54:33 INFO::Merge regions for chr20
+2023-01-25 16:54:33 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-01-25 16:54:35 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-01-25 16:54:35 INFO::Merge regions for chr21
+2023-01-25 16:54:35 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-01-25 16:54:37 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-01-25 16:54:37 INFO::Merge regions for chr22
+2023-01-25 16:54:37 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-01-25 16:54:37 INFO::Trim regions with SNPs more than Inf
+2023-01-25 16:54:37 INFO::Adding R matrix info, as genotype is not given
+2023-01-25 16:54:37 INFO::Adding R matrix info for chrom 1
+2023-01-25 17:04:10 INFO::Adding R matrix info for chrom 2
+2023-01-25 17:13:53 INFO::Adding R matrix info for chrom 3
+2023-01-25 17:21:25 INFO::Adding R matrix info for chrom 4
+2023-01-25 17:29:41 INFO::Adding R matrix info for chrom 5
+2023-01-25 17:36:50 INFO::Adding R matrix info for chrom 6
+2023-01-25 17:44:59 INFO::Adding R matrix info for chrom 7
+2023-01-25 17:52:21 INFO::Adding R matrix info for chrom 8
+2023-01-25 17:58:39 INFO::Adding R matrix info for chrom 9
+2023-01-25 18:03:58 INFO::Adding R matrix info for chrom 10
