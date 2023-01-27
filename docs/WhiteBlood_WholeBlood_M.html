@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="sheng Qian" />
+
+<meta name="date" content="2022-10-18" />
+
+<title>White Blood - WholeBlood</title>
+
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">cTWAS_analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/sq-96/cTWAS_analysis">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">White Blood - WholeBlood</h1>
+<h4 class="author">sheng Qian</h4>
+<h4 class="date">2022-10-18</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2023-01-26
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
+</p>
+<p>
+<strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211220code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20211220)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20211220code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20211220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+</p>
+</div>
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/
+</td>
+<td style="text-align:left;">
+data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R
+</td>
+<td style="text-align:left;">
+code/ctwas_config_b38.R
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/WholeBlood.db
+</td>
+<td style="text-align:left;">
+data/mqtl/WholeBlood.db
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6bad70cf461a8cef710d055c77cbe34a7630bc17targetblank6bad70ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/6bad70cf461a8cef710d055c77cbe34a7630bc17" target="_blank">6bad70c</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree6bad70cf461a8cef710d055c77cbe34a7630bc17targetblank6bad70ca" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/6bad70cf461a8cef710d055c77cbe34a7630bc17" target="_blank">6bad70c</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .ipynb_checkpoints/
+
+Untracked files:
+    Untracked:  Proposal plots.R
+    Untracked:  RGS14.pdf
+    Untracked:  RNF186.pdf
+    Untracked:  SCZ_annotation.xlsx
+    Untracked:  SLC8B1.pdf
+    Untracked:  analysis/.ipynb_checkpoints/
+    Untracked:  analysis/Single_QTL_Analysis.Rmd
+    Untracked:  analysis/WhiteBlood_Prostate_M.Rmd
+    Untracked:  analysis/WhiteBlood_WholeBlood_M.Rmd
+    Untracked:  cache/
+    Untracked:  code/.ipynb_checkpoints/
+    Untracked:  code/RedBlood_M_out/
+    Untracked:  code/White_Blood_M_out/
+    Untracked:  code/run_RedBlood_analysis_M.sbatch
+    Untracked:  code/run_RedBlood_analysis_M.sh
+    Untracked:  code/run_RedBlood_ctwas_rss_LDR_M.R
+    Untracked:  data/.ipynb_checkpoints/
+    Untracked:  data/FUMA_output/
+    Untracked:  data/GO_Terms/
+    Untracked:  data/GTEx_Analysis_v8_eQTL.tar
+    Untracked:  data/IBD_ME/
+    Untracked:  data/LDL/
+    Untracked:  data/LDL_E_S/
+    Untracked:  data/LDL_M/
+    Untracked:  data/LDL_S/
+    Untracked:  data/LDL_multi/
+    Untracked:  data/PGC3_SCZ_wave3_public.v2.tsv
+    Untracked:  data/RedBlood_M/
+    Untracked:  data/SCZ/
+    Untracked:  data/SCZ_2014_EUR/
+    Untracked:  data/SCZ_2014_EUR_ME/
+    Untracked:  data/SCZ_2018/
+    Untracked:  data/SCZ_2018_ME/
+    Untracked:  data/SCZ_2018_S/
+    Untracked:  data/SCZ_2020/
+    Untracked:  data/SCZ_S/
+    Untracked:  data/Supplementary Table 15 - MAGMA.xlsx
+    Untracked:  data/Supplementary Table 20 - Prioritised Genes.xlsx
+    Untracked:  data/UKBB/
+    Untracked:  data/UKBB_SNPs_Info.text
+    Untracked:  data/White_Blood_M/
+    Untracked:  data/eqtl/
+    Untracked:  data/gene_OMIM.txt
+    Untracked:  data/gene_pip_0.8.txt
+    Untracked:  data/gwas_sumstats/
+    Untracked:  data/magma.genes.out
+    Untracked:  data/mashr_Heart_Atrial_Appendage.db
+    Untracked:  data/mashr_sqtl/
+    Untracked:  data/mqtl/
+    Untracked:  data/multigroup/
+    Untracked:  data/notes.txt
+    Untracked:  data/scz_2018.RDS
+    Untracked:  data/summary_known_genes_annotations.xlsx
+    Untracked:  temp_LDR/
+    Untracked:  top_genes_32.txt
+    Untracked:  top_genes_37.txt
+    Untracked:  top_genes_43.txt
+    Untracked:  top_genes_54.txt
+    Untracked:  top_genes_81.txt
+    Untracked:  z_snp_pos_SCZ.RData
+    Untracked:  z_snp_pos_SCZ_2014_EUR.RData
+    Untracked:  z_snp_pos_SCZ_2018.RData
+    Untracked:  z_snp_pos_SCZ_2020.RData
+
+Unstaged changes:
+    Deleted:    analysis/BMI_S_results.Rmd
+    Modified:   analysis/LDL_Blood_M.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   code/LDL_M_out/LDL_BreastMammary.err
+    Modified:   code/LDL_M_out/LDL_BreastMammary.out
+    Modified:   code/LDL_M_out/LDL_ColonTransverse.err
+    Modified:   code/LDL_M_out/LDL_ColonTransverse.out
+    Modified:   code/LDL_M_out/LDL_Lung.err
+    Modified:   code/LDL_M_out/LDL_Lung.out
+    Modified:   code/LDL_M_out/LDL_Ovary.err
+    Modified:   code/LDL_M_out/LDL_Ovary.out
+    Deleted:    code/run_IBD_ctwas_rss_LDR_ME.R
+    Modified:   code/run_LDL_analysis_M.sh
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="weight-qc" class="section level2">
+<h2>Weight QC</h2>
+<pre><code>[1] 13069</code></pre>
+<pre><code>[1] 11858</code></pre>
+<pre><code>
+   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+1206  901  655  485  593  787  624  536  368  631  707  583  336  351  390  545 
+  17   18   19   20   21   22 
+ 707  160  529  312  179  273 </code></pre>
+<pre><code>[1] 1</code></pre>
+</div>
+<div id="load-ctwas-results" class="section level2">
+<h2>Load ctwas results</h2>
+<div id="check-convergence-of-parameters" class="section level3">
+<h3>Check convergence of parameters</h3>
+<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#estimated group prior
+estimated_group_prior &lt;- estimated_group_prior_all[,ncol(group_prior_rec)]
+print(estimated_group_prior)</code></pre>
+<pre><code>      SNP      gene 
+0.0002296 0.0136450 </code></pre>
+<pre class="r"><code>#estimated group prior variance
+estimated_group_prior_var &lt;- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
+print(estimated_group_prior_var)</code></pre>
+<pre><code>  SNP  gene 
+18.16 22.91 </code></pre>
+<pre class="r"><code>#estimated enrichment
+estimated_enrichment &lt;- estimated_enrichment_all[ncol(group_prior_var_rec)]
+print(estimated_enrichment)</code></pre>
+<pre><code>[1] 59.42</code></pre>
+<pre class="r"><code>#report sample size
+print(sample_size)</code></pre>
+<pre><code>[1] 350470</code></pre>
+<pre class="r"><code>#report group size
+print(group_size)</code></pre>
+<pre><code>    SNP    gene 
+8696600   11858 </code></pre>
+<pre class="r"><code>#estimated group PVE
+estimated_group_pve &lt;- estimated_group_pve_all[,ncol(group_prior_rec)]
+print(estimated_group_pve)</code></pre>
+<pre><code>    SNP    gene 
+0.10348 0.01058 </code></pre>
+<pre class="r"><code>#total PVE
+sum(estimated_group_pve)</code></pre>
+<pre><code>[1] 0.1141</code></pre>
+<pre class="r"><code>#attributable PVE
+estimated_group_pve/sum(estimated_group_pve)</code></pre>
+<pre><code>    SNP    gene 
+0.90726 0.09274 </code></pre>
+</div>
+</div>
+<div id="genes-with-highest-pips" class="section level2">
+<h2>Genes with highest PIPs</h2>
+<pre class="r"><code>#distribution of PIPs
+hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main=&quot;Distribution of Gene PIPs&quot;)</code></pre>
+<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#genes with PIP&gt;0.8 or 20 highest PIPs
+head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip&gt;0.8), 20))</code></pre>
+<pre><code>                genename region_tag         id susie_pip    mu2       PVE
+2797                &lt;NA&gt;       6_24 cg05505711    0.9871 163.38 4.602e-04
+10391             ACVRL1      12_32 cg21236262    0.9860  54.44 1.532e-04
+6048               NLRC5      16_30 cg11987321    0.9791  45.92 1.283e-04
+1346               MYO1C       17_2 cg02622416    0.9771  44.76 1.248e-04
+11516              ITGAL      16_24 cg24033122    0.9681 152.53 4.213e-04
+12041               &lt;NA&gt;      21_18 cg25269340    0.9601  62.06 1.700e-04
+7147  AC034220.3;SLC22A5       5_79 cg14196790    0.9584 131.36 3.592e-04
+5896       RP11-351M16.3      10_20 cg11671940    0.9545 125.03 3.405e-04
+7197   CTC-503J8.4;MLLT1       19_6 cg14319541    0.9470  23.06 6.230e-05
+11617 CTD-2330K9.3;MST1R       3_35 cg24308560    0.9463  67.85 1.832e-04
+2492                &lt;NA&gt;       6_34 cg04903159    0.9461  24.08 6.500e-05
+12817                CD6      11_34 cg27098804    0.9456  25.48 6.875e-05
+4228                &lt;NA&gt;      20_38 cg08181326    0.9364  26.24 7.012e-05
+2069   AP000908.1;ZBTB16      11_67 cg04049253    0.9357  77.08 2.058e-04
+2428                &lt;NA&gt;       4_40 cg04797359    0.9142  34.54 9.008e-05
+5455              LAPTM5       1_20 cg10709350    0.9132  38.28 9.975e-05
+194                 &lt;NA&gt;       8_83 cg00395667    0.9092  29.76 7.722e-05
+2544                &lt;NA&gt;        4_8 cg05012661    0.9029  25.77 6.638e-05
+10473              EOMES       3_20 cg21473142    0.8851  60.43 1.526e-04
+4952       RP11-136O12.2       8_83 cg09660151    0.8820  35.71 8.986e-05
+7938                &lt;NA&gt;       5_35 cg15854679    0.8709  40.59 1.009e-04
+6315          CCT6A;PSPH       7_40 cg12555334    0.8686  49.07 1.216e-04
+12390               &lt;NA&gt;      17_23 cg26106178    0.8549  65.49 1.597e-04
+3814               PSMD3      17_23 cg07427276    0.8543 612.47 1.493e-03
+7910                LSM4      19_15 cg15796753    0.8142  24.47 5.684e-05
+            z num_eqtl
+2797   -1.928        1
+10391  -7.281        1
+6048   -6.699        1
+1346    6.588        1
+11516  12.478        1
+12041  -7.930        1
+7147  -13.657        1
+5896  -11.496        1
+7197   -4.440        1
+11617  -8.414        1
+2492   -4.669        1
+12817  -4.279        1
+4228    3.735        1
+2069   -8.003        1
+2428   -7.206        1
+5455    6.601        1
+194     5.231        1
+2544    4.861        1
+10473   7.702        1
+4952    5.719        1
+7938   -5.997        1
+6315   -5.881        1
+12390  12.877        1
+3814  -37.218        1
+7910    3.864        1</code></pre>
+</div>
+<div id="genes-with-largest-effect-sizes" class="section level2">
+<h2>Genes with largest effect sizes</h2>
+<pre class="r"><code>#plot PIP vs effect size
+plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab=&quot;PIP&quot;, ylab=&quot;mu^2&quot;, main=&quot;Gene PIPs vs Effect Size&quot;)</code></pre>
+<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#genes with 20 largest effect sizes
+head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)</code></pre>
+<pre><code>                            genename region_tag         id susie_pip    mu2
+6148                       HCP5;MICA       6_25 cg12182649 0.000e+00 6856.0
+4857                            YBEY      21_24 cg09417038 0.000e+00 5919.7
+7897                            PCNT      21_24 cg15764445 0.000e+00 4906.4
+3051                            PCNT      21_24 cg05998816 0.000e+00 2803.4
+8                         RNU6-1133P       6_25 cg00020172 0.000e+00 2013.3
+10750                 LSS;MCM3AP-AS1      21_24 cg22203077 0.000e+00 1830.9
+5431                           PRMT2      21_24 cg10657630 0.000e+00 1737.3
+5940                         SPATC1L      21_24 cg11766577 0.000e+00 1636.1
+8353                          DHFRP2       6_25 cg16655385 0.000e+00 1626.0
+4931  HLA-B;HLA-C;XXbac-BPG248L24.12       6_25 cg09588770 0.000e+00 1502.9
+3918                          CCHCR1       6_25 cg07613268 0.000e+00 1057.1
+12721                  CDSN;PSORS1C1       6_25 cg26858414 0.000e+00  977.1
+2645                            &lt;NA&gt;      21_24 cg05200811 0.000e+00  902.2
+8563                           HLA-C       6_25 cg17096289 0.000e+00  874.5
+10711                           &lt;NA&gt;       6_25 cg22110654 2.325e-12  834.0
+10735                   CCHCR1;TCF19       6_25 cg22158929 0.000e+00  669.3
+1951        HLA-C;XXbac-BPG248L24.13       6_25 cg03813170 0.000e+00  652.5
+3814                           PSMD3      17_23 cg07427276 8.543e-01  612.5
+1946                    CCHCR1;TCF19       6_25 cg03809032 0.000e+00  551.6
+5740                            &lt;NA&gt;       6_26 cg11294950 7.787e-01  540.0
+            PVE        z num_eqtl
+6148  0.000e+00   9.5997        1
+4857  0.000e+00  -0.9051        1
+7897  0.000e+00   4.4107        1
+3051  0.000e+00  -3.9025        1
+8     0.000e+00  16.6715        1
+10750 0.000e+00  -3.3519        1
+5431  0.000e+00  -3.1832        1
+5940  0.000e+00   0.9963        1
+8353  0.000e+00  10.9478        1
+4931  0.000e+00  27.9121        1
+3918  0.000e+00   6.8884        1
+12721 0.000e+00   6.1315        1
+2645  0.000e+00   0.2651        1
+8563  0.000e+00  28.7994        1
+10711 5.533e-15 -25.9180        1
+10735 0.000e+00  -8.1247        1
+1951  0.000e+00 -18.7958        1
+3814  1.493e-03 -37.2183        1
+1946  0.000e+00  -5.0970        1
+5740  1.200e-03 -29.6301        1</code></pre>
+</div>
+<div id="genes-with-highest-pve" class="section level2">
+<h2>Genes with highest PVE</h2>
+<pre class="r"><code>#genes with 20 highest pve
+head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)</code></pre>
+<pre><code>                     genename region_tag         id susie_pip    mu2       PVE
+3814                    PSMD3      17_23 cg07427276    0.8543 612.47 0.0014930
+5740                     &lt;NA&gt;       6_26 cg11294950    0.7787 539.99 0.0011998
+2797                     &lt;NA&gt;       6_24 cg05505711    0.9871 163.38 0.0004602
+315                     ZFP57       6_23 cg00588198    0.6029 266.14 0.0004579
+11516                   ITGAL      16_24 cg24033122    0.9681 152.53 0.0004213
+7147       AC034220.3;SLC22A5       5_79 cg14196790    0.9584 131.36 0.0003592
+5896            RP11-351M16.3      10_20 cg11671940    0.9545 125.03 0.0003405
+8546             TAPBP;ZBTB22       6_28 cg17055704    0.6555 148.72 0.0002782
+2069        AP000908.1;ZBTB16      11_67 cg04049253    0.9357  77.08 0.0002058
+10529 RPL13P;XXbac-BPG308K3.6       6_22 cg21598044    0.7513  90.17 0.0001933
+11617      CTD-2330K9.3;MST1R       3_35 cg24308560    0.9463  67.85 0.0001832
+11743           RP11-202G18.1       9_56 cg24562906    0.7508  79.37 0.0001700
+12041                    &lt;NA&gt;      21_18 cg25269340    0.9601  62.06 0.0001700
+12390                    &lt;NA&gt;      17_23 cg26106178    0.8549  65.49 0.0001597
+10391                  ACVRL1      12_32 cg21236262    0.9860  54.44 0.0001532
+10473                   EOMES       3_20 cg21473142    0.8851  60.43 0.0001526
+7718        CERS5;RP4-605O3.4      12_31 cg15405652    0.7814  64.27 0.0001433
+12033         HLA-F;HLA-F-AS1       6_23 cg25252977    0.1880 257.82 0.0001383
+6048                    NLRC5      16_30 cg11987321    0.9791  45.92 0.0001283
+1346                    MYO1C       17_2 cg02622416    0.9771  44.76 0.0001248
+            z num_eqtl
+3814  -37.218        1
+5740  -29.630        1
+2797   -1.928        1
+315    21.618        1
+11516  12.478        1
+7147  -13.657        1
+5896  -11.496        1
+8546    9.168        1
+2069   -8.003        1
+10529  14.802        1
+11617  -8.414        1
+11743 -10.604        1
+12041  -7.930        1
+12390  12.877        1
+10391  -7.281        1
+10473   7.702        1
+7718   -9.154        1
+12033  20.622        1
+6048   -6.699        1
+1346    6.588        1</code></pre>
+</div>
+<div id="genes-with-largest-z-scores" class="section level2">
+<h2>Genes with largest z scores</h2>
+<pre class="r"><code>#genes with 20 largest z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)</code></pre>
+<pre><code>                            genename region_tag         id susie_pip    mu2
+3814                           PSMD3      17_23 cg07427276 8.543e-01  612.5
+10390                          GSDMA      17_23 cg21230266 1.636e-11  473.7
+9278                           GSDMA      17_23 cg18632152 4.541e-08  339.0
+5740                            &lt;NA&gt;       6_26 cg11294950 7.787e-01  540.0
+8563                           HLA-C       6_25 cg17096289 0.000e+00  874.5
+7137                          SKIV2L       6_26 cg14178705 6.117e-14  474.2
+4931  HLA-B;HLA-C;XXbac-BPG248L24.12       6_25 cg09588770 0.000e+00 1502.9
+12413                          GSDMA      17_23 cg26162295 5.256e-06  246.2
+9055                           BTNL2       6_26 cg18067840 0.000e+00  402.1
+10711                           &lt;NA&gt;       6_25 cg22110654 2.325e-12  834.0
+2316                     DPCR1;HCG21       6_24 cg04559908 5.488e-05  483.6
+8374                            HCG9       6_24 cg16690356 2.549e-08  445.9
+3587                            &lt;NA&gt;       6_26 cg07007382 0.000e+00  291.1
+8307                         SLC44A4       6_26 cg16553272 0.000e+00  373.3
+3780                         SLC44A4       6_26 cg07363637 0.000e+00  373.3
+315                            ZFP57       6_23 cg00588198 6.029e-01  266.1
+12636                          SFTA2       6_25 cg26672776 0.000e+00  467.4
+6792                           SFTA2       6_25 cg13561028 0.000e+00  467.4
+11249                           &lt;NA&gt;       6_24 cg23397584 2.845e-10  363.7
+11864                    HCG4B;HLA-K       6_24 cg24838316 1.105e-03  328.4
+            PVE      z num_eqtl
+3814  1.493e-03 -37.22        1
+10390 2.211e-14  35.66        1
+9278  4.392e-11 -30.49        1
+5740  1.200e-03 -29.63        1
+8563  0.000e+00  28.80        1
+7137  8.276e-17 -28.30        1
+4931  0.000e+00  27.91        1
+12413 3.693e-09 -27.47        1
+9055  0.000e+00  26.85        1
+10711 5.533e-15 -25.92        1
+2316  7.571e-08  23.82        1
+8374  3.243e-11  23.76        1
+3587  0.000e+00  23.31        1
+8307  0.000e+00  22.39        1
+3780  0.000e+00  22.39        1
+315   4.579e-04  21.62        1
+12636 0.000e+00  21.34        1
+6792  0.000e+00  21.34        1
+11249 2.953e-13 -21.34        1
+11864 1.035e-06 -21.20        1</code></pre>
+</div>
+<div id="comparing-z-scores-and-pips" class="section level2">
+<h2>Comparing z scores and PIPs</h2>
+<pre class="r"><code>#set nominal signifiance threshold for z scores
+alpha &lt;- 0.05
+
+#bonferroni adjusted threshold for z scores
+sig_thresh &lt;- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
+
+#Q-Q plot for z scores
+obs_z &lt;- ctwas_gene_res$z[order(ctwas_gene_res$z)]
+exp_z &lt;- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res))
+
+plot(exp_z, obs_z, xlab=&quot;Expected z&quot;, ylab=&quot;Observed z&quot;, main=&quot;Gene z score Q-Q plot&quot;)
+abline(a=0,b=1)</code></pre>
+<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#plot z score vs PIP
+plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab=&quot;abs(z)&quot;, ylab=&quot;PIP&quot;)
+abline(v=sig_thresh, col=&quot;red&quot;, lty=2)</code></pre>
+<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-10-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#number of significant z scores
+sum(abs(ctwas_gene_res$z) &gt; sig_thresh)</code></pre>
+<pre><code>[1] 501</code></pre>
+<pre class="r"><code>#proportion of significant z scores
+mean(abs(ctwas_gene_res$z) &gt; sig_thresh)</code></pre>
+<pre><code>[1] 0.04225</code></pre>
+<pre class="r"><code>#genes with most significant z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)</code></pre>
+<pre><code>                            genename region_tag         id susie_pip    mu2
+3814                           PSMD3      17_23 cg07427276 8.543e-01  612.5
+10390                          GSDMA      17_23 cg21230266 1.636e-11  473.7
+9278                           GSDMA      17_23 cg18632152 4.541e-08  339.0
+5740                            &lt;NA&gt;       6_26 cg11294950 7.787e-01  540.0
+8563                           HLA-C       6_25 cg17096289 0.000e+00  874.5
+7137                          SKIV2L       6_26 cg14178705 6.117e-14  474.2
+4931  HLA-B;HLA-C;XXbac-BPG248L24.12       6_25 cg09588770 0.000e+00 1502.9
+12413                          GSDMA      17_23 cg26162295 5.256e-06  246.2
+9055                           BTNL2       6_26 cg18067840 0.000e+00  402.1
+10711                           &lt;NA&gt;       6_25 cg22110654 2.325e-12  834.0
+2316                     DPCR1;HCG21       6_24 cg04559908 5.488e-05  483.6
+8374                            HCG9       6_24 cg16690356 2.549e-08  445.9
+3587                            &lt;NA&gt;       6_26 cg07007382 0.000e+00  291.1
+8307                         SLC44A4       6_26 cg16553272 0.000e+00  373.3
+3780                         SLC44A4       6_26 cg07363637 0.000e+00  373.3
+315                            ZFP57       6_23 cg00588198 6.029e-01  266.1
+12636                          SFTA2       6_25 cg26672776 0.000e+00  467.4
+6792                           SFTA2       6_25 cg13561028 0.000e+00  467.4
+11249                           &lt;NA&gt;       6_24 cg23397584 2.845e-10  363.7
+11864                    HCG4B;HLA-K       6_24 cg24838316 1.105e-03  328.4
+            PVE      z num_eqtl
+3814  1.493e-03 -37.22        1
+10390 2.211e-14  35.66        1
+9278  4.392e-11 -30.49        1
+5740  1.200e-03 -29.63        1
+8563  0.000e+00  28.80        1
+7137  8.276e-17 -28.30        1
+4931  0.000e+00  27.91        1
+12413 3.693e-09 -27.47        1
+9055  0.000e+00  26.85        1
+10711 5.533e-15 -25.92        1
+2316  7.571e-08  23.82        1
+8374  3.243e-11  23.76        1
+3587  0.000e+00  23.31        1
+8307  0.000e+00  22.39        1
+3780  0.000e+00  22.39        1
+315   4.579e-04  21.62        1
+12636 0.000e+00  21.34        1
+6792  0.000e+00  21.34        1
+11249 2.953e-13 -21.34        1
+11864 1.035e-06 -21.20        1</code></pre>
+</div>
+<div id="snps-with-highest-pips" class="section level2">
+<h2>SNPs with highest PIPs</h2>
+<pre class="r"><code>#snps with PIP&gt;0.8 or 20 highest PIPs
+head(ctwas_snp_res[order(-ctwas_snp_res$susie_pip),report_cols_snps],
+max(sum(ctwas_snp_res$susie_pip&gt;0.8), 20))</code></pre>
+<pre><code>                 id region_tag        id.1 susie_pip      mu2       PVE
+31374     rs6679677       1_70   rs6679677    1.0000   147.63 4.212e-04
+35617    rs34599082       1_78  rs34599082    1.0000   185.66 5.297e-04
+118778    rs3835963      2_110   rs3835963    1.0000   108.00 3.082e-04
+222971    rs1371794       4_51   rs1371794    1.0000   478.82 1.366e-03
+225794  rs529050451       4_56 rs529050451    1.0000   754.06 2.152e-03
+382085   rs56388170       7_24  rs56388170    1.0000   370.92 1.058e-03
+401128   rs79912251       7_56  rs79912251    1.0000   147.20 4.200e-04
+634150   rs79490353       13_7  rs79490353    1.0000   193.91 5.533e-04
+787253   rs12461480       19_4  rs12461480    1.0000   219.56 6.265e-04
+800100   rs73036520      19_31  rs73036520    1.0000   234.53 6.692e-04
+835202   rs13049759      21_24  rs13049759    1.0000 21500.25 6.135e-02
+835204   rs13049893      21_24  rs13049893    1.0000 21593.63 6.161e-02
+901161  rs200599211       5_79 rs200599211    1.0000  2066.61 5.897e-03
+932297  rs201369106       6_25 rs201369106    1.0000 13326.40 3.802e-02
+63486    rs12239046      1_131  rs12239046    1.0000   100.16 2.858e-04
+73211      rs780093       2_16    rs780093    1.0000   139.87 3.991e-04
+325911    rs1233385       6_23   rs1233385    1.0000   291.24 8.310e-04
+9003      rs3917932       1_22   rs3917932    1.0000   211.24 6.027e-04
+786406   rs74253465       19_2  rs74253465    1.0000    69.89 1.994e-04
+401101     rs740047       7_56    rs740047    1.0000    82.25 2.347e-04
+327568   rs41258084       6_27  rs41258084    1.0000   191.23 5.456e-04
+467073    rs7462429       8_92   rs7462429    1.0000    93.87 2.678e-04
+176143  rs372491637       3_80 rs372491637    1.0000    95.08 2.713e-04
+443238    rs4738814       8_46   rs4738814    1.0000   223.03 6.364e-04
+381946     rs177448       7_23    rs177448    1.0000    67.37 1.922e-04
+789622    rs2163856       19_9   rs2163856    1.0000    68.75 1.962e-04
+519025   rs11239028      10_31  rs11239028    1.0000    75.73 2.161e-04
+932524    rs9267123       6_25   rs9267123    1.0000   917.21 2.617e-03
+740569    rs9914577       17_3   rs9914577    1.0000    93.16 2.658e-04
+619537   rs17041439      12_61  rs17041439    1.0000    52.08 1.486e-04
+216356     rs218239       4_39    rs218239    1.0000    70.54 2.013e-04
+142033   rs56395424        3_9  rs56395424    1.0000    86.90 2.480e-04
+326102    rs2736155       6_26   rs2736155    1.0000   291.92 8.329e-04
+305284    rs1042711       5_87   rs1042711    1.0000    47.95 1.368e-04
+927120    rs2524079       6_25   rs2524079    1.0000  2422.37 6.912e-03
+7941     rs79598313       1_18  rs79598313    1.0000    49.42 1.410e-04
+63694    rs66858280      1_131  rs66858280    1.0000    50.90 1.452e-04
+327608   rs73412964       6_27  rs73412964    1.0000    78.17 2.230e-04
+441242  rs140753685       8_42 rs140753685    1.0000    46.03 1.314e-04
+799566    rs4803647      19_30   rs4803647    1.0000   119.02 3.396e-04
+118752   rs77969163      2_109  rs77969163    1.0000    83.62 2.386e-04
+467012   rs56114972       8_92  rs56114972    1.0000    43.16 1.231e-04
+933594    rs2229094       6_25   rs2229094    1.0000  1621.44 4.626e-03
+622682     rs653178      12_67    rs653178    1.0000   581.04 1.658e-03
+114612    rs2140046      2_102   rs2140046    1.0000   132.95 3.794e-04
+503046  rs115478735       9_70 rs115478735    1.0000   128.55 3.668e-04
+325677   rs17709192       6_21  rs17709192    1.0000    57.46 1.640e-04
+384634    rs2700943       7_26   rs2700943    1.0000    53.59 1.529e-04
+816215    rs6072084      20_24   rs6072084    1.0000    74.06 2.113e-04
+527799     rs748113      10_48    rs748113    1.0000    43.44 1.239e-04
+800077     rs346738      19_31    rs346738    0.9999    50.14 1.431e-04
+787244    rs2041128       19_4   rs2041128    0.9999   167.92 4.791e-04
+737345   rs11641197      16_49  rs11641197    0.9999    54.42 1.553e-04
+326117    rs1266074       6_26   rs1266074    0.9999   162.30 4.631e-04
+527812    rs2166632      10_48   rs2166632    0.9999    38.24 1.091e-04
+501554   rs13289095       9_66  rs13289095    0.9999    48.07 1.371e-04
+384639   rs58130365       7_26  rs58130365    0.9999    40.96 1.169e-04
+432856    rs9644063       8_24   rs9644063    0.9999    80.28 2.291e-04
+779704  rs144596877      18_35 rs144596877    0.9999    35.61 1.016e-04
+358935     rs210942       6_89    rs210942    0.9998    69.33 1.978e-04
+301033    rs4705986       5_80   rs4705986    0.9998    37.20 1.061e-04
+225741    rs6814526       4_56   rs6814526    0.9998   319.87 9.125e-04
+750807   rs68017435      17_26  rs68017435    0.9998    37.08 1.058e-04
+775488    rs1025685      18_28   rs1025685    0.9997    54.26 1.548e-04
+318417     rs630258        6_7    rs630258    0.9996    46.40 1.323e-04
+921835    rs3131063       6_24   rs3131063    0.9996   183.18 5.225e-04
+407888  rs150566692       7_71 rs150566692    0.9996    34.22 9.761e-05
+677994   rs34644391      14_32  rs34644391    0.9996    48.06 1.371e-04
+801230   rs62130338      19_33  rs62130338    0.9995    35.48 1.012e-04
+443269    rs3763591       8_46   rs3763591    0.9994   137.41 3.919e-04
+615577    rs4842610      12_53   rs4842610    0.9994    74.61 2.128e-04
+261657    rs2736100        5_2   rs2736100    0.9994    57.34 1.635e-04
+109903   rs59483741       2_91  rs59483741    0.9992    42.44 1.210e-04
+511803     rs553304      10_14    rs553304    0.9992    35.57 1.014e-04
+321587    rs1322599       6_13   rs1322599    0.9992    64.69 1.844e-04
+587170   rs34516251      11_80  rs34516251    0.9991    90.61 2.583e-04
+411742    rs9649546       7_80   rs9649546    0.9986    48.14 1.372e-04
+799759  rs191998999      19_31 rs191998999    0.9986    36.39 1.037e-04
+411752     rs205721       7_80    rs205721    0.9985    36.14 1.030e-04
+865402     rs333947       1_68    rs333947    0.9983    52.52 1.496e-04
+661877     rs383599      13_62    rs383599    0.9983    50.63 1.442e-04
+92903        rs9248       2_54      rs9248    0.9982    51.50 1.467e-04
+448662    rs1430828       8_57   rs1430828    0.9982    34.09 9.708e-05
+634152    rs7989654       13_7   rs7989654    0.9979   127.87 3.641e-04
+816179   rs56206139      20_24  rs56206139    0.9978    32.83 9.346e-05
+738037   rs72807046      16_50  rs72807046    0.9976    37.73 1.074e-04
+331263   rs11965885       6_33  rs11965885    0.9973    31.12 8.856e-05
+622870    rs7970581      12_68   rs7970581    0.9971    32.76 9.320e-05
+25352    rs12130551       1_56  rs12130551    0.9970    31.76 9.036e-05
+835836     rs390109       22_2    rs390109    0.9968    32.93 9.364e-05
+366006   rs11759145      6_103  rs11759145    0.9967    35.08 9.978e-05
+563969    rs1631174      11_29   rs1631174    0.9967    66.02 1.877e-04
+7850      rs6690055       1_18   rs6690055    0.9965    49.51 1.408e-04
+435466    rs2543601       8_29   rs2543601    0.9960    35.77 1.017e-04
+9006      rs3917912       1_22   rs3917912    0.9956    70.49 2.003e-04
+306000   rs74995440       5_89  rs74995440    0.9956    29.90 8.493e-05
+998493    rs2286599       12_7   rs2286599    0.9949    80.91 2.297e-04
+802140  rs201074739      19_35 rs201074739    0.9945    29.95 8.499e-05
+726075    rs7205341      16_27   rs7205341    0.9945    29.55 8.384e-05
+477419    rs2518722       9_16   rs2518722    0.9942    80.67 2.288e-04
+534747   rs17109928      10_60  rs17109928    0.9941    36.41 1.033e-04
+428360   rs79690602       8_16  rs79690602    0.9938    27.82 7.890e-05
+207186  rs112783548       4_21 rs112783548    0.9937    28.59 8.105e-05
+128969   rs16858744      2_129  rs16858744    0.9932    30.26 8.576e-05
+9695      rs6690335       1_24   rs6690335    0.9931    41.52 1.177e-04
+742691  rs112315122       17_7 rs112315122    0.9929    34.97 9.908e-05
+703049   rs16947844      15_29  rs16947844    0.9929    71.27 2.019e-04
+59605    rs10803164      1_122  rs10803164    0.9929   187.75 5.319e-04
+325943    rs3130253       6_23   rs3130253    0.9928    45.76 1.296e-04
+154921   rs34935660       3_39  rs34935660    0.9926    36.67 1.038e-04
+231885   rs35518360       4_67  rs35518360    0.9925    30.79 8.720e-05
+685357   rs67868394      14_46  rs67868394    0.9922    32.40 9.172e-05
+232573    rs1548483       4_69   rs1548483    0.9921    41.78 1.183e-04
+402617    rs1045916       7_60   rs1045916    0.9921    35.84 1.014e-04
+387417    rs6962280       7_33   rs6962280    0.9920    48.99 1.387e-04
+481327    rs7042042       9_25   rs7042042    0.9910    27.76 7.850e-05
+373475    rs2462661        7_9   rs2462661    0.9906    40.97 1.158e-04
+882499     rs868489        4_8    rs868489    0.9903    42.13 1.191e-04
+489795    rs7863057       9_45   rs7863057    0.9903    43.39 1.226e-04
+7092      rs2742972       1_16   rs2742972    0.9900    49.84 1.408e-04
+211307   rs75384208       4_30  rs75384208    0.9890    40.55 1.144e-04
+787947     rs759993       19_5    rs759993    0.9884    30.90 8.715e-05
+401205    rs7785869       7_57   rs7785869    0.9871    30.64 8.631e-05
+83140    rs72804694       2_36  rs72804694    0.9869    33.72 9.496e-05
+750371     rs665268      17_25    rs665268    0.9852    46.77 1.315e-04
+78668    rs10604697       2_26  rs10604697    0.9841    28.72 8.064e-05
+36123      rs512645       1_79    rs512645    0.9832    30.30 8.501e-05
+746035     rs941446      17_15    rs941446    0.9832    59.30 1.663e-04
+705096     rs876383      15_35    rs876383    0.9826    27.06 7.587e-05
+761396   rs35967347      17_47  rs35967347    0.9823    33.57 9.410e-05
+791650   rs10420373      19_14  rs10420373    0.9812    56.78 1.590e-04
+552602    rs4910421       11_9   rs4910421    0.9811    35.02 9.804e-05
+35616     rs3027012       1_78   rs3027012    0.9794    28.91 8.078e-05
+193708    rs6782470      3_114   rs6782470    0.9774    26.56 7.407e-05
+176045   rs11721161       3_79  rs11721161    0.9773    41.02 1.144e-04
+324837   rs62392365       6_19  rs62392365    0.9772    50.01 1.394e-04
+604509   rs80325942      12_30  rs80325942    0.9769    31.40 8.753e-05
+808726    rs1997814       20_8   rs1997814    0.9768    30.51 8.502e-05
+318411     rs585312        6_7    rs585312    0.9761    33.37 9.294e-05
+382082   rs12113964       7_24  rs12113964    0.9742    36.66 1.019e-04
+159397   rs17737336       3_48  rs17737336    0.9736    28.90 8.029e-05
+755913    rs1801689      17_38   rs1801689    0.9731    25.76 7.153e-05
+671949  rs545787745      14_19 rs545787745    0.9729    25.38 7.046e-05
+448622   rs56080040       8_56  rs56080040    0.9727    84.51 2.346e-04
+107620   rs16858573       2_85  rs16858573    0.9701    82.01 2.270e-04
+462370    rs4733814       8_84   rs4733814    0.9700    58.62 1.622e-04
+677825   rs56119720      14_32  rs56119720    0.9683    34.00 9.394e-05
+79886    rs11125040       2_28  rs11125040    0.9679    29.15 8.049e-05
+784557   rs41506447      18_45  rs41506447    0.9679    25.08 6.925e-05
+118771     rs155136      2_110    rs155136    0.9669    38.54 1.063e-04
+759182    rs3826288      17_43   rs3826288    0.9665    31.80 8.770e-05
+404576    rs2470932       7_65   rs2470932    0.9646    25.15 6.923e-05
+750515   rs76714145      17_25  rs76714145    0.9640    28.32 7.790e-05
+403154   rs60473539       7_62  rs60473539    0.9638    38.17 1.050e-04
+138436   rs35516956        3_3  rs35516956    0.9636    25.62 7.043e-05
+578947  rs117594293      11_58 rs117594293    0.9633    28.63 7.868e-05
+797123    rs2194067      19_24   rs2194067    0.9612    28.66 7.860e-05
+1069369   rs1015022      21_18   rs1015022    0.9591    48.23 1.320e-04
+786403    rs2020000       19_2   rs2020000    0.9591    34.55 9.455e-05
+565369  rs184267612      11_31 rs184267612    0.9587    28.65 7.836e-05
+432477  rs118162691       8_23 rs118162691    0.9586    25.31 6.921e-05
+639265    rs2404726      13_19   rs2404726    0.9585    24.98 6.833e-05
+412775    rs2347699       7_82   rs2347699    0.9580    31.65 8.650e-05
+462893   rs60379390       8_85  rs60379390    0.9563   140.03 3.821e-04
+725738   rs34294937      16_27  rs34294937    0.9563    26.33 7.185e-05
+663809    rs9323580       14_4   rs9323580    0.9559   145.54 3.970e-04
+739909   rs76888998      16_54  rs76888998    0.9554    38.35 1.045e-04
+326074    rs2246856       6_23   rs2246856    0.9529    42.25 1.149e-04
+583902    rs1793174      11_71   rs1793174    0.9529    38.08 1.035e-04
+660635    rs7991343      13_60   rs7991343    0.9527    26.86 7.302e-05
+758646    rs1868057      17_42   rs1868057    0.9506    67.02 1.818e-04
+804696  rs142236969      19_38 rs142236969    0.9498    25.15 6.815e-05
+547711    rs4029212       11_1   rs4029212    0.9492    69.26 1.876e-04
+625236   rs76548188      12_74  rs76548188    0.9482    48.44 1.310e-04
+490123    rs6479586       9_46   rs6479586    0.9480    24.50 6.628e-05
+59281     rs4626924      1_121   rs4626924    0.9463    48.26 1.303e-04
+739317  rs111172648      16_53 rs111172648    0.9461    33.31 8.993e-05
+128869    rs2571461      2_129   rs2571461    0.9460    25.92 6.997e-05
+696258   rs72726030      15_15  rs72726030    0.9419   201.64 5.419e-04
+212287    rs4240247       4_31   rs4240247    0.9419    46.35 1.246e-04
+701240    rs7182229      15_26   rs7182229    0.9414    24.29 6.525e-05
+737688    rs7197027      16_50   rs7197027    0.9408    33.88 9.095e-05
+325815   rs17404424       6_23  rs17404424    0.9397    47.34 1.269e-04
+49988    rs10793741      1_104  rs10793741    0.9397    28.49 7.638e-05
+540236   rs76059302      10_70  rs76059302    0.9385    28.67 7.678e-05
+689249   rs10149470      14_54  rs10149470    0.9374    35.40 9.468e-05
+50502     rs2724384      1_105   rs2724384    0.9347    96.03 2.561e-04
+297180      rs11064       5_72     rs11064    0.9332    54.11 1.441e-04
+222403    rs7697091       4_50   rs7697091    0.9326    87.02 2.316e-04
+123822   rs13030042      2_119  rs13030042    0.9321    28.72 7.638e-05
+331730   rs35965624       6_35  rs35965624    0.9320    25.13 6.682e-05
+416990  rs140190591       7_92 rs140190591    0.9303    25.18 6.683e-05
+612867    rs4842318      12_48   rs4842318    0.9302    28.20 7.484e-05
+626271   rs61955114      12_75  rs61955114    0.9297    38.23 1.014e-04
+322931   rs10806918       6_15  rs10806918    0.9292    27.76 7.360e-05
+462923   rs35125576       8_85  rs35125576    0.9286    60.48 1.602e-04
+427217    rs4386942       8_14   rs4386942    0.9283    32.63 8.642e-05
+323909   rs34492438       6_17  rs34492438    0.9273    25.56 6.762e-05
+142269   rs62242710        3_9  rs62242710    0.9268    25.98 6.870e-05
+543916   rs17623606      10_78  rs17623606    0.9266    29.04 7.678e-05
+377042    rs7802610       7_15   rs7802610    0.9253    24.71 6.524e-05
+323668  rs115557837       6_16 rs115557837    0.9240    25.63 6.758e-05
+719780   rs78083064      16_12  rs78083064    0.9226    23.69 6.236e-05
+788677    rs4804815       19_7   rs4804815    0.9206    62.76 1.649e-04
+610139    rs2137537      12_44   rs2137537    0.9205    24.53 6.444e-05
+470385   rs10974716        9_5  rs10974716    0.9197    35.02 9.191e-05
+534799   rs61886179      10_61  rs61886179    0.9196    31.03 8.142e-05
+216819     rs781663       4_41    rs781663    0.9143    79.97 2.086e-04
+547710    rs6421984       11_1   rs6421984    0.9141   133.04 3.470e-04
+823859    rs3746372      20_37   rs3746372    0.9141    26.18 6.828e-05
+696257    rs2665213      15_15   rs2665213    0.9139    67.85 1.769e-04
+589127    rs2017948      11_83   rs2017948    0.9080    23.66 6.130e-05
+608569    rs7968902      12_40   rs7968902    0.9054    49.12 1.269e-04
+502925    rs7045578       9_70   rs7045578    0.9054    26.86 6.939e-05
+388392    rs1799370       7_35   rs1799370    0.9048    26.57 6.860e-05
+470419     rs692503        9_5    rs692503    0.9042    47.86 1.235e-04
+300678  rs144486602       5_78 rs144486602    0.9040    25.04 6.458e-05
+326148  rs115487693       6_26 rs115487693    0.9039   191.73 4.945e-04
+36414    rs61804205       1_79  rs61804205    0.9022    57.84 1.489e-04
+714132     rs895394      15_50    rs895394    0.9016    25.68 6.606e-05
+152747   rs66485735       3_32  rs66485735    0.9004    29.59 7.603e-05
+593119   rs12824533      12_11  rs12824533    0.8995    24.29 6.234e-05
+212065     rs658080       4_31    rs658080    0.8965    26.55 6.790e-05
+584080   rs79808604      11_71  rs79808604    0.8954    25.90 6.616e-05
+441691    rs3808391       8_43   rs3808391    0.8941    41.78 1.066e-04
+586371   rs79491499      11_77  rs79491499    0.8924    33.53 8.537e-05
+835588  rs760786796       22_2 rs760786796    0.8912    24.11 6.132e-05
+677846    rs8009648      14_32   rs8009648    0.8906    33.23 8.444e-05
+373028   rs56703022        7_7  rs56703022    0.8902    29.23 7.425e-05
+732167   rs12927351      16_39  rs12927351    0.8895    26.15 6.638e-05
+909363   rs74537235       6_22  rs74537235    0.8859    49.31 1.246e-04
+426812   rs17151140       8_13  rs17151140    0.8844    29.11 7.345e-05
+817341   rs13043674      20_28  rs13043674    0.8807    25.46 6.399e-05
+789659   rs35251378       19_9  rs35251378    0.8804    36.49 9.167e-05
+73236     rs9679004       2_16   rs9679004    0.8787    24.25 6.080e-05
+88428     rs7579497       2_47   rs7579497    0.8786    29.86 7.484e-05
+698623    rs2446407      15_21   rs2446407    0.8760    25.03 6.255e-05
+703177   rs56906672      15_30  rs56906672    0.8745    25.44 6.348e-05
+837817  rs113934229       22_6 rs113934229    0.8737    26.63 6.639e-05
+318234     rs201036        6_6    rs201036    0.8700    26.11 6.482e-05
+715531  rs149631043       16_3 rs149631043    0.8698    22.84 5.668e-05
+824541    rs2823025       21_2   rs2823025    0.8693    26.21 6.503e-05
+462905   rs79584444       8_85  rs79584444    0.8666    37.68 9.317e-05
+79015    rs67584485       2_27  rs67584485    0.8657    37.50 9.262e-05
+287452    rs7444298       5_52   rs7444298    0.8629    27.66 6.810e-05
+95086     rs1192820       2_59   rs1192820    0.8619    33.46 8.228e-05
+118761   rs36017642      2_109  rs36017642    0.8605    36.95 9.072e-05
+949107   rs17710008       6_99  rs17710008    0.8605    62.84 1.543e-04
+5828      rs7546665       1_13   rs7546665    0.8584    27.24 6.672e-05
+86930     rs1362478       2_44   rs1362478    0.8575    28.05 6.864e-05
+232619    rs7699743       4_69   rs7699743    0.8566    28.91 7.065e-05
+350229    rs9480643       6_71   rs9480643    0.8558    26.53 6.478e-05
+20760   rs150467092       1_48 rs150467092    0.8557    25.89 6.321e-05
+905144   rs17622517       5_79  rs17622517    0.8517    50.80 1.235e-04
+585110   rs12577260      11_74  rs12577260    0.8508    59.99 1.456e-04
+151749   rs11129979       3_31  rs11129979    0.8507    94.78 2.301e-04
+72716     rs7578575       2_15   rs7578575    0.8486    35.15 8.512e-05
+434021    rs3808577       8_26   rs3808577    0.8482    27.02 6.540e-05
+328719   rs34652732       6_29  rs34652732    0.8481    26.19 6.338e-05
+279111  rs149768957       5_32 rs149768957    0.8476    25.41 6.145e-05
+711572     rs899464      15_45    rs899464    0.8460    24.22 5.847e-05
+26318      rs326664       1_59    rs326664    0.8437    26.05 6.272e-05
+380301   rs13229167       7_21  rs13229167    0.8437    40.31 9.705e-05
+849846  rs112682076        1_7 rs112682076    0.8413    35.76 8.585e-05
+166604   rs12493830       3_62  rs12493830    0.8389    30.95 7.407e-05
+784560   rs72973726      18_45  rs72973726    0.8380    24.33 5.818e-05
+609321    rs4913431      12_42   rs4913431    0.8333    30.43 7.235e-05
+742660    rs9916791       17_7   rs9916791    0.8328    26.66 6.336e-05
+328051   rs12207576       6_28  rs12207576    0.8325    40.81 9.694e-05
+526287   rs10997821      10_44  rs10997821    0.8295    32.44 7.679e-05
+193627     rs720389      3_114    rs720389    0.8291    24.60 5.820e-05
+799241  rs559083563      19_29 rs559083563    0.8283    66.33 1.568e-04
+649437    rs1330883      13_38   rs1330883    0.8277    27.59 6.515e-05
+39351    rs10753801       1_83  rs10753801    0.8276    24.50 5.785e-05
+470074   rs10733504        9_4  rs10733504    0.8260    29.14 6.867e-05
+98403     rs4849169       2_67   rs4849169    0.8192    38.93 9.100e-05
+359624    rs1082428       6_91   rs1082428    0.8182    23.57 5.502e-05
+193745    rs6778003      3_114   rs6778003    0.8180    25.33 5.913e-05
+688294   rs61307974      14_52  rs61307974    0.8176    32.07 7.481e-05
+807994  rs117340493       20_7 rs117340493    0.8171    24.31 5.667e-05
+323250    rs6456418       6_15   rs6456418    0.8168    30.66 7.145e-05
+374130   rs56195338       7_10  rs56195338    0.8165    43.78 1.020e-04
+622691  rs117965634      12_67 rs117965634    0.8155    37.98 8.839e-05
+583229   rs17569099      11_69  rs17569099    0.8151    24.06 5.596e-05
+176112  rs147412900       3_80 rs147412900    0.8145    44.65 1.038e-04
+835666   rs59667935       22_2  rs59667935    0.8127    25.72 5.965e-05
+49792     rs4951163      1_104   rs4951163    0.8029    32.48 7.440e-05
+401121   rs17696150       7_56  rs17696150    0.8026   120.59 2.762e-04
+112355    rs6722159       2_96   rs6722159    0.8005    48.93 1.118e-04
+               z
+31374   -12.1006
+35617   -14.0113
+118778   11.9370
+222971  -23.3384
+225794    1.6324
+382085   20.7223
+401128  -10.9517
+634150   11.9357
+787253   -7.6886
+800100  -14.7257
+835202    4.9695
+835204    4.8177
+901161    2.4536
+932297    1.7190
+63486    10.3814
+73211   -11.9143
+325911  -22.7976
+9003    -15.8760
+786406   -5.9467
+401101   -7.1423
+327568   12.3107
+467073   11.1057
+176143   -8.8360
+443238  -10.8946
+381946    2.6504
+789622  -10.1090
+519025   -7.8327
+932524  -28.1821
+740569  -10.4026
+619537    7.2629
+216356    8.2732
+142033   -8.2567
+326102   20.5510
+305284   -6.8138
+927120   32.3917
+7941      4.0654
+63694     7.0545
+327608    8.3367
+441242   -7.0571
+799566   -9.8632
+118752    9.1085
+467012   -7.0784
+933594   19.4379
+622682  -26.3817
+114612   10.5684
+503046  -11.9575
+325677    8.5293
+384634    5.4645
+816215    9.2187
+527799   -7.3565
+800077   -4.8148
+787244   -1.1756
+737345    7.8304
+326117   13.1014
+527812    6.8721
+501554   -6.7645
+384639   -3.9061
+432856   -9.2035
+779704   -5.7062
+358935   -2.5202
+301033   -5.1644
+225741  -12.5319
+750807   -5.2449
+775488    7.5188
+318417    7.6921
+921835  -11.0071
+407888    5.7559
+677994    6.7202
+801230    5.8812
+443269   -9.7350
+615577   -9.0244
+261657   -7.6311
+109903   -6.6131
+511803    5.8663
+321587   -8.1734
+587170  -10.0269
+411742   -7.0822
+799759   -5.2550
+411752    6.0194
+865402    7.4448
+661877    5.3312
+92903    -6.8900
+448662   -5.7235
+634152    8.8376
+816179    6.5292
+738037    5.0321
+331263   -4.9938
+622870   -5.3274
+25352    -5.5066
+835836   -5.6685
+366006    7.2656
+563969   10.5731
+7850      6.5043
+435466   -5.4102
+9006      9.8609
+306000   -5.2876
+998493    8.8972
+802140   -3.9295
+726075    5.1851
+477419   -9.6543
+534747    2.5648
+428360   -5.0532
+207186   -5.2962
+128969   -6.1809
+9695      6.4568
+742691   -5.8528
+703049   -8.5754
+59605   -14.3656
+325943    2.0906
+154921   -5.2736
+231885    5.4852
+685357    5.8530
+232573    5.8609
+402617   -5.9039
+387417    6.6561
+481327   -4.5565
+373475    7.1263
+882499   -6.0848
+489795   -7.2362
+7092     -7.0539
+211307    6.3327
+787947   -5.4390
+401205   -5.2273
+83140     5.6673
+750371    7.4417
+78668     4.2466
+36123     5.7613
+746035   -8.3444
+705096   -5.1295
+761396    5.3438
+791650   -9.2524
+552602   -5.7716
+35616     5.9213
+193708    4.6439
+176045   -6.2026
+324837   -8.0370
+604509   -5.5136
+808726   -5.4026
+318411    5.5926
+382082    7.7822
+159397   -5.4082
+755913    4.7536
+671949   -4.7561
+448622   -9.4469
+107620   -8.7371
+462370    7.7217
+677825    6.6888
+79886     5.2992
+784557    4.7579
+118771    8.2415
+759182   -6.3725
+404576    4.8593
+750515    5.8237
+403154   -3.9742
+138436   -4.7395
+578947    6.2129
+797123    5.1593
+1069369   6.9349
+786403    6.1367
+565369   -5.3299
+432477   -4.7407
+639265    4.6345
+412775   -5.5257
+462893  -13.9906
+725738    5.2069
+663809   10.8893
+739909   -6.1756
+326074   -3.0302
+583902    6.6195
+660635   -4.9404
+758646    8.3819
+804696    4.5892
+547711   11.2616
+625236   -5.3471
+490123   -4.4269
+59281     7.0545
+739317    5.4841
+128869    4.7805
+696258  -12.5555
+212287    7.4784
+701240   -4.5367
+737688   -5.3814
+325815    9.2044
+49988    -5.3338
+540236   -5.0133
+689249    6.8797
+50502    10.2518
+297180   -7.5808
+222403   -8.0809
+123822    5.2549
+331730   -4.6455
+416990    4.9752
+612867   -5.2670
+626271    6.4063
+322931    4.1644
+462923   -6.9790
+427217    6.6410
+323909   -4.7844
+142269    4.5317
+543916    5.9897
+377042   -4.6325
+323668    5.0209
+719780    3.8732
+788677   -8.0320
+610139   -4.7285
+470385   -6.5608
+534799   -4.4662
+216819   -9.0312
+547710   14.0583
+823859   -4.8715
+696257    0.8149
+589127   -4.5946
+608569    6.8687
+502925    5.2746
+388392   -4.6874
+470419    7.5243
+300678   -4.8858
+326148   -5.8011
+36414    -8.1097
+714132    4.7238
+152747    5.4477
+593119    4.5310
+212065   -4.4771
+584080    4.8481
+441691   -6.4066
+586371   -4.7591
+835588    4.4313
+677846   -6.2664
+373028    5.3596
+732167    4.7348
+909363    8.5058
+426812    3.0103
+817341   -4.6724
+789659    7.1676
+73236     3.3681
+88428    -5.2861
+698623    4.7005
+703177   -4.5684
+837817   -5.3105
+318234    4.5511
+715531    3.5242
+824541    5.1986
+462905   -6.2508
+79015    -6.1157
+287452   -4.8603
+95086     5.5006
+118761   -1.8327
+949107    7.7213
+5828      4.8663
+86930     4.9226
+232619   -4.4658
+350229    4.7105
+20760     4.5431
+905144   -8.3518
+585110    7.9835
+151749  -10.1402
+72716     6.0653
+434021   -5.0223
+328719    4.3281
+279111   -5.0365
+711572   -4.5188
+26318     4.8992
+380301    6.5229
+849846   -6.3056
+166604    5.2481
+784560   -4.4409
+609321   -5.3758
+742660    4.3527
+328051    6.8084
+526287   -5.4996
+193627   -4.0308
+799241    8.2187
+649437   -4.5407
+39351    -4.3837
+470074   -4.1988
+98403     6.3095
+359624   -4.4391
+193745   -4.5603
+688294   -4.9442
+807994   -3.8163
+323250   -5.4925
+374130   -6.4972
+622691   -7.5514
+583229    4.1932
+176112   -5.9429
+835666    5.0353
+49792     5.4575
+401121  -11.6557
+112355   -8.3440</code></pre>
+</div>
+<div id="snps-with-largest-effect-sizes" class="section level2">
+<h2>SNPs with largest effect sizes</h2>
+<pre class="r"><code>#plot PIP vs effect size
+#plot(ctwas_snp_res$susie_pip, ctwas_snp_res$mu2, xlab=&quot;PIP&quot;, ylab=&quot;mu^2&quot;, main=&quot;SNP PIPs vs Effect Size&quot;)
+
+#SNPs with 50 largest effect sizes
+head(ctwas_snp_res[order(-ctwas_snp_res$mu2),report_cols_snps],50)</code></pre>
+<pre><code>                id region_tag        id.1 susie_pip   mu2       PVE      z
+835204  rs13049893      21_24  rs13049893 1.000e+00 21594 6.161e-02  4.818
+835202  rs13049759      21_24  rs13049759 1.000e+00 21500 6.135e-02  4.970
+835189  rs13052701      21_24  rs13052701 0.000e+00 18195 0.000e+00  4.944
+835192 rs147757092      21_24 rs147757092 0.000e+00 16599 0.000e+00  4.614
+835235  rs11702800      21_24  rs11702800 0.000e+00 15944 0.000e+00 -5.560
+835248   rs2268523      21_24   rs2268523 0.000e+00 15904 0.000e+00 -5.586
+835245   rs9981445      21_24   rs9981445 0.000e+00 15640 0.000e+00 -5.570
+835265   rs2839257      21_24   rs2839257 0.000e+00 15533 0.000e+00 -5.710
+835229  rs11909986      21_24  rs11909986 0.000e+00 13972 0.000e+00  6.006
+835183  rs35679325      21_24  rs35679325 0.000e+00 13612 0.000e+00 -5.090
+835200   rs4819221      21_24   rs4819221 0.000e+00 13565 0.000e+00  5.060
+835208   rs4818832      21_24   rs4818832 0.000e+00 13465 0.000e+00  5.082
+835207  rs62226478      21_24  rs62226478 0.000e+00 13463 0.000e+00  5.087
+835205  rs34586434      21_24  rs34586434 0.000e+00 13438 0.000e+00  5.094
+932295   rs3869131       6_25   rs3869131 1.874e-01 13390 7.159e-03 14.047
+932294   rs3869130       6_25   rs3869130 3.170e-01 13390 1.211e-02 14.055
+932291   rs3899823       6_25   rs3899823 4.323e-01 13389 1.652e-02 14.063
+932307  rs34259803       6_25  rs34259803 4.038e-02 13386 1.542e-03 14.034
+932292   rs3869129       6_25   rs3869129 2.288e-02 13382 8.738e-04 14.056
+932284  rs73404245       6_25  rs73404245 1.582e-08 13343 6.024e-10 13.998
+932297 rs201369106       6_25 rs201369106 1.000e+00 13326 3.802e-02  1.719
+932303   rs7769942       6_25   rs7769942 0.000e+00 13212 0.000e+00 14.605
+932281 rs566631013       6_25 rs566631013 0.000e+00 12252 0.000e+00 12.820
+932279 rs373478096       6_25 rs373478096 0.000e+00 12252 0.000e+00 12.820
+932280 rs200256874       6_25 rs200256874 0.000e+00 12252 0.000e+00 12.820
+835196   rs2032226      21_24   rs2032226 0.000e+00 11617 0.000e+00  5.361
+835190   rs4535149      21_24   rs4535149 0.000e+00 11518 0.000e+00  5.360
+931939   rs9501109       6_25   rs9501109 0.000e+00 11156 0.000e+00 16.607
+835180   rs2001809      21_24   rs2001809 0.000e+00 11011 0.000e+00  3.733
+932006  rs60539855       6_25  rs60539855 0.000e+00 10504 0.000e+00 16.465
+932373   rs4458721       6_25   rs4458721 0.000e+00 10381 0.000e+00 16.419
+932309  rs73404265       6_25  rs73404265 0.000e+00 10106 0.000e+00 13.695
+932302   rs7769403       6_25   rs7769403 0.000e+00 10105 0.000e+00 13.693
+835185   rs4819218      21_24   rs4819218 0.000e+00  9960 0.000e+00  4.926
+835184   rs2280959      21_24   rs2280959 0.000e+00  9946 0.000e+00  4.934
+835270   rs2073381      21_24   rs2073381 0.000e+00  9882 0.000e+00  4.936
+932081 rs114921825       6_25 rs114921825 0.000e+00  9681 0.000e+00 13.705
+932051 rs117813801       6_25 rs117813801 0.000e+00  9680 0.000e+00 13.870
+932052 rs143741838       6_25 rs143741838 0.000e+00  9680 0.000e+00 13.871
+932076   rs4090415       6_25   rs4090415 0.000e+00  9676 0.000e+00 13.768
+932074   rs4090417       6_25   rs4090417 0.000e+00  9675 0.000e+00 13.767
+932075   rs4090416       6_25   rs4090416 0.000e+00  9675 0.000e+00 13.767
+932072   rs9501116       6_25   rs9501116 0.000e+00  9675 0.000e+00 13.764
+932071   rs9501115       6_25   rs9501115 0.000e+00  9674 0.000e+00 13.765
+932276  rs28575156       6_25  rs28575156 0.000e+00  9670 0.000e+00 13.707
+932109   rs2394999       6_25   rs2394999 0.000e+00  9666 0.000e+00 13.725
+932108   rs2394998       6_25   rs2394998 0.000e+00  9666 0.000e+00 13.725
+932103   rs2894212       6_25   rs2894212 0.000e+00  9666 0.000e+00 13.727
+932105   rs4631325       6_25   rs4631325 0.000e+00  9666 0.000e+00 13.727
+932101  rs80339222       6_25  rs80339222 0.000e+00  9666 0.000e+00 13.726</code></pre>
+</div>
+<div id="snps-with-highest-pve" class="section level2">
+<h2>SNPs with highest PVE</h2>
+<pre class="r"><code>#SNPs with 50 highest pve
+head(ctwas_snp_res[order(-ctwas_snp_res$PVE),report_cols_snps],50)</code></pre>
+<pre><code>                id region_tag        id.1 susie_pip     mu2       PVE       z
+835204  rs13049893      21_24  rs13049893   1.00000 21593.6 0.0616133   4.818
+835202  rs13049759      21_24  rs13049759   1.00000 21500.3 0.0613469   4.970
+932297 rs201369106       6_25 rs201369106   1.00000 13326.4 0.0380244   1.719
+932291   rs3899823       6_25   rs3899823   0.43233 13388.9 0.0165161  14.063
+932294   rs3869130       6_25   rs3869130   0.31703 13389.7 0.0121120  14.055
+932295   rs3869131       6_25   rs3869131   0.18738 13389.7 0.0071590  14.047
+927120   rs2524079       6_25   rs2524079   1.00000  2422.4 0.0069118  32.392
+901161 rs200599211       5_79 rs200599211   1.00000  2066.6 0.0058967   2.454
+933594   rs2229094       6_25   rs2229094   0.99999  1621.4 0.0046264  19.438
+932524   rs9267123       6_25   rs9267123   1.00000   917.2 0.0026171 -28.182
+225794 rs529050451       4_56 rs529050451   1.00000   754.1 0.0021516   1.632
+622682    rs653178      12_67    rs653178   0.99999   581.0 0.0016579 -26.382
+932307  rs34259803       6_25  rs34259803   0.04038 13386.5 0.0015422  14.034
+222971   rs1371794       4_51   rs1371794   1.00000   478.8 0.0013662 -23.338
+382085  rs56388170       7_24  rs56388170   1.00000   370.9 0.0010584  20.722
+225797   rs9654217       4_56   rs9654217   0.43615   756.3 0.0009412   7.152
+225798   rs9654218       4_56   rs9654218   0.43166   756.3 0.0009315   7.151
+225741   rs6814526       4_56   rs6814526   0.99980   319.9 0.0009125 -12.532
+932292   rs3869129       6_25   rs3869129   0.02288 13381.7 0.0008738  14.056
+326102   rs2736155       6_26   rs2736155   1.00000   291.9 0.0008329  20.551
+325911   rs1233385       6_23   rs1233385   1.00000   291.2 0.0008310 -22.798
+901175  rs13361914       5_79  rs13361914   0.13082  2056.6 0.0007677  -1.754
+901182  rs77753417       5_79  rs77753417   0.12692  2056.6 0.0007448  -1.754
+325652  rs67040724       6_21  rs67040724   0.73094   353.6 0.0007375 -18.453
+901178 rs113694337       5_79 rs113694337   0.12001  2056.6 0.0007042  -1.752
+800100  rs73036520      19_31  rs73036520   1.00000   234.5 0.0006692 -14.726
+922264   rs1264349       6_24   rs1264349   0.45594   505.0 0.0006570 -24.787
+443238   rs4738814       8_46   rs4738814   1.00000   223.0 0.0006364 -10.895
+787253  rs12461480       19_4  rs12461480   1.00000   219.6 0.0006265  -7.689
+9003     rs3917932       1_22   rs3917932   1.00000   211.2 0.0006027 -15.876
+326220   rs1265888       6_26   rs1265888   0.77081   269.7 0.0005931 -25.469
+634150  rs79490353       13_7  rs79490353   1.00000   193.9 0.0005533  11.936
+327568  rs41258084       6_27  rs41258084   1.00000   191.2 0.0005456  12.311
+696258  rs72726030      15_15  rs72726030   0.94193   201.6 0.0005419 -12.555
+358910  rs56293029       6_89  rs56293029   0.61074   307.3 0.0005355 -16.997
+59605   rs10803164      1_122  rs10803164   0.99288   187.7 0.0005319 -14.366
+35617   rs34599082       1_78  rs34599082   1.00000   185.7 0.0005297 -14.011
+514089 rs112955547      10_18 rs112955547   0.47423   387.1 0.0005239 -18.443
+921835   rs3131063       6_24   rs3131063   0.99961   183.2 0.0005225 -11.007
+327497   rs9276625       6_27   rs9276625   0.54195   328.7 0.0005083 -20.936
+916461   rs9260620       6_24   rs9260620   0.65479   272.0 0.0005082 -21.715
+326148 rs115487693       6_26 rs115487693   0.90389   191.7 0.0004945  -5.801
+787244   rs2041128       19_4   rs2041128   0.99995   167.9 0.0004791  -1.176
+326117   rs1266074       6_26   rs1266074   0.99994   162.3 0.0004631  13.101
+327505   rs4947258       6_27   rs4947258   0.45805   328.3 0.0004291 -20.922
+31374    rs6679677       1_70   rs6679677   1.00000   147.6 0.0004212 -12.101
+401128  rs79912251       7_56  rs79912251   1.00000   147.2 0.0004200 -10.952
+514086   rs9804265      10_18   rs9804265   0.37773   386.7 0.0004167 -18.438
+73211     rs780093       2_16    rs780093   1.00000   139.9 0.0003991 -11.914
+663809   rs9323580       14_4   rs9323580   0.95592   145.5 0.0003970  10.889</code></pre>
+</div>
+<div id="snps-with-largest-z-scores" class="section level2">
+<h2>SNPs with largest z scores</h2>
+<pre class="r"><code>#histogram of (abs) SNP z scores
+hist(abs(ctwas_snp_res$z))</code></pre>
+<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#SNPs with 50 largest z scores
+head(ctwas_snp_res[order(-abs(ctwas_snp_res$z)),report_cols_snps],50)</code></pre>
+<pre><code>                 id region_tag        id.1 susie_pip   mu2       PVE      z
+1039597   rs8078723      17_23   rs8078723 9.637e-03 608.5 1.673e-05  37.33
+1039634    rs709592      17_23    rs709592 1.111e-02 609.6 1.933e-05  37.32
+1039635    rs709591      17_23    rs709591 9.442e-03 608.9 1.641e-05  37.31
+1039589  rs55771023      17_23  rs55771023 7.256e-03 607.5 1.258e-05  37.30
+1039588  rs55736351      17_23  rs55736351 6.861e-03 607.3 1.189e-05  37.30
+1039553   rs4795414      17_23   rs4795414 4.977e-03 605.6 8.600e-06  37.30
+1039554   rs4795415      17_23   rs4795415 4.970e-03 605.6 8.588e-06  37.30
+1039555   rs4795416      17_23   rs4795416 4.946e-03 605.6 8.547e-06  37.30
+1039564   rs8065519      17_23   rs8065519 4.933e-03 605.6 8.525e-06  37.30
+1039549  rs56922390      17_23  rs56922390 4.664e-03 605.4 8.057e-06  37.29
+1039575  rs12602172      17_23  rs12602172 4.551e-03 605.6 7.864e-06  37.29
+1039548   rs4794822      17_23   rs4794822 4.288e-03 605.2 7.404e-06  37.29
+1039583  rs55846942      17_23  rs55846942 4.522e-03 605.6 7.813e-06  37.29
+1039573  rs12600856      17_23  rs12600856 4.452e-03 605.5 7.691e-06  37.29
+1039594   rs4795419      17_23   rs4795419 4.560e-03 605.7 7.880e-06  37.29
+1039595   rs4794823      17_23   rs4794823 4.314e-03 605.5 7.454e-06  37.29
+1039567   rs8070454      17_23   rs8070454 3.899e-03 605.0 6.729e-06  37.29
+1039586   rs4795418      17_23   rs4795418 4.014e-03 605.3 6.932e-06  37.29
+1039569   rs6503530      17_23   rs6503530 3.779e-03 604.9 6.522e-06  37.28
+1039590   rs7221894      17_23   rs7221894 3.446e-03 604.7 5.946e-06  37.28
+1039631   rs2227336      17_23   rs2227336 3.358e-03 605.0 5.796e-06  37.27
+1039618   rs2227322      17_23   rs2227322 2.952e-03 604.5 5.091e-06  37.27
+1039629   rs1042658      17_23   rs1042658 3.029e-03 604.6 5.226e-06  37.27
+1039639  rs11871747      17_23  rs11871747 2.096e-03 604.8 3.617e-06  37.26
+1039607   rs7208815      17_23   rs7208815 3.078e-03 604.6 5.310e-06  37.26
+1039600   rs4795420      17_23   rs4795420 2.441e-03 603.7 4.204e-06  37.26
+1039599  rs62065177      17_23  rs62065177 2.408e-03 603.6 4.147e-06  37.26
+1039609   rs7214085      17_23   rs7214085 2.336e-03 603.5 4.023e-06  37.26
+1039604  rs57065891      17_23  rs57065891 2.320e-03 603.5 3.994e-06  37.26
+1039612  rs59925331      17_23  rs59925331 2.309e-03 603.5 3.975e-06  37.26
+1039613   rs2227315      17_23   rs2227315 2.167e-03 603.2 3.730e-06  37.25
+1039540      rs7021      17_23      rs7021 1.603e-03 601.4 2.750e-06  37.24
+1039531   rs4795412      17_23   rs4795412 1.415e-03 600.7 2.426e-06  37.23
+1039544   rs8081692      17_23   rs8081692 1.416e-03 601.0 2.428e-06  37.23
+1039507  rs57968500      17_23  rs57968500 1.129e-03 599.3 1.930e-06  37.22
+1039646   rs4794824      17_23   rs4794824 5.135e-04 600.7 8.801e-07  37.13
+1039644   rs3213762      17_23   rs3213762 1.389e-04 595.3 2.359e-07  37.07
+1039570 rs111848559      17_23 rs111848559 2.509e-04 597.5 4.278e-07  37.06
+1039661   rs6503533      17_23   rs6503533 6.071e-05 605.9 1.050e-07 -36.96
+1039530   rs3826331      17_23   rs3826331 3.890e-07 589.6 6.545e-10 -36.93
+1039632   rs1045929      17_23   rs1045929 8.074e-06 586.6 1.351e-08  36.89
+1039518  rs60666652      17_23  rs60666652 1.231e-06 582.7 2.047e-09  36.72
+1039517  rs60082402      17_23  rs60082402 1.155e-06 582.5 1.920e-09  36.72
+1039603  rs60005225      17_23  rs60005225 2.605e-07 577.4 4.292e-10  36.67
+1039561  rs12941811      17_23  rs12941811 2.759e-12 591.5 4.656e-15 -36.55
+1039535   rs8070444      17_23   rs8070444 7.288e-12 586.4 1.219e-14 -35.99
+1039503  rs12450688      17_23  rs12450688 7.989e-12 588.5 1.341e-14 -35.98
+1039486   rs2305482      17_23   rs2305482 1.045e-11 591.4 1.763e-14 -35.98
+1039536   rs8071037      17_23   rs8071037 6.789e-12 584.8 1.133e-14 -35.97
+1039506   rs9915252      17_23   rs9915252 7.546e-12 587.3 1.264e-14 -35.96</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] cowplot_1.1.1   ggplot2_3.4.0   workflowr_1.7.0
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.0  xfun_0.35         bslib_0.4.1       generics_0.1.3   
+ [5] colorspace_2.0-3  vctrs_0.5.1       htmltools_0.5.4   yaml_2.3.6       
+ [9] utf8_1.2.2        blob_1.2.3        rlang_1.0.6       jquerylib_0.1.4  
+[13] later_1.3.0       pillar_1.8.1      withr_2.5.0       glue_1.6.2       
+[17] DBI_1.1.3         bit64_4.0.5       lifecycle_1.0.3   stringr_1.5.0    
+[21] munsell_0.5.0     gtable_0.3.1      evaluate_0.19     memoise_2.0.1    
+[25] labeling_0.4.2    knitr_1.41        callr_3.7.3       fastmap_1.1.0    
+[29] httpuv_1.6.7      ps_1.7.2          fansi_1.0.3       highr_0.9        
+[33] Rcpp_1.0.9        promises_1.2.0.1  scales_1.2.1      cachem_1.0.6     
+[37] jsonlite_1.8.4    farver_2.1.0      fs_1.5.2          bit_4.0.5        
+[41] digest_0.6.31     stringi_1.7.8     processx_3.8.0    dplyr_1.0.10     
+[45] getPass_0.2-2     rprojroot_2.0.3   grid_4.1.0        cli_3.4.1        
+[49] tools_4.1.0       magrittr_2.0.3    sass_0.4.4        tibble_3.1.8     
+[53] RSQLite_2.2.19    whisker_0.4.1     pkgconfig_2.0.3   data.table_1.14.6
+[57] assertthat_0.2.1  rmarkdown_2.19    httr_1.4.4        rstudioapi_0.14  
+[61] R6_2.5.1          git2r_0.30.1      compiler_4.1.0   </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
