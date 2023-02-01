@@ -1,10 +1,10 @@
 #!/bin/bash
 
-for WEIGHT in Liver_top
+for WEIGHT in Liver_GTEx_mashr
 do 
 	TRAIT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz"
 	LD_DIR="/project2/mstephens/wcrouse/UKB_LDR_0.1"
-	WEIGHT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/eqtl/Liver.db"
+	WEIGHT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/eqtl/Liver_GTEx_mashr.db"
 	CONFIG_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"
 	OUTNAME_E="LDL_"$WEIGHT"_expr"
 	OUTNAME="LDL_"$WEIGHT"_ctwas"

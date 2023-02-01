@@ -1,0 +1,679 @@
+[1] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30000_irnt.vcf.gz"                                                                                                                                                                              
+[2] "/project2/mstephens/wcrouse/UKB_LDR_0.1"                                                                                                                                                                                                                       
+[3] "/project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Whole_Blood_Splicing.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/GTEx_Whole_Blood_Methylation.db"
+[4] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"                                                                                                                                                                                        
+[5] "WhiteBlood_WholeBlood_expr"                                                                                                                                                                                                                                    
+[6] "WhiteBlood_WholeBlood_ctwas"                                                                                                                                                                                                                                   
+[7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/WhiteBlood_E_S_M/WholeBlood"                                                                                                                                                                               
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.14.6 ctwas_0.1.35     
+
+loaded via a namespace (and not attached):
+ [1] compiler_4.1.0   Matrix_1.3-3     tools_4.1.0      pgenlibr_0.3.2  
+ [5] Rcpp_1.0.9       logging_0.10-108 codetools_0.2-18 grid_4.1.0      
+ [9] iterators_1.0.14 foreach_1.5.2    lattice_0.20-44 
+                                                                       id
+ENSG00000000457.13|mashr_Whole_Blood ENSG00000000457.13|mashr_Whole_Blood
+ENSG00000000460.16|mashr_Whole_Blood ENSG00000000460.16|mashr_Whole_Blood
+ENSG00000000938.12|mashr_Whole_Blood ENSG00000000938.12|mashr_Whole_Blood
+ENSG00000000971.15|mashr_Whole_Blood ENSG00000000971.15|mashr_Whole_Blood
+ENSG00000001460.17|mashr_Whole_Blood ENSG00000001460.17|mashr_Whole_Blood
+ENSG00000001461.16|mashr_Whole_Blood ENSG00000001461.16|mashr_Whole_Blood
+                                              z        type
+ENSG00000000457.13|mashr_Whole_Blood -1.9925825 Whole_Blood
+ENSG00000000460.16|mashr_Whole_Blood  0.8431827 Whole_Blood
+ENSG00000000938.12|mashr_Whole_Blood -0.3923408 Whole_Blood
+ENSG00000000971.15|mashr_Whole_Blood  1.3166713 Whole_Blood
+ENSG00000001460.17|mashr_Whole_Blood -0.1190242 Whole_Blood
+ENSG00000001461.16|mashr_Whole_Blood -0.5125025 Whole_Blood
+2023-01-30 02:10:32 INFO::ctwas started ...
+2023-01-30 02:11:23 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/4.1/ctwas/extdata/ldetect/EUR.b38.bed
+2023-01-30 02:11:39 INFO::No. LD regions: 1700
+2023-01-30 02:11:48 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-01-30 02:11:48 INFO::Merge regions for chr1
+2023-01-30 02:11:48 INFO::No. regions with at least one SNP/gene for chr1 after merging: 124
+2023-01-30 02:11:59 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-01-30 02:11:59 INFO::Merge regions for chr2
+2023-01-30 02:11:59 INFO::No. regions with at least one SNP/gene for chr2 after merging: 137
+2023-01-30 02:12:08 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-01-30 02:12:08 INFO::Merge regions for chr3
+2023-01-30 02:12:08 INFO::No. regions with at least one SNP/gene for chr3 after merging: 117
+2023-01-30 02:12:17 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-01-30 02:12:17 INFO::Merge regions for chr4
+2023-01-30 02:12:17 INFO::No. regions with at least one SNP/gene for chr4 after merging: 117
+2023-01-30 02:12:25 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-01-30 02:12:25 INFO::Merge regions for chr5
+2023-01-30 02:12:25 INFO::No. regions with at least one SNP/gene for chr5 after merging: 109
+2023-01-30 02:12:33 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-01-30 02:12:33 INFO::Merge regions for chr6
+2023-01-30 02:12:33 INFO::No. regions with at least one SNP/gene for chr6 after merging: 106
+2023-01-30 02:12:40 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-01-30 02:12:40 INFO::Merge regions for chr7
+2023-01-30 02:12:40 INFO::No. regions with at least one SNP/gene for chr7 after merging: 93
+2023-01-30 02:12:47 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-01-30 02:12:47 INFO::Merge regions for chr8
+2023-01-30 02:12:47 INFO::No. regions with at least one SNP/gene for chr8 after merging: 91
+2023-01-30 02:12:50 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-01-30 02:12:50 INFO::Merge regions for chr9
+2023-01-30 02:12:50 INFO::No. regions with at least one SNP/gene for chr9 after merging: 71
+2023-01-30 02:12:54 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-01-30 02:12:54 INFO::Merge regions for chr10
+2023-01-30 02:12:54 INFO::No. regions with at least one SNP/gene for chr10 after merging: 77
+2023-01-30 02:12:58 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-01-30 02:12:58 INFO::Merge regions for chr11
+2023-01-30 02:12:58 INFO::No. regions with at least one SNP/gene for chr11 after merging: 82
+2023-01-30 02:13:02 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-01-30 02:13:02 INFO::Merge regions for chr12
+2023-01-30 02:13:02 INFO::No. regions with at least one SNP/gene for chr12 after merging: 78
+2023-01-30 02:13:06 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-01-30 02:13:06 INFO::Merge regions for chr13
+2023-01-30 02:13:06 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-01-30 02:13:08 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-01-30 02:13:08 INFO::Merge regions for chr14
+2023-01-30 02:13:08 INFO::No. regions with at least one SNP/gene for chr14 after merging: 52
+2023-01-30 02:13:11 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-01-30 02:13:11 INFO::Merge regions for chr15
+2023-01-30 02:13:11 INFO::No. regions with at least one SNP/gene for chr15 after merging: 48
+2023-01-30 02:13:14 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-01-30 02:13:14 INFO::Merge regions for chr16
+2023-01-30 02:13:14 INFO::No. regions with at least one SNP/gene for chr16 after merging: 47
+2023-01-30 02:13:16 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-01-30 02:13:16 INFO::Merge regions for chr17
+2023-01-30 02:13:16 INFO::No. regions with at least one SNP/gene for chr17 after merging: 46
+2023-01-30 02:13:19 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-01-30 02:13:19 INFO::Merge regions for chr18
+2023-01-30 02:13:19 INFO::No. regions with at least one SNP/gene for chr18 after merging: 46
+2023-01-30 02:13:22 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-01-30 02:13:22 INFO::Merge regions for chr19
+2023-01-30 02:13:22 INFO::No. regions with at least one SNP/gene for chr19 after merging: 34
+2023-01-30 02:13:24 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-01-30 02:13:24 INFO::Merge regions for chr20
+2023-01-30 02:13:24 INFO::No. regions with at least one SNP/gene for chr20 after merging: 36
+2023-01-30 02:13:26 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-01-30 02:13:26 INFO::Merge regions for chr21
+2023-01-30 02:13:26 INFO::No. regions with at least one SNP/gene for chr21 after merging: 23
+2023-01-30 02:13:28 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-01-30 02:13:28 INFO::Merge regions for chr22
+2023-01-30 02:13:28 INFO::No. regions with at least one SNP/gene for chr22 after merging: 23
+2023-01-30 02:13:28 INFO::Trim regions with SNPs more than Inf
+2023-01-30 02:13:28 INFO::Adding R matrix info, as genotype is not given
+2023-01-30 02:13:29 INFO::Adding R matrix info for chrom 1
+2023-01-30 02:33:23 INFO::Adding R matrix info for chrom 2
+2023-01-30 02:50:18 INFO::Adding R matrix info for chrom 3
+2023-01-30 03:02:47 INFO::Adding R matrix info for chrom 4
+2023-01-30 03:13:27 INFO::Adding R matrix info for chrom 5
+2023-01-30 03:22:56 INFO::Adding R matrix info for chrom 6
+2023-01-30 03:42:51 INFO::Adding R matrix info for chrom 7
+2023-01-30 03:53:51 INFO::Adding R matrix info for chrom 8
+2023-01-30 04:02:32 INFO::Adding R matrix info for chrom 9
+2023-01-30 04:10:13 INFO::Adding R matrix info for chrom 10
+2023-01-30 04:20:48 INFO::Adding R matrix info for chrom 11
+2023-01-30 04:32:32 INFO::Adding R matrix info for chrom 12
+2023-01-30 04:43:43 INFO::Adding R matrix info for chrom 13
+2023-01-30 04:48:46 INFO::Adding R matrix info for chrom 14
+2023-01-30 04:56:11 INFO::Adding R matrix info for chrom 15
+2023-01-30 05:02:01 INFO::Adding R matrix info for chrom 16
+2023-01-30 05:11:25 INFO::Adding R matrix info for chrom 17
+2023-01-30 05:20:30 INFO::Adding R matrix info for chrom 18
+2023-01-30 05:24:55 INFO::Adding R matrix info for chrom 19
+2023-01-30 05:36:47 INFO::Adding R matrix info for chrom 20
+2023-01-30 05:42:50 INFO::Adding R matrix info for chrom 21
+2023-01-30 05:45:07 INFO::Adding R matrix info for chrom 22
+2023-01-30 05:49:20 INFO::Run susie iteratively, getting rough estimate ...
+2023-01-30 05:49:20 INFO::run iteration 1
+starting worker pid=123075 on localhost:11692 at 05:49:21.063
+starting worker pid=123070 on localhost:11692 at 05:49:21.066
+starting worker pid=123076 on localhost:11692 at 05:49:21.066
+starting worker pid=123077 on localhost:11692 at 05:49:21.066
+starting worker pid=123071 on localhost:11692 at 05:49:21.067
+starting worker pid=123074 on localhost:11692 at 05:49:21.067
+starting worker pid=123069 on localhost:11692 at 05:49:21.067
+starting worker pid=123072 on localhost:11692 at 05:49:21.067
+starting worker pid=123073 on localhost:11692 at 05:49:21.068
+starting worker pid=123068 on localhost:11692 at 05:49:21.068
+2023-01-30 06:05:20 INFO::After iteration 1, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00169904684059803,0.00523163905463691,0.00213192233843599,0.00336472475203405}
+2023-01-30 06:05:20 INFO::run iteration 2
+starting worker pid=124731 on localhost:11692 at 06:05:21.476
+starting worker pid=124733 on localhost:11692 at 06:05:21.476
+starting worker pid=124737 on localhost:11692 at 06:05:21.476
+starting worker pid=124730 on localhost:11692 at 06:05:21.477
+starting worker pid=124729 on localhost:11692 at 06:05:21.477
+starting worker pid=124732 on localhost:11692 at 06:05:21.477
+starting worker pid=124736 on localhost:11692 at 06:05:21.477
+starting worker pid=124728 on localhost:11692 at 06:05:21.478
+starting worker pid=124735 on localhost:11692 at 06:05:21.478
+starting worker pid=124734 on localhost:11692 at 06:05:21.478
+2023-01-30 06:20:43 INFO::After iteration 2, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00142583940429395,0.00772920387104321,0.00193918598129313,0.00435736936830164}
+2023-01-30 06:20:44 INFO::run iteration 3
+starting worker pid=126393 on localhost:11692 at 06:20:44.672
+starting worker pid=126398 on localhost:11692 at 06:20:44.672
+starting worker pid=126394 on localhost:11692 at 06:20:44.672
+starting worker pid=126402 on localhost:11692 at 06:20:44.672
+starting worker pid=126403 on localhost:11692 at 06:20:44.672
+starting worker pid=126396 on localhost:11692 at 06:20:44.672
+starting worker pid=126401 on localhost:11692 at 06:20:44.672
+starting worker pid=126400 on localhost:11692 at 06:20:44.672
+starting worker pid=126399 on localhost:11692 at 06:20:44.672
+starting worker pid=126397 on localhost:11692 at 06:20:44.672
+2023-01-30 06:36:28 INFO::After iteration 3, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00130360264489173,0.00960414549666706,0.00183951960508483,0.00525693283299247}
+2023-01-30 06:51:23 INFO::Blocks are filtered: 911 blocks left
+2023-01-30 06:51:23 INFO::Run susie iteratively, getting accurate estimate ...
+2023-01-30 06:51:24 INFO::run iteration 1
+starting worker pid=129563 on localhost:11692 at 06:51:24.626
+starting worker pid=129567 on localhost:11692 at 06:51:24.627
+starting worker pid=129559 on localhost:11692 at 06:51:24.627
+starting worker pid=129562 on localhost:11692 at 06:51:24.627
+starting worker pid=129564 on localhost:11692 at 06:51:24.627
+starting worker pid=129561 on localhost:11692 at 06:51:24.627
+starting worker pid=129560 on localhost:11692 at 06:51:24.628
+starting worker pid=129565 on localhost:11692 at 06:51:24.628
+starting worker pid=129566 on localhost:11692 at 06:51:24.628
+starting worker pid=129558 on localhost:11692 at 06:51:24.628
+2023-01-30 07:01:59 INFO::After iteration 1, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00146063809786048,0.0145246817247354,0.00279166560824925,0.00706465150200134}
+2023-01-30 07:01:59 INFO::run iteration 2
+starting worker pid=130737 on localhost:11692 at 07:02:00.029
+starting worker pid=130735 on localhost:11692 at 07:02:00.029
+starting worker pid=130731 on localhost:11692 at 07:02:00.030
+starting worker pid=130734 on localhost:11692 at 07:02:00.030
+starting worker pid=130739 on localhost:11692 at 07:02:00.030
+starting worker pid=130732 on localhost:11692 at 07:02:00.032
+starting worker pid=130733 on localhost:11692 at 07:02:00.032
+starting worker pid=130736 on localhost:11692 at 07:02:00.041
+starting worker pid=130738 on localhost:11692 at 07:02:00.043
+starting worker pid=130740 on localhost:11692 at 07:02:00.053
+2023-01-30 07:12:37 INFO::After iteration 2, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00157384116707492,0.018457970413208,0.00377960706684487,0.00850567346844178}
+2023-01-30 07:12:37 INFO::run iteration 3
+starting worker pid=131893 on localhost:11692 at 07:12:37.800
+starting worker pid=131902 on localhost:11692 at 07:12:37.801
+starting worker pid=131896 on localhost:11692 at 07:12:37.812
+starting worker pid=131897 on localhost:11692 at 07:12:37.812
+starting worker pid=131900 on localhost:11692 at 07:12:37.825
+starting worker pid=131889 on localhost:11692 at 07:12:37.825
+starting worker pid=131891 on localhost:11692 at 07:12:37.836
+starting worker pid=131901 on localhost:11692 at 07:12:37.846
+starting worker pid=131899 on localhost:11692 at 07:12:37.848
+starting worker pid=131890 on localhost:11692 at 07:12:37.851
+2023-01-30 07:23:13 INFO::After iteration 3, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00165223132530415,0.0208415176331579,0.00446192175951258,0.00948941821171558}
+2023-01-30 07:23:13 INFO::run iteration 4
+starting worker pid=133066 on localhost:11692 at 07:23:14.370
+starting worker pid=133063 on localhost:11692 at 07:23:14.370
+starting worker pid=133061 on localhost:11692 at 07:23:14.370
+starting worker pid=133062 on localhost:11692 at 07:23:14.370
+starting worker pid=133060 on localhost:11692 at 07:23:14.371
+starting worker pid=133058 on localhost:11692 at 07:23:14.374
+starting worker pid=133056 on localhost:11692 at 07:23:14.380
+starting worker pid=133057 on localhost:11692 at 07:23:14.384
+starting worker pid=133059 on localhost:11692 at 07:23:14.390
+starting worker pid=133065 on localhost:11692 at 07:23:14.399
+2023-01-30 07:33:52 INFO::After iteration 4, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00169994711538184,0.0220198256624494,0.00485295688540672,0.0100841013903486}
+2023-01-30 07:33:52 INFO::run iteration 5
+starting worker pid=134217 on localhost:11692 at 07:33:53.442
+starting worker pid=134226 on localhost:11692 at 07:33:53.442
+starting worker pid=134221 on localhost:11692 at 07:33:53.442
+starting worker pid=134222 on localhost:11692 at 07:33:53.443
+starting worker pid=134225 on localhost:11692 at 07:33:53.443
+starting worker pid=134218 on localhost:11692 at 07:33:53.451
+starting worker pid=134220 on localhost:11692 at 07:33:53.452
+starting worker pid=134219 on localhost:11692 at 07:33:53.453
+starting worker pid=134224 on localhost:11692 at 07:33:53.464
+starting worker pid=134223 on localhost:11692 at 07:33:53.486
+2023-01-30 07:44:28 INFO::After iteration 5, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00172519300239754,0.0225037718496435,0.00505507235167576,0.010412905453461}
+2023-01-30 07:44:28 INFO::run iteration 6
+starting worker pid=135399 on localhost:11692 at 07:44:28.974
+starting worker pid=135396 on localhost:11692 at 07:44:28.974
+starting worker pid=135393 on localhost:11692 at 07:44:28.975
+starting worker pid=135394 on localhost:11692 at 07:44:28.976
+starting worker pid=135400 on localhost:11692 at 07:44:28.976
+starting worker pid=135395 on localhost:11692 at 07:44:28.976
+starting worker pid=135397 on localhost:11692 at 07:44:28.978
+starting worker pid=135391 on localhost:11692 at 07:44:28.979
+starting worker pid=135398 on localhost:11692 at 07:44:28.981
+starting worker pid=135392 on localhost:11692 at 07:44:28.996
+2023-01-30 07:55:05 INFO::After iteration 6, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00173778699849594,0.0226608681728971,0.00515442850591417,0.0105919907246285}
+2023-01-30 07:55:06 INFO::run iteration 7
+starting worker pid=136555 on localhost:11692 at 07:55:06.607
+starting worker pid=136562 on localhost:11692 at 07:55:06.609
+starting worker pid=136558 on localhost:11692 at 07:55:06.609
+starting worker pid=136559 on localhost:11692 at 07:55:06.610
+starting worker pid=136564 on localhost:11692 at 07:55:06.610
+starting worker pid=136556 on localhost:11692 at 07:55:06.610
+starting worker pid=136563 on localhost:11692 at 07:55:06.610
+starting worker pid=136561 on localhost:11692 at 07:55:06.610
+starting worker pid=136560 on localhost:11692 at 07:55:06.627
+starting worker pid=136557 on localhost:11692 at 07:55:06.643
+2023-01-30 08:05:44 INFO::After iteration 7, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.0017440745102766,0.0226841199630629,0.00520301210698707,0.0106921652235999}
+2023-01-30 08:05:44 INFO::run iteration 8
+starting worker pid=137746 on localhost:11692 at 08:05:45.336
+starting worker pid=137753 on localhost:11692 at 08:05:45.336
+starting worker pid=137748 on localhost:11692 at 08:05:45.336
+starting worker pid=137754 on localhost:11692 at 08:05:45.336
+starting worker pid=137750 on localhost:11692 at 08:05:45.336
+starting worker pid=137747 on localhost:11692 at 08:05:45.348
+starting worker pid=137749 on localhost:11692 at 08:05:45.357
+starting worker pid=137752 on localhost:11692 at 08:05:45.362
+starting worker pid=137755 on localhost:11692 at 08:05:45.362
+starting worker pid=137751 on localhost:11692 at 08:05:45.389
+2023-01-30 08:16:21 INFO::After iteration 8, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00174721922891111,0.0226610107227617,0.00522723299955283,0.010750733966108}
+2023-01-30 08:16:22 INFO::run iteration 9
+starting worker pid=138908 on localhost:11692 at 08:16:22.911
+starting worker pid=138909 on localhost:11692 at 08:16:22.911
+starting worker pid=138914 on localhost:11692 at 08:16:22.911
+starting worker pid=138910 on localhost:11692 at 08:16:22.911
+starting worker pid=138913 on localhost:11692 at 08:16:22.911
+starting worker pid=138906 on localhost:11692 at 08:16:22.912
+starting worker pid=138911 on localhost:11692 at 08:16:22.912
+starting worker pid=138912 on localhost:11692 at 08:16:22.912
+starting worker pid=138905 on localhost:11692 at 08:16:22.912
+starting worker pid=138907 on localhost:11692 at 08:16:22.912
+2023-01-30 08:27:02 INFO::After iteration 9, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00174881711371316,0.0226273901730719,0.00523977360762235,0.0107871125411315}
+2023-01-30 08:27:03 INFO::run iteration 10
+starting worker pid=140080 on localhost:11692 at 08:27:04.155
+starting worker pid=140087 on localhost:11692 at 08:27:04.156
+starting worker pid=140079 on localhost:11692 at 08:27:04.156
+starting worker pid=140081 on localhost:11692 at 08:27:04.156
+starting worker pid=140082 on localhost:11692 at 08:27:04.156
+starting worker pid=140085 on localhost:11692 at 08:27:04.156
+starting worker pid=140084 on localhost:11692 at 08:27:04.157
+starting worker pid=140088 on localhost:11692 at 08:27:04.157
+starting worker pid=140086 on localhost:11692 at 08:27:04.157
+starting worker pid=140083 on localhost:11692 at 08:27:04.157
+2023-01-30 08:37:40 INFO::After iteration 10, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00174965443807282,0.022596323932559,0.00524662607773488,0.0108110842698601}
+2023-01-30 08:37:40 INFO::run iteration 11
+starting worker pid=141244 on localhost:11692 at 08:37:41.111
+starting worker pid=141243 on localhost:11692 at 08:37:41.112
+starting worker pid=141245 on localhost:11692 at 08:37:41.112
+starting worker pid=141247 on localhost:11692 at 08:37:41.112
+starting worker pid=141242 on localhost:11692 at 08:37:41.113
+starting worker pid=141249 on localhost:11692 at 08:37:41.113
+starting worker pid=141246 on localhost:11692 at 08:37:41.113
+starting worker pid=141240 on localhost:11692 at 08:37:41.113
+starting worker pid=141241 on localhost:11692 at 08:37:41.113
+starting worker pid=141248 on localhost:11692 at 08:37:41.113
+2023-01-30 08:48:17 INFO::After iteration 11, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175010369195123,0.0225713441083519,0.0052505955888304,0.010827620032737}
+2023-01-30 08:48:17 INFO::run iteration 12
+starting worker pid=142404 on localhost:11692 at 08:48:18.519
+starting worker pid=142401 on localhost:11692 at 08:48:18.520
+starting worker pid=142400 on localhost:11692 at 08:48:18.520
+starting worker pid=142399 on localhost:11692 at 08:48:18.520
+starting worker pid=142407 on localhost:11692 at 08:48:18.521
+starting worker pid=142402 on localhost:11692 at 08:48:18.521
+starting worker pid=142403 on localhost:11692 at 08:48:18.521
+starting worker pid=142398 on localhost:11692 at 08:48:18.521
+starting worker pid=142406 on localhost:11692 at 08:48:18.521
+starting worker pid=142405 on localhost:11692 at 08:48:18.521
+2023-01-30 08:58:56 INFO::After iteration 12, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.0017503507938408,0.0225525043286557,0.00525302994693424,0.0108394161860104}
+2023-01-30 08:58:56 INFO::run iteration 13
+starting worker pid=143562 on localhost:11692 at 08:58:57.473
+starting worker pid=143569 on localhost:11692 at 08:58:57.473
+starting worker pid=143571 on localhost:11692 at 08:58:57.475
+starting worker pid=143568 on localhost:11692 at 08:58:57.475
+starting worker pid=143564 on localhost:11692 at 08:58:57.475
+starting worker pid=143563 on localhost:11692 at 08:58:57.475
+starting worker pid=143566 on localhost:11692 at 08:58:57.475
+starting worker pid=143565 on localhost:11692 at 08:58:57.476
+starting worker pid=143570 on localhost:11692 at 08:58:57.476
+starting worker pid=143567 on localhost:11692 at 08:58:57.476
+2023-01-30 09:09:36 INFO::After iteration 13, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175048873662264,0.022538760402929,0.00525459577616096,0.0108480220589179}
+2023-01-30 09:09:36 INFO::run iteration 14
+starting worker pid=144734 on localhost:11692 at 09:09:37.357
+starting worker pid=144741 on localhost:11692 at 09:09:37.357
+starting worker pid=144739 on localhost:11692 at 09:09:37.357
+starting worker pid=144732 on localhost:11692 at 09:09:37.358
+starting worker pid=144736 on localhost:11692 at 09:09:37.358
+starting worker pid=144738 on localhost:11692 at 09:09:37.358
+starting worker pid=144740 on localhost:11692 at 09:09:37.358
+starting worker pid=144735 on localhost:11692 at 09:09:37.358
+starting worker pid=144737 on localhost:11692 at 09:09:37.358
+starting worker pid=144733 on localhost:11692 at 09:09:37.358
+2023-01-30 09:20:15 INFO::After iteration 14, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175056585955108,0.0225289176314934,0.00525563996278637,0.0108543924289594}
+2023-01-30 09:20:15 INFO::run iteration 15
+starting worker pid=145902 on localhost:11692 at 09:20:16.048
+starting worker pid=145900 on localhost:11692 at 09:20:16.049
+starting worker pid=145895 on localhost:11692 at 09:20:16.049
+starting worker pid=145897 on localhost:11692 at 09:20:16.050
+starting worker pid=145899 on localhost:11692 at 09:20:16.050
+starting worker pid=145896 on localhost:11692 at 09:20:16.050
+starting worker pid=145893 on localhost:11692 at 09:20:16.050
+starting worker pid=145901 on localhost:11692 at 09:20:16.050
+starting worker pid=145898 on localhost:11692 at 09:20:16.050
+starting worker pid=145894 on localhost:11692 at 09:20:16.050
+2023-01-30 09:30:52 INFO::After iteration 15, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175060828853777,0.0225219424632821,0.0052563540708399,0.0108591524441313}
+2023-01-30 09:30:52 INFO::run iteration 16
+starting worker pid=147082 on localhost:11692 at 09:30:53.154
+starting worker pid=147081 on localhost:11692 at 09:30:53.155
+starting worker pid=147080 on localhost:11692 at 09:30:53.155
+starting worker pid=147079 on localhost:11692 at 09:30:53.155
+starting worker pid=147075 on localhost:11692 at 09:30:53.155
+starting worker pid=147078 on localhost:11692 at 09:30:53.155
+starting worker pid=147077 on localhost:11692 at 09:30:53.155
+starting worker pid=147074 on localhost:11692 at 09:30:53.155
+starting worker pid=147073 on localhost:11692 at 09:30:53.155
+starting worker pid=147076 on localhost:11692 at 09:30:53.155
+2023-01-30 09:41:31 INFO::After iteration 16, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175063065877927,0.0225170286801334,0.00525685060568138,0.0108627310878388}
+2023-01-30 09:41:31 INFO::run iteration 17
+starting worker pid=148234 on localhost:11692 at 09:41:32.321
+starting worker pid=148233 on localhost:11692 at 09:41:32.340
+starting worker pid=148240 on localhost:11692 at 09:41:32.354
+starting worker pid=148238 on localhost:11692 at 09:41:32.363
+starting worker pid=148241 on localhost:11692 at 09:41:32.377
+starting worker pid=148235 on localhost:11692 at 09:41:32.378
+starting worker pid=148242 on localhost:11692 at 09:41:32.383
+starting worker pid=148239 on localhost:11692 at 09:41:32.386
+starting worker pid=148236 on localhost:11692 at 09:41:32.389
+starting worker pid=148237 on localhost:11692 at 09:41:32.391
+2023-01-30 09:52:12 INFO::After iteration 17, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175064141299785,0.0225135780220154,0.00525719946148405,0.0108654327309811}
+2023-01-30 09:52:12 INFO::run iteration 18
+starting worker pid=149437 on localhost:11692 at 09:52:12.749
+starting worker pid=149434 on localhost:11692 at 09:52:12.750
+starting worker pid=149430 on localhost:11692 at 09:52:12.789
+starting worker pid=149429 on localhost:11692 at 09:52:12.790
+starting worker pid=149428 on localhost:11692 at 09:52:12.790
+starting worker pid=149431 on localhost:11692 at 09:52:12.816
+starting worker pid=149433 on localhost:11692 at 09:52:12.817
+starting worker pid=149436 on localhost:11692 at 09:52:12.833
+starting worker pid=149435 on localhost:11692 at 09:52:12.854
+starting worker pid=149432 on localhost:11692 at 09:52:12.888
+2023-01-30 10:02:54 INFO::After iteration 18, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175064552367561,0.0225111583319299,0.00525744609210902,0.0108674782526461}
+2023-01-30 10:02:54 INFO::run iteration 19
+starting worker pid=150597 on localhost:11692 at 10:02:55.188
+starting worker pid=150599 on localhost:11692 at 10:02:55.189
+starting worker pid=150592 on localhost:11692 at 10:02:55.190
+starting worker pid=150593 on localhost:11692 at 10:02:55.191
+starting worker pid=150591 on localhost:11692 at 10:02:55.191
+starting worker pid=150598 on localhost:11692 at 10:02:55.191
+starting worker pid=150596 on localhost:11692 at 10:02:55.192
+starting worker pid=150594 on localhost:11692 at 10:02:55.192
+starting worker pid=150595 on localhost:11692 at 10:02:55.192
+starting worker pid=150590 on localhost:11692 at 10:02:55.193
+2023-01-30 10:13:34 INFO::After iteration 19, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175064595194276,0.0225094621670019,0.00525762107312945,0.0108690303374867}
+2023-01-30 10:13:35 INFO::run iteration 20
+starting worker pid=151756 on localhost:11692 at 10:13:35.610
+starting worker pid=151761 on localhost:11692 at 10:13:35.610
+starting worker pid=151757 on localhost:11692 at 10:13:35.610
+starting worker pid=151762 on localhost:11692 at 10:13:35.610
+starting worker pid=151758 on localhost:11692 at 10:13:35.610
+starting worker pid=151759 on localhost:11692 at 10:13:35.611
+starting worker pid=151754 on localhost:11692 at 10:13:35.611
+starting worker pid=151760 on localhost:11692 at 10:13:35.611
+starting worker pid=151755 on localhost:11692 at 10:13:35.611
+starting worker pid=151763 on localhost:11692 at 10:13:35.611
+2023-01-30 10:24:16 INFO::After iteration 20, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.0017506444625591,0.0225082727255679,0.00525774545328685,0.0108702099811791}
+2023-01-30 10:24:17 INFO::run iteration 21
+starting worker pid=152964 on localhost:11692 at 10:24:18.052
+starting worker pid=152971 on localhost:11692 at 10:24:18.053
+starting worker pid=152967 on localhost:11692 at 10:24:18.053
+starting worker pid=152966 on localhost:11692 at 10:24:18.053
+starting worker pid=152970 on localhost:11692 at 10:24:18.053
+starting worker pid=152972 on localhost:11692 at 10:24:18.053
+starting worker pid=152973 on localhost:11692 at 10:24:18.054
+starting worker pid=152968 on localhost:11692 at 10:24:18.054
+starting worker pid=152969 on localhost:11692 at 10:24:18.054
+starting worker pid=152965 on localhost:11692 at 10:24:18.054
+2023-01-30 10:35:04 INFO::After iteration 21, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175064209639498,0.0225074378895052,0.00525783394095039,0.0108711077621492}
+2023-01-30 10:35:04 INFO::run iteration 22
+starting worker pid=154191 on localhost:11692 at 10:35:05.336
+starting worker pid=154197 on localhost:11692 at 10:35:05.336
+starting worker pid=154193 on localhost:11692 at 10:35:05.336
+starting worker pid=154200 on localhost:11692 at 10:35:05.336
+starting worker pid=154196 on localhost:11692 at 10:35:05.336
+starting worker pid=154192 on localhost:11692 at 10:35:05.337
+starting worker pid=154198 on localhost:11692 at 10:35:05.337
+starting worker pid=154194 on localhost:11692 at 10:35:05.337
+starting worker pid=154195 on localhost:11692 at 10:35:05.337
+starting worker pid=154199 on localhost:11692 at 10:35:05.337
+2023-01-30 10:45:46 INFO::After iteration 22, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175063945267932,0.0225068512146727,0.005257896908825,0.0108717917950285}
+2023-01-30 10:45:46 INFO::run iteration 23
+starting worker pid=155438 on localhost:11692 at 10:45:47.778
+starting worker pid=155433 on localhost:11692 at 10:45:47.778
+starting worker pid=155437 on localhost:11692 at 10:45:47.778
+starting worker pid=155435 on localhost:11692 at 10:45:47.778
+starting worker pid=155431 on localhost:11692 at 10:45:47.779
+starting worker pid=155434 on localhost:11692 at 10:45:47.779
+starting worker pid=155430 on localhost:11692 at 10:45:47.779
+starting worker pid=155439 on localhost:11692 at 10:45:47.779
+starting worker pid=155432 on localhost:11692 at 10:45:47.779
+starting worker pid=155436 on localhost:11692 at 10:45:47.779
+2023-01-30 10:56:29 INFO::After iteration 23, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175063686129091,0.022506438311174,0.00525794171148486,0.0108723134694091}
+2023-01-30 10:56:29 INFO::run iteration 24
+starting worker pid=156597 on localhost:11692 at 10:56:30.787
+starting worker pid=156602 on localhost:11692 at 10:56:30.787
+starting worker pid=156596 on localhost:11692 at 10:56:30.787
+starting worker pid=156598 on localhost:11692 at 10:56:30.787
+starting worker pid=156601 on localhost:11692 at 10:56:30.787
+starting worker pid=156595 on localhost:11692 at 10:56:30.787
+starting worker pid=156600 on localhost:11692 at 10:56:30.788
+starting worker pid=156594 on localhost:11692 at 10:56:30.788
+starting worker pid=156593 on localhost:11692 at 10:56:30.788
+starting worker pid=156599 on localhost:11692 at 10:56:30.788
+2023-01-30 11:07:13 INFO::After iteration 24, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175063448933829,0.0225061472077592,0.00525797357904267,0.0108727116528557}
+2023-01-30 11:07:13 INFO::run iteration 25
+starting worker pid=157777 on localhost:11692 at 11:07:14.377
+starting worker pid=157774 on localhost:11692 at 11:07:14.377
+starting worker pid=157771 on localhost:11692 at 11:07:14.378
+starting worker pid=157779 on localhost:11692 at 11:07:14.378
+starting worker pid=157775 on localhost:11692 at 11:07:14.378
+starting worker pid=157778 on localhost:11692 at 11:07:14.378
+starting worker pid=157776 on localhost:11692 at 11:07:14.378
+starting worker pid=157773 on localhost:11692 at 11:07:14.378
+starting worker pid=157780 on localhost:11692 at 11:07:14.378
+starting worker pid=157772 on localhost:11692 at 11:07:14.378
+2023-01-30 11:17:57 INFO::After iteration 25, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175063240746253,0.0225059415849857,0.0052579962362952,0.0108730158000966}
+2023-01-30 11:17:58 INFO::run iteration 26
+starting worker pid=158942 on localhost:11692 at 11:17:59.208
+starting worker pid=158941 on localhost:11692 at 11:17:59.210
+starting worker pid=158950 on localhost:11692 at 11:17:59.210
+starting worker pid=158948 on localhost:11692 at 11:17:59.211
+starting worker pid=158946 on localhost:11692 at 11:17:59.211
+starting worker pid=158944 on localhost:11692 at 11:17:59.211
+starting worker pid=158947 on localhost:11692 at 11:17:59.211
+starting worker pid=158945 on localhost:11692 at 11:17:59.211
+starting worker pid=158949 on localhost:11692 at 11:17:59.211
+starting worker pid=158943 on localhost:11692 at 11:17:59.211
+2023-01-30 11:28:42 INFO::After iteration 26, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175063063102497,0.0225057960431657,0.00525801233747148,0.010873248268882}
+2023-01-30 11:28:42 INFO::run iteration 27
+starting worker pid=160123 on localhost:11692 at 11:28:43.954
+starting worker pid=160121 on localhost:11692 at 11:28:43.954
+starting worker pid=160117 on localhost:11692 at 11:28:43.954
+starting worker pid=160124 on localhost:11692 at 11:28:43.954
+starting worker pid=160118 on localhost:11692 at 11:28:43.954
+starting worker pid=160125 on localhost:11692 at 11:28:43.954
+starting worker pid=160119 on localhost:11692 at 11:28:43.955
+starting worker pid=160116 on localhost:11692 at 11:28:43.954
+starting worker pid=160122 on localhost:11692 at 11:28:43.955
+starting worker pid=160120 on localhost:11692 at 11:28:43.955
+2023-01-30 11:39:26 INFO::After iteration 27, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175062914547993,0.0225056928009042,0.00525802377397928,0.010873426053372}
+2023-01-30 11:39:26 INFO::run iteration 28
+starting worker pid=161291 on localhost:11692 at 11:39:27.600
+starting worker pid=161287 on localhost:11692 at 11:39:27.600
+starting worker pid=161284 on localhost:11692 at 11:39:27.600
+starting worker pid=161290 on localhost:11692 at 11:39:27.601
+starting worker pid=161285 on localhost:11692 at 11:39:27.601
+starting worker pid=161288 on localhost:11692 at 11:39:27.601
+starting worker pid=161289 on localhost:11692 at 11:39:27.601
+starting worker pid=161282 on localhost:11692 at 11:39:27.601
+starting worker pid=161283 on localhost:11692 at 11:39:27.601
+starting worker pid=161286 on localhost:11692 at 11:39:27.601
+2023-01-30 11:50:11 INFO::After iteration 28, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175062792175503,0.0225056193942717,0.0052580318932559,0.0108735620862757}
+2023-01-30 11:50:11 INFO::run iteration 29
+starting worker pid=162454 on localhost:11692 at 11:50:12.783
+starting worker pid=162453 on localhost:11692 at 11:50:12.783
+starting worker pid=162461 on localhost:11692 at 11:50:12.783
+starting worker pid=162459 on localhost:11692 at 11:50:12.783
+starting worker pid=162458 on localhost:11692 at 11:50:12.784
+starting worker pid=162462 on localhost:11692 at 11:50:12.784
+starting worker pid=162457 on localhost:11692 at 11:50:12.784
+starting worker pid=162455 on localhost:11692 at 11:50:12.784
+starting worker pid=162460 on localhost:11692 at 11:50:12.784
+starting worker pid=162456 on localhost:11692 at 11:50:12.784
+2023-01-30 12:00:57 INFO::After iteration 29, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175062692533246,0.0225055670738361,0.00525803765477876,0.0108736662198124}
+2023-01-30 12:00:58 INFO::run iteration 30
+starting worker pid=163777 on localhost:11692 at 12:00:58.519
+starting worker pid=163786 on localhost:11692 at 12:00:58.530
+starting worker pid=163779 on localhost:11692 at 12:00:58.530
+starting worker pid=163784 on localhost:11692 at 12:00:58.545
+starting worker pid=163780 on localhost:11692 at 12:00:58.547
+starting worker pid=163785 on localhost:11692 at 12:00:58.547
+starting worker pid=163781 on localhost:11692 at 12:00:58.547
+starting worker pid=163782 on localhost:11692 at 12:00:58.554
+starting worker pid=163783 on localhost:11692 at 12:00:58.557
+starting worker pid=163778 on localhost:11692 at 12:00:58.559
+2023-01-30 12:11:41 INFO::After iteration 30, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00175062612139006,0.022505529687649,0.0052580417413997,0.0108737459664221}
+2023-01-30 12:11:42 INFO::Run susie for all regions.
+2023-01-30 12:11:42 INFO::run iteration 1
+starting worker pid=164956 on localhost:11692 at 12:11:43.224
+starting worker pid=164955 on localhost:11692 at 12:11:43.224
+starting worker pid=164958 on localhost:11692 at 12:11:43.225
+starting worker pid=164953 on localhost:11692 at 12:11:43.225
+starting worker pid=164951 on localhost:11692 at 12:11:43.225
+starting worker pid=164959 on localhost:11692 at 12:11:43.225
+starting worker pid=164957 on localhost:11692 at 12:11:43.225
+starting worker pid=164952 on localhost:11692 at 12:11:43.225
+starting worker pid=164954 on localhost:11692 at 12:11:43.226
+starting worker pid=164960 on localhost:11692 at 12:11:43.226
+2023-01-30 12:27:49 INFO::After iteration 1, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.00638137162490893,0.0578065234469009,0.0125671160429224,0.0347745740162}
+2023-01-30 12:27:49 INFO::No. LD regions: 1700
+2023-01-30 12:27:57 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-01-30 12:27:57 INFO::Merge regions for chr1
+2023-01-30 12:27:57 INFO::No. regions with at least one SNP/gene for chr1 after merging: 124
+2023-01-30 12:28:05 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-01-30 12:28:05 INFO::Merge regions for chr2
+2023-01-30 12:28:06 INFO::No. regions with at least one SNP/gene for chr2 after merging: 137
+2023-01-30 12:28:11 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-01-30 12:28:11 INFO::Merge regions for chr3
+2023-01-30 12:28:11 INFO::No. regions with at least one SNP/gene for chr3 after merging: 117
+2023-01-30 12:28:18 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-01-30 12:28:18 INFO::Merge regions for chr4
+2023-01-30 12:28:18 INFO::No. regions with at least one SNP/gene for chr4 after merging: 117
+2023-01-30 12:28:23 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-01-30 12:28:23 INFO::Merge regions for chr5
+2023-01-30 12:28:23 INFO::No. regions with at least one SNP/gene for chr5 after merging: 109
+2023-01-30 12:28:29 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-01-30 12:28:29 INFO::Merge regions for chr6
+2023-01-30 12:28:29 INFO::No. regions with at least one SNP/gene for chr6 after merging: 106
+2023-01-30 12:28:34 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-01-30 12:28:34 INFO::Merge regions for chr7
+2023-01-30 12:28:34 INFO::No. regions with at least one SNP/gene for chr7 after merging: 93
+2023-01-30 12:28:39 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-01-30 12:28:39 INFO::Merge regions for chr8
+2023-01-30 12:28:39 INFO::No. regions with at least one SNP/gene for chr8 after merging: 91
+2023-01-30 12:28:42 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-01-30 12:28:42 INFO::Merge regions for chr9
+2023-01-30 12:28:42 INFO::No. regions with at least one SNP/gene for chr9 after merging: 71
+2023-01-30 12:28:47 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-01-30 12:28:47 INFO::Merge regions for chr10
+2023-01-30 12:28:47 INFO::No. regions with at least one SNP/gene for chr10 after merging: 77
+2023-01-30 12:28:51 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-01-30 12:28:51 INFO::Merge regions for chr11
+2023-01-30 12:28:51 INFO::No. regions with at least one SNP/gene for chr11 after merging: 82
+2023-01-30 12:28:56 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-01-30 12:28:56 INFO::Merge regions for chr12
+2023-01-30 12:28:56 INFO::No. regions with at least one SNP/gene for chr12 after merging: 78
+2023-01-30 12:28:59 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-01-30 12:28:59 INFO::Merge regions for chr13
+2023-01-30 12:28:59 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-01-30 12:29:01 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-01-30 12:29:01 INFO::Merge regions for chr14
+2023-01-30 12:29:01 INFO::No. regions with at least one SNP/gene for chr14 after merging: 52
+2023-01-30 12:29:03 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-01-30 12:29:03 INFO::Merge regions for chr15
+2023-01-30 12:29:03 INFO::No. regions with at least one SNP/gene for chr15 after merging: 48
+2023-01-30 12:29:06 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-01-30 12:29:06 INFO::Merge regions for chr16
+2023-01-30 12:29:06 INFO::No. regions with at least one SNP/gene for chr16 after merging: 47
+2023-01-30 12:29:08 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-01-30 12:29:08 INFO::Merge regions for chr17
+2023-01-30 12:29:08 INFO::No. regions with at least one SNP/gene for chr17 after merging: 46
+2023-01-30 12:29:11 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-01-30 12:29:11 INFO::Merge regions for chr18
+2023-01-30 12:29:11 INFO::No. regions with at least one SNP/gene for chr18 after merging: 46
+2023-01-30 12:29:14 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-01-30 12:29:14 INFO::Merge regions for chr19
+2023-01-30 12:29:14 INFO::No. regions with at least one SNP/gene for chr19 after merging: 34
+2023-01-30 12:29:16 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-01-30 12:29:16 INFO::Merge regions for chr20
+2023-01-30 12:29:16 INFO::No. regions with at least one SNP/gene for chr20 after merging: 36
+2023-01-30 12:29:18 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-01-30 12:29:18 INFO::Merge regions for chr21
+2023-01-30 12:29:18 INFO::No. regions with at least one SNP/gene for chr21 after merging: 23
+2023-01-30 12:29:19 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-01-30 12:29:19 INFO::Merge regions for chr22
+2023-01-30 12:29:19 INFO::No. regions with at least one SNP/gene for chr22 after merging: 23
+2023-01-30 12:29:19 INFO::Trim regions with SNPs more than 20000
+2023-01-30 12:29:21 INFO::Adding R matrix info, as genotype is not given
+2023-01-30 12:29:23 INFO::Adding R matrix info for chrom 1
+2023-01-30 12:47:30 INFO::Adding R matrix info for chrom 2
+2023-01-30 13:03:02 INFO::Adding R matrix info for chrom 3
+2023-01-30 13:14:21 INFO::Adding R matrix info for chrom 4
+2023-01-30 13:24:20 INFO::Adding R matrix info for chrom 5
+2023-01-30 13:33:26 INFO::Adding R matrix info for chrom 6
+2023-01-30 13:53:28 INFO::Adding R matrix info for chrom 7
+2023-01-30 14:04:22 INFO::Adding R matrix info for chrom 8
+2023-01-30 14:13:01 INFO::Adding R matrix info for chrom 9
+2023-01-30 14:20:29 INFO::Adding R matrix info for chrom 10
+2023-01-30 14:30:47 INFO::Adding R matrix info for chrom 11
+2023-01-30 14:42:15 INFO::Adding R matrix info for chrom 12
+2023-01-30 14:53:27 INFO::Adding R matrix info for chrom 13
+2023-01-30 14:58:24 INFO::Adding R matrix info for chrom 14
+2023-01-30 15:05:44 INFO::Adding R matrix info for chrom 15
+2023-01-30 15:11:34 INFO::Adding R matrix info for chrom 16
+2023-01-30 15:20:54 INFO::Adding R matrix info for chrom 17
+2023-01-30 15:29:52 INFO::Adding R matrix info for chrom 18
+2023-01-30 15:34:09 INFO::Adding R matrix info for chrom 19
+2023-01-30 15:45:57 INFO::Adding R matrix info for chrom 20
+2023-01-30 15:51:58 INFO::Adding R matrix info for chrom 21
+2023-01-30 15:54:19 INFO::Adding R matrix info for chrom 22
+2023-01-30 16:01:11 INFO::Number of regions that contain strong gene signals: 120
+2023-01-30 16:01:11 INFO::Rerun susie for regions with strong gene signals using full SNPs.
+2023-01-30 16:01:11 INFO::run iteration 1
+starting worker pid=194310 on localhost:11692 at 16:01:13.679
+2023-01-30 17:01:41 INFO::After iteration 1, priors {SNP,Whole_Blood,Whole_Blood_Splicing,Whole_Blood_Methylation}: {0.000494719556625201,0.0625358683974421,0.00938178413834204,0.0314712946525051}
+$group_prior
+                    SNP             Whole_Blood    Whole_Blood_Splicing 
+           0.0001750626            0.0225055297            0.0052580417 
+Whole_Blood_Methylation 
+           0.0108737460 
+
+$group_prior_var
+                    SNP             Whole_Blood    Whole_Blood_Splicing 
+               15.54946                19.40032                29.52689 
+Whole_Blood_Methylation 
+               14.34587 
+
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.14.6 ctwas_0.1.35     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9        pgenlibr_0.3.2    magrittr_2.0.3    hms_1.1.2        
+ [5] doParallel_1.0.17 lattice_0.20-44   R6_2.5.1          rlang_1.0.6      
+ [9] foreach_1.5.2     fansi_1.0.3       tools_4.1.0       parallel_4.1.0   
+[13] grid_4.1.0        logging_0.10-108  utf8_1.2.2        cli_3.4.1        
+[17] iterators_1.0.14  ellipsis_0.3.2    tibble_3.1.8      lifecycle_1.0.3  
+[21] crayon_1.5.2      Matrix_1.3-3      readr_2.1.3       tzdb_0.3.0       
+[25] vctrs_0.5.1       codetools_0.2-18  glue_1.6.2        compiler_4.1.0   
+[29] pillar_1.8.1      pkgconfig_2.0.3  

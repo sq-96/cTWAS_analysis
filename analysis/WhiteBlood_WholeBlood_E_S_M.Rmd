@@ -1,0 +1,378 @@
+---
+title: "LDL - Expression and Splicing Jointly"
+author: "Sheng Qian"
+date: "2022-12-17"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+params:
+  analysis_id: "WhiteBlood_WholeBlood"
+  trait_id: "WhiteBlood_E_S_M"
+  weight: "WholeBlood"
+---
+
+```{r}
+analysis_id <- params$analysis_id
+trait_id <- params$trait_id
+weight <- params$weight
+
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
+
+source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R")
+options(digits = 4)
+
+```
+
+### Load ctwas results
+
+```{r echo=F}
+#load information for all genes
+#sqlite <- RSQLite::dbDriver("SQLite")
+#db = RSQLite::dbConnect(sqlite, "/project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db")
+#query <- function(...) RSQLite::dbGetQuery(db, ...)
+#gene_info <- query("select gene, genename, gene_type from extra")
+#RSQLite::dbDisconnect(db)
+
+#load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing_mapping.RData")
+
+#load ctwas results
+ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
+
+#make unique identifier for regions
+ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+
+#load z scores for SNPs and collect sample size
+load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+
+sample_size <- z_snp$ss
+sample_size <- as.numeric(names(which.max(table(sample_size))))
+
+#compute PVE for each gene/SNP
+ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+
+#separate gene and SNP results
+ctwas_gene_res <- ctwas_res[ctwas_res$type != "SNP", ]
+ctwas_gene_res <- data.frame(ctwas_gene_res)
+ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+ctwas_snp_res <- data.frame(ctwas_snp_res)
+
+#add gene information to results
+ctwas_gene_res$gene_id <- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x, split="[|]"))[1]})
+ctwas_gene_res$group <- sapply(ctwas_gene_res$id, function(x){paste(unlist(strsplit(unlist(strsplit(x, split="[|]"))[2], "_"))[-1], collapse="_")})
+#ctwas_gene_res$alt_name <- paste0(ctwas_gene_res$gene_id, "|", ctwas_gene_res$group)
+
+#ctwas_gene_res <- cbind(ctwas_gene_res, gene_info[sapply(ctwas_gene_res$gene_id, match, gene_info$gene), c("genename", "gene_type")])
+
+#add z scores to results
+load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
+
+z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
+ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+
+#merge gene and snp results with added information
+ctwas_snp_res$gene_id=NA
+ctwas_snp_res$group="SNP"
+#ctwas_snp_res$alt_name=NA
+#ctwas_snp_res$genename=NA
+#ctwas_snp_res$gene_type=NA
+
+ctwas_res <- rbind(ctwas_gene_res,
+                   ctwas_snp_res[,colnames(ctwas_gene_res)])
+
+#get number of SNPs from s1 results; adjust for thin argument
+ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
+n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
+rm(ctwas_res_s1)
+
+#store columns to report
+report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "gene_type", "z_flag", "id", "chrom", "pos", "alt_name", "gene_id"))]
+first_cols <- c("genename", "gene_id", "group", "region_tag")
+report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
+
+```
+
+### Check convergence of parameters
+
+```{r echo=F}
+library(ggplot2)
+library(cowplot)
+
+load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd"))
+
+#estimated group prior (all iterations)
+estimated_group_prior_all <- group_prior_rec
+estimated_group_prior_all["SNP",] <- estimated_group_prior_all["SNP",]*thin #adjust parameter to account for thin argument
+
+#estimated group prior variance (all iterations)
+estimated_group_prior_var_all <- group_prior_var_rec
+
+#set group size
+group_size <- c(table(ctwas_gene_res$type), structure(n_snps, names="SNP"))
+group_size <- group_size[rownames(estimated_group_prior_all)]
+
+#estimated group PVE (all iterations)
+estimated_group_pve_all <- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+
+#estimated enrichment of genes (all iterations)
+estimated_enrichment_all <- t(sapply(rownames(estimated_group_prior_all)[rownames(estimated_group_prior_all)!="SNP"], function(x){estimated_group_prior_all[rownames(estimated_group_prior_all)==x,]/estimated_group_prior_all[rownames(estimated_group_prior_all)=="SNP"]}))
+
+title_size <- 12
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_prior_all), nrow(estimated_group_prior_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_prior_all), function(x){estimated_group_prior_all[x,]})),
+                 group = rep(rownames(estimated_group_prior_all), each=ncol(estimated_group_prior_all)))
+
+df$group[df$group=="Liver"] <- "Liver_Expression"
+df$group <- as.factor(df$group)
+
+p_pi <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(pi)) +
+  ggtitle("Proportion Causal") +
+  theme_cowplot()
+
+p_pi <- p_pi + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_prior_var_all), nrow(estimated_group_prior_var_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_prior_var_all), function(x){estimated_group_prior_var_all[x,]})),
+                 group = rep(rownames(estimated_group_prior_var_all), each=ncol(estimated_group_prior_var_all)))
+
+df$group[df$group=="Liver"] <- "Liver_Expression"
+df$group <- as.factor(df$group)
+
+p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(sigma^2)) +
+  ggtitle("Effect Size") +
+  theme_cowplot()
+
+p_sigma2 <- p_sigma2 + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_pve_all), nrow(estimated_group_pve_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_pve_all), function(x){estimated_group_pve_all[x,]})),
+                 group = rep(rownames(estimated_group_pve_all), each=ncol(estimated_group_pve_all)))
+
+df$group[df$group=="Liver"] <- "Liver_Expression"
+df$group <- as.factor(df$group)
+
+p_pve <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(h^2[G])) +
+  ggtitle("PVE") +
+  theme_cowplot()
+
+p_pve <- p_pve + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_enrichment_all), nrow(estimated_enrichment_all)),
+                 value = unlist(lapply(1:nrow(estimated_enrichment_all), function(x){estimated_enrichment_all[x,]})),
+                 group = rep(rownames(estimated_enrichment_all), each=ncol(estimated_enrichment_all)))
+
+df$group[df$group=="Liver"] <- "Liver_Expression"
+df$group <- as.factor(df$group)
+
+p_enrich <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(pi[G]/pi[S])) +
+  ggtitle("Enrichment") +
+  theme_cowplot()
+
+p_enrich <- p_enrich + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+
+plot_grid(p_pi, p_sigma2, p_enrich, p_pve)
+```
+
+```{r}
+#estimated group prior
+estimated_group_prior <- estimated_group_prior_all[,ncol(group_prior_rec)]
+print(estimated_group_prior)
+
+#estimated group prior variance
+estimated_group_prior_var <- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
+print(estimated_group_prior_var)
+
+#estimated enrichment
+estimated_enrichment <- estimated_enrichment_all[ncol(group_prior_var_rec)]
+print(estimated_enrichment)
+
+#report sample size
+print(sample_size)
+
+#report group size
+print(group_size)
+
+#estimated group PVE
+estimated_group_pve <- estimated_group_pve_all[,ncol(group_prior_rec)]
+print(estimated_group_pve)
+
+#total PVE
+sum(estimated_group_pve)
+
+#attributable PVE
+estimated_group_pve/sum(estimated_group_pve)
+```
+
+```{r echo=F}
+ctwas_gene_res$group[ctwas_gene_res$group=="Whole_Blood"] <- "Expression"
+ctwas_gene_res$group[ctwas_gene_res$group=="Whole_Blood_Splicing"] <- "Splicing"
+ctwas_gene_res$group[ctwas_gene_res$group=="Whole_Blood_Methylation"] <- "Methylation"
+ctwas_gene_E_res <- ctwas_gene_res[ctwas_gene_res$group=="Expression",]
+ctwas_gene_S_res <- ctwas_gene_res[ctwas_gene_res$group=="Splicing",]
+ctwas_gene_M_res <- ctwas_gene_res[ctwas_gene_res$group=="Methylation",]
+```
+
+
+```{r}
+#load information for all genes
+sqlite <- RSQLite::dbDriver("SQLite")
+db = RSQLite::dbConnect(sqlite, "/project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db")
+query <- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info <- query("select gene, genename from extra")
+RSQLite::dbDisconnect(db)
+ctwas_gene_E_res$genename <- gene_info[sapply(ctwas_gene_E_res$gene_id, match, gene_info$gene),"genename"]
+
+load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing_mapping.RData")
+ctwas_gene_S_res$genename <- intron_info[sapply(ctwas_gene_S_res$gene_id, match, intron_info$gene), "genename"]
+
+sqlite <- RSQLite::dbDriver("SQLite")
+db = RSQLite::dbConnect(sqlite, "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/WholeBlood.db")
+query <- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info <- query("select gene, genename from extra")
+RSQLite::dbDisconnect(db)
+ctwas_gene_M_res$genename <- gene_info[sapply(ctwas_gene_M_res$gene_id, match, gene_info$gene),"genename"]
+```
+
+
+```{r echo=F,eval=F}
+#ctwas_gene_res <- rbind(ctwas_gene_E_res,ctwas_gene_S_res,ctwas_gene_M_res)
+#ctwas_gene_res <- na.omit(ctwas_gene_res)
+#saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+```
+
+
+```{r echo=F}
+ctwas_gene_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+
+ctwas_gene_res_E <- readRDS("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL/Liver/ctwas_gene_res.RDS")
+ctwas_gene_res_E["group"] <- "Liver_Expression_only"
+alpha <- 0.05
+sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res_E)/2), lower=T)
+
+#ctwas_gene_res_E <- ctwas_gene_res_E[,c("genename","group","region_tag","susie_pip","mu2","PVE","z")]
+ctwas_gene_res_E <- ctwas_gene_res_E[,c("genename","susie_pip","z")]
+colnames(ctwas_gene_res_E) <- c("genename","expression_only_pip","twas_z")
+
+ctwas_gene_res_S <- readRDS("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_S/Liver/LDL_Liver_ctwas_gene_res.RDS")
+ctwas_gene_res_S["group"] <- "Liver_Expression_only"
+#ctwas_gene_res_S <- ctwas_gene_res_S[,c("genename","group","region_tag","susie_pip","mu2","PVE","z")]
+ctwas_gene_res_S <- ctwas_gene_res_S[,c("genename","susie_pip")]
+colnames(ctwas_gene_res_S) <- c("genename","splicing_only_pip")
+```
+
+### Top genes by expression/Splicing PIP
+
+```{r echo=F}
+#genes with PIP>0.8 or 20 highest PIPs
+head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+#head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+```
+
+### Top genes by combined PIP
+
+```{r echo=F}
+#aggregate by gene name
+df_gene <- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$genename), FUN=sum)
+colnames(df_gene) <- c("genename", "combined_pip")
+
+#drop duplicated gene names
+df_gene <- df_gene[!(df_gene$genename %in% names(which(table(ctwas_gene_res$genename)>2))),]
+
+#compute proportion of combined PIP attributable to liver
+df_gene$expression_pip <- round(unlist(sapply(df_gene$genename, function(x){out <- ctwas_gene_res$susie_pip[ctwas_gene_res$genename==x & ctwas_gene_res$group=="Liver_Expression"]; if (length(out)==0){out <- 0}; out})),3)
+
+df_gene$splicing_pip <- round(df_gene$combined_pip - df_gene$expression_pip,3)
+
+df_gene <- merge(df_gene,ctwas_gene_res_E,by.y = "genename",all.x = T)
+df_gene <- merge(df_gene,ctwas_gene_res_S,by.y = "genename",all.x = T)
+df_gene$expression_only_pip <- round(df_gene$expression_only_pip,3)
+df_gene$splicing_only_pip <- round(df_gene$splicing_only_pip,3)
+
+
+#sort by combined PIP
+df_gene <- df_gene[order(-df_gene$combined_pip),]
+#genes with PIP>0.8 or 20 highest PIPs
+head(df_gene, max(sum(df_gene$combined_pip>0.8), 20))
+```
+
+
+```{r}
+library("readxl")
+
+known_annotations <- read_xlsx("data/summary_known_genes_annotations.xlsx", sheet="LDL")
+known_annotations <- unique(known_annotations$`Gene Symbol`)
+
+unrelated_genes <- df_gene$genename[!(df_gene$genename %in% known_annotations)]
+
+#number of genes in known annotations
+print(length(known_annotations))
+
+#number of genes in known annotations with imputed expression
+print(sum(known_annotations %in% df_gene$genename))
+
+#assign ctwas, TWAS, and bystander genes
+ctwas_genes <- df_gene$genename[df_gene$combined_pip>0.95]
+twas_genes <- ctwas_gene_res_E$genename[abs(ctwas_gene_res_E$twas_z)>sig_thresh]
+novel_genes <- ctwas_genes[!(ctwas_genes %in% twas_genes)]
+
+#significance threshold for TWAS
+print(sig_thresh)
+
+#number of ctwas genes
+length(ctwas_genes)
+
+#number of twas genes
+length(twas_genes)
+
+#show novel genes (ctwas genes with not in TWAS genes)
+df_gene[df_gene$genename %in% novel_genes,]
+
+#sensitivity / recall
+sensitivity <- rep(NA,1)
+names(sensitivity) <- c("ctwas")
+sensitivity["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(known_annotations)
+sensitivity["TWAS"] <- sum(twas_genes %in% known_annotations)/length(known_annotations)
+sensitivity
+
+#specificity
+specificity <- rep(NA,1)
+names(specificity) <- c("ctwas")
+specificity["ctwas"] <- sum(!(unrelated_genes %in% ctwas_genes))/length(unrelated_genes)
+specificity["TWAS"] <- sum(!(unrelated_genes %in% twas_genes))/length(unrelated_genes)
+specificity
+
+#precision / PPV
+precision <- rep(NA,1)
+names(precision) <- c("ctwas")
+precision["ctwas"] <- sum(ctwas_genes %in% known_annotations)/length(ctwas_genes)
+precision["TWAS"] <- sum(twas_genes %in% known_annotations)/length(twas_genes)
+precision
+
+#ROC curves
+
+pip_range <- (0:1000)/1000
+sensitivity <- rep(NA, length(pip_range))
+specificity <- rep(NA, length(pip_range))
+```
+

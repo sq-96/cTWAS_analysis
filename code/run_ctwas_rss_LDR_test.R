@@ -2,13 +2,13 @@ library(ctwas)
 
 args = commandArgs(trailingOnly=TRUE)
 
-args <- c("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz",
+args <- c("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30000_irnt.vcf.gz",
           "/project2/mstephens/wcrouse/UKB_LDR_0.1",
-          "/project2/compbio/predictdb/mashr_models/mashr_Liver.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver.db",
+          "/project2/compbio/predictdb/mashr_models/mashr_Liver.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/WholeBlood.db",
           "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R",
-          "LDL_Liver_expr",
-          "LDL_Liver_ctwas",
-          "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_E_S/Liver")
+          "WhiteBlood_WholeBlood_expr",
+          "WhiteBlood_WholeBlood_ctwas",
+          "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/WhiteBlood_E_S_M/WholeBlood")
 
 if (length(args) <7) {
   stop(" 7 arguments:
@@ -22,8 +22,6 @@ if (length(args) <7) {
 }
 
 print(args)
-
-sessionInfo()
 
 ####################
 
