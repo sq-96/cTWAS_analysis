@@ -299,9 +299,9 @@ ctwas_gene_spli_res <- data.frame(by_genename %>% summarise(
 
 
 ```{r echo=F,eval=F}
-ctwas_gene_res <- rbind(ctwas_gene_expr_res,ctwas_gene_spli_res)
-ctwas_gene_res <- na.omit(ctwas_gene_res)
-saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+#ctwas_gene_res <- rbind(ctwas_gene_expr_res,ctwas_gene_spli_res)
+#ctwas_gene_res <- na.omit(ctwas_gene_res)
+#saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 ```
 
 

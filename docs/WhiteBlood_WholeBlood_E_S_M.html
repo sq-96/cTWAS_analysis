@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Sheng Qian" />
+
+<meta name="date" content="2022-12-17" />
+
+<title>LDL - Expression and Splicing Jointly</title>
+
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">cTWAS_analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/sq-96/cTWAS_analysis">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">LDL - Expression and Splicing Jointly</h1>
+<h4 class="author">Sheng Qian</h4>
+<h4 class="date">2022-12-17</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2023-02-02
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
+</p>
+<p>
+<strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211220code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20211220)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20211220code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20211220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+</p>
+</div>
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/
+</td>
+<td style="text-align:left;">
+data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R
+</td>
+<td style="text-align:left;">
+code/ctwas_config_b38.R
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing_mapping.RData
+</td>
+<td style="text-align:left;">
+data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing_mapping.RData
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Whole_Blood_Splicing_mapping.RData
+</td>
+<td style="text-align:left;">
+data/mashr_sqtl/sqtl/mashr/mashr_Whole_Blood_Splicing_mapping.RData
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/WholeBlood.db
+</td>
+<td style="text-align:left;">
+data/mqtl/WholeBlood.db
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree9b01dadf23cff76bebe62e9c24e4a0996e8c5d84targetblank9b01dada"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/9b01dadf23cff76bebe62e9c24e4a0996e8c5d84" target="_blank">9b01dad</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree9b01dadf23cff76bebe62e9c24e4a0996e8c5d84targetblank9b01dada" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/9b01dadf23cff76bebe62e9c24e4a0996e8c5d84" target="_blank">9b01dad</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .ipynb_checkpoints/
+    Ignored:    analysis/figure/
+
+Untracked files:
+    Untracked:  Proposal plots.R
+    Untracked:  RGS14.pdf
+    Untracked:  RNF186.pdf
+    Untracked:  SCZ_annotation.xlsx
+    Untracked:  SLC8B1.pdf
+    Untracked:  analysis/.ipynb_checkpoints/
+    Untracked:  cache/
+    Untracked:  code/.ipynb_checkpoints/
+    Untracked:  data/.ipynb_checkpoints/
+    Untracked:  data/FUMA_output/
+    Untracked:  data/GO_Terms/
+    Untracked:  data/GTEx_Analysis_v8_eQTL.tar
+    Untracked:  data/G_list.RData
+    Untracked:  data/IBD_ME/
+    Untracked:  data/LDL/
+    Untracked:  data/LDL_E_S/
+    Untracked:  data/LDL_M/
+    Untracked:  data/LDL_S/
+    Untracked:  data/LDL_multi/
+    Untracked:  data/PGC3_SCZ_wave3_public.v2.tsv
+    Untracked:  data/RedBlood_M/
+    Untracked:  data/SCZ/
+    Untracked:  data/SCZ_2014_EUR/
+    Untracked:  data/SCZ_2014_EUR_ME/
+    Untracked:  data/SCZ_2018/
+    Untracked:  data/SCZ_2018_ME/
+    Untracked:  data/SCZ_2018_S/
+    Untracked:  data/SCZ_2020/
+    Untracked:  data/SCZ_S/
+    Untracked:  data/Supplementary Table 15 - MAGMA.xlsx
+    Untracked:  data/Supplementary Table 20 - Prioritised Genes.xlsx
+    Untracked:  data/UKBB/
+    Untracked:  data/UKBB_SNPs_Info.text
+    Untracked:  data/WhiteBlood_E_S_M/
+    Untracked:  data/White_Blood_M/
+    Untracked:  data/eqtl/
+    Untracked:  data/gencode.v26.GRCh38.genes.gtf
+    Untracked:  data/gene_OMIM.txt
+    Untracked:  data/gene_pip_0.8.txt
+    Untracked:  data/gwas_sumstats/
+    Untracked:  data/magma.genes.out
+    Untracked:  data/mashr_Heart_Atrial_Appendage.db
+    Untracked:  data/mashr_sqtl/
+    Untracked:  data/mqtl/
+    Untracked:  data/multigroup/
+    Untracked:  data/notes.txt
+    Untracked:  data/scz_2018.RDS
+    Untracked:  data/summary_known_genes_annotations.xlsx
+    Untracked:  temp_LDR/
+    Untracked:  top_genes_32.txt
+    Untracked:  top_genes_37.txt
+    Untracked:  top_genes_43.txt
+    Untracked:  top_genes_54.txt
+    Untracked:  top_genes_81.txt
+    Untracked:  z_snp_pos_SCZ.RData
+    Untracked:  z_snp_pos_SCZ_2014_EUR.RData
+    Untracked:  z_snp_pos_SCZ_2018.RData
+    Untracked:  z_snp_pos_SCZ_2020.RData
+
+Unstaged changes:
+    Deleted:    analysis/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd
+    Deleted:    analysis/Atrial_Fibrillation_Heart_Left_Ventricle.Rmd
+    Deleted:    analysis/Autism_Brain_Amygdala.Rmd
+    Deleted:    analysis/Autism_Brain_Anterior_cingulate_cortex_BA24.Rmd
+    Deleted:    analysis/Autism_Brain_Caudate_basal_ganglia.Rmd
+    Deleted:    analysis/Autism_Brain_Cerebellar_Hemisphere.Rmd
+    Deleted:    analysis/Autism_Brain_Cerebellum.Rmd
+    Deleted:    analysis/Autism_Brain_Cortex.Rmd
+    Deleted:    analysis/Autism_Brain_Frontal_Cortex_BA9.Rmd
+    Deleted:    analysis/Autism_Brain_Hippocampus.Rmd
+    Deleted:    analysis/Autism_Brain_Hypothalamus.Rmd
+    Deleted:    analysis/Autism_Brain_Nucleus_accumbens_basal_ganglia.Rmd
+    Deleted:    analysis/Autism_Brain_Putamen_basal_ganglia.Rmd
+    Deleted:    analysis/Autism_Brain_Spinal_cord_cervical_c-1.Rmd
+    Deleted:    analysis/Autism_Brain_Substantia_nigra.Rmd
+    Deleted:    analysis/BMI_Brain_Amygdala.Rmd
+    Deleted:    analysis/BMI_Brain_Amygdala_S.Rmd
+    Deleted:    analysis/BMI_Brain_Anterior_cingulate_cortex_BA24.Rmd
+    Deleted:    analysis/BMI_Brain_Anterior_cingulate_cortex_BA24_S.Rmd
+    Deleted:    analysis/BMI_Brain_Caudate_basal_ganglia.Rmd
+    Deleted:    analysis/BMI_Brain_Caudate_basal_ganglia_S.Rmd
+    Deleted:    analysis/BMI_Brain_Cerebellar_Hemisphere.Rmd
+    Deleted:    analysis/BMI_Brain_Cerebellar_Hemisphere_S.Rmd
+    Deleted:    analysis/BMI_Brain_Cerebellum.Rmd
+    Deleted:    analysis/BMI_Brain_Cerebellum_S.Rmd
+    Deleted:    analysis/BMI_Brain_Cortex.Rmd
+    Deleted:    analysis/BMI_Brain_Cortex_S.Rmd
+    Deleted:    analysis/BMI_Brain_Frontal_Cortex_BA9.Rmd
+    Deleted:    analysis/BMI_Brain_Frontal_Cortex_BA9_S.Rmd
+    Deleted:    analysis/BMI_Brain_Hippocampus.Rmd
+    Deleted:    analysis/BMI_Brain_Hippocampus_S.Rmd
+    Deleted:    analysis/BMI_Brain_Hypothalamus.Rmd
+    Deleted:    analysis/BMI_Brain_Hypothalamus_S.Rmd
+    Deleted:    analysis/BMI_Brain_Nucleus_accumbens_basal_ganglia.Rmd
+    Deleted:    analysis/BMI_Brain_Nucleus_accumbens_basal_ganglia_S.Rmd
+    Deleted:    analysis/BMI_Brain_Putamen_basal_ganglia.Rmd
+    Deleted:    analysis/BMI_Brain_Putamen_basal_ganglia_S.Rmd
+    Deleted:    analysis/BMI_Brain_Spinal_cord_cervical_c-1.Rmd
+    Deleted:    analysis/BMI_Brain_Spinal_cord_cervical_c-1_S.Rmd
+    Deleted:    analysis/BMI_Brain_Substantia_nigra.Rmd
+    Deleted:    analysis/BMI_Brain_Substantia_nigra_S.Rmd
+    Deleted:    analysis/BMI_S_results.Rmd
+    Deleted:    analysis/Glucose_Adipose_Subcutaneous.Rmd
+    Deleted:    analysis/Glucose_Adipose_Visceral_Omentum.Rmd
+    Modified:   analysis/LDL_Liver_E_S.Rmd
+    Modified:   analysis/WhiteBlood_WholeBlood_E_S_M.Rmd
+    Modified:   analysis/index.Rmd
+    Deleted:    code/run_IBD_ctwas_rss_LDR_ME.R
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/WhiteBlood_WholeBlood_E_S_M.Rmd</code>) and HTML (<code>docs/WhiteBlood_WholeBlood_E_S_M.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9b01dadf23cff76bebe62e9c24e4a0996e8c5d84/analysis/WhiteBlood_WholeBlood_E_S_M.Rmd" target="_blank">9b01dad</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-02-01
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<pre class="r"><code>analysis_id &lt;- params$analysis_id
+trait_id &lt;- params$trait_id
+weight &lt;- params$weight
+
+results_dir &lt;- paste0(&quot;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/&quot;, trait_id, &quot;/&quot;, weight)
+
+source(&quot;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R&quot;)
+options(digits = 4)</code></pre>
+<div id="load-ctwas-results" class="section level3">
+<h3>Load ctwas results</h3>
+</div>
+<div id="check-convergence-of-parameters" class="section level3">
+<h3>Check convergence of parameters</h3>
+<p><img src="figure/WhiteBlood_WholeBlood_E_S_M.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#estimated group prior
+estimated_group_prior &lt;- estimated_group_prior_all[,ncol(group_prior_rec)]
+print(estimated_group_prior)</code></pre>
+<pre><code>                    SNP             Whole_Blood    Whole_Blood_Splicing 
+              0.0001751               0.0225055               0.0052580 
+Whole_Blood_Methylation 
+              0.0108737 </code></pre>
+<pre class="r"><code>#estimated group prior variance
+estimated_group_prior_var &lt;- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
+print(estimated_group_prior_var)</code></pre>
+<pre><code>                    SNP             Whole_Blood    Whole_Blood_Splicing 
+                  15.55                   19.40                   29.53 
+Whole_Blood_Methylation 
+                  14.35 </code></pre>
+<pre class="r"><code>#estimated enrichment
+estimated_enrichment &lt;- estimated_enrichment_all[ncol(group_prior_var_rec)]
+print(estimated_enrichment)</code></pre>
+<pre><code>[1] 61.79</code></pre>
+<pre class="r"><code>#report sample size
+print(sample_size)</code></pre>
+<pre><code>[1] 350470</code></pre>
+<pre class="r"><code>#report group size
+print(group_size)</code></pre>
+<pre><code>                    SNP             Whole_Blood    Whole_Blood_Splicing 
+                8696600                   11198                   20134 
+Whole_Blood_Methylation 
+                  11858 </code></pre>
+<pre class="r"><code>#estimated group PVE
+estimated_group_pve &lt;- estimated_group_pve_all[,ncol(group_prior_rec)]
+print(estimated_group_pve)</code></pre>
+<pre><code>                    SNP             Whole_Blood    Whole_Blood_Splicing 
+               0.067547                0.013950                0.008919 
+Whole_Blood_Methylation 
+               0.005278 </code></pre>
+<pre class="r"><code>#total PVE
+sum(estimated_group_pve)</code></pre>
+<pre><code>[1] 0.09569</code></pre>
+<pre class="r"><code>#attributable PVE
+estimated_group_pve/sum(estimated_group_pve)</code></pre>
+<pre><code>                    SNP             Whole_Blood    Whole_Blood_Splicing 
+                0.70586                 0.14578                 0.09320 
+Whole_Blood_Methylation 
+                0.05515 </code></pre>
+<pre class="r"><code>#load information for all genes
+sqlite &lt;- RSQLite::dbDriver(&quot;SQLite&quot;)
+db = RSQLite::dbConnect(sqlite, &quot;/project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db&quot;)
+query &lt;- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info &lt;- query(&quot;select gene, genename from extra&quot;)
+RSQLite::dbDisconnect(db)
+ctwas_gene_E_res$genename &lt;- gene_info[sapply(ctwas_gene_E_res$gene_id, match, gene_info$gene),&quot;genename&quot;]
+
+load(&quot;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Whole_Blood_Splicing_mapping.RData&quot;)
+ctwas_gene_S_res$genename &lt;- intron_info[sapply(ctwas_gene_S_res$gene_id, match, intron_info$gene), &quot;genename&quot;]
+
+sqlite &lt;- RSQLite::dbDriver(&quot;SQLite&quot;)
+db = RSQLite::dbConnect(sqlite, &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/WholeBlood.db&quot;)
+query &lt;- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info &lt;- query(&quot;select gene, genename from extra&quot;)
+RSQLite::dbDisconnect(db)
+ctwas_gene_M_res$genename &lt;- gene_info[sapply(ctwas_gene_M_res$gene_id, match, gene_info$gene),&quot;genename&quot;]
+ctwas_gene_M_res$genename &lt;- sapply(ctwas_gene_M_res$genename, function(x){unlist(strsplit(x, split=&quot;[;]&quot;))[1]})</code></pre>
+</div>
+<div id="top-expressionintroncpg" class="section level3">
+<h3>Top expression/intron/CpG</h3>
+<pre><code>           genename                      gene_id       group region_tag
+39936           FES           ENSG00000182511.11  Expression      15_43
+43125          YBEY  intron_21_46287123_46296162    Splicing      21_24
+38047         TAGAP           ENSG00000164691.16  Expression      6_103
+36651      ARHGAP15           ENSG00000075884.13  Expression       2_85
+41903          CNN2    intron_19_1032696_1036130    Splicing       19_2
+36665         BAZ2B           ENSG00000123636.17  Expression       2_96
+38535         VLDLR           ENSG00000147852.15  Expression        9_3
+39701      KIAA0391           ENSG00000100890.15  Expression       14_9
+38156         CREB5           ENSG00000146592.16  Expression       7_24
+37171        MED12L           ENSG00000144893.12  Expression       3_93
+35946        LAPTM5            ENSG00000162511.7  Expression       1_20
+37527       SLC22A4            ENSG00000197208.5  Expression       5_79
+37106         ATXN7           ENSG00000163635.17  Expression       3_43
+39549          FLT3  intron_13_28024943_28027088    Splicing       13_7
+36279         CNIH4           ENSG00000143771.11  Expression      1_114
+39447         ALDH2           ENSG00000111275.12  Expression      12_67
+39604         LAMP1           ENSG00000185896.10  Expression      13_62
+36089      SLC25A24           ENSG00000085491.15  Expression       1_67
+43166         HDHD5           ENSG00000069998.12  Expression       22_1
+41827        TTC39C           ENSG00000168234.12  Expression      18_12
+41159         YPEL2            ENSG00000175155.8  Expression      17_34
+38704          LIPA           ENSG00000107798.17  Expression      10_57
+41100        KIF18B           ENSG00000186185.13  Expression      17_26
+39339        ACVRL1                   cg21236262 Methylation      12_33
+38973         PTPRJ           ENSG00000149177.12  Expression      11_29
+37291         ARAP2           ENSG00000047365.11  Expression       4_30
+37629         CPEB4           ENSG00000113742.12  Expression      5_104
+40700         MYO1C                   cg02622416 Methylation       17_2
+40445         ZFPM1            ENSG00000179588.8  Expression      16_54
+38575         OSTF1           ENSG00000134996.11  Expression       9_35
+39588         KLF12           ENSG00000118922.17  Expression      13_36
+36440         ITSN2   intron_2_24209221_24209818    Splicing       2_14
+37693         ATXN1           ENSG00000124788.17  Expression       6_13
+38633          NEK6           ENSG00000119408.16  Expression       9_64
+36934        UQCRC1           ENSG00000010256.10  Expression       3_34
+40367          GLG1           ENSG00000090863.11  Expression      16_40
+37233          ADD1           ENSG00000087274.16  Expression        4_4
+37348          TET2           ENSG00000168769.13  Expression       4_69
+36222          SELL            ENSG00000188404.8  Expression       1_83
+36005        CITED4            ENSG00000179862.6  Expression       1_25
+37276       TBC1D14           ENSG00000132405.18  Expression        4_8
+37664          CANX intron_5_179699102_179705679    Splicing      5_108
+36622        HS6ST1            ENSG00000136720.6  Expression       2_75
+36670         CD302            ENSG00000241399.6  Expression       2_96
+39154           CD6                   cg27098804 Methylation      11_34
+36067        CDC14A           ENSG00000079335.18  Expression       1_61
+37398        DDX60L           ENSG00000181381.13  Expression      4_109
+42503       ATP13A1           ENSG00000105726.16  Expression      19_15
+42083   CTC-503J8.4                   cg14319541 Methylation       19_6
+42362         MYO9B           ENSG00000099331.13  Expression      19_14
+40361         ITGAL                   cg24033122 Methylation      16_24
+42233         AP1M2           ENSG00000129354.11  Expression       19_9
+39185    AP000908.1                   cg04049253 Methylation      11_67
+36881          CCR8            ENSG00000179934.6  Expression       3_28
+37134         PAQR9            ENSG00000188582.8  Expression       3_87
+37511       TNFAIP8            ENSG00000145779.7  Expression       5_72
+37102  CTD-2330K9.3                   cg24308560 Methylation       3_35
+37439         RAI14           ENSG00000039560.13  Expression       5_23
+38269         CPSF4           ENSG00000160917.14  Expression       7_61
+37608        ADAM19           ENSG00000135074.15  Expression       5_93
+38449    RNF139-AS1            ENSG00000245149.3  Expression       8_82
+36265          NCF2 intron_1_183570839_183573185    Splicing       1_91
+41207      SLC9A3R1           ENSG00000109062.11  Expression      17_42
+38476 RP11-136O12.2                   cg09660151 Methylation       8_83
+37185         ABCC5           ENSG00000114770.16  Expression      3_112
+41423         UBE2O           ENSG00000175931.12  Expression      17_43
+37312          REST           ENSG00000084093.16  Expression       4_41
+39271         CERS5  intron_12_50134068_50134546    Splicing      12_33
+42844         UBOX5           ENSG00000185019.16  Expression       20_5
+36462          DTNB           ENSG00000138101.18  Expression       2_15
+37475         ZBED3            ENSG00000132846.5  Expression       5_45
+39884          MEG3           ENSG00000214548.14  Expression      14_52
+38383          ACHE           ENSG00000087085.13  Expression       7_62
+38011       L3MBTL3            ENSG00000198945.7  Expression       6_86
+37418          NPR3           ENSG00000113389.15  Expression       5_22
+37369          LRBA intron_4_150278004_150282450    Splicing       4_98
+37420        MTMR12           ENSG00000150712.10  Expression       5_22
+36185         RCSD1           ENSG00000198771.10  Expression       1_82
+41409         JMJD6           ENSG00000070495.14  Expression      17_43
+37118        PXYLP1           ENSG00000155893.12  Expression       3_86
+39582          KLF5           ENSG00000102554.13  Expression      13_35
+41886         ELANE            ENSG00000197561.6  Expression       19_2
+38127         JAZF1           ENSG00000153814.11  Expression       7_23
+37994          HSF2           ENSG00000025156.12  Expression       6_82
+39810       ZFP36L1            ENSG00000185650.9  Expression      14_33
+42600          LSM4                   cg15796753 Methylation      19_15
+38758          RBP4           ENSG00000138207.13  Expression      10_59
+      susie_pip      mu2       PVE        z
+39936    1.0000    74.88 2.136e-04  -8.8371
+43125    1.0000 21567.58 6.154e-02  -4.5377
+38047    1.0000    71.28 2.034e-04  -8.4352
+36651    1.0000    51.50 1.469e-04   9.1934
+41903    1.0000    69.78 1.991e-04  -8.4588
+36665    0.9999    73.32 2.092e-04  11.1020
+38535    0.9999    54.10 1.544e-04   7.8169
+39701    0.9997    47.53 1.356e-04   7.3702
+38156    0.9991   368.21 1.050e-03 -20.7223
+37171    0.9981    32.91 9.372e-05  -5.4270
+35946    0.9981    68.29 1.945e-04   9.1174
+37527    0.9966   142.46 4.051e-04  13.7538
+37106    0.9965    47.41 1.348e-04  -3.6298
+39549    0.9949   263.79 7.488e-04 -14.2245
+36279    0.9948   101.68 2.886e-04  -9.4218
+39447    0.9941   139.67 3.962e-04 -15.8148
+39604    0.9931    39.66 1.124e-04  -6.3026
+36089    0.9924    35.34 1.001e-04   5.9415
+43166    0.9912    25.37 7.175e-05   4.1322
+41827    0.9872    40.10 1.130e-04   5.2107
+41159    0.9846    31.57 8.868e-05  -0.2668
+38704    0.9839    41.70 1.171e-04   6.3863
+41100    0.9837    27.95 7.845e-05   5.3743
+39339    0.9824    51.79 1.452e-04  -7.2809
+38973    0.9824    66.16 1.854e-04  -9.8176
+37291    0.9783    66.58 1.858e-04  -8.2624
+37629    0.9741   123.48 3.432e-04  12.4516
+40700    0.9736    42.91 1.192e-04   6.5882
+40445    0.9711    36.75 1.018e-04  -4.6448
+38575    0.9691    21.77 6.019e-05   4.2476
+39588    0.9685    39.60 1.094e-04  -6.3398
+36440    0.9663    68.78 1.896e-04  10.5178
+37693    0.9616    65.29 1.791e-04   8.1734
+38633    0.9567    25.84 7.053e-05   5.7063
+36934    0.9555    32.60 8.887e-05  -5.0296
+40367    0.9553    25.07 6.834e-05   4.6834
+37233    0.9550    32.38 8.824e-05  -7.0727
+37348    0.9535    25.07 6.820e-05  -5.2844
+36222    0.9505    22.81 6.187e-05   3.9041
+36005    0.9505    27.05 7.336e-05  -4.7501
+37276    0.9442    28.72 7.736e-05   6.2554
+37664    0.9434    53.46 1.439e-04  -7.3165
+36622    0.9385    20.34 5.447e-05  -4.1404
+36670    0.9303    33.09 8.784e-05  -6.7895
+39154    0.9266    24.32 6.430e-05  -4.2787
+36067    0.9259    19.54 5.161e-05   3.8255
+37398    0.9238    21.38 5.636e-05   4.4610
+42503    0.9228    41.60 1.095e-04   6.1665
+42083    0.9227    22.20 5.846e-05  -4.4401
+42362    0.9165    28.36 7.417e-05   5.2380
+40361    0.9158   146.78 3.835e-04  12.4780
+42233    0.9144    38.67 1.009e-04   5.0990
+39185    0.9088    73.48 1.905e-04  -8.0026
+36881    0.9073    22.07 5.714e-05  -2.9305
+37134    0.9002    21.29 5.469e-05  -4.0819
+37511    0.8984    53.56 1.373e-04   7.6239
+37102    0.8970    65.68 1.681e-04  -8.4136
+37439    0.8925    19.19 4.888e-05   3.7885
+38269    0.8870    51.39 1.301e-04  -7.2534
+37608    0.8862    22.67 5.732e-05   4.0890
+38449    0.8838    22.66 5.715e-05   4.4502
+36265    0.8821    25.49 6.414e-05   4.3322
+41207    0.8776    46.73 1.170e-04  -7.6296
+38476    0.8753    34.29 8.564e-05   5.7186
+37185    0.8707    44.34 1.102e-04  -6.2110
+41423    0.8706    27.61 6.857e-05  -5.5016
+37312    0.8678    95.68 2.369e-04   9.0191
+39271    0.8677   100.30 2.483e-04  -9.9457
+42844    0.8644    26.29 6.485e-05  -4.8630
+36462    0.8556    22.68 5.536e-05  -4.5901
+37475    0.8554    19.97 4.875e-05   3.8017
+39884    0.8479    34.36 8.312e-05   5.3419
+38383    0.8461    36.23 8.747e-05  -3.8520
+38011    0.8426    31.08 7.471e-05  -5.5795
+37418    0.8420    21.27 5.110e-05   4.1456
+37369    0.8388    30.88 7.391e-05  -5.2425
+37420    0.8381    20.71 4.952e-05  -4.0032
+36185    0.8329    22.22 5.280e-05   4.3451
+41409    0.8306    25.19 5.970e-05   4.7425
+37118    0.8284    31.77 7.510e-05   7.2189
+39582    0.8242    23.36 5.493e-05  -4.5126
+41886    0.8125    26.42 6.125e-05  -4.5516
+38127    0.8109   122.01 2.823e-04 -14.6257
+37994    0.8108    66.37 1.535e-04   8.2271
+39810    0.8106    56.09 1.297e-04   8.0724
+42600    0.8058    23.37 5.373e-05   3.8635
+38758    0.8035    22.80 5.227e-05   4.4358</code></pre>
+</div>
+<div id="top-genes-by-expressionsplicingmethylation" class="section level3">
+<h3>Top genes by expression/splicing/methylation</h3>
+<pre class="r"><code>ctwas_gene_E_res &lt;- ctwas_gene_res[ctwas_gene_res$group==&quot;Expression&quot;,]
+ctwas_gene_S_res &lt;- ctwas_gene_res[ctwas_gene_res$group==&quot;Splicing&quot;,]
+ctwas_gene_M_res &lt;- ctwas_gene_res[ctwas_gene_res$group==&quot;Methylation&quot;,]
+
+df_gene_E &lt;- aggregate(ctwas_gene_E_res$susie_pip,by=list(ctwas_gene_E_res$genename), FUN=sum)
+colnames(df_gene_E) &lt;- c(&quot;genename&quot;, &quot;susie_pip&quot;)
+df_gene_E$group &lt;- &quot;Expression&quot;
+
+df_gene_S &lt;- aggregate(ctwas_gene_S_res$susie_pip,by=list(ctwas_gene_S_res$genename), FUN=sum)
+colnames(df_gene_S) &lt;- c(&quot;genename&quot;, &quot;susie_pip&quot;)
+df_gene_S$group &lt;- &quot;Splicing&quot;
+
+df_gene_M &lt;- aggregate(ctwas_gene_M_res$susie_pip,by=list(ctwas_gene_M_res$genename), FUN=sum)
+colnames(df_gene_M) &lt;- c(&quot;genename&quot;, &quot;susie_pip&quot;)
+df_gene_M$group &lt;- &quot;Methylation&quot;
+
+df_gene &lt;- rbind(df_gene_E,df_gene_S,df_gene_M)
+head(df_gene[order(-df_gene$susie_pip),], max(sum(df_gene$susie_pip&gt;0.8), 20))</code></pre>
+<pre><code>           genename susie_pip       group
+14585         MYO1G    1.3514    Splicing
+21011         NINJ2    1.1701 Methylation
+17145       TSPAN32    1.1599    Splicing
+18178          AMZ1    1.0639 Methylation
+13814         ITSN2    1.0254    Splicing
+16153        SIRPB1    1.0210    Splicing
+21542        PTPRN2    1.0060 Methylation
+14179           LYZ    1.0001    Splicing
+12347          CNN2    1.0000    Splicing
+3340            FES    1.0000  Expression
+17524          YBEY    1.0000    Splicing
+9381          TAGAP    1.0000  Expression
+612        ARHGAP15    1.0000  Expression
+906           BAZ2B    0.9999  Expression
+10464         VLDLR    0.9999  Expression
+4601       KIAA0391    0.9997  Expression
+15547         RAB34    0.9995    Splicing
+2141          CREB5    0.9991  Expression
+19483          ELK3    0.9989 Methylation
+5430         MED12L    0.9981  Expression
+4787         LAPTM5    0.9981  Expression
+15509          PVT1    0.9970    Splicing
+8729        SLC22A4    0.9966  Expression
+842           ATXN7    0.9965  Expression
+13190          FLT3    0.9955    Splicing
+1966          CNIH4    0.9948  Expression
+379           ALDH2    0.9941  Expression
+11991          CANX    0.9939    Splicing
+4777          LAMP1    0.9931  Expression
+8746       SLC25A24    0.9924  Expression
+3989          HDHD5    0.9912  Expression
+22612        SPTLC2    0.9895 Methylation
+10159        TTC39C    0.9872  Expression
+10660         YPEL2    0.9846  Expression
+5067           LIPA    0.9839  Expression
+4637         KIF18B    0.9837  Expression
+18048        ACVRL1    0.9824 Methylation
+7334          PTPRJ    0.9824  Expression
+16974      TNFRSF1A    0.9794    Splicing
+593           ARAP2    0.9783  Expression
+2102          CPEB4    0.9741  Expression
+20919         MYO1C    0.9736 Methylation
+10770         ZFPM1    0.9711  Expression
+22247         RRBP1    0.9698 Methylation
+6450          OSTF1    0.9691  Expression
+4669          KLF12    0.9685  Expression
+836           ATXN1    0.9616  Expression
+6067           NEK6    0.9567  Expression
+10365        UQCRC1    0.9555  Expression
+3654           GLG1    0.9553  Expression
+236            ADD1    0.9550  Expression
+9518           TET2    0.9535  Expression
+22284         SBNO2    0.9509 Methylation
+8491           SELL    0.9505  Expression
+1860         CITED4    0.9505  Expression
+20541     LINC01344    0.9445 Methylation
+9417        TBC1D14    0.9442  Expression
+14644          NCF2    0.9422    Splicing
+4174         HS6ST1    0.9385  Expression
+16859         TMCC2    0.9337    Splicing
+1581          CD302    0.9303  Expression
+18771           CD6    0.9266 Methylation
+1618         CDC14A    0.9259  Expression
+2499         DDX60L    0.9238  Expression
+784         ATP13A1    0.9228  Expression
+19114   CTC-503J8.4    0.9227 Methylation
+5891          MYO9B    0.9165  Expression
+20201         ITGAL    0.9161 Methylation
+526           AP1M2    0.9144  Expression
+18232    AP000908.1    0.9088 Methylation
+1540           CCR8    0.9073  Expression
+14342       MFSD13A    0.9073    Splicing
+15435          PSD4    0.9016    Splicing
+6532          PAQR9    0.9002  Expression
+9851        TNFAIP8    0.8984  Expression
+19159  CTD-2330K9.3    0.8970 Methylation
+23167         ZBTB2    0.8967 Methylation
+7466          RAI14    0.8925  Expression
+2118          CPSF4    0.8870  Expression
+209          ADAM19    0.8862  Expression
+17450         WDFY2    0.8849    Splicing
+7727     RNF139-AS1    0.8838  Expression
+8873       SLC9A3R1    0.8776  Expression
+21805 RP11-136O12.2    0.8753 Methylation
+38            ABCC5    0.8707  Expression
+10268         UBE2O    0.8706  Expression
+7605           REST    0.8678  Expression
+12228         CERS5    0.8677    Splicing
+10288         UBOX5    0.8644  Expression
+15191         PLCB2    0.8623    Splicing
+19656        FBRSL1    0.8596 Methylation
+2724           DTNB    0.8556  Expression
+10678         ZBED3    0.8554  Expression
+5455           MEG3    0.8479  Expression
+145            ACHE    0.8461  Expression
+4760        L3MBTL3    0.8426  Expression
+6227           NPR3    0.8420  Expression
+23028         UBE2I    0.8420 Methylation
+14111          LRBA    0.8388    Splicing
+5805         MTMR12    0.8381  Expression
+7579          RCSD1    0.8329  Expression
+4502          JMJD6    0.8306  Expression
+7364         PXYLP1    0.8284  Expression
+4673           KLF5    0.8242  Expression
+12044       CCDC125    0.8207    Splicing
+19896        GPR126    0.8181 Methylation
+2884          ELANE    0.8125  Expression
+4499          JAZF1    0.8109  Expression
+4191           HSF2    0.8108  Expression
+10760       ZFP36L1    0.8106  Expression
+20619          LSM4    0.8058 Methylation
+18274        APOLD1    0.8042 Methylation
+7557           RBP4    0.8035  Expression</code></pre>
+</div>
+<div id="top-genes-by-combined-pip" class="section level3">
+<h3>Top genes by combined PIP</h3>
+<pre><code>           genename combined_pip expression_pip splicing_pip methylation_pip
+14632         YPEL2       1.7531          0.985        0.000           0.768
+6635         LAPTM5       1.7444          0.998        0.002           0.744
+1036       ARHGAP15       1.7228          1.000        0.680           0.042
+8086          MYO1G       1.4333          0.082        1.351           0.000
+12304       SLC45A4       1.3131          0.786        0.509           0.018
+3603         DDX60L       1.2453          0.924        0.322           0.000
+13604       TNFAIP8       1.2375          0.898        0.120           0.219
+5556          HDHD5       1.2168          0.991        0.226           0.000
+8382          NINJ2       1.2094          0.033        0.006           1.170
+7276            LYZ       1.1825          0.182        1.000           0.000
+12684        SPTLC2       1.1762          0.187        0.000           0.989
+13938       TSPAN32       1.1634          0.004        1.160           0.000
+11576         RRBP1       1.1285          0.066        0.093           0.970
+12119       SLC12A7       1.0927          0.416        0.011           0.666
+1319          ATXN1       1.0859          0.962        0.058           0.067
+383           ACAP1       1.0827          0.349        0.015           0.719
+6369       KIAA0391       1.0714          1.000        0.072           0.000
+6195          ITSN2       1.0710          0.033        1.025           0.013
+773            AMZ1       1.0639          0.000        0.000           1.064
+12080        SIRPB1       1.0583          0.037        1.021           0.000
+6108         IQGAP2       1.0558          0.443        0.589           0.024
+518            ADD1       1.0546          0.955        0.100           0.000
+9680          PPP5C       1.0500          0.436        0.004           0.610
+14724       ZDHHC18       1.0485          0.009        0.590           0.450
+8411          NLRC5       1.0472          0.676        0.074           0.297
+4214          EOMES       1.0430          0.645        0.009           0.389
+4131           ELK3       1.0411          0.031        0.012           0.999
+1325          ATXN7       1.0395          0.997        0.043           0.000
+4614         FBRSL1       1.0389          0.063        0.117           0.860
+13618      TNFRSF1A       1.0375          0.016        0.979           0.042
+9965          PTPRJ       1.0347          0.982        0.015           0.038
+13069       TBC1D14       1.0311          0.944        0.062           0.025
+2270          CD101       1.0281          0.702        0.006           0.320
+2797          CNIH4       1.0177          0.995        0.023           0.000
+7508         MED12L       1.0147          0.998        0.000           0.017
+700           ALDH2       1.0137          0.994        0.020           0.000
+4709            FES       1.0119          1.000        0.012           0.000
+6467          KLF12       1.0068          0.968        0.038           0.000
+9969         PTPRN2       1.0060          0.000        0.000           1.006
+4281         ERICH1       1.0036          0.046        0.203           0.754
+14370         VLDLR       1.0036          1.000        0.004           0.000
+3021          CREB5       1.0014          0.999        0.002           0.000
+5641      HIST1H2BD       1.0009          0.675        0.326           0.000
+13024         TAGAP       1.0007          1.000        0.001           0.000
+10073         RAB34       1.0006          0.001        1.000           0.000
+1413          BAZ2B       1.0005          1.000        0.001           0.000
+2800           CNN2       1.0001          0.000        1.000           0.000
+14611          YBEY       1.0000          0.000        1.000           0.000
+8082          MYO1C       0.9998          0.026        0.000           0.974
+2973          CPEB4       0.9996          0.974        0.000           0.025
+1010          ARAP2       0.9992          0.978        0.021           0.000
+12164       SLC22A4       0.9982          0.997        0.002           0.000
+9992           PVT1       0.9970          0.000        0.997           0.000
+12185      SLC25A24       0.9967          0.992        0.004           0.000
+4794           FLT3       0.9955          0.000        0.995           0.000
+1989           CANX       0.9939          0.000        0.994           0.000
+6622          LAMP1       0.9931          0.993        0.000           0.000
+8827          OSTF1       0.9924          0.969        0.023           0.000
+10577          RORC       0.9913          0.776        0.000           0.216
+7047           LIPA       0.9908          0.984        0.006           0.001
+2305           CD33       0.9902          0.039        0.767           0.184
+13990        TTC39C       0.9878          0.987        0.001           0.000
+9368          PLCB2       0.9837          0.121        0.862           0.000
+6422         KIF18B       0.9837          0.984        0.000           0.000
+461          ACVRL1       0.9824          0.000        0.000           0.982
+13753      TRAF3IP3       0.9776          0.686        0.292           0.000
+13372         TMCC2       0.9776          0.044        0.934           0.000
+14766         ZFPM1       0.9726          0.971        0.001           0.000
+14122         UBE2I       0.9675          0.067        0.059           0.842
+8311           NEK6       0.9663          0.957        0.004           0.006
+8667          NUP88       0.9649          0.172        0.767           0.026
+3917           DTNB       0.9621          0.856        0.005           0.102
+5125           GLG1       0.9580          0.955        0.003           0.000
+12320       SLC5A11       0.9579          0.302        0.000           0.656
+14154         UBOX5       0.9568          0.864        0.092           0.000
+13190          TET2       0.9561          0.953        0.003           0.000
+14245        UQCRC1       0.9555          0.956        0.000           0.000
+11857          SELL       0.9551          0.951        0.005           0.000
+5796         HS6ST1       0.9546          0.939        0.000           0.016
+11724         SBNO2       0.9517          0.000        0.001           0.951
+2665         CITED4       0.9505          0.951        0.000           0.000
+7741            MLX       0.9491          0.735        0.214           0.000
+6957      LINC01344       0.9445          0.000        0.000           0.944
+8211           NCF2       0.9422          0.000        0.942           0.000
+14663         ZBTB2       0.9364          0.040        0.000           0.897
+5386           GSAP       0.9319          0.630        0.262           0.040
+2303          CD302       0.9303          0.930        0.000           0.000
+2324            CD6       0.9275          0.000        0.001           0.927
+2345         CDC14A       0.9259          0.926        0.000           0.000
+1244        ATP13A1       0.9248          0.923        0.002           0.000
+3188    CTC-503J8.4       0.9227          0.000        0.000           0.923
+1782       C20orf96       0.9196          0.721        0.060           0.138
+14462         WDFY2       0.9185          0.000        0.885           0.034
+54            ABCC5       0.9167          0.871        0.019           0.027
+8095          MYO9B       0.9166          0.917        0.000           0.000
+6163          ITGAL       0.9161          0.000        0.000           0.916
+928           AP1M2       0.9144          0.914        0.000           0.000
+6360       KIAA0040       0.9139          0.067        0.085           0.762
+10132         RAI14       0.9131          0.892        0.000           0.021
+897      AP000908.1       0.9088          0.000        0.000           0.909
+2253           CCR8       0.9073          0.907        0.000           0.000
+7609        MFSD13A       0.9073          0.000        0.907           0.000
+7989         MTMR12       0.9019          0.838        0.064           0.000
+9846           PSD4       0.9016          0.000        0.902           0.000
+8937          PAQR9       0.9002          0.900        0.000           0.000
+472          ADAM19       0.8995          0.886        0.005           0.008
+3263   CTD-2330K9.3       0.8970          0.000        0.000           0.897
+11679          SAE1       0.8945          0.622        0.272           0.000
+2992          CPSF4       0.8870          0.887        0.000           0.000
+10482    RNF139-AS1       0.8838          0.884        0.000           0.000
+7346         MAP2K5       0.8800          0.070        0.030           0.780
+12350      SLC9A3R1       0.8776          0.878        0.000           0.000
+2306           CD36       0.8767          0.563        0.314           0.000
+10674 RP11-136O12.2       0.8753          0.000        0.000           0.875
+6217          JAZF1       0.8744          0.811        0.063           0.000
+7158         LRRC25       0.8725          0.735        0.137           0.000
+14129         UBE2O       0.8711          0.871        0.001           0.000
+8626         NUDT14       0.8711          0.216        0.557           0.098
+6596        L3MBTL3       0.8697          0.843        0.000           0.027
+2526          CERS5       0.8680          0.000        0.868           0.000
+10311          REST       0.8678          0.868        0.000           0.000
+7125           LRBA       0.8612          0.000        0.839           0.022
+2194          CCDC9       0.8583          0.667        0.191           0.000
+3811         DNASE1       0.8580          0.551        0.007           0.300
+14655         ZBED3       0.8554          0.855        0.000           0.000
+2101        CCDC125       0.8550          0.034        0.821           0.000
+399            ACHE       0.8510          0.846        0.005           0.000
+9934          PTK2B       0.8493          0.739        0.053           0.057
+7537           MEG3       0.8479          0.848        0.000           0.000
+10281         RCSD1       0.8459          0.833        0.008           0.005
+9839         PRUNE2       0.8427          0.799        0.006           0.038
+8514           NPR3       0.8420          0.842        0.000           0.000
+6222          JMJD6       0.8357          0.831        0.005           0.000
+10007        PXYLP1       0.8357          0.828        0.007           0.000
+1132          ARRB2       0.8356          0.281        0.554           0.000
+4136          ELMO1       0.8347          0.702        0.046           0.086
+991          APOLD1       0.8331          0.029        0.000           0.804
+6472           KLF5       0.8242          0.824        0.000           0.000
+5285         GPR126       0.8181          0.000        0.000           0.818
+7213           LSM4       0.8177          0.011        0.001           0.806
+2054       CATSPER2       0.8145          0.792        0.000           0.023
+4123          ELANE       0.8130          0.813        0.000           0.000
+11608          RSU1       0.8115          0.037        0.270           0.505
+5816           HSF2       0.8108          0.811        0.000           0.000
+14754       ZFP36L1       0.8106          0.811        0.000           0.000
+1045       ARHGAP26       0.8096          0.000        0.022           0.788
+1065       ARHGEF12       0.8087          0.762        0.046           0.000
+7412          MARK3       0.8072          0.696        0.109           0.002
+15001        ZNF516       0.8067          0.792        0.004           0.011
+468          ADAM10       0.8067          0.798        0.009           0.000
+10256          RBP4       0.8035          0.804        0.000           0.000
+13327         TLDC1       0.8018          0.079        0.000           0.723</code></pre>
+</div>
+<div id="go-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>GO enrichment analysis for genes with PIP&gt;0.5</h2>
+<pre class="r"><code>#number of genes for gene set enrichment
+length(genes)</code></pre>
+</div>
+<div id="disgenet-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>DisGeNET enrichment analysis for genes with PIP&gt;0.5</h2>
+</div>
+<div id="webgestalt-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>WebGestalt enrichment analysis for genes with PIP&gt;0.5</h2>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] cowplot_1.1.1   ggplot2_3.4.0   workflowr_1.7.0
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.0  xfun_0.35         bslib_0.4.1       colorspace_2.0-3 
+ [5] vctrs_0.5.1       generics_0.1.3    htmltools_0.5.4   yaml_2.3.6       
+ [9] utf8_1.2.2        rlang_1.0.6       jquerylib_0.1.4   later_1.3.0      
+[13] pillar_1.8.1      glue_1.6.2        withr_2.5.0       DBI_1.1.3        
+[17] lifecycle_1.0.3   stringr_1.5.0     munsell_0.5.0     gtable_0.3.1     
+[21] evaluate_0.19     labeling_0.4.2    knitr_1.41        callr_3.7.3      
+[25] fastmap_1.1.0     httpuv_1.6.7      ps_1.7.2          fansi_1.0.3      
+[29] highr_0.9         Rcpp_1.0.9        promises_1.2.0.1  scales_1.2.1     
+[33] cachem_1.0.6      jsonlite_1.8.4    farver_2.1.0      fs_1.5.2         
+[37] digest_0.6.31     stringi_1.7.8     processx_3.8.0    dplyr_1.0.10     
+[41] getPass_0.2-2     rprojroot_2.0.3   grid_4.1.0        cli_3.4.1        
+[45] tools_4.1.0       magrittr_2.0.3    sass_0.4.4        tibble_3.1.8     
+[49] whisker_0.4.1     pkgconfig_2.0.3   data.table_1.14.6 assertthat_0.2.1 
+[53] rmarkdown_2.19    httr_1.4.4        rstudioapi_0.14   R6_2.5.1         
+[57] git2r_0.30.1      compiler_4.1.0   </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
