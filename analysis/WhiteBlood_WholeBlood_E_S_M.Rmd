@@ -117,7 +117,7 @@ estimated_group_pve_all <- estimated_group_prior_var_all*estimated_group_prior_a
 #estimated enrichment of genes (all iterations)
 estimated_enrichment_all <- t(sapply(rownames(estimated_group_prior_all)[rownames(estimated_group_prior_all)!="SNP"], function(x){estimated_group_prior_all[rownames(estimated_group_prior_all)==x,]/estimated_group_prior_all[rownames(estimated_group_prior_all)=="SNP"]}))
 
-title_size <- 12
+title_size <- 6
 
 df <- data.frame(niter = rep(1:ncol(estimated_group_prior_all), nrow(estimated_group_prior_all)),
                  value = unlist(lapply(1:nrow(estimated_group_prior_all), function(x){estimated_group_prior_all[x,]})),
@@ -135,7 +135,7 @@ p_pi <- ggplot(df, aes(x=niter, y=value, group=group)) +
 
 p_pi <- p_pi + theme(plot.title=element_text(size=title_size)) + 
   expand_limits(y=0) + 
-  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=6, face="bold"))
 
 df <- data.frame(niter = rep(1:ncol(estimated_group_prior_var_all), nrow(estimated_group_prior_var_all)),
                  value = unlist(lapply(1:nrow(estimated_group_prior_var_all), function(x){estimated_group_prior_var_all[x,]})),
@@ -153,7 +153,7 @@ p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
 
 p_sigma2 <- p_sigma2 + theme(plot.title=element_text(size=title_size)) + 
   expand_limits(y=0) + 
-  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=6, face="bold"))
 
 df <- data.frame(niter = rep(1:ncol(estimated_group_pve_all), nrow(estimated_group_pve_all)),
                  value = unlist(lapply(1:nrow(estimated_group_pve_all), function(x){estimated_group_pve_all[x,]})),
@@ -171,7 +171,7 @@ p_pve <- ggplot(df, aes(x=niter, y=value, group=group)) +
 
 p_pve <- p_pve + theme(plot.title=element_text(size=title_size)) + 
   expand_limits(y=0) + 
-  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=6, face="bold"))
 
 df <- data.frame(niter = rep(1:ncol(estimated_enrichment_all), nrow(estimated_enrichment_all)),
                  value = unlist(lapply(1:nrow(estimated_enrichment_all), function(x){estimated_enrichment_all[x,]})),
@@ -189,7 +189,7 @@ p_enrich <- ggplot(df, aes(x=niter, y=value, group=group)) +
 
 p_enrich <- p_enrich + theme(plot.title=element_text(size=title_size)) + 
   expand_limits(y=0) + 
-  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=6, face="bold"))
 
 plot_grid(p_pi, p_sigma2, p_enrich, p_pve)
 ```
@@ -267,7 +267,7 @@ saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_r
 ```{r echo=F}
 ctwas_gene_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 #genes with PIP>0.8 or 20 highest PIPs
-head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),c("genename","gene_id","susie_pip","group")], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 #head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 ```
 
@@ -348,7 +348,7 @@ head(df_gene, max(sum(df_gene$combined_pip>0.8), 20))
 
 ## GO enrichment analysis for genes with PIP>0.5
 
-```{r echo=FALSE, message=FALSE, eval=FALSE}
+```{r echo=FALSE, message=FALSE}
 #GO enrichment analysis
 library(enrichR)
 
@@ -356,12 +356,12 @@ dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecul
 genes <- df_gene$genename[df_gene$susie_pip>1]
 ```
 
-```{r eval=FALSE}
+```{r}
 #number of genes for gene set enrichment
 length(genes)
 ```
 
-```{r echo=F, message=FALSE, eval=FALSE}
+```{r echo=F, message=FALSE}
 if (length(genes)>0){
   GO_enrichment <- enrichr(genes, dbs)
 
@@ -377,7 +377,7 @@ if (length(genes)>0){
 ```
 
 ## DisGeNET enrichment analysis for genes with PIP>0.5
-```{r echo=F, message=FALSE, eval=FALSE}
+```{r echo=F, message=FALSE}
 if (length(genes)>0){
   library(disgenet2r)
   
@@ -397,7 +397,7 @@ if (length(genes)>0){
 ```
 
 ## WebGestalt enrichment analysis for genes with PIP>0.5
-```{r echo=F, message=FALSE, eval=FALSE}
+```{r echo=F, message=FALSE}
 if (length(genes)>0){
   #WebGestalt enrichment
   library(WebGestaltR)
