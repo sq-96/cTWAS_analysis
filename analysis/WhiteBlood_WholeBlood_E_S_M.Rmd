@@ -94,7 +94,7 @@ report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
 
 ### Check convergence of parameters
 
-```{r echo=F, out.width="50%"}
+```{r echo=F, out.width="70%"}
 library(ggplot2)
 library(cowplot)
 
