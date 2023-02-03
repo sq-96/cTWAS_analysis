@@ -13,7 +13,7 @@
 
 <meta name="date" content="2022-12-17" />
 
-<title>LDL - Expression and Splicing Jointly</title>
+<title>WhiteBlood - WholeBlood Traits Jointly</title>
 
 <script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -359,7 +359,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">LDL - Expression and Splicing Jointly</h1>
+<h1 class="title toc-ignore">WhiteBlood - WholeBlood Traits Jointly</h1>
 <h4 class="author">Sheng Qian</h4>
 <h4 class="date">2022-12-17</h4>
 
@@ -533,16 +533,16 @@ data/mqtl/WholeBlood.db
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefa89b375daf79a7a1843d31ae9532f0f5797b29ftargetblankfa89b37a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/fa89b375daf79a7a1843d31ae9532f0f5797b29f" target="_blank">fa89b37</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree66590cbc75359c3989119974c69a4d376d0caa57targetblank66590cba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/66590cbc75359c3989119974c69a4d376d0caa57" target="_blank">66590cb</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreefa89b375daf79a7a1843d31ae9532f0f5797b29ftargetblankfa89b37a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree66590cbc75359c3989119974c69a4d376d0caa57targetblank66590cba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/fa89b375daf79a7a1843d31ae9532f0f5797b29f" target="_blank">fa89b37</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/66590cbc75359c3989119974c69a4d376d0caa57" target="_blank">66590cb</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -697,6 +697,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/ba657aa5f36f76495363a8cd40fdb1de04ac9264/analysis/WhiteBlood_WholeBlood_E_S_M.Rmd" target="_blank">ba657aa</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-02-03
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/ba657aa5f36f76495363a8cd40fdb1de04ac9264/docs/WhiteBlood_WholeBlood_E_S_M.html" target="_blank">ba657aa</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-02-03
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -992,8 +1026,8 @@ RSQLite::dbDisconnect(db)
 ctwas_gene_M_res$genename &lt;- gene_info[sapply(ctwas_gene_M_res$gene_id, match, gene_info$gene),&quot;genename&quot;]
 ctwas_gene_M_res$genename &lt;- sapply(ctwas_gene_M_res$genename, function(x){unlist(strsplit(x, split=&quot;[;]&quot;))[1]})</code></pre>
 </div>
-<div id="top-expressionintroncpg" class="section level3">
-<h3>Top expression/intron/CpG</h3>
+<div id="top-expressionintroncpg-units" class="section level3">
+<h3>Top expression/intron/CpG units</h3>
 <pre><code>           genename                      gene_id susie_pip       group
 39936           FES           ENSG00000182511.11    1.0000  Expression
 43125          YBEY  intron_21_46287123_46296162    1.0000    Splicing
@@ -1083,8 +1117,8 @@ ctwas_gene_M_res$genename &lt;- sapply(ctwas_gene_M_res$genename, function(x){un
 42600          LSM4                   cg15796753    0.8058 Methylation
 38758          RBP4           ENSG00000138207.13    0.8035  Expression</code></pre>
 </div>
-<div id="top-genes-by-expressionsplicingmethylation" class="section level3">
-<h3>Top genes by expression/splicing/methylation</h3>
+<div id="top-genes-by-expressionsplicingmethylation-pip" class="section level3">
+<h3>Top genes by expression/splicing/methylation pip</h3>
 <pre class="r"><code>ctwas_gene_E_res &lt;- ctwas_gene_res[ctwas_gene_res$group==&quot;Expression&quot;,]
 ctwas_gene_S_res &lt;- ctwas_gene_res[ctwas_gene_res$group==&quot;Splicing&quot;,]
 ctwas_gene_M_res &lt;- ctwas_gene_res[ctwas_gene_res$group==&quot;Methylation&quot;,]

@@ -1,7 +1,7 @@
 ---
-title: "SCZ - Brain Cortex"
+title: "WhiteBlood - WholeBlood gene expression"
 author: "sheng Qian"
-date: "2021-2-6"
+date: "2023-2-1"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
@@ -199,58 +199,6 @@ hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 
 #genes with PIP>0.8 or 20 highest PIPs
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
-```
-
-## Genes with largest effect sizes
-
-```{r echo=F}
-#plot PIP vs effect size
-plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
-
-#genes with 20 largest effect sizes
-head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
-
-```
-
-## Genes with highest PVE
-
-```{r echo=F}
-#genes with 20 highest pve
-head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
-
-```
-
-## Genes with largest z scores
-
-```{r echo=F}
-#genes with 20 largest z scores
-head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
-
-```
-
-## Comparing z scores and PIPs
-
-```{r echo=F}
-#set nominal signifiance threshold for z scores
-alpha <- 0.05
-
-#bonferroni adjusted threshold for z scores
-sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
-
-#Q-Q plot for z scores
-obs_z <- ctwas_gene_res$z[order(ctwas_gene_res$z)]
-exp_z <- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res))
-
-plot(exp_z, obs_z, xlab="Expected z", ylab="Observed z", main="Gene z score Q-Q plot")
-abline(a=0,b=1)
-
-#plot z score vs PIP
-plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP")
-abline(v=sig_thresh, col="red", lty=2)
-
-#proportion of significant z scores
-mean(abs(ctwas_gene_res$z) > sig_thresh)
-
 ```
 
 ## GO enrichment analysis for genes with PIP>0.5

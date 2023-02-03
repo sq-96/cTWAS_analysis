@@ -1,7 +1,7 @@
 ---
-title: "LDL - Expression and Splicing Jointly"
+title: "WhiteBlood - WholeBlood Traits Jointly"
 author: "Sheng Qian"
-date: "2022-12-17"
+date: "2023-2-1"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
@@ -270,7 +270,7 @@ ctwas_gene_res <- na.omit(ctwas_gene_res)
 saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
 ```
 
-### Top expression/intron/CpG
+### Top expression/intron/CpG units
 
 ```{r echo=F}
 ctwas_gene_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
@@ -279,7 +279,7 @@ head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),c("genename","gene_id","sus
 #head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 ```
 
-### Top genes by expression/splicing/methylation
+### Top genes by expression/splicing/methylation pip
 
 ```{r}
 ctwas_gene_E_res <- ctwas_gene_res[ctwas_gene_res$group=="Expression",]
