@@ -94,7 +94,7 @@ report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
 
 ### Check convergence of parameters
 
-```{r echo=F, out.width="10%"}
+```{r echo=F, out.width="50%"}
 library(ggplot2)
 library(cowplot)
 
@@ -361,7 +361,7 @@ head(df_gene, max(sum(df_gene$combined_pip>0.8), 20))
 library(enrichR)
 
 dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecular_Function_2021")
-genes <- df_gene$genename[df_gene$combined_pip>1]
+genes <- df_gene$genename[df_gene$combined_pip>0.8]
 ```
 
 ```{r}
