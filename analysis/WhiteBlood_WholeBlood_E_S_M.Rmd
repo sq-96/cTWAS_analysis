@@ -274,6 +274,10 @@ saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_r
 
 ```{r echo=F}
 ctwas_gene_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/G_list.RData")
+ctwas_gene_res$gene_type <- G_list[sapply(ctwas_gene_res$genename, match, G_list$hgnc_symbol), "gene_biotype"]
+ctwas_gene_res <- na.omit(ctwas_gene_res)
+ctwas_gene_res <- ctwas_gene_res[ctwas_gene_res$gene_type=="protein_coding",]
 #genes with PIP>0.8 or 20 highest PIPs
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),c("genename","gene_id","susie_pip","group")], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 #head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
