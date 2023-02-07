@@ -306,7 +306,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2023-02-02
+<strong>Last updated:</strong> 2023-02-07
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -337,16 +337,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree9b01dadf23cff76bebe62e9c24e4a0996e8c5d84targetblank9b01dada"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/9b01dadf23cff76bebe62e9c24e4a0996e8c5d84" target="_blank">9b01dad</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef49450b80a513f9fbf46e75e90d0537027e02495targetblankf49450ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/f49450b80a513f9fbf46e75e90d0537027e02495" target="_blank">f49450b</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree9b01dadf23cff76bebe62e9c24e4a0996e8c5d84targetblank9b01dada" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef49450b80a513f9fbf46e75e90d0537027e02495targetblankf49450ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/9b01dadf23cff76bebe62e9c24e4a0996e8c5d84" target="_blank">9b01dad</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/f49450b80a513f9fbf46e75e90d0537027e02495" target="_blank">f49450b</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -363,8 +363,21 @@ Untracked files:
     Untracked:  SCZ_annotation.xlsx
     Untracked:  SLC8B1.pdf
     Untracked:  analysis/.ipynb_checkpoints/
+    Untracked:  analysis/CpG_analysis.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
+    Untracked:  code/WhiteBlood_E_M_out/
+    Untracked:  code/WhiteBlood_E_out/
+    Untracked:  code/WhiteBlood_M_out/
+    Untracked:  code/run_WhiteBlood_analysis_E.sbatch
+    Untracked:  code/run_WhiteBlood_analysis_E.sh
+    Untracked:  code/run_WhiteBlood_analysis_E_M.sbatch
+    Untracked:  code/run_WhiteBlood_analysis_E_M.sh
+    Untracked:  code/run_WhiteBlood_analysis_M.sbatch
+    Untracked:  code/run_WhiteBlood_analysis_M.sh
+    Untracked:  code/run_WhiteBlood_ctwas_rss_LDR_E.R
+    Untracked:  code/run_WhiteBlood_ctwas_rss_LDR_E_M.R
+    Untracked:  code/run_WhiteBlood_ctwas_rss_LDR_M.R
     Untracked:  data/.ipynb_checkpoints/
     Untracked:  data/FUMA_output/
     Untracked:  data/GO_Terms/
@@ -390,8 +403,11 @@ Untracked files:
     Untracked:  data/Supplementary Table 20 - Prioritised Genes.xlsx
     Untracked:  data/UKBB/
     Untracked:  data/UKBB_SNPs_Info.text
+    Untracked:  data/WhiteBlood_E/
+    Untracked:  data/WhiteBlood_E_M/
     Untracked:  data/WhiteBlood_E_S_M/
-    Untracked:  data/White_Blood_M/
+    Untracked:  data/WhiteBlood_M/
+    Untracked:  data/cpg_annot.RData
     Untracked:  data/eqtl/
     Untracked:  data/gencode.v26.GRCh38.genes.gtf
     Untracked:  data/gene_OMIM.txt
@@ -461,9 +477,27 @@ Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
     Deleted:    analysis/Glucose_Adipose_Subcutaneous.Rmd
     Deleted:    analysis/Glucose_Adipose_Visceral_Omentum.Rmd
-    Modified:   analysis/LDL_Liver_E_S.Rmd
+    Modified:   analysis/SCZ_test.Rmd
     Modified:   analysis/WhiteBlood_WholeBlood_E_S_M.Rmd
     Modified:   analysis/index.Rmd
+    Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.err
+    Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.out
+    Deleted:    code/White_Blood_M_out/White_Blood_ColonTransverse.err
+    Deleted:    code/White_Blood_M_out/White_Blood_ColonTransverse.out
+    Deleted:    code/White_Blood_M_out/White_Blood_KidneyCortex.err
+    Deleted:    code/White_Blood_M_out/White_Blood_KidneyCortex.out
+    Deleted:    code/White_Blood_M_out/White_Blood_Lung.err
+    Deleted:    code/White_Blood_M_out/White_Blood_Lung.out
+    Deleted:    code/White_Blood_M_out/White_Blood_MuscleSkeletal.err
+    Deleted:    code/White_Blood_M_out/White_Blood_MuscleSkeletal.out
+    Deleted:    code/White_Blood_M_out/White_Blood_Ovary.err
+    Deleted:    code/White_Blood_M_out/White_Blood_Ovary.out
+    Deleted:    code/White_Blood_M_out/White_Blood_Prostate.err
+    Deleted:    code/White_Blood_M_out/White_Blood_Prostate.out
+    Deleted:    code/White_Blood_M_out/White_Blood_Testis.err
+    Deleted:    code/White_Blood_M_out/White_Blood_Testis.out
+    Deleted:    code/White_Blood_M_out/White_Blood_WholeBlood.err
+    Deleted:    code/White_Blood_M_out/White_Blood_WholeBlood.out
     Deleted:    code/run_IBD_ctwas_rss_LDR_ME.R
 
 </code></pre>
@@ -503,6 +537,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/c5aaf9684518301926e8167b9fcf9276e3b3fc5c/analysis/index.Rmd" target="_blank">c5aaf96</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-02-02
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/c5aaf9684518301926e8167b9fcf9276e3b3fc5c/docs/index.html" target="_blank">c5aaf96</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-02-02
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1950,6 +2018,10 @@ Start workflowr project.
 <p>White Blood - WholeBlood Single mQTL <a href="WhiteBlood_WholeBlood_M.html">link</a></p>
 <p>White Blood - WholeBlood mashr Expression <a href="WhiteBlood_WholeBlood_E.html">link</a></p>
 <p>White Blood - E S M jointly <a href="WhiteBlood_WholeBlood_E_S_M.html">link</a></p>
+</div>
+<div id="cpg-annotations" class="section level3">
+<h3>CpG Annotations</h3>
+<p>CpG Annotations <a href="CpG_analysis.html">link</a></p>
 </div>
 
 

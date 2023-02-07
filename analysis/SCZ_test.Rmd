@@ -358,7 +358,7 @@ locus_plot_final_pub <- function(region_tag, xlim=NULL, return_table=F, focus=NU
   }
   
   if (is.null(focus)){
-    focus <- a$genename[a$z==max(abs(a$z)[a$type=="gene"])]
+    focus <- a$gene_id[which.max(abs(a$z)[a$type=="gene"])]
   }
   
   if (is.null(label_genes)){

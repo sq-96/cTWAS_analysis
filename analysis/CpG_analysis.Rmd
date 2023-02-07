@@ -1,0 +1,50 @@
+---
+title: "CpG Analysis"
+author: "sheng Qian"
+date: "2023-2-6"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r}
+library(data.table)
+CpG_info <- fread("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/EPIC.hg38.manifest.tsv")
+CpG_info <- CpG_info[,c("CpG_chrm","CpG_beg","CpG_end","probeID","gene","gene_HGNC")]
+colnames(CpG_info) <- c("chrom","start","end","gene","genename","genename_HGNC")
+
+distance <- c()
+for(i in unique(CpG_info$chrom)){
+  if(!i %in% c("chrX","chrY","chrM",NA)){
+    df <- CpG_info[CpG_info$chrom==i,]
+    print(dim(df))
+    df <- df[order(df$start),]
+    distance <- c(distance,df$start[2:dim(df)[1]]-df$start[1:(dim(df)[1]-1)])
+  }
+}
+hist(distance[distance<2000],breaks=100,freq = F)
+```
+
+
+```{r}
+#library(annotatr)
+#dm_regions = read_regions(con = "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/CpG.bed", genome = 'hg38',format = 'bed')
+#annots = c('hg38_basicgenes', 'hg38_genes_intergenic')
+#annotations = build_annotations(genome = 'hg38', annotations = annots)
+#dm_annotated = annotate_regions(regions = dm_regions,annotations = annotations,ignore.strand = TRUE,quiet = FALSE)
+```
+
+```{r}
+#df_dm_annotated = data.frame(dm_annotated)
+#df_dm_annotated$annotation <- sapply(df_dm_annotated$annot.id, function(x){unlist(strsplit(x, split="[:]"))[1]})
+#df_dm_annotated <- df_dm_annotated[,c("seqnames","start","end","annotation","annot.symbol")]
+#df_dm_annotated <- unique(df_dm_annotated)
+#saveRDS(df_dm_annotated,file = "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/cpg_annot.RData")
+df_dm_annotated <- readRDS("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/cpg_annot.RData")
+```
+
+```{r}
+table(df_dm_annotated$annotation)/sum(table(df_dm_annotated$annotation))
+```
+
