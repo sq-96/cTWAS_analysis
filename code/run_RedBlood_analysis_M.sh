@@ -1,10 +1,10 @@
 #!/bin/bash
 
-for WEIGHT in BreastMammary ColonTransverse KidneyCortex Lung MuscleSkeletal Ovary Prostate Testis WholeBlood
+for WEIGHT in WholeBlood
 do 
 	TRAIT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30010_irnt.vcf.gz"
 	LD_DIR="/project2/mstephens/wcrouse/UKB_LDR_0.1"
-	WEIGHT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/"$WEIGHT".db"
+	WEIGHT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/GTEx_Whole_Blood_Methylation.db"
 	CONFIG_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"
 	OUTNAME_E="RedBlood_"$WEIGHT"_expr"
 	OUTNAME="RedBlood_"$WEIGHT"_ctwas"

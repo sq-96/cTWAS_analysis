@@ -18,7 +18,6 @@ distance <- c()
 for(i in unique(CpG_info$chrom)){
   if(!i %in% c("chrX","chrY","chrM",NA)){
     df <- CpG_info[CpG_info$chrom==i,]
-    print(dim(df))
     df <- df[order(df$start),]
     distance <- c(distance,df$start[2:dim(df)[1]]-df$start[1:(dim(df)[1]-1)])
   }
@@ -27,7 +26,7 @@ hist(distance[distance<2000],breaks=100,freq = F)
 ```
 
 
-```{r}
+```{r echo=FALSE}
 #library(annotatr)
 #dm_regions = read_regions(con = "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/CpG.bed", genome = 'hg38',format = 'bed')
 #annots = c('hg38_basicgenes', 'hg38_genes_intergenic')
@@ -35,7 +34,7 @@ hist(distance[distance<2000],breaks=100,freq = F)
 #dm_annotated = annotate_regions(regions = dm_regions,annotations = annotations,ignore.strand = TRUE,quiet = FALSE)
 ```
 
-```{r}
+```{r echo=FALSE}
 #df_dm_annotated = data.frame(dm_annotated)
 #df_dm_annotated$annotation <- sapply(df_dm_annotated$annot.id, function(x){unlist(strsplit(x, split="[:]"))[1]})
 #df_dm_annotated <- df_dm_annotated[,c("seqnames","start","end","annotation","annot.symbol")]
@@ -45,6 +44,7 @@ df_dm_annotated <- readRDS("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/
 ```
 
 ```{r}
+print(dim(df_dm_annotated))
 table(df_dm_annotated$annotation)/sum(table(df_dm_annotated$annotation))
 ```
 
