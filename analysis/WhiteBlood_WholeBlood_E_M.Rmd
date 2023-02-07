@@ -1,0 +1,854 @@
+---
+title: "WhiteBlood - WholeBlood Traits Jointly"
+author: "Sheng Qian"
+date: "2023-2-1"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+params:
+  analysis_id: "WhiteBlood_WholeBlood"
+  trait_id: "WhiteBlood_E_M"
+  weight: "WholeBlood"
+---
+
+```{r}
+analysis_id <- params$analysis_id
+trait_id <- params$trait_id
+weight <- params$weight
+
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
+
+source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R")
+options(digits = 4)
+
+```
+
+### Load ctwas results
+
+```{r echo=F}
+#load ctwas results
+ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.susieIrss.txt"))
+
+#make unique identifier for regions
+ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+
+#load z scores for SNPs and collect sample size
+load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+
+sample_size <- z_snp$ss
+sample_size <- as.numeric(names(which.max(table(sample_size))))
+
+#compute PVE for each gene/SNP
+ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+
+#separate gene and SNP results
+ctwas_gene_res <- ctwas_res[ctwas_res$type != "SNP", ]
+ctwas_gene_res <- data.frame(ctwas_gene_res)
+ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+ctwas_snp_res <- data.frame(ctwas_snp_res)
+
+#get number of SNPs from s1 results; adjust for thin argument
+ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
+n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
+rm(ctwas_res_s1)
+```
+
+### Check convergence of parameters
+
+```{r echo=F, out.width="70%"}
+library(ggplot2)
+library(cowplot)
+
+load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd"))
+
+#estimated group prior (all iterations)
+estimated_group_prior_all <- group_prior_rec
+estimated_group_prior_all["SNP",] <- estimated_group_prior_all["SNP",]*thin #adjust parameter to account for thin argument
+
+#estimated group prior variance (all iterations)
+estimated_group_prior_var_all <- group_prior_var_rec
+
+#set group size
+group_size <- c(table(ctwas_gene_res$type), structure(n_snps, names="SNP"))
+group_size <- group_size[rownames(estimated_group_prior_all)]
+
+#estimated group PVE (all iterations)
+estimated_group_pve_all <- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+
+#estimated enrichment of genes (all iterations)
+estimated_enrichment_all <- t(sapply(rownames(estimated_group_prior_all)[rownames(estimated_group_prior_all)!="SNP"], function(x){estimated_group_prior_all[rownames(estimated_group_prior_all)==x,]/estimated_group_prior_all[rownames(estimated_group_prior_all)=="SNP"]}))
+
+title_size <- 6
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_prior_all), nrow(estimated_group_prior_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_prior_all), function(x){estimated_group_prior_all[x,]})),
+                 group = rep(rownames(estimated_group_prior_all), each=ncol(estimated_group_prior_all)))
+
+df$group[df$group=="Whole_Blood"] <- "Expression"
+df$group[df$group=="Whole_Blood_Splicing"] <- "Splicing"
+df$group[df$group=="Whole_Blood_Methylation"] <- "Methylation"
+df$group <- as.factor(df$group)
+
+p_pi <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(pi)) +
+  ggtitle("Proportion Causal") +
+  theme_cowplot()
+
+p_pi <- p_pi + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=6, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_prior_var_all), nrow(estimated_group_prior_var_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_prior_var_all), function(x){estimated_group_prior_var_all[x,]})),
+                 group = rep(rownames(estimated_group_prior_var_all), each=ncol(estimated_group_prior_var_all)))
+
+df$group[df$group=="Whole_Blood"] <- "Expression"
+df$group[df$group=="Whole_Blood_Splicing"] <- "Splicing"
+df$group[df$group=="Whole_Blood_Methylation"] <- "Methylation"
+df$group <- as.factor(df$group)
+
+p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(sigma^2)) +
+  ggtitle("Effect Size") +
+  theme_cowplot()
+
+p_sigma2 <- p_sigma2 + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=6, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_pve_all), nrow(estimated_group_pve_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_pve_all), function(x){estimated_group_pve_all[x,]})),
+                 group = rep(rownames(estimated_group_pve_all), each=ncol(estimated_group_pve_all)))
+
+df$group[df$group=="Whole_Blood"] <- "Expression"
+df$group[df$group=="Whole_Blood_Splicing"] <- "Splicing"
+df$group[df$group=="Whole_Blood_Methylation"] <- "Methylation"
+df$group <- as.factor(df$group)
+
+p_pve <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(h^2[G])) +
+  ggtitle("PVE") +
+  theme_cowplot()
+
+p_pve <- p_pve + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=6, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_enrichment_all), nrow(estimated_enrichment_all)),
+                 value = unlist(lapply(1:nrow(estimated_enrichment_all), function(x){estimated_enrichment_all[x,]})),
+                 group = rep(rownames(estimated_enrichment_all), each=ncol(estimated_enrichment_all)))
+
+df$group[df$group=="Whole_Blood"] <- "Expression"
+df$group[df$group=="Whole_Blood_Splicing"] <- "Splicing"
+df$group[df$group=="Whole_Blood_Methylation"] <- "Methylation"
+df$group <- as.factor(df$group)
+
+p_enrich <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(pi[G]/pi[S])) +
+  ggtitle("Enrichment") +
+  theme_cowplot()
+
+p_enrich <- p_enrich + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=6, face="bold"))
+
+plot_grid(p_pi, p_sigma2, p_enrich, p_pve)
+```
+
+```{r}
+#estimated group prior
+estimated_group_prior <- estimated_group_prior_all[,ncol(group_prior_rec)]
+print(estimated_group_prior)
+
+#estimated group prior variance
+estimated_group_prior_var <- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
+print(estimated_group_prior_var)
+
+#estimated enrichment
+estimated_enrichment <- estimated_enrichment_all[ncol(group_prior_var_rec)]
+print(estimated_enrichment)
+
+#report sample size
+print(sample_size)
+
+#report group size
+print(group_size)
+
+#estimated group PVE
+estimated_group_pve <- estimated_group_pve_all[,ncol(group_prior_rec)]
+print(estimated_group_pve)
+
+#total PVE
+sum(estimated_group_pve)
+
+#attributable PVE
+estimated_group_pve/sum(estimated_group_pve)
+```
+
+```{r}
+#add gene information to results
+ctwas_gene_res$gene_id <- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x, split="[|]"))[1]})
+ctwas_gene_res$group <- sapply(ctwas_gene_res$id, function(x){paste(unlist(strsplit(unlist(strsplit(x, split="[|]"))[2], "_"))[-1], collapse="_")})
+#ctwas_gene_res$alt_name <- paste0(ctwas_gene_res$gene_id, "|", ctwas_gene_res$group)
+
+ctwas_gene_res$group[ctwas_gene_res$group=="Whole_Blood"] <- "Expression"
+ctwas_gene_res$group[ctwas_gene_res$group=="Whole_Blood_Methylation"] <- "Methylation"
+ctwas_gene_E_res <- ctwas_gene_res[ctwas_gene_res$group=="Expression",]
+ctwas_gene_M_res <- ctwas_gene_res[ctwas_gene_res$group=="Methylation",]
+
+sqlite <- RSQLite::dbDriver("SQLite")
+db = RSQLite::dbConnect(sqlite, "/project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db")
+query <- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info <- query("select gene, genename from extra")
+RSQLite::dbDisconnect(db)
+ctwas_gene_E_res$genename <- gene_info[sapply(ctwas_gene_E_res$gene_id, match, gene_info$gene),"genename"]
+
+sqlite <- RSQLite::dbDriver("SQLite")
+db = RSQLite::dbConnect(sqlite, "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/WholeBlood.db")
+query <- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info <- query("select gene, genename from extra")
+RSQLite::dbDisconnect(db)
+ctwas_gene_M_res$genename <- gene_info[sapply(ctwas_gene_M_res$gene_id, match, gene_info$gene),"genename"]
+ctwas_gene_M_res$genename <- sapply(ctwas_gene_M_res$genename, function(x){unlist(strsplit(x, split="[;]"))[1]})
+
+ctwas_gene_res <- rbind(ctwas_gene_E_res,ctwas_gene_M_res)
+ctwas_gene_res$type <- "gene"
+
+load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/G_list.RData")
+G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
+G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
+ctwas_gene_res$gene_type <- G_list[sapply(ctwas_gene_res$genename, match, G_list$hgnc_symbol), "gene_biotype"]
+ctwas_gene_res <- na.omit(ctwas_gene_res)
+ctwas_gene_res <- ctwas_gene_res[ctwas_gene_res$gene_type=="protein_coding",]
+
+#add z scores to results
+load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
+ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
+
+z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
+ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
+
+#merge gene and snp results with added information
+ctwas_snp_res$gene_id=NA
+ctwas_snp_res$group="SNP"
+ctwas_snp_res$genename=NA
+ctwas_snp_res$gene_type=NA
+
+ctwas_res <- rbind(ctwas_gene_res,
+                   ctwas_snp_res[,colnames(ctwas_gene_res)])
+
+#store columns to report
+report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "gene_type", "z_flag", "id", "chrom", "pos", "alt_name", "gene_id"))]
+first_cols <- c("genename", "gene_type", "gene_id", "group", "region_tag")
+report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
+```
+
+
+### Top expression/intron/CpG units
+
+```{r echo=F}
+ctwas_gene_res <- readRDS(paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+#genes with PIP>0.8 or 20 highest PIPs
+head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),c("genename","gene_id","susie_pip","group","region_tag")], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+#head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+```
+
+### Top genes by expression/splicing/methylation pip
+
+```{r}
+ctwas_gene_E_res <- ctwas_gene_res[ctwas_gene_res$group=="Expression",]
+ctwas_gene_M_res <- ctwas_gene_res[ctwas_gene_res$group=="Methylation",]
+
+df_gene_E <- aggregate(ctwas_gene_E_res$susie_pip,by=list(ctwas_gene_E_res$genename), FUN=sum)
+colnames(df_gene_E) <- c("genename", "susie_pip")
+df_gene_E$group <- "Expression"
+
+df_gene_M <- aggregate(ctwas_gene_M_res$susie_pip,by=list(ctwas_gene_M_res$genename), FUN=sum)
+colnames(df_gene_M) <- c("genename", "susie_pip")
+df_gene_M$group <- "Methylation"
+
+df_gene <- rbind(df_gene_E,df_gene_M)
+head(df_gene[order(-df_gene$susie_pip),], max(sum(df_gene$susie_pip>0.8), 20))
+```
+
+
+### Top genes by combined PIP
+
+```{r echo=F}
+#aggregate by gene name
+df_gene <- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$genename), FUN=sum)
+colnames(df_gene) <- c("genename", "combined_pip")
+df_gene$expression_pip <-0
+df_gene$methylation_pip <-0
+
+#drop duplicated gene names
+#df_gene <- df_gene[!(df_gene$genename %in% names(which(table(ctwas_gene_res$genename)>2))),]
+for(i in df_gene$genename){
+  if(i %in% df_gene_E$genename){
+    df_gene[df_gene$genename==i,"expression_pip"] <- round(df_gene_E[df_gene_E$genename==i,"susie_pip"],3)
+  }
+}
+
+for(i in df_gene$genename){
+  if(i %in% df_gene_M$genename){
+    df_gene[df_gene$genename==i,"methylation_pip"] <- round(df_gene_M[df_gene_M$genename==i,"susie_pip"],3)
+  }
+}
+
+#sort by combined PIP
+df_gene <- df_gene[order(-df_gene$combined_pip),]
+#genes with PIP>0.8 or 20 highest PIPs
+head(df_gene, max(sum(df_gene$combined_pip>0.8), 20))
+```
+
+## GO enrichment analysis for genes with PIP>0.5
+
+```{r echo=FALSE, message=FALSE}
+#GO enrichment analysis
+library(enrichR)
+
+dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecular_Function_2021")
+genes <- df_gene$genename[df_gene$combined_pip>0.8]
+```
+
+```{r}
+#number of genes for gene set enrichment
+length(genes)
+```
+
+```{r echo=F, message=FALSE}
+if (length(genes)>0){
+  GO_enrichment <- enrichr(genes, dbs)
+
+  for (db in dbs){
+    print(db)
+    df <- GO_enrichment[[db]]
+    print(plotEnrich(GO_enrichment[[db]]))
+    df <- df[df$Adjusted.P.value<0.05,c("Term", "Overlap", "Adjusted.P.value", "Genes")]
+    print(df)
+  }
+}
+
+```
+
+## DisGeNET enrichment analysis for genes with PIP>0.5
+```{r echo=F, message=FALSE}
+if (length(genes)>0){
+  library(disgenet2r)
+  
+  disgenet_api_key <- get_disgenet_api_key(
+                    email = "wesleycrouse@gmail.com", 
+                    password = "uchicago1" )
+  
+  Sys.setenv(DISGENET_API_KEY= disgenet_api_key)
+  
+  res_enrich <-disease_enrichment(entities=genes, vocabulary = "HGNC",
+                               database = "CURATED" )
+  
+  df <- res_enrich@qresult[1:10, c("Description", "FDR", "Ratio",  "BgRatio")]
+  print(df)
+}
+
+```
+
+## WebGestalt enrichment analysis for genes with PIP>0.5
+```{r echo=F, message=FALSE}
+if (length(genes)>0){
+  #WebGestalt enrichment
+  library(WebGestaltR)
+  
+  background <- ctwas_gene_res$genename
+  
+  #listGeneSet()
+  databases <- c("pathway_KEGG", "disease_GLAD4U", "disease_OMIM")
+  
+  enrichResult <- WebGestaltR(enrichMethod="ORA", organism="hsapiens",
+                              interestGene=genes, referenceGene=background,
+                              enrichDatabase=databases, interestGeneType="genesymbol",
+                              referenceGeneType="genesymbol", isOutput=F)
+  print(enrichResult[,c("description", "size", "overlap", "FDR", "database", "userId")])
+}
+
+```
+
+
+```{r}
+load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/G_list.RData")
+
+G_list <- G_list[G_list$gene_biotype %in% c("protein_coding"),]
+G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
+G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
+```
+
+```{r echo=FALSE}
+locus_plot_final_pub <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, label_panel="TWAS", label_genes=NULL, label_pos=NULL, plot_eqtl=NULL, rerun_ctwas=F, rerun_load_only=F, legend_side="right", legend_panel="cTWAS", twas_ymax=NULL){
+  region_tag1 <- unlist(strsplit(region_tag, "_"))[1]
+  region_tag2 <- unlist(strsplit(region_tag, "_"))[2]
+  
+  a <- ctwas_res[ctwas_res$region_tag==region_tag,]
+  
+  regionlist <- readRDS(paste0(results_dir, "/", analysis_id, "_ctwas.regionlist.RDS"))
+  region <- regionlist[[as.numeric(region_tag1)]][[region_tag2]]
+  
+  R_snp_info <- do.call(rbind, lapply(region$regRDS, function(x){data.table::fread(paste0(tools::file_path_sans_ext(x), ".Rvar"))}))
+  
+  if (isTRUE(rerun_ctwas)){
+    ld_exprfs <- paste0(results_dir, "/", analysis_id, "_expr_chr", 1:22, ".expr.gz")
+    temp_reg <- data.frame("chr" = paste0("chr",region_tag1), "start" = region$start, "stop" = region$stop)
+  
+    write.table(temp_reg, 
+                #file= paste0(results_dir, "/", analysis_id, "_ctwas.temp.reg.txt") , 
+                file= "temp_reg.txt",
+                row.names=F, col.names=T, sep="\t", quote = F)
+  
+    load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+  
+    z_gene_temp <-  z_gene[z_gene$id %in% a$id[a$type=="gene"],]
+    z_snp_temp <-  z_snp[z_snp$id %in% R_snp_info$id,]
+    
+    if (!rerun_load_only){
+      ctwas::ctwas_rss(z_gene_temp, z_snp_temp, ld_exprfs, ld_pgenfs = NULL, 
+                       ld_R_dir = dirname(region$regRDS)[1],
+                       ld_regions_custom = "temp_reg.txt", thin = 1, 
+                       outputdir = ".", outname = "temp", ncore = 1, ncore.rerun = 1, prob_single = 0,
+                       group_prior = estimated_group_prior, group_prior_var = estimated_group_prior_var,
+                       estimate_group_prior = F, estimate_group_prior_var = F)
+    }
+    
+    a_bkup <- a         
+    a <- as.data.frame(data.table::fread("temp.susieIrss.txt", header = T))
+    
+    rownames(z_snp_temp) <- z_snp_temp$id
+    z_snp_temp <- z_snp_temp[a$id[a$type=="SNP"],]
+    z_gene_temp <- z_gene_temp[a$id[a$type=="gene"],]
+    
+    a$genename <- NA
+    a$gene_type <- NA
+
+    a[a$type=="gene",c("genename", "gene_type")] <- a_bkup[match(a$id[a$type=="gene"], a_bkup$id),c("genename","gene_type")]
+    
+    a$z <- NA
+    a$z[a$type=="SNP"] <- z_snp_temp$z
+    a$z[a$type=="gene"] <- z_gene_temp$z
+  }
+  
+  a_pos_bkup <- a$pos
+  a$pos[a$type=="gene"] <- G_list$tss[match(sapply(a$id[a$type=="gene"], function(x){unlist(strsplit(x, "[.]"))[1]}) ,G_list$ensembl_gene_id)]
+  a$pos[is.na(a$pos)] <- a_pos_bkup[is.na(a$pos)]
+  a$pos <- a$pos/1000000
+  
+  if (!is.null(xlim)){
+    
+    if (is.na(xlim[1])){
+      xlim[1] <- min(a$pos)
+    }
+    
+    if (is.na(xlim[2])){
+      xlim[2] <- max(a$pos)
+    }
+    
+    a <- a[a$pos>=xlim[1] & a$pos<=xlim[2],,drop=F]
+  }
+  
+  if (is.null(focus)){
+    focus <- a$genename[a$z==max(abs(a$z)[a$type=="gene"])]
+  }
+  
+  if (is.null(label_genes)){
+    label_genes <- focus
+  }
+  
+  if (is.null(label_pos)){
+    label_pos <- rep(3, length(label_genes))
+  }
+  
+  if (is.null(plot_eqtl)){
+    plot_eqtl <- focus
+  }
+  
+  focus <- a$id[which(a$genename==focus)]
+  a$focus <- 0
+  a$focus <- as.numeric(a$id==focus)
+    
+  a$PVALUE <- (-log(2) - pnorm(abs(a$z), lower.tail=F, log.p=T))/log(10)
+  
+  R_gene <- readRDS(region$R_g_file)
+  R_snp_gene <- readRDS(region$R_sg_file)
+  R_snp <- as.matrix(Matrix::bdiag(lapply(region$regRDS, readRDS)))
+  
+  rownames(R_gene) <- region$gid
+  colnames(R_gene) <- region$gid
+  rownames(R_snp_gene) <- R_snp_info$id
+  colnames(R_snp_gene) <- region$gid
+  rownames(R_snp) <- R_snp_info$id
+  colnames(R_snp) <- R_snp_info$id
+  
+  a$r2max <- NA
+  a$r2max[a$type=="gene"] <- R_gene[focus,a$id[a$type=="gene"]]
+  a$r2max[a$type=="SNP"] <- R_snp_gene[a$id[a$type=="SNP"],focus]
+  
+  r2cut <- 0.4
+  colorsall <- c("#7fc97f", "#beaed4", "#fdc086")
+  
+  start <- min(a$pos)
+  end <- max(a$pos)
+  
+  layout(matrix(1:4, ncol = 1), widths = 1, heights = c(1.5,0.25,1.75,0.75), respect = FALSE)
+  
+  par(mar = c(0, 4.1, 0, 2.1))
+  
+  if (is.null(twas_ymax)){
+    twas_ymax <- max(a$PVALUE)*1.1
+  }
+  
+  plot(a$pos[a$type=="SNP"], a$PVALUE[a$type == "SNP"], pch = 21, xlab=paste0("Chromosome ", region_tag1, " position (Mb)"), frame.plot=FALSE, bg = colorsall[1], ylab = "-log10(p value)", panel.first = grid(), ylim =c(0, twas_ymax), xaxt = 'n', xlim=c(start, end))
+  
+  abline(h=-log10(alpha/nrow(ctwas_gene_res)), col ="red", lty = 2)
+  points(a$pos[a$type=="SNP" & a$r2max > r2cut], a$PVALUE[a$type == "SNP"  & a$r2max > r2cut], pch = 21, bg = "purple")
+  points(a$pos[a$type=="SNP" & a$focus == 1], a$PVALUE[a$type == "SNP" & a$focus == 1], pch = 21, bg = "salmon")
+  points(a$pos[a$type=="gene"], a$PVALUE[a$type == "gene"], pch = 22, bg = colorsall[1], cex = 2)
+  points(a$pos[a$type=="gene" & a$r2max > r2cut], a$PVALUE[a$type == "gene"  & a$r2max > r2cut], pch = 22, bg = "purple", cex = 2)
+  points(a$pos[a$type=="gene" & a$focus == 1], a$PVALUE[a$type == "gene" & a$focus == 1], pch = 22, bg = "salmon", cex = 2)
+  
+  if (legend_panel=="TWAS"){
+    x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
+    legend(x_pos, y= twas_ymax*0.95, c("Gene", "SNP","Lead TWAS Gene", "R2 > 0.4", "R2 <= 0.4"), pch = c(22,21,19,19,19), col = c("black", "black", "salmon", "purple", colorsall[1]), cex=0.7, title.adj = 0)
+  }
+  
+  if (label_panel=="TWAS" | label_panel=="both"){
+    for (i in 1:length(label_genes)){
+      text(a$pos[a$genename==label_genes[i]], a$PVALUE[a$genename==label_genes[i]], labels=label_genes[i], pos=label_pos[i], cex=0.7)
+    }
+  }
+  
+  par(mar = c(0.25, 4.1, 0.25, 2.1))
+  
+  plot(NA, xlim = c(start, end), ylim = c(0, length(plot_eqtl)), frame.plot = F, axes = F, xlab = NA, ylab = NA)
+  
+  for (i in 1:length(plot_eqtl)){
+    cgene <- a$id[which(a$genename==plot_eqtl[i])]
+    load(paste0(results_dir, "/",analysis_id, "_expr_chr", region_tag1, ".exprqc.Rd"))
+    eqtls <- rownames(wgtlist[[cgene]])
+    eqtl_pos <- a$pos[a$id %in% eqtls]
+    
+    #col="grey"
+    col="#c6e8f0"
+    
+    rect(start, length(plot_eqtl)+1-i-0.8, end, length(plot_eqtl)+1-i-0.2, col = col, border = T, lwd = 1)
+  
+    if (length(eqtl_pos)>0){
+      for (j in 1:length(eqtl_pos)){
+        segments(x0=eqtl_pos[j], x1=eqtl_pos[j], y0=length(plot_eqtl)+1-i-0.2, length(plot_eqtl)+1-i-0.8, lwd=1.5)  
+      }
+    }
+  }
+  
+  text(start, length(plot_eqtl)-(1:length(plot_eqtl))+0.5,  
+       labels = paste0(plot_eqtl, " eQTL"), srt = 0, pos = 2, xpd = TRUE, cex=0.7)
+  
+  par(mar = c(4.1, 4.1, 0, 2.1))
+  
+  plot(a$pos[a$type=="SNP"], a$susie_pip[a$type == "SNP"], pch = 19, xlab=paste0("Chromosome ", region_tag1, " position (Mb)"),frame.plot=FALSE, col = "white", ylim= c(0,1.1), ylab = "cTWAS PIP", xlim = c(start, end))
+  
+  grid()
+  points(a$pos[a$type=="SNP"], a$susie_pip[a$type == "SNP"], pch = 21, xlab="Genomic position", bg = colorsall[1])
+  points(a$pos[a$type=="SNP" & a$r2max > r2cut], a$susie_pip[a$type == "SNP"  & a$r2max >r2cut], pch = 21, bg = "purple")
+  points(a$pos[a$type=="SNP" & a$focus == 1], a$susie_pip[a$type == "SNP" & a$focus == 1], pch = 21, bg = "salmon")
+  points(a$pos[a$type=="gene"], a$susie_pip[a$type == "gene"], pch = 22, bg = colorsall[1], cex = 2)
+  points(a$pos[a$type=="gene" & a$r2max > r2cut], a$susie_pip[a$type == "gene"  & a$r2max > r2cut], pch = 22, bg = "purple", cex = 2)
+  points(a$pos[a$type=="gene" & a$focus == 1], a$susie_pip[a$type == "gene" & a$focus == 1], pch = 22, bg = "salmon", cex = 2)
+  
+  if (legend_panel=="cTWAS"){
+    x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
+    legend(x_pos, y= 1 ,c("Gene", "SNP","Lead TWAS Gene", "R2 > 0.4", "R2 <= 0.4"), pch = c(22,21,19,19,19), col = c("black", "black", "salmon", "purple", colorsall[1]), cex=0.7, title.adj = 0)
+  }
+  
+  if (label_panel=="cTWAS" | label_panel=="both"){
+    for (i in 1:length(label_genes)){
+      text(a$pos[a$genename==label_genes[i]], a$susie_pip[a$genename==label_genes[i]], labels=label_genes[i], pos=label_pos[i], cex=0.7)
+    }
+  }
+  
+  if (return_table){
+    return(a)
+  }
+}
+
+####################
+
+library(Gviz)
+
+locus_plot_gene_track_pub <- function(a, label_pos=NULL){
+  chr <- unique(a$chrom)
+  start <- min(a$pos)*1000000
+  end <- max(a$pos)*1000000
+  
+  biomTrack <- BiomartGeneRegionTrack(chromosome = chr,
+                                      start = start,
+                                      end = end,
+                                      name = "ENSEMBL",
+                                      biomart = ensembl,
+                                      filters=list(biotype="protein_coding"))
+  
+  
+  biomTrack <- as(biomTrack, "GeneRegionTrack")
+  biomTrack <- biomTrack[biomTrack@range@elementMetadata@listData$feature %in% c("protein_coding", "utr3", "utr5")]
+  
+  if (isTRUE(label_pos=="above")){
+    displayPars(biomTrack)$just.group <- "above"
+  }
+  
+  grid.newpage()
+  
+  plotTracks(biomTrack, collapseTranscripts = "meta", transcriptAnnotation = "symbol", from=start, to=end, panel.only=T, add=F)
+}
+
+```
+
+```{r}
+region_tag = "12_57"
+xlim=NULL
+return_table=F
+focus=NULL
+label_panel="TWAS"
+label_genes=NULL
+label_pos=NULL
+plot_eqtl=NULL
+rerun_ctwas=F
+rerun_load_only=F
+legend_side="left"
+legend_panel=""
+twas_ymax=NULL
+alpha <- 0.05
+```
+
+```{r}
+region_tag1 <- unlist(strsplit(region_tag, "_"))[1]
+region_tag2 <- unlist(strsplit(region_tag, "_"))[2]
+  
+a <- ctwas_res[ctwas_res$region_tag==region_tag,]
+regionlist <- readRDS(paste0(results_dir, "/", analysis_id, "_ctwas.regionlist.RDS"))
+region <- regionlist[[as.numeric(region_tag1)]][[region_tag2]]
+  
+R_snp_info <- do.call(rbind, lapply(region$regRDS, function(x){data.table::fread(paste0(tools::file_path_sans_ext(x), ".Rvar"))}))
+  
+if (isTRUE(rerun_ctwas)){
+  ld_exprfs <- paste0(results_dir, "/", analysis_id, "_expr_chr", 1:22, ".expr.gz")
+  temp_reg <- data.frame("chr" = paste0("chr",region_tag1), "start" = region$start, "stop" = region$stop)
+  
+  write.table(temp_reg, 
+              #file= paste0(results_dir, "/", analysis_id, "_ctwas.temp.reg.txt") , 
+              file= "temp_reg.txt",
+              row.names=F, col.names=T, sep="\t", quote = F)
+  
+  load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+  
+  z_gene_temp <-  z_gene[z_gene$id %in% a$id[a$type=="gene"],]
+  z_snp_temp <-  z_snp[z_snp$id %in% R_snp_info$id,]
+    
+  if (!rerun_load_only){
+    ctwas::ctwas_rss(z_gene_temp, z_snp_temp, ld_exprfs, ld_pgenfs = NULL, 
+                      ld_R_dir = dirname(region$regRDS)[1],
+                      ld_regions_custom = "temp_reg.txt", thin = 1, 
+                      outputdir = ".", outname = "temp", ncore = 1, ncore.rerun = 1, prob_single = 0,
+                      group_prior = estimated_group_prior, group_prior_var = estimated_group_prior_var,
+                      estimate_group_prior = F, estimate_group_prior_var = F)
+  }
+    
+  a_bkup <- a         
+  a <- as.data.frame(data.table::fread("temp.susieIrss.txt", header = T))
+    
+  rownames(z_snp_temp) <- z_snp_temp$id
+  z_snp_temp <- z_snp_temp[a$id[a$type=="SNP"],]
+  z_gene_temp <- z_gene_temp[a$id[a$type=="gene"],]
+    
+  a$genename <- NA
+  a$gene_type <- NA
+
+  a[a$type=="gene",c("genename", "gene_type")] <- a_bkup[match(a$id[a$type=="gene"], a_bkup$id),c("genename","gene_type")]
+    
+  a$z <- NA
+  a$z[a$type=="SNP"] <- z_snp_temp$z
+  a$z[a$type=="gene"] <- z_gene_temp$z
+}
+  
+a_pos_bkup <- a$pos
+a$pos[a$type=="gene"] <- G_list$tss[match(sapply(a$genename[a$type=="gene"], function(x){unlist(strsplit(x, "[.]"))[1]}) ,G_list$hgnc_symbol)]
+a$pos[is.na(a$pos)] <- a_pos_bkup[is.na(a$pos)]
+a$pos <- a$pos/1000000
+  
+if (!is.null(xlim)){
+    
+  if (is.na(xlim[1])){
+    xlim[1] <- min(a$pos)
+  }
+    
+  if (is.na(xlim[2])){
+    xlim[2] <- max(a$pos)
+  }
+    
+  a <- a[a$pos>=xlim[1] & a$pos<=xlim[2],,drop=F]
+}
+  
+if (is.null(focus)){
+  focus <- a$id[which.max(abs(a$z)[a$type=="gene"])]
+}
+  
+if (is.null(label_genes)){
+  label_genes <- focus
+}
+  
+if (is.null(label_pos)){
+  label_pos <- rep(3, length(label_genes))
+}
+  
+if (is.null(plot_eqtl)){
+  plot_eqtl <- focus
+}
+  
+focus <- a$id[which(a$id==focus)]
+a$focus <- 0
+a$focus <- as.numeric(a$id==focus)
+    
+a$PVALUE <- (-log(2) - pnorm(abs(a$z), lower.tail=F, log.p=T))/log(10)
+  
+R_gene <- readRDS(region$R_g_file)
+R_snp_gene <- readRDS(region$R_sg_file)
+R_snp <- as.matrix(Matrix::bdiag(lapply(region$regRDS, readRDS)))
+  
+rownames(R_gene) <- region$gid
+colnames(R_gene) <- region$gid
+rownames(R_snp_gene) <- R_snp_info$id
+colnames(R_snp_gene) <- region$gid
+rownames(R_snp) <- R_snp_info$id
+colnames(R_snp) <- R_snp_info$id
+  
+a$r2max <- NA
+a$r2max[a$type=="gene"] <- R_gene[focus,a$id[a$type=="gene"]]
+a$r2max[a$type=="SNP"] <- R_snp_gene[a$id[a$type=="SNP"],focus]
+  
+r2cut <- 0.4
+colorsall <- c("#7fc97f", "#beaed4", "#fdc086")
+  
+start <- min(a$pos)
+end <- max(a$pos)
+  
+layout(matrix(1:4, ncol = 1), widths = 1, heights = c(1.5,0.25,1.75,0.75), respect = FALSE)
+  
+par(mar = c(0, 4.1, 0, 2.1))
+  
+if (is.null(twas_ymax)){
+  twas_ymax <- max(a$PVALUE)*1.1
+}
+  
+plot(a$pos[a$type=="SNP"], a$PVALUE[a$type == "SNP"], pch = 21, xlab=paste0("Chromosome ", region_tag1, " position (Mb)"), frame.plot=FALSE, bg = colorsall[1], ylab = "-log10(p value)", panel.first = grid(), ylim =c(0, twas_ymax), xaxt = 'n', xlim=c(start, end))
+  
+abline(h=-log10(alpha/nrow(ctwas_gene_res)), col ="red", lty = 2)
+points(a$pos[a$type=="SNP" & a$r2max > r2cut], a$PVALUE[a$type == "SNP"  & a$r2max > r2cut], pch = 21, bg = "purple")
+points(a$pos[a$type=="SNP" & a$focus == 1], a$PVALUE[a$type == "SNP" & a$focus == 1], pch = 21, bg = "salmon")
+points(a$pos[a$type=="gene" & a$group=="Expression"], a$PVALUE[a$type == "gene" & a$group=="Expression"], pch = 22, bg = colorsall[1], cex = 2)
+points(a$pos[a$type=="gene" & a$group=="Splicing"], a$PVALUE[a$type == "gene" & a$group=="Splicing"], pch = 23, bg = colorsall[1], cex = 2)
+points(a$pos[a$type=="gene" & a$group=="Methylation"], a$PVALUE[a$type == "gene" & a$group=="Methylation"], pch = 24, bg = colorsall[1], cex = 2)
+
+points(a$pos[a$type=="gene" & a$r2max > r2cut & a$group=="Expression"], a$PVALUE[a$type == "gene"  & a$r2max > r2cut & a$group=="Expression"], pch = 22, bg = "purple", cex = 2)
+points(a$pos[a$type=="gene" & a$r2max > r2cut & a$group=="Splicing"], a$PVALUE[a$type == "gene"  & a$r2max > r2cut & a$group=="Splicing"], pch = 23, bg = "purple", cex = 2)
+points(a$pos[a$type=="gene" & a$r2max > r2cut & a$group=="Methylation"], a$PVALUE[a$type == "gene"  & a$r2max > r2cut & a$group=="Methylation"], pch = 24, bg = "purple", cex = 2)
+
+points(a$pos[a$type=="gene" & a$focus == 1 & a$group=="Expression"], a$PVALUE[a$type == "gene" & a$focus == 1 & a$group=="Expression"], pch = 22, bg = "salmon", cex = 2)
+points(a$pos[a$type=="gene" & a$focus == 1 & a$group=="Splicing"], a$PVALUE[a$type == "gene" & a$focus == 1 & a$group=="Splicing"], pch = 23, bg = "salmon", cex = 2)
+points(a$pos[a$type=="gene" & a$focus == 1 & a$group=="Methylation"], a$PVALUE[a$type == "gene" & a$focus == 1 & a$group=="Methylation"], pch = 24, bg = "salmon", cex = 2)
+  
+if (legend_panel=="TWAS"){
+  x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
+  legend(x_pos, y= twas_ymax*0.95, c("Expression","Splicing","Methylation","SNP","Lead TWAS Gene", "R2 > 0.4", "R2 <= 0.4"), pch = c(22,23,24,21,19,19,19), col = c("black","black","black","black", "salmon", "purple", colorsall[1]), cex=0.7, title.adj = 0)
+}
+  
+if (label_panel=="TWAS" | label_panel=="both"){
+  for (i in 1:length(label_genes)){
+    text(a$pos[a$id==label_genes[i]], a$PVALUE[a$id==label_genes[i]], labels=a$genename[a$id==label_genes[i]], pos=label_pos[i], cex=0.7)
+  }
+}
+  
+par(mar = c(0.25, 4.1, 0.25, 2.1))
+  
+plot(NA, xlim = c(start, end), ylim = c(0, length(plot_eqtl)), frame.plot = F, axes = F, xlab = NA, ylab = NA)
+  
+for (i in 1:length(plot_eqtl)){
+  cgene <- a$id[which(a$id==plot_eqtl[i])]
+  load(paste0(results_dir, "/",analysis_id, "_expr_chr", region_tag1, ".exprqc.Rd"))
+  eqtls <- rownames(wgtlist[[cgene]])
+  eqtl_pos <- a$pos[a$id %in% eqtls]
+    
+  #col="grey"
+  col="#c6e8f0"
+    
+  rect(start, length(plot_eqtl)+1-i-0.8, end, length(plot_eqtl)+1-i-0.2, col = col, border = T, lwd = 1)
+  
+  if (length(eqtl_pos)>0){
+    for (j in 1:length(eqtl_pos)){
+      segments(x0=eqtl_pos[j], x1=eqtl_pos[j], y0=length(plot_eqtl)+1-i-0.2, length(plot_eqtl)+1-i-0.8, lwd=1.5)  
+    }
+  }
+}
+  
+text(start, length(plot_eqtl)-(1:length(plot_eqtl))+0.5,  
+      labels = paste0(plot_eqtl, " eQTL"), srt = 0, pos = 2, xpd = TRUE, cex=0.7)
+  
+par(mar = c(4.1, 4.1, 0, 2.1))
+  
+plot(a$pos[a$type=="SNP"], a$susie_pip[a$type == "SNP"], pch = 19, xlab=paste0("Chromosome ", region_tag1, " position (Mb)"),frame.plot=FALSE, col = "white", ylim= c(0,1.1), ylab = "cTWAS PIP", xlim = c(start, end))
+  
+grid()
+points(a$pos[a$type=="SNP"], a$susie_pip[a$type == "SNP"], pch = 21, xlab="Genomic position", bg = colorsall[1])
+points(a$pos[a$type=="SNP" & a$r2max > r2cut], a$susie_pip[a$type == "SNP"  & a$r2max >r2cut], pch = 21, bg = "purple")
+points(a$pos[a$type=="SNP" & a$focus == 1], a$susie_pip[a$type == "SNP" & a$focus == 1], pch = 21, bg = "salmon")
+points(a$pos[a$type=="gene" & a$group=="Expression"], a$susie_pip[a$type == "gene" & a$group=="Expression"], pch = 22, bg = colorsall[1], cex = 2)
+points(a$pos[a$type=="gene" & a$group=="Splicing"], a$susie_pip[a$type == "gene" & a$group=="Splicing"], pch = 23, bg = colorsall[1], cex = 2)
+points(a$pos[a$type=="gene" & a$group=="Methylation"], a$susie_pip[a$type == "gene" & a$group=="Methylation"], pch = 24, bg = colorsall[1], cex = 2)
+points(a$pos[a$type=="gene" & a$r2max > r2cut & a$group=="Expression"], a$susie_pip[a$type == "gene"  & a$r2max > r2cut & a$group=="Expression"], pch = 22, bg = "purple", cex = 2)
+points(a$pos[a$type=="gene" & a$r2max > r2cut & a$group=="Splicing"], a$susie_pip[a$type == "gene"  & a$r2max > r2cut & a$group=="Splicing"], pch = 23, bg = "purple", cex = 2)
+points(a$pos[a$type=="gene" & a$r2max > r2cut & a$group=="Methylation"], a$susie_pip[a$type == "gene"  & a$r2max > r2cut & a$group=="Methylation"], pch = 24, bg = "purple", cex = 2)
+
+points(a$pos[a$type=="gene" & a$focus == 1 & a$group=="Expression"], a$susie_pip[a$type == "gene" & a$focus == 1 & a$group=="Expression"], pch = 22, bg = "salmon", cex = 2)
+points(a$pos[a$type=="gene" & a$focus == 1 & a$group=="Splicing"], a$susie_pip[a$type == "gene" & a$focus == 1 & a$group=="Splicing"], pch = 23, bg = "salmon", cex = 2)
+points(a$pos[a$type=="gene" & a$focus == 1 & a$group=="Methylation"], a$susie_pip[a$type == "gene" & a$focus == 1 & a$group=="Methylation"], pch = 24, bg = "salmon", cex = 2)
+  
+if (legend_panel=="cTWAS"){
+  x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
+  legend(x_pos, y= 1 ,c("Expression","Splicing","Methylation","SNP","Lead TWAS Gene", "R2 > 0.4", "R2 <= 0.4"), pch = c(22,23,24,21,19,19,19), col = c("black","black","black", "black", "salmon", "purple", colorsall[1]), cex=0.7, title.adj = 0)
+}
+
+
+  
+if (label_panel=="cTWAS" | label_panel=="both"){
+  for (i in 1:length(label_genes)){
+    text(a$pos[a$id==label_genes[i]], a$susie_pip[a$id==label_genes[i]], labels=a$genename[a$id==label_genes[i]], pos=label_pos[i], cex=0.7)
+  }
+}
+  
+if (return_table){
+  return(a)
+}
+
+
+```
+
+
+```{r}
+a <- locus_plot_final_pub(region_tag="19_10", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="left",
+                      legend_panel="cTWAS")
+```
