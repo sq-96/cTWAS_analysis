@@ -1,14 +1,14 @@
 ---
-title: "White Blood - WholeBlood methylation"
+title: "LDL - Liver"
 author: "sheng Qian"
 date: "2022-10-18"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "WhiteBlood_WholeBlood"
-  trait_id: "WhiteBlood_M"
-  weight: "WholeBlood"
+  analysis_id: "LDL_Liver_GTEx_mashr"
+  trait_id: "LDL"
+  weight: "Liver_GTEx_mashr"
 ---
 
 ```{r echo=F}
@@ -42,9 +42,10 @@ rm(qclist, wgtlist, z_gene_chr)
 
 #load information for all genes
 sqlite <- RSQLite::dbDriver("SQLite")
-db = RSQLite::dbConnect(sqlite, "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mqtl/WholeBlood.db")
+#db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
+db = RSQLite::dbConnect(sqlite, "/project2/mstephens/wcrouse/predictdb/mashr_Liver_nolnc.db")
 query <- function(...) RSQLite::dbGetQuery(db, ...)
-gene_info <- query("select gene, genename from extra")
+gene_info <- query("select gene, genename, gene_type from extra")
 RSQLite::dbDisconnect(db)
 
 #number of weights in database
@@ -85,8 +86,7 @@ ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
 ctwas_snp_res <- data.frame(ctwas_snp_res)
 
 #add gene information to results
-ctwas_gene_res$genename <- gene_info[sapply(ctwas_gene_res$id, match, gene_info$gene),"genename"]
-ctwas_gene_res$genename <- sapply(ctwas_gene_res$genename, function(x){unlist(strsplit(x, split="[;]"))[1]})
+ctwas_gene_res <- cbind(ctwas_gene_res, gene_info[sapply(ctwas_gene_res$id, match, gene_info$gene), c("genename", "gene_type")])
 
 #add z scores to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
@@ -97,7 +97,7 @@ ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
 
 #merge gene and snp results with added information
 ctwas_snp_res$genename=NA
-#ctwas_snp_res$gene_type=NA
+ctwas_snp_res$gene_type=NA
 
 ctwas_res <- rbind(ctwas_gene_res,
                    ctwas_snp_res[,colnames(ctwas_gene_res)])
@@ -111,7 +111,7 @@ for (i in 1:22){
 ctwas_gene_res$num_eqtl <- num_eqtl[ctwas_gene_res$id]
 
 #store columns to report
-report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "z_flag", "id", "chrom", "pos"))]
+report_cols <- colnames(ctwas_gene_res)[!(colnames(ctwas_gene_res) %in% c("type", "region_tag1", "region_tag2", "cs_index", "gene_type", "z_flag", "id", "chrom", "pos"))]
 first_cols <- c("genename", "region_tag")
 report_cols <- c(first_cols, report_cols[!(report_cols %in% first_cols)])
 
@@ -269,108 +269,115 @@ hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 ```
 
-
-## GO enrichment analysis for genes with PIP>0.8
-
-```{r echo=FALSE, message=FALSE}
-#GO enrichment analysis
-library(enrichR)
-
-dbs <- c("GO_Biological_Process_2021", "GO_Cellular_Component_2021", "GO_Molecular_Function_2021")
-genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.8]
-```
+## Genes with largest effect sizes 
 
 ```{r}
-#number of genes for gene set enrichment
-length(genes)
-```
+#plot PIP vs effect size
+plot(ctwas_gene_res$susie_pip, ctwas_gene_res$mu2, xlab="PIP", ylab="mu^2", main="Gene PIPs vs Effect Size")
 
-## DisGeNET enrichment analysis for genes with PIP>0.5
-```{r echo=F, message=FALSE}
-if (length(genes)>0){
-  library(disgenet2r)
-  
-  disgenet_api_key <- get_disgenet_api_key(
-                    email = "wesleycrouse@gmail.com", 
-                    password = "uchicago1" )
-  
-  Sys.setenv(DISGENET_API_KEY= disgenet_api_key)
-  
-  res_enrich <-disease_enrichment(entities=genes, vocabulary = "HGNC",
-                               database = "CURATED" )
-  
-  df <- res_enrich@qresult[1:10, c("Description", "FDR", "Ratio",  "BgRatio")]
-  print(df)
-}
+#genes with 20 largest effect sizes
+head(ctwas_gene_res[order(-ctwas_gene_res$mu2),report_cols],20)
 
 ```
 
-## WebGestalt enrichment analysis for genes with PIP>0.5
-```{r echo=F, message=FALSE}
-if (length(genes)>0){
-  #WebGestalt enrichment
-  library(WebGestaltR)
-  
-  background <- ctwas_gene_res$genename
-  
-  #listGeneSet()
-  databases <- c("pathway_KEGG", "disease_GLAD4U", "disease_OMIM")
-  
-  enrichResult <- WebGestaltR(enrichMethod="ORA", organism="hsapiens",
-                              interestGene=genes, referenceGene=background,
-                              enrichDatabase=databases, interestGeneType="genesymbol",
-                              referenceGeneType="genesymbol", isOutput=F)
-  print(enrichResult[,c("description", "size", "overlap", "FDR", "database", "userId")])
-}
+## Genes with highest PVE 
+
+```{r}
+#genes with 20 highest pve
+head(ctwas_gene_res[order(-ctwas_gene_res$PVE),report_cols],20)
 
 ```
 
+## Genes with largest z scores 
 
-```{r echo=FALSE}
-load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/G_list.RData")
-G_list <- G_list[G_list$gene_biotype %in% c("protein_coding"),]
-G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
-G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
+```{r}
+#genes with 20 largest z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
+```
+
+## Comparing z scores and PIPs
+
+```{r}
+#set nominal signifiance threshold for z scores
 alpha <- 0.05
-source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/locus_plot.R")
+
+#bonferroni adjusted threshold for z scores
+sig_thresh <- qnorm(1-(alpha/nrow(ctwas_gene_res)/2), lower=T)
+
+#Q-Q plot for z scores
+obs_z <- ctwas_gene_res$z[order(ctwas_gene_res$z)]
+exp_z <- qnorm((1:nrow(ctwas_gene_res))/nrow(ctwas_gene_res))
+
+plot(exp_z, obs_z, xlab="Expected z", ylab="Observed z", main="Gene z score Q-Q plot")
+abline(a=0,b=1)
+
+#plot z score vs PIP
+plot(abs(ctwas_gene_res$z), ctwas_gene_res$susie_pip, xlab="abs(z)", ylab="PIP")
+abline(v=sig_thresh, col="red", lty=2)
+
+#number of significant z scores
+sum(abs(ctwas_gene_res$z) > sig_thresh)
+
+#proportion of significant z scores
+mean(abs(ctwas_gene_res$z) > sig_thresh)
+
+#genes with most significant z scores
+head(ctwas_gene_res[order(-abs(ctwas_gene_res$z)),report_cols],20)
+
+```
+
+## SNPs with highest PIPs 
+
+```{r}
+#snps with PIP>0.8 or 20 highest PIPs
+head(ctwas_snp_res[order(-ctwas_snp_res$susie_pip),report_cols_snps],
+max(sum(ctwas_snp_res$susie_pip>0.8), 20))
+
+```
+
+## SNPs with largest effect sizes 
+
+```{r}
+#plot PIP vs effect size
+#plot(ctwas_snp_res$susie_pip, ctwas_snp_res$mu2, xlab="PIP", ylab="mu^2", main="SNP PIPs vs Effect Size")
+
+#SNPs with 50 largest effect sizes
+head(ctwas_snp_res[order(-ctwas_snp_res$mu2),report_cols_snps],50)
+
+```
+
+## SNPs with highest PVE 
+
+```{r}
+#SNPs with 50 highest pve
+head(ctwas_snp_res[order(-ctwas_snp_res$PVE),report_cols_snps],50)
+
+```
+
+## SNPs with largest z scores 
+
+```{r}
+#histogram of (abs) SNP z scores
+hist(abs(ctwas_snp_res$z))
+
+#SNPs with 50 largest z scores
+head(ctwas_snp_res[order(-abs(ctwas_snp_res$z)),report_cols_snps],50)
+
 ```
 
 
 ```{r echo=FALSE}
-ctwas_res$group <- "Methylation"
-ctwas_res[ctwas_res$type=="SNP",]$group <- "SNP"
+#####load positions for all genes on autosomes in ENSEMBL, subset to only protein coding and lncRNA with non-missing HGNC symbol
+#library(biomaRt)
+
+#ensembl <- useEnsembl(biomart="ENSEMBL_MART_ENSEMBL", dataset="hsapiens_gene_ensembl")
+#G_list <- getBM(filters= "chromosome_name", attributes= c("hgnc_symbol","chromosome_name","start_position","end_position","gene_biotype", "ensembl_gene_id", "strand"), values=1:22, mart=ensembl)
+#save(G_list, file=paste0(results_dir, "/G_list_", trait_id, ".RData"))
+#load(paste0(results_dir, "/G_list_", trait_id, ".RData"))
+
+#G_list <- G_list[G_list$gene_biotype %in% c("protein_coding","lncRNA"),]
+
+#G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
 ```
 
-
-```{r}
-a <- locus_plot(region_tag="17_34", return_table=T,
-                      focus=NULL,
-                      label_genes=NULL,
-                      rerun_ctwas=F,
-                      rerun_load_only=F,
-                      label_panel="both",
-                      legend_side="left",
-                      legend_panel="")
-```
-
-```{r}
-a <- locus_plot(region_tag="12_1", return_table=T,
-                      focus=NULL,
-                      label_genes=NULL,
-                      rerun_ctwas=F,
-                      rerun_load_only=F,
-                      label_panel="both",
-                      legend_side="left",
-                      legend_panel="")
-```
-
-```{r}
-a <- locus_plot(region_tag="2_14", return_table=T,
-                      focus=NULL,
-                      label_genes=NULL,
-                      rerun_ctwas=F,
-                      rerun_load_only=F,
-                      label_panel="both",
-                      legend_side="left",
-                      legend_panel="")
-```

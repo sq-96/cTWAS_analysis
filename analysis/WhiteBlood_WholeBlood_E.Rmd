@@ -6,9 +6,9 @@ output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "ukb-d-30000_irnt_Whole_Blood"
-  trait_id: "ukb-d-30000_irnt"
-  weight: "Whole_Blood"
+  analysis_id: "WhiteBlood_WholeBlood"
+  trait_id: "WhiteBlood_E"
+  weight: "WholeBlood"
 ---
 
 ```{r echo=F}
@@ -16,7 +16,7 @@ analysis_id <- params$analysis_id
 trait_id <- params$trait_id
 weight <- params$weight
 
-results_dir <- paste0("/project2/mstephens/wcrouse/UKB_analysis_allweights/", trait_id, "/", weight)
+results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/", trait_id, "/", weight)
 
 source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R")
 options(digits = 4)
@@ -24,7 +24,7 @@ options(digits = 4)
 
 ## Weight QC
 
-```{r echo=F}
+```{r echo=FALSE}
 qclist_all <- list()
 
 qc_files <- paste0(results_dir, "/", list.files(results_dir, pattern="exprqc.Rd"))
@@ -39,21 +39,29 @@ qclist_all <- data.frame(do.call(rbind, qclist_all))
 colnames(qclist_all)[ncol(qclist_all)] <- "chr"
 
 rm(qclist, wgtlist, z_gene_chr)
-```
 
-```{r}
+#load information for all genes
+sqlite <- RSQLite::dbDriver("SQLite")
+#db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
+db = RSQLite::dbConnect(sqlite, "/project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db")
+query <- function(...) RSQLite::dbGetQuery(db, ...)
+gene_info <- query("select gene, genename, gene_type from extra")
+RSQLite::dbDisconnect(db)
+
+#number of weights in database
+nrow(gene_info)
+
 #number of imputed weights
 nrow(qclist_all)
 
 #number of imputed weights by chromosome
 table(qclist_all$chr)
 
-#number of imputed weights without missing variants
-sum(qclist_all$nmiss==0)
-
 #proportion of imputed weights without missing variants
 mean(qclist_all$nmiss==0)
 ```
+
+## Load ctwas results
 
 ```{r echo=F}
 #load ctwas results
@@ -78,12 +86,6 @@ ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
 ctwas_snp_res <- data.frame(ctwas_snp_res)
 
 #add gene information to results
-sqlite <- RSQLite::dbDriver("SQLite")
-db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
-query <- function(...) RSQLite::dbGetQuery(db, ...)
-gene_info <- query("select gene, genename, gene_type from extra")
-RSQLite::dbDisconnect(db)
-
 ctwas_gene_res <- cbind(ctwas_gene_res, gene_info[sapply(ctwas_gene_res$id, match, gene_info$gene), c("genename", "gene_type")])
 
 #add z scores to results
@@ -100,7 +102,7 @@ ctwas_snp_res$gene_type=NA
 ctwas_res <- rbind(ctwas_gene_res,
                    ctwas_snp_res[,colnames(ctwas_gene_res)])
 
-#get number of eQTL for geens
+#get number of eQTL for genes
 num_eqtl <- c()
 for (i in 1:22){
   load(paste0(results_dir, "/", analysis_id, "_expr_chr", i, ".exprqc.Rd"))
@@ -120,93 +122,155 @@ report_cols_snps <- report_cols_snps[!(report_cols_snps %in% "num_eqtl")]
 ctwas_res_s1 <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.s1.susieIrss.txt"))
 n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
 rm(ctwas_res_s1)
+
+saveRDS(ctwas_gene_res, paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
+
 ```
 
-```{r echo=FALSE}
-saveRDS(ctwas_gene_res, file = paste0(results_dir,"/",analysis_id,"_ctwas_gene_res.RDS"))
-saveRDS(ctwas_snp_res, file =  paste0(results_dir,"/",analysis_id,"_ctwas_snp_res.RDS"))
-```
+### Check convergence of parameters
 
-## Check convergence of parameters
-
-```{r echo=F,message=F}
+```{r echo=F}
 library(ggplot2)
 library(cowplot)
 
 load(paste0(results_dir, "/", analysis_id, "_ctwas.s2.susieIrssres.Rd"))
 
-df <- data.frame(niter = rep(1:ncol(group_prior_rec), 2),
-                 value = c(group_prior_rec[1,], group_prior_rec[2,]),
-                 group = rep(c("Gene", "SNP"), each = ncol(group_prior_rec)))
-df$group <- as.factor(df$group)
+#estimated group prior (all iterations)
+estimated_group_prior_all <- group_prior_rec
+estimated_group_prior_all["SNP",] <- estimated_group_prior_all["SNP",]*thin #adjust parameter to account for thin argument
 
-df$value[df$group=="SNP"] <- df$value[df$group=="SNP"]*thin #adjust parameter to account for thin argument
+#estimated group prior variance (all iterations)
+estimated_group_prior_var_all <- group_prior_var_rec
+
+#set group size
+group_size <- c(table(ctwas_gene_res$type), structure(n_snps, names="SNP"))
+group_size <- group_size[rownames(estimated_group_prior_all)]
+
+#estimated group PVE (all iterations)
+estimated_group_pve_all <- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+
+#estimated enrichment of genes (all iterations)
+estimated_enrichment_all <- t(sapply(rownames(estimated_group_prior_all)[rownames(estimated_group_prior_all)!="SNP"], function(x){estimated_group_prior_all[rownames(estimated_group_prior_all)==x,]/estimated_group_prior_all[rownames(estimated_group_prior_all)=="SNP"]}))
+
+title_size <- 12
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_prior_all), nrow(estimated_group_prior_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_prior_all), function(x){estimated_group_prior_all[x,]})),
+                 group = rep(rownames(estimated_group_prior_all), each=ncol(estimated_group_prior_all)))
+
+df$group[df$group=="Liver"] <- "Liver_Expression"
+df$group <- as.factor(df$group)
 
 p_pi <- ggplot(df, aes(x=niter, y=value, group=group)) +
   geom_line(aes(color=group)) +
   geom_point(aes(color=group)) +
   xlab("Iteration") + ylab(bquote(pi)) +
-  ggtitle("Prior mean") +
+  ggtitle("Proportion Causal") +
   theme_cowplot()
 
-df <- data.frame(niter = rep(1:ncol(group_prior_var_rec), 2),
-                 value = c(group_prior_var_rec[1,], group_prior_var_rec[2,]),
-                 group = rep(c("Gene", "SNP"), each = ncol(group_prior_var_rec)))
+p_pi <- p_pi + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_prior_var_all), nrow(estimated_group_prior_var_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_prior_var_all), function(x){estimated_group_prior_var_all[x,]})),
+                 group = rep(rownames(estimated_group_prior_var_all), each=ncol(estimated_group_prior_var_all)))
+
+df$group[df$group=="Liver"] <- "Liver_Expression"
 df$group <- as.factor(df$group)
+
 p_sigma2 <- ggplot(df, aes(x=niter, y=value, group=group)) +
   geom_line(aes(color=group)) +
   geom_point(aes(color=group)) +
   xlab("Iteration") + ylab(bquote(sigma^2)) +
-  ggtitle("Prior variance") +
+  ggtitle("Effect Size") +
   theme_cowplot()
 
-plot_grid(p_pi, p_sigma2)
+p_sigma2 <- p_sigma2 + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_group_pve_all), nrow(estimated_group_pve_all)),
+                 value = unlist(lapply(1:nrow(estimated_group_pve_all), function(x){estimated_group_pve_all[x,]})),
+                 group = rep(rownames(estimated_group_pve_all), each=ncol(estimated_group_pve_all)))
+
+df$group[df$group=="Liver"] <- "Liver_Expression"
+df$group <- as.factor(df$group)
+
+p_pve <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(h^2[G])) +
+  ggtitle("PVE") +
+  theme_cowplot()
+
+p_pve <- p_pve + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+
+df <- data.frame(niter = rep(1:ncol(estimated_enrichment_all), nrow(estimated_enrichment_all)),
+                 value = unlist(lapply(1:nrow(estimated_enrichment_all), function(x){estimated_enrichment_all[x,]})),
+                 group = rep(rownames(estimated_enrichment_all), each=ncol(estimated_enrichment_all)))
+
+df$group[df$group=="Liver"] <- "Liver_Expression"
+df$group <- as.factor(df$group)
+
+p_enrich <- ggplot(df, aes(x=niter, y=value, group=group)) +
+  geom_line(aes(color=group)) +
+  geom_point(aes(color=group)) +
+  xlab("Iteration") + ylab(bquote(pi[G]/pi[S])) +
+  ggtitle("Enrichment") +
+  theme_cowplot()
+
+p_enrich <- p_enrich + theme(plot.title=element_text(size=title_size)) + 
+  expand_limits(y=0) + 
+  guides(color = guide_legend(title = "Group")) + theme (legend.title = element_text(size=12, face="bold"))
+
+plot_grid(p_pi, p_sigma2, p_enrich, p_pve)
 ```
 
 ```{r}
 #estimated group prior
-estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
-names(estimated_group_prior) <- c("gene", "snp")
-estimated_group_prior["snp"] <- estimated_group_prior["snp"]*thin #adjust parameter to account for thin argument
+estimated_group_prior <- estimated_group_prior_all[,ncol(group_prior_rec)]
 print(estimated_group_prior)
 
 #estimated group prior variance
-estimated_group_prior_var <- group_prior_var_rec[,ncol(group_prior_var_rec)]
-names(estimated_group_prior_var) <- c("gene", "snp")
+estimated_group_prior_var <- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
 print(estimated_group_prior_var)
+
+#estimated enrichment
+estimated_enrichment <- estimated_enrichment_all[ncol(group_prior_var_rec)]
+print(estimated_enrichment)
 
 #report sample size
 print(sample_size)
 
 #report group size
-group_size <- c(nrow(ctwas_gene_res), n_snps)
 print(group_size)
 
 #estimated group PVE
-estimated_group_pve <- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
-names(estimated_group_pve) <- c("gene", "snp")
+estimated_group_pve <- estimated_group_pve_all[,ncol(group_prior_rec)]
 print(estimated_group_pve)
 
-#compare sum(PIP*mu2/sample_size) with above PVE calculation
-c(sum(ctwas_gene_res$PVE),sum(ctwas_snp_res$PVE))
+#total PVE
+sum(estimated_group_pve)
+
+#attributable PVE
+estimated_group_pve/sum(estimated_group_pve)
 ```
 
-## Genes with highest PIPs
+## Genes with highest PIPs 
 
-```{r echo=F}
+```{r}
 #distribution of PIPs
-load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/G_list.RData")
-ctwas_gene_res$gene_type <- G_list[sapply(ctwas_gene_res$genename, match, G_list$hgnc_symbol), "gene_biotype"]
-ctwas_gene_res <- na.omit(ctwas_gene_res)
-ctwas_gene_res <- ctwas_gene_res[ctwas_gene_res$gene_type=="protein_coding",]
-
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 
 #genes with PIP>0.8 or 20 highest PIPs
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
 ```
 
-## GO enrichment analysis for genes with PIP>0.5
+
+## GO enrichment analysis for genes with PIP>0.8
 
 ```{r echo=FALSE, message=FALSE}
 #GO enrichment analysis
@@ -219,21 +283,6 @@ genes <- ctwas_gene_res$genename[ctwas_gene_res$susie_pip>0.8]
 ```{r}
 #number of genes for gene set enrichment
 length(genes)
-```
-
-```{r echo=F, message=FALSE}
-if (length(genes)>0){
-  GO_enrichment <- enrichr(genes, dbs)
-
-  for (db in dbs){
-    print(db)
-    df <- GO_enrichment[[db]]
-    print(plotEnrich(GO_enrichment[[db]]))
-    df <- df[df$Adjusted.P.value<0.05,c("Term", "Overlap", "Adjusted.P.value", "Genes")]
-    print(df)
-  }
-}
-
 ```
 
 ## DisGeNET enrichment analysis for genes with PIP>0.5
@@ -274,4 +323,55 @@ if (length(genes)>0){
   print(enrichResult[,c("description", "size", "overlap", "FDR", "database", "userId")])
 }
 
+```
+
+
+```{r echo=FALSE}
+load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/G_list.RData")
+G_list <- G_list[G_list$gene_biotype %in% c("protein_coding"),]
+G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
+G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
+alpha <- 0.05
+source("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/locus_plot.R")
+```
+
+
+```{r echo=FALSE}
+ctwas_res$group <- "Expression"
+ctwas_res[ctwas_res$type=="SNP",]$group <- "SNP"
+```
+
+
+```{r}
+a <- locus_plot(region_tag="17_34", return_table=T,
+                      focus="ENSG00000175155.8",
+                      label_genes="ENSG00000175155.8",
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="left",
+                      legend_panel="",
+                      xlim = c(59,70))
+```
+
+```{r}
+a <- locus_plot(region_tag="12_1", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="left",
+                      legend_panel="")
+```
+
+```{r}
+a <- locus_plot(region_tag="2_14", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="left",
+                      legend_panel="")
 ```
