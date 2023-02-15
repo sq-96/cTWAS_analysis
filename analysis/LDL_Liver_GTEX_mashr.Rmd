@@ -42,8 +42,8 @@ rm(qclist, wgtlist, z_gene_chr)
 
 #load information for all genes
 sqlite <- RSQLite::dbDriver("SQLite")
-#db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
-db = RSQLite::dbConnect(sqlite, "/project2/mstephens/wcrouse/predictdb/mashr_Liver_nolnc.db")
+db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_Liver.db"))
+#db = RSQLite::dbConnect(sqlite, "/project2/mstephens/wcrouse/predictdb/mashr_Liver_nolnc.db")
 query <- function(...) RSQLite::dbGetQuery(db, ...)
 gene_info <- query("select gene, genename, gene_type from extra")
 RSQLite::dbDisconnect(db)
@@ -263,6 +263,9 @@ estimated_group_pve/sum(estimated_group_pve)
 
 ```{r}
 #distribution of PIPs
+ctwas_gene_res <- na.omit(ctwas_gene_res)
+ctwas_gene_res <- ctwas_gene_res[ctwas_gene_res$gene_type=="protein_coding",]
+
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 
 #genes with PIP>0.8 or 20 highest PIPs

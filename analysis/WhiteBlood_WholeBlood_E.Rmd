@@ -344,14 +344,25 @@ ctwas_res[ctwas_res$type=="SNP",]$group <- "SNP"
 
 ```{r}
 a <- locus_plot(region_tag="17_34", return_table=T,
-                      focus="ENSG00000175155.8",
-                      label_genes="ENSG00000175155.8",
+                      focus=NULL,
+                      label_genes=NULL,
                       rerun_ctwas=F,
                       rerun_load_only=F,
                       label_panel="both",
                       legend_side="left",
-                      legend_panel="",
-                      xlim = c(59,70))
+                      legend_panel="")
+```
+
+
+```{r}
+a <- locus_plot(region_tag="19_32", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="left",
+                      legend_panel="")
 ```
 
 ```{r}

@@ -353,6 +353,19 @@ a <- locus_plot(region_tag="17_34", return_table=T,
                       legend_panel="")
 ```
 
+
+```{r}
+a <- locus_plot(region_tag="19_32", return_table=T,
+                      focus=NULL,
+                      label_genes=NULL,
+                      rerun_ctwas=F,
+                      rerun_load_only=F,
+                      label_panel="both",
+                      legend_side="left",
+                      legend_panel="")
+```
+
+
 ```{r}
 a <- locus_plot(region_tag="12_1", return_table=T,
                       focus=NULL,

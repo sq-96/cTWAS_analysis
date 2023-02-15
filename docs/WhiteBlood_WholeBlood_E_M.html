@@ -9,11 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="sheng Qian" />
+<meta name="author" content="Sheng Qian" />
 
-<meta name="date" content="2022-10-18" />
 
-<title>White Blood - WholeBlood methylation</title>
+<title>WhiteBlood - WholeBlood Traits Jointly</title>
 
 <script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -359,9 +358,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">White Blood - WholeBlood methylation</h1>
-<h4 class="author">sheng Qian</h4>
-<h4 class="date">2022-10-18</h4>
+<h1 class="title toc-ignore">WhiteBlood - WholeBlood Traits Jointly</h1>
+<h4 class="author">Sheng Qian</h4>
+<h4 class="date">2023-2-1</h4>
 
 </div>
 
@@ -499,6 +498,14 @@ data
 </td>
 <td style="text-align:left;">
 code/ctwas_config_b38.R
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Whole_Blood_Splicing_mapping.RData
+</td>
+<td style="text-align:left;">
+data/mashr_sqtl/sqtl/mashr/mashr_Whole_Blood_Splicing_mapping.RData
 </td>
 </tr>
 <tr>
@@ -686,7 +693,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/WhiteBlood_WholeBlood_M.Rmd</code>) and HTML (<code>docs/WhiteBlood_WholeBlood_M.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/WhiteBlood_WholeBlood_E_M.Rmd</code>) and HTML (<code>docs/WhiteBlood_WholeBlood_E_M.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -715,7 +722,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/ada18289f58faa1f9f2d114fa14f06e3381e0038/analysis/WhiteBlood_WholeBlood_M.Rmd" target="_blank">ada1828</a>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/ada18289f58faa1f9f2d114fa14f06e3381e0038/analysis/WhiteBlood_WholeBlood_E_M.Rmd" target="_blank">ada1828</a>
 </td>
 <td>
 sq-96
@@ -729,50 +736,16 @@ update
 </tr>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/5575f7f82e271788a2aa77487a5d20f333ba1330/docs/WhiteBlood_WholeBlood_M.html" target="_blank">5575f7f</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-01-26
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/684d8067393232af8016d16fb18c1be26f069a77/docs/WhiteBlood_WholeBlood_M.html" target="_blank">684d806</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-01-26
-</td>
-<td>
-update
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/363ce6a003e38694e06d7d053fe58a5e8f24d8b5/analysis/WhiteBlood_WholeBlood_M.Rmd" target="_blank">363ce6a</a>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/1b50100d62962962bc758d366f5d3a8745d07135/analysis/WhiteBlood_WholeBlood_E_M.Rmd" target="_blank">1b50100</a>
 </td>
 <td>
 sq-96
 </td>
 <td>
-2023-01-26
+2023-02-07
 </td>
 <td>
 update
@@ -785,207 +758,500 @@ update
 </div>
 </div>
 </div>
-<div id="weight-qc" class="section level2">
-<h2>Weight QC</h2>
-<pre><code>[1] 13069</code></pre>
-<pre><code>[1] 11858</code></pre>
-<pre><code>
-   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
-1206  901  655  485  593  787  624  536  368  631  707  583  336  351  390  545 
-  17   18   19   20   21   22 
- 707  160  529  312  179  273 </code></pre>
-<pre><code>[1] 1</code></pre>
+<pre class="r"><code>analysis_id &lt;- params$analysis_id
+trait_id &lt;- params$trait_id
+weight &lt;- params$weight
+
+results_dir &lt;- paste0(&quot;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/&quot;, trait_id, &quot;/&quot;, weight)
+
+source(&quot;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R&quot;)
+options(digits = 4)</code></pre>
+<div id="load-ctwas-results" class="section level3">
+<h3>Load ctwas results</h3>
 </div>
-<div id="load-ctwas-results" class="section level2">
-<h2>Load ctwas results</h2>
 <div id="check-convergence-of-parameters" class="section level3">
 <h3>Check convergence of parameters</h3>
-<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
-Past versions of unnamed-chunk-4-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-4-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/684d8067393232af8016d16fb18c1be26f069a77/docs/figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-4-1.png" target="_blank">684d806</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-01-26
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/WhiteBlood_WholeBlood_E_M.Rmd/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#estimated group prior
 estimated_group_prior &lt;- estimated_group_prior_all[,ncol(group_prior_rec)]
 print(estimated_group_prior)</code></pre>
-<pre><code>      SNP      gene 
-0.0002296 0.0136450 </code></pre>
+<pre><code>                    SNP             Whole_Blood Whole_Blood_Methylation 
+              0.0001858               0.0220856               0.0112016 </code></pre>
 <pre class="r"><code>#estimated group prior variance
 estimated_group_prior_var &lt;- estimated_group_prior_var_all[,ncol(group_prior_var_rec)]
 print(estimated_group_prior_var)</code></pre>
-<pre><code>  SNP  gene 
-18.16 22.91 </code></pre>
+<pre><code>                    SNP             Whole_Blood Whole_Blood_Methylation 
+                  17.07                   19.70                   15.23 </code></pre>
 <pre class="r"><code>#estimated enrichment
 estimated_enrichment &lt;- estimated_enrichment_all[ncol(group_prior_var_rec)]
 print(estimated_enrichment)</code></pre>
-<pre><code>[1] 59.42</code></pre>
+<pre><code>[1] 60.16</code></pre>
 <pre class="r"><code>#report sample size
 print(sample_size)</code></pre>
 <pre><code>[1] 350470</code></pre>
 <pre class="r"><code>#report group size
 print(group_size)</code></pre>
-<pre><code>    SNP    gene 
-8696600   11858 </code></pre>
+<pre><code>                    SNP             Whole_Blood Whole_Blood_Methylation 
+                8696600                   11198                   11858 </code></pre>
 <pre class="r"><code>#estimated group PVE
 estimated_group_pve &lt;- estimated_group_pve_all[,ncol(group_prior_rec)]
 print(estimated_group_pve)</code></pre>
-<pre><code>    SNP    gene 
-0.10348 0.01058 </code></pre>
+<pre><code>                    SNP             Whole_Blood Whole_Blood_Methylation 
+               0.078703                0.013900                0.005771 </code></pre>
 <pre class="r"><code>#total PVE
 sum(estimated_group_pve)</code></pre>
-<pre><code>[1] 0.1141</code></pre>
+<pre><code>[1] 0.09837</code></pre>
 <pre class="r"><code>#attributable PVE
 estimated_group_pve/sum(estimated_group_pve)</code></pre>
-<pre><code>    SNP    gene 
-0.90726 0.09274 </code></pre>
+<pre><code>                    SNP             Whole_Blood Whole_Blood_Methylation 
+                0.80004                 0.14129                 0.05867 </code></pre>
 </div>
+<div id="top-expressionintroncpg-units" class="section level3">
+<h3>Top expression/intron/CpG units</h3>
+<pre><code>      genename            gene_id susie_pip       group region_tag
+21388      FES ENSG00000182511.11    1.0000  Expression      15_43
+20471    TAGAP ENSG00000164691.16    1.0000  Expression      6_103
+19517 ARHGAP15 ENSG00000075884.13    1.0000  Expression       2_85
+19300    PSEN2 ENSG00000143801.16    1.0000  Expression      1_116
+19524    BAZ2B ENSG00000123636.17    1.0000  Expression       2_96
+20703    VLDLR ENSG00000147852.15    0.9999  Expression        9_3
+19778   MED12L ENSG00000144893.12    0.9979  Expression       3_93
+20530    CREB5 ENSG00000146592.16    0.9978  Expression       7_24
+19108   LAPTM5  ENSG00000162511.7    0.9977  Expression       1_20
+19283    CNIH4 ENSG00000143771.11    0.9977  Expression      1_114
+19967  SLC22A4  ENSG00000197208.5    0.9974  Expression       5_79
+19740    ATXN7 ENSG00000163635.17    0.9966  Expression       3_43
+21162    ALDH2 ENSG00000111275.12    0.9943  Expression      12_67
+22685  ATP13A1 ENSG00000105726.16    0.9937  Expression      19_15
+21206    LAMP1 ENSG00000185896.10    0.9922  Expression      13_62
+19184 SLC25A24 ENSG00000085491.15    0.9916  Expression       1_67
+23047    HDHD5 ENSG00000069998.12    0.9910  Expression       22_1
+20791     LIPA ENSG00000107798.17    0.9882  Expression      10_57
+19253     SELL  ENSG00000188404.8    0.9870  Expression       1_83
+22389   TTC39C ENSG00000168234.12    0.9855  Expression      18_12
+22103    YPEL2  ENSG00000175155.8    0.9845  Expression      17_34
+22028   KIF18B ENSG00000186185.13    0.9818  Expression      17_26
+21096   ACVRL1         cg21236262    0.9814 Methylation      12_33
+20921    PTPRJ ENSG00000149177.12    0.9786  Expression      11_29
+19882     TET2 ENSG00000168769.13    0.9751  Expression       4_69
+19844    ARAP2 ENSG00000047365.11    0.9740  Expression       4_30
+21747    MYO1C         cg02622416    0.9725 Methylation       17_2
+20723    OSTF1 ENSG00000134996.11    0.9706  Expression       9_35
+19888   DDX60L ENSG00000181381.13    0.9695  Expression      4_109
+21627    ZFPM1  ENSG00000179588.8    0.9681  Expression      16_54
+19666   UQCRC1 ENSG00000010256.10    0.9663  Expression       3_34
+20026    CPEB4 ENSG00000113742.12    0.9649  Expression      5_104
+21191    KLF12 ENSG00000118922.17    0.9646  Expression      13_36
+22407   POLR2E ENSG00000099817.11    0.9592  Expression       19_2
+20041    ATXN1 ENSG00000124788.17    0.9541  Expression       6_13
+19812     ADD1 ENSG00000087274.16    0.9531  Expression        4_4
+21581     GLG1 ENSG00000090863.11    0.9513  Expression      16_40
+20753     NEK6 ENSG00000119408.16    0.9510  Expression       9_64
+22947    UBOX5 ENSG00000185019.16    0.9504  Expression       20_5
+19150   CITED4  ENSG00000179862.6    0.9463  Expression       1_25
+19499   HS6ST1  ENSG00000136720.6    0.9378  Expression       2_75
+21959      MLX ENSG00000108788.11    0.9375  Expression      17_25
+19834  TBC1D14 ENSG00000132405.18    0.9338  Expression        4_8
+20994      CD6         cg27098804    0.9338 Methylation      11_34
+19529    CD302  ENSG00000241399.6    0.9273  Expression       2_96
+22566    AP1M2 ENSG00000129354.11    0.9248  Expression       19_9
+19169   CDC14A ENSG00000079335.18    0.9238  Expression       1_61
+22427    ELANE  ENSG00000197561.6    0.9216  Expression       19_2
+22619    MYO9B ENSG00000099331.13    0.9106  Expression      19_14
+20628     ACHE ENSG00000087085.13    0.9097  Expression       7_62
+21575    ITGAL         cg24033122    0.9041 Methylation      16_24
+19467   RNF181  ENSG00000168894.9    0.9034  Expression       2_54
+22850     CA11  ENSG00000063180.8    0.9012  Expression      19_33
+19638     CCR8  ENSG00000179934.6    0.8985  Expression       3_28
+19762    PAQR9  ENSG00000188582.8    0.8981  Expression       3_87
+22854    CCDC9 ENSG00000105321.12    0.8952  Expression      19_33
+19905    RAI14 ENSG00000039560.13    0.8940  Expression       5_23
+19954  TNFAIP8  ENSG00000145779.7    0.8880  Expression       5_72
+20593    CPSF4 ENSG00000160917.14    0.8788  Expression       7_61
+20013   ADAM19 ENSG00000135074.15    0.8759  Expression       5_93
+22127 SLC9A3R1 ENSG00000109062.11    0.8753  Expression      17_42
+19261 TRAF3IP3 ENSG00000009790.14    0.8750  Expression      1_106
+21837    RAB34 ENSG00000109113.18    0.8719  Expression      17_18
+22201    UBE2O ENSG00000175931.12    0.8622  Expression      17_43
+20335    ITPR3 ENSG00000096433.10    0.8544  Expression       6_28
+19789    ABCC5 ENSG00000114770.16    0.8522  Expression      3_112
+19896   MTMR12 ENSG00000150712.10    0.8416  Expression       5_22
+20558    CCT6A         cg12555334    0.8415 Methylation       7_40
+19351     DTNB ENSG00000138101.18    0.8413  Expression       2_15
+22693   LRRC25  ENSG00000175489.9    0.8398  Expression      19_15
+19858     REST ENSG00000084093.16    0.8344  Expression       4_41
+19894     NPR3 ENSG00000113389.15    0.8330  Expression       5_22
+22187    JMJD6 ENSG00000070495.14    0.8264  Expression      17_43
+22819     GPR4  ENSG00000177464.4    0.8264  Expression      19_32
+19234    RCSD1 ENSG00000198771.10    0.8227  Expression       1_82
+19931    ZBED3  ENSG00000132846.5    0.8163  Expression       5_45
+19747   PXYLP1 ENSG00000155893.12    0.8138  Expression       3_86
+20442  L3MBTL3  ENSG00000198945.7    0.8122  Expression       6_86
+21188     KLF5 ENSG00000102554.13    0.8086  Expression      13_35
+22701     LSM4         cg15796753    0.8051 Methylation      19_15</code></pre>
 </div>
-<div id="genes-with-highest-pips" class="section level2">
-<h2>Genes with highest PIPs</h2>
-<pre class="r"><code>#distribution of PIPs
-hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main=&quot;Distribution of Gene PIPs&quot;)</code></pre>
-<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/684d8067393232af8016d16fb18c1be26f069a77/docs/figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-6-1.png" target="_blank">684d806</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-01-26
-</td>
-</tr>
-</tbody>
-</table>
+<div id="top-genes-by-expressionsplicingmethylation-pip" class="section level3">
+<h3>Top genes by expression/splicing/methylation pip</h3>
+<pre><code>      genename susie_pip       group
+12320    NINJ2    1.1754 Methylation
+10139     AMZ1    1.0344 Methylation
+12803   PTPRN2    1.0155 Methylation
+2988       FES    1.0000  Expression
+8211     TAGAP    1.0000  Expression
+536   ARHGAP15    1.0000  Expression
+6527     PSEN2    1.0000  Expression
+812      BAZ2B    1.0000  Expression
+9260     VLDLR    0.9999  Expression
+11131     ELK3    0.9985 Methylation
+4774    MED12L    0.9979  Expression
+1935     CREB5    0.9978  Expression
+4334    LAPTM5    0.9977  Expression
+1761     CNIH4    0.9977  Expression
+7574   SLC22A4    0.9974  Expression
+750      ATXN7    0.9966  Expression
+315      ALDH2    0.9943  Expression
+706    ATP13A1    0.9937  Expression
+4324     LAMP1    0.9922  Expression
+7591  SLC25A24    0.9916  Expression
+13331   SPTLC2    0.9916 Methylation
+3601     HDHD5    0.9910  Expression
+4431      LIPA    0.9882  Expression
+7349      SELL    0.9870  Expression
+8964    TTC39C    0.9855  Expression
+9441     YPEL2    0.9845  Expression
+4188    KIF18B    0.9818  Expression
+10033   ACVRL1    0.9814 Methylation
+6614     PTPRJ    0.9786  Expression
+8342      TET2    0.9751  Expression
+517      ARAP2    0.9740  Expression
+12993    RRBP1    0.9731 Methylation
+12231    MYO1C    0.9725 Methylation
+5750     OSTF1    0.9706  Expression
+2212    DDX60L    0.9695  Expression
+9547     ZFPM1    0.9681  Expression
+9163    UQCRC1    0.9663  Expression
+1896     CPEB4    0.9649  Expression
+4219     KLF12    0.9646  Expression
+6290    POLR2E    0.9592  Expression
+744      ATXN1    0.9541  Expression
+181       ADD1    0.9531  Expression
+3293      GLG1    0.9513  Expression
+5376      NEK6    0.9510  Expression
+9089     UBOX5    0.9504  Expression
+1658    CITED4    0.9463  Expression
+13027    SBNO2    0.9453 Methylation
+3753    HS6ST1    0.9378  Expression
+4926       MLX    0.9375  Expression
+8245   TBC1D14    0.9338  Expression
+10599      CD6    0.9338 Methylation
+1386     CD302    0.9273  Expression
+452      AP1M2    0.9248  Expression
+1422    CDC14A    0.9238  Expression
+2581     ELANE    0.9216  Expression
+5206     MYO9B    0.9106  Expression
+91        ACHE    0.9097  Expression
+11723    ITGAL    0.9045 Methylation
+7012    RNF181    0.9034  Expression
+1096      CA11    0.9012  Expression
+1345      CCR8    0.8985  Expression
+5828     PAQR9    0.8981  Expression
+1299     CCDC9    0.8952  Expression
+13831    ZBTB2    0.8947 Methylation
+6744     RAI14    0.8940  Expression
+8661   TNFAIP8    0.8880  Expression
+1912     CPSF4    0.8788  Expression
+154     ADAM19    0.8759  Expression
+7716  SLC9A3R1    0.8753  Expression
+8778  TRAF3IP3    0.8750  Expression
+6694     RAB34    0.8719  Expression
+13710    UBE2I    0.8672 Methylation
+9069     UBE2O    0.8622  Expression
+11269   FBRSL1    0.8595 Methylation
+4056     ITPR3    0.8544  Expression
+36       ABCC5    0.8522  Expression
+5123    MTMR12    0.8416  Expression
+10582    CCT6A    0.8415 Methylation
+2424      DTNB    0.8413  Expression
+4508    LRRC25    0.8398  Expression
+6880      REST    0.8344  Expression
+5534      NPR3    0.8330  Expression
+4077     JMJD6    0.8264  Expression
+3442      GPR4    0.8264  Expression
+6854     RCSD1    0.8227  Expression
+11185   ERICH1    0.8222 Methylation
+9457     ZBED3    0.8163  Expression
+6643    PXYLP1    0.8138  Expression
+4310   L3MBTL3    0.8122  Expression
+4223      KLF5    0.8086  Expression
+11797 KIAA0040    0.8080 Methylation
+11979     LSM4    0.8051 Methylation</code></pre>
 </div>
+<div id="top-genes-by-combined-pip" class="section level3">
+<h3>Top genes by combined PIP</h3>
+<pre><code>      genename combined_pip expression_pip splicing_pip methylation_pip
+10841    YPEL2        1.745          0.985            0           0.760
+5048    LAPTM5        1.737          0.998            0           0.739
+6286     NINJ2        1.208          0.033            0           1.175
+9189    SPTLC2        1.173          0.181            0           0.992
+9979   TNFAIP8        1.119          0.888            0           0.231
+8702   SLC12A7        1.084          0.397            0           0.687
+88       ACAP1        1.072          0.325            0           0.748
+8241     RRBP1        1.043          0.070            0           0.973
+616   ARHGAP15        1.042          1.000            0           0.042
+3083     EOMES        1.035          0.604            0           0.431
+420       AMZ1        1.034          0.000            0           1.034
+854      ATXN1        1.029          0.954            0           0.075
+3013      ELK3        1.029          0.030            0           0.999
+1571     CD101        1.022          0.685            0           0.337
+7651     PTPRJ        1.019          0.979            0           0.040
+5549    MED12L        1.015          0.998            0           0.017
+7655    PTPRN2        1.015          0.000            0           1.015
+7412     PPP5C        1.001          0.405            0           0.597
+935      BAZ2B        1.000          1.000            0           0.000
+3473       FES        1.000          1.000            0           0.000
+7554     PSEN2        1.000          1.000            0           0.000
+9481     TAGAP        1.000          1.000            0           0.000
+10638    VLDLR        1.000          1.000            0           0.000
+6021     MYO1C        0.999          0.026            0           0.973
+2041     CNIH4        0.998          0.998            0           0.000
+2249     CREB5        0.998          0.998            0           0.000
+860      ATXN7        0.997          0.997            0           0.000
+8744   SLC22A4        0.997          0.997            0           0.000
+361      ALDH2        0.994          0.994            0           0.000
+806    ATP13A1        0.994          0.994            0           0.000
+2205     CPEB4        0.992          0.965            0           0.027
+5036     LAMP1        0.992          0.992            0           0.000
+8763  SLC25A24        0.992          0.992            0           0.000
+4188     HDHD5        0.991          0.991            0           0.000
+5157      LIPA        0.989          0.988            0           0.001
+8154      RORC        0.988          0.770            0           0.218
+8480      SELL        0.987          0.987            0           0.000
+10316   TTC39C        0.986          0.986            0           0.000
+4866    KIF18B        0.982          0.982            0           0.000
+164     ACVRL1        0.981          0.000            0           0.981
+9628      TET2        0.975          0.975            0           0.000
+594      ARAP2        0.974          0.974            0           0.000
+6313     NLRC5        0.972          0.675            0           0.297
+6678     OSTF1        0.971          0.971            0           0.000
+2569    DDX60L        0.969          0.969            0           0.000
+10959    ZFPM1        0.968          0.968            0           0.000
+10532   UQCRC1        0.966          0.966            0           0.000
+4906     KLF12        0.965          0.965            0           0.000
+9520   TBC1D14        0.961          0.934            0           0.027
+7287    POLR2E        0.960          0.959            0           0.000
+6224      NEK6        0.957          0.951            0           0.006
+10426    UBE2I        0.957          0.090            0           0.867
+8885   SLC5A11        0.955          0.288            0           0.667
+4358    HS6ST1        0.954          0.938            0           0.016
+215       ADD1        0.953          0.953            0           0.000
+3841      GLG1        0.951          0.951            0           0.000
+10453    UBOX5        0.950          0.950            0           0.000
+1923    CITED4        0.946          0.946            0           0.000
+8366     SBNO2        0.946          0.000            0           0.945
+2824      DTNB        0.942          0.841            0           0.100
+5716       MLX        0.938          0.938            0           0.000
+1617       CD6        0.934          0.000            0           0.934
+10867    ZBTB2        0.933          0.038            0           0.895
+1599     CD302        0.927          0.927            0           0.000
+523      AP1M2        0.925          0.925            0           0.000
+3388    FBRSL1        0.925          0.065            0           0.860
+1637    CDC14A        0.924          0.924            0           0.000
+3006     ELANE        0.922          0.922            0           0.000
+7798     RAI14        0.915          0.894            0           0.021
+6034     MYO9B        0.911          0.911            0           0.000
+103       ACHE        0.910          0.910            0           0.000
+4670     ITGAL        0.904          0.000            0           0.904
+8106    RNF181        0.903          0.903            0           0.000
+1261      CA11        0.901          0.901            0           0.000
+1556      CCR8        0.899          0.899            0           0.000
+6772     PAQR9        0.898          0.898            0           0.000
+1502     CCDC9        0.895          0.895            0           0.000
+175     ADAM19        0.884          0.876            0           0.008
+9992  TNFRSF1A        0.883          0.085            0           0.798
+43       ABCC5        0.881          0.852            0           0.029
+2223     CPSF4        0.879          0.879            0           0.000
+8913  SLC9A3R1        0.875          0.875            0           0.000
+10112 TRAF3IP3        0.875          0.875            0           0.000
+4835  KIAA0040        0.874          0.066            0           0.808
+7743     RAB34        0.872          0.872            0           0.000
+1197  C20orf96        0.869          0.727            0           0.141
+1565     CCT6A        0.869          0.028            0           0.841
+3143    ERICH1        0.869          0.047            0           0.822
+10431    UBE2O        0.862          0.862            0           0.000
+2736    DNASE1        0.854          0.532            0           0.322
+4696     ITPR3        0.854          0.854            0           0.000
+5019   L3MBTL3        0.842          0.812            0           0.029
+5418    MAP2K5        0.842          0.066            0           0.775
+5939    MTMR12        0.842          0.842            0           0.000
+5248    LRRC25        0.840          0.840            0           0.000
+7961      REST        0.834          0.834            0           0.000
+6403      NPR3        0.833          0.833            0           0.000
+7933     RCSD1        0.828          0.823            0           0.005
+4003      GPR4        0.827          0.826            0           0.000
+4720     JMJD6        0.826          0.826            0           0.000
+580     APOLD1        0.825          0.027            0           0.798
+7547    PRUNE2        0.823          0.784            0           0.038
+10860    ZBED3        0.816          0.816            0           0.000
+5297      LSM4        0.815          0.010            0           0.805
+7685    PXYLP1        0.814          0.814            0           0.000
+7766    RABEP1        0.810          0.787            0           0.023
+4910      KLF5        0.809          0.809            0           0.000
+      region_tag
+10841      17_34
+5048        1_20
+6286        12_1
+9189       14_36
+9979        5_72
+8702         5_2
+88          17_6
+8241       20_13
+616         2_85
+3083        3_20
+420          7_4
+854         6_13
+3013       12_57
+1571        1_72
+7651       11_29
+5549        3_93
+7655        7_98
+7412       19_32
+935         2_96
+3473       15_43
+7554       1_116
+9481       6_103
+10638        9_3
+6021        17_2
+2041       1_114
+2249        7_24
+860         3_43
+8744        5_79
+361        12_67
+806        19_15
+2205       5_104
+5036       13_62
+8763        1_67
+4188        22_1
+5157       10_57
+8154        1_74
+8480        1_83
+10316      18_12
+4866       17_26
+164        12_33
+9628        4_69
+594         4_30
+6313       16_31
+6678        9_35
+2569       4_109
+10959      16_54
+10532       3_34
+4906       13_36
+9520         4_8
+7287        19_2
+6224        9_64
+10426       16_2
+8885       16_21
+4358        2_75
+215          4_4
+3841       16_40
+10453       20_5
+1923        1_25
+8366        19_2
+2824        2_15
+5716       17_25
+1617       11_34
+10867       6_98
+1599        2_96
+523         19_9
+3388       12_82
+1637        1_61
+3006        19_2
+7798        5_23
+6034       19_14
+103         7_62
+4670       16_24
+8106        2_54
+1261       19_33
+1556        3_28
+6772        3_87
+1502       19_33
+175         5_93
+9992        12_7
+43         3_112
+2223        7_61
+8913       17_42
+10112      1_106
+4835        1_86
+7743       17_18
+1197        20_1
+1565        7_40
+3143         8_1
+10431      17_43
+2736        16_3
+4696        6_28
+5019        6_86
+5418       15_31
+5939        5_22
+5248       19_15
+7961        4_41
+6403        5_22
+7933        1_82
+4003       19_32
+4720       17_43
+580        12_12
+7547        9_36
+10860       5_45
+5297       19_15
+7685        3_86
+7766        17_5
+4910       13_35</code></pre>
 </div>
-<pre class="r"><code>#genes with PIP&gt;0.8 or 20 highest PIPs
-head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip&gt;0.8), 20))</code></pre>
-<pre><code>           genename region_tag susie_pip    mu2       PVE       z num_eqtl
-11419          &lt;NA&gt;       6_24    0.9871 163.38 4.602e-04  -1.928        1
-11586        ACVRL1      12_32    0.9860  54.44 1.532e-04  -7.281        1
-11669         NLRC5      16_30    0.9791  45.92 1.283e-04  -6.699        1
-11679         MYO1C       17_2    0.9771  44.76 1.248e-04   6.588        1
-11654         ITGAL      16_24    0.9681 152.53 4.213e-04  12.478        1
-11858          &lt;NA&gt;      21_18    0.9601  62.06 1.700e-04  -7.930        1
-11355    AC034220.3       5_79    0.9584 131.36 3.592e-04 -13.657        1
-11521 RP11-351M16.3      10_20    0.9545 125.03 3.405e-04 -11.496        1
-11788   CTC-503J8.4       19_6    0.9470  23.06 6.230e-05  -4.440        1
-11323  CTD-2330K9.3       3_35    0.9463  67.85 1.832e-04  -8.414        1
-11470          &lt;NA&gt;       6_34    0.9461  24.08 6.500e-05  -4.669        1
-11534           CD6      11_34    0.9456  25.48 6.875e-05  -4.279        1
-11831          &lt;NA&gt;      20_38    0.9364  26.24 7.012e-05   3.735        1
-11555    AP000908.1      11_67    0.9357  77.08 2.058e-04  -8.003        1
-11332          &lt;NA&gt;       4_40    0.9142  34.54 9.008e-05  -7.206        1
-11272        LAPTM5       1_20    0.9132  38.28 9.975e-05   6.601        1
-11507          &lt;NA&gt;       8_83    0.9092  29.76 7.722e-05   5.231        1
-11326          &lt;NA&gt;        4_8    0.9029  25.77 6.638e-05   4.861        1
-11318         EOMES       3_20    0.8851  60.43 1.526e-04   7.702        1
-11505 RP11-136O12.2       8_83    0.8820  35.71 8.986e-05   5.719        1
-11338          &lt;NA&gt;       5_35    0.8709  40.59 1.009e-04  -5.997        1
-11502         CCT6A       7_40    0.8686  49.07 1.216e-04  -5.881        1
-11703          &lt;NA&gt;      17_23    0.8549  65.49 1.597e-04  12.877        1
-11701         PSMD3      17_23    0.8543 612.47 1.493e-03 -37.218        1
-11794          LSM4      19_15    0.8142  24.47 5.684e-05   3.864        1</code></pre>
-</div>
-<div id="go-enrichment-analysis-for-genes-with-pip0.8" class="section level2">
-<h2>GO enrichment analysis for genes with PIP&gt;0.8</h2>
+<div id="go-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
+<h2>GO enrichment analysis for genes with PIP&gt;0.5</h2>
 <pre class="r"><code>#number of genes for gene set enrichment
 length(genes)</code></pre>
-<pre><code>[1] 25</code></pre>
+<pre><code>[1] 107</code></pre>
+<pre><code>Uploading data to Enrichr... Done.
+  Querying GO_Biological_Process_2021... Done.
+  Querying GO_Cellular_Component_2021... Done.
+  Querying GO_Molecular_Function_2021... Done.
+Parsing results... Done.
+[1] &quot;GO_Biological_Process_2021&quot;</code></pre>
+<p><img src="figure/WhiteBlood_WholeBlood_E_M.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Cellular_Component_2021&quot;</code></pre>
+<p><img src="figure/WhiteBlood_WholeBlood_E_M.Rmd/unnamed-chunk-12-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)
+[1] &quot;GO_Molecular_Function_2021&quot;</code></pre>
+<p><img src="figure/WhiteBlood_WholeBlood_E_M.Rmd/unnamed-chunk-12-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] Term             Overlap          Adjusted.P.value Genes           
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
 <div id="disgenet-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
 <h2>DisGeNET enrichment analysis for genes with PIP&gt;0.5</h2>
-<pre><code>Warning in disease_enrichment(entities = genes, vocabulary = &quot;HGNC&quot;, database =
-&quot;CURATED&quot;): Removing duplicates from input list.</code></pre>
-<pre><code>                                                                     Description
-10                                                                     Epistaxis
-19                                                                Telangiectasis
-20                                              Pulmonary Arteriovenous Fistulas
-22                               Congenital pulmonary arteriovenous malformation
-26                                           Arteriovenous malformation of liver
-34 HEREDITARY HEMORRHAGIC TELANGIECTASIA-RELATED PULMONARY ARTERIAL HYPERTENSION
-35                                                  OSLER-RENDU-WEBER SYNDROME 2
-37                                          Pulmonary arteriovenous malformation
-16                                                 Liver Cirrhosis, Experimental
-25                                         Sensorineural hearing loss, bilateral
-        FDR Ratio  BgRatio
-10 0.004947   1/8   1/9703
-19 0.004947   1/8   1/9703
-20 0.004947   1/8   1/9703
-22 0.004947   1/8   1/9703
-26 0.004947   1/8   1/9703
-34 0.004947   1/8   1/9703
-35 0.004947   1/8   1/9703
-37 0.004947   1/8   1/9703
-16 0.007416   4/8 774/9703
-25 0.007416   1/8   3/9703</code></pre>
+<pre><code>                              Description     FDR Ratio  BgRatio
+12  Refractory anaemia with excess blasts 0.07215  1/61   1/9703
+40      Cholesterol Ester Storage Disease 0.07215  1/61   1/9703
+63                              Epistaxis 0.07215  1/61   1/9703
+68                               Freckles 0.07215  1/61   1/9703
+92          Liver Cirrhosis, Experimental 0.07215 13/61 774/9703
+99                              Melanosis 0.07215  1/61   1/9703
+100                              Chloasma 0.07215  1/61   1/9703
+139                        Telangiectasis 0.07215  1/61   1/9703
+148                        Wolman Disease 0.07215  1/61   1/9703
+164      Pulmonary Arteriovenous Fistulas 0.07215  1/61   1/9703</code></pre>
 </div>
 <div id="webgestalt-enrichment-analysis-for-genes-with-pip0.5" class="section level2">
 <h2>WebGestalt enrichment analysis for genes with PIP&gt;0.5</h2>
 <pre><code>Loading the functional categories...
 Loading the ID list...
 Loading the reference list...
-Performing the enrichment analysis...</code></pre>
-<pre><code>Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
-minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
-<pre><code>NULL</code></pre>
+Performing the enrichment analysis...
+          description size overlap     FDR       database
+1 Autoimmune Diseases  329      13 0.04831 disease_GLAD4U
+                                                                            userId
+1 EOMES;CD101;PTPRN2;TAGAP;SLC22A4;CPEB4;RORC;SELL;CD6;MYO9B;ITGAL;TNFRSF1A;DNASE1</code></pre>
 <pre><code>Loading required package: S4Vectors</code></pre>
 <pre><code>Loading required package: stats4</code></pre>
 <pre><code>Loading required package: BiocGenerics</code></pre>
@@ -1019,7 +1285,7 @@ Attaching package: &#39;S4Vectors&#39;</code></pre>
                       label_panel=&quot;both&quot;,
                       legend_side=&quot;left&quot;,
                       legend_panel=&quot;&quot;)</code></pre>
-<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/WhiteBlood_WholeBlood_E_M.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>a &lt;- locus_plot(region_tag=&quot;19_32&quot;, return_table=T,
                       focus=NULL,
                       label_genes=NULL,
@@ -1028,44 +1294,7 @@ Attaching package: &#39;S4Vectors&#39;</code></pre>
                       label_panel=&quot;both&quot;,
                       legend_side=&quot;left&quot;,
                       legend_panel=&quot;&quot;)</code></pre>
-<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
-Past versions of unnamed-chunk-14-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-14-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/684d8067393232af8016d16fb18c1be26f069a77/docs/figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-14-1.png" target="_blank">684d806</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-01-26
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/WhiteBlood_WholeBlood_E_M.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>a &lt;- locus_plot(region_tag=&quot;12_1&quot;, return_table=T,
                       focus=NULL,
                       label_genes=NULL,
@@ -1074,7 +1303,7 @@ sq-96
                       label_panel=&quot;both&quot;,
                       legend_side=&quot;left&quot;,
                       legend_panel=&quot;&quot;)</code></pre>
-<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/WhiteBlood_WholeBlood_E_M.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>a &lt;- locus_plot(region_tag=&quot;2_14&quot;, return_table=T,
                       focus=NULL,
                       label_genes=NULL,
@@ -1083,7 +1312,7 @@ sq-96
                       label_panel=&quot;both&quot;,
                       legend_side=&quot;left&quot;,
                       legend_panel=&quot;&quot;)</code></pre>
-<p><img src="figure/WhiteBlood_WholeBlood_M.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/WhiteBlood_WholeBlood_E_M.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
