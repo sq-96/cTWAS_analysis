@@ -288,7 +288,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -297,7 +297,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -306,10 +306,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2023-02-12
+<strong>Last updated:</strong> 2023-02-15
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -325,28 +325,28 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree79c714679d6bec94844a9d6b3d20c5f8be84a2bbtargetblank79c7146a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/79c714679d6bec94844a9d6b3d20c5f8be84a2bb" target="_blank">79c7146</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree213f0e42e1b3a652f241e1b264d04fd3ccc9a8fbtargetblank213f0e4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/213f0e42e1b3a652f241e1b264d04fd3ccc9a8fb" target="_blank">213f0e4</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree79c714679d6bec94844a9d6b3d20c5f8be84a2bbtargetblank79c7146a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree213f0e42e1b3a652f241e1b264d04fd3ccc9a8fbtargetblank213f0e4a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/79c714679d6bec94844a9d6b3d20c5f8be84a2bb" target="_blank">79c7146</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/213f0e42e1b3a652f241e1b264d04fd3ccc9a8fb" target="_blank">213f0e4</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -375,10 +375,8 @@ Untracked files:
     Untracked:  data/LDL_E_S/
     Untracked:  data/LDL_M/
     Untracked:  data/LDL_S/
-    Untracked:  data/LDL_multi/
     Untracked:  data/PGC3_SCZ_wave3_public.v2.tsv
     Untracked:  data/SCZ/
-    Untracked:  data/SCZ_2014_EUR/
     Untracked:  data/SCZ_2018/
     Untracked:  data/SCZ_2018_S/
     Untracked:  data/SCZ_2020/
@@ -401,20 +399,10 @@ Untracked files:
     Untracked:  data/mashr_Heart_Atrial_Appendage.db
     Untracked:  data/mashr_sqtl/
     Untracked:  data/mqtl/
-    Untracked:  data/multigroup/
     Untracked:  data/notes.txt
     Untracked:  data/scz_2018.RDS
     Untracked:  data/summary_known_genes_annotations.xlsx
     Untracked:  temp_LDR/
-    Untracked:  top_genes_32.txt
-    Untracked:  top_genes_37.txt
-    Untracked:  top_genes_43.txt
-    Untracked:  top_genes_54.txt
-    Untracked:  top_genes_81.txt
-    Untracked:  z_snp_pos_SCZ.RData
-    Untracked:  z_snp_pos_SCZ_2014_EUR.RData
-    Untracked:  z_snp_pos_SCZ_2018.RData
-    Untracked:  z_snp_pos_SCZ_2020.RData
 
 Unstaged changes:
     Deleted:    analysis/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd
@@ -461,6 +449,7 @@ Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
     Deleted:    analysis/Glucose_Adipose_Subcutaneous.Rmd
     Deleted:    analysis/Glucose_Adipose_Visceral_Omentum.Rmd
+    Modified:   analysis/index.Rmd
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.err
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.out
     Deleted:    code/White_Blood_M_out/White_Blood_ColonTransverse.err
@@ -518,6 +507,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/097dbbcfab7aceda6ae774198bae7627d23e6bb2/docs/index.html" target="_blank">097dbbc</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-02-12
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -2085,6 +2091,9 @@ Start workflowr project.
 <p>White Blood - WholeBlood Single mQTL <a href="WhiteBlood_WholeBlood_M.html">link</a></p>
 <p>White Blood - WholeBlood mashr Expression <a href="WhiteBlood_WholeBlood_E.html">link</a></p>
 <p>White Blood - E S M jointly <a href="WhiteBlood_WholeBlood_E_S_M.html">link</a></p>
+<p>White Blood - E M jointly <a href="WhiteBlood_WholeBlood_E_M.html">link</a></p>
+<p>White Blood - E <a href="WhiteBlood_WholeBlood_E.html">link</a></p>
+<p>White Blood - M <a href="WhiteBlood_WholeBlood_M.html">link</a></p>
 </div>
 <div id="cpg-annotations" class="section level3">
 <h3>CpG Annotations</h3>
