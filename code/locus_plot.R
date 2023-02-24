@@ -234,3 +234,97 @@ gene_track <- function(a, label_pos=NULL){
   
   plotTracks(biomTrack, collapseTranscripts = "meta", transcriptAnnotation = "symbol", from=start, to=end, panel.only=T, add=F)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+read_pvar <- function(pvarf){
+  pvardt <- data.table::fread(pvarf, skip = "#CHROM")
+  pvardt <- dplyr::rename(pvardt, chrom = "#CHROM", pos = "POS", 
+                          alt = "ALT", ref = "REF", id = "ID")
+  pvardt <- pvardt[, c("chrom", "id", "pos", "alt", "ref")]
+  pvardt
+}
+
+prep_pvar <- function (pgenf, outputdir = getwd()){
+  if (file_ext(pgenf) == "pgen") {
+    pvarf <- paste0(file_path_sans_ext(pgenf), ".pvar")
+    pvarf2 <- paste0(outputdir, basename(file_path_sans_ext(pgenf)), 
+                     ".hpvar")
+    firstl <- read.table(file = pvarf, header = F, comment.char = "", 
+                         nrows = 1, stringsAsFactors = F)
+    if (substr(firstl[1, 1], 1, 1) == "#") {
+      pvarfout <- pvarf
+    }
+    else {
+      pvarfout <- pvarf2
+      if (!file.exists(pvarf2)) {
+        pvar <- data.table::fread(pvarf, header = F)
+        if (ncol(pvar) == 6) {
+          colnames(pvar) <- c("#CHROM", "ID", "CM", "POS", 
+                              "ALT", "REF")
+        }
+        else if (ncol(pvar) == 5) {
+          colnames(pvar) <- c("#CHROM", "ID", "POS", 
+                              "ALT", "REF")
+        }
+        else {
+          stop(".pvar file has incorrect format")
+        }
+        data.table::fwrite(pvar, file = pvarf2, sep = "\t", 
+                           quote = F)
+      }
+    }
+  }
+  else if (file_ext(pgenf) == "bed") {
+    pvarf <- paste0(file_path_sans_ext(pgenf), ".bim")
+    pvarf2 <- file.path(outputdir, paste0(basename(file_path_sans_ext(pgenf)), 
+                                          ".hbim"))
+    if (!file.exists(pvarf2)) {
+      pvar <- data.table::fread(pvarf, header = F)
+      colnames(pvar) <- c("#CHROM", "ID", "CM", "POS", 
+                          "ALT", "REF")
+      data.table::fwrite(pvar, file = pvarf2, sep = "\t", 
+                         quote = F)
+    }
+    pvarfout <- pvarf2
+  }
+  else {
+    stop("Unrecognized genotype input format")
+  }
+  pvarfout
+}
+
+prep_pgen <- function(pgenf, pvarf){
+  pvar <- pgenlibr::NewPvar(pvarf)
+  if (file_ext(pgenf) == "pgen") {
+    pgen <- pgenlibr::NewPgen(pgenf, pvar = pvar)
+  }
+  else if (file_ext(pgenf) == "bed") {
+    famf <- paste0(file_path_sans_ext(pgenf), ".fam")
+    fam <- data.table::fread(famf, header = F)
+    raw_s_ct <- nrow(fam)
+    pgen <- pgenlibr::NewPgen(pgenf, pvar = pvar, raw_sample_ct = raw_s_ct)
+  }
+  else {
+    stop("unrecognized input")
+  }
+  pgen
+}
+
+read_pgen <- function(pgen, variantidx = NULL, meanimpute = F){
+  if (is.null(variantidx)) {
+    variantidx <- 1:pgenlibr::GetVariantCt(pgen)
+  }
+  pgenlibr::ReadList(pgen, variant_subset = variantidx, meanimpute = meanimpute)
+}

@@ -79,42 +79,10 @@ ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```
 
 ```{r}
-library(reticulate)
-use_python("/scratch/midway2/shengqian/miniconda3/envs/PythonForR/bin/python",required=T)
+load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing_mapping.RData")
+ctwas_gene_res$genename <- intron_info[sapply(ctwas_gene_res$id, match, intron_info$gene), "genename"]
 ```
 
-```{python echo=F}
-from pyensembl import EnsemblRelease #repl_python()
-import math
-import time
-import numpy as np
-import pandas as pd
-
-data = EnsemblRelease(88)
-ctwas_gene_res_df = r.ctwas_gene_res
-ctwas_gene_res_df['intron_start'] = ctwas_gene_res_df['id'].apply(lambda x: int(x.split("_")[2]))
-ctwas_gene_res_df['intron_end'] = ctwas_gene_res_df['id'].apply(lambda x: int(x.split("_")[3]))
-ctwas_gene_res_df['genename'] = np.nan
-ctwas_gene_res_df['intron_id'] = ctwas_gene_res_df['id']
-```
-
-```{python echo=F}
-for index, row in ctwas_gene_res_df.iterrows():
-  gene_names = data.gene_names_at_locus(contig=int(row["chrom"]), position=int(row["intron_start"]), end=int(row["intron_end"]))
-  if len(gene_names)!=0:
-    for i in gene_names:
-      if i != '':
-        gene_info = data.genes_by_name(i)[0]
-        #if (gene_info.biotype=="lincRNA") | (gene_info.biotype=="protein_coding"):
-        if gene_info.biotype=="protein_coding":
-          ctwas_gene_res_df.loc[index,'genename'] = gene_info.gene_name
-          #ctwas_gene_res_df.loc[index,'id'] = gene_info.gene_id
-          #ctwas_gene_res_df.loc[index,'type'] = gene_info.biotype
-          break
-      
-#ctwas_gene_res_df = ctwas_gene_res_df.dropna(subset=['genename'])
-print("finish")
-```
 
 ```{r}
 #add z scores to results

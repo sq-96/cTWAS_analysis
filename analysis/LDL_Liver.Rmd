@@ -42,8 +42,8 @@ rm(qclist, wgtlist, z_gene_chr)
 
 #load information for all genes
 sqlite <- RSQLite::dbDriver("SQLite")
-#db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
-db = RSQLite::dbConnect(sqlite, "/project2/mstephens/wcrouse/predictdb/mashr_Liver_nolnc.db")
+db = RSQLite::dbConnect(sqlite, paste0("/project2/compbio/predictdb/mashr_models/mashr_", weight, ".db"))
+#db = RSQLite::dbConnect(sqlite, "/project2/mstephens/wcrouse/predictdb/mashr_Liver_nolnc.db")
 query <- function(...) RSQLite::dbGetQuery(db, ...)
 gene_info <- query("select gene, genename, gene_type from extra")
 RSQLite::dbDisconnect(db)
