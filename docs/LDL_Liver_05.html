@@ -410,7 +410,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -509,16 +509,16 @@ code/ctwas_config_b38.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree26813a2cb759c9439a579de69304f2b141376ef3targetblank26813a2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/26813a2cb759c9439a579de69304f2b141376ef3" target="_blank">26813a2</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4c76b6ad41aaf82abdbe49da0a5f450ebce5ea02targetblank4c76b6aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/4c76b6ad41aaf82abdbe49da0a5f450ebce5ea02" target="_blank">4c76b6a</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree26813a2cb759c9439a579de69304f2b141376ef3targetblank26813a2a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4c76b6ad41aaf82abdbe49da0a5f450ebce5ea02targetblank4c76b6aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/26813a2cb759c9439a579de69304f2b141376ef3" target="_blank">26813a2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/4c76b6ad41aaf82abdbe49da0a5f450ebce5ea02" target="_blank">4c76b6a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -540,18 +540,8 @@ Untracked files:
     Untracked:  SCZ_annotation.xlsx
     Untracked:  SLC8B1.pdf
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/LDL_Liver_03.Rmd
-    Untracked:  analysis/LDL_Liver_05.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
-    Untracked:  code/LDL_03_out/
-    Untracked:  code/LDL_05_out/
-    Untracked:  code/run_LDL_analysis_03.sbatch
-    Untracked:  code/run_LDL_analysis_03.sh
-    Untracked:  code/run_LDL_analysis_05.sbatch
-    Untracked:  code/run_LDL_analysis_05.sh
-    Untracked:  code/run_LDL_ctwas_rss_LDR_03.R
-    Untracked:  code/run_LDL_ctwas_rss_LDR_05.R
     Untracked:  data/.ipynb_checkpoints/
     Untracked:  data/FUMA_output/
     Untracked:  data/GO_Terms/
@@ -667,9 +657,8 @@ Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
     Deleted:    analysis/Glucose_Adipose_Subcutaneous.Rmd
     Deleted:    analysis/Glucose_Adipose_Visceral_Omentum.Rmd
-    Modified:   analysis/LDL_Liver_E_S.Rmd
-    Modified:   analysis/LDL_Liver_S.Rmd
-    Modified:   analysis/index.Rmd
+    Modified:   analysis/LDL_Liver_03.Rmd
+    Modified:   analysis/LDL_Liver_05.Rmd
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.err
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.out
     Deleted:    code/White_Blood_M_out/White_Blood_ColonTransverse.err
@@ -688,11 +677,7 @@ Unstaged changes:
     Deleted:    code/White_Blood_M_out/White_Blood_Testis.out
     Deleted:    code/White_Blood_M_out/White_Blood_WholeBlood.err
     Deleted:    code/White_Blood_M_out/White_Blood_WholeBlood.out
-    Modified:   code/ctwas_config_b38.R
-    Modified:   code/locus_plot.R
     Deleted:    code/run_IBD_ctwas_rss_LDR_ME.R
-    Modified:   code/run_LDL_ctwas_rss_LDR_E_S.R
-    Modified:   code/run_WhiteBlood_ctwas_rss_LDR_E_M.R
 
 </code></pre>
 <p>
@@ -705,9 +690,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/LDL_Liver_05.Rmd</code>) and HTML (<code>docs/LDL_Liver_05.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4c76b6ad41aaf82abdbe49da0a5f450ebce5ea02/analysis/LDL_Liver_05.Rmd" target="_blank">4c76b6a</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-03-30
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/4c76b6ad41aaf82abdbe49da0a5f450ebce5ea02/docs/LDL_Liver_05.html" target="_blank">4c76b6a</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-03-30
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -728,6 +773,43 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <div id="check-convergence-of-parameters" class="section level3">
 <h3>Check convergence of parameters</h3>
 <p><img src="figure/LDL_Liver_05.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4c76b6ad41aaf82abdbe49da0a5f450ebce5ea02/docs/figure/LDL_Liver_05.Rmd/unnamed-chunk-4-1.png" target="_blank">4c76b6a</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-03-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#estimated group prior
 estimated_group_prior &lt;- estimated_group_prior_all[,ncol(group_prior_rec)]
 print(estimated_group_prior)</code></pre>
@@ -768,6 +850,43 @@ estimated_group_pve/sum(estimated_group_pve)</code></pre>
 <pre class="r"><code>#distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main=&quot;Distribution of Gene PIPs&quot;)</code></pre>
 <p><img src="figure/LDL_Liver_05.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/4c76b6ad41aaf82abdbe49da0a5f450ebce5ea02/docs/figure/LDL_Liver_05.Rmd/unnamed-chunk-6-1.png" target="_blank">4c76b6a</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-03-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#genes with PIP&gt;0.8 or 20 highest PIPs
 head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip&gt;0.8), 20))</code></pre>
 <pre><code>         genename region_tag susie_pip     mu2       PVE       z num_eqtl
