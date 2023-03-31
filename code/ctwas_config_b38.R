@@ -1,4 +1,4 @@
-thin <- 0.1
+thin <- 0.5
 ncore <- 10
 ncore.rerun <- 1
 prob_single <- 0.8

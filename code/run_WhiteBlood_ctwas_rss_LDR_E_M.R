@@ -70,6 +70,9 @@ z_gene$type <- sapply(z_gene$id, function(x){paste(unlist(strsplit(unlist(strspl
 print(head(z_gene))
 
 # run ctwas_rss
-ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = thin, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = ncore, ncore.rerun = ncore.rerun, prob_single = prob_single)
+ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, 
+          ld_regions = ld_regions, ld_regions_version = ld_regions_version, 
+          thin = thin, max_snp_region = max_snp_region, outputdir = outputdir, 
+          outname = outname, ncore = ncore, ncore.rerun = ncore.rerun, prob_single = prob_single)
 
 sessionInfo()

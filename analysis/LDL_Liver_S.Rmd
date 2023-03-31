@@ -81,24 +81,20 @@ ctwas_snp_res <- data.frame(ctwas_snp_res)
 ```{r}
 load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing_mapping.RData")
 ctwas_gene_res$genename <- intron_info[sapply(ctwas_gene_res$id, match, intron_info$gene), "genename"]
+
+load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/G_list.RData")
+G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
+G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
+ctwas_gene_res$gene_type <- G_list[sapply(ctwas_gene_res$genename, match, G_list$hgnc_symbol), "gene_biotype"]
+ctwas_gene_res <- na.omit(ctwas_gene_res)
+ctwas_gene_res <- ctwas_gene_res[ctwas_gene_res$gene_type=="protein_coding",]
 ```
 
 
 ```{r}
-#add z scores to results
-load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))
-ctwas_gene_res <- py$ctwas_gene_res_df 
-ctwas_gene_res$z <- z_gene[ctwas_gene_res$id,]$z
-
-z_snp <- z_snp[z_snp$id %in% ctwas_snp_res$id,]
-ctwas_snp_res$z <- z_snp$z[match(ctwas_snp_res$id, z_snp$id)]
-
-#merge gene and snp results with added information
-#ctwas_gene_res$genename=NA
-#ctwas_gene_res$gene_type=NA
 ctwas_snp_res$genename=NA
 ctwas_snp_res$gene_type=NA
-ctwas_gene_res = ctwas_gene_res[,!(colnames(ctwas_gene_res) %in% c("intron_start", "intron_end","intron_id"))]
+#ctwas_gene_res = ctwas_gene_res[,!(colnames(ctwas_gene_res) %in% c("intron_start", "intron_end","intron_id"))]
 
 
 ctwas_res <- rbind(ctwas_gene_res,
@@ -251,12 +247,22 @@ estimated_group_pve["gene"]/sum(estimated_group_pve)
 
 ## Genes with highest PIPs 
 
+
+```{r}
+df_gene_S <- aggregate(ctwas_gene_res$susie_pip,by=list(ctwas_gene_res$genename), FUN=sum)
+colnames(df_gene_S) <- c("genename", "susie_pip")
+df_gene_S$group <- "Splicing"
+```
+
+
 ```{r}
 #distribution of PIPs
 hist(ctwas_gene_res$susie_pip, xlim=c(0,1), main="Distribution of Gene PIPs")
 
 #genes with PIP>0.8 or 20 highest PIPs
-head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+#head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),report_cols], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+
+head(df_gene_S[order(-df_gene_S$susie_pip),], max(sum(df_gene_S$susie_pip>0.8), 20))
 ```
 
 ## Comparing z scores and PIPs

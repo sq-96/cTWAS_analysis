@@ -138,37 +138,16 @@ locus_plot <- function(region_tag, xlim=NULL, return_table=F, focus=NULL, label_
         x_pos <- ifelse(legend_side=="right", max(a$pos)-0.2*(max(a$pos)-min(a$pos)), min(a$pos))
         legend(x_pos, y= twas_ymax*0.95, c("Expression","Splicing","Methylation","SNP","Lead TWAS Gene", "R2 > 0.4", "R2 <= 0.4"), pch = c(22,23,24,21,19,19,19), col = c("black","black","black","black", "salmon", "purple", colorsall[1]), cex=0.7, title.adj = 0)
     }
-  
+    
+    
+    label_genes <- a[a$id==label_genes,]$genename
+    
     if (label_panel=="TWAS" | label_panel=="both"){
         for (i in 1:length(label_genes)){
             text(a$pos[a$id==label_genes[i]], a$PVALUE[a$id==label_genes[i]], labels=a$genename[a$id==label_genes[i]], pos=label_pos[i], cex=0.7)
         }
     }
   
-    #par(mar = c(0.25, 4.1, 0.25, 2.1))
-  
-    #plot(NA, xlim = c(start, end), ylim = c(0, length(plot_eqtl)), frame.plot = F, axes = F, xlab = NA, ylab = NA)
-  
-    #for (i in 1:length(plot_eqtl)){
-    #    cgene <- a$id[which(a$id==plot_eqtl[i])]
-    #    load(paste0(results_dir, "/",analysis_id, "_expr_chr", region_tag1, ".exprqc.Rd"))
-    #    eqtls <- rownames(wgtlist[[cgene]])
-    #    eqtl_pos <- a$pos[a$id %in% eqtls]
-    
-        #col="grey"
-    #    col="#c6e8f0"
-    
-    #    rect(start, length(plot_eqtl)+1-i-0.8, end, length(plot_eqtl)+1-i-0.2, col = col, border = T, lwd = 1)
-  
-    #    if (length(eqtl_pos)>0){
-    #        for (j in 1:length(eqtl_pos)){
-    #            segments(x0=eqtl_pos[j], x1=eqtl_pos[j], y0=length(plot_eqtl)+1-i-0.2, length(plot_eqtl)+1-i-0.8, lwd=1.5)  
-    #        }
-    #    }
-    #}
-  
-    #text(start, length(plot_eqtl)-(1:length(plot_eqtl))+0.5,  
-    #    labels = paste0(plot_eqtl, " eQTL"), srt = 0, pos = 2, xpd = TRUE, cex=0.7)
   
     par(mar = c(4.1, 4.1, 0, 2.1))
   
