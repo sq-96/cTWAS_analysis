@@ -1,0 +1,45 @@
+---
+title: "Fusion Weights Analysis"
+author: "sheng Qian"
+date: "2023-4-20"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r echo=FALSE}
+lst = read.table("/project2/xinhe/shengqian/fusion_twas-master/methylation_wholeblood_tmp.pos",as.is=T)[,1]
+names = gsub(".wgt.RDat","",basename(lst))
+N = length(lst)
+```
+
+```{r echo=FALSE}
+cv_rsq <- data.frame(matrix(ncol = 2, nrow = 0))
+colnames(cv_rsq) <- c("top1","enet")
+
+for ( i in 1:N ) {
+  load(paste0("/project2/xinhe/shengqian/fusion_twas-master/",lst[i]))
+  g.method <- "enet"
+  if (exists("cv.performance")){
+    if (!(g.method %in% names(cv.performance[1,]))){
+      next
+    }
+  }
+  wgt.matrix <- wgt.matrix[abs(wgt.matrix[, g.method]) > 
+                             0, , drop = F]
+  wgt.matrix <- wgt.matrix[complete.cases(wgt.matrix), 
+                           , drop = F]
+  
+  if (nrow(wgt.matrix) == 0) 
+    next
+  
+  cv_rsq <- rbind(cv_rsq,cv.performance[1,2:3])
+}
+colnames(cv_rsq) <- c("top1","enet")
+```
+
+```{r}
+plot(cv_rsq$top1,cv_rsq$enet,pch=16,cex=0.2,xlab = "top1 rsq",ylab = "enet rsq")
+```
+
