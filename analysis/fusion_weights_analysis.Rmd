@@ -40,7 +40,11 @@ colnames(cv_rsq) <- c("top1","enet")
 ```
 
 
-Fusion model of WholeBlood DNA methylation. Comparing $$r^2$$ in cross-valiation of top1 and enet models. Fusion models (enet) are available at ~30,000 CpG sites
+Fusion model of WholeBlood DNA methylation. 
+
+Comparing $r^2$ in cross-valiation of top1 and enet models. 
+
+Fusion models (enet) are available at ~30,000 CpG sites
 
 ```{r,fig.width=5,fig.height=5}
 plot(cv_rsq$top1,cv_rsq$enet,pch=16,cex=0.2,xlab = "top1 rsq",ylab = "enet rsq")
