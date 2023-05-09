@@ -10,7 +10,7 @@ do
 	OUTNAME="WhiteBlood_"$WEIGHT"_ctwas"
 	OUTDIR="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/WhiteBlood_M_enet/"$WEIGHT
 	job_name="WhiteBlood_"$WEIGHT
-	job_out="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/WhiteBlood_M_ener_out/"$job_name".out"
+	job_out="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/WhiteBlood_M_enet_out/"$job_name".out"
 	job_err="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/WhiteBlood_M_enet_out/"$job_name".err"
   
 	FINAL_FILE=$OUTDIR"/"$OUTNAME".susieIrss.txt"

@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 params:
   analysis_id: "WhiteBlood_WholeBlood"
-  trait_id: "WhiteBlood_M_mashr"
+  trait_id: "WhiteBlood_M"
   weight: "WholeBlood"
 ---
 
@@ -87,6 +87,13 @@ ctwas_snp_res <- data.frame(ctwas_snp_res)
 #add gene information to results
 ctwas_gene_res$genename <- gene_info[sapply(ctwas_gene_res$id, match, gene_info$gene),"genename"]
 ctwas_gene_res$genename <- sapply(ctwas_gene_res$genename, function(x){unlist(strsplit(x, split="[;]"))[1]})
+
+load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/G_list.RData")
+G_list$hgnc_symbol[G_list$hgnc_symbol==""] <- "-"
+G_list$tss <- G_list[,c("end_position", "start_position")][cbind(1:nrow(G_list),G_list$strand/2+1.5)]
+ctwas_gene_res$gene_type <- G_list[sapply(ctwas_gene_res$genename, match, G_list$hgnc_symbol), "gene_biotype"]
+ctwas_gene_res <- na.omit(ctwas_gene_res)
+ctwas_gene_res <- ctwas_gene_res[ctwas_gene_res$gene_type=="protein_coding",]
 
 #add z scores to results
 load(paste0(results_dir, "/", analysis_id, "_expr_z_gene.Rd"))

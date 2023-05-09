@@ -8,5 +8,5 @@
 
 module load R/3.6.1
 
-Rscript run_Autism_ctwas_rss_LDR.R $TRAIT_FILE $LD_DIR $WEIGHT_FILE $CONFIG_FILE $OUTNAME_E $OUTNAME $OUTDIR
+Rscript run_Autism_ctwas_rss_LDR.R $ZSCORE_FILE $LD_FILE $WEIGHT_FILE $CONFIG_FILE $OUTNAME_E $OUTNAME $OUTDIR
 
