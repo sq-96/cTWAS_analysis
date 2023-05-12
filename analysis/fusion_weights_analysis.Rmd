@@ -87,20 +87,22 @@ plot(lung_500kb$top1,lung_500kb$enet,pch=16,cex=0.2,xlab = "top1 rsq",ylab = "en
 ```{r,fig.width=9,fig.height=3,echo=FALSE}
 c1 <- rgb(173,216,230,max = 255, alpha = 80, names = "lt.blue")
 c2 <- rgb(255,192,203, max = 255, alpha = 80, names = "lt.pink")
+
 par(mfrow=c(1,3))
+
 hgA <- hist(wholeblood_3kb$top1, breaks = 50, plot = FALSE)
 hgB <- hist(wholeblood_3kb$enet, breaks = 50, plot = FALSE)
-plot(hgA, col = c1, ylim = c(0,600),main = "wholeblood 3kb")
+plot(hgA, col = c1, ylim = c(0,600),main = "wholeblood 3kb", xlab="rsq")
 plot(hgB, col = c2, add = TRUE)
 
 hgA <- hist(prostate_3kb$top1, breaks = 50, plot = FALSE)
 hgB <- hist(prostate_3kb$enet, breaks = 50, plot = FALSE)
-plot(hgA, col = c1, ylim = c(0,700),main = "prostate 3kb")
+plot(hgA, col = c1, ylim = c(0,700),main = "prostate 3kb", xlab="rsq")
 plot(hgB, col = c2, add = TRUE)
 
 hgA <- hist(lung_100kb$top1, breaks = 50, plot = FALSE)
 hgB <- hist(lung_100kb$enet, breaks = 50, plot = FALSE)
-plot(hgA, col = c1, ylim = c(0,1500),main = "lung 100kb")
+plot(hgA, col = c1, ylim = c(0,1500),main = "lung 100kb", xlab="rsq")
 plot(hgB, col = c2, add = TRUE)
 ```
 
