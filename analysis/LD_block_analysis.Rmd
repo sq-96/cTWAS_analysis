@@ -1,0 +1,111 @@
+---
+title: "LD Block Analysis"
+author: "sheng Qian"
+date: "2023-5-16"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r echo=FALSE}
+index <- c("1-1","2-1","3-1","4-1","5-1","6-1","7-1","8-1","9-1","10-1")
+get_results <- function(index){
+  analysis_id <- paste0("ukb-s80.45-adi_simu",index,"_config1")
+  results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_revision/",index,"/")
+  #results_dir <- paste0("/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/")
+  source("/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/config1.R")
+  options(digits = 4)
+  ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, ".susieIrss.txt"))
+  ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+  sample_size <- 45087
+  ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+  ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
+  ctwas_gene_res <- data.frame(ctwas_gene_res)
+  ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+  ctwas_snp_res <- data.frame(ctwas_snp_res)
+  
+  load(paste0(results_dir, "/", analysis_id, ".s2.susieIrssres.Rd"))
+  
+  df <- data.frame(niter = rep(1:ncol(group_prior_rec), 2),
+                   value = c(group_prior_rec[1,], group_prior_rec[2,]),
+                   group = rep(c("Gene", "SNP"), each = ncol(group_prior_rec)))
+  df$group <- as.factor(df$group)
+  df$value[df$group=="SNP"] <- df$value[df$group=="SNP"]*thin #adjust parameter to account for thin argument
+  df <- data.frame(niter = rep(1:ncol(group_prior_var_rec), 2),
+                   value = c(group_prior_var_rec[1,], group_prior_var_rec[2,]),
+                   group = rep(c("Gene", "SNP"), each = ncol(group_prior_var_rec)))
+  df$group <- as.factor(df$group)
+  #estimated group prior
+  estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
+  names(estimated_group_prior) <- c("gene", "snp")
+  estimated_group_prior["snp"] <- estimated_group_prior["snp"]*thin #adjust parameter to account for thin argument
+  estimated_group_prior_var <- group_prior_var_rec[,ncol(group_prior_var_rec)]
+  names(estimated_group_prior_var) <- c("gene", "snp")
+  group_size <- c(nrow(ctwas_gene_res), nrow(ctwas_snp_res))
+  estimated_group_pve <- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+  names(estimated_group_pve) <- c("gene", "snp")
+  return(list(estimated_group_prior,estimated_group_prior_var,estimated_group_pve,ctwas_gene_res))
+}
+
+get_results1 <- function(index){
+  analysis_id <- paste0("ukb-s80.45-adi_simu",index,"_config1")
+  #results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_revision/",index,"/")
+  results_dir <- paste0("/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/")
+  source("/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/config1.R")
+  options(digits = 4)
+  ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, ".susieIrss.txt"))
+  ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+  sample_size <- 45087
+  ctwas_res$PVE = ctwas_res$susie_pip*ctwas_res$mu2/sample_size
+  ctwas_gene_res <- ctwas_res[ctwas_res$type == "gene", ]
+  ctwas_gene_res <- data.frame(ctwas_gene_res)
+  ctwas_snp_res <- ctwas_res[ctwas_res$type == "SNP", ]
+  ctwas_snp_res <- data.frame(ctwas_snp_res)
+  
+  load(paste0(results_dir, "/", analysis_id, ".s2.susieIrssres.Rd"))
+  
+  df <- data.frame(niter = rep(1:ncol(group_prior_rec), 2),
+                   value = c(group_prior_rec[1,], group_prior_rec[2,]),
+                   group = rep(c("Gene", "SNP"), each = ncol(group_prior_rec)))
+  df$group <- as.factor(df$group)
+  df$value[df$group=="SNP"] <- df$value[df$group=="SNP"]*thin #adjust parameter to account for thin argument
+  df <- data.frame(niter = rep(1:ncol(group_prior_var_rec), 2),
+                   value = c(group_prior_var_rec[1,], group_prior_var_rec[2,]),
+                   group = rep(c("Gene", "SNP"), each = ncol(group_prior_var_rec)))
+  df$group <- as.factor(df$group)
+  #estimated group prior
+  estimated_group_prior <- group_prior_rec[,ncol(group_prior_rec)]
+  names(estimated_group_prior) <- c("gene", "snp")
+  estimated_group_prior["snp"] <- estimated_group_prior["snp"]*thin #adjust parameter to account for thin argument
+  estimated_group_prior_var <- group_prior_var_rec[,ncol(group_prior_var_rec)]
+  names(estimated_group_prior_var) <- c("gene", "snp")
+  group_size <- c(nrow(ctwas_gene_res), nrow(ctwas_snp_res))
+  estimated_group_pve <- estimated_group_prior_var*estimated_group_prior*group_size/sample_size #check PVE calculation
+  names(estimated_group_pve) <- c("gene", "snp")
+  return(list(estimated_group_prior,estimated_group_prior_var,estimated_group_pve,ctwas_gene_res))
+}
+```
+
+```{r fig.width=9,fig.height=3}
+for(i in index){
+  genepip <- get_results(i)[[4]]
+  genepip <- genepip[,c("id","susie_pip")]
+  genepip1 <- get_results1(i)[[4]]
+  genepip1 <- genepip1[,c("id","susie_pip")]
+  aa <- merge(genepip,genepip1,by = "id")
+  duplicated_genes <- unique(genepip[duplicated(genepip$id),]$id)
+  duplicated_df <- aa[aa$id %in% duplicated_genes,]
+  #load(paste0("/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/ukb-s80.45-adi_simu",i,"-pheno.Rd"))
+  #true_genes <- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  #print(cor(aa$susie_pip.x,aa$susie_pip.y))
+  aa$label <- 1
+  for(j in 1:dim(aa)[1]){
+    if(aa[j,"id"] %in% duplicated_genes){
+      aa[j,"label"] <- 2
+    }
+  }
+  plot(aa$susie_pip.y,aa$susie_pip.x,pch=16,col=aa$label,cex=0.5,xlab = "old pip", ylab = "new pip",main = i)
+}
+```
+
