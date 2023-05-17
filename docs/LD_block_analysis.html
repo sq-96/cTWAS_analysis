@@ -476,16 +476,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4c5e2b7ebba002e907e68e1353efe3c90e2b2bcctargetblank4c5e2b7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/4c5e2b7ebba002e907e68e1353efe3c90e2b2bcc" target="_blank">4c5e2b7</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreee368df319cc43f90c7b87ed0bfae3cb488c8677dtargetblanke368df3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/e368df319cc43f90c7b87ed0bfae3cb488c8677d" target="_blank">e368df3</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree4c5e2b7ebba002e907e68e1353efe3c90e2b2bcctargetblank4c5e2b7a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreee368df319cc43f90c7b87ed0bfae3cb488c8677dtargetblanke368df3a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/4c5e2b7ebba002e907e68e1353efe3c90e2b2bcc" target="_blank">4c5e2b7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/e368df319cc43f90c7b87ed0bfae3cb488c8677d" target="_blank">e368df3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -681,6 +681,40 @@ Message
 <tbody>
 <tr>
 <td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/analysis/LD_block_analysis.Rmd" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/LD_block_analysis.html" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
 html
 </td>
 <td>
@@ -744,17 +778,17 @@ update
   genepip1 &lt;- genepip1[,c(&quot;id&quot;,&quot;susie_pip&quot;)]
   aa &lt;- merge(genepip,genepip1,by = &quot;id&quot;)
   duplicated_genes &lt;- unique(genepip[duplicated(genepip$id),]$id)
-  duplicated_df &lt;- aa[aa$id %in% duplicated_genes,]
+  #duplicated_df &lt;- aa[aa$id %in% duplicated_genes,]
   #load(paste0(&quot;/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/ukb-s80.45-adi_simu&quot;,i,&quot;-pheno.Rd&quot;))
   #true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
-  #print(cor(aa$susie_pip.x,aa$susie_pip.y))
+  correlation &lt;- cor(aa$susie_pip.x,aa$susie_pip.y)
   aa$label &lt;- 1
   for(j in 1:dim(aa)[1]){
     if(aa[j,&quot;id&quot;] %in% duplicated_genes){
       aa[j,&quot;label&quot;] &lt;- 2
     }
   }
-  plot(aa$susie_pip.y,aa$susie_pip.x,pch=16,col=aa$label,cex=0.5,xlab = &quot;old pip&quot;, ylab = &quot;new pip&quot;,main = i)
+  plot(aa$susie_pip.y,aa$susie_pip.x,pch=16,col=aa$label,cex=0.5,xlab = &quot;old pip&quot;, ylab = &quot;new pip&quot;,main = paste0(i,&quot;-&quot;,round(correlation)))
 }</code></pre>
 <p><img src="figure/LD_block_analysis.Rmd/unnamed-chunk-2-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>
@@ -779,6 +813,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-1.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-1.png" target="_blank">6baaa95</a>
@@ -819,6 +864,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-2.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-2.png" target="_blank">6baaa95</a>
 </td>
 <td>
@@ -855,6 +911,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-3.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-3.png" target="_blank">6baaa95</a>
@@ -895,6 +962,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-4.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-4.png" target="_blank">6baaa95</a>
 </td>
 <td>
@@ -931,6 +1009,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-5.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-5.png" target="_blank">6baaa95</a>
@@ -971,6 +1060,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-6.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-6.png" target="_blank">6baaa95</a>
 </td>
 <td>
@@ -1007,6 +1107,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-7.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-7.png" target="_blank">6baaa95</a>
@@ -1047,6 +1158,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-8.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-8.png" target="_blank">6baaa95</a>
 </td>
 <td>
@@ -1085,6 +1207,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-9.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-9.png" target="_blank">6baaa95</a>
 </td>
 <td>
@@ -1121,6 +1254,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/e368df319cc43f90c7b87ed0bfae3cb488c8677d/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-10.png" target="_blank">e368df3</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-05-17
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sq-96/cTWAS_analysis/blob/6baaa9504434526b93994719c8dafb4a34004c64/docs/figure/LD_block_analysis.Rmd/unnamed-chunk-2-10.png" target="_blank">6baaa95</a>
