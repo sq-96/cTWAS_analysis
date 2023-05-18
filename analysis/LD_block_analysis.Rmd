@@ -96,8 +96,8 @@ for(i in index){
   aa <- merge(genepip,genepip1,by = "id")
   duplicated_genes <- unique(genepip[duplicated(genepip$id),]$id)
   #duplicated_df <- aa[aa$id %in% duplicated_genes,]
-  #load(paste0("/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/ukb-s80.45-adi_simu",i,"-pheno.Rd"))
-  #true_genes <- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  load(paste0("/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/ukb-s80.45-adi_simu",i,"-pheno.Rd"))
+  true_genes <- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
   correlation <- cor(aa$susie_pip.x,aa$susie_pip.y)
   aa$label <- 1
   for(j in 1:dim(aa)[1]){
@@ -105,7 +105,16 @@ for(i in index){
       aa[j,"label"] <- 2
     }
   }
-  plot(aa$susie_pip.y,aa$susie_pip.x,pch=16,col=aa$label,cex=0.5,xlab = "old pip", ylab = "new pip",main = paste0(i,"(",round(correlation,3),")"))
+  
+  aa$label1 <- 16
+  for(k in 1:dim(aa)[1]){
+    if(aa[k,"id"] %in% true_genes){
+      aa[k,"label1"] <- 17
+    }
+  }
+  
+  
+  plot(aa$susie_pip.y,aa$susie_pip.x,pch=aa$label1,col=aa$label,cex=0.8,xlab = "old pip", ylab = "new pip",main = paste0(i,"(",round(correlation,3),")"))
 }
 ```
 
