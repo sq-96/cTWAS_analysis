@@ -54,7 +54,7 @@ if (file.exists(paste0(outputdir, "/", outname.e, "_z_gene.Rd"))){
   res <- impute_expr_z(z_snp, weight = weight, ld_R_dir = ld_R_dir,
                        method = NULL, outputdir = outputdir, outname = outname.e,
                        harmonize_z = F, harmonize_wgt = F,
-                       strand_ambig_action_z = "recover", recover_strand_ambig_wgt = T, ncore=12)
+                       strand_ambig_action_z = "recover", recover_strand_ambig_wgt = T, ncore=10)
   z_gene <- res$z_gene
   ld_exprfs <- res$ld_exprfs
   z_snp <- res$z_snp

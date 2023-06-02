@@ -54,7 +54,7 @@ if (file.exists(paste0(outputdir, "/", outname.e, "_z_gene.Rd"))){
   res <- impute_expr_z(z_snp, weight = weight, ld_R_dir = ld_R_dir,
                        method = NULL, outputdir = outputdir, outname = outname.e,
                        harmonize_z = F, harmonize_wgt = F,
-                       strand_ambig_action_z = "recover", recover_strand_ambig_wgt = T, ncore=12)
+                       strand_ambig_action_z = "recover", recover_strand_ambig_wgt = T, ncore=6)
   z_gene <- res$z_gene
   ld_exprfs <- res$ld_exprfs
   z_snp <- res$z_snp
@@ -66,6 +66,6 @@ if (file.exists(paste0(outputdir, "/", outname.e, "_z_gene.Rd"))){
 z_gene$type <- sapply(z_gene$id, function(x){paste(unlist(strsplit(unlist(strsplit(x, "[|]"))[2],"_"))[-1], collapse="_") })
 
 # run ctwas_rss
-ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = thin, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = ncore, ncore.rerun = ncore.rerun, prob_single = prob_single)
+ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = thin, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = 10, ncore_LDR = 5, ncore.rerun = 10, prob_single = prob_single)
 
 sessionInfo()

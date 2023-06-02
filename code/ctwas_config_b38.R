@@ -1,10 +1,11 @@
-thin <- 0.5
+thin <- 0.1
 ncore <- 10
 ncore.rerun <- 1
 prob_single <- 0.8
 max_snp_region <- 20000
 ld_regions <- "EUR"
 ld_regions_version <- "b38"
+ncore_impute <- 4
 
 
 # locus_plot <- function(region_tag, rerun_ctwas = F, plot_eqtl = T, label="cTWAS"){

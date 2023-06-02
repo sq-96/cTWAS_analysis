@@ -1,0 +1,1537 @@
+[1] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-b-2160.vcf.gz"                                                                                                                                                                                 
+[2] "/project2/mstephens/wcrouse/UKB_LDR_0.1"                                                                                                                                                                                                                    
+[3] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db"
+[4] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"                                                                                                                                                                                     
+[5] "ProstateCancer_Prostate_expr"                                                                                                                                                                                                                               
+[6] "ProstateCancer_Prostate_ctwas"                                                                                                                                                                                                                              
+[7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/ProstateCancer_E_S_M/Prostate"                                                                                                                                                                          
+2023-05-28 01:18:57 INFO::Reading weights for chromosome 1
+2023-05-28 01:18:58 INFO::Number of genes with weights provided: 103452
+2023-05-28 01:18:58 INFO::Collecting gene weight information ...
+starting worker pid=38353 on localhost:11845 at 01:18:58.903
+starting worker pid=38350 on localhost:11845 at 01:18:58.904
+starting worker pid=38356 on localhost:11845 at 01:18:58.904
+starting worker pid=38348 on localhost:11845 at 01:18:58.905
+starting worker pid=38352 on localhost:11845 at 01:18:58.905
+starting worker pid=38355 on localhost:11845 at 01:18:58.905
+starting worker pid=38351 on localhost:11845 at 01:18:58.905
+starting worker pid=38349 on localhost:11845 at 01:18:58.915
+starting worker pid=38357 on localhost:11845 at 01:18:58.915
+starting worker pid=38354 on localhost:11845 at 01:18:58.915
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 01:20:45 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 01:20:53 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 01:20:55 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 01:28:59 INFO::Start gene z score imputation ...
+2023-05-28 01:28:59 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=39355 on localhost:11845 at 01:29:01.991
+starting worker pid=39353 on localhost:11845 at 01:29:01.991
+starting worker pid=39351 on localhost:11845 at 01:29:01.991
+starting worker pid=39360 on localhost:11845 at 01:29:01.993
+starting worker pid=39354 on localhost:11845 at 01:29:01.993
+starting worker pid=39359 on localhost:11845 at 01:29:01.995
+starting worker pid=39356 on localhost:11845 at 01:29:02.003
+starting worker pid=39357 on localhost:11845 at 01:29:02.012
+starting worker pid=39352 on localhost:11845 at 01:29:02.013
+starting worker pid=39358 on localhost:11845 at 01:29:02.014
+2023-05-28 01:32:38 INFO::Imputation done, writing results to output...
+2023-05-28 01:32:39 INFO::Imputation done: number of genes with imputed expression: 5719 for chr 1
+2023-05-28 01:32:39 INFO::Reading weights for chromosome 2
+2023-05-28 01:32:39 INFO::Number of genes with weights provided: 103452
+2023-05-28 01:32:39 INFO::Collecting gene weight information ...
+starting worker pid=39803 on localhost:11845 at 01:32:40.599
+starting worker pid=39801 on localhost:11845 at 01:32:40.599
+starting worker pid=39806 on localhost:11845 at 01:32:40.599
+starting worker pid=39810 on localhost:11845 at 01:32:40.599
+starting worker pid=39808 on localhost:11845 at 01:32:40.599
+starting worker pid=39805 on localhost:11845 at 01:32:40.611
+starting worker pid=39807 on localhost:11845 at 01:32:40.613
+starting worker pid=39802 on localhost:11845 at 01:32:40.613
+starting worker pid=39809 on localhost:11845 at 01:32:40.613
+starting worker pid=39804 on localhost:11845 at 01:32:40.614
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 01:34:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 01:34:34 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 01:34:38 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 01:40:33 INFO::Start gene z score imputation ...
+2023-05-28 01:40:33 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=40612 on localhost:11845 at 01:40:35.257
+starting worker pid=40611 on localhost:11845 at 01:40:35.274
+starting worker pid=40606 on localhost:11845 at 01:40:35.274
+starting worker pid=40610 on localhost:11845 at 01:40:35.275
+starting worker pid=40613 on localhost:11845 at 01:40:35.277
+starting worker pid=40607 on localhost:11845 at 01:40:35.281
+starting worker pid=40605 on localhost:11845 at 01:40:35.282
+starting worker pid=40609 on localhost:11845 at 01:40:35.285
+starting worker pid=40608 on localhost:11845 at 01:40:35.294
+starting worker pid=40614 on localhost:11845 at 01:40:35.295
+2023-05-28 01:44:14 INFO::Imputation done, writing results to output...
+2023-05-28 01:44:15 INFO::Imputation done: number of genes with imputed expression: 4568 for chr 2
+2023-05-28 01:44:15 INFO::Reading weights for chromosome 3
+2023-05-28 01:44:16 INFO::Number of genes with weights provided: 103452
+2023-05-28 01:44:16 INFO::Collecting gene weight information ...
+starting worker pid=41061 on localhost:11845 at 01:44:16.805
+starting worker pid=41054 on localhost:11845 at 01:44:16.806
+starting worker pid=41060 on localhost:11845 at 01:44:16.807
+starting worker pid=41058 on localhost:11845 at 01:44:16.807
+starting worker pid=41063 on localhost:11845 at 01:44:16.807
+starting worker pid=41059 on localhost:11845 at 01:44:16.807
+starting worker pid=41057 on localhost:11845 at 01:44:16.808
+starting worker pid=41055 on localhost:11845 at 01:44:16.808
+starting worker pid=41062 on localhost:11845 at 01:44:16.808
+starting worker pid=41056 on localhost:11845 at 01:44:16.808
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 01:46:01 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 01:46:09 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 01:46:12 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 01:51:25 INFO::Start gene z score imputation ...
+2023-05-28 01:51:25 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=41819 on localhost:11845 at 01:51:26.819
+starting worker pid=41822 on localhost:11845 at 01:51:26.839
+starting worker pid=41815 on localhost:11845 at 01:51:26.839
+starting worker pid=41823 on localhost:11845 at 01:51:26.840
+starting worker pid=41820 on localhost:11845 at 01:51:26.843
+starting worker pid=41818 on localhost:11845 at 01:51:26.844
+starting worker pid=41824 on localhost:11845 at 01:51:26.844
+starting worker pid=41816 on localhost:11845 at 01:51:26.853
+starting worker pid=41814 on localhost:11845 at 01:51:26.859
+starting worker pid=41821 on localhost:11845 at 01:51:26.861
+2023-05-28 01:54:21 INFO::Imputation done, writing results to output...
+2023-05-28 01:54:21 INFO::Imputation done: number of genes with imputed expression: 3444 for chr 3
+2023-05-28 01:54:22 INFO::Reading weights for chromosome 4
+2023-05-28 01:54:22 INFO::Number of genes with weights provided: 103452
+2023-05-28 01:54:22 INFO::Collecting gene weight information ...
+starting worker pid=42212 on localhost:11845 at 01:54:22.951
+starting worker pid=42205 on localhost:11845 at 01:54:22.951
+starting worker pid=42206 on localhost:11845 at 01:54:22.951
+starting worker pid=42211 on localhost:11845 at 01:54:22.952
+starting worker pid=42208 on localhost:11845 at 01:54:22.953
+starting worker pid=42209 on localhost:11845 at 01:54:22.953
+starting worker pid=42210 on localhost:11845 at 01:54:22.953
+starting worker pid=42213 on localhost:11845 at 01:54:22.953
+starting worker pid=42207 on localhost:11845 at 01:54:22.954
+starting worker pid=42204 on localhost:11845 at 01:54:22.964
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 01:56:08 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 01:56:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 01:56:19 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 02:00:25 INFO::Start gene z score imputation ...
+2023-05-28 02:00:25 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=42865 on localhost:11845 at 02:00:26.822
+starting worker pid=42864 on localhost:11845 at 02:00:26.830
+starting worker pid=42862 on localhost:11845 at 02:00:26.831
+starting worker pid=42871 on localhost:11845 at 02:00:26.834
+starting worker pid=42866 on localhost:11845 at 02:00:26.834
+starting worker pid=42869 on localhost:11845 at 02:00:26.836
+starting worker pid=42867 on localhost:11845 at 02:00:26.836
+starting worker pid=42863 on localhost:11845 at 02:00:26.840
+starting worker pid=42868 on localhost:11845 at 02:00:26.841
+starting worker pid=42870 on localhost:11845 at 02:00:26.848
+2023-05-28 02:03:28 INFO::Imputation done, writing results to output...
+2023-05-28 02:03:28 INFO::Imputation done: number of genes with imputed expression: 2511 for chr 4
+2023-05-28 02:03:29 INFO::Reading weights for chromosome 5
+2023-05-28 02:03:29 INFO::Number of genes with weights provided: 103452
+2023-05-28 02:03:29 INFO::Collecting gene weight information ...
+starting worker pid=43337 on localhost:11845 at 02:03:30.415
+starting worker pid=43336 on localhost:11845 at 02:03:30.417
+starting worker pid=43343 on localhost:11845 at 02:03:30.417
+starting worker pid=43345 on localhost:11845 at 02:03:30.417
+starting worker pid=43340 on localhost:11845 at 02:03:30.417
+starting worker pid=43338 on localhost:11845 at 02:03:30.418
+starting worker pid=43344 on localhost:11845 at 02:03:30.418
+starting worker pid=43342 on localhost:11845 at 02:03:30.419
+starting worker pid=43339 on localhost:11845 at 02:03:30.419
+starting worker pid=43341 on localhost:11845 at 02:03:30.420
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 02:05:14 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 02:05:22 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 02:06:03 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 02:09:41 INFO::Start gene z score imputation ...
+2023-05-28 02:09:41 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=43997 on localhost:11845 at 02:09:43.071
+starting worker pid=43999 on localhost:11845 at 02:09:43.078
+starting worker pid=44001 on localhost:11845 at 02:09:43.078
+starting worker pid=43996 on localhost:11845 at 02:09:43.078
+starting worker pid=44003 on localhost:11845 at 02:09:43.080
+starting worker pid=44004 on localhost:11845 at 02:09:43.084
+starting worker pid=44005 on localhost:11845 at 02:09:43.088
+starting worker pid=44002 on localhost:11845 at 02:09:43.091
+starting worker pid=43998 on localhost:11845 at 02:09:43.096
+starting worker pid=44000 on localhost:11845 at 02:09:43.098
+2023-05-28 02:12:28 INFO::Imputation done, writing results to output...
+2023-05-28 02:12:28 INFO::Imputation done: number of genes with imputed expression: 2842 for chr 5
+2023-05-28 02:12:30 INFO::Reading weights for chromosome 6
+2023-05-28 02:12:30 INFO::Number of genes with weights provided: 103452
+2023-05-28 02:12:30 INFO::Collecting gene weight information ...
+starting worker pid=44382 on localhost:11845 at 02:12:31.055
+starting worker pid=44380 on localhost:11845 at 02:12:31.055
+starting worker pid=44383 on localhost:11845 at 02:12:31.055
+starting worker pid=44378 on localhost:11845 at 02:12:31.056
+starting worker pid=44385 on localhost:11845 at 02:12:31.056
+starting worker pid=44379 on localhost:11845 at 02:12:31.056
+starting worker pid=44381 on localhost:11845 at 02:12:31.059
+starting worker pid=44377 on localhost:11845 at 02:12:31.068
+starting worker pid=44386 on localhost:11845 at 02:12:31.070
+starting worker pid=44384 on localhost:11845 at 02:12:31.070
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 02:14:15 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 02:14:23 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 02:16:52 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 02:19:52 INFO::Start gene z score imputation ...
+2023-05-28 02:19:52 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=45135 on localhost:11845 at 02:19:54.356
+starting worker pid=45137 on localhost:11845 at 02:19:54.373
+starting worker pid=45140 on localhost:11845 at 02:19:54.373
+starting worker pid=45138 on localhost:11845 at 02:19:54.373
+starting worker pid=45139 on localhost:11845 at 02:19:54.375
+starting worker pid=45136 on localhost:11845 at 02:19:54.375
+starting worker pid=45134 on localhost:11845 at 02:19:54.376
+starting worker pid=45132 on localhost:11845 at 02:19:54.390
+starting worker pid=45131 on localhost:11845 at 02:19:54.394
+starting worker pid=45133 on localhost:11845 at 02:19:54.395
+2023-05-28 02:23:47 INFO::Imputation done, writing results to output...
+2023-05-28 02:23:48 INFO::Imputation done: number of genes with imputed expression: 3602 for chr 6
+2023-05-28 02:23:49 INFO::Reading weights for chromosome 7
+2023-05-28 02:23:49 INFO::Number of genes with weights provided: 103452
+2023-05-28 02:23:49 INFO::Collecting gene weight information ...
+starting worker pid=45604 on localhost:11845 at 02:23:49.766
+starting worker pid=45611 on localhost:11845 at 02:23:49.766
+starting worker pid=45608 on localhost:11845 at 02:23:49.767
+starting worker pid=45612 on localhost:11845 at 02:23:49.767
+starting worker pid=45606 on localhost:11845 at 02:23:49.768
+starting worker pid=45603 on localhost:11845 at 02:23:49.768
+starting worker pid=45607 on localhost:11845 at 02:23:49.768
+starting worker pid=45605 on localhost:11845 at 02:23:49.768
+starting worker pid=45609 on localhost:11845 at 02:23:49.770
+starting worker pid=45610 on localhost:11845 at 02:23:49.782
+2023-05-28 02:25:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 02:25:25 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 02:25:33 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 02:27:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 02:30:41 INFO::Start gene z score imputation ...
+2023-05-28 02:30:41 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=46329 on localhost:11845 at 02:30:42.659
+starting worker pid=46334 on localhost:11845 at 02:30:42.662
+starting worker pid=46331 on localhost:11845 at 02:30:42.666
+starting worker pid=46327 on localhost:11845 at 02:30:42.667
+starting worker pid=46326 on localhost:11845 at 02:30:42.670
+starting worker pid=46325 on localhost:11845 at 02:30:42.671
+starting worker pid=46328 on localhost:11845 at 02:30:42.672
+starting worker pid=46330 on localhost:11845 at 02:30:42.675
+starting worker pid=46333 on localhost:11845 at 02:30:42.681
+starting worker pid=46332 on localhost:11845 at 02:30:42.685
+2023-05-28 02:33:54 INFO::Imputation done, writing results to output...
+2023-05-28 02:33:54 INFO::Imputation done: number of genes with imputed expression: 3257 for chr 7
+2023-05-28 02:33:55 INFO::Reading weights for chromosome 8
+2023-05-28 02:33:55 INFO::Number of genes with weights provided: 103452
+2023-05-28 02:33:55 INFO::Collecting gene weight information ...
+starting worker pid=46744 on localhost:11845 at 02:33:56.624
+starting worker pid=46737 on localhost:11845 at 02:33:56.625
+starting worker pid=46745 on localhost:11845 at 02:33:56.626
+starting worker pid=46742 on localhost:11845 at 02:33:56.626
+starting worker pid=46741 on localhost:11845 at 02:33:56.626
+starting worker pid=46746 on localhost:11845 at 02:33:56.626
+starting worker pid=46743 on localhost:11845 at 02:33:56.626
+starting worker pid=46739 on localhost:11845 at 02:33:56.626
+starting worker pid=46738 on localhost:11845 at 02:33:56.630
+starting worker pid=46740 on localhost:11845 at 02:33:56.639
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 02:35:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 02:37:13 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 02:37:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 02:40:20 INFO::Start gene z score imputation ...
+2023-05-28 02:40:20 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=47423 on localhost:11845 at 02:40:21.237
+starting worker pid=47424 on localhost:11845 at 02:40:21.240
+starting worker pid=47421 on localhost:11845 at 02:40:21.245
+starting worker pid=47419 on localhost:11845 at 02:40:21.245
+starting worker pid=47418 on localhost:11845 at 02:40:21.246
+starting worker pid=47420 on localhost:11845 at 02:40:21.250
+starting worker pid=47416 on localhost:11845 at 02:40:21.252
+starting worker pid=47422 on localhost:11845 at 02:40:21.260
+starting worker pid=47417 on localhost:11845 at 02:40:21.261
+starting worker pid=47415 on localhost:11845 at 02:40:21.265
+2023-05-28 02:43:46 INFO::Imputation done, writing results to output...
+2023-05-28 02:43:46 INFO::Imputation done: number of genes with imputed expression: 2424 for chr 8
+2023-05-28 02:43:47 INFO::Reading weights for chromosome 9
+2023-05-28 02:43:47 INFO::Number of genes with weights provided: 103452
+2023-05-28 02:43:47 INFO::Collecting gene weight information ...
+starting worker pid=47856 on localhost:11845 at 02:43:48.551
+starting worker pid=47854 on localhost:11845 at 02:43:48.551
+starting worker pid=47859 on localhost:11845 at 02:43:48.552
+starting worker pid=47855 on localhost:11845 at 02:43:48.552
+starting worker pid=47857 on localhost:11845 at 02:43:48.552
+starting worker pid=47862 on localhost:11845 at 02:43:48.552
+starting worker pid=47860 on localhost:11845 at 02:43:48.553
+starting worker pid=47853 on localhost:11845 at 02:43:48.553
+starting worker pid=47858 on localhost:11845 at 02:43:48.554
+starting worker pid=47861 on localhost:11845 at 02:43:48.554
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 02:45:20 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 02:46:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 02:48:40 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 02:49:38 INFO::Start gene z score imputation ...
+2023-05-28 02:49:38 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=48550 on localhost:11845 at 02:49:40.015
+starting worker pid=48542 on localhost:11845 at 02:49:40.030
+starting worker pid=48549 on localhost:11845 at 02:49:40.030
+starting worker pid=48546 on localhost:11845 at 02:49:40.032
+starting worker pid=48541 on localhost:11845 at 02:49:40.039
+starting worker pid=48548 on localhost:11845 at 02:49:40.039
+starting worker pid=48543 on localhost:11845 at 02:49:40.040
+starting worker pid=48544 on localhost:11845 at 02:49:40.047
+starting worker pid=48545 on localhost:11845 at 02:49:40.051
+starting worker pid=48547 on localhost:11845 at 02:49:40.054
+2023-05-28 02:52:15 INFO::Imputation done, writing results to output...
+2023-05-28 02:52:16 INFO::Imputation done: number of genes with imputed expression: 1966 for chr 9
+2023-05-28 02:52:17 INFO::Reading weights for chromosome 10
+2023-05-28 02:52:17 INFO::Number of genes with weights provided: 103452
+2023-05-28 02:52:17 INFO::Collecting gene weight information ...
+starting worker pid=48902 on localhost:11845 at 02:52:18.450
+starting worker pid=48901 on localhost:11845 at 02:52:18.451
+starting worker pid=48894 on localhost:11845 at 02:52:18.451
+starting worker pid=48897 on localhost:11845 at 02:52:18.451
+starting worker pid=48903 on localhost:11845 at 02:52:18.451
+starting worker pid=48899 on localhost:11845 at 02:52:18.451
+starting worker pid=48895 on localhost:11845 at 02:52:18.452
+starting worker pid=48896 on localhost:11845 at 02:52:18.452
+starting worker pid=48900 on localhost:11845 at 02:52:18.452
+starting worker pid=48898 on localhost:11845 at 02:52:18.453
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 02:53:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 02:53:59 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 02:54:02 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 02:58:22 INFO::Start gene z score imputation ...
+2023-05-28 02:58:22 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=49582 on localhost:11845 at 02:58:23.475
+starting worker pid=49579 on localhost:11845 at 02:58:23.476
+starting worker pid=49580 on localhost:11845 at 02:58:23.477
+starting worker pid=49576 on localhost:11845 at 02:58:23.477
+starting worker pid=49583 on localhost:11845 at 02:58:23.481
+starting worker pid=49584 on localhost:11845 at 02:58:23.483
+starting worker pid=49577 on localhost:11845 at 02:58:23.484
+starting worker pid=49578 on localhost:11845 at 02:58:23.500
+starting worker pid=49575 on localhost:11845 at 02:58:23.500
+starting worker pid=49581 on localhost:11845 at 02:58:23.500
+2023-05-28 03:01:01 INFO::Imputation done, writing results to output...
+2023-05-28 03:01:02 INFO::Imputation done: number of genes with imputed expression: 2802 for chr 10
+2023-05-28 03:01:03 INFO::Reading weights for chromosome 11
+2023-05-28 03:01:03 INFO::Number of genes with weights provided: 103452
+2023-05-28 03:01:03 INFO::Collecting gene weight information ...
+starting worker pid=49931 on localhost:11845 at 03:01:04.312
+starting worker pid=49937 on localhost:11845 at 03:01:04.313
+starting worker pid=49935 on localhost:11845 at 03:01:04.313
+starting worker pid=49930 on localhost:11845 at 03:01:04.314
+starting worker pid=49933 on localhost:11845 at 03:01:04.315
+starting worker pid=49932 on localhost:11845 at 03:01:04.315
+starting worker pid=49936 on localhost:11845 at 03:01:04.316
+starting worker pid=49934 on localhost:11845 at 03:01:04.316
+starting worker pid=49938 on localhost:11845 at 03:01:04.316
+starting worker pid=49929 on localhost:11845 at 03:01:04.316
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 03:02:36 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 03:02:44 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 03:02:47 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 03:08:07 INFO::Start gene z score imputation ...
+2023-05-28 03:08:07 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=50690 on localhost:11845 at 03:08:09.033
+starting worker pid=50689 on localhost:11845 at 03:08:09.033
+starting worker pid=50698 on localhost:11845 at 03:08:09.034
+starting worker pid=50693 on localhost:11845 at 03:08:09.044
+starting worker pid=50694 on localhost:11845 at 03:08:09.045
+starting worker pid=50691 on localhost:11845 at 03:08:09.045
+starting worker pid=50697 on localhost:11845 at 03:08:09.045
+starting worker pid=50695 on localhost:11845 at 03:08:09.046
+starting worker pid=50696 on localhost:11845 at 03:08:09.047
+starting worker pid=50692 on localhost:11845 at 03:08:09.055
+2023-05-28 03:11:46 INFO::Imputation done, writing results to output...
+2023-05-28 03:11:47 INFO::Imputation done: number of genes with imputed expression: 3738 for chr 11
+2023-05-28 03:11:50 INFO::Reading weights for chromosome 12
+2023-05-28 03:11:50 INFO::Number of genes with weights provided: 103452
+2023-05-28 03:11:50 INFO::Collecting gene weight information ...
+starting worker pid=51116 on localhost:11845 at 03:11:50.948
+starting worker pid=51119 on localhost:11845 at 03:11:50.955
+starting worker pid=51115 on localhost:11845 at 03:11:50.955
+starting worker pid=51113 on localhost:11845 at 03:11:50.956
+starting worker pid=51122 on localhost:11845 at 03:11:50.956
+starting worker pid=51118 on localhost:11845 at 03:11:50.957
+starting worker pid=51114 on localhost:11845 at 03:11:50.957
+starting worker pid=51121 on localhost:11845 at 03:11:50.957
+starting worker pid=51120 on localhost:11845 at 03:11:50.957
+starting worker pid=51117 on localhost:11845 at 03:11:50.958
+2023-05-28 03:13:23 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 03:13:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 03:13:31 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 03:13:35 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 03:18:09 INFO::Start gene z score imputation ...
+2023-05-28 03:18:09 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=51821 on localhost:11845 at 03:18:10.826
+starting worker pid=51824 on localhost:11845 at 03:18:10.826
+starting worker pid=51825 on localhost:11845 at 03:18:10.828
+starting worker pid=51818 on localhost:11845 at 03:18:10.829
+starting worker pid=51822 on localhost:11845 at 03:18:10.832
+starting worker pid=51823 on localhost:11845 at 03:18:10.833
+starting worker pid=51820 on localhost:11845 at 03:18:10.833
+starting worker pid=51827 on localhost:11845 at 03:18:10.838
+starting worker pid=51826 on localhost:11845 at 03:18:10.847
+starting worker pid=51819 on localhost:11845 at 03:18:10.848
+2023-05-28 03:21:13 INFO::Imputation done, writing results to output...
+2023-05-28 03:21:13 INFO::Imputation done: number of genes with imputed expression: 3016 for chr 12
+2023-05-28 03:21:14 INFO::Reading weights for chromosome 13
+2023-05-28 03:21:15 INFO::Number of genes with weights provided: 103452
+2023-05-28 03:21:15 INFO::Collecting gene weight information ...
+starting worker pid=52201 on localhost:11845 at 03:21:15.815
+starting worker pid=52200 on localhost:11845 at 03:21:15.815
+starting worker pid=52199 on localhost:11845 at 03:21:15.815
+starting worker pid=52202 on localhost:11845 at 03:21:15.815
+starting worker pid=52198 on localhost:11845 at 03:21:15.816
+starting worker pid=52196 on localhost:11845 at 03:21:15.817
+starting worker pid=52194 on localhost:11845 at 03:21:15.820
+starting worker pid=52203 on localhost:11845 at 03:21:15.826
+starting worker pid=52195 on localhost:11845 at 03:21:15.828
+starting worker pid=52197 on localhost:11845 at 03:21:15.828
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 03:22:46 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 03:22:54 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 03:22:57 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 03:25:56 INFO::Start gene z score imputation ...
+2023-05-28 03:25:56 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=52734 on localhost:11845 at 03:25:57.091
+starting worker pid=52740 on localhost:11845 at 03:25:57.091
+starting worker pid=52735 on localhost:11845 at 03:25:57.091
+starting worker pid=52741 on localhost:11845 at 03:25:57.094
+starting worker pid=52743 on localhost:11845 at 03:25:57.095
+starting worker pid=52742 on localhost:11845 at 03:25:57.096
+starting worker pid=52739 on localhost:11845 at 03:25:57.105
+starting worker pid=52737 on localhost:11845 at 03:25:57.108
+starting worker pid=52738 on localhost:11845 at 03:25:57.112
+starting worker pid=52736 on localhost:11845 at 03:25:57.117
+2023-05-28 03:28:25 INFO::Imputation done, writing results to output...
+2023-05-28 03:28:25 INFO::Imputation done: number of genes with imputed expression: 1421 for chr 13
+2023-05-28 03:28:27 INFO::Reading weights for chromosome 14
+2023-05-28 03:28:27 INFO::Number of genes with weights provided: 103452
+2023-05-28 03:28:27 INFO::Collecting gene weight information ...
+starting worker pid=53093 on localhost:11845 at 03:28:28.229
+starting worker pid=53095 on localhost:11845 at 03:28:28.229
+starting worker pid=53097 on localhost:11845 at 03:28:28.229
+starting worker pid=53094 on localhost:11845 at 03:28:28.229
+starting worker pid=53090 on localhost:11845 at 03:28:28.229
+starting worker pid=53092 on localhost:11845 at 03:28:28.230
+starting worker pid=53096 on localhost:11845 at 03:28:28.231
+starting worker pid=53098 on localhost:11845 at 03:28:28.231
+starting worker pid=53099 on localhost:11845 at 03:28:28.242
+starting worker pid=53091 on localhost:11845 at 03:28:28.243
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 03:29:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 03:29:57 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 03:30:00 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 03:33:24 INFO::Start gene z score imputation ...
+2023-05-28 03:33:24 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=53657 on localhost:11845 at 03:33:25.323
+starting worker pid=53661 on localhost:11845 at 03:33:25.340
+starting worker pid=53658 on localhost:11845 at 03:33:25.341
+starting worker pid=53664 on localhost:11845 at 03:33:25.345
+starting worker pid=53656 on localhost:11845 at 03:33:25.345
+starting worker pid=53665 on localhost:11845 at 03:33:25.348
+starting worker pid=53660 on localhost:11845 at 03:33:25.349
+starting worker pid=53662 on localhost:11845 at 03:33:25.350
+starting worker pid=53663 on localhost:11845 at 03:33:25.361
+starting worker pid=53659 on localhost:11845 at 03:33:25.368
+2023-05-28 03:36:09 INFO::Imputation done, writing results to output...
+2023-05-28 03:36:09 INFO::Imputation done: number of genes with imputed expression: 1940 for chr 14
+2023-05-28 03:36:10 INFO::Reading weights for chromosome 15
+2023-05-28 03:36:10 INFO::Number of genes with weights provided: 103452
+2023-05-28 03:36:10 INFO::Collecting gene weight information ...
+starting worker pid=54026 on localhost:11845 at 03:36:11.228
+starting worker pid=54021 on localhost:11845 at 03:36:11.228
+starting worker pid=54027 on localhost:11845 at 03:36:11.228
+starting worker pid=54023 on localhost:11845 at 03:36:11.228
+starting worker pid=54025 on localhost:11845 at 03:36:11.229
+starting worker pid=54022 on localhost:11845 at 03:36:11.232
+starting worker pid=54028 on localhost:11845 at 03:36:11.237
+starting worker pid=54019 on localhost:11845 at 03:36:11.237
+starting worker pid=54024 on localhost:11845 at 03:36:11.248
+starting worker pid=54020 on localhost:11845 at 03:36:11.259
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 03:37:29 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 03:37:37 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 03:37:40 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 03:41:04 INFO::Start gene z score imputation ...
+2023-05-28 03:41:04 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=54586 on localhost:11845 at 03:41:05.334
+starting worker pid=54587 on localhost:11845 at 03:41:05.334
+starting worker pid=54582 on localhost:11845 at 03:41:05.335
+starting worker pid=54581 on localhost:11845 at 03:41:05.342
+starting worker pid=54580 on localhost:11845 at 03:41:05.342
+starting worker pid=54583 on localhost:11845 at 03:41:05.342
+starting worker pid=54585 on localhost:11845 at 03:41:05.346
+starting worker pid=54579 on localhost:11845 at 03:41:05.351
+starting worker pid=54584 on localhost:11845 at 03:41:05.351
+starting worker pid=54588 on localhost:11845 at 03:41:05.354
+2023-05-28 03:43:19 INFO::Imputation done, writing results to output...
+2023-05-28 03:43:19 INFO::Imputation done: number of genes with imputed expression: 1871 for chr 15
+2023-05-28 03:43:21 INFO::Reading weights for chromosome 16
+2023-05-28 03:43:21 INFO::Number of genes with weights provided: 103452
+2023-05-28 03:43:21 INFO::Collecting gene weight information ...
+starting worker pid=54912 on localhost:11845 at 03:43:22.138
+starting worker pid=54910 on localhost:11845 at 03:43:22.138
+starting worker pid=54913 on localhost:11845 at 03:43:22.139
+starting worker pid=54916 on localhost:11845 at 03:43:22.141
+starting worker pid=54908 on localhost:11845 at 03:43:22.143
+starting worker pid=54917 on localhost:11845 at 03:43:22.144
+starting worker pid=54911 on localhost:11845 at 03:43:22.144
+starting worker pid=54914 on localhost:11845 at 03:43:22.146
+starting worker pid=54909 on localhost:11845 at 03:43:22.146
+starting worker pid=54915 on localhost:11845 at 03:43:22.154
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 03:44:43 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 03:44:51 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 03:44:53 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 03:49:33 INFO::Start gene z score imputation ...
+2023-05-28 03:49:33 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=55593 on localhost:11845 at 03:49:34.683
+starting worker pid=55594 on localhost:11845 at 03:49:34.685
+starting worker pid=55592 on localhost:11845 at 03:49:34.688
+starting worker pid=55598 on localhost:11845 at 03:49:34.688
+starting worker pid=55590 on localhost:11845 at 03:49:34.689
+starting worker pid=55589 on localhost:11845 at 03:49:34.692
+starting worker pid=55595 on localhost:11845 at 03:49:34.692
+starting worker pid=55591 on localhost:11845 at 03:49:34.692
+starting worker pid=55597 on localhost:11845 at 03:49:34.703
+starting worker pid=55596 on localhost:11845 at 03:49:34.704
+2023-05-28 03:52:26 INFO::Imputation done, writing results to output...
+2023-05-28 03:52:26 INFO::Imputation done: number of genes with imputed expression: 2906 for chr 16
+2023-05-28 03:52:28 INFO::Reading weights for chromosome 17
+2023-05-28 03:52:28 INFO::Number of genes with weights provided: 103452
+2023-05-28 03:52:28 INFO::Collecting gene weight information ...
+starting worker pid=55946 on localhost:11845 at 03:52:29.336
+starting worker pid=55952 on localhost:11845 at 03:52:29.338
+starting worker pid=55944 on localhost:11845 at 03:52:29.346
+starting worker pid=55948 on localhost:11845 at 03:52:29.348
+starting worker pid=55943 on localhost:11845 at 03:52:29.348
+starting worker pid=55949 on localhost:11845 at 03:52:29.348
+starting worker pid=55947 on localhost:11845 at 03:52:29.354
+starting worker pid=55950 on localhost:11845 at 03:52:29.357
+starting worker pid=55945 on localhost:11845 at 03:52:29.360
+starting worker pid=55951 on localhost:11845 at 03:52:29.363
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 03:53:48 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 03:53:56 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 03:53:58 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 04:00:13 INFO::Start gene z score imputation ...
+2023-05-28 04:00:13 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=56769 on localhost:11845 at 04:00:15.199
+starting worker pid=56772 on localhost:11845 at 04:00:15.202
+starting worker pid=56765 on localhost:11845 at 04:00:15.203
+starting worker pid=56767 on localhost:11845 at 04:00:15.204
+starting worker pid=56768 on localhost:11845 at 04:00:15.204
+starting worker pid=56766 on localhost:11845 at 04:00:15.204
+starting worker pid=56771 on localhost:11845 at 04:00:15.206
+starting worker pid=56774 on localhost:11845 at 04:00:15.216
+starting worker pid=56770 on localhost:11845 at 04:00:15.219
+starting worker pid=56773 on localhost:11845 at 04:00:15.224
+2023-05-28 04:03:08 INFO::Imputation done, writing results to output...
+2023-05-28 04:03:08 INFO::Imputation done: number of genes with imputed expression: 3904 for chr 17
+2023-05-28 04:03:10 INFO::Reading weights for chromosome 18
+2023-05-28 04:03:10 INFO::Number of genes with weights provided: 103452
+2023-05-28 04:03:10 INFO::Collecting gene weight information ...
+starting worker pid=57162 on localhost:11845 at 04:03:11.167
+starting worker pid=57159 on localhost:11845 at 04:03:11.168
+starting worker pid=57160 on localhost:11845 at 04:03:11.168
+starting worker pid=57161 on localhost:11845 at 04:03:11.170
+starting worker pid=57163 on localhost:11845 at 04:03:11.170
+starting worker pid=57165 on localhost:11845 at 04:03:11.173
+starting worker pid=57164 on localhost:11845 at 04:03:11.176
+starting worker pid=57158 on localhost:11845 at 04:03:11.184
+starting worker pid=57166 on localhost:11845 at 04:03:11.186
+starting worker pid=57157 on localhost:11845 at 04:03:11.193
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 04:04:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 04:04:38 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 04:04:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 04:07:01 INFO::Start gene z score imputation ...
+2023-05-28 04:07:01 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=586 on localhost:11845 at 04:07:02.009
+starting worker pid=590 on localhost:11845 at 04:07:02.012
+starting worker pid=587 on localhost:11845 at 04:07:02.018
+starting worker pid=589 on localhost:11845 at 04:07:02.018
+starting worker pid=584 on localhost:11845 at 04:07:02.018
+starting worker pid=582 on localhost:11845 at 04:07:02.020
+starting worker pid=583 on localhost:11845 at 04:07:02.020
+starting worker pid=585 on localhost:11845 at 04:07:02.027
+starting worker pid=588 on localhost:11845 at 04:07:02.036
+starting worker pid=591 on localhost:11845 at 04:07:02.037
+2023-05-28 04:09:20 INFO::Imputation done, writing results to output...
+2023-05-28 04:09:20 INFO::Imputation done: number of genes with imputed expression: 949 for chr 18
+2023-05-28 04:09:22 INFO::Reading weights for chromosome 19
+2023-05-28 04:09:22 INFO::Number of genes with weights provided: 103452
+2023-05-28 04:09:22 INFO::Collecting gene weight information ...
+starting worker pid=975 on localhost:11845 at 04:09:22.981
+starting worker pid=972 on localhost:11845 at 04:09:22.991
+starting worker pid=967 on localhost:11845 at 04:09:22.992
+starting worker pid=974 on localhost:11845 at 04:09:22.992
+starting worker pid=976 on localhost:11845 at 04:09:22.992
+starting worker pid=970 on localhost:11845 at 04:09:22.993
+starting worker pid=968 on localhost:11845 at 04:09:22.993
+starting worker pid=973 on localhost:11845 at 04:09:22.993
+starting worker pid=971 on localhost:11845 at 04:09:22.995
+starting worker pid=969 on localhost:11845 at 04:09:22.995
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 04:10:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 04:10:49 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 04:10:53 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 04:15:58 INFO::Start gene z score imputation ...
+2023-05-28 04:15:58 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=1700 on localhost:11845 at 04:16:00.368
+starting worker pid=1703 on localhost:11845 at 04:16:00.381
+starting worker pid=1705 on localhost:11845 at 04:16:00.381
+starting worker pid=1698 on localhost:11845 at 04:16:00.381
+starting worker pid=1701 on localhost:11845 at 04:16:00.381
+starting worker pid=1704 on localhost:11845 at 04:16:00.382
+starting worker pid=1702 on localhost:11845 at 04:16:00.382
+starting worker pid=1699 on localhost:11845 at 04:16:00.384
+starting worker pid=1707 on localhost:11845 at 04:16:00.384
+starting worker pid=1706 on localhost:11845 at 04:16:00.400
+2023-05-28 04:18:55 INFO::Imputation done, writing results to output...
+2023-05-28 04:18:56 INFO::Imputation done: number of genes with imputed expression: 3449 for chr 19
+2023-05-28 04:18:57 INFO::Reading weights for chromosome 20
+2023-05-28 04:18:57 INFO::Number of genes with weights provided: 103452
+2023-05-28 04:18:57 INFO::Collecting gene weight information ...
+starting worker pid=2108 on localhost:11845 at 04:18:58.151
+starting worker pid=2099 on localhost:11845 at 04:18:58.151
+starting worker pid=2106 on localhost:11845 at 04:18:58.152
+starting worker pid=2102 on localhost:11845 at 04:18:58.152
+starting worker pid=2103 on localhost:11845 at 04:18:58.157
+starting worker pid=2105 on localhost:11845 at 04:18:58.158
+starting worker pid=2104 on localhost:11845 at 04:18:58.158
+starting worker pid=2107 on localhost:11845 at 04:18:58.159
+starting worker pid=2101 on localhost:11845 at 04:18:58.160
+starting worker pid=2100 on localhost:11845 at 04:18:58.170
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 04:20:16 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 04:20:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 04:20:27 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 04:23:47 INFO::Start gene z score imputation ...
+2023-05-28 04:23:47 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=2662 on localhost:11845 at 04:23:48.250
+starting worker pid=2665 on localhost:11845 at 04:23:48.251
+starting worker pid=2664 on localhost:11845 at 04:23:48.253
+starting worker pid=2667 on localhost:11845 at 04:23:48.253
+starting worker pid=2661 on localhost:11845 at 04:23:48.254
+starting worker pid=2660 on localhost:11845 at 04:23:48.254
+starting worker pid=2663 on localhost:11845 at 04:23:48.256
+starting worker pid=2668 on localhost:11845 at 04:23:48.263
+starting worker pid=2669 on localhost:11845 at 04:23:48.265
+starting worker pid=2666 on localhost:11845 at 04:23:48.282
+2023-05-28 04:26:05 INFO::Imputation done, writing results to output...
+2023-05-28 04:26:05 INFO::Imputation done: number of genes with imputed expression: 1708 for chr 20
+2023-05-28 04:26:06 INFO::Reading weights for chromosome 21
+2023-05-28 04:26:07 INFO::Number of genes with weights provided: 103452
+2023-05-28 04:26:07 INFO::Collecting gene weight information ...
+starting worker pid=2986 on localhost:11845 at 04:26:07.536
+starting worker pid=2995 on localhost:11845 at 04:26:07.536
+starting worker pid=2993 on localhost:11845 at 04:26:07.538
+starting worker pid=2991 on localhost:11845 at 04:26:07.538
+starting worker pid=2988 on localhost:11845 at 04:26:07.539
+starting worker pid=2990 on localhost:11845 at 04:26:07.541
+starting worker pid=2987 on localhost:11845 at 04:26:07.541
+starting worker pid=2989 on localhost:11845 at 04:26:07.545
+starting worker pid=2994 on localhost:11845 at 04:26:07.557
+starting worker pid=2992 on localhost:11845 at 04:26:07.559
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 04:27:24 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 04:27:32 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 04:27:35 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 04:30:12 INFO::Start gene z score imputation ...
+2023-05-28 04:30:12 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=3515 on localhost:11845 at 04:30:12.970
+starting worker pid=3511 on localhost:11845 at 04:30:12.972
+starting worker pid=3519 on localhost:11845 at 04:30:12.984
+starting worker pid=3514 on localhost:11845 at 04:30:12.984
+starting worker pid=3513 on localhost:11845 at 04:30:12.990
+starting worker pid=3518 on localhost:11845 at 04:30:12.994
+starting worker pid=3516 on localhost:11845 at 04:30:12.999
+starting worker pid=3517 on localhost:11845 at 04:30:13.001
+starting worker pid=3520 on localhost:11845 at 04:30:13.004
+starting worker pid=3512 on localhost:11845 at 04:30:13.011
+2023-05-28 04:32:09 INFO::Imputation done, writing results to output...
+2023-05-28 04:32:09 INFO::Imputation done: number of genes with imputed expression: 895 for chr 21
+2023-05-28 04:32:13 INFO::Reading weights for chromosome 22
+2023-05-28 04:32:13 INFO::Number of genes with weights provided: 103452
+2023-05-28 04:32:13 INFO::Collecting gene weight information ...
+starting worker pid=3811 on localhost:11845 at 04:32:14.322
+starting worker pid=3804 on localhost:11845 at 04:32:14.340
+starting worker pid=3806 on localhost:11845 at 04:32:14.350
+starting worker pid=3809 on localhost:11845 at 04:32:14.352
+starting worker pid=3807 on localhost:11845 at 04:32:14.352
+starting worker pid=3805 on localhost:11845 at 04:32:14.353
+starting worker pid=3810 on localhost:11845 at 04:32:14.355
+starting worker pid=3802 on localhost:11845 at 04:32:14.366
+starting worker pid=3803 on localhost:11845 at 04:32:14.369
+starting worker pid=3808 on localhost:11845 at 04:32:14.374
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 10)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 3)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 1)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_E.db (core 2)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 4)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 5)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 6)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 7)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 8)
+2023-05-28 04:33:30 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 9)
+2023-05-28 04:33:38 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_M.db (core 6)
+2023-05-28 04:33:41 INFO::Current weight: /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Prostate_S.db (core 2)
+2023-05-28 04:36:48 INFO::Start gene z score imputation ...
+2023-05-28 04:36:48 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=4381 on localhost:11845 at 04:36:49.458
+starting worker pid=4375 on localhost:11845 at 04:36:49.462
+starting worker pid=4374 on localhost:11845 at 04:36:49.462
+starting worker pid=4376 on localhost:11845 at 04:36:49.463
+starting worker pid=4382 on localhost:11845 at 04:36:49.463
+starting worker pid=4380 on localhost:11845 at 04:36:49.464
+starting worker pid=4378 on localhost:11845 at 04:36:49.468
+starting worker pid=4377 on localhost:11845 at 04:36:49.484
+starting worker pid=4379 on localhost:11845 at 04:36:49.484
+starting worker pid=4373 on localhost:11845 at 04:36:49.487
+2023-05-28 04:38:55 INFO::Imputation done, writing results to output...
+2023-05-28 04:38:55 INFO::Imputation done: number of genes with imputed expression: 1716 for chr 22
+2023-05-28 04:39:11 INFO::ctwas started ...
+2023-05-28 04:39:46 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/4.1/ctwas/extdata/ldetect/EUR.b38.bed
+2023-05-28 04:39:49 INFO::No. LD regions: 1700
+2023-05-28 04:39:55 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-05-28 04:39:55 INFO::Merge regions for chr1
+2023-05-28 04:39:55 INFO::No. regions with at least one SNP/gene for chr1 after merging: 130
+2023-05-28 04:40:01 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-05-28 04:40:01 INFO::Merge regions for chr2
+2023-05-28 04:40:01 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
+2023-05-28 04:40:06 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-05-28 04:40:06 INFO::Merge regions for chr3
+2023-05-28 04:40:06 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-05-28 04:40:11 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-05-28 04:40:11 INFO::Merge regions for chr4
+2023-05-28 04:40:11 INFO::No. regions with at least one SNP/gene for chr4 after merging: 120
+2023-05-28 04:40:15 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-05-28 04:40:15 INFO::Merge regions for chr5
+2023-05-28 04:40:15 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-05-28 04:40:20 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-05-28 04:40:20 INFO::Merge regions for chr6
+2023-05-28 04:40:20 INFO::No. regions with at least one SNP/gene for chr6 after merging: 111
+2023-05-28 04:40:23 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-05-28 04:40:23 INFO::Merge regions for chr7
+2023-05-28 04:40:23 INFO::No. regions with at least one SNP/gene for chr7 after merging: 98
+2023-05-28 04:40:26 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-05-28 04:40:26 INFO::Merge regions for chr8
+2023-05-28 04:40:26 INFO::No. regions with at least one SNP/gene for chr8 after merging: 93
+2023-05-28 04:40:27 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-05-28 04:40:27 INFO::Merge regions for chr9
+2023-05-28 04:40:27 INFO::No. regions with at least one SNP/gene for chr9 after merging: 73
+2023-05-28 04:40:30 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-05-28 04:40:30 INFO::Merge regions for chr10
+2023-05-28 04:40:30 INFO::No. regions with at least one SNP/gene for chr10 after merging: 84
+2023-05-28 04:40:33 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-05-28 04:40:33 INFO::Merge regions for chr11
+2023-05-28 04:40:33 INFO::No. regions with at least one SNP/gene for chr11 after merging: 82
+2023-05-28 04:40:35 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-05-28 04:40:35 INFO::Merge regions for chr12
+2023-05-28 04:40:35 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-05-28 04:40:37 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-05-28 04:40:37 INFO::Merge regions for chr13
+2023-05-28 04:40:37 INFO::No. regions with at least one SNP/gene for chr13 after merging: 61
+2023-05-28 04:40:38 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-05-28 04:40:38 INFO::Merge regions for chr14
+2023-05-28 04:40:38 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-05-28 04:40:40 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-05-28 04:40:40 INFO::Merge regions for chr15
+2023-05-28 04:40:40 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-05-28 04:40:41 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-05-28 04:40:41 INFO::Merge regions for chr16
+2023-05-28 04:40:41 INFO::No. regions with at least one SNP/gene for chr16 after merging: 53
+2023-05-28 04:40:43 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-05-28 04:40:43 INFO::Merge regions for chr17
+2023-05-28 04:40:43 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-05-28 04:40:44 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-05-28 04:40:44 INFO::Merge regions for chr18
+2023-05-28 04:40:44 INFO::No. regions with at least one SNP/gene for chr18 after merging: 46
+2023-05-28 04:40:45 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-05-28 04:40:45 INFO::Merge regions for chr19
+2023-05-28 04:40:45 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-05-28 04:40:46 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-05-28 04:40:46 INFO::Merge regions for chr20
+2023-05-28 04:40:46 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-05-28 04:40:47 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-05-28 04:40:47 INFO::Merge regions for chr21
+2023-05-28 04:40:47 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-05-28 04:40:48 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-05-28 04:40:48 INFO::Merge regions for chr22
+2023-05-28 04:40:48 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-05-28 04:40:48 INFO::Trim regions with SNPs more than Inf
+2023-05-28 04:40:48 INFO::Adding R matrix info, as genotype is not given
+starting worker pid=4851 on localhost:11845 at 04:40:50.194
+2023-05-28 04:40:54 INFO::Adding R matrix info for chrom 1 (core 1)
+2023-05-28 05:14:46 INFO::Adding R matrix info for chrom 2 (core 1)
+2023-05-28 05:49:56 INFO::Adding R matrix info for chrom 3 (core 1)
+2023-05-28 06:16:49 INFO::Adding R matrix info for chrom 4 (core 1)
+2023-05-28 06:43:00 INFO::Adding R matrix info for chrom 5 (core 1)
+2023-05-28 07:05:52 INFO::Adding R matrix info for chrom 6 (core 1)
+2023-05-28 07:35:13 INFO::Adding R matrix info for chrom 7 (core 1)
+2023-05-28 07:57:53 INFO::Adding R matrix info for chrom 8 (core 1)
+2023-05-28 08:18:53 INFO::Adding R matrix info for chrom 9 (core 1)
+2023-05-28 08:35:11 INFO::Adding R matrix info for chrom 10 (core 1)
+2023-05-28 08:54:56 INFO::Adding R matrix info for chrom 11 (core 1)
+2023-05-28 09:18:52 INFO::Adding R matrix info for chrom 12 (core 1)
+2023-05-28 09:37:45 INFO::Adding R matrix info for chrom 13 (core 1)
+2023-05-28 09:49:00 INFO::Adding R matrix info for chrom 14 (core 1)
+2023-05-28 10:02:24 INFO::Adding R matrix info for chrom 15 (core 1)
+2023-05-28 10:13:25 INFO::Adding R matrix info for chrom 16 (core 1)
+2023-05-28 10:26:20 INFO::Adding R matrix info for chrom 17 (core 1)
+2023-05-28 10:44:02 INFO::Adding R matrix info for chrom 18 (core 1)
+2023-05-28 10:53:28 INFO::Adding R matrix info for chrom 19 (core 1)
+2023-05-28 11:09:11 INFO::Adding R matrix info for chrom 20 (core 1)
+2023-05-28 11:19:54 INFO::Adding R matrix info for chrom 21 (core 1)
+2023-05-28 11:24:43 INFO::Adding R matrix info for chrom 22 (core 1)
+2023-05-28 11:32:40 INFO::Run susie iteratively, getting rough estimate ...
+2023-05-28 11:32:40 INFO::run iteration 1
+starting worker pid=40783 on localhost:11845 at 11:32:42.261
+starting worker pid=40777 on localhost:11845 at 11:32:42.261
+starting worker pid=40780 on localhost:11845 at 11:32:42.262
+starting worker pid=40778 on localhost:11845 at 11:32:42.262
+starting worker pid=40774 on localhost:11845 at 11:32:42.262
+starting worker pid=40782 on localhost:11845 at 11:32:42.262
+starting worker pid=40781 on localhost:11845 at 11:32:42.262
+starting worker pid=40779 on localhost:11845 at 11:32:42.262
+starting worker pid=40776 on localhost:11845 at 11:32:42.262
+starting worker pid=40775 on localhost:11845 at 11:32:42.263
+2023-05-28 11:44:08 INFO::After iteration 1, priors {SNP,E,S,M}: {0.000775387486706983,0.00105796303620793,0.000837704010329806,0.000818232572132402}
+2023-05-28 11:44:10 INFO::run iteration 2
+starting worker pid=41923 on localhost:11845 at 11:44:11.327
+starting worker pid=41931 on localhost:11845 at 11:44:11.327
+starting worker pid=41928 on localhost:11845 at 11:44:11.328
+starting worker pid=41929 on localhost:11845 at 11:44:11.328
+starting worker pid=41926 on localhost:11845 at 11:44:11.328
+starting worker pid=41924 on localhost:11845 at 11:44:11.328
+starting worker pid=41927 on localhost:11845 at 11:44:11.328
+starting worker pid=41925 on localhost:11845 at 11:44:11.329
+starting worker pid=41930 on localhost:11845 at 11:44:11.329
+starting worker pid=41932 on localhost:11845 at 11:44:11.329
+2023-05-28 11:55:23 INFO::After iteration 2, priors {SNP,E,S,M}: {0.000644317455948281,0.00102669197287272,0.000724809924587566,0.00070490490212518}
+2023-05-28 11:55:27 INFO::run iteration 3
+starting worker pid=43065 on localhost:11845 at 11:55:28.568
+starting worker pid=43070 on localhost:11845 at 11:55:28.568
+starting worker pid=43069 on localhost:11845 at 11:55:28.568
+starting worker pid=43066 on localhost:11845 at 11:55:28.568
+starting worker pid=43071 on localhost:11845 at 11:55:28.568
+starting worker pid=43062 on localhost:11845 at 11:55:28.568
+starting worker pid=43068 on localhost:11845 at 11:55:28.568
+starting worker pid=43063 on localhost:11845 at 11:55:28.568
+starting worker pid=43067 on localhost:11845 at 11:55:28.569
+starting worker pid=43064 on localhost:11845 at 11:55:28.569
+2023-05-28 12:06:15 INFO::After iteration 3, priors {SNP,E,S,M}: {0.000586256916585215,0.00104500783679926,0.000682761811530162,0.000660865289622609}
+2023-05-28 12:13:43 INFO::Blocks are filtered: 1044 blocks left
+2023-05-28 12:13:43 INFO::Run susie iteratively, getting accurate estimate ...
+2023-05-28 12:13:43 INFO::run iteration 1
+starting worker pid=44771 on localhost:11845 at 12:13:44.766
+starting worker pid=44762 on localhost:11845 at 12:13:44.767
+starting worker pid=44764 on localhost:11845 at 12:13:44.767
+starting worker pid=44765 on localhost:11845 at 12:13:44.767
+starting worker pid=44770 on localhost:11845 at 12:13:44.767
+starting worker pid=44767 on localhost:11845 at 12:13:44.768
+starting worker pid=44768 on localhost:11845 at 12:13:44.768
+starting worker pid=44763 on localhost:11845 at 12:13:44.768
+starting worker pid=44769 on localhost:11845 at 12:13:44.768
+starting worker pid=44766 on localhost:11845 at 12:13:44.768
+2023-05-28 12:20:37 INFO::After iteration 1, priors {SNP,E,S,M}: {0.00058126792386772,0.000859264645043717,0.000689313207555706,0.000672118436092582}
+2023-05-28 12:20:37 INFO::run iteration 2
+starting worker pid=45483 on localhost:11845 at 12:20:38.831
+starting worker pid=45479 on localhost:11845 at 12:20:38.831
+starting worker pid=45485 on localhost:11845 at 12:20:38.831
+starting worker pid=45478 on localhost:11845 at 12:20:38.832
+starting worker pid=45481 on localhost:11845 at 12:20:38.832
+starting worker pid=45484 on localhost:11845 at 12:20:38.833
+starting worker pid=45482 on localhost:11845 at 12:20:38.833
+starting worker pid=45480 on localhost:11845 at 12:20:38.833
+starting worker pid=45486 on localhost:11845 at 12:20:38.833
+starting worker pid=45487 on localhost:11845 at 12:20:38.834
+2023-05-28 12:27:15 INFO::After iteration 2, priors {SNP,E,S,M}: {0.00057811590806568,0.000900095877064882,0.000699035220849816,0.000686065272013898}
+2023-05-28 12:27:16 INFO::run iteration 3
+starting worker pid=46166 on localhost:11845 at 12:27:17.299
+starting worker pid=46165 on localhost:11845 at 12:27:17.299
+starting worker pid=46163 on localhost:11845 at 12:27:17.299
+starting worker pid=46168 on localhost:11845 at 12:27:17.299
+starting worker pid=46164 on localhost:11845 at 12:27:17.299
+starting worker pid=46170 on localhost:11845 at 12:27:17.299
+starting worker pid=46167 on localhost:11845 at 12:27:17.300
+starting worker pid=46172 on localhost:11845 at 12:27:17.300
+starting worker pid=46171 on localhost:11845 at 12:27:17.301
+starting worker pid=46169 on localhost:11845 at 12:27:17.301
+2023-05-28 12:33:56 INFO::After iteration 3, priors {SNP,E,S,M}: {0.000576105538575292,0.000972747616955395,0.000711157858446259,0.000704305480505836}
+2023-05-28 12:33:57 INFO::run iteration 4
+starting worker pid=46885 on localhost:11845 at 12:33:58.244
+starting worker pid=46880 on localhost:11845 at 12:33:58.244
+starting worker pid=46881 on localhost:11845 at 12:33:58.244
+starting worker pid=46879 on localhost:11845 at 12:33:58.244
+starting worker pid=46887 on localhost:11845 at 12:33:58.244
+starting worker pid=46886 on localhost:11845 at 12:33:58.244
+starting worker pid=46888 on localhost:11845 at 12:33:58.245
+starting worker pid=46884 on localhost:11845 at 12:33:58.245
+starting worker pid=46883 on localhost:11845 at 12:33:58.246
+starting worker pid=46882 on localhost:11845 at 12:33:58.246
+2023-05-28 12:40:43 INFO::After iteration 4, priors {SNP,E,S,M}: {0.000574708897886697,0.00106026315752897,0.000724895614180053,0.000728774472025536}
+2023-05-28 12:40:43 INFO::run iteration 5
+starting worker pid=47589 on localhost:11845 at 12:40:45.141
+starting worker pid=47591 on localhost:11845 at 12:40:45.141
+starting worker pid=47584 on localhost:11845 at 12:40:45.141
+starting worker pid=47592 on localhost:11845 at 12:40:45.141
+starting worker pid=47590 on localhost:11845 at 12:40:45.142
+starting worker pid=47583 on localhost:11845 at 12:40:45.142
+starting worker pid=47586 on localhost:11845 at 12:40:45.142
+starting worker pid=47587 on localhost:11845 at 12:40:45.142
+starting worker pid=47585 on localhost:11845 at 12:40:45.143
+starting worker pid=47588 on localhost:11845 at 12:40:45.143
+2023-05-28 12:47:23 INFO::After iteration 5, priors {SNP,E,S,M}: {0.000573680197860357,0.0011587765923544,0.000739978512373213,0.000757265007835215}
+2023-05-28 12:47:24 INFO::run iteration 6
+starting worker pid=48283 on localhost:11845 at 12:47:25.717
+starting worker pid=48279 on localhost:11845 at 12:47:25.717
+starting worker pid=48281 on localhost:11845 at 12:47:25.717
+starting worker pid=48286 on localhost:11845 at 12:47:25.717
+starting worker pid=48285 on localhost:11845 at 12:47:25.717
+starting worker pid=48284 on localhost:11845 at 12:47:25.718
+starting worker pid=48288 on localhost:11845 at 12:47:25.718
+starting worker pid=48287 on localhost:11845 at 12:47:25.718
+starting worker pid=48282 on localhost:11845 at 12:47:25.718
+starting worker pid=48280 on localhost:11845 at 12:47:25.719
+2023-05-28 12:54:04 INFO::After iteration 6, priors {SNP,E,S,M}: {0.000573097192304093,0.00126766521746509,0.000756555650644745,0.000775540476448494}
+2023-05-28 12:54:04 INFO::run iteration 7
+starting worker pid=49020 on localhost:11845 at 12:54:05.798
+starting worker pid=49016 on localhost:11845 at 12:54:05.798
+starting worker pid=49023 on localhost:11845 at 12:54:05.798
+starting worker pid=49018 on localhost:11845 at 12:54:05.798
+starting worker pid=49025 on localhost:11845 at 12:54:05.799
+starting worker pid=49019 on localhost:11845 at 12:54:05.799
+starting worker pid=49022 on localhost:11845 at 12:54:05.800
+starting worker pid=49024 on localhost:11845 at 12:54:05.800
+starting worker pid=49017 on localhost:11845 at 12:54:05.800
+starting worker pid=49021 on localhost:11845 at 12:54:05.800
+2023-05-28 13:00:56 INFO::After iteration 7, priors {SNP,E,S,M}: {0.000573023979323186,0.00138684578373533,0.00077464342477469,0.000776350428816311}
+2023-05-28 13:00:56 INFO::run iteration 8
+starting worker pid=49729 on localhost:11845 at 13:00:57.931
+starting worker pid=49727 on localhost:11845 at 13:00:57.931
+starting worker pid=49730 on localhost:11845 at 13:00:57.931
+starting worker pid=49723 on localhost:11845 at 13:00:57.932
+starting worker pid=49724 on localhost:11845 at 13:00:57.932
+starting worker pid=49731 on localhost:11845 at 13:00:57.932
+starting worker pid=49726 on localhost:11845 at 13:00:57.932
+starting worker pid=49728 on localhost:11845 at 13:00:57.933
+starting worker pid=49732 on localhost:11845 at 13:00:57.933
+starting worker pid=49725 on localhost:11845 at 13:00:57.933
+2023-05-28 13:07:45 INFO::After iteration 8, priors {SNP,E,S,M}: {0.000573341389018962,0.00151558846471544,0.000793889433493828,0.000766392026344284}
+2023-05-28 13:07:46 INFO::run iteration 9
+starting worker pid=50429 on localhost:11845 at 13:07:47.465
+starting worker pid=50434 on localhost:11845 at 13:07:47.465
+starting worker pid=50435 on localhost:11845 at 13:07:47.465
+starting worker pid=50428 on localhost:11845 at 13:07:47.465
+starting worker pid=50432 on localhost:11845 at 13:07:47.466
+starting worker pid=50430 on localhost:11845 at 13:07:47.466
+starting worker pid=50431 on localhost:11845 at 13:07:47.466
+starting worker pid=50427 on localhost:11845 at 13:07:47.466
+starting worker pid=50426 on localhost:11845 at 13:07:47.467
+starting worker pid=50433 on localhost:11845 at 13:07:47.467
+2023-05-28 13:14:28 INFO::After iteration 9, priors {SNP,E,S,M}: {0.00057391703292715,0.00165288342403134,0.000813907324864015,0.00075207860854318}
+2023-05-28 13:14:29 INFO::run iteration 10
+starting worker pid=51146 on localhost:11845 at 13:14:30.473
+starting worker pid=51149 on localhost:11845 at 13:14:30.473
+starting worker pid=51153 on localhost:11845 at 13:14:30.473
+starting worker pid=51147 on localhost:11845 at 13:14:30.474
+starting worker pid=51151 on localhost:11845 at 13:14:30.474
+starting worker pid=51148 on localhost:11845 at 13:14:30.474
+starting worker pid=51145 on localhost:11845 at 13:14:30.474
+starting worker pid=51150 on localhost:11845 at 13:14:30.474
+starting worker pid=51154 on localhost:11845 at 13:14:30.474
+starting worker pid=51152 on localhost:11845 at 13:14:30.474
+2023-05-28 13:21:09 INFO::After iteration 10, priors {SNP,E,S,M}: {0.000574660957589341,0.00179775359371604,0.000834405828914936,0.000736353789584063}
+2023-05-28 13:21:10 INFO::run iteration 11
+starting worker pid=51849 on localhost:11845 at 13:21:11.421
+starting worker pid=51840 on localhost:11845 at 13:21:11.421
+starting worker pid=51844 on localhost:11845 at 13:21:11.422
+starting worker pid=51842 on localhost:11845 at 13:21:11.423
+starting worker pid=51847 on localhost:11845 at 13:21:11.423
+starting worker pid=51841 on localhost:11845 at 13:21:11.423
+starting worker pid=51848 on localhost:11845 at 13:21:11.423
+starting worker pid=51845 on localhost:11845 at 13:21:11.423
+starting worker pid=51846 on localhost:11845 at 13:21:11.423
+starting worker pid=51843 on localhost:11845 at 13:21:11.424
+2023-05-28 13:28:02 INFO::After iteration 11, priors {SNP,E,S,M}: {0.000575515683727035,0.00194932105820033,0.000855176895457979,0.000720301226319809}
+2023-05-28 13:28:03 INFO::run iteration 12
+starting worker pid=52551 on localhost:11845 at 13:28:04.548
+starting worker pid=52544 on localhost:11845 at 13:28:04.549
+starting worker pid=52547 on localhost:11845 at 13:28:04.549
+starting worker pid=52545 on localhost:11845 at 13:28:04.550
+starting worker pid=52550 on localhost:11845 at 13:28:04.550
+starting worker pid=52546 on localhost:11845 at 13:28:04.550
+starting worker pid=52549 on localhost:11845 at 13:28:04.550
+starting worker pid=52548 on localhost:11845 at 13:28:04.550
+starting worker pid=52543 on localhost:11845 at 13:28:04.550
+starting worker pid=52552 on localhost:11845 at 13:28:04.550
+2023-05-28 13:35:07 INFO::After iteration 12, priors {SNP,E,S,M}: {0.000576443382762803,0.00210680384249576,0.000876071309767894,0.000704294888243536}
+2023-05-28 13:35:07 INFO::run iteration 13
+starting worker pid=53305 on localhost:11845 at 13:35:09.121
+starting worker pid=53307 on localhost:11845 at 13:35:09.122
+starting worker pid=53309 on localhost:11845 at 13:35:09.123
+starting worker pid=53303 on localhost:11845 at 13:35:09.123
+starting worker pid=53311 on localhost:11845 at 13:35:09.123
+starting worker pid=53302 on localhost:11845 at 13:35:09.123
+starting worker pid=53310 on localhost:11845 at 13:35:09.123
+starting worker pid=53304 on localhost:11845 at 13:35:09.123
+starting worker pid=53308 on localhost:11845 at 13:35:09.124
+starting worker pid=53306 on localhost:11845 at 13:35:09.124
+2023-05-28 13:41:58 INFO::After iteration 13, priors {SNP,E,S,M}: {0.000577418256186121,0.00226950087037888,0.000896981690465488,0.000688466037086194}
+2023-05-28 13:41:59 INFO::run iteration 14
+starting worker pid=54004 on localhost:11845 at 13:42:00.656
+starting worker pid=54002 on localhost:11845 at 13:42:00.656
+starting worker pid=54005 on localhost:11845 at 13:42:00.656
+starting worker pid=54007 on localhost:11845 at 13:42:00.657
+starting worker pid=54003 on localhost:11845 at 13:42:00.657
+starting worker pid=54006 on localhost:11845 at 13:42:00.657
+starting worker pid=54001 on localhost:11845 at 13:42:00.657
+starting worker pid=54008 on localhost:11845 at 13:42:00.657
+starting worker pid=54000 on localhost:11845 at 13:42:00.657
+starting worker pid=54009 on localhost:11845 at 13:42:00.658
+2023-05-28 13:48:51 INFO::After iteration 14, priors {SNP,E,S,M}: {0.000578422263973817,0.00243677741012082,0.000917830875631655,0.000672865542389573}
+2023-05-28 13:48:51 INFO::run iteration 15
+starting worker pid=54743 on localhost:11845 at 13:48:52.881
+starting worker pid=54742 on localhost:11845 at 13:48:52.881
+starting worker pid=54739 on localhost:11845 at 13:48:52.881
+starting worker pid=54738 on localhost:11845 at 13:48:52.881
+starting worker pid=54735 on localhost:11845 at 13:48:52.882
+starting worker pid=54737 on localhost:11845 at 13:48:52.882
+starting worker pid=54741 on localhost:11845 at 13:48:52.882
+starting worker pid=54736 on localhost:11845 at 13:48:52.882
+starting worker pid=54740 on localhost:11845 at 13:48:52.882
+starting worker pid=54744 on localhost:11845 at 13:48:52.882
+2023-05-28 13:55:42 INFO::After iteration 15, priors {SNP,E,S,M}: {0.000579442599266078,0.0026080535309158,0.000938563538572381,0.000657517483978665}
+2023-05-28 13:55:43 INFO::run iteration 16
+starting worker pid=55453 on localhost:11845 at 13:55:45.187
+starting worker pid=55450 on localhost:11845 at 13:55:45.189
+starting worker pid=55454 on localhost:11845 at 13:55:45.189
+starting worker pid=55447 on localhost:11845 at 13:55:45.190
+starting worker pid=55449 on localhost:11845 at 13:55:45.190
+starting worker pid=55451 on localhost:11845 at 13:55:45.190
+starting worker pid=55452 on localhost:11845 at 13:55:45.190
+starting worker pid=55456 on localhost:11845 at 13:55:45.190
+starting worker pid=55448 on localhost:11845 at 13:55:45.190
+starting worker pid=55455 on localhost:11845 at 13:55:45.190
+2023-05-28 14:02:30 INFO::After iteration 16, priors {SNP,E,S,M}: {0.000580470096598978,0.00278279567386651,0.000959139999658452,0.000642436739654928}
+2023-05-28 14:02:31 INFO::run iteration 17
+starting worker pid=56202 on localhost:11845 at 14:02:32.261
+starting worker pid=56203 on localhost:11845 at 14:02:32.261
+starting worker pid=56204 on localhost:11845 at 14:02:32.261
+starting worker pid=56200 on localhost:11845 at 14:02:32.261
+starting worker pid=56198 on localhost:11845 at 14:02:32.261
+starting worker pid=56196 on localhost:11845 at 14:02:32.262
+starting worker pid=56195 on localhost:11845 at 14:02:32.262
+starting worker pid=56201 on localhost:11845 at 14:02:32.262
+starting worker pid=56199 on localhost:11845 at 14:02:32.262
+starting worker pid=56197 on localhost:11845 at 14:02:32.263
+2023-05-28 14:09:18 INFO::After iteration 17, priors {SNP,E,S,M}: {0.000581498177160123,0.00296051072924543,0.000979531685740695,0.000627634877180755}
+2023-05-28 14:09:19 INFO::run iteration 18
+starting worker pid=56929 on localhost:11845 at 14:09:20.338
+starting worker pid=56924 on localhost:11845 at 14:09:20.339
+starting worker pid=56928 on localhost:11845 at 14:09:20.339
+starting worker pid=56927 on localhost:11845 at 14:09:20.340
+starting worker pid=56926 on localhost:11845 at 14:09:20.340
+starting worker pid=56931 on localhost:11845 at 14:09:20.340
+starting worker pid=56925 on localhost:11845 at 14:09:20.340
+starting worker pid=56930 on localhost:11845 at 14:09:20.340
+starting worker pid=56932 on localhost:11845 at 14:09:20.341
+starting worker pid=56933 on localhost:11845 at 14:09:20.341
+2023-05-28 14:16:03 INFO::After iteration 18, priors {SNP,E,S,M}: {0.000582522125181138,0.00314074189443065,0.000999717853867231,0.000613122192327966}
+2023-05-28 14:16:03 INFO::run iteration 19
+starting worker pid=607 on localhost:11845 at 14:16:04.864
+starting worker pid=613 on localhost:11845 at 14:16:04.865
+starting worker pid=604 on localhost:11845 at 14:16:04.865
+starting worker pid=611 on localhost:11845 at 14:16:04.865
+starting worker pid=610 on localhost:11845 at 14:16:04.865
+starting worker pid=608 on localhost:11845 at 14:16:04.866
+starting worker pid=609 on localhost:11845 at 14:16:04.866
+starting worker pid=605 on localhost:11845 at 14:16:04.866
+starting worker pid=612 on localhost:11845 at 14:16:04.866
+starting worker pid=606 on localhost:11845 at 14:16:04.866
+2023-05-28 14:22:45 INFO::After iteration 19, priors {SNP,E,S,M}: {0.000583538579487632,0.00332306569626772,0.00101968326975581,0.000598908417763071}
+2023-05-28 14:22:46 INFO::run iteration 20
+starting worker pid=1361 on localhost:11845 at 14:22:47.727
+starting worker pid=1357 on localhost:11845 at 14:22:47.729
+starting worker pid=1363 on localhost:11845 at 14:22:47.730
+starting worker pid=1359 on localhost:11845 at 14:22:47.731
+starting worker pid=1355 on localhost:11845 at 14:22:47.731
+starting worker pid=1362 on localhost:11845 at 14:22:47.731
+starting worker pid=1358 on localhost:11845 at 14:22:47.731
+starting worker pid=1365 on localhost:11845 at 14:22:47.731
+starting worker pid=1356 on localhost:11845 at 14:22:47.732
+starting worker pid=1364 on localhost:11845 at 14:22:47.732
+2023-05-28 14:29:29 INFO::After iteration 20, priors {SNP,E,S,M}: {0.000584545170098286,0.00350708972819355,0.00103941658838969,0.000585002940635642}
+2023-05-28 14:29:30 INFO::run iteration 21
+starting worker pid=2098 on localhost:11845 at 14:29:31.327
+starting worker pid=2104 on localhost:11845 at 14:29:31.327
+starting worker pid=2105 on localhost:11845 at 14:29:31.327
+starting worker pid=2101 on localhost:11845 at 14:29:31.327
+starting worker pid=2097 on localhost:11845 at 14:29:31.327
+starting worker pid=2100 on localhost:11845 at 14:29:31.327
+starting worker pid=2103 on localhost:11845 at 14:29:31.327
+starting worker pid=2102 on localhost:11845 at 14:29:31.327
+starting worker pid=2106 on localhost:11845 at 14:29:31.328
+starting worker pid=2099 on localhost:11845 at 14:29:31.328
+2023-05-28 14:36:10 INFO::After iteration 21, priors {SNP,E,S,M}: {0.000585540255210738,0.00369245080395456,0.00105890923787605,0.000571414825319835}
+2023-05-28 14:36:11 INFO::run iteration 22
+starting worker pid=2804 on localhost:11845 at 14:36:12.969
+starting worker pid=2803 on localhost:11845 at 14:36:12.969
+starting worker pid=2805 on localhost:11845 at 14:36:12.969
+starting worker pid=2802 on localhost:11845 at 14:36:12.969
+starting worker pid=2801 on localhost:11845 at 14:36:12.970
+starting worker pid=2800 on localhost:11845 at 14:36:12.970
+starting worker pid=2806 on localhost:11845 at 14:36:12.970
+starting worker pid=2809 on localhost:11845 at 14:36:12.970
+starting worker pid=2808 on localhost:11845 at 14:36:12.970
+starting worker pid=2807 on localhost:11845 at 14:36:12.971
+2023-05-28 14:43:08 INFO::After iteration 22, priors {SNP,E,S,M}: {0.000586522729034991,0.00387881334433255,0.00107815465637667,0.000558152756269592}
+2023-05-28 14:43:09 INFO::run iteration 23
+starting worker pid=3576 on localhost:11845 at 14:43:10.969
+starting worker pid=3581 on localhost:11845 at 14:43:10.969
+starting worker pid=3580 on localhost:11845 at 14:43:10.969
+starting worker pid=3583 on localhost:11845 at 14:43:10.969
+starting worker pid=3579 on localhost:11845 at 14:43:10.969
+starting worker pid=3575 on localhost:11845 at 14:43:10.970
+starting worker pid=3584 on localhost:11845 at 14:43:10.970
+starting worker pid=3578 on localhost:11845 at 14:43:10.970
+starting worker pid=3582 on localhost:11845 at 14:43:10.970
+starting worker pid=3577 on localhost:11845 at 14:43:10.970
+2023-05-28 14:49:57 INFO::After iteration 23, priors {SNP,E,S,M}: {0.000587491880392205,0.00406586789146682,0.00109714777261219,0.00054522495015986}
+2023-05-28 14:49:58 INFO::run iteration 24
+starting worker pid=4310 on localhost:11845 at 14:49:59.668
+starting worker pid=4309 on localhost:11845 at 14:49:59.668
+starting worker pid=4306 on localhost:11845 at 14:49:59.669
+starting worker pid=4304 on localhost:11845 at 14:49:59.669
+starting worker pid=4307 on localhost:11845 at 14:49:59.670
+starting worker pid=4308 on localhost:11845 at 14:49:59.670
+starting worker pid=4312 on localhost:11845 at 14:49:59.670
+starting worker pid=4303 on localhost:11845 at 14:49:59.670
+starting worker pid=4311 on localhost:11845 at 14:49:59.670
+starting worker pid=4313 on localhost:11845 at 14:49:59.670
+2023-05-28 14:56:44 INFO::After iteration 24, priors {SNP,E,S,M}: {0.000588447288133215,0.00425332969499216,0.00111588465228482,0.000532639060040517}
+2023-05-28 14:56:44 INFO::run iteration 25
+starting worker pid=5015 on localhost:11845 at 14:56:46.192
+starting worker pid=5018 on localhost:11845 at 14:56:46.192
+starting worker pid=5017 on localhost:11845 at 14:56:46.193
+starting worker pid=5012 on localhost:11845 at 14:56:46.193
+starting worker pid=5016 on localhost:11845 at 14:56:46.193
+starting worker pid=5020 on localhost:11845 at 14:56:46.194
+starting worker pid=5013 on localhost:11845 at 14:56:46.194
+starting worker pid=5021 on localhost:11845 at 14:56:46.194
+starting worker pid=5014 on localhost:11845 at 14:56:46.194
+starting worker pid=5019 on localhost:11845 at 14:56:46.194
+2023-05-28 15:03:34 INFO::After iteration 25, priors {SNP,E,S,M}: {0.000589388743525254,0.00444093734386084,0.0011343622564893,0.000520402082438078}
+2023-05-28 15:03:35 INFO::run iteration 26
+starting worker pid=5732 on localhost:11845 at 15:03:36.509
+starting worker pid=5733 on localhost:11845 at 15:03:36.510
+starting worker pid=5739 on localhost:11845 at 15:03:36.510
+starting worker pid=5738 on localhost:11845 at 15:03:36.510
+starting worker pid=5735 on localhost:11845 at 15:03:36.511
+starting worker pid=5737 on localhost:11845 at 15:03:36.511
+starting worker pid=5734 on localhost:11845 at 15:03:36.512
+starting worker pid=5740 on localhost:11845 at 15:03:36.512
+starting worker pid=5741 on localhost:11845 at 15:03:36.512
+starting worker pid=5736 on localhost:11845 at 15:03:36.512
+2023-05-28 15:10:28 INFO::After iteration 26, priors {SNP,E,S,M}: {0.000590316192548022,0.00462845143433854,0.00115257827523662,0.000508520272654506}
+2023-05-28 15:10:29 INFO::run iteration 27
+starting worker pid=6454 on localhost:11845 at 15:10:30.583
+starting worker pid=6458 on localhost:11845 at 15:10:30.583
+starting worker pid=6459 on localhost:11845 at 15:10:30.583
+starting worker pid=6456 on localhost:11845 at 15:10:30.585
+starting worker pid=6453 on localhost:11845 at 15:10:30.585
+starting worker pid=6450 on localhost:11845 at 15:10:30.585
+starting worker pid=6452 on localhost:11845 at 15:10:30.585
+starting worker pid=6457 on localhost:11845 at 15:10:30.586
+starting worker pid=6455 on localhost:11845 at 15:10:30.586
+starting worker pid=6451 on localhost:11845 at 15:10:30.586
+2023-05-28 15:17:14 INFO::After iteration 27, priors {SNP,E,S,M}: {0.00059122969298051,0.00481565327323617,0.00117053101116066,0.000496999070653856}
+2023-05-28 15:17:15 INFO::run iteration 28
+starting worker pid=7170 on localhost:11845 at 15:17:16.442
+starting worker pid=7167 on localhost:11845 at 15:17:16.442
+starting worker pid=7163 on localhost:11845 at 15:17:16.442
+starting worker pid=7164 on localhost:11845 at 15:17:16.442
+starting worker pid=7168 on localhost:11845 at 15:17:16.443
+starting worker pid=7169 on localhost:11845 at 15:17:16.443
+starting worker pid=7171 on localhost:11845 at 15:17:16.444
+starting worker pid=7165 on localhost:11845 at 15:17:16.444
+starting worker pid=7166 on localhost:11845 at 15:17:16.444
+starting worker pid=7162 on localhost:11845 at 15:17:16.444
+2023-05-28 15:23:58 INFO::After iteration 28, priors {SNP,E,S,M}: {0.000592129382529109,0.00500234361926943,0.00118821929668774,0.000485843038481148}
+2023-05-28 15:23:59 INFO::run iteration 29
+starting worker pid=7950 on localhost:11845 at 15:24:00.603
+starting worker pid=7949 on localhost:11845 at 15:24:00.603
+starting worker pid=7951 on localhost:11845 at 15:24:00.603
+starting worker pid=7946 on localhost:11845 at 15:24:00.604
+starting worker pid=7954 on localhost:11845 at 15:24:00.604
+starting worker pid=7952 on localhost:11845 at 15:24:00.605
+starting worker pid=7947 on localhost:11845 at 15:24:00.605
+starting worker pid=7945 on localhost:11845 at 15:24:00.605
+starting worker pid=7953 on localhost:11845 at 15:24:00.605
+starting worker pid=7948 on localhost:11845 at 15:24:00.606
+2023-05-28 15:30:46 INFO::After iteration 29, priors {SNP,E,S,M}: {0.000593015455226713,0.00518834146661683,0.00120564243351418,0.00047505580944484}
+2023-05-28 15:30:47 INFO::run iteration 30
+starting worker pid=8690 on localhost:11845 at 15:30:48.832
+starting worker pid=8691 on localhost:11845 at 15:30:48.832
+starting worker pid=8694 on localhost:11845 at 15:30:48.832
+starting worker pid=8689 on localhost:11845 at 15:30:48.832
+starting worker pid=8697 on localhost:11845 at 15:30:48.833
+starting worker pid=8688 on localhost:11845 at 15:30:48.833
+starting worker pid=8693 on localhost:11845 at 15:30:48.833
+starting worker pid=8692 on localhost:11845 at 15:30:48.834
+starting worker pid=8695 on localhost:11845 at 15:30:48.834
+starting worker pid=8696 on localhost:11845 at 15:30:48.834
+2023-05-28 15:37:41 INFO::After iteration 30, priors {SNP,E,S,M}: {0.00059388814404085,0.00537348287454614,0.00122280014697055,0.000464640048963042}
+2023-05-28 15:37:42 INFO::Run susie for all regions.
+2023-05-28 15:37:42 INFO::run iteration 1
+starting worker pid=9464 on localhost:11845 at 15:37:44.026
+starting worker pid=9465 on localhost:11845 at 15:37:44.026
+starting worker pid=9463 on localhost:11845 at 15:37:44.026
+starting worker pid=9466 on localhost:11845 at 15:37:44.026
+starting worker pid=9458 on localhost:11845 at 15:37:44.027
+starting worker pid=9462 on localhost:11845 at 15:37:44.027
+starting worker pid=9460 on localhost:11845 at 15:37:44.027
+starting worker pid=9467 on localhost:11845 at 15:37:44.027
+starting worker pid=9456 on localhost:11845 at 15:37:44.027
+starting worker pid=9457 on localhost:11845 at 15:37:44.027
+2023-05-28 15:49:42 INFO::After iteration 1, priors {SNP,E,S,M}: {0.00269591207797258,0.0211646640962267,0.00493179837746966,0.00132899476735929}
+2023-05-28 15:49:44 INFO::No. LD regions: 1700
+2023-05-28 15:49:50 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-05-28 15:49:50 INFO::Merge regions for chr1
+2023-05-28 15:49:50 INFO::No. regions with at least one SNP/gene for chr1 after merging: 130
+2023-05-28 15:49:58 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-05-28 15:49:58 INFO::Merge regions for chr2
+2023-05-28 15:49:58 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
+2023-05-28 15:50:04 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-05-28 15:50:04 INFO::Merge regions for chr3
+2023-05-28 15:50:04 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-05-28 15:50:09 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-05-28 15:50:09 INFO::Merge regions for chr4
+2023-05-28 15:50:09 INFO::No. regions with at least one SNP/gene for chr4 after merging: 120
+2023-05-28 15:50:15 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-05-28 15:50:15 INFO::Merge regions for chr5
+2023-05-28 15:50:15 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-05-28 15:50:20 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-05-28 15:50:20 INFO::Merge regions for chr6
+2023-05-28 15:50:20 INFO::No. regions with at least one SNP/gene for chr6 after merging: 111
+2023-05-28 15:50:24 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-05-28 15:50:24 INFO::Merge regions for chr7
+2023-05-28 15:50:24 INFO::No. regions with at least one SNP/gene for chr7 after merging: 98
+2023-05-28 15:50:29 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-05-28 15:50:29 INFO::Merge regions for chr8
+2023-05-28 15:50:29 INFO::No. regions with at least one SNP/gene for chr8 after merging: 93
+2023-05-28 15:50:32 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-05-28 15:50:32 INFO::Merge regions for chr9
+2023-05-28 15:50:32 INFO::No. regions with at least one SNP/gene for chr9 after merging: 73
+2023-05-28 15:50:35 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-05-28 15:50:35 INFO::Merge regions for chr10
+2023-05-28 15:50:35 INFO::No. regions with at least one SNP/gene for chr10 after merging: 84
+2023-05-28 15:50:39 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-05-28 15:50:39 INFO::Merge regions for chr11
+2023-05-28 15:50:39 INFO::No. regions with at least one SNP/gene for chr11 after merging: 82
+2023-05-28 15:50:43 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-05-28 15:50:43 INFO::Merge regions for chr12
+2023-05-28 15:50:43 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-05-28 15:50:46 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-05-28 15:50:46 INFO::Merge regions for chr13
+2023-05-28 15:50:46 INFO::No. regions with at least one SNP/gene for chr13 after merging: 61
+2023-05-28 15:50:51 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-05-28 15:50:51 INFO::Merge regions for chr14
+2023-05-28 15:50:51 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-05-28 15:50:53 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-05-28 15:50:53 INFO::Merge regions for chr15
+2023-05-28 15:50:53 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-05-28 15:50:55 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-05-28 15:50:55 INFO::Merge regions for chr16
+2023-05-28 15:50:55 INFO::No. regions with at least one SNP/gene for chr16 after merging: 53
+2023-05-28 15:50:56 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-05-28 15:50:56 INFO::Merge regions for chr17
+2023-05-28 15:50:56 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-05-28 15:50:58 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-05-28 15:50:58 INFO::Merge regions for chr18
+2023-05-28 15:50:58 INFO::No. regions with at least one SNP/gene for chr18 after merging: 46
+2023-05-28 15:51:00 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-05-28 15:51:00 INFO::Merge regions for chr19
+2023-05-28 15:51:00 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-05-28 15:51:02 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-05-28 15:51:02 INFO::Merge regions for chr20
+2023-05-28 15:51:02 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-05-28 15:51:03 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-05-28 15:51:03 INFO::Merge regions for chr21
+2023-05-28 15:51:03 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-05-28 15:51:04 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-05-28 15:51:04 INFO::Merge regions for chr22
+2023-05-28 15:51:04 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-05-28 15:51:04 INFO::Trim regions with SNPs more than 20000
+2023-05-28 15:51:04 INFO::Adding R matrix info, as genotype is not given
+starting worker pid=10761 on localhost:11845 at 15:51:07.024
+2023-05-28 15:51:16 INFO::Adding R matrix info for chrom 1 (core 1)
+2023-05-28 16:25:01 INFO::Adding R matrix info for chrom 2 (core 1)
+2023-05-28 16:59:50 INFO::Adding R matrix info for chrom 3 (core 1)
+2023-05-28 17:26:34 INFO::Adding R matrix info for chrom 4 (core 1)
+2023-05-28 17:52:55 INFO::Adding R matrix info for chrom 5 (core 1)
+2023-05-28 18:15:46 INFO::Adding R matrix info for chrom 6 (core 1)
+2023-05-28 18:45:31 INFO::Adding R matrix info for chrom 7 (core 1)
+2023-05-28 19:08:19 INFO::Adding R matrix info for chrom 8 (core 1)
+2023-05-28 19:29:29 INFO::Adding R matrix info for chrom 9 (core 1)
+2023-05-28 19:45:47 INFO::Adding R matrix info for chrom 10 (core 1)
+2023-05-28 20:05:39 INFO::Adding R matrix info for chrom 11 (core 1)
+2023-05-28 20:29:42 INFO::Adding R matrix info for chrom 12 (core 1)
+2023-05-28 20:48:33 INFO::Adding R matrix info for chrom 13 (core 1)
+2023-05-28 20:59:25 INFO::Adding R matrix info for chrom 14 (core 1)
+2023-05-28 21:12:48 INFO::Adding R matrix info for chrom 15 (core 1)
+2023-05-28 21:23:37 INFO::Adding R matrix info for chrom 16 (core 1)
+2023-05-28 21:36:18 INFO::Adding R matrix info for chrom 17 (core 1)
+2023-05-28 21:54:05 INFO::Adding R matrix info for chrom 18 (core 1)
+2023-05-28 22:03:03 INFO::Adding R matrix info for chrom 19 (core 1)
+2023-05-28 22:18:24 INFO::Adding R matrix info for chrom 20 (core 1)
+2023-05-28 22:29:05 INFO::Adding R matrix info for chrom 21 (core 1)
+2023-05-28 22:33:50 INFO::Adding R matrix info for chrom 22 (core 1)
+2023-05-28 22:48:20 INFO::Number of regions that contain strong gene signals: 2
+2023-05-28 22:48:20 INFO::Rerun susie for regions with strong gene signals using full SNPs.
+2023-05-28 22:48:20 INFO::run iteration 1
+starting worker pid=46980 on localhost:11845 at 22:48:21.515
+2023-05-28 22:49:26 INFO::After iteration 1, priors {SNP,E,S,M}: {0.001150076730187,0.104793832548763,0.00365508914939385,0.0339816196091929}
+$group_prior
+         SNP            E            S            M 
+0.0002969441 0.0053734829 0.0012228001 0.0004646400 
+
+$group_prior_var
+      SNP         E         S         M 
+ 2.215468  3.903154  3.541860 14.111995 
+
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.14.6 ctwas_0.1.38     
+
+loaded via a namespace (and not attached):
+ [1] MatrixGenerics_1.6.0        Biobase_2.54.0             
+ [3] httr_1.4.4                  bit64_4.0.5                
+ [5] foreach_1.5.2               pgenlibr_0.3.2             
+ [7] logging_0.10-108            gwasvcf_0.1.0              
+ [9] assertthat_0.2.1            stats4_4.1.0               
+[11] BiocFileCache_2.2.1         blob_1.2.3                 
+[13] BSgenome_1.62.0             GenomeInfoDbData_1.2.7     
+[15] Rsamtools_2.10.0            yaml_2.3.6                 
+[17] progress_1.2.2              pillar_1.8.1               
+[19] RSQLite_2.2.19              lattice_0.20-44            
+[21] glue_1.6.2                  digest_0.6.31              
+[23] GenomicRanges_1.46.1        XVector_0.34.0             
+[25] Matrix_1.3-3                XML_3.99-0.13              
+[27] pkgconfig_2.0.3             biomaRt_2.50.3             
+[29] zlibbioc_1.40.0             tzdb_0.3.0                 
+[31] BiocParallel_1.28.3         tibble_3.1.8               
+[33] KEGGREST_1.34.0             generics_0.1.3             
+[35] IRanges_2.28.0              ellipsis_0.3.2             
+[37] cachem_1.0.6                SummarizedExperiment_1.24.0
+[39] GenomicFeatures_1.46.5      BiocGenerics_0.40.0        
+[41] cli_3.4.1                   magrittr_2.0.3             
+[43] crayon_1.5.2                memoise_2.0.1              
+[45] fansi_1.0.3                 doParallel_1.0.17          
+[47] xml2_1.3.3                  tools_4.1.0                
+[49] prettyunits_1.1.1           hms_1.1.2                  
+[51] BiocIO_1.4.0                lifecycle_1.0.3            
+[53] matrixStats_0.63.0          stringr_1.5.0              
+[55] S4Vectors_0.32.4            DelayedArray_0.20.0        
+[57] AnnotationDbi_1.56.2        Biostrings_2.62.0          
+[59] compiler_4.1.0              GenomeInfoDb_1.30.1        
+[61] rlang_1.0.6                 grid_4.1.0                 
+[63] RCurl_1.98-1.9              iterators_1.0.14           
+[65] VariantAnnotation_1.40.0    rjson_0.2.21               
+[67] rappdirs_0.3.3              bitops_1.0-7               
+[69] restfulr_0.0.15             codetools_0.2-18           
+[71] DBI_1.1.3                   curl_4.3.2                 
+[73] R6_2.5.1                    GenomicAlignments_1.30.0   
+[75] dplyr_1.0.10                rtracklayer_1.54.0         
+[77] fastmap_1.1.0               bit_4.0.5                  
+[79] utf8_1.2.2                  filelock_1.0.2             
+[81] readr_2.1.3                 stringi_1.7.8              
+[83] parallel_4.1.0              Rcpp_1.0.9                 
+[85] vctrs_0.5.1                 png_0.1-8                  
+[87] dbplyr_2.2.1                tidyselect_1.2.0           

@@ -54,7 +54,7 @@ if (file.exists(paste0(outputdir, "/", outname.e, "_z_gene.Rd"))){
   res <- impute_expr_z(z_snp, weight = weight, ld_R_dir = ld_R_dir,
                        method = NULL, outputdir = outputdir, outname = outname.e,
                        harmonize_z = F, harmonize_wgt = F,
-                       strand_ambig_action_z = "recover", recover_strand_ambig_wgt = T, ncore=12)
+                       strand_ambig_action_z = "recover", recover_strand_ambig_wgt = T, ncore=8)
   z_gene <- res$z_gene
   ld_exprfs <- res$ld_exprfs
   z_snp <- res$z_snp
@@ -66,6 +66,35 @@ if (file.exists(paste0(outputdir, "/", outname.e, "_z_gene.Rd"))){
 z_gene$type <- sapply(z_gene$id, function(x){paste(unlist(strsplit(unlist(strsplit(x, "[|]"))[2],"_"))[-1], collapse="_") })
 
 # run ctwas_rss
-ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = thin, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = ncore, ncore.rerun = ncore.rerun, prob_single = prob_single)
+#ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = thin, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = 15, ncore_LDR = 8, prob_single = prob_single)
+
+#run ctwas_rss parameter estimation
+if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
+  print("skip parameter estimation")
+  load(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))
+  
+  group_prior_rec <- group_prior_rec[,ncol(group_prior_rec)]
+  group_prior_rec["SNP"] <- group_prior_rec["SNP"]*thin #adjust for thin argument
+  
+  group_prior_var_rec <- group_prior_var_rec[,ncol(group_prior_var_rec)]
+} else {
+  ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = 0.1, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = 10, ncore.rerun = 1, prob_single = prob_single,
+            merge=F, 
+            fine_map=F,
+            ncore_LDR=3)
+}
+
+#run ctwas_rss parameter estimation
+if (!file.exists(paste0(outputdir, "/", outname, ".susieIrss.txt"))){
+  print("start fine mapping")
+  ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = 0.1, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = 10, ncore.rerun = 1, prob_single = prob_single,
+            merge=F, 
+            fine_map=T,
+            group_prior = group_prior_rec, 
+            group_prior_var = group_prior_var_rec, 
+            estimate_group_prior = F, 
+            estimate_group_prior_var = F,
+            ncore_LDR=3)
+}
 
 sessionInfo()
