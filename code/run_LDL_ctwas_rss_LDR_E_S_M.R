@@ -45,22 +45,48 @@ outname <- args[6]
 
 source(args[4]) # config
 
-# get gene z score
-if (file.exists(paste0(outputdir, "/", outname.e, "_z_gene.Rd"))){
-  ld_exprfs <- paste0(outputdir, "/", outname.e, "_chr", 1:22, ".expr.gz")
-  load(file = paste0(outputdir, "/", outname.e, "_z_gene.Rd"))
+if (file.exists(paste0(outputdir, "/", outname.e, "_z_snp.Rd"))){
   load(file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
+} else {
+  res <- ctwas:::preharmonize_z_ld(z_snp=z_snp, 
+                           ld_R_dir=ld_R_dir, 
+                           outputdir=outputdir,
+                           outname=outname.e,
+                           harmonize_z=T, 
+                           strand_ambig_action_z="none")
+  z_snp <- res$z_snp
+  save(z_snp, file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
+  rm(res)
+}
+
+# get gene z score
+if (!any(!file.exists(paste0(outputdir, "/", outname.e, "_chr", 1:22, ".expr.gz")))){
+  ld_exprfs <- paste0(outputdir, "/", outname.e, "_chr", 1:22, ".expr.gz")
+  
+  #collapse results over chromosome
+  z_gene <- list()
+  
+  for (i in 1:22){
+    load(paste0(outputdir, "/", outname.e, "_chr", i, ".exprqc.Rd"))
+    z_gene[[i]] <- z_gene_chr
+  }
+  rm(qclist, wgtlist, z_gene_chr)
+
+  z_gene <- do.call(rbind, z_gene)
+
+  save(z_gene, file = paste0(outputdir, "/", outname.e, "_z_gene.Rd"))
 } else {
   res <- impute_expr_z(z_snp, weight = weight, ld_R_dir = ld_R_dir,
                        method = NULL, outputdir = outputdir, outname = outname.e,
                        harmonize_z = F, harmonize_wgt = F,
-                       strand_ambig_action_z = "recover", recover_strand_ambig_wgt = T, ncore=8)
+                       strand_ambig_action_z = "none", recover_strand_ambig_wgt = T,
+                       ncore=5, chrom=1:22)
   z_gene <- res$z_gene
   ld_exprfs <- res$ld_exprfs
-  z_snp <- res$z_snp
   
   save(z_gene, file = paste0(outputdir, "/", outname.e, "_z_gene.Rd"))
-  save(z_snp, file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
+
+  rm(res)
 }
 
 z_gene$type <- sapply(z_gene$id, function(x){paste(unlist(strsplit(unlist(strsplit(x, "[|]"))[2],"_"))[-1], collapse="_") })

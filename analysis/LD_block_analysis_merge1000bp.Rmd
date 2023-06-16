@@ -9,8 +9,11 @@ editor_options:
 
 
 ```{r echo=FALSE}
-#index <- c("1-1","2-1","3-1","4-1","5-1","6-1","7-1","8-1","9-1","10-1")
-index <- c("9-1","9-2","9-3","9-4","9-5")
+index <- c("1-1","2-1","3-1","3-2","3-3","3-4","3-5",
+           "4-1","4-2","4-3","4-4","4-5","5-1","6-1","7-1","8-1",
+           "9-1","9-2","9-3","9-4","9-5",
+           "10-1","10-2","10-3","10-4","10-5")
+#index <- c("9-1","9-2","9-3","9-4","9-5")
 get_results <- function(index){
   analysis_id <- paste0("ukb-s80.45-adi_simu",index,"_config1")
   results_dir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_revision/merge_1000bp/",index,"/")

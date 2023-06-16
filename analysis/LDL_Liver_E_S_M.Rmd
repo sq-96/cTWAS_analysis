@@ -6,9 +6,9 @@ output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 params:
-  analysis_id: "LDL_Liver"
+  analysis_id: "LDL_Liver_WholeBlood"
   trait_id: "LDL_E_S_M"
-  weight: "Liver"
+  weight: "Liver_WholeBlood"
 ---
 
 ```{r}
@@ -200,7 +200,7 @@ ctwas_gene_res$group <- sapply(ctwas_gene_res$id, function(x){paste(unlist(strsp
 
 ctwas_gene_E_res <- ctwas_gene_res[ctwas_gene_res$group=="E",]
 ctwas_gene_S_res <- ctwas_gene_res[ctwas_gene_res$group=="S",]
-ctwas_gene_M_res <- ctwas_gene_res[ctwas_gene_res$group=="M",]
+ctwas_gene_M_res <- ctwas_gene_res[ctwas_gene_res$group=="Full_M",]
 
 sqlite <- RSQLite::dbDriver("SQLite")
 db = RSQLite::dbConnect(sqlite, "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Liver_E.db")
@@ -213,7 +213,7 @@ load("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/Live
 ctwas_gene_S_res$genename <- intron_info[sapply(ctwas_gene_S_res$gene_id, match, intron_info$gene), "genename"]
 
 sqlite <- RSQLite::dbDriver("SQLite")
-db = RSQLite::dbConnect(sqlite, "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/WholeBlood_M.db")
+db = RSQLite::dbConnect(sqlite, "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/Predictive_Models/WholeBlood_Full_M.db")
 query <- function(...) RSQLite::dbGetQuery(db, ...)
 gene_info <- query("select gene, genename, start, end from extra")
 RSQLite::dbDisconnect(db)
@@ -279,7 +279,7 @@ aa$pvalue <- sapply(aa$z, function(x){-log10(2*pnorm(-abs(x)))})
 ```{r echo=FALSE}
 ctwas_gene_E_res <- ctwas_gene_res[ctwas_gene_res$group=="E",]
 ctwas_gene_S_res <- ctwas_gene_res[ctwas_gene_res$group=="S",]
-ctwas_gene_M_res <- ctwas_gene_res[ctwas_gene_res$group=="M",]
+ctwas_gene_M_res <- ctwas_gene_res[ctwas_gene_res$group=="Full_M",]
 
 df_gene_E <- aggregate(ctwas_gene_E_res$susie_pip,by=list(ctwas_gene_E_res$genename), FUN=sum)
 colnames(df_gene_E) <- c("genename", "susie_pip")
