@@ -410,7 +410,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -477,16 +477,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreee7fab48a981c8ddfe96d41d4d5dd4c27f8414299targetblanke7fab48a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/e7fab48a981c8ddfe96d41d4d5dd4c27f8414299" target="_blank">e7fab48</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree9ed1bc7cf107daa8692daedce3fb755977aca68atargetblank9ed1bc7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/9ed1bc7cf107daa8692daedce3fb755977aca68a" target="_blank">9ed1bc7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreee7fab48a981c8ddfe96d41d4d5dd4c27f8414299targetblanke7fab48a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree9ed1bc7cf107daa8692daedce3fb755977aca68atargetblank9ed1bc7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/e7fab48a981c8ddfe96d41d4d5dd4c27f8414299" target="_blank">e7fab48</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/9ed1bc7cf107daa8692daedce3fb755977aca68a" target="_blank">9ed1bc7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -495,7 +495,6 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .ipynb_checkpoints/
-    Ignored:    analysis/figure/
 
 Untracked files:
     Untracked:  LDL_LDLR_locus1.pdf
@@ -508,17 +507,8 @@ Untracked files:
     Untracked:  SCZ_annotation.xlsx
     Untracked:  SLC8B1.pdf
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/simulation_test.Rmd
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
-    Untracked:  code/LB_out/
-    Untracked:  code/OxHb_out/
-    Untracked:  code/run_LB_analysis.sbatch
-    Untracked:  code/run_LB_analysis.sh
-    Untracked:  code/run_LB_ctwas_rss_LDR.R
-    Untracked:  code/run_OxHb_analysis.sbatch
-    Untracked:  code/run_OxHb_analysis.sh
-    Untracked:  code/run_OxHb_ctwas_rss_LDR.R
     Untracked:  data/.ipynb_checkpoints/
     Untracked:  data/FUMA_output/
     Untracked:  data/GO_Terms/
@@ -613,9 +603,7 @@ Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
     Deleted:    analysis/Glucose_Adipose_Subcutaneous.Rmd
     Deleted:    analysis/Glucose_Adipose_Visceral_Omentum.Rmd
-    Modified:   analysis/LD_block_analysis_merge1000bp.Rmd
-    Modified:   analysis/WhiteBlood_WholeBlood_E.Rmd
-    Modified:   analysis/WhiteBlood_WholeBlood_E_S_M.Rmd
+    Modified:   analysis/simulation_test.Rmd
     Deleted:    code/WhiteBlood_M_ener_out/WhiteBlood_WholeBlood.out
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.err
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.out
@@ -636,7 +624,6 @@ Unstaged changes:
     Deleted:    code/White_Blood_M_out/White_Blood_WholeBlood.err
     Deleted:    code/White_Blood_M_out/White_Blood_WholeBlood.out
     Deleted:    code/run_IBD_ctwas_rss_LDR_ME.R
-    Modified:   code/run_LDL_ctwas_rss_LDR_E_S_M.R
 
 </code></pre>
 <p>
@@ -649,9 +636,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/simulation_test.Rmd</code>) and HTML (<code>docs/simulation_test.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/analysis/simulation_test.Rmd" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/simulation_test.html" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -1261,6 +1308,43 @@ ggbarplot(plot_df,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-4-1.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_df_2 &lt;- plot_df
 
 plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;)</code></pre>
@@ -1304,6 +1388,43 @@ ggbarplot(plot_df_2,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-5-1.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_df_3 &lt;- plot_df_3[plot_df_3$method %in% c(&quot;cTWAS G&quot;, &quot;cTWAS Union&quot;),]
 plot_df_3$method &lt;- droplevels(plot_df_3$method)
 levels(plot_df_3$method) &lt;- c(&quot;cTWAS Joint&quot;, &quot;cTWAS Union&quot;)
@@ -1324,6 +1445,43 @@ ggbarplot(plot_df_3,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-2">
+Past versions of unnamed-chunk-5-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-5-2.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="simulation-2-two-causal-tissues-with-unequal-pve" class="section level2">
@@ -1930,6 +2088,43 @@ ggbarplot(plot_df,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
+Past versions of unnamed-chunk-9-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-9-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-9-1.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_df_2 &lt;- plot_df
 
 plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;)</code></pre>
@@ -1973,6 +2168,43 @@ ggbarplot(plot_df_2,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
+Past versions of unnamed-chunk-10-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-10-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-10-1.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_df_3 &lt;- plot_df_3[plot_df_3$method %in% c(&quot;cTWAS G&quot;, &quot;cTWAS Union&quot;),]
 plot_df_3$method &lt;- droplevels(plot_df_3$method)
 levels(plot_df_3$method) &lt;- c(&quot;cTWAS Joint&quot;, &quot;cTWAS Union&quot;)
@@ -1993,6 +2225,43 @@ ggbarplot(plot_df_3,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-10-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-2">
+Past versions of unnamed-chunk-10-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-10-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-10-2.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="simulation-3-one-causal-tissue" class="section level2">
@@ -2002,7 +2271,7 @@ ggbarplot(plot_df_3,
 <p>50% PVE and 2.5e-4 prior inclusion for SNPs, 5% PVE and 0.015 prior inclusion for Liver expression. This tissue was also analyzed alongside Whole Blood and Brain Cerebellum (0% PVE). For the cTWAS analysis, each tissue had its own prior inclusion parameter, and the tissues shared a single effect size parameter.</p>
 <pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
 runtag = &quot;ukb-s80.45-liv_wb&quot;
-configtag &lt;- 2
+configtag &lt;- 1
 
 simutags &lt;- paste(3, 1:5, sep = &quot;-&quot;)
 thin &lt;- 0.1
@@ -2131,58 +2400,58 @@ for (i in 1:length(simutags)){
 #results using PIP threshold (gene+tissue)
 results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
 <pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
-1     3-1      118             40                       30
+1     3-1      118             43                       33
 2     3-2       95             51                       34
-3     3-3      116             36                       26
-4     3-4      117             47                       37
-5     3-5      113             48                       37</code></pre>
+3     3-3      116             32                       20
+4     3-4      117             51                       40
+5     3-5      113             52                       39</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8
 sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
-<pre><code>[1] 0.7387387</code></pre>
+<pre><code>[1] 0.7248908</code></pre>
 <pre class="r"><code>#results using combined PIP threshold
 results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
 <pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
-1     3-1               118                  46                            33
+1     3-1               118                  47                            34
 2     3-2                95                  51                            34
-3     3-3               116                  54                            34
+3     3-3               116                  51                            33
 4     3-4               117                  60                            41
-5     3-5               113                  55                            41</code></pre>
+5     3-5               113                  57                            41</code></pre>
 <pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
 sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
 <pre><code>[1] 0.6879699</code></pre>
 <pre class="r"><code>#prior inclusion and mean prior inclusion
 results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
 <pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
-1     3-1  15.26854   0.009960057  0.0029193316  0.0006996409
-2     3-2  14.21774   0.015921227  0.0005239939  0.0001075432
-3     3-3  13.00977   0.011268497  0.0045913157  0.0039885322
-4     3-4  13.40018   0.020094595  0.0024137731  0.0048414159
-5     3-5  13.04042   0.017810800  0.0036165052  0.0014596020</code></pre>
+1     3-1  15.27581    0.01100818  1.130798e-03  1.448013e-07
+2     3-2  14.30732    0.01561660  8.792572e-05  1.793759e-06
+3     3-3  12.89753    0.01239127  3.605016e-03  1.484000e-03
+4     3-4  13.31048    0.02212511  1.801097e-03  2.714694e-03
+5     3-5  12.87932    0.01850355  3.096742e-04  1.083552e-03</code></pre>
 <pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
 <pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
- 13.787332323   0.015011035   0.002812984   0.002219347 </code></pre>
+ 13.734092806   0.015928942   0.001386902   0.001056837 </code></pre>
 <pre class="r"><code>#prior variance and mean prior variance
 results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
 <pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
-1     3-1      15.26854          31.33725          8.544893          1.151033
-2     3-2      14.21774          21.99653          2.170788          1.777382
-3     3-3      13.00977          29.18026         12.599922          8.153568
-4     3-4      13.40018          16.87536         10.573233          6.239371
-5     3-5      13.04042          23.99469          2.553775         15.738786</code></pre>
+1     3-1      15.27581          27.97044          27.97044          27.97044
+2     3-2      14.30732          22.16803          22.16803          22.16803
+3     3-3      12.89753          23.20211          23.20211          23.20211
+4     3-4      13.31048          15.18600          15.18600          15.18600
+5     3-5      12.87932          22.33196          22.33196          22.33196</code></pre>
 <pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
 <pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
-        13.787332         24.676817          7.288522          6.612028 </code></pre>
+         13.73409          22.17171          22.17171          22.17171 </code></pre>
 <pre class="r"><code>#PVE and mean PVE
 results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
 <pre><code>  simutag   pve_snp pve_weight1  pve_weight2  pve_weight3
-1     3-1 0.3902628  0.05129185 0.0045289716 1.574470e-04
-2     3-2 0.4134510  0.05755146 0.0002065158 3.737101e-05
-3     3-3 0.4120362  0.05403570 0.0105030290 6.358171e-03
-4     3-4 0.4290854  0.05572602 0.0046335493 5.905881e-03
-5     3-5 0.3937832  0.07023025 0.0016768003 4.491352e-03</code></pre>
+1     3-1 0.3919873  0.05059885 0.0057424087 7.918508e-07
+2     3-2 0.4162082  0.05689043 0.0003538772 7.774325e-06
+3     3-3 0.4130390  0.04724644 0.0151860297 6.731824e-03
+4     3-4 0.4273205  0.05521465 0.0049658072 8.060012e-03
+5     3-5 0.3932404  0.06790588 0.0012555711 4.730943e-03</code></pre>
 <pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
 <pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
-0.407723705 0.057767056 0.004309773 0.003390045 </code></pre>
+0.408359070 0.055571251 0.005500739 0.003906269 </code></pre>
 <pre class="r"><code>#TWAS results
 results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&quot;, names(results_df)))]</code></pre>
 <pre><code>  simutag n_detected_twas n_detected_twas_in_causal n_detected_comb_twas
@@ -2599,6 +2868,43 @@ ggbarplot(plot_df,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
+Past versions of unnamed-chunk-14-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-14-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-14-1.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_df_2 &lt;- plot_df
 
 plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;)</code></pre>
@@ -2642,6 +2948,43 @@ ggbarplot(plot_df_2,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
+Past versions of unnamed-chunk-15-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-15-1.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_df_3 &lt;- plot_df_3[plot_df_3$method %in% c(&quot;cTWAS G&quot;, &quot;cTWAS Union&quot;),]
 plot_df_3$method &lt;- droplevels(plot_df_3$method)
 levels(plot_df_3$method) &lt;- c(&quot;cTWAS Joint&quot;, &quot;cTWAS Union&quot;)
@@ -2662,6 +3005,43 @@ ggbarplot(plot_df_3,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-2">
+Past versions of unnamed-chunk-15-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-15-2.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="simulation-4-no-causal-tissues" class="section level2">
@@ -3268,6 +3648,43 @@ ggbarplot(plot_df,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-19-1">
+Past versions of unnamed-chunk-19-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-19-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-19-1.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_df_2 &lt;- plot_df
 
 plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;)</code></pre>
@@ -3311,6 +3728,43 @@ ggbarplot(plot_df_2,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-1">
+Past versions of unnamed-chunk-20-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-20-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-20-1.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_df_3 &lt;- plot_df_3[plot_df_3$method %in% c(&quot;cTWAS G&quot;, &quot;cTWAS Union&quot;),]
 plot_df_3$method &lt;- droplevels(plot_df_3$method)
 levels(plot_df_3$method) &lt;- c(&quot;cTWAS Joint&quot;, &quot;cTWAS Union&quot;)
@@ -3331,6 +3785,43 @@ ggbarplot(plot_df_3,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
 <p><img src="figure/simulation_test.Rmd/unnamed-chunk-20-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-2">
+Past versions of unnamed-chunk-20-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-20-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/9ed1bc7cf107daa8692daedce3fb755977aca68a/docs/figure/simulation_test.Rmd/unnamed-chunk-20-2.png" target="_blank">9ed1bc7</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
