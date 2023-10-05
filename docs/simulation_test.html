@@ -1,0 +1,3476 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="shengqian" />
+
+<meta name="date" content="2023-09-30" />
+
+<title>Simulation Results using Multiple Tissues</title>
+
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">cTWAS_analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/sq-96/cTWAS_analysis">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Simulation Results using Multiple Tissues</h1>
+<h4 class="author">shengqian</h4>
+<h4 class="date">2023-09-30</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2023-10-05
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>cTWAS_analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211220code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20211220)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20211220code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20211220)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreee7fab48a981c8ddfe96d41d4d5dd4c27f8414299targetblanke7fab48a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/e7fab48a981c8ddfe96d41d4d5dd4c27f8414299" target="_blank">e7fab48</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreee7fab48a981c8ddfe96d41d4d5dd4c27f8414299targetblanke7fab48a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/e7fab48a981c8ddfe96d41d4d5dd4c27f8414299" target="_blank">e7fab48</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .ipynb_checkpoints/
+    Ignored:    analysis/figure/
+
+Untracked files:
+    Untracked:  LDL_LDLR_locus1.pdf
+    Untracked:  LDL_TEME199_genetrack.pdf
+    Untracked:  LDL_TEME199_locus.pdf
+    Untracked:  Proposal plots.R
+    Untracked:  RGS14.pdf
+    Untracked:  RNF186.pdf
+    Untracked:  Rplots.pdf
+    Untracked:  SCZ_annotation.xlsx
+    Untracked:  SLC8B1.pdf
+    Untracked:  analysis/.ipynb_checkpoints/
+    Untracked:  analysis/simulation_test.Rmd
+    Untracked:  cache/
+    Untracked:  code/.ipynb_checkpoints/
+    Untracked:  code/LB_out/
+    Untracked:  code/OxHb_out/
+    Untracked:  code/run_LB_analysis.sbatch
+    Untracked:  code/run_LB_analysis.sh
+    Untracked:  code/run_LB_ctwas_rss_LDR.R
+    Untracked:  code/run_OxHb_analysis.sbatch
+    Untracked:  code/run_OxHb_analysis.sh
+    Untracked:  code/run_OxHb_ctwas_rss_LDR.R
+    Untracked:  data/.ipynb_checkpoints/
+    Untracked:  data/FUMA_output/
+    Untracked:  data/GO_Terms/
+    Untracked:  data/GTEx_Analysis_v8_eQTL.tar
+    Untracked:  data/G_list.RData
+    Untracked:  data/IBD_ME/
+    Untracked:  data/LB/
+    Untracked:  data/LDL/
+    Untracked:  data/LDL_E_S/
+    Untracked:  data/LDL_E_S_M/
+    Untracked:  data/LDL_M/
+    Untracked:  data/LDL_S/
+    Untracked:  data/LungCancer_E_S_M/
+    Untracked:  data/OxHb/
+    Untracked:  data/PGC3_SCZ_wave3_public.v2.tsv
+    Untracked:  data/Predictive_Models/
+    Untracked:  data/ProstateCancer_E_S_M/
+    Untracked:  data/Supplementary Table 15 - MAGMA.xlsx
+    Untracked:  data/Supplementary Table 20 - Prioritised Genes.xlsx
+    Untracked:  data/UKBB/
+    Untracked:  data/UKBB_SNPs_Info.text
+    Untracked:  data/WhiteBlood_E/
+    Untracked:  data/WhiteBlood_E_M/
+    Untracked:  data/WhiteBlood_E_S_M/
+    Untracked:  data/WhiteBlood_E_S_M_PC/
+    Untracked:  data/WhiteBlood_M/
+    Untracked:  data/WhiteBlood_M_compare/
+    Untracked:  data/WhiteBlood_M_enet/
+    Untracked:  data/WhiteBlood_M_mashr/
+    Untracked:  data/cpg_annot.RData
+    Untracked:  data/eqtl/
+    Untracked:  data/gencode.v26.GRCh38.genes.gtf
+    Untracked:  data/gene_OMIM.txt
+    Untracked:  data/gene_pip_0.8.txt
+    Untracked:  data/gwas_sumstats/
+    Untracked:  data/magma.genes.out
+    Untracked:  data/mashr_Heart_Atrial_Appendage.db
+    Untracked:  data/mashr_sqtl/
+    Untracked:  data/mqtl/
+    Untracked:  data/notes.txt
+    Untracked:  data/scz_2018.RDS
+    Untracked:  data/summary_known_genes_annotations.xlsx
+    Untracked:  data/test/
+    Untracked:  hist.pdf
+    Untracked:  ld_pip.pdf
+    Untracked:  submit.sh
+    Untracked:  temp_LDR/
+    Untracked:  test-B1.snpgwas.txt
+
+Unstaged changes:
+    Deleted:    analysis/Atrial_Fibrillation_Heart_Atrial_Appendage.Rmd
+    Deleted:    analysis/Atrial_Fibrillation_Heart_Left_Ventricle.Rmd
+    Deleted:    analysis/Autism_Brain_Amygdala.Rmd
+    Deleted:    analysis/Autism_Brain_Anterior_cingulate_cortex_BA24.Rmd
+    Deleted:    analysis/Autism_Brain_Caudate_basal_ganglia.Rmd
+    Deleted:    analysis/Autism_Brain_Cerebellar_Hemisphere.Rmd
+    Deleted:    analysis/Autism_Brain_Cerebellum.Rmd
+    Deleted:    analysis/Autism_Brain_Cortex.Rmd
+    Deleted:    analysis/Autism_Brain_Frontal_Cortex_BA9.Rmd
+    Deleted:    analysis/Autism_Brain_Hippocampus.Rmd
+    Deleted:    analysis/Autism_Brain_Hypothalamus.Rmd
+    Deleted:    analysis/Autism_Brain_Nucleus_accumbens_basal_ganglia.Rmd
+    Deleted:    analysis/Autism_Brain_Putamen_basal_ganglia.Rmd
+    Deleted:    analysis/Autism_Brain_Spinal_cord_cervical_c-1.Rmd
+    Deleted:    analysis/Autism_Brain_Substantia_nigra.Rmd
+    Deleted:    analysis/BMI_Brain_Amygdala.Rmd
+    Deleted:    analysis/BMI_Brain_Amygdala_S.Rmd
+    Deleted:    analysis/BMI_Brain_Anterior_cingulate_cortex_BA24.Rmd
+    Deleted:    analysis/BMI_Brain_Anterior_cingulate_cortex_BA24_S.Rmd
+    Deleted:    analysis/BMI_Brain_Caudate_basal_ganglia.Rmd
+    Deleted:    analysis/BMI_Brain_Caudate_basal_ganglia_S.Rmd
+    Deleted:    analysis/BMI_Brain_Cerebellar_Hemisphere.Rmd
+    Deleted:    analysis/BMI_Brain_Cerebellar_Hemisphere_S.Rmd
+    Deleted:    analysis/BMI_Brain_Cerebellum.Rmd
+    Deleted:    analysis/BMI_Brain_Cerebellum_S.Rmd
+    Deleted:    analysis/BMI_Brain_Cortex.Rmd
+    Deleted:    analysis/BMI_Brain_Cortex_S.Rmd
+    Deleted:    analysis/BMI_Brain_Frontal_Cortex_BA9.Rmd
+    Deleted:    analysis/BMI_Brain_Frontal_Cortex_BA9_S.Rmd
+    Deleted:    analysis/BMI_Brain_Hippocampus.Rmd
+    Deleted:    analysis/BMI_Brain_Hippocampus_S.Rmd
+    Deleted:    analysis/BMI_Brain_Hypothalamus.Rmd
+    Deleted:    analysis/BMI_Brain_Hypothalamus_S.Rmd
+    Deleted:    analysis/BMI_Brain_Nucleus_accumbens_basal_ganglia.Rmd
+    Deleted:    analysis/BMI_Brain_Nucleus_accumbens_basal_ganglia_S.Rmd
+    Deleted:    analysis/BMI_Brain_Putamen_basal_ganglia.Rmd
+    Deleted:    analysis/BMI_Brain_Putamen_basal_ganglia_S.Rmd
+    Deleted:    analysis/BMI_Brain_Spinal_cord_cervical_c-1.Rmd
+    Deleted:    analysis/BMI_Brain_Spinal_cord_cervical_c-1_S.Rmd
+    Deleted:    analysis/BMI_Brain_Substantia_nigra.Rmd
+    Deleted:    analysis/BMI_Brain_Substantia_nigra_S.Rmd
+    Deleted:    analysis/BMI_S_results.Rmd
+    Deleted:    analysis/Glucose_Adipose_Subcutaneous.Rmd
+    Deleted:    analysis/Glucose_Adipose_Visceral_Omentum.Rmd
+    Modified:   analysis/LD_block_analysis_merge1000bp.Rmd
+    Modified:   analysis/WhiteBlood_WholeBlood_E.Rmd
+    Modified:   analysis/WhiteBlood_WholeBlood_E_S_M.Rmd
+    Deleted:    code/WhiteBlood_M_ener_out/WhiteBlood_WholeBlood.out
+    Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.err
+    Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.out
+    Deleted:    code/White_Blood_M_out/White_Blood_ColonTransverse.err
+    Deleted:    code/White_Blood_M_out/White_Blood_ColonTransverse.out
+    Deleted:    code/White_Blood_M_out/White_Blood_KidneyCortex.err
+    Deleted:    code/White_Blood_M_out/White_Blood_KidneyCortex.out
+    Deleted:    code/White_Blood_M_out/White_Blood_Lung.err
+    Deleted:    code/White_Blood_M_out/White_Blood_Lung.out
+    Deleted:    code/White_Blood_M_out/White_Blood_MuscleSkeletal.err
+    Deleted:    code/White_Blood_M_out/White_Blood_MuscleSkeletal.out
+    Deleted:    code/White_Blood_M_out/White_Blood_Ovary.err
+    Deleted:    code/White_Blood_M_out/White_Blood_Ovary.out
+    Deleted:    code/White_Blood_M_out/White_Blood_Prostate.err
+    Deleted:    code/White_Blood_M_out/White_Blood_Prostate.out
+    Deleted:    code/White_Blood_M_out/White_Blood_Testis.err
+    Deleted:    code/White_Blood_M_out/White_Blood_Testis.out
+    Deleted:    code/White_Blood_M_out/White_Blood_WholeBlood.err
+    Deleted:    code/White_Blood_M_out/White_Blood_WholeBlood.out
+    Deleted:    code/run_IBD_ctwas_rss_LDR_ME.R
+    Modified:   code/run_LDL_ctwas_rss_LDR_E_S_M.R
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="simulation-1-two-causal-tissues-with-equal-pve" class="section level2">
+<h2>Simulation 1: Two causal tissues with equal PVE</h2>
+<div id="shared-effect-size-parameters" class="section level3">
+<h3>Shared effect size parameters</h3>
+<p>50% PVE and 2.5e-4 prior inclusion for SNPs, 5% PVE and 0.015 prior inclusion for Liver expression, 5% PVE and 0.015 prior inclusion for Whole Blood expression. The two tissues were also analyzed alongside Brain Cerebellum (0% PVE). For the cTWAS analysis, each tissue had its own prior inclusion parameter, and the tissues shared a single effect size parameter.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+#results_dir &lt;- &quot;/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20220127_wc/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 1
+
+simutags &lt;- paste(1, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                              n_causal=as.integer(),
+                              n_causal_combined=as.integer(),
+                              n_detected_pip=as.integer(),
+                              n_detected_pip_in_causal=as.integer(),
+                              n_detected_comb_pip=as.integer(),
+                              n_detected_comb_pip_in_causal=as.integer(),
+                              pve_snp=as.numeric(),
+                              pve_weight1=as.numeric(),
+                              pve_weight2=as.numeric(),
+                              pve_weight3=as.numeric(),
+                              prior_weight1=as.numeric(),
+                              prior_weight2=as.numeric(),
+                              prior_weight3=as.numeric(),
+                              prior_var_snp=as.numeric(),
+                              prior_var_weight1=as.numeric(),
+                              prior_var_weight2=as.numeric(),
+                              prior_var_weight3=as.numeric(),
+                              n_detected_twas=as.integer(),
+                              n_detected_twas_in_causal=as.integer(),
+                              n_detected_comb_twas=as.integer(),
+                              n_detected_comb_twas_in_causal=as.integer())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #load cTWAS results
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of causal genes
+  n_causal &lt;- length(true_genes)
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #number of gene+tissue combinations with cTWAS PIP &gt; threshold
+  n_ctwas_genes &lt;- sum(ctwas_gene_res$susie_pip &gt; PIP_threshold)
+  
+  #number of cTWAS genes that are causal
+  n_causal_detected &lt;- sum(ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold] %in% true_genes)
+  
+  #collapse gene+tissues to genes and compute combined PIP
+  ctwas_gene_res$gene &lt;- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,&quot;[|]&quot;))[1]})
+  ctwas_gene_res_combined &lt;- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+  colnames(ctwas_gene_res_combined) &lt;- c(&quot;gene&quot;, &quot;pip_combined&quot;)
+  
+  #number of genes with combined PIP &gt; threshold
+  n_ctwas_genes_combined &lt;- sum(ctwas_gene_res_combined$pip_combined &gt; PIP_threshold)
+  
+  #number of cTWAS genes using combined PIP that are causal
+  n_causal_detected_combined &lt;- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined &gt; PIP_threshold] %in% true_genes_combined)
+  
+  #collect number of SNPs analyzed by cTWAS
+  ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s1.susieIrss.txt&quot;))
+  n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+  rm(ctwas_res_s1)
+  
+  #load estimated parameters
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s2.susieIrssres.Rd&quot;))
+  
+  #estimated group prior (all iterations)
+  estimated_group_prior_all &lt;- group_prior_rec
+  estimated_group_prior_all[&quot;SNP&quot;,] &lt;- estimated_group_prior_all[&quot;SNP&quot;,]*thin #adjust parameter to account for thin argument
+  
+  #estimated group prior variance (all iterations)
+  estimated_group_prior_var_all &lt;- group_prior_var_rec
+  
+  #set group size
+  group_size &lt;- c(table(ctwas_gene_res$type), structure(n_snps, names=&quot;SNP&quot;))
+  group_size &lt;- group_size[rownames(estimated_group_prior_all)]
+  
+  #estimated group PVE (all iterations)
+  estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+  
+  #multitissue TWAS analysis with bonferroni adjusted threshold for z scores
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_LDR_z_gene.Rd&quot;))
+  alpha &lt;- 0.05
+  sig_thresh &lt;- qnorm(1-(alpha/nrow(z_gene)/2), lower=T)
+  twas_genes &lt;- z_gene$id[abs(z_gene$z)&gt;sig_thresh]
+  twas_genes_combined &lt;- unique(sapply(twas_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  n_twas_genes &lt;- length(twas_genes)
+  n_twas_genes_combined &lt;- length(twas_genes_combined)
+  
+  n_twas_genes_in_causal &lt;- sum(twas_genes %in% true_genes)
+  n_twas_genes_in_causal_combined &lt;- sum(twas_genes_combined %in% true_genes_combined)
+
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal=as.integer(n_causal),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_pip=as.integer(n_ctwas_genes),
+                                n_detected_pip_in_causal=as.integer(n_causal_detected),
+                                n_detected_comb_pip=as.integer(n_ctwas_genes_combined),
+                                n_detected_comb_pip_in_causal=as.integer(n_causal_detected_combined),
+                                pve_snp=as.numeric(rev(estimated_group_pve_all[&quot;SNP&quot;,])[1]),
+                                pve_weight1=as.numeric(rev(estimated_group_pve_all[&quot;Liver&quot;,])[1]),
+                                pve_weight2=as.numeric(rev(estimated_group_pve_all[&quot;Whole_Blood&quot;,])[1]),
+                                pve_weight3=as.numeric(rev(estimated_group_pve_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_weight1=as.numeric(rev(estimated_group_prior_all[&quot;Liver&quot;,])[1]),
+                                prior_weight2=as.numeric(rev(estimated_group_prior_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_weight3=as.numeric(rev(estimated_group_prior_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_var_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_var_weight1=as.numeric(rev(estimated_group_prior_var_all[&quot;Liver&quot;,])[1]),
+                                prior_var_weight2=as.numeric(rev(estimated_group_prior_var_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_var_weight3=as.numeric(rev(estimated_group_prior_var_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                n_detected_twas=as.integer(n_twas_genes),
+                                n_detected_twas_in_causal=as.integer(n_twas_genes_in_causal),
+                                n_detected_comb_twas=as.integer(n_twas_genes_combined),
+                                n_detected_comb_twas_in_causal=as.integer(n_twas_genes_in_causal_combined))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using PIP threshold (gene+tissue)
+results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
+1     1-1      215             62                       49
+2     1-2      250             90                       74
+3     1-3      216             66                       47
+4     1-4      231             63                       44
+5     1-5      232             64                       45</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8
+sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
+<pre><code>[1] 0.7507246</code></pre>
+<pre class="r"><code>#results using combined PIP threshold
+results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
+1     1-1               214                  87                            64
+2     1-2               247                 114                            93
+3     1-3               216                  97                            67
+4     1-4               231                  85                            63
+5     1-5               230                  84                            59</code></pre>
+<pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
+sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
+<pre><code>[1] 0.7408994</code></pre>
+<pre class="r"><code>#prior inclusion and mean prior inclusion
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
+<pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
+1     1-1  13.91279    0.01105261   0.008184340  2.101346e-03
+2     1-2  13.97440    0.01933705   0.027083805  8.210839e-05
+3     1-3  13.23712    0.01552469   0.011881292  1.547147e-03
+4     1-4  12.81997    0.01261581   0.009130412  2.239236e-04
+5     1-5  14.75213    0.01197736   0.011232777  3.063817e-03</code></pre>
+<pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
+<pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
+ 13.739281478   0.014101507   0.013502525   0.001403668 </code></pre>
+<pre class="r"><code>#prior variance and mean prior variance
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
+1     1-1      13.91279          21.98174          21.98174          21.98174
+2     1-2      13.97440          14.40869          14.40869          14.40869
+3     1-3      13.23712          13.71533          13.71533          13.71533
+4     1-4      12.81997          26.98508          26.98508          26.98508
+5     1-5      14.75213          24.13142          24.13142          24.13142</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
+<pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
+         13.73928          20.24445          20.24445          20.24445 </code></pre>
+<pre class="r"><code>#PVE and mean PVE
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag   pve_snp pve_weight1 pve_weight2  pve_weight3
+1     1-1 0.3836512  0.03992571  0.03266294 0.0090309030
+2     1-2 0.3696325  0.04578683  0.07085065 0.0002313042
+3     1-3 0.4038392  0.03499087  0.02958553 0.0041486714
+4     1-4 0.4064839  0.05594543  0.04473254 0.0011813948
+5     1-5 0.4120649  0.04749740  0.04921297 0.0144549700</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
+<pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
+0.395134370 0.044829247 0.045408926 0.005809449 </code></pre>
+<pre class="r"><code>#TWAS results
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag n_detected_twas n_detected_twas_in_causal n_detected_comb_twas
+1     1-1             355                        65                  232
+2     1-2             503                       100                  311
+3     1-3             312                        59                  204
+4     1-4             343                        66                  227
+5     1-5             392                        56                  262
+  n_detected_comb_twas_in_causal
+1                             65
+2                            100
+3                             59
+4                             68
+5                             56</code></pre>
+<pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
+<pre><code>[1] 0.2815534</code></pre>
+<pre class="r"><code>#store results for figure
+plot_df &lt;- data.frame(simutag=results_df$simutag,
+                      method=&quot;cTWAS G+T&quot;,
+                      count=results_df$n_detected_pip-results_df$n_detected_pip_in_causal,
+                      ifcausal=F)
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G+T&quot;,
+                            count=results_df$n_detected_pip_in_causal,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G&quot;,
+                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G&quot;,
+                            count=results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;TWAS&quot;,
+                            count=results_df$n_detected_comb_twas-results_df$n_detected_comb_twas_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;TWAS&quot;,
+                            count=results_df$n_detected_comb_twas_in_causal,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="separate-effect-size-parameters" class="section level3">
+<h3>Separate effect size parameters</h3>
+<p>For the cTWAS analysis, each tissue had its own prior inclusion parameter end effect size parameter.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(1, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                              n_causal=as.integer(),
+                              n_causal_combined=as.integer(),
+                              n_detected_pip=as.integer(),
+                              n_detected_pip_in_causal=as.integer(),
+                              n_detected_comb_pip=as.integer(),
+                              n_detected_comb_pip_in_causal=as.integer(),
+                              pve_snp=as.numeric(),
+                              pve_weight1=as.numeric(),
+                              pve_weight2=as.numeric(),
+                              pve_weight3=as.numeric(),
+                              prior_weight1=as.numeric(),
+                              prior_weight2=as.numeric(),
+                              prior_weight3=as.numeric(),
+                              prior_var_snp=as.numeric(),
+                              prior_var_weight1=as.numeric(),
+                              prior_var_weight2=as.numeric(),
+                              prior_var_weight3=as.numeric())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #load cTWAS results
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of causal genes
+  n_causal &lt;- length(true_genes)
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #number of gene+tissue combinations with cTWAS PIP &gt; threshold
+  n_ctwas_genes &lt;- sum(ctwas_gene_res$susie_pip &gt; PIP_threshold)
+  
+  #number of cTWAS genes that are causal
+  n_causal_detected &lt;- sum(ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold] %in% true_genes)
+  
+  #collapse gene+tissues to genes and compute combined PIP
+  ctwas_gene_res$gene &lt;- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,&quot;[|]&quot;))[1]})
+  ctwas_gene_res_combined &lt;- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+  colnames(ctwas_gene_res_combined) &lt;- c(&quot;gene&quot;, &quot;pip_combined&quot;)
+  
+  #number of genes with combined PIP &gt; threshold
+  n_ctwas_genes_combined &lt;- sum(ctwas_gene_res_combined$pip_combined &gt; PIP_threshold)
+  
+  #number of cTWAS genes using combined PIP that are causal
+  n_causal_detected_combined &lt;- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined &gt; PIP_threshold] %in% true_genes_combined)
+  
+  #collect number of SNPs analyzed by cTWAS
+  ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s1.susieIrss.txt&quot;))
+  n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+  rm(ctwas_res_s1)
+  
+  #load estimated parameters
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s2.susieIrssres.Rd&quot;))
+  
+  #estimated group prior (all iterations)
+  estimated_group_prior_all &lt;- group_prior_rec
+  estimated_group_prior_all[&quot;SNP&quot;,] &lt;- estimated_group_prior_all[&quot;SNP&quot;,]*thin #adjust parameter to account for thin argument
+  
+  #estimated group prior variance (all iterations)
+  estimated_group_prior_var_all &lt;- group_prior_var_rec
+  
+  #set group size
+  group_size &lt;- c(table(ctwas_gene_res$type), structure(n_snps, names=&quot;SNP&quot;))
+  group_size &lt;- group_size[rownames(estimated_group_prior_all)]
+  
+  #estimated group PVE (all iterations)
+  estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal=as.integer(n_causal),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_pip=as.integer(n_ctwas_genes),
+                                n_detected_pip_in_causal=as.integer(n_causal_detected),
+                                n_detected_comb_pip=as.integer(n_ctwas_genes_combined),
+                                n_detected_comb_pip_in_causal=as.integer(n_causal_detected_combined),
+                                pve_snp=as.numeric(rev(estimated_group_pve_all[&quot;SNP&quot;,])[1]),
+                                pve_weight1=as.numeric(rev(estimated_group_pve_all[&quot;Liver&quot;,])[1]),
+                                pve_weight2=as.numeric(rev(estimated_group_pve_all[&quot;Whole_Blood&quot;,])[1]),
+                                pve_weight3=as.numeric(rev(estimated_group_pve_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_weight1=as.numeric(rev(estimated_group_prior_all[&quot;Liver&quot;,])[1]),
+                                prior_weight2=as.numeric(rev(estimated_group_prior_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_weight3=as.numeric(rev(estimated_group_prior_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_var_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_var_weight1=as.numeric(rev(estimated_group_prior_var_all[&quot;Liver&quot;,])[1]),
+                                prior_var_weight2=as.numeric(rev(estimated_group_prior_var_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_var_weight3=as.numeric(rev(estimated_group_prior_var_all[&quot;Brain_Cerebellum&quot;,])[1]))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using PIP threshold (gene+tissue)
+results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
+1     1-1      215             67                       53
+2     1-2      250             91                       74
+3     1-3      216             67                       48
+4     1-4      231             62                       45
+5     1-5      232             66                       46</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8
+sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
+<pre><code>[1] 0.7535411</code></pre>
+<pre class="r"><code>#results using combined PIP threshold
+results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
+1     1-1               214                  90                            68
+2     1-2               247                 114                            92
+3     1-3               216                  97                            67
+4     1-4               231                  87                            63
+5     1-5               230                  85                            59</code></pre>
+<pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
+sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
+<pre><code>[1] 0.7378436</code></pre>
+<pre class="r"><code>#prior inclusion and mean prior inclusion
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
+<pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
+1     1-1  13.98029    0.01049760   0.010440150   0.001554739
+2     1-2  14.32527    0.01562886   0.030946154   0.003375131
+3     1-3  13.24313    0.01599995   0.011503706   0.001654758
+4     1-4  12.93168    0.01632716   0.006898015   0.001867553
+5     1-5  14.78867    0.01116179   0.011345179   0.004362640</code></pre>
+<pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
+<pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
+ 13.853807579   0.013923071   0.014226641   0.002562964 </code></pre>
+<pre class="r"><code>#prior variance and mean prior variance
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
+1     1-1      13.98029          24.70155          14.25856         40.345898
+2     1-2      14.32527          22.03369          10.92709          2.446965
+3     1-3      13.24313          12.81897          14.70263         13.803416
+4     1-4      12.93168          16.48358          44.99221          4.299581
+5     1-5      14.78867          27.58522          23.39390         15.000354</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
+<pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
+         13.85381          20.72460          21.65488          15.17924 </code></pre>
+<pre class="r"><code>#PVE and mean PVE
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag   pve_snp pve_weight1 pve_weight2 pve_weight3
+1     1-1 0.3839227  0.04261279  0.02702663 0.012263889
+2     1-2 0.3668868  0.05659007  0.06139325 0.001614692
+3     1-3 0.4037207  0.03370524  0.03070735 0.004465732
+4     1-4 0.4050848  0.04422702  0.05634702 0.001569894
+5     1-5 0.4118573  0.05059830  0.04818629 0.012794470</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
+<pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
+0.394294484 0.045546683 0.044732107 0.006541735 </code></pre>
+<pre class="r"><code>#store results for figure
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G - Ind Var&quot;,
+                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G - Ind Var&quot;,
+                            count=results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="individual-tissue-analyses" class="section level3">
+<h3>Individual tissue analyses</h3>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(1, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                         n_causal_combined=as.integer(),
+                         n_detected_weight1=as.integer(),
+                         n_detected_in_causal_weight1=as.integer(),
+                         n_detected_weight2=as.integer(),
+                         n_detected_in_causal_weight2=as.integer(),
+                         n_detected_weight3=as.integer(),
+                         n_detected_in_causal_weight3=as.integer(),
+                         n_detected_combined=as.integer(),
+                         n_detected_in_causal_combined=as.integer())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #number of causal genes
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #load cTWAS results for weight1
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight1.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight1
+  ctwas_genes_weight1 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight1 &lt;- length(ctwas_genes_weight1)
+  n_causal_detected_weight1 &lt;- sum(ctwas_genes_weight1 %in% true_genes_combined)
+  
+  #load cTWAS results for weight2
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight2.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight1
+  ctwas_genes_weight2 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight2 &lt;- length(ctwas_genes_weight2)
+  n_causal_detected_weight2 &lt;- sum(ctwas_genes_weight2 %in% true_genes_combined)
+  
+  #load cTWAS results for weight3
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight3.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight3
+  ctwas_genes_weight3 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight3 &lt;- length(ctwas_genes_weight3)
+  n_causal_detected_weight3 &lt;- sum(ctwas_genes_weight3 %in% true_genes_combined)
+  
+  #combined analysis
+  ctwas_genes_combined &lt;- unique(c(ctwas_genes_weight1, ctwas_genes_weight2, ctwas_genes_weight3))
+  n_ctwas_genes_combined &lt;- length(ctwas_genes_combined)
+  n_causal_detected_combined &lt;- sum(ctwas_genes_combined %in% true_genes_combined)
+  
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_weight1=as.integer(n_ctwas_genes_weight1),
+                                n_detected_in_causal_weight1=as.integer(n_causal_detected_weight1),
+                                n_detected_weight2=as.integer(n_ctwas_genes_weight2),
+                                n_detected_in_causal_weight2=as.integer(n_causal_detected_weight2),
+                                n_detected_weight3=as.integer(n_ctwas_genes_weight3),
+                                n_detected_in_causal_weight3=as.integer(n_causal_detected_weight3),
+                                n_detected_combined=as.integer(n_ctwas_genes_combined),
+                                n_detected_in_causal_combined=as.integer(n_causal_detected_combined))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using weight1
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
+1     1-1                 60                           47
+2     1-2                 79                           61
+3     1-3                 61                           42
+4     1-4                 54                           38
+5     1-5                 55                           42</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
+sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
+<pre><code>[1] 0.7443366</code></pre>
+<pre class="r"><code>#results using weight2
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
+1     1-1                 52                           33
+2     1-2                 81                           59
+3     1-3                 64                           45
+4     1-4                 55                           39
+5     1-5                 50                           33</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
+sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
+<pre><code>[1] 0.692053</code></pre>
+<pre class="r"><code>#results using weight3
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
+1     1-1                 28                           13
+2     1-2                 34                           17
+3     1-3                 27                           12
+4     1-4                 26                           15
+5     1-5                 32                           14</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
+sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
+<pre><code>[1] 0.4829932</code></pre>
+<pre class="r"><code>#results using combined analysis
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
+1     1-1               214                 107                            71
+2     1-2               247                 151                           101
+3     1-3               216                 113                            68
+4     1-4               231                 104                            66
+5     1-5               230                 102                            62</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
+sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
+<pre><code>[1] 0.6377816</code></pre>
+<pre class="r"><code>#store results for figure
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight1&quot;,
+                            count=results_df$n_detected_weight1-results_df$n_detected_in_causal_weight1,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight1&quot;,
+                            count=results_df$n_detected_in_causal_weight1,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight2&quot;,
+                            count=results_df$n_detected_weight2-results_df$n_detected_in_causal_weight2,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight2&quot;,
+                            count=results_df$n_detected_in_causal_weight2,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight3&quot;,
+                            count=results_df$n_detected_weight3-results_df$n_detected_in_causal_weight3,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight3&quot;,
+                            count=results_df$n_detected_in_causal_weight3,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Union&quot;,
+                            count=results_df$n_detected_combined-results_df$n_detected_in_causal_combined,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Union&quot;,
+                            count=results_df$n_detected_in_causal_combined,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="figure" class="section level3">
+<h3>Figure</h3>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
+<pre class="r"><code>plot_df$method &lt;- factor(plot_df$method, levels=c(&quot;TWAS&quot;, &quot;cTWAS G+T&quot;, &quot;cTWAS G&quot;, &quot;cTWAS G - Ind Var&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;))
+
+library(ggpubr)</code></pre>
+<pre><code>Loading required package: ggplot2</code></pre>
+<pre class="r"><code>colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;)
+
+ggbarplot(plot_df, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;none&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_df_2 &lt;- plot_df
+
+plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;)</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+[25]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[37] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[49]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[61]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[73]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>plot_df_2$ifcausal &lt;- as.character(plot_df_2$ifcausal+1)
+plot_df_2$count[plot_df_2$method==&quot;cTWAS G&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;] &lt;- plot_df_2$count[plot_df_2$method==&quot;cTWAS G&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;] - plot_df_2$count[plot_df_2$method==&quot;cTWAS G+T&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;]
+
+plot_df_2 &lt;- rbind(plot_df_2, data.frame(simutag=simutags,
+                                    method=&quot;cTWAS G&quot;,
+                                    count=plot_df_2$count[plot_df_2$method==&quot;cTWAS G+T&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;],
+                                    ifcausal=&quot;3&quot;))
+
+
+
+
+plot_df_3 &lt;- plot_df_2
+
+
+plot_df_2 &lt;- plot_df_2[plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;),]
+plot_df_2$method &lt;- droplevels(plot_df_2$method)
+levels(plot_df_2$method) &lt;- c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Primary&quot;, &quot;cTWAS Secondary&quot;, &quot;cTWAS Null&quot;)
+
+plot_df_2$ifcausal[plot_df_2$ifcausal==&quot;1&quot;] &lt;- &quot;FP&quot;
+plot_df_2$ifcausal[plot_df_2$ifcausal==&quot;2&quot;] &lt;- &quot;TP&quot;
+
+colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;, &quot;#8dd3c7&quot;)
+
+ggbarplot(plot_df_2, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;right&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_df_3 &lt;- plot_df_3[plot_df_3$method %in% c(&quot;cTWAS G&quot;, &quot;cTWAS Union&quot;),]
+plot_df_3$method &lt;- droplevels(plot_df_3$method)
+levels(plot_df_3$method) &lt;- c(&quot;cTWAS Joint&quot;, &quot;cTWAS Union&quot;)
+
+plot_df_3$method &lt;- relevel(plot_df_3$method, &quot;cTWAS Union&quot;)
+
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;1&quot;] &lt;- &quot;FP&quot;
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;2&quot;] &lt;- &quot;TP&quot;
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;3&quot;] &lt;- &quot;TP and Tissue Identified\nby Joint Analysis&quot;
+
+ggbarplot(plot_df_3, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;right&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="simulation-2-two-causal-tissues-with-unequal-pve" class="section level2">
+<h2>Simulation 2: Two causal tissues with unequal PVE</h2>
+<div id="shared-effect-size-parameters-1" class="section level3">
+<h3>Shared effect size parameters</h3>
+<p>50% PVE and 2.5e-4 prior inclusion for SNPs, 5% PVE and 0.015 prior inclusion for Liver expression, 2% PVE and 0.015 prior inclusion for Whole Blood expression. The two tissues were also analyzed alongside Brain Cerebellum (0% PVE). For the cTWAS analysis, each tissue had its own prior inclusion parameter, and the tissues shared a single effect size parameter.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 1
+
+simutags &lt;- paste(2, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                              n_causal=as.integer(),
+                              n_causal_combined=as.integer(),
+                              n_detected_pip=as.integer(),
+                              n_detected_pip_in_causal=as.integer(),
+                              n_detected_comb_pip=as.integer(),
+                              n_detected_comb_pip_in_causal=as.integer(),
+                              pve_snp=as.numeric(),
+                              pve_weight1=as.numeric(),
+                              pve_weight2=as.numeric(),
+                              pve_weight3=as.numeric(),
+                              prior_weight1=as.numeric(),
+                              prior_weight2=as.numeric(),
+                              prior_weight3=as.numeric(),
+                              prior_var_snp=as.numeric(),
+                              prior_var_weight1=as.numeric(),
+                              prior_var_weight2=as.numeric(),
+                              prior_var_weight3=as.numeric(),
+                              n_detected_twas=as.integer(),
+                              n_detected_twas_in_causal=as.integer(),
+                              n_detected_comb_twas=as.integer(),
+                              n_detected_comb_twas_in_causal=as.integer())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #load cTWAS results
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of causal genes
+  n_causal &lt;- length(true_genes)
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #number of gene+tissue combinations with cTWAS PIP &gt; threshold
+  n_ctwas_genes &lt;- sum(ctwas_gene_res$susie_pip &gt; PIP_threshold)
+  
+  #number of cTWAS genes that are causal
+  n_causal_detected &lt;- sum(ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold] %in% true_genes)
+  
+  #collapse gene+tissues to genes and compute combined PIP
+  ctwas_gene_res$gene &lt;- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,&quot;[|]&quot;))[1]})
+  ctwas_gene_res_combined &lt;- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+  colnames(ctwas_gene_res_combined) &lt;- c(&quot;gene&quot;, &quot;pip_combined&quot;)
+  
+  #number of genes with combined PIP &gt; threshold
+  n_ctwas_genes_combined &lt;- sum(ctwas_gene_res_combined$pip_combined &gt; PIP_threshold)
+  
+  #number of cTWAS genes using combined PIP that are causal
+  n_causal_detected_combined &lt;- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined &gt; PIP_threshold] %in% true_genes_combined)
+  
+  #collect number of SNPs analyzed by cTWAS
+  ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s1.susieIrss.txt&quot;))
+  n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+  rm(ctwas_res_s1)
+  
+  #load estimated parameters
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s2.susieIrssres.Rd&quot;))
+  
+  #estimated group prior (all iterations)
+  estimated_group_prior_all &lt;- group_prior_rec
+  estimated_group_prior_all[&quot;SNP&quot;,] &lt;- estimated_group_prior_all[&quot;SNP&quot;,]*thin #adjust parameter to account for thin argument
+  
+  #estimated group prior variance (all iterations)
+  estimated_group_prior_var_all &lt;- group_prior_var_rec
+  
+  #set group size
+  group_size &lt;- c(table(ctwas_gene_res$type), structure(n_snps, names=&quot;SNP&quot;))
+  group_size &lt;- group_size[rownames(estimated_group_prior_all)]
+  
+  #estimated group PVE (all iterations)
+  estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+  
+  #multitissue TWAS analysis with bonferroni adjusted threshold for z scores
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_LDR_z_gene.Rd&quot;))
+  alpha &lt;- 0.05
+  sig_thresh &lt;- qnorm(1-(alpha/nrow(z_gene)/2), lower=T)
+  twas_genes &lt;- z_gene$id[abs(z_gene$z)&gt;sig_thresh]
+  twas_genes_combined &lt;- unique(sapply(twas_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  n_twas_genes &lt;- length(twas_genes)
+  n_twas_genes_combined &lt;- length(twas_genes_combined)
+  
+  n_twas_genes_in_causal &lt;- sum(twas_genes %in% true_genes)
+  n_twas_genes_in_causal_combined &lt;- sum(twas_genes_combined %in% true_genes_combined)
+
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal=as.integer(n_causal),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_pip=as.integer(n_ctwas_genes),
+                                n_detected_pip_in_causal=as.integer(n_causal_detected),
+                                n_detected_comb_pip=as.integer(n_ctwas_genes_combined),
+                                n_detected_comb_pip_in_causal=as.integer(n_causal_detected_combined),
+                                pve_snp=as.numeric(rev(estimated_group_pve_all[&quot;SNP&quot;,])[1]),
+                                pve_weight1=as.numeric(rev(estimated_group_pve_all[&quot;Liver&quot;,])[1]),
+                                pve_weight2=as.numeric(rev(estimated_group_pve_all[&quot;Whole_Blood&quot;,])[1]),
+                                pve_weight3=as.numeric(rev(estimated_group_pve_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_weight1=as.numeric(rev(estimated_group_prior_all[&quot;Liver&quot;,])[1]),
+                                prior_weight2=as.numeric(rev(estimated_group_prior_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_weight3=as.numeric(rev(estimated_group_prior_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_var_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_var_weight1=as.numeric(rev(estimated_group_prior_var_all[&quot;Liver&quot;,])[1]),
+                                prior_var_weight2=as.numeric(rev(estimated_group_prior_var_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_var_weight3=as.numeric(rev(estimated_group_prior_var_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                n_detected_twas=as.integer(n_twas_genes),
+                                n_detected_twas_in_causal=as.integer(n_twas_genes_in_causal),
+                                n_detected_comb_twas=as.integer(n_twas_genes_combined),
+                                n_detected_comb_twas_in_causal=as.integer(n_twas_genes_in_causal_combined))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using PIP threshold (gene+tissue)
+results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
+1     2-1      215             46                       35
+2     2-2      250             70                       53
+3     2-3      216             44                       26
+4     2-4      231             49                       31
+5     2-5      232             50                       32</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8
+sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
+<pre><code>[1] 0.6833977</code></pre>
+<pre class="r"><code>#results using combined PIP threshold
+results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
+1     2-1               214                  65                            46
+2     2-2               247                  89                            68
+3     2-3               216                  66                            39
+4     2-4               231                  66                            46
+5     2-5               230                  69                            43</code></pre>
+<pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
+sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
+<pre><code>[1] 0.6816901</code></pre>
+<pre class="r"><code>#prior inclusion and mean prior inclusion
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
+<pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
+1     2-1  14.00576    0.01210673   0.002346600  0.0023304434
+2     2-2  14.46201    0.02125629   0.019127093  0.0005335365
+3     2-3  13.02465    0.02011668   0.003752383  0.0038701618
+4     2-4  12.57825    0.01265160   0.007055311  0.0002201311
+5     2-5  14.48008    0.01296034   0.005739107  0.0032533403</code></pre>
+<pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
+<pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
+ 13.710151276   0.015818328   0.007604099   0.002041523 </code></pre>
+<pre class="r"><code>#prior variance and mean prior variance
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
+1     2-1      14.00576          22.37283          22.37283          22.37283
+2     2-2      14.46201          11.43922          11.43922          11.43922
+3     2-3      13.02465          10.45020          10.45020          10.45020
+4     2-4      12.57825          25.45420          25.45420          25.45420
+5     2-5      14.48008          23.24376          23.24376          23.24376</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
+<pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
+         13.71015          18.59204          18.59204          18.59204 </code></pre>
+<pre class="r"><code>#PVE and mean PVE
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag   pve_snp pve_weight1 pve_weight2 pve_weight3
+1     2-1 0.3848263  0.04451163 0.009531683 0.010193678
+2     2-2 0.3846523  0.03995853 0.039724170 0.001193251
+3     2-3 0.4041157  0.03454670 0.007119368 0.007907246
+4     2-4 0.4019523  0.05292130 0.032605065 0.001095500
+5     2-5 0.4131879  0.04950493 0.024219228 0.014784524</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
+<pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
+ 0.39774690  0.04428862  0.02263990  0.00703484 </code></pre>
+<pre class="r"><code>#TWAS results
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag n_detected_twas n_detected_twas_in_causal n_detected_comb_twas
+1     2-1             298                        45                  194
+2     2-2             402                        73                  251
+3     2-3             247                        33                  160
+4     2-4             283                        42                  188
+5     2-5             311                        38                  216
+  n_detected_comb_twas_in_causal
+1                             45
+2                             72
+3                             33
+4                             45
+5                             39</code></pre>
+<pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
+<pre><code>[1] 0.2319128</code></pre>
+<pre class="r"><code>#store results for figure
+plot_df &lt;- data.frame(simutag=results_df$simutag,
+                      method=&quot;cTWAS G+T&quot;,
+                      count=results_df$n_detected_pip-results_df$n_detected_pip_in_causal,
+                      ifcausal=F)
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G+T&quot;,
+                            count=results_df$n_detected_pip_in_causal,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G&quot;,
+                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G&quot;,
+                            count=results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;TWAS&quot;,
+                            count=results_df$n_detected_comb_twas-results_df$n_detected_comb_twas_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;TWAS&quot;,
+                            count=results_df$n_detected_comb_twas_in_causal,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="separate-effect-size-parameters-1" class="section level3">
+<h3>Separate effect size parameters</h3>
+<p>For the cTWAS analysis, each tissue had its own prior inclusion parameter and effect size parameter.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(2, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                              n_causal=as.integer(),
+                              n_causal_combined=as.integer(),
+                              n_detected_pip=as.integer(),
+                              n_detected_pip_in_causal=as.integer(),
+                              n_detected_comb_pip=as.integer(),
+                              n_detected_comb_pip_in_causal=as.integer(),
+                              pve_snp=as.numeric(),
+                              pve_weight1=as.numeric(),
+                              pve_weight2=as.numeric(),
+                              pve_weight3=as.numeric(),
+                              prior_weight1=as.numeric(),
+                              prior_weight2=as.numeric(),
+                              prior_weight3=as.numeric(),
+                              prior_var_snp=as.numeric(),
+                              prior_var_weight1=as.numeric(),
+                              prior_var_weight2=as.numeric(),
+                              prior_var_weight3=as.numeric())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #load cTWAS results
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of causal genes
+  n_causal &lt;- length(true_genes)
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #number of gene+tissue combinations with cTWAS PIP &gt; threshold
+  n_ctwas_genes &lt;- sum(ctwas_gene_res$susie_pip &gt; PIP_threshold)
+  
+  #number of cTWAS genes that are causal
+  n_causal_detected &lt;- sum(ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold] %in% true_genes)
+  
+  #collapse gene+tissues to genes and compute combined PIP
+  ctwas_gene_res$gene &lt;- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,&quot;[|]&quot;))[1]})
+  ctwas_gene_res_combined &lt;- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+  colnames(ctwas_gene_res_combined) &lt;- c(&quot;gene&quot;, &quot;pip_combined&quot;)
+  
+  #number of genes with combined PIP &gt; threshold
+  n_ctwas_genes_combined &lt;- sum(ctwas_gene_res_combined$pip_combined &gt; PIP_threshold)
+  
+  #number of cTWAS genes using combined PIP that are causal
+  n_causal_detected_combined &lt;- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined &gt; PIP_threshold] %in% true_genes_combined)
+  
+  #collect number of SNPs analyzed by cTWAS
+  ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s1.susieIrss.txt&quot;))
+  n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+  rm(ctwas_res_s1)
+  
+  #load estimated parameters
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s2.susieIrssres.Rd&quot;))
+  
+  #estimated group prior (all iterations)
+  estimated_group_prior_all &lt;- group_prior_rec
+  estimated_group_prior_all[&quot;SNP&quot;,] &lt;- estimated_group_prior_all[&quot;SNP&quot;,]*thin #adjust parameter to account for thin argument
+  
+  #estimated group prior variance (all iterations)
+  estimated_group_prior_var_all &lt;- group_prior_var_rec
+  
+  #set group size
+  group_size &lt;- c(table(ctwas_gene_res$type), structure(n_snps, names=&quot;SNP&quot;))
+  group_size &lt;- group_size[rownames(estimated_group_prior_all)]
+  
+  #estimated group PVE (all iterations)
+  estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal=as.integer(n_causal),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_pip=as.integer(n_ctwas_genes),
+                                n_detected_pip_in_causal=as.integer(n_causal_detected),
+                                n_detected_comb_pip=as.integer(n_ctwas_genes_combined),
+                                n_detected_comb_pip_in_causal=as.integer(n_causal_detected_combined),
+                                pve_snp=as.numeric(rev(estimated_group_pve_all[&quot;SNP&quot;,])[1]),
+                                pve_weight1=as.numeric(rev(estimated_group_pve_all[&quot;Liver&quot;,])[1]),
+                                pve_weight2=as.numeric(rev(estimated_group_pve_all[&quot;Whole_Blood&quot;,])[1]),
+                                pve_weight3=as.numeric(rev(estimated_group_pve_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_weight1=as.numeric(rev(estimated_group_prior_all[&quot;Liver&quot;,])[1]),
+                                prior_weight2=as.numeric(rev(estimated_group_prior_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_weight3=as.numeric(rev(estimated_group_prior_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_var_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_var_weight1=as.numeric(rev(estimated_group_prior_var_all[&quot;Liver&quot;,])[1]),
+                                prior_var_weight2=as.numeric(rev(estimated_group_prior_var_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_var_weight3=as.numeric(rev(estimated_group_prior_var_all[&quot;Brain_Cerebellum&quot;,])[1]))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using PIP threshold (gene+tissue)
+results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
+1     2-1      215             48                       38
+2     2-2      250             73                       55
+3     2-3      216             46                       27
+4     2-4      231             46                       30
+5     2-5      232             50                       32</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8
+sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
+<pre><code>[1] 0.6920152</code></pre>
+<pre class="r"><code>#results using combined PIP threshold
+results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
+1     2-1               214                  68                            48
+2     2-2               247                  91                            68
+3     2-3               216                  63                            38
+4     2-4               231                  64                            45
+5     2-5               230                  68                            42</code></pre>
+<pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
+sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
+<pre><code>[1] 0.680791</code></pre>
+<pre class="r"><code>#prior inclusion and mean prior inclusion
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
+<pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
+1     2-1  14.01892    0.01155677   0.003544356   0.001712023
+2     2-2  15.39150    0.01602250   0.029919898   0.003678954
+3     2-3  13.17307    0.01706519   0.008016523   0.004806268
+4     2-4  12.77783    0.01534327   0.004428347   0.002359614
+5     2-5  14.68214    0.01146830   0.005685229   0.006944209</code></pre>
+<pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
+<pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
+ 14.008693050   0.014291206   0.010318871   0.003900214 </code></pre>
+<pre class="r"><code>#prior variance and mean prior variance
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
+1     2-1      14.01892          22.91043         12.549905         35.390725
+2     2-2      15.39150          20.72263          4.463574          3.079414
+3     2-3      13.17307          13.49436          4.000902          7.377954
+4     2-4      12.77783          17.73800         48.122109          3.573693
+5     2-5      14.68214          28.80506         22.130566          8.966683</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
+<pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
+         14.00869          20.73410          18.25341          11.67769 </code></pre>
+<pre class="r"><code>#PVE and mean PVE
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag   pve_snp pve_weight1 pve_weight2 pve_weight3
+1     2-1 0.3861511  0.04351062 0.008075834 0.011845968
+2     2-2 0.3811809  0.05456331 0.024246684 0.002214949
+3     2-3 0.4025341  0.03784332 0.005823090 0.006932907
+4     2-4 0.4041817  0.04472479 0.038689741 0.001648655
+5     2-5 0.4129643  0.05428671 0.022842838 0.012173797</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
+<pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
+0.397402438 0.046985749 0.019935637 0.006963255 </code></pre>
+<pre class="r"><code>#store results for figure
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G - Ind Var&quot;,
+                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G - Ind Var&quot;,
+                            count=results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="individual-tissue-analyses-1" class="section level3">
+<h3>Individual tissue analyses</h3>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(2, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                         n_causal_combined=as.integer(),
+                         n_detected_weight1=as.integer(),
+                         n_detected_in_causal_weight1=as.integer(),
+                         n_detected_weight2=as.integer(),
+                         n_detected_in_causal_weight2=as.integer(),
+                         n_detected_weight3=as.integer(),
+                         n_detected_in_causal_weight3=as.integer(),
+                         n_detected_combined=as.integer(),
+                         n_detected_in_causal_combined=as.integer())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #number of causal genes
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #load cTWAS results for weight1
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight1.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight1
+  ctwas_genes_weight1 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight1 &lt;- length(ctwas_genes_weight1)
+  n_causal_detected_weight1 &lt;- sum(ctwas_genes_weight1 %in% true_genes_combined)
+  
+  #load cTWAS results for weight2
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight2.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight1
+  ctwas_genes_weight2 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight2 &lt;- length(ctwas_genes_weight2)
+  n_causal_detected_weight2 &lt;- sum(ctwas_genes_weight2 %in% true_genes_combined)
+  
+  #load cTWAS results for weight3
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight3.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight3
+  ctwas_genes_weight3 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight3 &lt;- length(ctwas_genes_weight3)
+  n_causal_detected_weight3 &lt;- sum(ctwas_genes_weight3 %in% true_genes_combined)
+  
+  #combined analysis
+  ctwas_genes_combined &lt;- unique(c(ctwas_genes_weight1, ctwas_genes_weight2, ctwas_genes_weight3))
+  n_ctwas_genes_combined &lt;- length(ctwas_genes_combined)
+  n_causal_detected_combined &lt;- sum(ctwas_genes_combined %in% true_genes_combined)
+  
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_weight1=as.integer(n_ctwas_genes_weight1),
+                                n_detected_in_causal_weight1=as.integer(n_causal_detected_weight1),
+                                n_detected_weight2=as.integer(n_ctwas_genes_weight2),
+                                n_detected_in_causal_weight2=as.integer(n_causal_detected_weight2),
+                                n_detected_weight3=as.integer(n_ctwas_genes_weight3),
+                                n_detected_in_causal_weight3=as.integer(n_causal_detected_weight3),
+                                n_detected_combined=as.integer(n_ctwas_genes_combined),
+                                n_detected_in_causal_combined=as.integer(n_causal_detected_combined))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using weight1
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
+1     2-1                 55                           42
+2     2-2                 74                           57
+3     2-3                 50                           32
+4     2-4                 49                           35
+5     2-5                 54                           41</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
+sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
+<pre><code>[1] 0.7340426</code></pre>
+<pre class="r"><code>#results using weight2
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
+1     2-1                 25                           12
+2     2-2                 52                           31
+3     2-3                 35                           23
+4     2-4                 42                           28
+5     2-5                 33                           17</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
+sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
+<pre><code>[1] 0.5935829</code></pre>
+<pre class="r"><code>#results using weight3
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
+1     2-1                 23                           11
+2     2-2                 27                           13
+3     2-3                 18                            5
+4     2-4                 19                           10
+5     2-5                 30                           12</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
+sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
+<pre><code>[1] 0.4358974</code></pre>
+<pre class="r"><code>#results using combined analysis
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
+1     2-1               214                  81                            50
+2     2-2               247                 121                            75
+3     2-3               216                  79                            42
+4     2-4               231                  86                            53
+5     2-5               230                  86                            47</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
+sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
+<pre><code>[1] 0.589404</code></pre>
+<pre class="r"><code>#store results for figure
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight1&quot;,
+                            count=results_df$n_detected_weight1-results_df$n_detected_in_causal_weight1,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight1&quot;,
+                            count=results_df$n_detected_in_causal_weight1,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight2&quot;,
+                            count=results_df$n_detected_weight2-results_df$n_detected_in_causal_weight2,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight2&quot;,
+                            count=results_df$n_detected_in_causal_weight2,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight3&quot;,
+                            count=results_df$n_detected_weight3-results_df$n_detected_in_causal_weight3,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight3&quot;,
+                            count=results_df$n_detected_in_causal_weight3,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Union&quot;,
+                            count=results_df$n_detected_combined-results_df$n_detected_in_causal_combined,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Union&quot;,
+                            count=results_df$n_detected_in_causal_combined,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="figure-1" class="section level3">
+<h3>Figure</h3>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
+<pre class="r"><code>plot_df$method &lt;- factor(plot_df$method, levels=c(&quot;TWAS&quot;, &quot;cTWAS G+T&quot;, &quot;cTWAS G&quot;, &quot;cTWAS G - Ind Var&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;))
+
+library(ggpubr)
+
+colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;) 
+
+ggbarplot(plot_df, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;none&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_df_2 &lt;- plot_df
+
+plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;)</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+[25]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[37] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[49]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[61]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[73]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>plot_df_2$ifcausal &lt;- as.character(plot_df_2$ifcausal+1)
+plot_df_2$count[plot_df_2$method==&quot;cTWAS G&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;] &lt;- plot_df_2$count[plot_df_2$method==&quot;cTWAS G&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;] - plot_df_2$count[plot_df_2$method==&quot;cTWAS G+T&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;]
+
+plot_df_2 &lt;- rbind(plot_df_2, data.frame(simutag=simutags,
+                                    method=&quot;cTWAS G&quot;,
+                                    count=plot_df_2$count[plot_df_2$method==&quot;cTWAS G+T&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;],
+                                    ifcausal=&quot;3&quot;))
+
+
+
+
+plot_df_3 &lt;- plot_df_2
+
+
+plot_df_2 &lt;- plot_df_2[plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;),]
+plot_df_2$method &lt;- droplevels(plot_df_2$method)
+levels(plot_df_2$method) &lt;- c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Primary&quot;, &quot;cTWAS Secondary&quot;, &quot;cTWAS Null&quot;)
+
+plot_df_2$ifcausal[plot_df_2$ifcausal==&quot;1&quot;] &lt;- &quot;FP&quot;
+plot_df_2$ifcausal[plot_df_2$ifcausal==&quot;2&quot;] &lt;- &quot;TP&quot;
+
+colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;, &quot;#8dd3c7&quot;)
+
+ggbarplot(plot_df_2, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;right&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_df_3 &lt;- plot_df_3[plot_df_3$method %in% c(&quot;cTWAS G&quot;, &quot;cTWAS Union&quot;),]
+plot_df_3$method &lt;- droplevels(plot_df_3$method)
+levels(plot_df_3$method) &lt;- c(&quot;cTWAS Joint&quot;, &quot;cTWAS Union&quot;)
+
+plot_df_3$method &lt;- relevel(plot_df_3$method, &quot;cTWAS Union&quot;)
+
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;1&quot;] &lt;- &quot;FP&quot;
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;2&quot;] &lt;- &quot;TP&quot;
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;3&quot;] &lt;- &quot;TP and Tissue Identified\nby Joint Analysis&quot;
+
+ggbarplot(plot_df_3, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;right&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-10-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="simulation-3-one-causal-tissue" class="section level2">
+<h2>Simulation 3: One causal tissue</h2>
+<div id="shared-effect-size-parameters-2" class="section level3">
+<h3>Shared effect size parameters</h3>
+<p>50% PVE and 2.5e-4 prior inclusion for SNPs, 5% PVE and 0.015 prior inclusion for Liver expression. This tissue was also analyzed alongside Whole Blood and Brain Cerebellum (0% PVE). For the cTWAS analysis, each tissue had its own prior inclusion parameter, and the tissues shared a single effect size parameter.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(3, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                              n_causal=as.integer(),
+                              n_causal_combined=as.integer(),
+                              n_detected_pip=as.integer(),
+                              n_detected_pip_in_causal=as.integer(),
+                              n_detected_comb_pip=as.integer(),
+                              n_detected_comb_pip_in_causal=as.integer(),
+                              pve_snp=as.numeric(),
+                              pve_weight1=as.numeric(),
+                              pve_weight2=as.numeric(),
+                              pve_weight3=as.numeric(),
+                              prior_weight1=as.numeric(),
+                              prior_weight2=as.numeric(),
+                              prior_weight3=as.numeric(),
+                              prior_var_snp=as.numeric(),
+                              prior_var_weight1=as.numeric(),
+                              prior_var_weight2=as.numeric(),
+                              prior_var_weight3=as.numeric(),
+                              n_detected_twas=as.integer(),
+                              n_detected_twas_in_causal=as.integer(),
+                              n_detected_comb_twas=as.integer(),
+                              n_detected_comb_twas_in_causal=as.integer())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #load cTWAS results
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of causal genes
+  n_causal &lt;- length(true_genes)
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #number of gene+tissue combinations with cTWAS PIP &gt; threshold
+  n_ctwas_genes &lt;- sum(ctwas_gene_res$susie_pip &gt; PIP_threshold)
+  
+  #number of cTWAS genes that are causal
+  n_causal_detected &lt;- sum(ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold] %in% true_genes)
+  
+  #collapse gene+tissues to genes and compute combined PIP
+  ctwas_gene_res$gene &lt;- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,&quot;[|]&quot;))[1]})
+  ctwas_gene_res_combined &lt;- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+  colnames(ctwas_gene_res_combined) &lt;- c(&quot;gene&quot;, &quot;pip_combined&quot;)
+  
+  #number of genes with combined PIP &gt; threshold
+  n_ctwas_genes_combined &lt;- sum(ctwas_gene_res_combined$pip_combined &gt; PIP_threshold)
+  
+  #number of cTWAS genes using combined PIP that are causal
+  n_causal_detected_combined &lt;- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined &gt; PIP_threshold] %in% true_genes_combined)
+  
+  #collect number of SNPs analyzed by cTWAS
+  ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s1.susieIrss.txt&quot;))
+  n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+  rm(ctwas_res_s1)
+  
+  #load estimated parameters
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s2.susieIrssres.Rd&quot;))
+  
+  #estimated group prior (all iterations)
+  estimated_group_prior_all &lt;- group_prior_rec
+  estimated_group_prior_all[&quot;SNP&quot;,] &lt;- estimated_group_prior_all[&quot;SNP&quot;,]*thin #adjust parameter to account for thin argument
+  
+  #estimated group prior variance (all iterations)
+  estimated_group_prior_var_all &lt;- group_prior_var_rec
+  
+  #set group size
+  group_size &lt;- c(table(ctwas_gene_res$type), structure(n_snps, names=&quot;SNP&quot;))
+  group_size &lt;- group_size[rownames(estimated_group_prior_all)]
+  
+  #estimated group PVE (all iterations)
+  estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+  
+  #multitissue TWAS analysis with bonferroni adjusted threshold for z scores
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_LDR_z_gene.Rd&quot;))
+  alpha &lt;- 0.05
+  sig_thresh &lt;- qnorm(1-(alpha/nrow(z_gene)/2), lower=T)
+  twas_genes &lt;- z_gene$id[abs(z_gene$z)&gt;sig_thresh]
+  twas_genes_combined &lt;- unique(sapply(twas_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  n_twas_genes &lt;- length(twas_genes)
+  n_twas_genes_combined &lt;- length(twas_genes_combined)
+  
+  n_twas_genes_in_causal &lt;- sum(twas_genes %in% true_genes)
+  n_twas_genes_in_causal_combined &lt;- sum(twas_genes_combined %in% true_genes_combined)
+
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal=as.integer(n_causal),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_pip=as.integer(n_ctwas_genes),
+                                n_detected_pip_in_causal=as.integer(n_causal_detected),
+                                n_detected_comb_pip=as.integer(n_ctwas_genes_combined),
+                                n_detected_comb_pip_in_causal=as.integer(n_causal_detected_combined),
+                                pve_snp=as.numeric(rev(estimated_group_pve_all[&quot;SNP&quot;,])[1]),
+                                pve_weight1=as.numeric(rev(estimated_group_pve_all[&quot;Liver&quot;,])[1]),
+                                pve_weight2=as.numeric(rev(estimated_group_pve_all[&quot;Whole_Blood&quot;,])[1]),
+                                pve_weight3=as.numeric(rev(estimated_group_pve_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_weight1=as.numeric(rev(estimated_group_prior_all[&quot;Liver&quot;,])[1]),
+                                prior_weight2=as.numeric(rev(estimated_group_prior_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_weight3=as.numeric(rev(estimated_group_prior_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_var_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_var_weight1=as.numeric(rev(estimated_group_prior_var_all[&quot;Liver&quot;,])[1]),
+                                prior_var_weight2=as.numeric(rev(estimated_group_prior_var_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_var_weight3=as.numeric(rev(estimated_group_prior_var_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                n_detected_twas=as.integer(n_twas_genes),
+                                n_detected_twas_in_causal=as.integer(n_twas_genes_in_causal),
+                                n_detected_comb_twas=as.integer(n_twas_genes_combined),
+                                n_detected_comb_twas_in_causal=as.integer(n_twas_genes_in_causal_combined))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using PIP threshold (gene+tissue)
+results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
+1     3-1      118             40                       30
+2     3-2       95             51                       34
+3     3-3      116             36                       26
+4     3-4      117             47                       37
+5     3-5      113             48                       37</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8
+sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
+<pre><code>[1] 0.7387387</code></pre>
+<pre class="r"><code>#results using combined PIP threshold
+results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
+1     3-1               118                  46                            33
+2     3-2                95                  51                            34
+3     3-3               116                  54                            34
+4     3-4               117                  60                            41
+5     3-5               113                  55                            41</code></pre>
+<pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
+sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
+<pre><code>[1] 0.6879699</code></pre>
+<pre class="r"><code>#prior inclusion and mean prior inclusion
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
+<pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
+1     3-1  15.26854   0.009960057  0.0029193316  0.0006996409
+2     3-2  14.21774   0.015921227  0.0005239939  0.0001075432
+3     3-3  13.00977   0.011268497  0.0045913157  0.0039885322
+4     3-4  13.40018   0.020094595  0.0024137731  0.0048414159
+5     3-5  13.04042   0.017810800  0.0036165052  0.0014596020</code></pre>
+<pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
+<pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
+ 13.787332323   0.015011035   0.002812984   0.002219347 </code></pre>
+<pre class="r"><code>#prior variance and mean prior variance
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
+1     3-1      15.26854          31.33725          8.544893          1.151033
+2     3-2      14.21774          21.99653          2.170788          1.777382
+3     3-3      13.00977          29.18026         12.599922          8.153568
+4     3-4      13.40018          16.87536         10.573233          6.239371
+5     3-5      13.04042          23.99469          2.553775         15.738786</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
+<pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
+        13.787332         24.676817          7.288522          6.612028 </code></pre>
+<pre class="r"><code>#PVE and mean PVE
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag   pve_snp pve_weight1  pve_weight2  pve_weight3
+1     3-1 0.3902628  0.05129185 0.0045289716 1.574470e-04
+2     3-2 0.4134510  0.05755146 0.0002065158 3.737101e-05
+3     3-3 0.4120362  0.05403570 0.0105030290 6.358171e-03
+4     3-4 0.4290854  0.05572602 0.0046335493 5.905881e-03
+5     3-5 0.3937832  0.07023025 0.0016768003 4.491352e-03</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
+<pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
+0.407723705 0.057767056 0.004309773 0.003390045 </code></pre>
+<pre class="r"><code>#TWAS results
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag n_detected_twas n_detected_twas_in_causal n_detected_comb_twas
+1     3-1             202                        35                  141
+2     3-2             243                        33                  157
+3     3-3             303                        33                  197
+4     3-4             293                        42                  193
+5     3-5             213                        36                  148
+  n_detected_comb_twas_in_causal
+1                             35
+2                             33
+3                             33
+4                             42
+5                             36</code></pre>
+<pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
+<pre><code>[1] 0.2141148</code></pre>
+<pre class="r"><code>#store results for figure
+plot_df &lt;- data.frame(simutag=results_df$simutag,
+                      method=&quot;cTWAS G+T&quot;,
+                      count=results_df$n_detected_pip-results_df$n_detected_pip_in_causal,
+                      ifcausal=F)
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G+T&quot;,
+                            count=results_df$n_detected_pip_in_causal,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G&quot;,
+                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G&quot;,
+                            count=results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;TWAS&quot;,
+                            count=results_df$n_detected_comb_twas-results_df$n_detected_comb_twas_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;TWAS&quot;,
+                            count=results_df$n_detected_comb_twas_in_causal,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="separate-effect-size-parameters-2" class="section level3">
+<h3>Separate effect size parameters</h3>
+<p>For the cTWAS analysis, each tissue had its own prior inclusion parameter and effect size parameter.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(3, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                              n_causal=as.integer(),
+                              n_causal_combined=as.integer(),
+                              n_detected_pip=as.integer(),
+                              n_detected_pip_in_causal=as.integer(),
+                              n_detected_comb_pip=as.integer(),
+                              n_detected_comb_pip_in_causal=as.integer(),
+                              pve_snp=as.numeric(),
+                              pve_weight1=as.numeric(),
+                              pve_weight2=as.numeric(),
+                              pve_weight3=as.numeric(),
+                              prior_weight1=as.numeric(),
+                              prior_weight2=as.numeric(),
+                              prior_weight3=as.numeric(),
+                              prior_var_snp=as.numeric(),
+                              prior_var_weight1=as.numeric(),
+                              prior_var_weight2=as.numeric(),
+                              prior_var_weight3=as.numeric())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #load cTWAS results
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of causal genes
+  n_causal &lt;- length(true_genes)
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #number of gene+tissue combinations with cTWAS PIP &gt; threshold
+  n_ctwas_genes &lt;- sum(ctwas_gene_res$susie_pip &gt; PIP_threshold)
+  
+  #number of cTWAS genes that are causal
+  n_causal_detected &lt;- sum(ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold] %in% true_genes)
+  
+  #collapse gene+tissues to genes and compute combined PIP
+  ctwas_gene_res$gene &lt;- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,&quot;[|]&quot;))[1]})
+  ctwas_gene_res_combined &lt;- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+  colnames(ctwas_gene_res_combined) &lt;- c(&quot;gene&quot;, &quot;pip_combined&quot;)
+  
+  #number of genes with combined PIP &gt; threshold
+  n_ctwas_genes_combined &lt;- sum(ctwas_gene_res_combined$pip_combined &gt; PIP_threshold)
+  
+  #number of cTWAS genes using combined PIP that are causal
+  n_causal_detected_combined &lt;- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined &gt; PIP_threshold] %in% true_genes_combined)
+  
+  #collect number of SNPs analyzed by cTWAS
+  ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s1.susieIrss.txt&quot;))
+  n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+  rm(ctwas_res_s1)
+  
+  #load estimated parameters
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s2.susieIrssres.Rd&quot;))
+  
+  #estimated group prior (all iterations)
+  estimated_group_prior_all &lt;- group_prior_rec
+  estimated_group_prior_all[&quot;SNP&quot;,] &lt;- estimated_group_prior_all[&quot;SNP&quot;,]*thin #adjust parameter to account for thin argument
+  
+  #estimated group prior variance (all iterations)
+  estimated_group_prior_var_all &lt;- group_prior_var_rec
+  
+  #set group size
+  group_size &lt;- c(table(ctwas_gene_res$type), structure(n_snps, names=&quot;SNP&quot;))
+  group_size &lt;- group_size[rownames(estimated_group_prior_all)]
+  
+  #estimated group PVE (all iterations)
+  estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal=as.integer(n_causal),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_pip=as.integer(n_ctwas_genes),
+                                n_detected_pip_in_causal=as.integer(n_causal_detected),
+                                n_detected_comb_pip=as.integer(n_ctwas_genes_combined),
+                                n_detected_comb_pip_in_causal=as.integer(n_causal_detected_combined),
+                                pve_snp=as.numeric(rev(estimated_group_pve_all[&quot;SNP&quot;,])[1]),
+                                pve_weight1=as.numeric(rev(estimated_group_pve_all[&quot;Liver&quot;,])[1]),
+                                pve_weight2=as.numeric(rev(estimated_group_pve_all[&quot;Whole_Blood&quot;,])[1]),
+                                pve_weight3=as.numeric(rev(estimated_group_pve_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_weight1=as.numeric(rev(estimated_group_prior_all[&quot;Liver&quot;,])[1]),
+                                prior_weight2=as.numeric(rev(estimated_group_prior_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_weight3=as.numeric(rev(estimated_group_prior_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_var_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_var_weight1=as.numeric(rev(estimated_group_prior_var_all[&quot;Liver&quot;,])[1]),
+                                prior_var_weight2=as.numeric(rev(estimated_group_prior_var_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_var_weight3=as.numeric(rev(estimated_group_prior_var_all[&quot;Brain_Cerebellum&quot;,])[1]))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using PIP threshold (gene+tissue)
+results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
+1     3-1      118             40                       30
+2     3-2       95             51                       34
+3     3-3      116             36                       26
+4     3-4      117             47                       37
+5     3-5      113             48                       37</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8
+sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
+<pre><code>[1] 0.7387387</code></pre>
+<pre class="r"><code>#results using combined PIP threshold
+results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
+1     3-1               118                  46                            33
+2     3-2                95                  51                            34
+3     3-3               116                  54                            34
+4     3-4               117                  60                            41
+5     3-5               113                  55                            41</code></pre>
+<pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
+sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
+<pre><code>[1] 0.6879699</code></pre>
+<pre class="r"><code>#prior inclusion and mean prior inclusion
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
+<pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
+1     3-1  15.26854   0.009960057  0.0029193316  0.0006996409
+2     3-2  14.21774   0.015921227  0.0005239939  0.0001075432
+3     3-3  13.00977   0.011268497  0.0045913157  0.0039885322
+4     3-4  13.40018   0.020094595  0.0024137731  0.0048414159
+5     3-5  13.04042   0.017810800  0.0036165052  0.0014596020</code></pre>
+<pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
+<pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
+ 13.787332323   0.015011035   0.002812984   0.002219347 </code></pre>
+<pre class="r"><code>#prior variance and mean prior variance
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
+1     3-1      15.26854          31.33725          8.544893          1.151033
+2     3-2      14.21774          21.99653          2.170788          1.777382
+3     3-3      13.00977          29.18026         12.599922          8.153568
+4     3-4      13.40018          16.87536         10.573233          6.239371
+5     3-5      13.04042          23.99469          2.553775         15.738786</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
+<pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
+        13.787332         24.676817          7.288522          6.612028 </code></pre>
+<pre class="r"><code>#PVE and mean PVE
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag   pve_snp pve_weight1  pve_weight2  pve_weight3
+1     3-1 0.3902628  0.05129185 0.0045289716 1.574470e-04
+2     3-2 0.4134510  0.05755146 0.0002065158 3.737101e-05
+3     3-3 0.4120362  0.05403570 0.0105030290 6.358171e-03
+4     3-4 0.4290854  0.05572602 0.0046335493 5.905881e-03
+5     3-5 0.3937832  0.07023025 0.0016768003 4.491352e-03</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
+<pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
+0.407723705 0.057767056 0.004309773 0.003390045 </code></pre>
+<pre class="r"><code>#store results for figure
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G - Ind Var&quot;,
+                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G - Ind Var&quot;,
+                            count=results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="individual-tissue-analyses-2" class="section level3">
+<h3>Individual tissue analyses</h3>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(3, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                         n_causal_combined=as.integer(),
+                         n_detected_weight1=as.integer(),
+                         n_detected_in_causal_weight1=as.integer(),
+                         n_detected_weight2=as.integer(),
+                         n_detected_in_causal_weight2=as.integer(),
+                         n_detected_weight3=as.integer(),
+                         n_detected_in_causal_weight3=as.integer(),
+                         n_detected_combined=as.integer(),
+                         n_detected_in_causal_combined=as.integer())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #number of causal genes
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #load cTWAS results for weight1
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight1.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight1
+  ctwas_genes_weight1 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight1 &lt;- length(ctwas_genes_weight1)
+  n_causal_detected_weight1 &lt;- sum(ctwas_genes_weight1 %in% true_genes_combined)
+  
+  #load cTWAS results for weight2
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight2.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight1
+  ctwas_genes_weight2 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight2 &lt;- length(ctwas_genes_weight2)
+  n_causal_detected_weight2 &lt;- sum(ctwas_genes_weight2 %in% true_genes_combined)
+  
+  #load cTWAS results for weight3
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight3.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight3
+  ctwas_genes_weight3 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight3 &lt;- length(ctwas_genes_weight3)
+  n_causal_detected_weight3 &lt;- sum(ctwas_genes_weight3 %in% true_genes_combined)
+  
+  #combined analysis
+  ctwas_genes_combined &lt;- unique(c(ctwas_genes_weight1, ctwas_genes_weight2, ctwas_genes_weight3))
+  n_ctwas_genes_combined &lt;- length(ctwas_genes_combined)
+  n_causal_detected_combined &lt;- sum(ctwas_genes_combined %in% true_genes_combined)
+  
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_weight1=as.integer(n_ctwas_genes_weight1),
+                                n_detected_in_causal_weight1=as.integer(n_causal_detected_weight1),
+                                n_detected_weight2=as.integer(n_ctwas_genes_weight2),
+                                n_detected_in_causal_weight2=as.integer(n_causal_detected_weight2),
+                                n_detected_weight3=as.integer(n_ctwas_genes_weight3),
+                                n_detected_in_causal_weight3=as.integer(n_causal_detected_weight3),
+                                n_detected_combined=as.integer(n_ctwas_genes_combined),
+                                n_detected_in_causal_combined=as.integer(n_causal_detected_combined))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using weight1
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
+1     3-1                 43                           33
+2     3-2                 51                           34
+3     3-3                 54                           35
+4     3-4                 56                           42
+5     3-5                 51                           40</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
+sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
+<pre><code>[1] 0.7215686</code></pre>
+<pre class="r"><code>#results using weight2
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
+1     3-1                 11                            4
+2     3-2                 12                            5
+3     3-3                 19                            9
+4     3-4                 16                            9
+5     3-5                 15                            8</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
+sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
+<pre><code>[1] 0.4794521</code></pre>
+<pre class="r"><code>#results using weight3
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
+1     3-1                  3                            2
+2     3-2                  7                            5
+3     3-3                 14                            3
+4     3-4                 21                           10
+5     3-5                  8                            5</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
+sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
+<pre><code>[1] 0.4716981</code></pre>
+<pre class="r"><code>#results using combined analysis
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
+1     3-1               118                  49                            33
+2     3-2                95                  58                            34
+3     3-3               116                  71                            35
+4     3-4               117                  73                            46
+5     3-5               113                  58                            40</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
+sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
+<pre><code>[1] 0.6084142</code></pre>
+<pre class="r"><code>#store results for figure
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight1&quot;,
+                            count=results_df$n_detected_weight1-results_df$n_detected_in_causal_weight1,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight1&quot;,
+                            count=results_df$n_detected_in_causal_weight1,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight2&quot;,
+                            count=results_df$n_detected_weight2-results_df$n_detected_in_causal_weight2,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight2&quot;,
+                            count=results_df$n_detected_in_causal_weight2,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight3&quot;,
+                            count=results_df$n_detected_weight3-results_df$n_detected_in_causal_weight3,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight3&quot;,
+                            count=results_df$n_detected_in_causal_weight3,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Union&quot;,
+                            count=results_df$n_detected_combined-results_df$n_detected_in_causal_combined,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Union&quot;,
+                            count=results_df$n_detected_in_causal_combined,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="figure-2" class="section level3">
+<h3>Figure</h3>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
+<pre class="r"><code>plot_df$method &lt;- factor(plot_df$method, levels=c(&quot;TWAS&quot;, &quot;cTWAS G+T&quot;, &quot;cTWAS G&quot;, &quot;cTWAS G - Ind Var&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;))
+
+library(ggpubr)
+
+colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;) 
+
+ggbarplot(plot_df, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;none&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_df_2 &lt;- plot_df
+
+plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;)</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+[25]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[37] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[49]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[61]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[73]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>plot_df_2$ifcausal &lt;- as.character(plot_df_2$ifcausal+1)
+plot_df_2$count[plot_df_2$method==&quot;cTWAS G&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;] &lt;- plot_df_2$count[plot_df_2$method==&quot;cTWAS G&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;] - plot_df_2$count[plot_df_2$method==&quot;cTWAS G+T&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;]
+
+plot_df_2 &lt;- rbind(plot_df_2, data.frame(simutag=simutags,
+                                    method=&quot;cTWAS G&quot;,
+                                    count=plot_df_2$count[plot_df_2$method==&quot;cTWAS G+T&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;],
+                                    ifcausal=&quot;3&quot;))
+
+
+
+
+plot_df_3 &lt;- plot_df_2
+
+
+plot_df_2 &lt;- plot_df_2[plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;),]
+plot_df_2$method &lt;- droplevels(plot_df_2$method)
+levels(plot_df_2$method) &lt;- c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Primary&quot;, &quot;cTWAS Secondary&quot;, &quot;cTWAS Null&quot;)
+
+plot_df_2$ifcausal[plot_df_2$ifcausal==&quot;1&quot;] &lt;- &quot;FP&quot;
+plot_df_2$ifcausal[plot_df_2$ifcausal==&quot;2&quot;] &lt;- &quot;TP&quot;
+
+colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;, &quot;#8dd3c7&quot;)
+
+ggbarplot(plot_df_2, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;right&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_df_3 &lt;- plot_df_3[plot_df_3$method %in% c(&quot;cTWAS G&quot;, &quot;cTWAS Union&quot;),]
+plot_df_3$method &lt;- droplevels(plot_df_3$method)
+levels(plot_df_3$method) &lt;- c(&quot;cTWAS Joint&quot;, &quot;cTWAS Union&quot;)
+
+plot_df_3$method &lt;- relevel(plot_df_3$method, &quot;cTWAS Union&quot;)
+
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;1&quot;] &lt;- &quot;FP&quot;
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;2&quot;] &lt;- &quot;TP&quot;
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;3&quot;] &lt;- &quot;TP and Tissue Identified\nby Joint Analysis&quot;
+
+ggbarplot(plot_df_3, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;right&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="simulation-4-no-causal-tissues" class="section level2">
+<h2>Simulation 4: No causal tissues</h2>
+<div id="shared-effect-size-parameters-3" class="section level3">
+<h3>Shared effect size parameters</h3>
+<p>50% PVE and 2.5e-4 prior inclusion for SNPs, and 0% PVE for expression in all tissues. Liver tissue expression was analyzed alongside Whole Blood and Brain Cerebellum. For the cTWAS analysis, each tissue had its own prior inclusion parameter, and the tissues shared a single effect size parameter.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 1
+
+simutags &lt;- paste(4, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                              n_causal=as.integer(),
+                              n_causal_combined=as.integer(),
+                              n_detected_pip=as.integer(),
+                              n_detected_pip_in_causal=as.integer(),
+                              n_detected_comb_pip=as.integer(),
+                              n_detected_comb_pip_in_causal=as.integer(),
+                              pve_snp=as.numeric(),
+                              pve_weight1=as.numeric(),
+                              pve_weight2=as.numeric(),
+                              pve_weight3=as.numeric(),
+                              prior_weight1=as.numeric(),
+                              prior_weight2=as.numeric(),
+                              prior_weight3=as.numeric(),
+                              prior_var_snp=as.numeric(),
+                              prior_var_weight1=as.numeric(),
+                              prior_var_weight2=as.numeric(),
+                              prior_var_weight3=as.numeric(),
+                              n_detected_twas=as.integer(),
+                              n_detected_twas_in_causal=as.integer(),
+                              n_detected_comb_twas=as.integer(),
+                              n_detected_comb_twas_in_causal=as.integer())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #load cTWAS results
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of causal genes
+  n_causal &lt;- length(true_genes)
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #number of gene+tissue combinations with cTWAS PIP &gt; threshold
+  n_ctwas_genes &lt;- sum(ctwas_gene_res$susie_pip &gt; PIP_threshold)
+  
+  #number of cTWAS genes that are causal
+  n_causal_detected &lt;- sum(ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold] %in% true_genes)
+  
+  #collapse gene+tissues to genes and compute combined PIP
+  ctwas_gene_res$gene &lt;- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,&quot;[|]&quot;))[1]})
+  ctwas_gene_res_combined &lt;- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+  colnames(ctwas_gene_res_combined) &lt;- c(&quot;gene&quot;, &quot;pip_combined&quot;)
+  
+  #number of genes with combined PIP &gt; threshold
+  n_ctwas_genes_combined &lt;- sum(ctwas_gene_res_combined$pip_combined &gt; PIP_threshold)
+  
+  #number of cTWAS genes using combined PIP that are causal
+  n_causal_detected_combined &lt;- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined &gt; PIP_threshold] %in% true_genes_combined)
+  
+  #collect number of SNPs analyzed by cTWAS
+  ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s1.susieIrss.txt&quot;))
+  n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+  rm(ctwas_res_s1)
+  
+  #load estimated parameters
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s2.susieIrssres.Rd&quot;))
+  
+  #estimated group prior (all iterations)
+  estimated_group_prior_all &lt;- group_prior_rec
+  estimated_group_prior_all[&quot;SNP&quot;,] &lt;- estimated_group_prior_all[&quot;SNP&quot;,]*thin #adjust parameter to account for thin argument
+  
+  #estimated group prior variance (all iterations)
+  estimated_group_prior_var_all &lt;- group_prior_var_rec
+  
+  #set group size
+  group_size &lt;- c(table(ctwas_gene_res$type), structure(n_snps, names=&quot;SNP&quot;))
+  group_size &lt;- group_size[rownames(estimated_group_prior_all)]
+  
+  #estimated group PVE (all iterations)
+  estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+  
+  #multitissue TWAS analysis with bonferroni adjusted threshold for z scores
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_LDR_z_gene.Rd&quot;))
+  alpha &lt;- 0.05
+  sig_thresh &lt;- qnorm(1-(alpha/nrow(z_gene)/2), lower=T)
+  twas_genes &lt;- z_gene$id[abs(z_gene$z)&gt;sig_thresh]
+  twas_genes_combined &lt;- unique(sapply(twas_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  n_twas_genes &lt;- length(twas_genes)
+  n_twas_genes_combined &lt;- length(twas_genes_combined)
+  
+  n_twas_genes_in_causal &lt;- sum(twas_genes %in% true_genes)
+  n_twas_genes_in_causal_combined &lt;- sum(twas_genes_combined %in% true_genes_combined)
+
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal=as.integer(n_causal),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_pip=as.integer(n_ctwas_genes),
+                                n_detected_pip_in_causal=as.integer(n_causal_detected),
+                                n_detected_comb_pip=as.integer(n_ctwas_genes_combined),
+                                n_detected_comb_pip_in_causal=as.integer(n_causal_detected_combined),
+                                pve_snp=as.numeric(rev(estimated_group_pve_all[&quot;SNP&quot;,])[1]),
+                                pve_weight1=as.numeric(rev(estimated_group_pve_all[&quot;Liver&quot;,])[1]),
+                                pve_weight2=as.numeric(rev(estimated_group_pve_all[&quot;Whole_Blood&quot;,])[1]),
+                                pve_weight3=as.numeric(rev(estimated_group_pve_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_weight1=as.numeric(rev(estimated_group_prior_all[&quot;Liver&quot;,])[1]),
+                                prior_weight2=as.numeric(rev(estimated_group_prior_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_weight3=as.numeric(rev(estimated_group_prior_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_var_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_var_weight1=as.numeric(rev(estimated_group_prior_var_all[&quot;Liver&quot;,])[1]),
+                                prior_var_weight2=as.numeric(rev(estimated_group_prior_var_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_var_weight3=as.numeric(rev(estimated_group_prior_var_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                n_detected_twas=as.integer(n_twas_genes),
+                                n_detected_twas_in_causal=as.integer(n_twas_genes_in_causal),
+                                n_detected_comb_twas=as.integer(n_twas_genes_combined),
+                                n_detected_comb_twas_in_causal=as.integer(n_twas_genes_in_causal_combined))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using PIP threshold (gene+tissue)
+results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
+1     4-1        0              6                        0
+2     4-2        0              0                        0
+3     4-3        0              0                        0
+4     4-4        0              5                        0
+5     4-5        0              3                        0</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8
+sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#results using combined PIP threshold
+results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
+1     4-1                 0                   6                             0
+2     4-2                 0                   0                             0
+3     4-3                 0                   3                             0
+4     4-4                 0                   7                             0
+5     4-5                 0                   4                             0</code></pre>
+<pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
+sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#prior inclusion and mean prior inclusion
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
+<pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
+1     4-1  12.59188  7.176449e-06  3.017766e-03  6.567259e-09
+2     4-2  13.01315  9.538065e-07  5.966623e-07  1.221440e-03
+3     4-3  12.17589  3.694014e-03  1.043471e-03  2.038899e-03
+4     4-4  10.97257  1.271508e-03  1.933119e-03  6.085196e-06
+5     4-5  11.94672  8.757221e-05  4.028133e-03  3.548076e-05</code></pre>
+<pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
+<pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
+ 1.214004e+01  1.012245e-03  2.004617e-03  6.603823e-04 </code></pre>
+<pre class="r"><code>#prior variance and mean prior variance
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
+1     4-1      12.59188         28.860525         28.860525         28.860525
+2     4-2      13.01315         38.944429         38.944429         38.944429
+3     4-3      12.17589          4.315479          4.315479          4.315479
+4     4-4      10.97257         22.665947         22.665947         22.665947
+5     4-5      11.94672         11.823991         11.823991         11.823991</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
+<pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
+         12.14004          21.32207          21.32207          21.32207 </code></pre>
+<pre class="r"><code>#PVE and mean PVE
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag   pve_snp  pve_weight1  pve_weight2  pve_weight3
+1     4-1 0.3775669 3.403608e-05 1.581246e-02 3.705611e-08
+2     4-2 0.4261661 6.104236e-06 4.218747e-06 9.300131e-03
+3     4-3 0.4266356 2.619710e-03 8.175585e-04 1.720268e-03
+4     4-4 0.3776839 4.736076e-03 7.955034e-03 2.696621e-05
+5     4-5 0.4121158 1.701595e-04 8.647239e-03 8.202164e-05</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
+<pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
+0.404033656 0.001513217 0.006647301 0.002225885 </code></pre>
+<pre class="r"><code>#TWAS results
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag n_detected_twas n_detected_twas_in_causal n_detected_comb_twas
+1     4-1             159                         0                  109
+2     4-2             157                         0                  100
+3     4-3             122                         0                   84
+4     4-4             106                         0                   75
+5     4-5             160                         0                  115
+  n_detected_comb_twas_in_causal
+1                              0
+2                              0
+3                              0
+4                              0
+5                              0</code></pre>
+<pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#store results for figure
+plot_df &lt;- data.frame(simutag=results_df$simutag,
+                      method=&quot;cTWAS G+T&quot;,
+                      count=results_df$n_detected_pip-results_df$n_detected_pip_in_causal,
+                      ifcausal=F)
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G+T&quot;,
+                            count=results_df$n_detected_pip_in_causal,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G&quot;,
+                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G&quot;,
+                            count=results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;TWAS&quot;,
+                            count=results_df$n_detected_comb_twas-results_df$n_detected_comb_twas_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;TWAS&quot;,
+                            count=results_df$n_detected_comb_twas_in_causal,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="separate-effect-size-parameters-3" class="section level3">
+<h3>Separate effect size parameters</h3>
+<p>For the cTWAS analysis, each tissue had its own prior inclusion parameter end effect size parameter.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(4, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                              n_causal=as.integer(),
+                              n_causal_combined=as.integer(),
+                              n_detected_pip=as.integer(),
+                              n_detected_pip_in_causal=as.integer(),
+                              n_detected_comb_pip=as.integer(),
+                              n_detected_comb_pip_in_causal=as.integer(),
+                              pve_snp=as.numeric(),
+                              pve_weight1=as.numeric(),
+                              pve_weight2=as.numeric(),
+                              pve_weight3=as.numeric(),
+                              prior_weight1=as.numeric(),
+                              prior_weight2=as.numeric(),
+                              prior_weight3=as.numeric(),
+                              prior_var_snp=as.numeric(),
+                              prior_var_weight1=as.numeric(),
+                              prior_var_weight2=as.numeric(),
+                              prior_var_weight3=as.numeric())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #load cTWAS results
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of causal genes
+  n_causal &lt;- length(true_genes)
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #number of gene+tissue combinations with cTWAS PIP &gt; threshold
+  n_ctwas_genes &lt;- sum(ctwas_gene_res$susie_pip &gt; PIP_threshold)
+  
+  #number of cTWAS genes that are causal
+  n_causal_detected &lt;- sum(ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold] %in% true_genes)
+  
+  #collapse gene+tissues to genes and compute combined PIP
+  ctwas_gene_res$gene &lt;- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,&quot;[|]&quot;))[1]})
+  ctwas_gene_res_combined &lt;- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+  colnames(ctwas_gene_res_combined) &lt;- c(&quot;gene&quot;, &quot;pip_combined&quot;)
+  
+  #number of genes with combined PIP &gt; threshold
+  n_ctwas_genes_combined &lt;- sum(ctwas_gene_res_combined$pip_combined &gt; PIP_threshold)
+  
+  #number of cTWAS genes using combined PIP that are causal
+  n_causal_detected_combined &lt;- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined &gt; PIP_threshold] %in% true_genes_combined)
+  
+  #collect number of SNPs analyzed by cTWAS
+  ctwas_res_s1 &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s1.susieIrss.txt&quot;))
+  n_snps &lt;- sum(ctwas_res_s1$type==&quot;SNP&quot;)/thin
+  rm(ctwas_res_s1)
+  
+  #load estimated parameters
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR.s2.susieIrssres.Rd&quot;))
+  
+  #estimated group prior (all iterations)
+  estimated_group_prior_all &lt;- group_prior_rec
+  estimated_group_prior_all[&quot;SNP&quot;,] &lt;- estimated_group_prior_all[&quot;SNP&quot;,]*thin #adjust parameter to account for thin argument
+  
+  #estimated group prior variance (all iterations)
+  estimated_group_prior_var_all &lt;- group_prior_var_rec
+  
+  #set group size
+  group_size &lt;- c(table(ctwas_gene_res$type), structure(n_snps, names=&quot;SNP&quot;))
+  group_size &lt;- group_size[rownames(estimated_group_prior_all)]
+  
+  #estimated group PVE (all iterations)
+  estimated_group_pve_all &lt;- estimated_group_prior_var_all*estimated_group_prior_all*group_size/sample_size #check PVE calculation
+
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal=as.integer(n_causal),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_pip=as.integer(n_ctwas_genes),
+                                n_detected_pip_in_causal=as.integer(n_causal_detected),
+                                n_detected_comb_pip=as.integer(n_ctwas_genes_combined),
+                                n_detected_comb_pip_in_causal=as.integer(n_causal_detected_combined),
+                                pve_snp=as.numeric(rev(estimated_group_pve_all[&quot;SNP&quot;,])[1]),
+                                pve_weight1=as.numeric(rev(estimated_group_pve_all[&quot;Liver&quot;,])[1]),
+                                pve_weight2=as.numeric(rev(estimated_group_pve_all[&quot;Whole_Blood&quot;,])[1]),
+                                pve_weight3=as.numeric(rev(estimated_group_pve_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_weight1=as.numeric(rev(estimated_group_prior_all[&quot;Liver&quot;,])[1]),
+                                prior_weight2=as.numeric(rev(estimated_group_prior_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_weight3=as.numeric(rev(estimated_group_prior_all[&quot;Brain_Cerebellum&quot;,])[1]),
+                                prior_var_snp=as.numeric(rev(estimated_group_prior_var_all[&quot;SNP&quot;,])[1]),
+                                prior_var_weight1=as.numeric(rev(estimated_group_prior_var_all[&quot;Liver&quot;,])[1]),
+                                prior_var_weight2=as.numeric(rev(estimated_group_prior_var_all[&quot;Whole_Blood&quot;,])[1]),
+                                prior_var_weight3=as.numeric(rev(estimated_group_prior_var_all[&quot;Brain_Cerebellum&quot;,])[1]))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using PIP threshold (gene+tissue)
+results_df[,c(&quot;simutag&quot;, &quot;n_causal&quot;, &quot;n_detected_pip&quot;, &quot;n_detected_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal n_detected_pip n_detected_pip_in_causal
+1     4-1        0              6                        0
+2     4-2        0              0                        0
+3     4-3        0              0                        0
+4     4-4        0              3                        0
+5     4-5        0              5                        0</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8
+sum(results_df$n_detected_pip_in_causal)/sum(results_df$n_detected_pip)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#results using combined PIP threshold
+results_df[,c(&quot;simutag&quot;, &quot;n_causal_combined&quot;, &quot;n_detected_comb_pip&quot;, &quot;n_detected_comb_pip_in_causal&quot;)]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_comb_pip n_detected_comb_pip_in_causal
+1     4-1                 0                   6                             0
+2     4-2                 0                   0                             0
+3     4-3                 0                   3                             0
+4     4-4                 0                   4                             0
+5     4-5                 0                   5                             0</code></pre>
+<pre class="r"><code>#mean percent causal using combined PIP &gt; 0.8
+sum(results_df$n_detected_comb_pip_in_causal)/sum(results_df$n_detected_comb_pip)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#prior inclusion and mean prior inclusion
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df))))]</code></pre>
+<pre><code>  simutag prior_snp prior_weight1 prior_weight2 prior_weight3
+1     4-1  12.58359  0.0017288204  0.0030204233   0.003619867
+2     4-2  13.08410  0.0005832831  0.0014533136   0.001222175
+3     4-3  12.06660  0.0037554283  0.0009381176   0.002609262
+4     4-4  11.14881  0.0073686855  0.0013821132   0.000845720
+5     4-5  12.07505  0.0047356209  0.0026851585   0.001770055</code></pre>
+<pre class="r"><code>colMeans(results_df[,setdiff(grep(&quot;prior&quot;, names(results_df)), grep(&quot;prior_var&quot;, names(results_df)))])</code></pre>
+<pre><code>    prior_snp prior_weight1 prior_weight2 prior_weight3 
+ 12.191632680   0.003634368   0.001895825   0.002013416 </code></pre>
+<pre class="r"><code>#prior variance and mean prior variance
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;prior_var&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3
+1     4-1      12.58359         0.6479737         28.946442         0.4261434
+2     4-2      13.08410         1.3718846          2.020467        38.9870059
+3     4-3      12.06660         4.0111067         32.042210         3.7671720
+4     4-4      11.14881         3.1822072         37.942118         0.8168949
+5     4-5      12.07505         1.3471771         20.428115         0.6388463</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;prior_var&quot;, names(results_df))])</code></pre>
+<pre><code>    prior_var_snp prior_var_weight1 prior_var_weight2 prior_var_weight3 
+        12.191633          2.112070         24.275870          8.927212 </code></pre>
+<pre class="r"><code>#PVE and mean PVE
+results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;pve&quot;, names(results_df)))]</code></pre>
+<pre><code>  simutag   pve_snp  pve_weight1  pve_weight2  pve_weight3
+1     4-1 0.3776241 0.0001840911 0.0158734940 0.0003015920
+2     4-2 0.4258038 0.0001314991 0.0005331148 0.0093159007
+3     4-3 0.4219170 0.0024754226 0.0054574440 0.0019217837
+4     4-4 0.3769374 0.0038534004 0.0095208286 0.0001350717
+5     4-5 0.4087371 0.0010484007 0.0099588172 0.0002210826</code></pre>
+<pre class="r"><code>colMeans(results_df[,grep(&quot;pve&quot;, names(results_df))])</code></pre>
+<pre><code>    pve_snp pve_weight1 pve_weight2 pve_weight3 
+0.402203910 0.001538563 0.008268740 0.002379086 </code></pre>
+<pre class="r"><code>#store results for figure
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G - Ind Var&quot;,
+                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS G - Ind Var&quot;,
+                            count=results_df$n_detected_comb_pip_in_causal,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="individual-tissue-analyses-3" class="section level3">
+<h3>Individual tissue analyses</h3>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
+<pre class="r"><code>results_dir &lt;- &quot;/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_test_merge/&quot;
+runtag = &quot;ukb-s80.45-liv_wb&quot;
+configtag &lt;- 2
+
+simutags &lt;- paste(4, 1:5, sep = &quot;-&quot;)
+thin &lt;- 0.1
+
+sample_size &lt;- 45000
+PIP_threshold &lt;- 0.8
+
+results_df &lt;- data.frame(simutag=as.character(),
+                         n_causal_combined=as.integer(),
+                         n_detected_weight1=as.integer(),
+                         n_detected_in_causal_weight1=as.integer(),
+                         n_detected_weight2=as.integer(),
+                         n_detected_in_causal_weight2=as.integer(),
+                         n_detected_weight3=as.integer(),
+                         n_detected_in_causal_weight3=as.integer(),
+                         n_detected_combined=as.integer(),
+                         n_detected_in_causal_combined=as.integer())
+
+for (i in 1:length(simutags)){
+  simutag &lt;- simutags[i]
+  
+  #load genes with true simulated effect
+  load(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;-pheno.Rd&quot;))
+  true_genes &lt;- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  true_genes_combined &lt;- unique(sapply(true_genes, function(x){unlist(strsplit(x, &quot;[|]&quot;))[1]}))
+  
+  #number of causal genes
+  n_causal_combined &lt;- length(true_genes_combined)
+  
+  #load cTWAS results for weight1
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight1.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight1
+  ctwas_genes_weight1 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight1 &lt;- length(ctwas_genes_weight1)
+  n_causal_detected_weight1 &lt;- sum(ctwas_genes_weight1 %in% true_genes_combined)
+  
+  #load cTWAS results for weight2
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight2.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight1
+  ctwas_genes_weight2 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight2 &lt;- length(ctwas_genes_weight2)
+  n_causal_detected_weight2 &lt;- sum(ctwas_genes_weight2 %in% true_genes_combined)
+  
+  #load cTWAS results for weight3
+  ctwas_res &lt;- data.table::fread(paste0(results_dir, runtag, &quot;_simu&quot;, simutag, &quot;_config&quot;, configtag, &quot;_LDR_weight3.susieIrss.txt&quot;))
+  ctwas_gene_res &lt;- ctwas_res[ctwas_res$type!=&quot;SNP&quot;,]
+  
+  #number of genes with cTWAS PIP &gt; threshold in weight3
+  ctwas_genes_weight3 &lt;- ctwas_gene_res$id[ctwas_gene_res$susie_pip &gt; PIP_threshold]
+  n_ctwas_genes_weight3 &lt;- length(ctwas_genes_weight3)
+  n_causal_detected_weight3 &lt;- sum(ctwas_genes_weight3 %in% true_genes_combined)
+  
+  #combined analysis
+  ctwas_genes_combined &lt;- unique(c(ctwas_genes_weight1, ctwas_genes_weight2, ctwas_genes_weight3))
+  n_ctwas_genes_combined &lt;- length(ctwas_genes_combined)
+  n_causal_detected_combined &lt;- sum(ctwas_genes_combined %in% true_genes_combined)
+  
+  results_current &lt;- data.frame(simutag=as.character(simutag),
+                                n_causal_combined=as.integer(n_causal_combined),
+                                n_detected_weight1=as.integer(n_ctwas_genes_weight1),
+                                n_detected_in_causal_weight1=as.integer(n_causal_detected_weight1),
+                                n_detected_weight2=as.integer(n_ctwas_genes_weight2),
+                                n_detected_in_causal_weight2=as.integer(n_causal_detected_weight2),
+                                n_detected_weight3=as.integer(n_ctwas_genes_weight3),
+                                n_detected_in_causal_weight3=as.integer(n_causal_detected_weight3),
+                                n_detected_combined=as.integer(n_ctwas_genes_combined),
+                                n_detected_in_causal_combined=as.integer(n_causal_detected_combined))
+  
+  results_df &lt;- rbind(results_df, results_current)
+}
+
+#results using weight1
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
+1     4-1                  2                            0
+2     4-2                  0                            0
+3     4-3                  2                            0
+4     4-4                  2                            0
+5     4-5                  0                            0</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
+sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#results using weight2
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
+1     4-1                  5                            0
+2     4-2                  0                            0
+3     4-3                  0                            0
+4     4-4                  6                            0
+5     4-5                  3                            0</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
+sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#results using weight3
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
+1     4-1                  0                            0
+2     4-2                  0                            0
+3     4-3                  2                            0
+4     4-4                  5                            0
+5     4-5                  3                            0</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
+sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#results using combined analysis
+results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
+<pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
+1     4-1                 0                   6                             0
+2     4-2                 0                   0                             0
+3     4-3                 0                   2                             0
+4     4-4                 0                  13                             0
+5     4-5                 0                   5                             0</code></pre>
+<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
+sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="r"><code>#store results for figure
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight1&quot;,
+                            count=results_df$n_detected_weight1-results_df$n_detected_in_causal_weight1,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight1&quot;,
+                            count=results_df$n_detected_in_causal_weight1,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight2&quot;,
+                            count=results_df$n_detected_weight2-results_df$n_detected_in_causal_weight2,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight2&quot;,
+                            count=results_df$n_detected_in_causal_weight2,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight3&quot;,
+                            count=results_df$n_detected_weight3-results_df$n_detected_in_causal_weight3,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Weight3&quot;,
+                            count=results_df$n_detected_in_causal_weight3,
+                            ifcausal=T))
+
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Union&quot;,
+                            count=results_df$n_detected_combined-results_df$n_detected_in_causal_combined,
+                            ifcausal=F))
+plot_df &lt;- rbind(plot_df,
+                 data.frame(simutag=results_df$simutag,
+                            method=&quot;cTWAS Union&quot;,
+                            count=results_df$n_detected_in_causal_combined,
+                            ifcausal=T))</code></pre>
+</div>
+<div id="figure-3" class="section level3">
+<h3>Figure</h3>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
+<pre class="r"><code>plot_df$method &lt;- factor(plot_df$method, levels=c(&quot;TWAS&quot;, &quot;cTWAS G+T&quot;, &quot;cTWAS G&quot;, &quot;cTWAS G - Ind Var&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;))
+
+library(ggpubr)
+
+colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;) 
+
+ggbarplot(plot_df, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;none&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_df_2 &lt;- plot_df
+
+plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;)</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+[25]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[37] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[49]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[61]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[73]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>plot_df_2$ifcausal &lt;- as.character(plot_df_2$ifcausal+1)
+plot_df_2$count[plot_df_2$method==&quot;cTWAS G&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;] &lt;- plot_df_2$count[plot_df_2$method==&quot;cTWAS G&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;] - plot_df_2$count[plot_df_2$method==&quot;cTWAS G+T&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;]
+
+plot_df_2 &lt;- rbind(plot_df_2, data.frame(simutag=simutags,
+                                    method=&quot;cTWAS G&quot;,
+                                    count=plot_df_2$count[plot_df_2$method==&quot;cTWAS G+T&quot; &amp; plot_df_2$ifcausal==&quot;2&quot;],
+                                    ifcausal=&quot;3&quot;))
+
+
+
+
+plot_df_3 &lt;- plot_df_2
+
+
+plot_df_2 &lt;- plot_df_2[plot_df_2$method %in% c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;),]
+plot_df_2$method &lt;- droplevels(plot_df_2$method)
+levels(plot_df_2$method) &lt;- c(&quot;TWAS&quot;, &quot;cTWAS Union&quot;, &quot;cTWAS Primary&quot;, &quot;cTWAS Secondary&quot;, &quot;cTWAS Null&quot;)
+
+plot_df_2$ifcausal[plot_df_2$ifcausal==&quot;1&quot;] &lt;- &quot;FP&quot;
+plot_df_2$ifcausal[plot_df_2$ifcausal==&quot;2&quot;] &lt;- &quot;TP&quot;
+
+colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;, &quot;#8dd3c7&quot;)
+
+ggbarplot(plot_df_2, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;right&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_df_3 &lt;- plot_df_3[plot_df_3$method %in% c(&quot;cTWAS G&quot;, &quot;cTWAS Union&quot;),]
+plot_df_3$method &lt;- droplevels(plot_df_3$method)
+levels(plot_df_3$method) &lt;- c(&quot;cTWAS Joint&quot;, &quot;cTWAS Union&quot;)
+
+plot_df_3$method &lt;- relevel(plot_df_3$method, &quot;cTWAS Union&quot;)
+
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;1&quot;] &lt;- &quot;FP&quot;
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;2&quot;] &lt;- &quot;TP&quot;
+plot_df_3$ifcausal[plot_df_3$ifcausal==&quot;3&quot;] &lt;- &quot;TP and Tissue Identified\nby Joint Analysis&quot;
+
+ggbarplot(plot_df_3, 
+          x = &quot;method&quot;, 
+          y = &quot;count&quot;, 
+          add = &quot;mean_se&quot;, 
+          fill = &quot;ifcausal&quot;, 
+          legend = &quot;right&quot;, 
+          ylab=&quot;Count&quot;, 
+          xlab=&quot;&quot;,
+          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + guides(fill=guide_legend(title=&quot;&quot;))</code></pre>
+<p><img src="figure/simulation_test.Rmd/unnamed-chunk-20-2.png" width="672" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] ggpubr_0.6.0    ggplot2_3.4.0   workflowr_1.7.0
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.0  xfun_0.35         bslib_0.4.1       purrr_1.0.2      
+ [5] carData_3.0-4     colorspace_2.0-3  vctrs_0.6.3       generics_0.1.3   
+ [9] htmltools_0.5.4   yaml_2.3.6        utf8_1.2.2        rlang_1.1.1      
+[13] jquerylib_0.1.4   later_1.3.0       pillar_1.8.1      glue_1.6.2       
+[17] withr_2.5.0       DBI_1.1.3         lifecycle_1.0.3   stringr_1.5.0    
+[21] ggsignif_0.6.4    munsell_0.5.0     gtable_0.3.1      evaluate_0.19    
+[25] labeling_0.4.2    knitr_1.41        callr_3.7.3       fastmap_1.1.0    
+[29] httpuv_1.6.7      ps_1.7.2          fansi_1.0.3       highr_0.9        
+[33] broom_1.0.2       Rcpp_1.0.9        backports_1.2.1   promises_1.2.0.1 
+[37] scales_1.2.1      cachem_1.0.6      jsonlite_1.8.4    abind_1.4-5      
+[41] farver_2.1.0      fs_1.5.2          digest_0.6.31     stringi_1.7.8    
+[45] rstatix_0.7.2     processx_3.8.0    dplyr_1.0.10      getPass_0.2-2    
+[49] rprojroot_2.0.3   grid_4.1.0        cli_3.6.1         tools_4.1.0      
+[53] magrittr_2.0.3    sass_0.4.4        tibble_3.1.8      car_3.1-1        
+[57] tidyr_1.3.0       whisker_0.4.1     pkgconfig_2.0.3   data.table_1.14.6
+[61] assertthat_0.2.1  rmarkdown_2.19    httr_1.4.4        rstudioapi_0.14  
+[65] R6_2.5.1          git2r_0.30.1      compiler_4.1.0   </code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

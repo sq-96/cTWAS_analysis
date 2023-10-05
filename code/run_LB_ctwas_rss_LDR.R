@@ -26,10 +26,12 @@ z_snp_outfile <- paste0(outputdir, "/", z_snp_stem, ".RDS")
 if (file.exists(z_snp_outfile)){
   z_snp <- readRDS(z_snp_outfile)
 } else {
-  z_snp <- VariantAnnotation::readVcf(args[1])
-  z_snp <- as.data.frame(gwasvcf::vcf_to_tibble(z_snp))
-  z_snp$Z <- z_snp$ES/z_snp$SE
-  z_snp <- z_snp[,c("rsid", "ALT", "REF", "Z", "SS")]
+  z_snp <- fread("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/LB.txt",fill=TRUE)
+  z_snp <- na.omit(z_snp)
+  z_snp$SNP <- sapply(z_snp$rs, function(x){unlist(strsplit(x, split="[:]"))[1]})
+  z_snp$Z <- z_snp$beta/z_snp$se
+  z_snp$SS <- 966
+  z_snp <- z_snp[,c("SNP", "allele1", "allele0", "Z", "SS")]
   colnames(z_snp) <- c("id", "A1", "A2", "z", "ss")
   z_snp <- z_snp[!(z_snp$id %in% z_snp$id[duplicated(z_snp$id)]),] #drop multiallelic variants (id not unique)
   saveRDS(z_snp, file=z_snp_outfile)
@@ -38,7 +40,7 @@ if (file.exists(z_snp_outfile)){
 ld_R_dir <- args[2]
 
 weight <- args[3]
-weight <- unlist(strsplit(weight, ";"))
+#weight <- unlist(strsplit(weight, ";"))
 
 outname.e <- args[5]
 outname <- args[6]
@@ -52,7 +54,7 @@ if (file.exists(paste0(outputdir, "/", outname.e, "_z_snp.Rd"))){
                            ld_R_dir=ld_R_dir, 
                            outputdir=outputdir,
                            outname=outname.e,
-                           harmonize_z=F, 
+                           harmonize_z=T, 
                            strand_ambig_action_z="none")
   z_snp <- res$z_snp
   save(z_snp, file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
@@ -78,19 +80,21 @@ if (!any(!file.exists(paste0(outputdir, "/", outname.e, "_chr", 1:22, ".expr.gz"
 } else {
   res <- impute_expr_z(z_snp, weight = weight, ld_R_dir = ld_R_dir,
                        method = NULL, outputdir = outputdir, outname = outname.e,
-                       harmonize_z = F, harmonize_wgt = F,
-                       strand_ambig_action_z = "none", recover_strand_ambig_wgt = F,
+                       harmonize_z = F, harmonize_wgt = T,
+                       strand_ambig_action_z = "none", recover_strand_ambig_wgt = T,
                        ncore=5, chrom=1:22)
-                       
+  
   z_gene <- res$z_gene
   ld_exprfs <- res$ld_exprfs
+  z_snp <- res$z_snp
   
   save(z_gene, file = paste0(outputdir, "/", outname.e, "_z_gene.Rd"))
+  save(z_snp, file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
 
   rm(res)
 }
 
-z_gene$type <- sapply(z_gene$id, function(x){paste(unlist(strsplit(unlist(strsplit(x, "[|]"))[2],"_"))[-1], collapse="_") })
+#z_gene$type <- sapply(z_gene$id, function(x){paste(unlist(strsplit(unlist(strsplit(x, "[|]"))[2],"_"))[-1], collapse="_") })
 
 #run ctwas_rss parameter estimation
 if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
@@ -102,12 +106,7 @@ if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
   
   group_prior_var_rec <- group_prior_var_rec[,ncol(group_prior_var_rec)]
 } else {
-  ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, 
-            ld_R_dir = ld_R_dir, ld_regions = ld_regions, 
-            ld_regions_version = ld_regions_version, thin = 0.1, 
-            max_snp_region = max_snp_region, outputdir = outputdir, 
-            outname = outname, ncore = 10, ncore.rerun = 1, 
-            prob_single = prob_single,
+  ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = 0.1, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = 10, ncore.rerun = 1, prob_single = prob_single,
             merge=F, 
             fine_map=F,
             ncore_LDR=5)
@@ -116,12 +115,9 @@ if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
 #run ctwas_rss parameter estimation
 if (!file.exists(paste0(outputdir, "/", outname, ".susieIrss.txt"))){
   print("start fine mapping")
-  ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, 
-            ld_R_dir = ld_R_dir, ld_regions = ld_regions, 
-            ld_regions_version = ld_regions_version, thin = 0.1, 
-            max_snp_region = max_snp_region, outputdir = outputdir, 
-            outname = outname, ncore = 10, ncore.rerun = 1, prob_single = prob_single,
-            merge=F, fine_map=T,
+  ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = 0.1, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = 10, ncore.rerun = 1, prob_single = prob_single,
+            merge=F, 
+            fine_map=T,
             group_prior = group_prior_rec, 
             group_prior_var = group_prior_var_rec, 
             estimate_group_prior = F, 

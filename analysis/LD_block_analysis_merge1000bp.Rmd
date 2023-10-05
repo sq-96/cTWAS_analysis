@@ -122,3 +122,93 @@ for(i in index){
 }
 ```
 
+```{r}
+get_pip <- function(index){
+  genepip <- get_results(index)[[4]]
+  genepip <- genepip[,c("id","susie_pip")]
+  genepip1 <- get_results1(index)[[4]]
+  genepip1 <- genepip1[,c("id","susie_pip")]
+  aa <- merge(genepip,genepip1,by = "id")
+  duplicated_genes <- unique(genepip[duplicated(genepip$id),]$id)
+  #duplicated_df <- aa[aa$id %in% duplicated_genes,]
+  load(paste0("/project2/mstephens/causalTWAS/simulations/simulation_ctwas_rss_20210416/ukb-s80.45-adi_simu",index,"-pheno.Rd"))
+  true_genes <- unlist(sapply(1:22, function(x){phenores$batch[[x]]$id.cgene}))
+  correlation <- cor(aa$susie_pip.x,aa$susie_pip.y)
+  aa$label <- 1
+  for(j in 1:dim(aa)[1]){
+    if(aa[j,"id"] %in% duplicated_genes){
+      aa[j,"label"] <- 2
+    }
+  }
+  
+  aa$label1 <- 16
+  for(k in 1:dim(aa)[1]){
+    if(aa[k,"id"] %in% true_genes){
+      aa[k,"label1"] <- 17
+    }
+  }
+  return(aa)
+}
+```
+
+
+
+```{r}
+df_4_1 <- get_pip("4-1")
+df_4_2 <- get_pip("4-2")
+df_4_3 <- get_pip("4-3")
+df_10_1 <- get_pip("10-1")
+df_10_2 <- get_pip("10-2")
+df_10_4 <- get_pip("10-4")
+```
+
+```{r}
+plot_4_1 <- ggplot(df_4_1,aes(susie_pip.y, susie_pip.x, color=factor(label1))) + 
+  geom_point() + 
+  scale_color_manual(values = c('dark green','salmon')) +
+  theme_bw()+
+  theme(legend.position = "none")+
+  labs(x = "old PIP",y = "new PIP")
+  
+plot_4_2 <- ggplot(df_4_2,aes(susie_pip.y, susie_pip.x, color=factor(label1))) + 
+  geom_point() + 
+  scale_color_manual(values = c('dark green','salmon')) +
+  theme_bw()+
+  theme(legend.position = "none")+
+  labs(x = "old PIP",y = "new PIP")
+
+plot_4_3 <- ggplot(df_4_3,aes(susie_pip.y, susie_pip.x, color=factor(label1))) + 
+  geom_point() + 
+  scale_color_manual(values = c('dark green','salmon')) +
+  theme_bw()+
+  theme(legend.position = "none")+
+  labs(x = "old PIP",y = "new PIP")
+
+plot_10_1 <- ggplot(df_10_1,aes(susie_pip.y, susie_pip.x, color=factor(label1))) + 
+  geom_point() + 
+  scale_color_manual(values = c('dark green','salmon')) +
+  theme_bw()+
+  theme(legend.position = "none")+
+  labs(x = "old PIP",y = "new PIP")
+
+plot_10_2 <- ggplot(df_10_2,aes(susie_pip.y, susie_pip.x, color=factor(label1))) + 
+  geom_point() + 
+  scale_color_manual(values = c('dark green','salmon')) +
+  theme_bw()+
+  theme(legend.position = "none")+
+  labs(x = "old PIP",y = "new PIP")
+
+plot_10_4 <- ggplot(df_10_4,aes(susie_pip.y, susie_pip.x, color=factor(label1))) + 
+  geom_point() + 
+  scale_color_manual(values = c('dark green','salmon')) +
+  theme_bw()+
+  theme(legend.position = "none")+
+  labs(x = "old PIP",y = "new PIP")
+```
+
+```{r}
+plot_grid(plot_4_1, plot_4_2, plot_4_3, 
+          plot_10_1, plot_10_2, plot_10_4,
+          ncol = 3, nrow = 2)
+```
+
