@@ -5,356 +5,209 @@
 [5] "OxHb_Lung_expr"                                                        
 [6] "OxHb_Lung_ctwas"                                                       
 [7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Lung"         
-2023-09-21 13:25:38 INFO::Harmonizing summary statistics for chromosome 1
-2023-09-21 13:25:40 INFO::Harmonizing summary statistics for chromosome 2
-2023-09-21 13:25:41 INFO::Harmonizing summary statistics for chromosome 3
-2023-09-21 13:25:41 INFO::Harmonizing summary statistics for chromosome 4
-2023-09-21 13:25:42 INFO::Harmonizing summary statistics for chromosome 5
-2023-09-21 13:25:42 INFO::Harmonizing summary statistics for chromosome 6
-2023-09-21 13:25:43 INFO::Harmonizing summary statistics for chromosome 7
-2023-09-21 13:25:43 INFO::Harmonizing summary statistics for chromosome 8
-2023-09-21 13:25:45 INFO::Harmonizing summary statistics for chromosome 9
-2023-09-21 13:25:45 INFO::Harmonizing summary statistics for chromosome 10
-2023-09-21 13:25:45 INFO::Harmonizing summary statistics for chromosome 11
-2023-09-21 13:25:46 INFO::Harmonizing summary statistics for chromosome 12
-2023-09-21 13:25:46 INFO::Harmonizing summary statistics for chromosome 13
-2023-09-21 13:25:47 INFO::Harmonizing summary statistics for chromosome 14
-2023-09-21 13:25:47 INFO::Harmonizing summary statistics for chromosome 15
-2023-09-21 13:25:48 INFO::Harmonizing summary statistics for chromosome 16
-2023-09-21 13:25:48 INFO::Harmonizing summary statistics for chromosome 17
-2023-09-21 13:25:49 INFO::Harmonizing summary statistics for chromosome 18
-2023-09-21 13:25:49 INFO::Harmonizing summary statistics for chromosome 19
-2023-09-21 13:25:49 INFO::Harmonizing summary statistics for chromosome 20
-2023-09-21 13:25:50 INFO::Harmonizing summary statistics for chromosome 21
-2023-09-21 13:25:51 INFO::Harmonizing summary statistics for chromosome 22
-2023-09-21 13:26:13 INFO::Reading weights for chromosome 1
-2023-09-21 13:26:17 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:26:17 INFO::Collecting gene weight information ...
-starting worker pid=38807 on localhost:11339 at 13:26:18.576
-starting worker pid=38810 on localhost:11339 at 13:26:18.577
-starting worker pid=38806 on localhost:11339 at 13:26:18.577
-starting worker pid=38805 on localhost:11339 at 13:26:18.579
-starting worker pid=38811 on localhost:11339 at 13:26:18.580
-starting worker pid=38804 on localhost:11339 at 13:26:18.581
-starting worker pid=38808 on localhost:11339 at 13:26:18.581
-starting worker pid=38809 on localhost:11339 at 13:26:18.582
-starting worker pid=38803 on localhost:11339 at 13:26:18.582
-starting worker pid=38802 on localhost:11339 at 13:26:18.594
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:27:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:28:17 INFO::Start gene z score imputation ...
-2023-09-21 13:28:17 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=39102 on localhost:11339 at 13:28:18.030
-starting worker pid=39107 on localhost:11339 at 13:28:18.036
-starting worker pid=39110 on localhost:11339 at 13:28:18.037
-starting worker pid=39108 on localhost:11339 at 13:28:18.042
-starting worker pid=39104 on localhost:11339 at 13:28:18.048
-starting worker pid=39105 on localhost:11339 at 13:28:18.053
-starting worker pid=39111 on localhost:11339 at 13:28:18.055
-starting worker pid=39106 on localhost:11339 at 13:28:18.068
-starting worker pid=39103 on localhost:11339 at 13:28:18.070
-starting worker pid=39109 on localhost:11339 at 13:28:18.139
-2023-09-21 13:30:41 INFO::Imputation done, writing results to output...
-2023-09-21 13:30:41 INFO::Imputation done: number of genes with imputed expression: 645 for chr 1
-2023-09-21 13:30:43 INFO::Reading weights for chromosome 2
-2023-09-21 13:30:43 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:30:43 INFO::Collecting gene weight information ...
-starting worker pid=39460 on localhost:11339 at 13:30:43.801
-starting worker pid=39456 on localhost:11339 at 13:30:43.803
-starting worker pid=39458 on localhost:11339 at 13:30:43.804
-starting worker pid=39457 on localhost:11339 at 13:30:43.804
-starting worker pid=39455 on localhost:11339 at 13:30:43.807
-starting worker pid=39454 on localhost:11339 at 13:30:43.812
-starting worker pid=39461 on localhost:11339 at 13:30:43.813
-starting worker pid=39453 on localhost:11339 at 13:30:43.816
-starting worker pid=39459 on localhost:11339 at 13:30:43.819
-starting worker pid=39452 on localhost:11339 at 13:30:43.827
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:31:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:32:34 INFO::Start gene z score imputation ...
-2023-09-21 13:32:34 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=39749 on localhost:11339 at 13:32:34.691
-starting worker pid=39752 on localhost:11339 at 13:32:34.726
-starting worker pid=39748 on localhost:11339 at 13:32:34.726
-starting worker pid=39753 on localhost:11339 at 13:32:34.742
-starting worker pid=39751 on localhost:11339 at 13:32:34.751
-starting worker pid=39755 on localhost:11339 at 13:32:34.753
-starting worker pid=39750 on localhost:11339 at 13:32:34.754
-starting worker pid=39754 on localhost:11339 at 13:32:34.775
-starting worker pid=39756 on localhost:11339 at 13:32:34.794
-starting worker pid=39757 on localhost:11339 at 13:32:34.821
-2023-09-21 13:35:10 INFO::Imputation done, writing results to output...
-2023-09-21 13:35:10 INFO::Imputation done: number of genes with imputed expression: 456 for chr 2
-2023-09-21 13:35:11 INFO::Reading weights for chromosome 3
-2023-09-21 13:35:11 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:35:11 INFO::Collecting gene weight information ...
-starting worker pid=40162 on localhost:11339 at 13:35:12.310
-starting worker pid=40164 on localhost:11339 at 13:35:12.313
-starting worker pid=40170 on localhost:11339 at 13:35:12.316
-starting worker pid=40168 on localhost:11339 at 13:35:12.325
-starting worker pid=40166 on localhost:11339 at 13:35:12.326
-starting worker pid=40165 on localhost:11339 at 13:35:12.327
-starting worker pid=40163 on localhost:11339 at 13:35:12.328
-starting worker pid=40171 on localhost:11339 at 13:35:12.328
-starting worker pid=40169 on localhost:11339 at 13:35:12.329
-starting worker pid=40167 on localhost:11339 at 13:35:12.339
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:36:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:37:03 INFO::Start gene z score imputation ...
-2023-09-21 13:37:03 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=40456 on localhost:11339 at 13:37:03.640
-starting worker pid=40462 on localhost:11339 at 13:37:03.640
-starting worker pid=40457 on localhost:11339 at 13:37:03.641
-starting worker pid=40463 on localhost:11339 at 13:37:03.646
-starting worker pid=40461 on localhost:11339 at 13:37:03.649
-starting worker pid=40464 on localhost:11339 at 13:37:03.652
-starting worker pid=40455 on localhost:11339 at 13:37:03.667
-starting worker pid=40458 on localhost:11339 at 13:37:03.679
-starting worker pid=40460 on localhost:11339 at 13:37:03.679
-starting worker pid=40459 on localhost:11339 at 13:37:03.686
-2023-09-21 13:39:10 INFO::Imputation done, writing results to output...
-2023-09-21 13:39:10 INFO::Imputation done: number of genes with imputed expression: 393 for chr 3
-2023-09-21 13:39:11 INFO::Reading weights for chromosome 4
-2023-09-21 13:39:11 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:39:11 INFO::Collecting gene weight information ...
-starting worker pid=40789 on localhost:11339 at 13:39:12.440
-starting worker pid=40782 on localhost:11339 at 13:39:12.445
-starting worker pid=40787 on localhost:11339 at 13:39:12.445
-starting worker pid=40786 on localhost:11339 at 13:39:12.446
-starting worker pid=40788 on localhost:11339 at 13:39:12.446
-starting worker pid=40784 on localhost:11339 at 13:39:12.450
-starting worker pid=40781 on localhost:11339 at 13:39:12.456
-starting worker pid=40780 on localhost:11339 at 13:39:12.457
-starting worker pid=40785 on localhost:11339 at 13:39:12.459
-starting worker pid=40783 on localhost:11339 at 13:39:12.462
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:40:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:40:44 INFO::Start gene z score imputation ...
-2023-09-21 13:40:44 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=41054 on localhost:11339 at 13:40:45.468
-starting worker pid=41056 on localhost:11339 at 13:40:45.473
-starting worker pid=41058 on localhost:11339 at 13:40:45.483
-starting worker pid=41051 on localhost:11339 at 13:40:45.490
-starting worker pid=41057 on localhost:11339 at 13:40:45.505
-starting worker pid=41050 on localhost:11339 at 13:40:45.505
-starting worker pid=41053 on localhost:11339 at 13:40:45.508
-starting worker pid=41052 on localhost:11339 at 13:40:45.514
-starting worker pid=41049 on localhost:11339 at 13:40:45.524
-starting worker pid=41055 on localhost:11339 at 13:40:45.591
-2023-09-21 13:42:50 INFO::Imputation done, writing results to output...
-2023-09-21 13:42:50 INFO::Imputation done: number of genes with imputed expression: 285 for chr 4
-2023-09-21 13:42:52 INFO::Reading weights for chromosome 5
-2023-09-21 13:42:52 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:42:52 INFO::Collecting gene weight information ...
-starting worker pid=41353 on localhost:11339 at 13:42:52.691
-starting worker pid=41355 on localhost:11339 at 13:42:52.691
-starting worker pid=41354 on localhost:11339 at 13:42:52.691
-starting worker pid=41357 on localhost:11339 at 13:42:52.692
-starting worker pid=41352 on localhost:11339 at 13:42:52.692
-starting worker pid=41350 on localhost:11339 at 13:42:52.693
-starting worker pid=41351 on localhost:11339 at 13:42:52.695
-starting worker pid=41356 on localhost:11339 at 13:42:52.695
-starting worker pid=41358 on localhost:11339 at 13:42:52.706
-starting worker pid=41349 on localhost:11339 at 13:42:52.708
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:44:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:44:41 INFO::Start gene z score imputation ...
-2023-09-21 13:44:41 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=41673 on localhost:11339 at 13:44:42.063
-starting worker pid=41668 on localhost:11339 at 13:44:42.064
-starting worker pid=41671 on localhost:11339 at 13:44:42.072
-starting worker pid=41669 on localhost:11339 at 13:44:42.076
-starting worker pid=41665 on localhost:11339 at 13:44:42.086
-starting worker pid=41667 on localhost:11339 at 13:44:42.091
-starting worker pid=41674 on localhost:11339 at 13:44:42.095
-starting worker pid=41666 on localhost:11339 at 13:44:42.116
-starting worker pid=41670 on localhost:11339 at 13:44:42.116
-starting worker pid=41672 on localhost:11339 at 13:44:42.141
-2023-09-21 13:46:36 INFO::Imputation done, writing results to output...
-2023-09-21 13:46:36 INFO::Imputation done: number of genes with imputed expression: 297 for chr 5
-2023-09-21 13:46:37 INFO::Reading weights for chromosome 6
-2023-09-21 13:46:37 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:46:37 INFO::Collecting gene weight information ...
-starting worker pid=41964 on localhost:11339 at 13:46:37.809
-starting worker pid=41960 on localhost:11339 at 13:46:37.809
-starting worker pid=41965 on localhost:11339 at 13:46:37.811
-starting worker pid=41958 on localhost:11339 at 13:46:37.811
-starting worker pid=41957 on localhost:11339 at 13:46:37.811
-starting worker pid=41956 on localhost:11339 at 13:46:37.811
-starting worker pid=41962 on localhost:11339 at 13:46:37.811
-starting worker pid=41963 on localhost:11339 at 13:46:37.811
-starting worker pid=41959 on localhost:11339 at 13:46:37.816
-starting worker pid=41961 on localhost:11339 at 13:46:37.829
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:47:44 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:48:34 INFO::Start gene z score imputation ...
-2023-09-21 13:48:34 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=42281 on localhost:11339 at 13:48:34.876
-starting worker pid=42279 on localhost:11339 at 13:48:34.880
-starting worker pid=42282 on localhost:11339 at 13:48:34.886
-starting worker pid=42285 on localhost:11339 at 13:48:34.887
-starting worker pid=42277 on localhost:11339 at 13:48:34.887
-starting worker pid=42286 on localhost:11339 at 13:48:34.887
-starting worker pid=42284 on localhost:11339 at 13:48:34.890
-starting worker pid=42280 on localhost:11339 at 13:48:34.895
-starting worker pid=42283 on localhost:11339 at 13:48:34.917
-starting worker pid=42278 on localhost:11339 at 13:48:34.937
-2023-09-21 13:50:44 INFO::Imputation done, writing results to output...
-2023-09-21 13:50:44 INFO::Imputation done: number of genes with imputed expression: 408 for chr 6
-2023-09-21 13:50:45 INFO::Reading weights for chromosome 7
-2023-09-21 13:50:46 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:50:46 INFO::Collecting gene weight information ...
-starting worker pid=42582 on localhost:11339 at 13:50:46.539
-starting worker pid=42587 on localhost:11339 at 13:50:46.546
-starting worker pid=42581 on localhost:11339 at 13:50:46.547
-starting worker pid=42583 on localhost:11339 at 13:50:46.547
-starting worker pid=42580 on localhost:11339 at 13:50:46.547
-starting worker pid=42584 on localhost:11339 at 13:50:46.550
-starting worker pid=42588 on localhost:11339 at 13:50:46.551
-starting worker pid=42586 on localhost:11339 at 13:50:46.554
-starting worker pid=42585 on localhost:11339 at 13:50:46.556
-starting worker pid=42589 on localhost:11339 at 13:50:46.572
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:52:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:52:34 INFO::Start gene z score imputation ...
-2023-09-21 13:52:34 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=42884 on localhost:11339 at 13:52:35.263
-starting worker pid=42877 on localhost:11339 at 13:52:35.263
-starting worker pid=42885 on localhost:11339 at 13:52:35.268
-starting worker pid=42878 on localhost:11339 at 13:52:35.269
-starting worker pid=42883 on localhost:11339 at 13:52:35.278
-starting worker pid=42886 on localhost:11339 at 13:52:35.286
-starting worker pid=42879 on localhost:11339 at 13:52:35.289
-starting worker pid=42882 on localhost:11339 at 13:52:35.323
-starting worker pid=42880 on localhost:11339 at 13:52:35.379
-starting worker pid=42881 on localhost:11339 at 13:52:35.400
-2023-09-21 13:54:46 INFO::Imputation done, writing results to output...
-2023-09-21 13:54:46 INFO::Imputation done: number of genes with imputed expression: 331 for chr 7
-2023-09-21 13:54:47 INFO::Reading weights for chromosome 8
-2023-09-21 13:54:47 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:54:47 INFO::Collecting gene weight information ...
-starting worker pid=43212 on localhost:11339 at 13:54:48.431
-starting worker pid=43218 on localhost:11339 at 13:54:48.432
-starting worker pid=43211 on localhost:11339 at 13:54:48.432
-starting worker pid=43215 on localhost:11339 at 13:54:48.432
-starting worker pid=43214 on localhost:11339 at 13:54:48.434
-starting worker pid=43210 on localhost:11339 at 13:54:48.434
-starting worker pid=43213 on localhost:11339 at 13:54:48.436
-starting worker pid=43209 on localhost:11339 at 13:54:48.436
-starting worker pid=43216 on localhost:11339 at 13:54:48.436
-starting worker pid=43217 on localhost:11339 at 13:54:48.440
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:55:55 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:56:17 INFO::Start gene z score imputation ...
-2023-09-21 13:56:17 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=43473 on localhost:11339 at 13:56:17.548
-starting worker pid=43475 on localhost:11339 at 13:56:17.553
-starting worker pid=43476 on localhost:11339 at 13:56:17.555
-starting worker pid=43472 on localhost:11339 at 13:56:17.557
-starting worker pid=43470 on localhost:11339 at 13:56:17.557
-starting worker pid=43477 on localhost:11339 at 13:56:17.561
-starting worker pid=43469 on localhost:11339 at 13:56:17.572
-starting worker pid=43478 on localhost:11339 at 13:56:17.579
-starting worker pid=43471 on localhost:11339 at 13:56:17.580
-starting worker pid=43474 on localhost:11339 at 13:56:17.592
-2023-09-21 13:58:14 INFO::Imputation done, writing results to output...
-2023-09-21 13:58:14 INFO::Imputation done: number of genes with imputed expression: 233 for chr 8
-2023-09-21 13:58:16 INFO::Reading weights for chromosome 9
-2023-09-21 13:58:16 INFO::Number of genes with weights provided: 15058
-2023-09-21 13:58:16 INFO::Collecting gene weight information ...
-starting worker pid=43768 on localhost:11339 at 13:58:16.532
-starting worker pid=43772 on localhost:11339 at 13:58:16.534
-starting worker pid=43767 on localhost:11339 at 13:58:16.534
-starting worker pid=43764 on localhost:11339 at 13:58:16.534
-starting worker pid=43766 on localhost:11339 at 13:58:16.534
-starting worker pid=43769 on localhost:11339 at 13:58:16.536
-starting worker pid=43771 on localhost:11339 at 13:58:16.536
-starting worker pid=43770 on localhost:11339 at 13:58:16.539
-starting worker pid=43765 on localhost:11339 at 13:58:16.546
-starting worker pid=43773 on localhost:11339 at 13:58:16.547
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 9)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 1)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 2)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 6)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 8)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 7)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 10)
-2023-09-21 13:59:27 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 5)
-2023-09-21 13:59:50 INFO::Start gene z score imputation ...
-2023-09-21 13:59:50 INFO::Using given LD matrices to impute gene z score.
-starting worker pid=44129 on localhost:11339 at 13:59:51.302
-starting worker pid=44131 on localhost:11339 at 13:59:51.350
-starting worker pid=44130 on localhost:11339 at 13:59:51.355
-starting worker pid=44126 on localhost:11339 at 13:59:51.356
-starting worker pid=44125 on localhost:11339 at 13:59:51.356
-starting worker pid=44124 on localhost:11339 at 13:59:51.362
-starting worker pid=44127 on localhost:11339 at 13:59:51.366
-starting worker pid=44123 on localhost:11339 at 13:59:51.369
-starting worker pid=44132 on localhost:11339 at 13:59:51.376
-starting worker pid=44128 on localhost:11339 at 13:59:51.376
+[1] "skip parameter estimation"
+[1] "start fine mapping"
+2023-10-11 23:17:07 INFO::ctwas started ...
+2023-10-11 23:17:40 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/4.1/ctwas/extdata/ldetect/EUR.b38.bed
+2023-10-11 23:17:43 INFO::No. LD regions: 1700
+2023-10-11 23:17:50 INFO::No. regions with at least one SNP/gene for chr1: 130
+2023-10-11 23:17:50 INFO::No. regions with at least one SNP/gene for chr1 after merging: 130
+2023-10-11 23:17:56 INFO::No. regions with at least one SNP/gene for chr2: 143
+2023-10-11 23:17:56 INFO::No. regions with at least one SNP/gene for chr2 after merging: 143
+2023-10-11 23:18:00 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-10-11 23:18:00 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-10-11 23:18:05 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-10-11 23:18:05 INFO::No. regions with at least one SNP/gene for chr4 after merging: 122
+2023-10-11 23:18:10 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-10-11 23:18:10 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-10-11 23:18:15 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-10-11 23:18:15 INFO::No. regions with at least one SNP/gene for chr6 after merging: 112
+2023-10-11 23:18:19 INFO::No. regions with at least one SNP/gene for chr7: 98
+2023-10-11 23:18:19 INFO::No. regions with at least one SNP/gene for chr7 after merging: 98
+2023-10-11 23:18:24 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-10-11 23:18:24 INFO::No. regions with at least one SNP/gene for chr8 after merging: 94
+2023-10-11 23:18:26 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-10-11 23:18:26 INFO::No. regions with at least one SNP/gene for chr9 after merging: 74
+2023-10-11 23:18:30 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-10-11 23:18:30 INFO::No. regions with at least one SNP/gene for chr10 after merging: 85
+2023-10-11 23:18:33 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-10-11 23:18:33 INFO::No. regions with at least one SNP/gene for chr11 after merging: 84
+2023-10-11 23:18:38 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-10-11 23:18:38 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-10-11 23:18:40 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-10-11 23:18:40 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-10-11 23:18:41 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-10-11 23:18:41 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-10-11 23:18:44 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-10-11 23:18:44 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-10-11 23:18:45 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-10-11 23:18:45 INFO::No. regions with at least one SNP/gene for chr16 after merging: 54
+2023-10-11 23:18:48 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-10-11 23:18:48 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-10-11 23:18:50 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-10-11 23:18:50 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2023-10-11 23:18:52 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-10-11 23:18:52 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-10-11 23:18:53 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-10-11 23:18:53 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-10-11 23:18:54 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-10-11 23:18:54 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-10-11 23:18:55 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-10-11 23:18:55 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-10-11 23:18:55 INFO::Trim regions with SNPs more than Inf
+2023-10-11 23:18:55 INFO::Adding R matrix info, as genotype is not given
+starting worker pid=49332 on localhost:11608 at 23:18:55.610
+starting worker pid=49329 on localhost:11608 at 23:18:55.610
+starting worker pid=49333 on localhost:11608 at 23:18:55.610
+starting worker pid=49330 on localhost:11608 at 23:18:55.620
+starting worker pid=49331 on localhost:11608 at 23:18:55.628
+2023-10-11 23:18:57 INFO::Adding R matrix info for chrom 10 (core 4)
+2023-10-11 23:18:57 INFO::Adding R matrix info for chrom 1 (core 1)
+2023-10-11 23:18:57 INFO::Adding R matrix info for chrom 3 (core 2)
+2023-10-11 23:18:57 INFO::Adding R matrix info for chrom 14 (core 5)
+2023-10-11 23:18:57 INFO::Adding R matrix info for chrom 6 (core 3)
+2023-10-11 23:20:37 INFO::Adding R matrix info for chrom 15 (core 5)
+2023-10-11 23:26:00 INFO::Adding R matrix info for chrom 7 (core 3)
+2023-10-11 23:26:05 INFO::Adding R matrix info for chrom 16 (core 5)
+2023-10-11 23:26:27 INFO::Adding R matrix info for chrom 4 (core 2)
+2023-10-11 23:26:48 INFO::Adding R matrix info for chrom 11 (core 4)
+2023-10-11 23:31:11 INFO::Adding R matrix info for chrom 17 (core 5)
+2023-10-11 23:35:56 INFO::Adding R matrix info for chrom 2 (core 1)
+2023-10-11 23:35:57 INFO::Adding R matrix info for chrom 12 (core 4)
+2023-10-11 23:38:07 INFO::Adding R matrix info for chrom 18 (core 5)
+2023-10-11 23:40:10 INFO::Adding R matrix info for chrom 8 (core 3)
+2023-10-11 23:44:11 INFO::Adding R matrix info for chrom 19 (core 5)
+2023-10-11 23:45:10 INFO::Adding R matrix info for chrom 13 (core 4)
+2023-10-11 23:45:54 INFO::Adding R matrix info for chrom 5 (core 2)
+2023-10-11 23:49:55 INFO::Adding R matrix info for chrom 20 (core 5)
+2023-10-11 23:51:34 INFO::Adding R matrix info for chrom 14 (core 4)
+2023-10-11 23:54:41 INFO::Adding R matrix info for chrom 9 (core 3)
+2023-10-11 23:55:32 INFO::Adding R matrix info for chrom 21 (core 5)
+2023-10-11 23:57:37 INFO::Adding R matrix info for chrom 3 (core 1)
+2023-10-11 23:58:16 INFO::Adding R matrix info for chrom 22 (core 5)
+2023-10-12 00:01:46 INFO::Adding R matrix info for chrom 6 (core 2)
+2023-10-12 00:05:16 INFO::Adding R matrix info for chrom 10 (core 3)
+2023-10-12 00:09:55 INFO::Run susie for all regions.
+2023-10-12 00:09:55 INFO::run iteration 1
+starting worker pid=53806 on localhost:11608 at 00:09:55.933
+starting worker pid=53797 on localhost:11608 at 00:09:55.934
+starting worker pid=53801 on localhost:11608 at 00:09:55.934
+starting worker pid=53800 on localhost:11608 at 00:09:55.934
+starting worker pid=53799 on localhost:11608 at 00:09:55.934
+starting worker pid=53803 on localhost:11608 at 00:09:55.934
+starting worker pid=53798 on localhost:11608 at 00:09:55.934
+starting worker pid=53805 on localhost:11608 at 00:09:55.934
+starting worker pid=53802 on localhost:11608 at 00:09:55.935
+starting worker pid=53804 on localhost:11608 at 00:09:55.936
+2023-10-12 00:14:19 INFO::No. LD regions: 1700
+2023-10-12 00:14:27 INFO::No. regions with at least one SNP/gene for chr1: 130
+2023-10-12 00:14:27 INFO::No. regions with at least one SNP/gene for chr1 after merging: 130
+2023-10-12 00:14:34 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-10-12 00:14:34 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
+2023-10-12 00:14:38 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-10-12 00:14:38 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-10-12 00:14:45 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-10-12 00:14:45 INFO::No. regions with at least one SNP/gene for chr4 after merging: 122
+2023-10-12 00:14:49 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-10-12 00:14:49 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-10-12 00:14:56 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-10-12 00:14:56 INFO::No. regions with at least one SNP/gene for chr6 after merging: 112
+2023-10-12 00:15:00 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-10-12 00:15:00 INFO::No. regions with at least one SNP/gene for chr7 after merging: 99
+2023-10-12 00:15:05 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-10-12 00:15:05 INFO::No. regions with at least one SNP/gene for chr8 after merging: 94
+2023-10-12 00:15:08 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-10-12 00:15:08 INFO::No. regions with at least one SNP/gene for chr9 after merging: 74
+2023-10-12 00:15:12 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-10-12 00:15:12 INFO::No. regions with at least one SNP/gene for chr10 after merging: 85
+2023-10-12 00:15:16 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-10-12 00:15:16 INFO::No. regions with at least one SNP/gene for chr11 after merging: 84
+2023-10-12 00:15:21 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-10-12 00:15:21 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-10-12 00:15:25 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-10-12 00:15:25 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-10-12 00:15:26 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-10-12 00:15:26 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-10-12 00:15:28 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-10-12 00:15:28 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-10-12 00:15:30 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-10-12 00:15:30 INFO::No. regions with at least one SNP/gene for chr16 after merging: 54
+2023-10-12 00:15:31 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-10-12 00:15:31 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-10-12 00:15:33 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-10-12 00:15:33 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2023-10-12 00:15:34 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-10-12 00:15:34 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-10-12 00:15:35 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-10-12 00:15:35 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-10-12 00:15:36 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-10-12 00:15:36 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-10-12 00:15:37 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-10-12 00:15:37 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-10-12 00:15:37 INFO::Trim regions with SNPs more than 20000
+2023-10-12 00:15:37 INFO::Adding R matrix info, as genotype is not given
+starting worker pid=54443 on localhost:11608 at 00:15:38.046
+starting worker pid=54442 on localhost:11608 at 00:15:38.046
+starting worker pid=54445 on localhost:11608 at 00:15:38.046
+starting worker pid=54444 on localhost:11608 at 00:15:38.046
+starting worker pid=54441 on localhost:11608 at 00:15:38.047
+2023-10-12 00:15:56 INFO::Adding R matrix info for chrom 14 (core 5)
+2023-10-12 00:15:56 INFO::Adding R matrix info for chrom 10 (core 4)
+2023-10-12 00:15:56 INFO::Adding R matrix info for chrom 1 (core 1)
+2023-10-12 00:15:56 INFO::Adding R matrix info for chrom 6 (core 3)
+2023-10-12 00:15:56 INFO::Adding R matrix info for chrom 3 (core 2)
+2023-10-12 00:18:01 INFO::Adding R matrix info for chrom 15 (core 5)
+2023-10-12 00:24:03 INFO::Adding R matrix info for chrom 7 (core 3)
+2023-10-12 00:24:17 INFO::Adding R matrix info for chrom 16 (core 5)
+2023-10-12 00:24:33 INFO::Adding R matrix info for chrom 4 (core 2)
+2023-10-12 00:24:50 INFO::Adding R matrix info for chrom 11 (core 4)
+2023-10-12 00:29:42 INFO::Adding R matrix info for chrom 17 (core 5)
+2023-10-12 00:34:17 INFO::Adding R matrix info for chrom 2 (core 1)
+2023-10-12 00:34:20 INFO::Adding R matrix info for chrom 12 (core 4)
+2023-10-12 00:37:11 INFO::Adding R matrix info for chrom 18 (core 5)
+2023-10-12 00:39:17 INFO::Adding R matrix info for chrom 8 (core 3)
+2023-10-12 00:43:43 INFO::Adding R matrix info for chrom 19 (core 5)
+2023-10-12 00:43:53 INFO::Adding R matrix info for chrom 13 (core 4)
+2023-10-12 00:44:51 INFO::Adding R matrix info for chrom 5 (core 2)
+2023-10-12 00:50:13 INFO::Adding R matrix info for chrom 20 (core 5)
+2023-10-12 00:50:29 INFO::Adding R matrix info for chrom 14 (core 4)
+2023-10-12 00:54:12 INFO::Adding R matrix info for chrom 9 (core 3)
+2023-10-12 00:56:37 INFO::Adding R matrix info for chrom 21 (core 5)
+2023-10-12 00:56:38 INFO::Adding R matrix info for chrom 3 (core 1)
+2023-10-12 00:59:27 INFO::Adding R matrix info for chrom 22 (core 5)
+2023-10-12 01:02:20 INFO::Adding R matrix info for chrom 6 (core 2)
+2023-10-12 01:05:28 INFO::Adding R matrix info for chrom 10 (core 3)
+2023-10-12 01:12:44 INFO::Number of regions that contain strong gene signals: 0
+$group_prior
+         SNP         gene 
+0.0003797659 0.0033581097 
+
+$group_prior_var
+      SNP      gene 
+0.6790112 0.5315708 
+
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /software/openblas-0.3.13-el7-x86_64/lib/libopenblas_haswellp-r0.3.13.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] data.table_1.14.6 ctwas_0.1.40     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9        pgenlibr_0.3.2    magrittr_2.0.3    hms_1.1.2        
+ [5] doParallel_1.0.17 lattice_0.20-44   R6_2.5.1          rlang_1.1.1      
+ [9] foreach_1.5.2     fansi_1.0.3       tools_4.1.0       parallel_4.1.0   
+[13] grid_4.1.0        logging_0.10-108  utf8_1.2.2        cli_3.6.1        
+[17] iterators_1.0.14  ellipsis_0.3.2    tibble_3.1.8      lifecycle_1.0.3  
+[21] crayon_1.5.2      Matrix_1.3-3      readr_2.1.3       tzdb_0.3.0       
+[25] vctrs_0.6.3       codetools_0.2-18  glue_1.6.2        compiler_4.1.0   
+[29] pillar_1.8.1      pkgconfig_2.0.3  

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for WEIGHT in Lung
+for WEIGHT in Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
 do 
 	TRAIT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/OxHb.txt"
 	LD_DIR="/project2/mstephens/wcrouse/UKB_LDR_0.1"

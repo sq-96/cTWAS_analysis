@@ -38,64 +38,54 @@ if (file.exists(z_snp_outfile)){
 }
 
 ld_R_dir <- args[2]
-
 weight <- args[3]
-#weight <- unlist(strsplit(weight, ";"))
-
 outname.e <- args[5]
 outname <- args[6]
 
 source(args[4]) # config
 
-if (file.exists(paste0(outputdir, "/", outname.e, "_z_snp.Rd"))){
-  load(file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
+#preharmonize snp z score
+if (file.exists(paste0(outputdir, "/", outname, "_z_snp.Rd"))){
+  load(file = paste0(outputdir, "/", outname, "_z_snp.Rd"))
 } else {
   res <- ctwas:::preharmonize_z_ld(z_snp=z_snp, 
-                           ld_R_dir=ld_R_dir, 
-                           outputdir=outputdir,
-                           outname=outname.e,
-                           harmonize_z=F, 
-                           strand_ambig_action_z="none")
+                                   ld_R_dir=ld_R_dir, 
+                                   outputdir=outputdir,
+                                   outname=outname,
+                                   harmonize_z=T, 
+                                   strand_ambig_action_z="drop")
   z_snp <- res$z_snp
-  save(z_snp, file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
+  save(z_snp, file = paste0(outputdir, "/", outname, "_z_snp.Rd"))
   rm(res)
 }
 
-# get gene z score
-if (!any(!file.exists(paste0(outputdir, "/", outname.e, "_chr", 1:22, ".expr.gz")))){
-  ld_exprfs <- paste0(outputdir, "/", outname.e, "_chr", 1:22, ".expr.gz")
-  
-  #collapse results over chromosome
-  z_gene <- list()
-  
-  for (i in 1:22){
-    load(paste0(outputdir, "/", outname.e, "_chr", i, ".exprqc.Rd"))
-    z_gene[[i]] <- z_gene_chr
+#impute gene z-scores for both sets of prediction weights by chromosome
+for (i in 1:22){
+  if (!file.exists(paste0(outputdir, "/", outname, "_chr", i, ".expr.gz"))){
+    res <- impute_expr_z(z_snp = z_snp,
+                         weight = weight,
+                         ld_R_dir = ld_R_dir,
+                         outputdir = outputdir,
+                         outname = outname,
+                         harmonize_z = F,
+                         harmonize_wgt = T,
+                         strand_ambig_action_wgt="drop",
+                         ncore=10, 
+                         chrom=i)
   }
-  rm(qclist, wgtlist, z_gene_chr)
-
-  z_gene <- do.call(rbind, z_gene)
-
-  save(z_gene, file = paste0(outputdir, "/", outname.e, "_z_gene.Rd"))
-} else {
-  res <- impute_expr_z(z_snp, weight = weight, ld_R_dir = ld_R_dir,
-                       method = NULL, outputdir = outputdir, outname = outname.e,
-                       harmonize_z = F, harmonize_wgt = F,
-                       strand_ambig_action_z = "none", 
-                       strand_ambig_action_wgt = "drop",
-                       ncore=10, chrom=1:22)
-  
-  z_gene <- res$z_gene
-  ld_exprfs <- res$ld_exprfs
-  z_snp <- res$z_snp
-  
-  save(z_gene, file = paste0(outputdir, "/", outname.e, "_z_gene.Rd"))
-  save(z_snp, file = paste0(outputdir, "/", outname.e, "_z_snp.Rd"))
-
-  rm(res)
 }
 
-#z_gene$type <- sapply(z_gene$id, function(x){paste(unlist(strsplit(unlist(strsplit(x, "[|]"))[2],"_"))[-1], collapse="_") })
+#combine the imputed gene z-scores
+ld_exprfs <- paste0(outputdir, "/", outname, "_chr", 1:22, ".expr.gz")
+z_gene <- list()
+for (i in 1:22){
+  load(paste0(outputdir, "/", outname, "_chr", i, ".exprqc.Rd"))
+  z_gene[[i]] <- z_gene_chr
+}
+z_gene <- do.call(rbind, z_gene)
+rownames(z_gene) <- NULL
+
+rm(qclist, wgtlist, z_gene_chr)
 
 #run ctwas_rss parameter estimation
 if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
@@ -103,7 +93,6 @@ if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
   load(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))
 
   group_prior_rec <- group_prior_rec[,ncol(group_prior_rec)]
-  group_prior_rec["SNP"] <- group_prior_rec["SNP"]*thin #adjust for thin argument
   group_prior_var_rec <- group_prior_var_rec[,ncol(group_prior_var_rec)]
 
   if (!file.exists(paste0(outputdir, "/", outname, ".susieIrss.txt"))){
