@@ -9,24 +9,15 @@ editor_options:
 
 ### Artery Coronary
 
-```{r echo=FALSE, eval=FALSE}
-ld_exprfs <- paste0(outputdir, outname,"_chr", 1:22, ".exprqc.Rd")
-z_gene <- list()
-for (j in 1:length(ld_exprfs)){
-  load(ld_exprfs[j])
-  z_gene[[j]] <- z_gene_chr
-}
-z_gene <- do.call(rbind, z_gene)
-save(z_gene, file = paste0(outputdir, outname, "_z_gene.Rd"))
+```{r echo=FALSE}
+library(ctwas)
 ```
 
-
 ```{r echo=FALSE}
-#Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
 library(ctwas)
 weight <- "Artery_Coronary"
-outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
-outname <- paste0("OxHb_",weight,"_ctwas")
+outputdir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Artery_Coronary/"
+outname <- "OxHb_Artery_Coronary_ctwas"
 gwas_n <- 966
 thin <- 0.1
 
@@ -91,8 +82,8 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
 weight <- "Artery_Tibial"
-outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
-outname <- paste0("OxHb_",weight,"_ctwas")
+outputdir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Artery_Tibial/"
+outname <- "OxHb_Artery_Tibial_ctwas"
 gwas_n <- 966
 thin <- 0.1
 
@@ -157,8 +148,8 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
 weight <- "Artery_Tibial"
-outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
-outname <- paste0("OxHb_",weight,"_ctwas")
+outputdir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Artery_Tibial/"
+outname <- "OxHb_Artery_Tibial_ctwas"
 gwas_n <- 966
 thin <- 0.1
 
