@@ -29,15 +29,14 @@ outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",
 outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
 thin <- 0.1
-
-ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir, 
-                                               outname = outname, 
-                                               gwas_n = gwas_n, 
-                                               thin = thin)
 ```
 
 
 ```{r}
+ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir, 
+                                               outname = outname, 
+                                               gwas_n = gwas_n, 
+                                               thin = thin)
 #number of variants in the analysis
 ctwas_parameters$n_snps
 
@@ -84,11 +83,11 @@ ctwas_res$genename[ctwas_res$type=="gene"] <- gene_info$genename[match(ctwas_res
 #add z-scores to cTWAS results
 ctwas_res$z[ctwas_res$type=="SNP"] <- z_snp$z[match(ctwas_res$id[ctwas_res$type=="SNP"], z_snp$id)]
 ctwas_res$z[ctwas_res$type=="gene"] <- z_gene$z[match(ctwas_res$id[ctwas_res$type=="gene"], z_gene$id)]
-#display the genes with PIP > 0.8
 ctwas_res <- ctwas_res[order(-ctwas_res$susie_pip),]
 ```
 
 ```{r}
+#print top genes
 head(ctwas_res[ctwas_res$type=="gene",])
 ```
 
