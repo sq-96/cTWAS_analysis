@@ -29,20 +29,15 @@ outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",
 outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
 thin <- 0.1
-```
 
-
-```{r}
 ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir, 
                                                outname = outname, 
                                                gwas_n = gwas_n, 
                                                thin = thin)
-#number of variants in the analysis
-ctwas_parameters$n_snps
+```
 
-#number of genes in the analysis
-ctwas_parameters$n_genes
 
+```{r}
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 
@@ -109,12 +104,6 @@ ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir,
 
 
 ```{r}
-#number of variants in the analysis
-ctwas_parameters$n_snps
-
-#number of genes in the analysis
-ctwas_parameters$n_genes
-
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 
@@ -181,12 +170,6 @@ ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir,
 
 
 ```{r}
-#number of variants in the analysis
-ctwas_parameters$n_snps
-
-#number of genes in the analysis
-ctwas_parameters$n_genes
-
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 
@@ -253,12 +236,6 @@ ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir,
 
 
 ```{r}
-#number of variants in the analysis
-ctwas_parameters$n_snps
-
-#number of genes in the analysis
-ctwas_parameters$n_genes
-
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 
@@ -324,12 +301,6 @@ ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir,
 
 
 ```{r}
-#number of variants in the analysis
-ctwas_parameters$n_snps
-
-#number of genes in the analysis
-ctwas_parameters$n_genes
-
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 
@@ -395,12 +366,6 @@ ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir,
 
 
 ```{r}
-#number of variants in the analysis
-ctwas_parameters$n_snps
-
-#number of genes in the analysis
-ctwas_parameters$n_genes
-
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 
@@ -466,12 +431,6 @@ ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir,
 
 
 ```{r}
-#number of variants in the analysis
-ctwas_parameters$n_snps
-
-#number of genes in the analysis
-ctwas_parameters$n_genes
-
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 
@@ -537,12 +496,6 @@ ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir,
 
 
 ```{r}
-#number of variants in the analysis
-ctwas_parameters$n_snps
-
-#number of genes in the analysis
-ctwas_parameters$n_genes
-
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 
@@ -608,12 +561,6 @@ ctwas_parameters <- ctwas_summarize_parameters(outputdir = outputdir,
 
 
 ```{r}
-#number of variants in the analysis
-ctwas_parameters$n_snps
-
-#number of genes in the analysis
-ctwas_parameters$n_genes
-
 #estimated prior inclusion probability
 ctwas_parameters$group_prior
 

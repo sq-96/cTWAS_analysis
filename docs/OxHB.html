@@ -501,16 +501,16 @@ data/OxHb
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef442f0e5746534ded6194155b45d49ea86f8bf9ftargetblankf442f0ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/f442f0e5746534ded6194155b45d49ea86f8bf9f" target="_blank">f442f0e</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreed04dec98d50beda9d49a049d09f3607c2e4ea5cbtargetblankd04dec9a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/d04dec98d50beda9d49a049d09f3607c2e4ea5cb" target="_blank">d04dec9</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef442f0e5746534ded6194155b45d49ea86f8bf9ftargetblankf442f0ea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreed04dec98d50beda9d49a049d09f3607c2e4ea5cbtargetblankd04dec9a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/f442f0e5746534ded6194155b45d49ea86f8bf9f" target="_blank">f442f0e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/d04dec98d50beda9d49a049d09f3607c2e4ea5cb" target="_blank">d04dec9</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -685,6 +685,40 @@ Message
 <tbody>
 <tr>
 <td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/d04dec98d50beda9d49a049d09f3607c2e4ea5cb/analysis/OxHB.Rmd" target="_blank">d04dec9</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-14
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/d04dec98d50beda9d49a049d09f3607c2e4ea5cb/docs/OxHB.html" target="_blank">d04dec9</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-14
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
 html
 </td>
 <td>
@@ -760,16 +794,6 @@ update
 </div>
 <div id="artery-coronary" class="section level3">
 <h3>Artery Coronary</h3>
-<pre class="r"><code>ctwas_parameters &lt;- ctwas_summarize_parameters(outputdir = outputdir, 
-                                               outname = outname, 
-                                               gwas_n = gwas_n, 
-                                               thin = thin)
-#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
@@ -852,12 +876,6 @@ head(ctwas_res[ctwas_res$type==&quot;gene&quot;,])</code></pre>
 </div>
 <div id="artery-tibial" class="section level3">
 <h3>Artery Tibial</h3>
-<pre class="r"><code>#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
@@ -939,12 +957,6 @@ sq-96
 </div>
 <div id="heart-atrial-appendage" class="section level3">
 <h3>Heart Atrial Appendage</h3>
-<pre class="r"><code>#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
@@ -1026,12 +1038,6 @@ sq-96
 </div>
 <div id="heart-left-ventricle" class="section level3">
 <h3>Heart Left Ventricle</h3>
-<pre class="r"><code>#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
@@ -1113,12 +1119,6 @@ sq-96
 </div>
 <div id="kidney-cortex" class="section level3">
 <h3>Kidney Cortex</h3>
-<pre class="r"><code>#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
@@ -1200,12 +1200,6 @@ sq-96
 </div>
 <div id="liver" class="section level3">
 <h3>Liver</h3>
-<pre class="r"><code>#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
@@ -1287,12 +1281,6 @@ sq-96
 </div>
 <div id="lung" class="section level3">
 <h3>Lung</h3>
-<pre class="r"><code>#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
@@ -1374,12 +1362,6 @@ sq-96
 </div>
 <div id="pancreas" class="section level3">
 <h3>Pancreas</h3>
-<pre class="r"><code>#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
@@ -1461,12 +1443,6 @@ sq-96
 </div>
 <div id="whole_blood" class="section level3">
 <h3>Whole_Blood</h3>
-<pre class="r"><code>#number of variants in the analysis
-ctwas_parameters$n_snps</code></pre>
-<pre><code>NULL</code></pre>
-<pre class="r"><code>#number of genes in the analysis
-ctwas_parameters$n_genes</code></pre>
-<pre><code>NULL</code></pre>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
