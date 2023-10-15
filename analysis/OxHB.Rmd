@@ -8,16 +8,16 @@ editor_options:
 ---
 
 ### Artery Coronary
-
 ```{r echo=FALSE}
 library(ctwas)
 ```
 
 ```{r echo=FALSE}
+#Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
 library(ctwas)
 weight <- "Artery_Coronary"
-outputdir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Artery_Coronary/"
-outname <- "OxHb_Artery_Coronary_ctwas"
+outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
+outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
 thin <- 0.1
 
@@ -82,8 +82,8 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
 weight <- "Artery_Tibial"
-outputdir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Artery_Tibial/"
-outname <- "OxHb_Artery_Tibial_ctwas"
+outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
+outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
 thin <- 0.1
 
@@ -147,9 +147,9 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ### Heart Atrial Appendage
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
-weight <- "Artery_Tibial"
-outputdir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Artery_Tibial/"
-outname <- "OxHb_Artery_Tibial_ctwas"
+weight <- "Heart_Atrial_Appendage"
+outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
+outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
 thin <- 0.1
 
@@ -213,7 +213,7 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ### Heart Left Ventricle
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
-weight <- "Artery_Tibial"
+weight <- "Heart_Left_Ventricle"
 outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
 outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
@@ -278,7 +278,7 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ### Kidney Cortex
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
-weight <- "Artery_Tibial"
+weight <- "Kidney_Cortex"
 outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
 outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
@@ -343,7 +343,7 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ### Liver
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
-weight <- "Artery_Tibial"
+weight <- "Liver"
 outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
 outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
@@ -408,7 +408,7 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ### Lung
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
-weight <- "Artery_Tibial"
+weight <- "Lung"
 outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
 outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
@@ -473,7 +473,7 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ### Pancreas
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
-weight <- "Artery_Tibial"
+weight <- "Pancreas"
 outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
 outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966
@@ -538,7 +538,7 @@ head(ctwas_res[ctwas_res$type=="gene",])
 ### Whole_Blood
 ```{r echo=FALSE}
 #Artery_Coronary Artery_Tibial Heart_Atrial_Appendage Heart_Left_Ventricle Kidney_Cortex Liver Lung Pancreas Whole_Blood
-weight <- "Artery_Tibial"
+weight <- "Whole_Blood"
 outputdir <- paste0("/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/",weight,"/")
 outname <- paste0("OxHb_",weight,"_ctwas")
 gwas_n <- 966

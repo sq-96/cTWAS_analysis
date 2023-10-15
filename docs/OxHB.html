@@ -487,22 +487,6 @@ relative
 <tbody>
 <tr>
 <td style="text-align:left;">
-/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Artery_Coronary/
-</td>
-<td style="text-align:left;">
-data/OxHb/Artery_Coronary
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/Artery_Tibial/
-</td>
-<td style="text-align:left;">
-data/OxHb/Artery_Tibial
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 /project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/OxHb/
 </td>
 <td style="text-align:left;">
@@ -517,16 +501,16 @@ data/OxHb
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree70d8ee87defd07dd0f388013a4ebc80690fe33fbtargetblank70d8ee8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/70d8ee87defd07dd0f388013a4ebc80690fe33fb" target="_blank">70d8ee8</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree3fd82cfb292c1eef311031acdda0bad73eb2fea8targetblank3fd82cfa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/3fd82cfb292c1eef311031acdda0bad73eb2fea8" target="_blank">3fd82cf</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree70d8ee87defd07dd0f388013a4ebc80690fe33fbtargetblank70d8ee8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree3fd82cfb292c1eef311031acdda0bad73eb2fea8targetblank3fd82cfa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/70d8ee87defd07dd0f388013a4ebc80690fe33fb" target="_blank">70d8ee8</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/3fd82cfb292c1eef311031acdda0bad73eb2fea8" target="_blank">3fd82cf</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -699,6 +683,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/3fd82cfb292c1eef311031acdda0bad73eb2fea8/analysis/OxHB.Rmd" target="_blank">3fd82cf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-14
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/3fd82cfb292c1eef311031acdda0bad73eb2fea8/docs/OxHB.html" target="_blank">3fd82cf</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-14
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1010,26 +1028,26 @@ sq-96
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
-0.0003778214 0.0040115252 </code></pre>
+0.0003779586 0.0050855938 </code></pre>
 <pre class="r"><code>#estimated prior effect size
 ctwas_parameters$group_prior_var</code></pre>
 <pre><code>      SNP      gene 
-0.6684344 0.5565171 </code></pre>
+0.6799803 0.8693670 </code></pre>
 <pre class="r"><code>#estimated enrichment of genes over variants
 ctwas_parameters$enrichment</code></pre>
 <pre><code>    gene 
-10.61752 </code></pre>
+13.45542 </code></pre>
 <pre class="r"><code>#PVE explained by genes and variants
 ctwas_parameters$group_pve</code></pre>
 <pre><code>       SNP       gene 
-0.70439414 0.01309908 </code></pre>
+0.71682145 0.02367152 </code></pre>
 <pre class="r"><code>#total heritability (sum of PVE)
 ctwas_parameters$total_pve</code></pre>
-<pre><code>[1] 0.7174932</code></pre>
+<pre><code>[1] 0.740493</code></pre>
 <pre class="r"><code>#attributable heritability
 ctwas_parameters$attributable_pve</code></pre>
 <pre><code>       SNP       gene 
-0.98174327 0.01825673 </code></pre>
+0.96803275 0.03196725 </code></pre>
 <pre class="r"><code>#plot convergence
 ctwas_parameters$convergence_plot</code></pre>
 <p><img src="figure/OxHB.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1072,45 +1090,45 @@ sq-96
 </div>
 <pre class="r"><code>head(ctwas_res[ctwas_res$type==&quot;gene&quot;,])</code></pre>
 <pre><code>       chrom                 id       pos type region_tag1 region_tag2 cs_index
-114696     6 ENSG00000005700.14  82247064 gene           6          56        0
-272419    22 ENSG00000159496.14  23679302 gene          22           6        0
-179945    10 ENSG00000151923.17 119601669 gene          10          74        0
-151888     8  ENSG00000164841.4 108787887 gene           8          74        0
-241123    16 ENSG00000040199.18  71804965 gene          16          38        0
-243700    17 ENSG00000174292.12   7380407 gene          17           6        0
-        susie_pip      mu2 genename         z
-114696 0.11468988 9.126035     IBTK -3.787795
-272419 0.08483873 7.971765     RGL4  3.286735
-179945 0.08104538 7.839875    TIAL1  3.480318
-151888 0.07962949 7.989882   TMEM74 -3.623924
-241123 0.07790796 7.513540   PHLPP2 -3.126064
-243700 0.07591772 7.535001     TNK1  3.186510</code></pre>
+165901     9 ENSG00000136944.17 126565356 gene           9          65        0
+57759      3 ENSG00000144908.13 126016332 gene           3          78        0
+95338      5  ENSG00000250049.5  92296991 gene           5          54        0
+95337      5  ENSG00000248864.1  92329276 gene           5          54        0
+65473      4 ENSG00000159733.13   2395131 gene           4           3        0
+224367    14 ENSG00000027075.14  61235011 gene          14          28        0
+       susie_pip      mu2      genename         z
+165901 0.1584757 12.62261         LMX1B  3.258848
+57759  0.1535566 13.15896       ALDH1L1  3.817762
+95338  0.1511946 12.76268 RP11-348J24.2  3.951225
+95337  0.1505937 12.74289 RP11-348J24.1  3.943968
+65473  0.1463878 12.17379       ZFYVE28  3.257767
+224367 0.1338625 11.63597         PRKCH -3.100649</code></pre>
 </div>
 <div id="heart-left-ventricle" class="section level3">
 <h3>Heart Left Ventricle</h3>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
-0.0003778214 0.0040115252 </code></pre>
+0.0003788274 0.0054372428 </code></pre>
 <pre class="r"><code>#estimated prior effect size
 ctwas_parameters$group_prior_var</code></pre>
 <pre><code>      SNP      gene 
-0.6684344 0.5565171 </code></pre>
+0.6450365 2.3567095 </code></pre>
 <pre class="r"><code>#estimated enrichment of genes over variants
 ctwas_parameters$enrichment</code></pre>
 <pre><code>    gene 
-10.61752 </code></pre>
+14.35282 </code></pre>
 <pre class="r"><code>#PVE explained by genes and variants
 ctwas_parameters$group_pve</code></pre>
-<pre><code>       SNP       gene 
-0.70439414 0.01309908 </code></pre>
+<pre><code>      SNP      gene 
+0.6815476 0.0633139 </code></pre>
 <pre class="r"><code>#total heritability (sum of PVE)
 ctwas_parameters$total_pve</code></pre>
-<pre><code>[1] 0.7174932</code></pre>
+<pre><code>[1] 0.7448615</code></pre>
 <pre class="r"><code>#attributable heritability
 ctwas_parameters$attributable_pve</code></pre>
 <pre><code>       SNP       gene 
-0.98174327 0.01825673 </code></pre>
+0.91499909 0.08500091 </code></pre>
 <pre class="r"><code>#plot convergence
 ctwas_parameters$convergence_plot</code></pre>
 <p><img src="figure/OxHB.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1153,45 +1171,45 @@ sq-96
 </div>
 <pre class="r"><code>head(ctwas_res[ctwas_res$type==&quot;gene&quot;,])</code></pre>
 <pre><code>       chrom                 id       pos type region_tag1 region_tag2 cs_index
-114696     6 ENSG00000005700.14  82247064 gene           6          56        0
-272419    22 ENSG00000159496.14  23679302 gene          22           6        0
-179945    10 ENSG00000151923.17 119601669 gene          10          74        0
-151888     8  ENSG00000164841.4 108787887 gene           8          74        0
-241123    16 ENSG00000040199.18  71804965 gene          16          38        0
-243700    17 ENSG00000174292.12   7380407 gene          17           6        0
-        susie_pip      mu2 genename         z
-114696 0.11468988 9.126035     IBTK -3.787795
-272419 0.08483873 7.971765     RGL4  3.286735
-179945 0.08104538 7.839875    TIAL1  3.480318
-151888 0.07962949 7.989882   TMEM74 -3.623924
-241123 0.07790796 7.513540   PHLPP2 -3.126064
-243700 0.07591772 7.535001     TNK1  3.186510</code></pre>
+232652    15 ENSG00000137819.13  69299268 gene          15          32        0
+95174      5  ENSG00000248864.1  92329276 gene           5          54        0
+256443    19 ENSG00000171970.12   2897135 gene          19           3        0
+176862    10 ENSG00000176273.14  93893644 gene          10          60        0
+100805     5 ENSG00000070814.17 150356800 gene           5          88        0
+271544    22  ENSG00000272733.1  23686225 gene          22           6        0
+       susie_pip      mu2      genename         z
+232652 0.3830957 28.46332         PAQR5  4.277398
+95174  0.2857001 25.74061 RP11-348J24.1  3.943968
+256443 0.2260197 23.52581         ZNF57 -3.403225
+176862 0.2147015 23.56849       SLC35G1  3.538506
+100805 0.2105803 23.08782         TCOF1  3.426022
+271544 0.2065853 23.00182    KB-208E9.1  3.247406</code></pre>
 </div>
 <div id="kidney-cortex" class="section level3">
 <h3>Kidney Cortex</h3>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
-<pre><code>         SNP         gene 
-0.0003778214 0.0040115252 </code></pre>
+<pre><code>        SNP        gene 
+0.000379666 0.004579254 </code></pre>
 <pre class="r"><code>#estimated prior effect size
 ctwas_parameters$group_prior_var</code></pre>
-<pre><code>      SNP      gene 
-0.6684344 0.5565171 </code></pre>
+<pre><code>     SNP     gene 
+0.681686 2.502479 </code></pre>
 <pre class="r"><code>#estimated enrichment of genes over variants
 ctwas_parameters$enrichment</code></pre>
 <pre><code>    gene 
-10.61752 </code></pre>
+12.06127 </code></pre>
 <pre class="r"><code>#PVE explained by genes and variants
 ctwas_parameters$group_pve</code></pre>
 <pre><code>       SNP       gene 
-0.70439414 0.01309908 </code></pre>
+0.72186587 0.03975231 </code></pre>
 <pre class="r"><code>#total heritability (sum of PVE)
 ctwas_parameters$total_pve</code></pre>
-<pre><code>[1] 0.7174932</code></pre>
+<pre><code>[1] 0.7616182</code></pre>
 <pre class="r"><code>#attributable heritability
 ctwas_parameters$attributable_pve</code></pre>
 <pre><code>       SNP       gene 
-0.98174327 0.01825673 </code></pre>
+0.94780546 0.05219454 </code></pre>
 <pre class="r"><code>#plot convergence
 ctwas_parameters$convergence_plot</code></pre>
 <p><img src="figure/OxHB.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1234,45 +1252,45 @@ sq-96
 </div>
 <pre class="r"><code>head(ctwas_res[ctwas_res$type==&quot;gene&quot;,])</code></pre>
 <pre><code>       chrom                 id       pos type region_tag1 region_tag2 cs_index
-114696     6 ENSG00000005700.14  82247064 gene           6          56        0
-272419    22 ENSG00000159496.14  23679302 gene          22           6        0
-179945    10 ENSG00000151923.17 119601669 gene          10          74        0
-151888     8  ENSG00000164841.4 108787887 gene           8          74        0
-241123    16 ENSG00000040199.18  71804965 gene          16          38        0
-243700    17 ENSG00000174292.12   7380407 gene          17           6        0
-        susie_pip      mu2 genename         z
-114696 0.11468988 9.126035     IBTK -3.787795
-272419 0.08483873 7.971765     RGL4  3.286735
-179945 0.08104538 7.839875    TIAL1  3.480318
-151888 0.07962949 7.989882   TMEM74 -3.623924
-241123 0.07790796 7.513540   PHLPP2 -3.126064
-243700 0.07591772 7.535001     TNK1  3.186510</code></pre>
+231596    15 ENSG00000137819.13  69299268 gene          15          32        0
+36106      2  ENSG00000115145.9 152176276 gene           2          91        0
+221967    14 ENSG00000073712.14  52952836 gene          14          21        0
+91273      5 ENSG00000177058.11  55773348 gene           5          32        0
+117508     6 ENSG00000178425.13 116099964 gene           6          77        0
+260478    20  ENSG00000275491.1   3807832 gene          20           3        0
+       susie_pip      mu2  genename         z
+231596 0.3563809 29.67982     PAQR5 -4.277398
+36106  0.2477434 26.97233     STAM2  3.836622
+221967 0.1606260 22.27244    FERMT2 -2.990795
+91273  0.1594552 22.35682   SLC38A9 -3.307919
+117508 0.1553302 22.18781    NT5DC1 -3.118395
+260478 0.1502463 22.10096 LINC01730 -2.945771</code></pre>
 </div>
 <div id="liver" class="section level3">
 <h3>Liver</h3>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
-0.0003778214 0.0040115252 </code></pre>
+0.0003814401 0.0041596106 </code></pre>
 <pre class="r"><code>#estimated prior effect size
 ctwas_parameters$group_prior_var</code></pre>
 <pre><code>      SNP      gene 
-0.6684344 0.5565171 </code></pre>
+0.7027292 1.2651829 </code></pre>
 <pre class="r"><code>#estimated enrichment of genes over variants
 ctwas_parameters$enrichment</code></pre>
 <pre><code>    gene 
-10.61752 </code></pre>
+10.90502 </code></pre>
 <pre class="r"><code>#PVE explained by genes and variants
 ctwas_parameters$group_pve</code></pre>
-<pre><code>       SNP       gene 
-0.70439414 0.01309908 </code></pre>
+<pre><code>      SNP      gene 
+0.7476266 0.0231917 </code></pre>
 <pre class="r"><code>#total heritability (sum of PVE)
 ctwas_parameters$total_pve</code></pre>
-<pre><code>[1] 0.7174932</code></pre>
+<pre><code>[1] 0.7708182</code></pre>
 <pre class="r"><code>#attributable heritability
 ctwas_parameters$attributable_pve</code></pre>
 <pre><code>       SNP       gene 
-0.98174327 0.01825673 </code></pre>
+0.96991289 0.03008711 </code></pre>
 <pre class="r"><code>#plot convergence
 ctwas_parameters$convergence_plot</code></pre>
 <p><img src="figure/OxHB.Rmd/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1315,45 +1333,45 @@ sq-96
 </div>
 <pre class="r"><code>head(ctwas_res[ctwas_res$type==&quot;gene&quot;,])</code></pre>
 <pre><code>       chrom                 id       pos type region_tag1 region_tag2 cs_index
-114696     6 ENSG00000005700.14  82247064 gene           6          56        0
-272419    22 ENSG00000159496.14  23679302 gene          22           6        0
-179945    10 ENSG00000151923.17 119601669 gene          10          74        0
-151888     8  ENSG00000164841.4 108787887 gene           8          74        0
-241123    16 ENSG00000040199.18  71804965 gene          16          38        0
-243700    17 ENSG00000174292.12   7380407 gene          17           6        0
-        susie_pip      mu2 genename         z
-114696 0.11468988 9.126035     IBTK -3.787795
-272419 0.08483873 7.971765     RGL4  3.286735
-179945 0.08104538 7.839875    TIAL1  3.480318
-151888 0.07962949 7.989882   TMEM74 -3.623924
-241123 0.07790796 7.513540   PHLPP2 -3.126064
-243700 0.07591772 7.535001     TNK1  3.186510</code></pre>
+232268    15 ENSG00000137819.13  69299268 gene          15          32        0
+95276      5  ENSG00000272021.1  95849392 gene           5          56        0
+270005    21 ENSG00000160201.11  43031887 gene          21          21        0
+176557    10 ENSG00000176273.14  93893644 gene          10          60        0
+191545    11  ENSG00000137673.8 102530930 gene          11          59        0
+103734     6 ENSG00000112699.10   2236692 gene           6           2        0
+       susie_pip      mu2   genename         z
+232268 0.2710718 20.70799      PAQR5 -4.277398
+95276  0.1672517 17.25707 AC008592.8 -3.348117
+270005 0.1395812 16.08112      U2AF1 -3.187321
+176557 0.1365257 16.35490    SLC35G1 -3.538506
+191545 0.1237505 17.10431       MMP7  3.217326
+103734 0.1186136 15.80775       GMDS -3.273856</code></pre>
 </div>
 <div id="lung" class="section level3">
 <h3>Lung</h3>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
-0.0003778214 0.0040115252 </code></pre>
+0.0003797659 0.0033581097 </code></pre>
 <pre class="r"><code>#estimated prior effect size
 ctwas_parameters$group_prior_var</code></pre>
 <pre><code>      SNP      gene 
-0.6684344 0.5565171 </code></pre>
+0.6790112 0.5315708 </code></pre>
 <pre class="r"><code>#estimated enrichment of genes over variants
 ctwas_parameters$enrichment</code></pre>
 <pre><code>    gene 
-10.61752 </code></pre>
+8.842579 </code></pre>
 <pre class="r"><code>#PVE explained by genes and variants
 ctwas_parameters$group_pve</code></pre>
 <pre><code>       SNP       gene 
-0.70439414 0.01309908 </code></pre>
+0.71922254 0.01041293 </code></pre>
 <pre class="r"><code>#total heritability (sum of PVE)
 ctwas_parameters$total_pve</code></pre>
-<pre><code>[1] 0.7174932</code></pre>
+<pre><code>[1] 0.7296355</code></pre>
 <pre class="r"><code>#attributable heritability
 ctwas_parameters$attributable_pve</code></pre>
 <pre><code>       SNP       gene 
-0.98174327 0.01825673 </code></pre>
+0.98572859 0.01427141 </code></pre>
 <pre class="r"><code>#plot convergence
 ctwas_parameters$convergence_plot</code></pre>
 <p><img src="figure/OxHB.Rmd/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1396,45 +1414,45 @@ sq-96
 </div>
 <pre class="r"><code>head(ctwas_res[ctwas_res$type==&quot;gene&quot;,])</code></pre>
 <pre><code>       chrom                 id       pos type region_tag1 region_tag2 cs_index
-114696     6 ENSG00000005700.14  82247064 gene           6          56        0
-272419    22 ENSG00000159496.14  23679302 gene          22           6        0
-179945    10 ENSG00000151923.17 119601669 gene          10          74        0
-151888     8  ENSG00000164841.4 108787887 gene           8          74        0
-241123    16 ENSG00000040199.18  71804965 gene          16          38        0
-243700    17 ENSG00000174292.12   7380407 gene          17           6        0
+233304    15 ENSG00000137819.13  69299268 gene          15          32        0
+151315     8  ENSG00000164935.6 104341570 gene           8          71        0
+271364    21 ENSG00000160201.11  43031887 gene          21          21        0
+135028     7 ENSG00000160963.13 101362454 gene           7          62        0
+206165    12 ENSG00000136048.13 101902056 gene          12          61        0
+192366    11  ENSG00000137673.8 102530930 gene          11          59        0
         susie_pip      mu2 genename         z
-114696 0.11468988 9.126035     IBTK -3.787795
-272419 0.08483873 7.971765     RGL4  3.286735
-179945 0.08104538 7.839875    TIAL1  3.480318
-151888 0.07962949 7.989882   TMEM74 -3.623924
-241123 0.07790796 7.513540   PHLPP2 -3.126064
-243700 0.07591772 7.535001     TNK1  3.186510</code></pre>
+233304 0.11355832 9.606008    PAQR5 -4.277398
+151315 0.08171085 8.866802  DCSTAMP  3.944082
+271364 0.06675872 7.344053    U2AF1 -3.187321
+135028 0.06281241 7.414368  COL26A1 -3.615133
+206165 0.05941452 7.182225    DRAM1  3.223839
+192366 0.05497479 7.729388     MMP7  3.217326</code></pre>
 </div>
 <div id="pancreas" class="section level3">
 <h3>Pancreas</h3>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
-0.0003778214 0.0040115252 </code></pre>
+0.0003791387 0.0039006092 </code></pre>
 <pre class="r"><code>#estimated prior effect size
 ctwas_parameters$group_prior_var</code></pre>
 <pre><code>      SNP      gene 
-0.6684344 0.5565171 </code></pre>
+0.6969396 0.4391335 </code></pre>
 <pre class="r"><code>#estimated enrichment of genes over variants
 ctwas_parameters$enrichment</code></pre>
 <pre><code>    gene 
-10.61752 </code></pre>
+10.28808 </code></pre>
 <pre class="r"><code>#PVE explained by genes and variants
 ctwas_parameters$group_pve</code></pre>
-<pre><code>       SNP       gene 
-0.70439414 0.01309908 </code></pre>
+<pre><code>        SNP        gene 
+0.736993487 0.008557348 </code></pre>
 <pre class="r"><code>#total heritability (sum of PVE)
 ctwas_parameters$total_pve</code></pre>
-<pre><code>[1] 0.7174932</code></pre>
+<pre><code>[1] 0.7455508</code></pre>
 <pre class="r"><code>#attributable heritability
 ctwas_parameters$attributable_pve</code></pre>
 <pre><code>       SNP       gene 
-0.98174327 0.01825673 </code></pre>
+0.98852211 0.01147789 </code></pre>
 <pre class="r"><code>#plot convergence
 ctwas_parameters$convergence_plot</code></pre>
 <p><img src="figure/OxHB.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1476,46 +1494,46 @@ sq-96
 </div>
 </div>
 <pre class="r"><code>head(ctwas_res[ctwas_res$type==&quot;gene&quot;,])</code></pre>
-<pre><code>       chrom                 id       pos type region_tag1 region_tag2 cs_index
-114696     6 ENSG00000005700.14  82247064 gene           6          56        0
-272419    22 ENSG00000159496.14  23679302 gene          22           6        0
-179945    10 ENSG00000151923.17 119601669 gene          10          74        0
-151888     8  ENSG00000164841.4 108787887 gene           8          74        0
-241123    16 ENSG00000040199.18  71804965 gene          16          38        0
-243700    17 ENSG00000174292.12   7380407 gene          17           6        0
-        susie_pip      mu2 genename         z
-114696 0.11468988 9.126035     IBTK -3.787795
-272419 0.08483873 7.971765     RGL4  3.286735
-179945 0.08104538 7.839875    TIAL1  3.480318
-151888 0.07962949 7.989882   TMEM74 -3.623924
-241123 0.07790796 7.513540   PHLPP2 -3.126064
-243700 0.07591772 7.535001     TNK1  3.186510</code></pre>
+<pre><code>       chrom                 id      pos type region_tag1 region_tag2 cs_index
+90503      5 ENSG00000145592.13 40793056 gene           5          27        0
+261658    20 ENSG00000125818.17  1106481 gene          20           2        0
+49270      3 ENSG00000114812.12 42490447 gene           3          30        0
+247840    17  ENSG00000226101.1 72071669 gene          17          41        0
+270029    21 ENSG00000157557.11 38806138 gene          21          18        0
+222953    14 ENSG00000073712.14 52952836 gene          14          21        0
+        susie_pip      mu2  genename         z
+90503  0.08901000 7.071124     RPL37  3.953186
+261658 0.07566466 6.306397     PSMF1 -3.324110
+49270  0.07178122 6.091420     VIPR1  3.378381
+247840 0.06966362 5.895581 LINC02097  3.190044
+270029 0.06813460 5.936244      ETS2 -3.200392
+222953 0.06115363 5.446101    FERMT2 -2.990795</code></pre>
 </div>
 <div id="whole_blood" class="section level3">
 <h3>Whole_Blood</h3>
 <pre class="r"><code>#estimated prior inclusion probability
 ctwas_parameters$group_prior</code></pre>
 <pre><code>         SNP         gene 
-0.0003778214 0.0040115252 </code></pre>
+0.0003797145 0.0041089502 </code></pre>
 <pre class="r"><code>#estimated prior effect size
 ctwas_parameters$group_prior_var</code></pre>
 <pre><code>      SNP      gene 
-0.6684344 0.5565171 </code></pre>
+0.6782780 0.4515726 </code></pre>
 <pre class="r"><code>#estimated enrichment of genes over variants
 ctwas_parameters$enrichment</code></pre>
 <pre><code>    gene 
-10.61752 </code></pre>
+10.82116 </code></pre>
 <pre class="r"><code>#PVE explained by genes and variants
 ctwas_parameters$group_pve</code></pre>
-<pre><code>       SNP       gene 
-0.70439414 0.01309908 </code></pre>
+<pre><code>        SNP        gene 
+0.718348783 0.009142991 </code></pre>
 <pre class="r"><code>#total heritability (sum of PVE)
 ctwas_parameters$total_pve</code></pre>
-<pre><code>[1] 0.7174932</code></pre>
+<pre><code>[1] 0.7274918</code></pre>
 <pre class="r"><code>#attributable heritability
 ctwas_parameters$attributable_pve</code></pre>
 <pre><code>       SNP       gene 
-0.98174327 0.01825673 </code></pre>
+0.98743217 0.01256783 </code></pre>
 <pre class="r"><code>#plot convergence
 ctwas_parameters$convergence_plot</code></pre>
 <p><img src="figure/OxHB.Rmd/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1558,19 +1576,19 @@ sq-96
 </div>
 <pre class="r"><code>head(ctwas_res[ctwas_res$type==&quot;gene&quot;,])</code></pre>
 <pre><code>       chrom                 id       pos type region_tag1 region_tag2 cs_index
-114696     6 ENSG00000005700.14  82247064 gene           6          56        0
-272419    22 ENSG00000159496.14  23679302 gene          22           6        0
-179945    10 ENSG00000151923.17 119601669 gene          10          74        0
-151888     8  ENSG00000164841.4 108787887 gene           8          74        0
-241123    16 ENSG00000040199.18  71804965 gene          16          38        0
-243700    17 ENSG00000174292.12   7380407 gene          17           6        0
-        susie_pip      mu2 genename         z
-114696 0.11468988 9.126035     IBTK -3.787795
-272419 0.08483873 7.971765     RGL4  3.286735
-179945 0.08104538 7.839875    TIAL1  3.480318
-151888 0.07962949 7.989882   TMEM74 -3.623924
-241123 0.07790796 7.513540   PHLPP2 -3.126064
-243700 0.07591772 7.535001     TNK1  3.186510</code></pre>
+177030    10 ENSG00000119943.12  98387340 gene          10          62        0
+95379      5  ENSG00000236882.7  95851444 gene           5          56        0
+95380      5  ENSG00000272021.1  95849392 gene           5          56        0
+194215    11 ENSG00000198331.10 125883330 gene          11          77        0
+245150    17  ENSG00000126368.5  40092101 gene          17          23        0
+100768     5 ENSG00000070814.17 150356800 gene           5          88        0
+        susie_pip      mu2   genename         z
+177030 0.08194366 6.590506    PYROXD2 -3.420306
+95379  0.07885068 6.485879  LINC01554 -3.375656
+95380  0.07679971 6.401168 AC008592.8 -3.348117
+194215 0.07624593 6.758820      HYLS1  4.095459
+245150 0.07585300 6.116364      NR1D1  3.146562
+100768 0.07280063 6.239463      TCOF1  3.426022</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
