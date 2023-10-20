@@ -135,7 +135,7 @@ for (i in 1:length(simutags)){
                                 pve_weight1=as.numeric(rev(estimated_group_pve_all["Brain_Cerebellum_harmonized",])[1]),
                                 pve_weight2=as.numeric(rev(estimated_group_pve_all["Brain_Hippocampus_harmonized",])[1]),
                                 pve_weight3=as.numeric(rev(estimated_group_pve_all["Brain_Caudate_basal_ganglia_harmonized",])[1]),
-                                prior_snp=as.numeric(rev(estimated_group_prior_var_all["SNP",])[1]),
+                                prior_snp=as.numeric(rev(estimated_group_prior_all["SNP",])[1]),
                                 prior_weight1=as.numeric(rev(estimated_group_prior_all["Brain_Cerebellum_harmonized",])[1]),
                                 prior_weight2=as.numeric(rev(estimated_group_prior_all["Brain_Hippocampus_harmonized",])[1]),
                                 prior_weight3=as.numeric(rev(estimated_group_prior_all["Brain_Caudate_basal_ganglia_harmonized",])[1]),
