@@ -15,7 +15,7 @@
 
 <title>Simulation Results using three Tissues (uncorrelated)</title>
 
-<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -195,8 +195,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -204,16 +204,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -417,7 +410,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -508,16 +501,16 @@ analysis/simulation_help_functions.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreeee1bfca1c32cba08e9a728e1fc208094d4ecc18ftargetblankee1bfcaa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/ee1bfca1c32cba08e9a728e1fc208094d4ecc18f" target="_blank">ee1bfca</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef29659774eddf2c3099f80bd8d901512e31808f2targetblankf296597a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/f29659774eddf2c3099f80bd8d901512e31808f2" target="_blank">f296597</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreeee1bfca1c32cba08e9a728e1fc208094d4ecc18ftargetblankee1bfcaa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistreef29659774eddf2c3099f80bd8d901512e31808f2targetblankf296597a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/ee1bfca1c32cba08e9a728e1fc208094d4ecc18f" target="_blank">ee1bfca</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/f29659774eddf2c3099f80bd8d901512e31808f2" target="_blank">f296597</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -538,13 +531,6 @@ Untracked files:
     Untracked:  SCZ_annotation.xlsx
     Untracked:  SLC8B1.pdf
     Untracked:  analysis/.ipynb_checkpoints/
-    Untracked:  analysis/Paper_figures_simulation.Rmd
-    Untracked:  analysis/sim_uncor_3_d_m.Rmd
-    Untracked:  analysis/simulation-ctwas-ukbWG-gtex.adipose_s80.45_03222023.Rmd
-    Untracked:  analysis/simulation_3tissues_correlated_merge.Rmd
-    Untracked:  analysis/simulation_3tissues_uncorrelated_merge.Rmd
-    Untracked:  analysis/simulation_help_functions.R
-    Untracked:  analysis/summarize_ctwas_plots.R
     Untracked:  cache/
     Untracked:  code/.ipynb_checkpoints/
     Untracked:  data/.ipynb_checkpoints/
@@ -636,10 +622,7 @@ Unstaged changes:
     Deleted:    analysis/BMI_S_results.Rmd
     Deleted:    analysis/Glucose_Adipose_Subcutaneous.Rmd
     Deleted:    analysis/Glucose_Adipose_Visceral_Omentum.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/simulation_3tissues_correlated.Rmd
-    Modified:   analysis/simulation_3tissues_uncorrelated.Rmd
-    Modified:   analysis/simulation_test.Rmd
+    Modified:   analysis/sim_uncor_3_d_m.Rmd
     Deleted:    code/WhiteBlood_M_ener_out/WhiteBlood_WholeBlood.out
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.err
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.out
@@ -672,9 +655,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/sim_uncor_3_d_m.Rmd</code>) and HTML (<code>docs/sim_uncor_3_d_m.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/analysis/sim_uncor_3_d_m.Rmd" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/f29659774eddf2c3099f80bd8d901512e31808f2/docs/sim_uncor_3_d_m.html" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -757,8 +800,119 @@ results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&
 <pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
 <pre><code>[1] 0.3502415</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-6-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-7-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
+Past versions of unnamed-chunk-8-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-8-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-8-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="individual-tissue-analyses" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -768,42 +922,87 @@ results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;
 <pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
 1     1-1                 21                           18
 2     1-2                 32                           30
-3     1-3                 21                           21</code></pre>
+3     1-3                 21                           21
+4     1-4                 15                           14
+5     1-5                 17                           15</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
-<pre><code>[1] 0.9324324</code></pre>
+<pre><code>[1] 0.9245283</code></pre>
 <pre class="r"><code>#results using weight2
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
 1     1-1                 27                           22
 2     1-2                 28                           26
-3     1-3                 20                           16</code></pre>
+3     1-3                 20                           16
+4     1-4                 22                           21
+5     1-5                 38                           33</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
-<pre><code>[1] 0.8533333</code></pre>
+<pre><code>[1] 0.8740741</code></pre>
 <pre class="r"><code>#results using weight3
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
 1     1-1                 22                           19
 2     1-2                 25                           20
-3     1-3                 21                           19</code></pre>
+3     1-3                 21                           19
+4     1-4                 23                           18
+5     1-5                 32                           25</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
-<pre><code>[1] 0.8529412</code></pre>
+<pre><code>[1] 0.8211382</code></pre>
 <pre class="r"><code>#results using combined analysis
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
 1     1-1               211                  53                            44
 2     1-2               228                  59                            51
-3     1-3               199                  47                            41</code></pre>
+3     1-3               199                  47                            41
+4     1-4               201                  40                            35
+5     1-5               229                  70                            57</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
-<pre><code>[1] 0.8553459</code></pre>
+<pre><code>[1] 0.8475836</code></pre>
 </div>
 <div id="figure" class="section level3">
 <h3>Figure</h3>
 <pre><code>Loading required package: ggplot2</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
+Past versions of unnamed-chunk-13-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-13-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-13-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="simulation-2-three-causal-tissues-with-equal-low-pve-1-each" class="section level2">
@@ -932,22 +1131,133 @@ truth &lt;- rbind(c(1,0.003),c(2,0.003),c(3,0.003))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.025),ylab=&quot;Prior inclusion&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-1">
+Past versions of unnamed-chunk-18-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-18-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-18-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
 y2 &lt;- results_df$prior_weight2/results_df$prior_snp
 y3 &lt;- results_df$prior_weight3/results_df$prior_snp
 
 truth &lt;- rbind(c(1,12),c(2,12),c(3,12))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
-plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Prior inclusion&quot;)</code></pre>
+plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-19-1">
+Past versions of unnamed-chunk-19-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-19-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-19-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>y1 &lt;- results_df$pve_weight1
 y2 &lt;- results_df$pve_weight2
 y3 &lt;- results_df$pve_weight3
 
 truth &lt;- rbind(c(1,0.01),c(2,0.01),c(3,0.01))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
-plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;Prior inclusion&quot;)</code></pre>
+plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-1">
+Past versions of unnamed-chunk-20-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-20-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-20-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="individual-tissue-analyses-1" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -956,7 +1266,7 @@ plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocam
 runtag = &quot;ukb-s80.45-3_uncorr&quot;
 configtag &lt;- 2
 
-simutags &lt;- paste(1, 1:3, sep = &quot;-&quot;)
+simutags &lt;- paste(2, 1:5, sep = &quot;-&quot;)
 thin &lt;- 0.1
 
 sample_size &lt;- 45000
@@ -965,39 +1275,47 @@ PIP_threshold &lt;- 0.8</code></pre>
 <pre class="r"><code>#results using weight1
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
-1     1-1                 21                           18
-2     1-2                 32                           30
-3     1-3                 21                           21</code></pre>
+1     2-1                  8                            7
+2     2-2                 11                           10
+3     2-3                  7                            7
+4     2-4                  5                            4
+5     2-5                  5                            5</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
-<pre><code>[1] 0.9324324</code></pre>
+<pre><code>[1] 0.9166667</code></pre>
 <pre class="r"><code>#results using weight2
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
-1     1-1                 27                           22
-2     1-2                 28                           26
-3     1-3                 20                           16</code></pre>
+1     2-1                  3                            2
+2     2-2                  7                            4
+3     2-3                  7                            6
+4     2-4                  6                            5
+5     2-5                  7                            4</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
-<pre><code>[1] 0.8533333</code></pre>
+<pre><code>[1] 0.7</code></pre>
 <pre class="r"><code>#results using weight3
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
-1     1-1                 22                           19
-2     1-2                 25                           20
-3     1-3                 21                           19</code></pre>
+1     2-1                  4                            4
+2     2-2                 14                           12
+3     2-3                  8                            7
+4     2-4                  5                            4
+5     2-5                  1                            1</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
-<pre><code>[1] 0.8529412</code></pre>
+<pre><code>[1] 0.875</code></pre>
 <pre class="r"><code>#results using combined analysis
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
-1     1-1               211                  53                            44
-2     1-2               228                  59                            51
-3     1-3               199                  47                            41</code></pre>
+1     2-1                66                  12                            11
+2     2-2                80                  23                            19
+3     2-3                60                  20                            18
+4     2-4                70                  11                             8
+5     2-5                67                   8                             5</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
-<pre><code>[1] 0.8553459</code></pre>
+<pre><code>[1] 0.8243243</code></pre>
 <pre class="r"><code>#store results for figure
 
 plot_df &lt;- rbind(plot_df,
@@ -1063,6 +1381,43 @@ ggbarplot(plot_df,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-25-1">
+Past versions of unnamed-chunk-25-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-25-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-25-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="simulation-3-three-causal-tissues-with-unequal-pve" class="section level2">
@@ -1191,6 +1546,43 @@ truth &lt;- rbind(c(1,0.009),c(2,0.006),c(3,0.003))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.025),ylab=&quot;Prior inclusion&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-30-1">
+Past versions of unnamed-chunk-30-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-30-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-30-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
 y2 &lt;- results_df$prior_weight2/results_df$prior_snp
 y3 &lt;- results_df$prior_weight3/results_df$prior_snp
@@ -1199,6 +1591,43 @@ truth &lt;- rbind(c(1,36),c(2,24),c(3,12))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-31-1">
+Past versions of unnamed-chunk-31-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-31-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-31-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>y1 &lt;- results_df$pve_weight1
 y2 &lt;- results_df$pve_weight2
 y3 &lt;- results_df$pve_weight3
@@ -1207,6 +1636,43 @@ truth &lt;- rbind(c(1,0.03),c(2,0.02),c(3,0.01))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-32-1">
+Past versions of unnamed-chunk-32-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-32-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-32-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="individual-tissue-analyses-2" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -1215,7 +1681,7 @@ plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocam
 runtag = &quot;ukb-s80.45-3_uncorr&quot;
 configtag &lt;- 2
 
-simutags &lt;- paste(1, 1:3, sep = &quot;-&quot;)
+simutags &lt;- paste(3, 1:5, sep = &quot;-&quot;)
 thin &lt;- 0.1
 
 sample_size &lt;- 45000
@@ -1224,39 +1690,47 @@ PIP_threshold &lt;- 0.8</code></pre>
 <pre class="r"><code>#results using weight1
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
-1     1-1                 21                           18
-2     1-2                 32                           30
-3     1-3                 21                           21</code></pre>
+1     3-1                 20                           16
+2     3-2                 20                           16
+3     3-3                 12                           12
+4     3-4                 23                           20
+5     3-5                 18                           16</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
-<pre><code>[1] 0.9324324</code></pre>
+<pre><code>[1] 0.8602151</code></pre>
 <pre class="r"><code>#results using weight2
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
-1     1-1                 27                           22
-2     1-2                 28                           26
-3     1-3                 20                           16</code></pre>
+1     3-1                  9                            7
+2     3-2                 14                           10
+3     3-3                  7                            7
+4     3-4                 14                           13
+5     3-5                  9                            9</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
-<pre><code>[1] 0.8533333</code></pre>
+<pre><code>[1] 0.8679245</code></pre>
 <pre class="r"><code>#results using weight3
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
-1     1-1                 22                           19
-2     1-2                 25                           20
-3     1-3                 21                           19</code></pre>
+1     3-1                  7                            7
+2     3-2                 15                           11
+3     3-3                  4                            3
+4     3-4                 13                           11
+5     3-5                  6                            5</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
-<pre><code>[1] 0.8529412</code></pre>
+<pre><code>[1] 0.8222222</code></pre>
 <pre class="r"><code>#results using combined analysis
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
-1     1-1               211                  53                            44
-2     1-2               228                  59                            51
-3     1-3               199                  47                            41</code></pre>
+1     3-1               129                  29                            24
+2     3-2               153                  32                            24
+3     3-3               118                  20                            19
+4     3-4               129                  37                            31
+5     3-5               139                  26                            24</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
-<pre><code>[1] 0.8553459</code></pre>
+<pre><code>[1] 0.8472222</code></pre>
 <pre class="r"><code>#store results for figure
 
 plot_df &lt;- rbind(plot_df,
@@ -1321,8 +1795,48 @@ ggbarplot(plot_df,
           ylab=&quot;Count&quot;, 
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /> ## Simulation 4: Two causal tissues with unequal PVE and one non-causal tissue</p>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-37-1">
+Past versions of unnamed-chunk-37-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-37-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-37-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+</div>
+</div>
+<div id="simulation-4-two-causal-tissues-with-unequal-pve-and-one-non-causal-tissue" class="section level2">
+<h2>Simulation 4: Two causal tissues with unequal PVE and one non-causal tissue</h2>
 <div id="separate-effect-size-parameters-3" class="section level3">
 <h3>Separate effect size parameters</h3>
 <p>30% PVE and 2.5e-4 prior inclusion for SNPs, 3% PVE and 0.009 prior inclusion for Liver expression, 1% PVE and 0.003 prior inclusion for Lung expression, Brain Hippocampus expression has no effects. Each tissue had its own prior inclusion parameter and effect size parameter.</p>
@@ -1447,6 +1961,43 @@ truth &lt;- rbind(c(1,0.009),c(2,0.009),c(3,0.009))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.025),ylab=&quot;Prior inclusion&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-42-1">
+Past versions of unnamed-chunk-42-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-42-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-42-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
 y2 &lt;- results_df$prior_weight2/results_df$prior_snp
 y3 &lt;- results_df$prior_weight3/results_df$prior_snp
@@ -1455,6 +2006,43 @@ truth &lt;- rbind(c(1,36),c(2,36),c(3,36))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-43-1">
+Past versions of unnamed-chunk-43-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-43-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-43-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>y1 &lt;- results_df$pve_weight1
 y2 &lt;- results_df$pve_weight2
 y3 &lt;- results_df$pve_weight3
@@ -1463,6 +2051,43 @@ truth &lt;- rbind(c(1,0.03),c(2,0.01),c(3,0))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-44-1">
+Past versions of unnamed-chunk-44-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-44-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-44-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="individual-tissue-analyses-3" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -1471,7 +2096,7 @@ plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocam
 runtag = &quot;ukb-s80.45-3_uncorr&quot;
 configtag &lt;- 2
 
-simutags &lt;- paste(1, 1:3, sep = &quot;-&quot;)
+simutags &lt;- paste(4, 1:5, sep = &quot;-&quot;)
 thin &lt;- 0.1
 
 sample_size &lt;- 45000
@@ -1480,39 +2105,47 @@ PIP_threshold &lt;- 0.8</code></pre>
 <pre class="r"><code>#results using weight1
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
-1     1-1                 21                           18
-2     1-2                 32                           30
-3     1-3                 21                           21</code></pre>
+1     4-1                 14                           14
+2     4-2                 21                           18
+3     4-3                 24                           21
+4     4-4                 13                           13
+5     4-5                 17                           14</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
-<pre><code>[1] 0.9324324</code></pre>
+<pre><code>[1] 0.8988764</code></pre>
 <pre class="r"><code>#results using weight2
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
-1     1-1                 27                           22
-2     1-2                 28                           26
-3     1-3                 20                           16</code></pre>
+1     4-1                  3                            3
+2     4-2                  9                            8
+3     4-3                 14                           14
+4     4-4                  4                            4
+5     4-5                  5                            1</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
-<pre><code>[1] 0.8533333</code></pre>
+<pre><code>[1] 0.8571429</code></pre>
 <pre class="r"><code>#results using weight3
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
-1     1-1                 22                           19
-2     1-2                 25                           20
-3     1-3                 21                           19</code></pre>
+1     4-1                  4                            3
+2     4-2                  9                            5
+3     4-3                  3                            2
+4     4-4                  4                            4
+5     4-5                  2                            1</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
-<pre><code>[1] 0.8529412</code></pre>
+<pre><code>[1] 0.6818182</code></pre>
 <pre class="r"><code>#results using combined analysis
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
-1     1-1               211                  53                            44
-2     1-2               228                  59                            51
-3     1-3               199                  47                            41</code></pre>
+1     4-1                85                  17                            16
+2     4-2                93                  27                            21
+3     4-3               116                  33                            29
+4     4-4                82                  16                            16
+5     4-5                99                  21                            15</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
-<pre><code>[1] 0.8553459</code></pre>
+<pre><code>[1] 0.8508772</code></pre>
 <pre class="r"><code>#store results for figure
 
 plot_df &lt;- rbind(plot_df,
@@ -1578,6 +2211,43 @@ ggbarplot(plot_df,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-49-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-49-1">
+Past versions of unnamed-chunk-49-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-49-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-49-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="simulation-5-one-causal-tissues-and-two-non-causal-tissues" class="section level2">
@@ -1706,6 +2376,43 @@ truth &lt;- rbind(c(1,0.009),c(2,0.009),c(3,0.009))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.025),ylab=&quot;Prior inclusion&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-54-1">
+Past versions of unnamed-chunk-54-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-54-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-54-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
 y2 &lt;- results_df$prior_weight2/results_df$prior_snp
 y3 &lt;- results_df$prior_weight3/results_df$prior_snp
@@ -1714,6 +2421,43 @@ truth &lt;- rbind(c(1,36),c(2,36),c(3,36))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-55-1">
+Past versions of unnamed-chunk-55-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-55-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-55-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>y1 &lt;- results_df$pve_weight1
 y2 &lt;- results_df$pve_weight2
 y3 &lt;- results_df$pve_weight3
@@ -1722,6 +2466,43 @@ truth &lt;- rbind(c(1,0.03),c(2,0.01),c(3,0))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-56-1">
+Past versions of unnamed-chunk-56-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-56-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-56-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="individual-tissue-analyses-4" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -1730,7 +2511,7 @@ plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocam
 runtag = &quot;ukb-s80.45-3_uncorr&quot;
 configtag &lt;- 2
 
-simutags &lt;- paste(1, 1:3, sep = &quot;-&quot;)
+simutags &lt;- paste(5, 1:5, sep = &quot;-&quot;)
 thin &lt;- 0.1
 
 sample_size &lt;- 45000
@@ -1739,39 +2520,47 @@ PIP_threshold &lt;- 0.8</code></pre>
 <pre class="r"><code>#results using weight1
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
-1     1-1                 21                           18
-2     1-2                 32                           30
-3     1-3                 21                           21</code></pre>
+1     5-1                 16                           16
+2     5-2                 13                           12
+3     5-3                 21                           19
+4     5-4                 14                           13
+5     5-5                  8                            6</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
-<pre><code>[1] 0.9324324</code></pre>
+<pre><code>[1] 0.9166667</code></pre>
 <pre class="r"><code>#results using weight2
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
-1     1-1                 27                           22
-2     1-2                 28                           26
-3     1-3                 20                           16</code></pre>
+1     5-1                  2                            2
+2     5-2                  6                            4
+3     5-3                  9                            5
+4     5-4                  5                            3
+5     5-5                  4                            2</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
 sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
-<pre><code>[1] 0.8533333</code></pre>
+<pre><code>[1] 0.6153846</code></pre>
 <pre class="r"><code>#results using weight3
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
-1     1-1                 22                           19
-2     1-2                 25                           20
-3     1-3                 21                           19</code></pre>
+1     5-1                  6                            4
+2     5-2                  3                            3
+3     5-3                  1                            1
+4     5-4                  7                            4
+5     5-5                  1                            1</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
-<pre><code>[1] 0.8529412</code></pre>
+<pre><code>[1] 0.7222222</code></pre>
 <pre class="r"><code>#results using combined analysis
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
-1     1-1               211                  53                            44
-2     1-2               228                  59                            51
-3     1-3               199                  47                            41</code></pre>
+1     5-1                68                  18                            16
+2     5-2                63                  15                            12
+3     5-3                78                  25                            19
+4     5-4                66                  19                            13
+5     5-5                54                  10                             6</code></pre>
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
-<pre><code>[1] 0.8553459</code></pre>
+<pre><code>[1] 0.7586207</code></pre>
 <pre class="r"><code>#store results for figure
 
 plot_df &lt;- rbind(plot_df,
@@ -1837,6 +2626,43 @@ ggbarplot(plot_df,
           xlab=&quot;&quot;,
           palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-61-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-61-1">
+Past versions of unnamed-chunk-61-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-61-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-61-1.png" target="_blank">f296597</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1845,7 +2671,7 @@ ggbarplot(plot_df,
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.0 (2022-04-22)
+<pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: CentOS Linux 7 (Core)
 
@@ -1864,26 +2690,26 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggpubr_0.6.0    ggplot2_3.4.4   workflowr_1.7.0
+[1] ggpubr_0.6.0    ggplot2_3.4.0   workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.2.0  xfun_0.32         bslib_0.4.0       purrr_1.0.2      
- [5] carData_3.0-5     colorspace_2.0-3  vctrs_0.6.4       generics_0.1.3   
- [9] htmltools_0.5.3   yaml_2.3.5        utf8_1.2.2        rlang_1.1.1      
+ [1] tidyselect_1.2.0  xfun_0.35         bslib_0.4.1       purrr_1.0.2      
+ [5] carData_3.0-4     colorspace_2.0-3  vctrs_0.6.3       generics_0.1.3   
+ [9] htmltools_0.5.4   yaml_2.3.6        utf8_1.2.2        rlang_1.1.1      
 [13] jquerylib_0.1.4   later_1.3.0       pillar_1.8.1      glue_1.6.2       
 [17] withr_2.5.0       DBI_1.1.3         lifecycle_1.0.3   stringr_1.5.0    
-[21] ggsignif_0.6.3    munsell_0.5.0     gtable_0.3.1      evaluate_0.16    
-[25] labeling_0.4.2    knitr_1.40        callr_3.7.2       fastmap_1.1.0    
-[29] httpuv_1.6.5      ps_1.7.1          fansi_1.0.3       highr_0.9        
-[33] broom_1.0.1       Rcpp_1.0.9        backports_1.4.1   promises_1.2.0.1 
-[37] scales_1.2.1      cachem_1.0.6      jsonlite_1.8.0    abind_1.4-5      
-[41] farver_2.1.1      fs_1.5.2          digest_0.6.29     stringi_1.7.8    
-[45] rstatix_0.7.2     processx_3.7.0    dplyr_1.0.10      getPass_0.2-2    
-[49] rprojroot_2.0.3   grid_4.2.0        cli_3.6.1         tools_4.2.0      
-[53] magrittr_2.0.3    sass_0.4.2        tibble_3.1.8      car_3.1-1        
-[57] tidyr_1.3.0       whisker_0.4       pkgconfig_2.0.3   data.table_1.14.2
-[61] assertthat_0.2.1  rmarkdown_2.16    httr_1.4.4        rstudioapi_0.14  
-[65] R6_2.5.1          git2r_0.30.1      compiler_4.2.0   </code></pre>
+[21] ggsignif_0.6.4    munsell_0.5.0     gtable_0.3.1      evaluate_0.19    
+[25] labeling_0.4.2    knitr_1.41        callr_3.7.3       fastmap_1.1.0    
+[29] httpuv_1.6.7      ps_1.7.2          fansi_1.0.3       highr_0.9        
+[33] broom_1.0.2       Rcpp_1.0.9        backports_1.2.1   promises_1.2.0.1 
+[37] scales_1.2.1      cachem_1.0.6      jsonlite_1.8.4    abind_1.4-5      
+[41] farver_2.1.0      fs_1.5.2          digest_0.6.31     stringi_1.7.8    
+[45] rstatix_0.7.2     processx_3.8.0    dplyr_1.0.10      getPass_0.2-2    
+[49] rprojroot_2.0.3   grid_4.1.0        cli_3.6.1         tools_4.1.0      
+[53] magrittr_2.0.3    sass_0.4.4        tibble_3.1.8      car_3.1-1        
+[57] tidyr_1.3.0       whisker_0.4.1     pkgconfig_2.0.3   data.table_1.14.6
+[61] assertthat_0.2.1  rmarkdown_2.19    httr_1.4.4        rstudioapi_0.14  
+[65] R6_2.5.1          git2r_0.30.1      compiler_4.1.0   </code></pre>
 </div>
 </div>
 </div>

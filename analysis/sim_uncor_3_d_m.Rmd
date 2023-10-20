@@ -141,7 +141,7 @@ results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_unco
 runtag = "ukb-s80.45-3_uncorr"
 configtag <- 2
 
-simutags <- paste(1, 1:3, sep = "-")
+simutags <- paste(1, 1:5, sep = "-")
 thin <- 0.1
 
 sample_size <- 45000
@@ -354,7 +354,7 @@ y3 <- results_df$prior_weight3/results_df$prior_snp
 
 truth <- rbind(c(1,12),c(2,12),c(3,12))
 est <- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
-plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,60),ylab="Prior inclusion")
+plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,60),ylab="Enrichment")
 ```
 
 ```{r}
@@ -364,7 +364,7 @@ y3 <- results_df$pve_weight3
 
 truth <- rbind(c(1,0.01),c(2,0.01),c(3,0.01))
 est <- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
-plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,0.05),ylab="Prior inclusion")
+plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,0.05),ylab="PVE")
 ```
 
 ### Individual tissue analyses
@@ -376,7 +376,7 @@ results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_unco
 runtag = "ukb-s80.45-3_uncorr"
 configtag <- 2
 
-simutags <- paste(1, 1:3, sep = "-")
+simutags <- paste(2, 1:5, sep = "-")
 thin <- 0.1
 
 sample_size <- 45000
@@ -613,7 +613,7 @@ results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_unco
 runtag = "ukb-s80.45-3_uncorr"
 configtag <- 2
 
-simutags <- paste(1, 1:3, sep = "-")
+simutags <- paste(3, 1:5, sep = "-")
 thin <- 0.1
 
 sample_size <- 45000
@@ -849,7 +849,7 @@ results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_unco
 runtag = "ukb-s80.45-3_uncorr"
 configtag <- 2
 
-simutags <- paste(1, 1:3, sep = "-")
+simutags <- paste(4, 1:5, sep = "-")
 thin <- 0.1
 
 sample_size <- 45000
@@ -1086,7 +1086,7 @@ results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_unco
 runtag = "ukb-s80.45-3_uncorr"
 configtag <- 2
 
-simutags <- paste(1, 1:3, sep = "-")
+simutags <- paste(5, 1:5, sep = "-")
 thin <- 0.1
 
 sample_size <- 45000
