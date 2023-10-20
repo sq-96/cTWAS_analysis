@@ -815,7 +815,7 @@ y1 <- results_df$prior_weight1
 y2 <- results_df$prior_weight2
 y3 <- results_df$prior_weight3
 
-truth <- rbind(c(1,0.009),c(2,0.009),c(3,0.009))
+truth <- rbind(c(1,0.009),c(2,0.003),c(3,0))
 est <- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,0.025),ylab="Prior inclusion")
 ```
@@ -825,7 +825,7 @@ y1 <- results_df$prior_weight1/results_df$prior_snp
 y2 <- results_df$prior_weight2/results_df$prior_snp
 y3 <- results_df$prior_weight3/results_df$prior_snp
 
-truth <- rbind(c(1,36),c(2,36),c(3,36))
+truth <- rbind(c(1,36),c(2,12),c(3,0))
 est <- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,60),ylab="Enrichment")
 ```
@@ -1052,7 +1052,7 @@ y1 <- results_df$prior_weight1
 y2 <- results_df$prior_weight2
 y3 <- results_df$prior_weight3
 
-truth <- rbind(c(1,0.009),c(2,0.009),c(3,0.009))
+truth <- rbind(c(1,0.009),c(2,0),c(3,0))
 est <- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,0.025),ylab="Prior inclusion")
 ```
@@ -1062,7 +1062,7 @@ y1 <- results_df$prior_weight1/results_df$prior_snp
 y2 <- results_df$prior_weight2/results_df$prior_snp
 y3 <- results_df$prior_weight3/results_df$prior_snp
 
-truth <- rbind(c(1,36),c(2,36),c(3,36))
+truth <- rbind(c(1,36),c(2,0),c(3,0))
 est <- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,60),ylab="Enrichment")
 ```
@@ -1072,7 +1072,7 @@ y1 <- results_df$pve_weight1
 y2 <- results_df$pve_weight2
 y3 <- results_df$pve_weight3
 
-truth <- rbind(c(1,0.03),c(2,0.01),c(3,0))
+truth <- rbind(c(1,0.03),c(2,0),c(3,0))
 est <- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,0.05),ylab="PVE")
 ```
