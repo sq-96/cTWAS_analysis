@@ -386,7 +386,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2023-10-20
+<strong>Last updated:</strong> 2023-10-21
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
@@ -501,16 +501,16 @@ analysis/simulation_help_functions.R
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree5583c52d1c1b4aa3a835de1bab86b95edb67bfeftargetblank5583c52a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/5583c52d1c1b4aa3a835de1bab86b95edb67bfef" target="_blank">5583c52</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree3122878652a37a4025fd42e684e9379364c437c9targetblank3122878a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sq-96/cTWAS_analysis/tree/3122878652a37a4025fd42e684e9379364c437c9" target="_blank">3122878</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree5583c52d1c1b4aa3a835de1bab86b95edb67bfeftargetblank5583c52a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsq96cTWASanalysistree3122878652a37a4025fd42e684e9379364c437c9targetblank3122878a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/5583c52d1c1b4aa3a835de1bab86b95edb67bfef" target="_blank">5583c52</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/sq-96/cTWAS_analysis/tree/3122878652a37a4025fd42e684e9379364c437c9" target="_blank">3122878</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -623,6 +623,9 @@ Unstaged changes:
     Deleted:    analysis/Glucose_Adipose_Subcutaneous.Rmd
     Deleted:    analysis/Glucose_Adipose_Visceral_Omentum.Rmd
     Modified:   analysis/sim_uncor_3_d_m.Rmd
+    Modified:   analysis/simulation_3tissues_correlated_merge.Rmd
+    Modified:   analysis/simulation_3tissues_uncorrelated_merge.Rmd
+    Modified:   analysis/simulation_help_functions.R
     Deleted:    code/WhiteBlood_M_ener_out/WhiteBlood_WholeBlood.out
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.err
     Deleted:    code/White_Blood_M_out/White_Blood_BreastMammary.out
@@ -681,6 +684,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sq-96/cTWAS_analysis/blob/3122878652a37a4025fd42e684e9379364c437c9/analysis/sim_uncor_3_d_m.Rmd" target="_blank">3122878</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sq-96/cTWAS_analysis/c5c7a7f2816188c5865db4bc8c748e7f3fc47646/docs/sim_uncor_3_d_m.html" target="_blank">c5c7a7f</a>
+</td>
+<td>
+sq-96
+</td>
+<td>
+2023-10-20
+</td>
+<td>
+update
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -967,7 +1004,6 @@ sq-96
 </div>
 <div id="individual-tissue-analyses" class="section level3">
 <h3>Individual tissue analyses</h3>
-<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
 <pre class="r"><code>#results using weight1
 results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
@@ -1065,6 +1101,7 @@ sq-96
 </table>
 </div>
 </div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="simulation-2-three-causal-tissues-with-equal-low-pve-1-each" class="section level2">
@@ -1153,38 +1190,6 @@ results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&
 5                             14</code></pre>
 <pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
 <pre><code>[1] 0.2048193</code></pre>
-<pre class="r"><code>#store results for figure
-plot_df &lt;- data.frame(simutag=results_df$simutag,
-                      method=&quot;cTWAS&quot;,
-                      count=results_df$n_detected_pip-results_df$n_detected_pip_in_causal,
-                      ifcausal=F)
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS&quot;,
-                            count=results_df$n_detected_pip_in_causal,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS combined&quot;,
-                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS combined&quot;,
-                            count=results_df$n_detected_comb_pip_in_causal,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;TWAS&quot;,
-                            count=results_df$n_detected_comb_twas-results_df$n_detected_comb_twas_in_causal,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;TWAS&quot;,
-                            count=results_df$n_detected_comb_twas_in_causal,
-                            ifcausal=T))</code></pre>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1
 y2 &lt;- results_df$prior_weight2
 y3 &lt;- results_df$prior_weight3
@@ -1192,51 +1197,6 @@ y3 &lt;- results_df$prior_weight3
 truth &lt;- rbind(c(1,0.003),c(2,0.003),c(3,0.003))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.025),ylab=&quot;Prior inclusion&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-1">
-Past versions of unnamed-chunk-18-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-18-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-18-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
-y2 &lt;- results_df$prior_weight2/results_df$prior_snp
-y3 &lt;- results_df$prior_weight3/results_df$prior_snp
-
-truth &lt;- rbind(c(1,12),c(2,12),c(3,12))
-est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
-plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-19-1">
@@ -1286,13 +1246,13 @@ sq-96
 </table>
 </div>
 </div>
-<pre class="r"><code>y1 &lt;- results_df$pve_weight1
-y2 &lt;- results_df$pve_weight2
-y3 &lt;- results_df$pve_weight3
+<pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
+y2 &lt;- results_df$prior_weight2/results_df$prior_snp
+y3 &lt;- results_df$prior_weight3/results_df$prior_snp
 
-truth &lt;- rbind(c(1,0.01),c(2,0.01),c(3,0.01))
+truth &lt;- rbind(c(1,12),c(2,12),c(3,12))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
-plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
+plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-1">
@@ -1342,6 +1302,14 @@ sq-96
 </table>
 </div>
 </div>
+<pre class="r"><code>y1 &lt;- results_df$pve_weight1
+y2 &lt;- results_df$pve_weight2
+y3 &lt;- results_df$pve_weight3
+
+truth &lt;- rbind(c(1,0.01),c(2,0.01),c(3,0.01))
+est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
+plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="individual-tissue-analyses-1" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -1400,119 +1368,11 @@ results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
 <pre><code>[1] 0.8243243</code></pre>
-<pre class="r"><code>#store results for figure
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight1&quot;,
-                            count=results_df$n_detected_weight1-results_df$n_detected_in_causal_weight1,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight1&quot;,
-                            count=results_df$n_detected_in_causal_weight1,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight2&quot;,
-                            count=results_df$n_detected_weight2-results_df$n_detected_in_causal_weight2,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight2&quot;,
-                            count=results_df$n_detected_in_causal_weight2,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight3&quot;,
-                            count=results_df$n_detected_weight3-results_df$n_detected_in_causal_weight3,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight3&quot;,
-                            count=results_df$n_detected_in_causal_weight3,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Union&quot;,
-                            count=results_df$n_detected_combined-results_df$n_detected_in_causal_combined,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Union&quot;,
-                            count=results_df$n_detected_in_causal_combined,
-                            ifcausal=T))</code></pre>
 </div>
 <div id="figure-1" class="section level3">
 <h3>Figure</h3>
-<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
-<pre class="r"><code>plot_df$method &lt;- factor(plot_df$method, levels=c(&quot;TWAS&quot;, &quot;cTWAS&quot;, &quot;cTWAS combined&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;, &quot;cTWAS Union&quot;))
-
-library(ggpubr)
-
-colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;)
-
-ggbarplot(plot_df, 
-          x = &quot;method&quot;, 
-          y = &quot;count&quot;, 
-          add = &quot;mean_se&quot;, 
-          fill = &quot;ifcausal&quot;, 
-          legend = &quot;none&quot;, 
-          ylab=&quot;Count&quot;, 
-          xlab=&quot;&quot;,
-          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-25-1">
-Past versions of unnamed-chunk-25-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-25-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/c10305c445ac2fd059b161705dfd956712d2ae46/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-25-1.png" target="_blank">c10305c</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-25-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="simulation-3-three-causal-tissues-with-unequal-pve" class="section level2">
@@ -1601,38 +1461,6 @@ results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&
 5                             39</code></pre>
 <pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
 <pre><code>[1] 0.2633094</code></pre>
-<pre class="r"><code>#store results for figure
-plot_df &lt;- data.frame(simutag=results_df$simutag,
-                      method=&quot;cTWAS&quot;,
-                      count=results_df$n_detected_pip-results_df$n_detected_pip_in_causal,
-                      ifcausal=F)
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS&quot;,
-                            count=results_df$n_detected_pip_in_causal,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS combined&quot;,
-                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS combined&quot;,
-                            count=results_df$n_detected_comb_pip_in_causal,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;TWAS&quot;,
-                            count=results_df$n_detected_comb_twas-results_df$n_detected_comb_twas_in_causal,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;TWAS&quot;,
-                            count=results_df$n_detected_comb_twas_in_causal,
-                            ifcausal=T))</code></pre>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1
 y2 &lt;- results_df$prior_weight2
 y3 &lt;- results_df$prior_weight3
@@ -1640,96 +1468,6 @@ y3 &lt;- results_df$prior_weight3
 truth &lt;- rbind(c(1,0.009),c(2,0.006),c(3,0.003))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.025),ylab=&quot;Prior inclusion&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-30-1">
-Past versions of unnamed-chunk-30-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-30-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-30-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
-y2 &lt;- results_df$prior_weight2/results_df$prior_snp
-y3 &lt;- results_df$prior_weight3/results_df$prior_snp
-
-truth &lt;- rbind(c(1,36),c(2,24),c(3,12))
-est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
-plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-31-1">
-Past versions of unnamed-chunk-31-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-31-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-31-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>y1 &lt;- results_df$pve_weight1
-y2 &lt;- results_df$pve_weight2
-y3 &lt;- results_df$pve_weight3
-
-truth &lt;- rbind(c(1,0.03),c(2,0.02),c(3,0.01))
-est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
-plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
 <p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-32-1">
@@ -1768,6 +1506,22 @@ sq-96
 </table>
 </div>
 </div>
+<pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
+y2 &lt;- results_df$prior_weight2/results_df$prior_snp
+y3 &lt;- results_df$prior_weight3/results_df$prior_snp
+
+truth &lt;- rbind(c(1,36),c(2,24),c(3,12))
+est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
+plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>y1 &lt;- results_df$pve_weight1
+y2 &lt;- results_df$pve_weight2
+y3 &lt;- results_df$pve_weight3
+
+truth &lt;- rbind(c(1,0.03),c(2,0.02),c(3,0.01))
+est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
+plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="individual-tissue-analyses-2" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -1826,123 +1580,12 @@ results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
 <pre><code>[1] 0.8472222</code></pre>
-<pre class="r"><code>#store results for figure
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight1&quot;,
-                            count=results_df$n_detected_weight1-results_df$n_detected_in_causal_weight1,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight1&quot;,
-                            count=results_df$n_detected_in_causal_weight1,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight2&quot;,
-                            count=results_df$n_detected_weight2-results_df$n_detected_in_causal_weight2,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight2&quot;,
-                            count=results_df$n_detected_in_causal_weight2,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight3&quot;,
-                            count=results_df$n_detected_weight3-results_df$n_detected_in_causal_weight3,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight3&quot;,
-                            count=results_df$n_detected_in_causal_weight3,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Union&quot;,
-                            count=results_df$n_detected_combined-results_df$n_detected_in_causal_combined,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Union&quot;,
-                            count=results_df$n_detected_in_causal_combined,
-                            ifcausal=T))</code></pre>
 </div>
 <div id="figure-2" class="section level3">
 <h3>Figure</h3>
-<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
-<pre class="r"><code>plot_df$method &lt;- factor(plot_df$method, levels=c(&quot;TWAS&quot;, &quot;cTWAS&quot;, &quot;cTWAS combined&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;, &quot;cTWAS Union&quot;))
-
-library(ggpubr)
-
-colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;)
-
-ggbarplot(plot_df, 
-          x = &quot;method&quot;, 
-          y = &quot;count&quot;, 
-          add = &quot;mean_se&quot;, 
-          fill = &quot;ifcausal&quot;, 
-          legend = &quot;none&quot;, 
-          ylab=&quot;Count&quot;, 
-          xlab=&quot;&quot;,
-          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-37-1">
-Past versions of unnamed-chunk-37-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-37-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/c10305c445ac2fd059b161705dfd956712d2ae46/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-37-1.png" target="_blank">c10305c</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-37-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined. <img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /> ## Simulation 4: Two causal tissues with unequal PVE and one non-causal tissue</p>
 </div>
-</div>
-</div>
-</div>
-<div id="simulation-4-two-causal-tissues-with-unequal-pve-and-one-non-causal-tissue" class="section level2">
-<h2>Simulation 4: Two causal tissues with unequal PVE and one non-causal tissue</h2>
 <div id="separate-effect-size-parameters-3" class="section level3">
 <h3>Separate effect size parameters</h3>
 <p>30% PVE and 2.5e-4 prior inclusion for SNPs, 3% PVE and 0.009 prior inclusion for Liver expression, 1% PVE and 0.003 prior inclusion for Lung expression, Brain Hippocampus expression has no effects. Each tissue had its own prior inclusion parameter and effect size parameter.</p>
@@ -2027,38 +1670,6 @@ results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&
 5                             22</code></pre>
 <pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
 <pre><code>[1] 0.2549407</code></pre>
-<pre class="r"><code>#store results for figure
-plot_df &lt;- data.frame(simutag=results_df$simutag,
-                      method=&quot;cTWAS&quot;,
-                      count=results_df$n_detected_pip-results_df$n_detected_pip_in_causal,
-                      ifcausal=F)
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS&quot;,
-                            count=results_df$n_detected_pip_in_causal,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS combined&quot;,
-                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS combined&quot;,
-                            count=results_df$n_detected_comb_pip_in_causal,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;TWAS&quot;,
-                            count=results_df$n_detected_comb_twas-results_df$n_detected_comb_twas_in_causal,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;TWAS&quot;,
-                            count=results_df$n_detected_comb_twas_in_causal,
-                            ifcausal=T))</code></pre>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1
 y2 &lt;- results_df$prior_weight2
 y3 &lt;- results_df$prior_weight3
@@ -2066,44 +1677,7 @@ y3 &lt;- results_df$prior_weight3
 truth &lt;- rbind(c(1,0.009),c(2,0.003),c(3,0))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.025),ylab=&quot;Prior inclusion&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-42-1">
-Past versions of unnamed-chunk-42-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-42-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-42-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-45-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
 y2 &lt;- results_df$prior_weight2/results_df$prior_snp
 y3 &lt;- results_df$prior_weight3/results_df$prior_snp
@@ -2111,44 +1685,7 @@ y3 &lt;- results_df$prior_weight3/results_df$prior_snp
 truth &lt;- rbind(c(1,36),c(2,12),c(3,0))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-43-1">
-Past versions of unnamed-chunk-43-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-43-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-43-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-46-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>y1 &lt;- results_df$pve_weight1
 y2 &lt;- results_df$pve_weight2
 y3 &lt;- results_df$pve_weight3
@@ -2156,44 +1693,7 @@ y3 &lt;- results_df$pve_weight3
 truth &lt;- rbind(c(1,0.03),c(2,0.01),c(3,0))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-44-1">
-Past versions of unnamed-chunk-44-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-44-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-44-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-47-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="individual-tissue-analyses-3" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -2252,119 +1752,11 @@ results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot
 <pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
 <pre><code>[1] 0.8508772</code></pre>
-<pre class="r"><code>#store results for figure
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight1&quot;,
-                            count=results_df$n_detected_weight1-results_df$n_detected_in_causal_weight1,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight1&quot;,
-                            count=results_df$n_detected_in_causal_weight1,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight2&quot;,
-                            count=results_df$n_detected_weight2-results_df$n_detected_in_causal_weight2,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight2&quot;,
-                            count=results_df$n_detected_in_causal_weight2,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight3&quot;,
-                            count=results_df$n_detected_weight3-results_df$n_detected_in_causal_weight3,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight3&quot;,
-                            count=results_df$n_detected_in_causal_weight3,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Union&quot;,
-                            count=results_df$n_detected_combined-results_df$n_detected_in_causal_combined,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Union&quot;,
-                            count=results_df$n_detected_in_causal_combined,
-                            ifcausal=T))</code></pre>
 </div>
 <div id="figure-3" class="section level3">
 <h3>Figure</h3>
-<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
-<pre class="r"><code>plot_df$method &lt;- factor(plot_df$method, levels=c(&quot;TWAS&quot;, &quot;cTWAS&quot;, &quot;cTWAS combined&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;, &quot;cTWAS Union&quot;))
-
-library(ggpubr)
-
-colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;)
-
-ggbarplot(plot_df, 
-          x = &quot;method&quot;, 
-          y = &quot;count&quot;, 
-          add = &quot;mean_se&quot;, 
-          fill = &quot;ifcausal&quot;, 
-          legend = &quot;none&quot;, 
-          ylab=&quot;Count&quot;, 
-          xlab=&quot;&quot;,
-          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-49-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-49-1">
-Past versions of unnamed-chunk-49-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-49-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/c10305c445ac2fd059b161705dfd956712d2ae46/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-49-1.png" target="_blank">c10305c</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-49-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="simulation-5-one-causal-tissues-and-two-non-causal-tissues" class="section level2">
@@ -2453,38 +1845,6 @@ results_df[,c(which(colnames(results_df)==&quot;simutag&quot;), grep(&quot;twas&
 5                             16</code></pre>
 <pre class="r"><code>sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)</code></pre>
 <pre><code>[1] 0.2494279</code></pre>
-<pre class="r"><code>#store results for figure
-plot_df &lt;- data.frame(simutag=results_df$simutag,
-                      method=&quot;cTWAS&quot;,
-                      count=results_df$n_detected_pip-results_df$n_detected_pip_in_causal,
-                      ifcausal=F)
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS&quot;,
-                            count=results_df$n_detected_pip_in_causal,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS combined&quot;,
-                            count=results_df$n_detected_comb_pip-results_df$n_detected_comb_pip_in_causal,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS combined&quot;,
-                            count=results_df$n_detected_comb_pip_in_causal,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;TWAS&quot;,
-                            count=results_df$n_detected_comb_twas-results_df$n_detected_comb_twas_in_causal,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;TWAS&quot;,
-                            count=results_df$n_detected_comb_twas_in_causal,
-                            ifcausal=T))</code></pre>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1
 y2 &lt;- results_df$prior_weight2
 y3 &lt;- results_df$prior_weight3
@@ -2492,44 +1852,7 @@ y3 &lt;- results_df$prior_weight3
 truth &lt;- rbind(c(1,0.009),c(2,0),c(3,0))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.025),ylab=&quot;Prior inclusion&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-54-1">
-Past versions of unnamed-chunk-54-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-54-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-54-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-58-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>y1 &lt;- results_df$prior_weight1/results_df$prior_snp
 y2 &lt;- results_df$prior_weight2/results_df$prior_snp
 y3 &lt;- results_df$prior_weight3/results_df$prior_snp
@@ -2537,44 +1860,7 @@ y3 &lt;- results_df$prior_weight3/results_df$prior_snp
 truth &lt;- rbind(c(1,36),c(2,0),c(3,0))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,60),ylab=&quot;Enrichment&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-55-1">
-Past versions of unnamed-chunk-55-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-55-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-55-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>y1 &lt;- results_df$pve_weight1
 y2 &lt;- results_df$pve_weight2
 y3 &lt;- results_df$pve_weight3
@@ -2582,44 +1868,7 @@ y3 &lt;- results_df$pve_weight3
 truth &lt;- rbind(c(1,0.03),c(2,0),c(3,0))
 est &lt;- rbind(cbind(1,y1),cbind(2,y2),cbind(3,y3))
 plot_par(truth,est,xlabels = c(&quot;Liver&quot;,&quot;Lung&quot;,&quot;Hippocampus&quot;),ylim=c(0,0.05),ylab=&quot;PVE&quot;)</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-56-1">
-Past versions of unnamed-chunk-56-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-56-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-56-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="individual-tissue-analyses-4" class="section level3">
 <h3>Individual tissue analyses</h3>
@@ -2634,163 +1883,39 @@ thin &lt;- 0.1
 sample_size &lt;- 45000
 PIP_threshold &lt;- 0.8</code></pre>
 <pre class="r"><code>results_df &lt;- get_sim_ind_res(results_dir,runtag,configtag,simutags,thin,sample_size,PIP_threshold)</code></pre>
-<pre class="r"><code>#results using weight1
-results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight1&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight1 n_detected_in_causal_weight1
 1     5-1                 16                           16
 2     5-2                 13                           12
 3     5-3                 21                           19
 4     5-4                 14                           13
 5     5-5                  8                            6</code></pre>
-<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
-sum(results_df$n_detected_in_causal_weight1)/sum(results_df$n_detected_weight1)</code></pre>
 <pre><code>[1] 0.9166667</code></pre>
-<pre class="r"><code>#results using weight2
-results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight2&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight2 n_detected_in_causal_weight2
 1     5-1                  2                            2
 2     5-2                  6                            4
 3     5-3                  9                            5
 4     5-4                  5                            3
 5     5-5                  4                            2</code></pre>
-<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight1
-sum(results_df$n_detected_in_causal_weight2)/sum(results_df$n_detected_weight2)</code></pre>
 <pre><code>[1] 0.6153846</code></pre>
-<pre class="r"><code>#results using weight3
-results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;weight3&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_detected_weight3 n_detected_in_causal_weight3
 1     5-1                  6                            4
 2     5-2                  3                            3
 3     5-3                  1                            1
 4     5-4                  7                            4
 5     5-5                  1                            1</code></pre>
-<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
-sum(results_df$n_detected_in_causal_weight3)/sum(results_df$n_detected_weight3)</code></pre>
 <pre><code>[1] 0.7222222</code></pre>
-<pre class="r"><code>#results using combined analysis
-results_df[,c(&quot;simutag&quot;, colnames(results_df)[grep(&quot;combined&quot;, colnames(results_df))])]</code></pre>
 <pre><code>  simutag n_causal_combined n_detected_combined n_detected_in_causal_combined
 1     5-1                68                  18                            16
 2     5-2                63                  15                            12
 3     5-3                78                  25                            19
 4     5-4                66                  19                            13
 5     5-5                54                  10                             6</code></pre>
-<pre class="r"><code>#mean percent causal using PIP &gt; 0.8 for weight3
-sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)</code></pre>
 <pre><code>[1] 0.7586207</code></pre>
-<pre class="r"><code>#store results for figure
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight1&quot;,
-                            count=results_df$n_detected_weight1-results_df$n_detected_in_causal_weight1,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight1&quot;,
-                            count=results_df$n_detected_in_causal_weight1,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight2&quot;,
-                            count=results_df$n_detected_weight2-results_df$n_detected_in_causal_weight2,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight2&quot;,
-                            count=results_df$n_detected_in_causal_weight2,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight3&quot;,
-                            count=results_df$n_detected_weight3-results_df$n_detected_in_causal_weight3,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Weight3&quot;,
-                            count=results_df$n_detected_in_causal_weight3,
-                            ifcausal=T))
-
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Union&quot;,
-                            count=results_df$n_detected_combined-results_df$n_detected_in_causal_combined,
-                            ifcausal=F))
-plot_df &lt;- rbind(plot_df,
-                 data.frame(simutag=results_df$simutag,
-                            method=&quot;cTWAS Union&quot;,
-                            count=results_df$n_detected_in_causal_combined,
-                            ifcausal=T))</code></pre>
 </div>
 <div id="figure-4" class="section level3">
 <h3>Figure</h3>
-<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined.</p>
-<pre class="r"><code>plot_df$method &lt;- factor(plot_df$method, levels=c(&quot;TWAS&quot;, &quot;cTWAS&quot;, &quot;cTWAS combined&quot;, &quot;cTWAS Weight1&quot;, &quot;cTWAS Weight2&quot;, &quot;cTWAS Weight3&quot;, &quot;cTWAS Union&quot;))
-
-library(ggpubr)
-
-colset = c(&quot;#ebebeb&quot;, &quot;#fb8072&quot;)
-
-ggbarplot(plot_df, 
-          x = &quot;method&quot;, 
-          y = &quot;count&quot;, 
-          add = &quot;mean_se&quot;, 
-          fill = &quot;ifcausal&quot;, 
-          legend = &quot;none&quot;, 
-          ylab=&quot;Count&quot;, 
-          xlab=&quot;&quot;,
-          palette = colset) + grids(linetype = &quot;dashed&quot;) + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))</code></pre>
-<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-61-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-61-1">
-Past versions of unnamed-chunk-61-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-61-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/c10305c445ac2fd059b161705dfd956712d2ae46/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-61-1.png" target="_blank">c10305c</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/sq-96/cTWAS_analysis/blob/f29659774eddf2c3099f80bd8d901512e31808f2/docs/figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-61-1.png" target="_blank">f296597</a>
-</td>
-<td>
-sq-96
-</td>
-<td>
-2023-10-20
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p>For the cTWAS analysis, each tissue was analyzed individually and the results were combined. <img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/sim_uncor_3_d_m.Rmd/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

@@ -195,3 +195,60 @@ plot_par <- function(truth, est, xlabels = c("setting 1", "setting 2", "setting 
   }
   grid()
 }
+
+get_pip_distr <- function(results_dir,runtag,configtag,simutags,thin,sample_size,PIP_threshold){
+  
+  Liver_attr <- c()
+  Lung_attr <- c()
+  Brain_attr <- c()
+  for (i in 1:length(simutags)){
+    simutag <- simutags[i]
+    
+    #load cTWAS results
+    ctwas_res <- data.table::fread(paste0(results_dir, runtag, "_simu", simutag, "_config", configtag, "_LDR.drop.merge.susieIrss.txt"))
+    ctwas_gene_res <- ctwas_res[ctwas_res$type!="SNP",]
+    
+    #collapse gene+tissues to genes and compute combined PIP
+    ctwas_gene_res$gene <- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x,"[|]"))[1]})
+    
+    df_Liver <- ctwas_gene_res[ctwas_gene_res$type=="Liver_harmonized",]
+    df_Lung <- ctwas_gene_res[ctwas_gene_res$type=="Lung_harmonized",]
+    df_Brain <- ctwas_gene_res[ctwas_gene_res$type=="Brain_Hippocampus_harmonized",]
+    
+    df_gene <- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$gene), FUN=sum)
+    colnames(df_gene) <- c("gene", "combined_pip")
+    df_gene$Liver_pip <-0
+    df_gene$Lung_pip <-0
+    df_gene$Brain_pip <-0
+    
+    for(i in df_gene$gene){
+      if(i %in% df_Liver$gene){
+        df_gene[df_gene$gene==i,"Liver_pip"] <- round(df_Liver[df_Liver$gene==i,"susie_pip"],3)
+      }
+    }
+    
+    for(i in df_gene$gene){
+      if(i %in% df_Lung$gene){
+        df_gene[df_gene$gene==i,"Lung_pip"] <- round(df_Lung[df_Lung$gene==i,"susie_pip"],3)
+      }
+    }
+    
+    for(i in df_gene$gene){
+      if(i %in% df_Brain$gene){
+        df_gene[df_gene$gene==i,"Brain_pip"] <- round(df_Brain[df_Brain$gene==i,"susie_pip"],3)
+      }
+    }
+    
+    df_gene$combined_pip <- round(df_gene$combined_pip,3)
+    #sort by combined PIP
+    df_gene <- df_gene[order(-df_gene$combined_pip),]
+    #genes with PIP>0.8 or 20 highest PIPs
+    df_gene <- df_gene[df_gene$combined_pip>0.8,]
+    
+    Liver_attr <- c(Liver_attr,df_gene$Liver_pip/df_gene$combined_pip)
+    Lung_attr <- c(Lung_attr,df_gene$Lung_pip/df_gene$combined_pip)
+    Brain_attr <- c(Brain_attr,df_gene$Brain_pip/df_gene$combined_pip)
+    
+  }
+  return(list(Liver_attr,Lung_attr,Brain_attr))
+}

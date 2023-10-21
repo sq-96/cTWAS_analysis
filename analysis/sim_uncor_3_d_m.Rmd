@@ -134,8 +134,6 @@ plot_par(truth,est,xlabels = c("Liver","Lung","Hippocampus"),ylim=c(0,0.05),ylab
 
 ### Individual tissue analyses
 
-For the cTWAS analysis, each tissue was analyzed individually and the results were combined.
-
 ```{r echo=FALSE}
 results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_uncorrelated_drop_merge/"
 runtag = "ukb-s80.45-3_uncorr"
@@ -246,6 +244,36 @@ ggbarplot(plot_df,
 
 ```
 
+```{r echo=FALSE}
+results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_uncorrelated_drop_merge/"
+runtag = "ukb-s80.45-3_uncorr"
+configtag <- 2
+
+simutags <- paste(1, 1:5, sep = "-")
+thin <- 0.1
+
+sample_size <- 45000
+PIP_threshold <- 0.8
+
+pip_df <- get_pip_distr(results_dir,runtag,configtag,simutags,thin,sample_size,PIP_threshold)
+data <- data.frame(
+  tissue=c(rep("Liver",length(pip_df[[1]])), rep("Lung",length(pip_df[[2]])), rep("Brain",length(pip_df[[3]]))),
+  attribution=c(pip_df[[1]],pip_df[[2]],pip_df[[3]])
+)
+
+data$tissue <- factor(data$tissue, levels=unique(data$tissue))
+
+ggbarplot(data, 
+          x = "tissue", 
+          y = "attribution", 
+          add = "mean_se", 
+          fill = "tissue", 
+          legend = "none", 
+          ylab="Attribution", 
+          xlab="",
+          palette = c("#7fc97f", "#beaed4", "#fdc086")) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+```
+
 ## Simulation 2: Three causal tissues with equal low PVE (1% each)
 
 ### Separate effect size parameters
@@ -302,7 +330,7 @@ results_df[,c(which(colnames(results_df)=="simutag"), grep("twas", names(results
 sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)
 ```
 
-```{r}
+```{r echo=FALSE}
 #store results for figure
 plot_df <- data.frame(simutag=results_df$simutag,
                       method="cTWAS",
@@ -413,7 +441,7 @@ results_df[,c("simutag", colnames(results_df)[grep("combined", colnames(results_
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)
 ```
 
-```{r}
+```{r echo=FALSE}
 #store results for figure
 
 plot_df <- rbind(plot_df,
@@ -463,8 +491,7 @@ plot_df <- rbind(plot_df,
 
 ### Figure
 
-For the cTWAS analysis, each tissue was analyzed individually and the results were combined.
-```{r}
+```{r echo=FALSE}
 plot_df$method <- factor(plot_df$method, levels=c("TWAS", "cTWAS", "cTWAS combined", "cTWAS Weight1", "cTWAS Weight2", "cTWAS Weight3", "cTWAS Union"))
 
 library(ggpubr)
@@ -481,6 +508,36 @@ ggbarplot(plot_df,
           xlab="",
           palette = colset) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
+```
+
+```{r echo=FALSE}
+results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_uncorrelated_drop_merge/"
+runtag = "ukb-s80.45-3_uncorr"
+configtag <- 2
+
+simutags <- paste(2, 1:5, sep = "-")
+thin <- 0.1
+
+sample_size <- 45000
+PIP_threshold <- 0.8
+
+pip_df <- get_pip_distr(results_dir,runtag,configtag,simutags,thin,sample_size,PIP_threshold)
+data <- data.frame(
+  tissue=c(rep("Liver",length(pip_df[[1]])), rep("Lung",length(pip_df[[2]])), rep("Brain",length(pip_df[[3]]))),
+  attribution=c(pip_df[[1]],pip_df[[2]],pip_df[[3]])
+)
+
+data$tissue <- factor(data$tissue, levels=unique(data$tissue))
+
+ggbarplot(data, 
+          x = "tissue", 
+          y = "attribution", 
+          add = "mean_se", 
+          fill = "tissue", 
+          legend = "none", 
+          ylab="Attribution", 
+          xlab="",
+          palette = c("#7fc97f", "#beaed4", "#fdc086")) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
 ## Simulation 3: Three causal tissues with unequal PVE
@@ -539,7 +596,7 @@ results_df[,c(which(colnames(results_df)=="simutag"), grep("twas", names(results
 sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)
 ```
 
-```{r}
+```{r echo=FALSE}
 #store results for figure
 plot_df <- data.frame(simutag=results_df$simutag,
                       method="cTWAS",
@@ -650,7 +707,7 @@ results_df[,c("simutag", colnames(results_df)[grep("combined", colnames(results_
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)
 ```
 
-```{r}
+```{r echo=FALSE}
 #store results for figure
 
 plot_df <- rbind(plot_df,
@@ -701,7 +758,7 @@ plot_df <- rbind(plot_df,
 ### Figure
 
 For the cTWAS analysis, each tissue was analyzed individually and the results were combined.
-```{r}
+```{r echo=FALSE}
 plot_df$method <- factor(plot_df$method, levels=c("TWAS", "cTWAS", "cTWAS combined", "cTWAS Weight1", "cTWAS Weight2", "cTWAS Weight3", "cTWAS Union"))
 
 library(ggpubr)
@@ -718,6 +775,36 @@ ggbarplot(plot_df,
           xlab="",
           palette = colset) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
+```
+
+```{r echo=FALSE}
+results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_uncorrelated_drop_merge/"
+runtag = "ukb-s80.45-3_uncorr"
+configtag <- 2
+
+simutags <- paste(3, 1:5, sep = "-")
+thin <- 0.1
+
+sample_size <- 45000
+PIP_threshold <- 0.8
+
+pip_df <- get_pip_distr(results_dir,runtag,configtag,simutags,thin,sample_size,PIP_threshold)
+data <- data.frame(
+  tissue=c(rep("Liver",length(pip_df[[1]])), rep("Lung",length(pip_df[[2]])), rep("Brain",length(pip_df[[3]]))),
+  attribution=c(pip_df[[1]],pip_df[[2]],pip_df[[3]])
+)
+
+data$tissue <- factor(data$tissue, levels=unique(data$tissue))
+
+ggbarplot(data, 
+          x = "tissue", 
+          y = "attribution", 
+          add = "mean_se", 
+          fill = "tissue", 
+          legend = "none", 
+          ylab="Attribution", 
+          xlab="",
+          palette = c("#7fc97f", "#beaed4", "#fdc086")) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 ## Simulation 4: Two causal tissues with unequal PVE and one non-causal tissue
 
@@ -775,7 +862,7 @@ results_df[,c(which(colnames(results_df)=="simutag"), grep("twas", names(results
 sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)
 ```
 
-```{r}
+```{r echo=FALSE}
 #store results for figure
 plot_df <- data.frame(simutag=results_df$simutag,
                       method="cTWAS",
@@ -886,7 +973,7 @@ results_df[,c("simutag", colnames(results_df)[grep("combined", colnames(results_
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)
 ```
 
-```{r}
+```{r echo=FALSE}
 #store results for figure
 
 plot_df <- rbind(plot_df,
@@ -936,8 +1023,7 @@ plot_df <- rbind(plot_df,
 
 ### Figure
 
-For the cTWAS analysis, each tissue was analyzed individually and the results were combined.
-```{r}
+```{r echo=FALSE}
 plot_df$method <- factor(plot_df$method, levels=c("TWAS", "cTWAS", "cTWAS combined", "cTWAS Weight1", "cTWAS Weight2", "cTWAS Weight3", "cTWAS Union"))
 
 library(ggpubr)
@@ -954,6 +1040,36 @@ ggbarplot(plot_df,
           xlab="",
           palette = colset) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
+```
+
+```{r echo=FALSE}
+results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_uncorrelated_drop_merge/"
+runtag = "ukb-s80.45-3_uncorr"
+configtag <- 2
+
+simutags <- paste(4, 1:5, sep = "-")
+thin <- 0.1
+
+sample_size <- 45000
+PIP_threshold <- 0.8
+
+pip_df <- get_pip_distr(results_dir,runtag,configtag,simutags,thin,sample_size,PIP_threshold)
+data <- data.frame(
+  tissue=c(rep("Liver",length(pip_df[[1]])), rep("Lung",length(pip_df[[2]])), rep("Brain",length(pip_df[[3]]))),
+  attribution=c(pip_df[[1]],pip_df[[2]],pip_df[[3]])
+)
+
+data$tissue <- factor(data$tissue, levels=unique(data$tissue))
+
+ggbarplot(data, 
+          x = "tissue", 
+          y = "attribution", 
+          add = "mean_se", 
+          fill = "tissue", 
+          legend = "none", 
+          ylab="Attribution", 
+          xlab="",
+          palette = c("#7fc97f", "#beaed4", "#fdc086")) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
 ## Simulation 5: one causal tissues and two non-causal tissues
@@ -1012,7 +1128,7 @@ results_df[,c(which(colnames(results_df)=="simutag"), grep("twas", names(results
 sum(results_df$n_detected_comb_twas_in_causal)/sum(results_df$n_detected_comb_twas)
 ```
 
-```{r}
+```{r echo=FALSE}
 #store results for figure
 plot_df <- data.frame(simutag=results_df$simutag,
                       method="cTWAS",
@@ -1097,7 +1213,7 @@ PIP_threshold <- 0.8
 results_df <- get_sim_ind_res(results_dir,runtag,configtag,simutags,thin,sample_size,PIP_threshold)
 ```
 
-```{r}
+```{r echo=FALSE}
 #results using weight1
 results_df[,c("simutag", colnames(results_df)[grep("weight1", colnames(results_df))])]
 
@@ -1123,9 +1239,8 @@ results_df[,c("simutag", colnames(results_df)[grep("combined", colnames(results_
 sum(results_df$n_detected_in_causal_combined)/sum(results_df$n_detected_combined)
 ```
 
-```{r}
+```{r echo=FALSE}
 #store results for figure
-
 plot_df <- rbind(plot_df,
                  data.frame(simutag=results_df$simutag,
                             method="cTWAS Weight1",
@@ -1174,7 +1289,7 @@ plot_df <- rbind(plot_df,
 ### Figure
 
 For the cTWAS analysis, each tissue was analyzed individually and the results were combined.
-```{r}
+```{r echo=FALSE}
 plot_df$method <- factor(plot_df$method, levels=c("TWAS", "cTWAS", "cTWAS combined", "cTWAS Weight1", "cTWAS Weight2", "cTWAS Weight3", "cTWAS Union"))
 
 library(ggpubr)
@@ -1191,4 +1306,34 @@ ggbarplot(plot_df,
           xlab="",
           palette = colset) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 
+```
+
+```{r echo=FALSE}
+results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_uncorrelated_drop_merge/"
+runtag = "ukb-s80.45-3_uncorr"
+configtag <- 2
+
+simutags <- paste(5, 1:5, sep = "-")
+thin <- 0.1
+
+sample_size <- 45000
+PIP_threshold <- 0.8
+
+pip_df <- get_pip_distr(results_dir,runtag,configtag,simutags,thin,sample_size,PIP_threshold)
+data <- data.frame(
+  tissue=c(rep("Liver",length(pip_df[[1]])), rep("Lung",length(pip_df[[2]])), rep("Brain",length(pip_df[[3]]))),
+  attribution=c(pip_df[[1]],pip_df[[2]],pip_df[[3]])
+)
+
+data$tissue <- factor(data$tissue, levels=unique(data$tissue))
+
+ggbarplot(data, 
+          x = "tissue", 
+          y = "attribution", 
+          add = "mean_se", 
+          fill = "tissue", 
+          legend = "none", 
+          ylab="Attribution", 
+          xlab="",
+          palette = c("#7fc97f", "#beaed4", "#fdc086")) + grids(linetype = "dashed") + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```

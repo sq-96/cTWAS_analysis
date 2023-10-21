@@ -58,7 +58,7 @@ for (i in 1:length(simutags)){
   true_genes_combined <- unique(sapply(true_genes, function(x){unlist(strsplit(x, "[|]"))[1]}))
   
   #load cTWAS results
-  ctwas_res <- data.table::fread(paste0(results_dir, runtag, "_simu", simutag, "_config", configtag, "_LDR.drop.merge.susieIrss.txt"))
+  ctwas_res <- data.table::fread(paste0(results_dir, runtag, "_simu", simutag, "_config", configtag, "_LDR.recover.merge.susieIrss.txt"))
   ctwas_gene_res <- ctwas_res[ctwas_res$type!="SNP",]
   
   #number of causal genes
@@ -83,12 +83,12 @@ for (i in 1:length(simutags)){
   n_causal_detected_combined <- sum(ctwas_gene_res_combined$gene[ctwas_gene_res_combined$pip_combined > PIP_threshold] %in% true_genes_combined)
   
   #collect number of SNPs analyzed by cTWAS
-  ctwas_res_s1 <- data.table::fread(paste0(results_dir, runtag, "_simu", simutag, "_config", configtag, "_LDR.drop.merge.s1.susieIrss.txt"))
+  ctwas_res_s1 <- data.table::fread(paste0(results_dir, runtag, "_simu", simutag, "_config", configtag, "_LDR.recover.merge.s1.susieIrss.txt"))
   n_snps <- sum(ctwas_res_s1$type=="SNP")/thin
   rm(ctwas_res_s1)
   
   #load estimated parameters
-  load(paste0(results_dir, runtag, "_simu", simutag, "_config", configtag, "_LDR.drop.merge.s2.susieIrssres.Rd"))
+  load(paste0(results_dir, runtag, "_simu", simutag, "_config", configtag, "_LDR.recover.merge.s2.susieIrssres.Rd"))
   
   #estimated group prior (all iterations)
   estimated_group_prior_all <- group_prior_rec
