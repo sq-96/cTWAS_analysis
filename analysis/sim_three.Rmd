@@ -444,7 +444,6 @@ a <- locus_plot(region_tag="19_32", return_table=T,
 
 
 ```{r}
-pdf(file = "./ninj2_locus.pdf", width = 5, height = 3.5)
 a <- locus_plot(region_tag="12_1", return_table=T,
                       focus=NULL,
                       label_genes=NULL,
@@ -452,13 +451,10 @@ a <- locus_plot(region_tag="12_1", return_table=T,
                       rerun_load_only=F,
                       label_panel="both",
                       legend_side="left",
-                      legend_panel="",
-                      xlim = c(0.5,0.8))
-dev.off()
+                      legend_panel="")
 ```
 
 ```{r}
-pdf(file = "./simulation_locus.pdf", width = 5, height = 3.5)
 a <- locus_plot(region_tag="1_20", return_table=T,
                       focus=NULL,
                       label_genes=NULL,
@@ -467,29 +463,27 @@ a <- locus_plot(region_tag="1_20", return_table=T,
                       label_panel="both",
                       legend_side="left",
                       legend_panel="")
-dev.off()
 ```
 
 
 ```{r echo=FALSE, eval=FALSE}
-region_tag = "12_1"
-xlim=c(0.3,0.9)
+region_tag = "19_32"
+xlim=NULL
 return_table=F
 focus=NULL
-label_panel="both"
+label_panel="cTWAS"
 label_genes=NULL
 label_pos=NULL
 plot_eqtl=NULL
 rerun_ctwas=F
 rerun_load_only=F
 legend_side="left"
-legend_panel="cTWAS"
+legend_panel=""
 twas_ymax=NULL
 alpha <- 0.05
 ```
 
 ```{r echo=FALSE, eval=FALSE}
-pdf(file = "./ninj2_locus.pdf", width = 5, height = 3.5)
 region_tag1 <- unlist(strsplit(region_tag, "_"))[1]
 region_tag2 <- unlist(strsplit(region_tag, "_"))[2]
   
@@ -633,7 +627,6 @@ if (label_panel=="cTWAS" | label_panel=="both"){
 if (return_table){
     return(a)
 }
-dev.off()
 ```
 
 ```{r}

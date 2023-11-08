@@ -1,0 +1,133 @@
+---
+title: "Test ambiguous z-score options"
+author: "shengqian"
+date: "2023-10-13"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## LDL GWAS with Liver eQTL
+
+```{r echo=FALSE}
+results_dir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/test_drop_none_recover/"
+runtag = "ukb-d-30780_irnt"
+thin <- 0.1
+PIP_threshold <- 0.8
+```
+
+#### load "none" option
+```{r echo=FALSE}
+#load "none" option
+ctwas_res <- data.table::fread(paste0(results_dir, runtag,"LDR_none.susieIrss.txt"))
+ctwas_gene_res <- ctwas_res[ctwas_res$type!="SNP",]
+none_pip <- ctwas_gene_res[,c("id","susie_pip")]
+none_z <- get(load(paste0(results_dir, runtag, "LDR_none_z_gene.Rd")))
+```
+
+#### load "drop" option
+```{r}
+#load "drop" option
+ctwas_res <- data.table::fread(paste0(results_dir, runtag,"LDR_drop.susieIrss.txt"))
+ctwas_gene_res <- ctwas_res[ctwas_res$type!="SNP",]
+drop_pip <- ctwas_gene_res[,c("id","susie_pip")]
+drop_z <- get(load(paste0(results_dir, runtag, "LDR_drop_z_gene.Rd")))
+```
+
+#### load "recover" option
+```{r}
+#load "recover" option
+ctwas_res <- data.table::fread(paste0(results_dir, runtag,"LDR_recover.susieIrss.txt"))
+ctwas_gene_res <- ctwas_res[ctwas_res$type!="SNP",]
+recover_pip <- ctwas_gene_res[,c("id","susie_pip")]
+recover_z <- get(load(paste0(results_dir, runtag, "LDR_recover_z_gene.Rd")))
+```
+
+#### plot z-scores "none" vs "drop"
+```{r}
+plot(none_z$z,drop_z$z)
+```
+
+#### plot z-scores "none" vs "recover"
+```{r}
+plot(none_z$z,recover_z$z)
+```
+
+#### plot z-scores "recover" vs "drop"
+```{r}
+plot(recover_z$z,drop_z$z)
+```
+
+#### plot PIPs "none" vs "drop"
+```{r}
+plot(none_pip$susie_pip,drop_pip$susie_pip)
+```
+
+#### plot PIPs "none" vs "recover"
+```{r}
+plot(none_pip$susie_pip,recover_pip$susie_pip)
+```
+
+#### plot PIPs "recover" vs "drop"
+```{r}
+plot(recover_pip$susie_pip,drop_pip$susie_pip)
+```
+
+## Xiaotong Joint model
+
+#### load "none" option
+```{r echo=FALSE}
+#load cTWAS results
+ctwas_res <- data.table::fread("/project2/xinhe/shared_data/tosheng/brain_ctwas.susieIrss_none.txt")
+ctwas_gene_res <- ctwas_res[ctwas_res$type!="SNP",]
+none_pip <- ctwas_gene_res[,c("id","susie_pip")]
+none_z <- get(load("/project2/xinhe/shared_data/tosheng/brain_expr_z_gene_none.Rd"))
+```
+
+#### load "drop" option
+```{r}
+#load cTWAS results
+ctwas_res <- data.table::fread("/project2/xinhe/shared_data/tosheng/brain_ctwas.susieIrss_drop.txt")
+ctwas_gene_res <- ctwas_res[ctwas_res$type!="SNP",]
+drop_pip <- ctwas_gene_res[,c("id","susie_pip")]
+drop_z <- get(load("/project2/xinhe/shared_data/tosheng/brain_expr_z_gene_drop.Rd"))
+```
+
+#### load "recover" option
+```{r}
+#load cTWAS results
+ctwas_res <- data.table::fread("/project2/xinhe/shared_data/tosheng/brain_ctwas.susieIrss_recover.txt")
+ctwas_gene_res <- ctwas_res[ctwas_res$type!="SNP",]
+recover_pip <- ctwas_gene_res[,c("id","susie_pip")]
+recover_z <- get(load("/project2/xinhe/shared_data/tosheng/brain_expr_z_gene_recover.Rd"))
+```
+
+#### plot z-scores "none" vs "drop"
+```{r}
+plot(none_z$z,drop_z$z)
+```
+
+#### plot z-scores "none" vs "recover"
+```{r}
+plot(none_z$z,recover_z$z)
+```
+
+#### plot z-scores "recover" vs "drop"
+```{r}
+plot(recover_z$z,drop_z$z)
+```
+
+#### plot PIPs "none" vs "drop"
+```{r}
+plot(none_pip$susie_pip, drop_pip$susie_pip)
+```
+
+#### plot PIPs "none" vs "recover"
+```{r}
+plot(none_pip$susie_pip,recover_pip$susie_pip)
+```
+
+#### plot PIPs "recover" vs "drop"
+```{r}
+plot(recover_pip$susie_pip,drop_pip$susie_pip)
+```
