@@ -1,0 +1,375 @@
+---
+title: "LDL - Context/Type"
+output: html_document
+date: '2023-1-4'
+---
+
+```{r}
+outputdir <- "/project/xinhe/shengqian/cTWAS_analysis/data/LDL_multi_context/"
+outname <- "LDL_multi_context_ctwas"
+gwas_n <- 343621
+thin <- 0.1
+
+ctwas_parameters <- ctwas:::ctwas_summarize_parameters(outputdir = outputdir, 
+                                               outname = outname, 
+                                               gwas_n = 343621, 
+                                               thin = 0.1,
+                                               plot_estimates = T)
+```
+
+### Group Size
+```{r,echo=FALSE,fig.width= 5,fig.height=5}
+#Group Size
+df <- data.frame(group=names(ctwas_parameters$group_size)[-1],
+                values=as.vector(ctwas_parameters$group_size)[-1])
+
+p <- ggplot(df, aes(x=reorder(group, -values), y=values, fill=group)) +
+     geom_bar(stat="identity") + 
+     scale_fill_manual(values=c("#ff7f00", "#6a3d9a", "#a6cee3", "#b2df8a", "#fb9a99", "#1f78b4", "#e31a1c", "#fdbf6f", "#fb9a99")) +
+     ylab("Group Size") +
+     xlab("")+
+     theme_bw()+
+     theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),legend.position = "none")
+
+p
+```
+
+### Group PVE
+```{r,echo=FALSE,fig.width= 8,fig.height=5}
+df <- data.frame(group=names(ctwas_parameters$group_pve),
+                values=as.vector(ctwas_parameters$group_pve))
+
+p <- ggplot(df, aes(x=reorder(group, -values), y=values, fill=group)) +
+     geom_bar(stat="identity") + 
+     scale_fill_manual(values=c("#ff7f00", "#6a3d9a", "#a6cee3", "#b2df8a", "#fb9a99", "#1f78b4", "#e31a1c", "#fdbf6f", "#fb9a99", "#33a02c")) +
+     ylab("PVE") +
+     xlab("")+
+     theme_minimal()+
+     theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),legend.position = "none")
+
+p
+```
+
+### Attributed PVE
+```{r,echo=FALSE,fig.width= 5,fig.height=5}
+df <- data.frame(group=names(ctwas_parameters$attributable_pve),
+                values=as.vector(ctwas_parameters$attributable_pve))
+
+df <- df[order(-df$values),]
+
+colors <- c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6","#6a3d9a")
+
+pie(df$values,labels = df$group,col = colors, cex=1, radius = 1,init.angle=-80)
+```
+
+### Convergence Plot
+```{r,echo=F,fig.width=10,fig.height=6}
+#pdf(file = "./primary_set2.pdf", width = 5, height = 5)
+ctwas_parameters$convergence_plot
+```
+
+```{r echo=FALSE}
+#load ctwas results
+ctwas_res <- data.table::fread(paste0(outputdir, "/", outname, ".susieIrss.txt"))
+#make unique identifier for regions
+ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+#separate gene and SNP results
+ctwas_gene_res <- ctwas_res[ctwas_res$type != "SNP", ]
+ctwas_gene_res <- data.frame(ctwas_gene_res)
+```
+
+```{r echo=FALSE}
+#add gene information to results
+ctwas_gene_res$gene_id <- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x, split="[|]"))[1]})
+ctwas_gene_res$tissue <- sapply(ctwas_gene_res$type, function(x){paste(unlist(strsplit(x, split="[_]"))[1])})
+
+ctwas_gene_E_res <- ctwas_gene_res[ctwas_gene_res$context=="Expression",]
+ctwas_gene_S_res <- ctwas_gene_res[ctwas_gene_res$context=="Splicing",]
+
+gene_info <- data.frame()
+for(i in unique(ctwas_gene_E_res$tissue)){
+  sqlite <- RSQLite::dbDriver("SQLite")
+  db = RSQLite::dbConnect(sqlite, paste0("/project/xinhe/shengqian/cTWAS_analysis/data/",i,"_Expression.db"))
+  query <- function(...) RSQLite::dbGetQuery(db, ...)
+  gene_info_tmp <- query("select gene, genename from extra")
+  RSQLite::dbDisconnect(db)
+  gene_info <- rbind(gene_info,gene_info_tmp)
+}
+
+gene_info <- unique(gene_info)
+ctwas_gene_E_res$genename <- gene_info[sapply(ctwas_gene_E_res$gene_id, match, gene_info$gene),"genename"]
+
+splicing_info <- data.frame()
+for(i in unique(ctwas_gene_S_res$tissue)){
+  splicing_info_tmp <- get(load(paste0("/project/xinhe/shengqian/cTWAS_analysis/data/",i,"_Splicing_Mapping.RData")))
+  splicing_info <- rbind(splicing_info,splicing_info_tmp)
+}
+splicing_info <- unique(splicing_info)
+ctwas_gene_S_res$genename <- splicing_info[sapply(ctwas_gene_S_res$gene_id, match, splicing_info$gene), "genename"]
+
+ctwas_gene_res <- rbind(ctwas_gene_E_res,ctwas_gene_S_res)
+ctwas_gene_res <- na.omit(ctwas_gene_res)
+#ctwas_gene_res <- na.omit(ctwas_gene_res)
+#head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+```
+
+```{r echo=FALSE}
+df <- list()
+for(i in unique(ctwas_gene_res$context)){
+  for(j in unique(ctwas_gene_res$tissue)){
+    tmp_res <- ctwas_gene_res[ctwas_gene_res$context==i & ctwas_gene_res$tissue==j,]
+    tmp_df <- aggregate(tmp_res$susie_pip,by=list(tmp_res$genename), FUN=sum)
+    colnames(tmp_df) <- c("genename", "susie_pip")
+    tmp_df$group <- paste0(j,"_",i)
+    df[[paste0(j,"_",i)]] <- tmp_df
+  }
+}
+
+df_gene <- do.call(rbind, df)
+#head(df_gene[order(-df_gene$susie_pip),], max(sum(df_gene$susie_pip>0.8), 20))
+```
+
+
+### Top genes by combined PIP
+```{r echo=F}
+#aggregate by gene name
+data <- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$genename), FUN=sum)
+colnames(data) <- c("genename", "combined_pip")
+for(i in unique(df_gene$group)){
+  data[i] <- 0
+  for(j in data$genename){
+    if(j %in% df[[i]]$genename){
+      data[data$genename==j,i] <- round(df[[i]][df[[i]]$genename==j,"susie_pip"],3)
+    }
+  }
+}
+
+#sort by combined PIP
+data <- data[order(-data$combined_pip),]
+#genes with PIP>0.8 or 20 highest PIPs
+#head(data, max(sum(data$combined_pip>0.8), 20))
+DT::datatable(head(data, max(sum(data$combined_pip>0.8), 20)))
+```
+```{r echo=FALSE}
+plot_df <- data[data$combined_pip>0.8,]
+plot_df <- cbind(plot_df[,c("genename","combined_pip")],plot_df[,3:10]/plot_df$combined_pip)
+```
+
+```{r echo=FALSE}
+suppressMessages(library(ctwas))
+suppressMessages(library(data.table))
+suppressMessages(library(RSQLite))
+suppressMessages(library(DT))
+suppressMessages(library(tools))
+suppressMessages(library(dplyr))
+suppressMessages(library(tidyr))
+
+plot_stacked_histogram <- function(df, genename_col, combined_pip_col, attributable_cols) {
+  
+  df[[genename_col]] <- factor(df[[genename_col]], levels = df[[genename_col]])
+  
+  long_df_attributable <- df %>%
+    select(all_of(c(genename_col, combined_pip_col, attributable_cols))) %>%
+    pivot_longer(
+      cols = all_of(attributable_cols),
+      names_to = "Tissue",
+      values_to = "Proportion"
+    ) %>%
+    mutate(Tissue = gsub("_Attributable_PIP \\(%\\)", "", Tissue))  # Modify Tissue names
+  
+  
+  # Calculate the absolute values for each segment
+  long_df_attributable <- long_df_attributable %>%
+    mutate(Absolute_Value = Proportion / 100 * long_df_attributable[[combined_pip_col]])
+  
+  # Create the plot
+  p <- ggplot(long_df_attributable, aes_string(x = genename_col, y = "Absolute_Value", fill = "Tissue")) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    labs(title = "Stacked Histogram of Combined PIP with Context/Type Contributions",
+         x = "",
+         y = "Combined PIP",
+         fill = "Tissue") +
+    theme(axis.text.x = element_blank())+
+    scale_fill_manual(values=c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6","#6a3d9a"))
+  
+  return(p)
+}
+```
+
+### Context/Type Contributions
+```{r fig.width= 10, fig.height= 5}
+plot_stacked_histogram(plot_df,"genename","combined_pip",colnames(plot_df)[3:10])
+```
+
+
+
+### Group PVE
+```{r echo=FALSE}
+df <- data.frame(group=names(ctwas_parameters$group_pve),
+                values=as.vector(ctwas_parameters$group_pve))
+
+p <- ggplot(df, aes(x=reorder(group, -values), y=values, fill=group)) +
+     geom_bar(stat="identity") + 
+     scale_fill_manual(values=c("#ff7f00", "#6a3d9a", "#a6cee3", "#b2df8a", "#fb9a99", "#1f78b4", "#e31a1c", "#fdbf6f", "#fb9a99", "#33a02c")) +
+     ylab("PVE") +
+     xlab("")+
+     theme_minimal()+
+     theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1), axis.text=element_text(size=12))
+
+p
+```
+### Attributed PVE
+```{r}
+df <- data.frame(group=names(ctwas_parameters$attributable_pve),
+                values=as.vector(ctwas_parameters$attributable_pve))
+
+df <- df[order(-df$values),]
+
+colors <- c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6","#6a3d9a")
+
+pie(df$values,labels = df$group,col = colors, cex=1, radius = 1,init.angle=-80)
+```
+
+### Convergence Plot
+```{r,out.width="50%"}
+#pdf(file = "./primary_set2.pdf", width = 5, height = 5)
+ctwas_parameters$convergence_plot
+```
+
+```{r echo=FALSE}
+#load ctwas results
+ctwas_res <- data.table::fread(paste0(outputdir, "/", outname, ".susieIrss.txt"))
+#make unique identifier for regions
+ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
+#separate gene and SNP results
+ctwas_gene_res <- ctwas_res[ctwas_res$type != "SNP", ]
+ctwas_gene_res <- data.frame(ctwas_gene_res)
+```
+
+```{r echo=FALSE}
+#add gene information to results
+ctwas_gene_res$gene_id <- sapply(ctwas_gene_res$id, function(x){unlist(strsplit(x, split="[|]"))[1]})
+ctwas_gene_res$tissue <- sapply(ctwas_gene_res$type, function(x){paste(unlist(strsplit(x, split="[_]"))[1])})
+
+ctwas_gene_E_res <- ctwas_gene_res[ctwas_gene_res$context=="Expression",]
+ctwas_gene_S_res <- ctwas_gene_res[ctwas_gene_res$context=="Splicing",]
+
+gene_info <- data.frame()
+for(i in unique(ctwas_gene_E_res$tissue)){
+  print(i)
+  sqlite <- RSQLite::dbDriver("SQLite")
+  db = RSQLite::dbConnect(sqlite, paste0("/project/xinhe/shengqian/cTWAS_analysis/data/",i,"_Expression.db"))
+  query <- function(...) RSQLite::dbGetQuery(db, ...)
+  gene_info_tmp <- query("select gene, genename from extra")
+  RSQLite::dbDisconnect(db)
+  gene_info <- rbind(gene_info,gene_info_tmp)
+}
+
+gene_info <- unique(gene_info)
+ctwas_gene_E_res$genename <- gene_info[sapply(ctwas_gene_E_res$gene_id, match, gene_info$gene),"genename"]
+
+splicing_info <- data.frame()
+for(i in unique(ctwas_gene_S_res$tissue)){
+  print(i)
+  splicing_info_tmp <- get(load(paste0("/project/xinhe/shengqian/cTWAS_analysis/data/",i,"_Splicing_Mapping.RData")))
+  print(dim(splicing_info_tmp))
+  splicing_info <- rbind(splicing_info,splicing_info_tmp)
+  print(dim(splicing_info))
+}
+splicing_info <- unique(splicing_info)
+ctwas_gene_S_res$genename <- splicing_info[sapply(ctwas_gene_S_res$gene_id, match, splicing_info$gene), "genename"]
+
+ctwas_gene_res <- rbind(ctwas_gene_E_res,ctwas_gene_S_res)
+ctwas_gene_res <- na.omit(ctwas_gene_res)
+#head(ctwas_gene_res[order(-ctwas_gene_res$susie_pip),], max(sum(ctwas_gene_res$susie_pip>0.8), 20))
+```
+
+```{r echo=FALSE}
+df <- list()
+for(i in unique(ctwas_gene_res$context)){
+  for(j in unique(ctwas_gene_res$tissue)){
+    tmp_res <- ctwas_gene_res[ctwas_gene_res$context==i & ctwas_gene_res$tissue==j,]
+    tmp_df <- aggregate(tmp_res$susie_pip,by=list(tmp_res$genename), FUN=sum)
+    colnames(tmp_df) <- c("genename", "susie_pip")
+    tmp_df$group <- paste0(j,"_",i)
+    df[[paste0(j,"_",i)]] <- tmp_df
+  }
+}
+
+df_gene <- do.call(rbind, df)
+#head(df_gene[order(-df_gene$susie_pip),], max(sum(df_gene$susie_pip>0.8), 20))
+```
+
+
+### Top genes by combined PIP
+```{r echo=F}
+#aggregate by gene name
+data <- aggregate(ctwas_gene_res$susie_pip, by=list(ctwas_gene_res$genename), FUN=sum)
+colnames(data) <- c("genename", "combined_pip")
+for(i in unique(df_gene$group)){
+  data[i] <- 0
+  for(j in data$genename){
+    if(j %in% df[[i]]$genename){
+      data[data$genename==j,i] <- round(df[[i]][df[[i]]$genename==j,"susie_pip"],3)
+    }
+  }
+}
+
+#sort by combined PIP
+data <- data[order(-data$combined_pip),]
+#genes with PIP>0.8 or 20 highest PIPs
+head(data, max(sum(data$combined_pip>0.8), 20))
+```
+```{r echo=FALSE}
+plot_df <- data[data$combined_pip>0.8,]
+plot_df <- cbind(plot_df[,c("genename","combined_pip")],100*plot_df[,3:6]/plot_df$combined_pip)
+```
+
+```{r echo=FALSE}
+suppressMessages(library(ctwas))
+suppressMessages(library(data.table))
+suppressMessages(library(RSQLite))
+suppressMessages(library(DT))
+suppressMessages(library(tools))
+suppressMessages(library(dplyr))
+suppressMessages(library(tidyr))
+
+plot_stacked_histogram <- function(df, genename_col, combined_pip_col, attributable_cols) {
+  
+  df[[genename_col]] <- factor(df[[genename_col]], levels = df[[genename_col]])
+  
+  long_df_attributable <- df %>%
+    select(all_of(c(genename_col, combined_pip_col, attributable_cols))) %>%
+    pivot_longer(
+      cols = all_of(attributable_cols),
+      names_to = "Tissue",
+      values_to = "Proportion"
+    ) %>%
+    mutate(Tissue = gsub("_Attributable_PIP \\(%\\)", "", Tissue))  # Modify Tissue names
+  
+  
+  # Calculate the absolute values for each segment
+  long_df_attributable <- long_df_attributable %>%
+    mutate(Absolute_Value = Proportion / 100 * long_df_attributable[[combined_pip_col]])
+  
+  # Create the plot
+  p <- ggplot(long_df_attributable, aes_string(x = genename_col, y = "Absolute_Value", fill = "Tissue")) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    labs(title = "Stacked Histogram of Combined PIP with Context/Type Contributions",
+         x = "",
+         y = "Combined PIP",
+         fill = "Tissue") +
+    theme(axis.text.x = element_blank())+
+    scale_fill_manual(values=c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c", "#fdbf6f", "#ff7f00", "#cab2d6","#6a3d9a"))
+  
+  return(p)
+}
+```
+
+### Context/Type Contributions
+```{r}
+plot_stacked_histogram(plot_df,"genename","combined_pip",colnames(plot_df)[3:6])
+```
+

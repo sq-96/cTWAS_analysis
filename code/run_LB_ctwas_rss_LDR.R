@@ -109,7 +109,7 @@ if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
   ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = 0.1, max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, ncore = 10, ncore.rerun = 1, prob_single = prob_single,
             merge=F, 
             fine_map=F,
-            ncore_LDR=5)
+            ncore_LDR=3)
 }
 
 #run ctwas_rss parameter estimation
@@ -122,7 +122,7 @@ if (!file.exists(paste0(outputdir, "/", outname, ".susieIrss.txt"))){
             group_prior_var = group_prior_var_rec, 
             estimate_group_prior = F, 
             estimate_group_prior_var = F,
-            ncore_LDR=5)
+            ncore_LDR=3)
 }
 
 sessionInfo()

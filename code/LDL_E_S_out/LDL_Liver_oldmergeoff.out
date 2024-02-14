@@ -1,0 +1,170 @@
+[1] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz"                                                                         
+[2] "/project2/mstephens/wcrouse/UKB_LDR_0.1"                                                                                                                  
+[3] "/project2/compbio/predictdb/mashr_models/mashr_Liver.db;/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/mashr_sqtl/sqtl/mashr/mashr_Liver_Splicing.db"
+[4] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"                                                                                   
+[5] "LDL_Liver_expr"                                                                                                                                           
+[6] "LDL_Liver_ctwas"                                                                                                                                          
+[7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_E_S/Liver_oldmergeoff"                                                                            
+                              id          z  type
+1 ENSG00000000457.13|mashr_Liver -0.6554591 Liver
+2 ENSG00000000938.12|mashr_Liver -0.4280734 Liver
+3 ENSG00000001460.17|mashr_Liver  0.1166162 Liver
+4 ENSG00000001461.16|mashr_Liver -0.5802834 Liver
+5 ENSG00000004455.16|mashr_Liver  2.0532882 Liver
+6 ENSG00000006555.10|mashr_Liver  3.3288593 Liver
+[1] "skip parameter estimation"
+[1] "start fine mapping"
+2023-11-28 09:06:53 INFO::ctwas started ...
+2023-11-28 09:07:59 INFO::LD region file: /home/shengqian/R/x86_64-pc-linux-gnu-library/4.1/ctwas/extdata/ldetect/EUR.b38.bed
+2023-11-28 09:08:16 INFO::No. LD regions: 1700
+2023-11-28 09:08:26 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-11-28 09:08:26 INFO::No. regions with at least one SNP/gene for chr1 after merging: 131
+2023-11-28 09:08:34 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-11-28 09:08:34 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
+2023-11-28 09:08:41 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-11-28 09:08:41 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-11-28 09:08:46 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-11-28 09:08:46 INFO::No. regions with at least one SNP/gene for chr4 after merging: 122
+2023-11-28 09:08:52 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-11-28 09:08:52 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-11-28 09:08:58 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-11-28 09:08:58 INFO::No. regions with at least one SNP/gene for chr6 after merging: 112
+2023-11-28 09:09:02 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-11-28 09:09:02 INFO::No. regions with at least one SNP/gene for chr7 after merging: 99
+2023-11-28 09:09:06 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-11-28 09:09:06 INFO::No. regions with at least one SNP/gene for chr8 after merging: 94
+2023-11-28 09:09:09 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-11-28 09:09:09 INFO::No. regions with at least one SNP/gene for chr9 after merging: 74
+2023-11-28 09:09:13 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-11-28 09:09:13 INFO::No. regions with at least one SNP/gene for chr10 after merging: 85
+2023-11-28 09:09:17 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-11-28 09:09:17 INFO::No. regions with at least one SNP/gene for chr11 after merging: 84
+2023-11-28 09:09:21 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-11-28 09:09:21 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-11-28 09:09:24 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-11-28 09:09:24 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-11-28 09:09:27 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-11-28 09:09:27 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-11-28 09:09:29 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-11-28 09:09:29 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-11-28 09:09:31 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-11-28 09:09:31 INFO::No. regions with at least one SNP/gene for chr16 after merging: 54
+2023-11-28 09:09:33 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-11-28 09:09:33 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-11-28 09:09:35 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-11-28 09:09:35 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2023-11-28 09:09:37 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-11-28 09:09:37 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-11-28 09:09:39 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-11-28 09:09:39 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-11-28 09:09:40 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-11-28 09:09:40 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-11-28 09:09:42 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-11-28 09:09:42 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-11-28 09:09:42 INFO::Trim regions with SNPs more than Inf
+2023-11-28 09:09:42 INFO::Adding R matrix info, as genotype is not given
+starting worker pid=54509 on localhost:11767 at 09:09:43.679
+starting worker pid=54511 on localhost:11767 at 09:09:43.679
+starting worker pid=54510 on localhost:11767 at 09:09:43.679
+starting worker pid=54508 on localhost:11767 at 09:09:43.680
+starting worker pid=54512 on localhost:11767 at 09:09:43.680
+2023-11-28 09:09:48 INFO::Adding R matrix info for chrom 14 (core 5)
+2023-11-28 09:09:48 INFO::Adding R matrix info for chrom 1 (core 1)
+2023-11-28 09:09:48 INFO::Adding R matrix info for chrom 6 (core 3)
+2023-11-28 09:09:48 INFO::Adding R matrix info for chrom 3 (core 2)
+2023-11-28 09:09:48 INFO::Adding R matrix info for chrom 10 (core 4)
+2023-11-28 09:12:36 INFO::Adding R matrix info for chrom 15 (core 5)
+2023-11-28 09:18:22 INFO::Adding R matrix info for chrom 7 (core 3)
+2023-11-28 09:19:30 INFO::Adding R matrix info for chrom 4 (core 2)
+2023-11-28 09:20:25 INFO::Adding R matrix info for chrom 16 (core 5)
+2023-11-28 09:22:07 INFO::Adding R matrix info for chrom 11 (core 4)
+2023-11-28 09:28:41 INFO::Adding R matrix info for chrom 17 (core 5)
+2023-11-28 09:33:01 INFO::Adding R matrix info for chrom 2 (core 1)
+2023-11-28 09:35:39 INFO::Adding R matrix info for chrom 8 (core 3)
+2023-11-28 09:37:30 INFO::Adding R matrix info for chrom 12 (core 4)
+2023-11-28 09:40:04 INFO::Adding R matrix info for chrom 18 (core 5)
+2023-11-28 09:41:07 INFO::Adding R matrix info for chrom 5 (core 2)
+2023-11-28 09:47:31 INFO::Adding R matrix info for chrom 19 (core 5)
+2023-11-28 09:52:15 INFO::Adding R matrix info for chrom 13 (core 4)
+2023-11-28 09:52:25 INFO::Adding R matrix info for chrom 9 (core 3)
+2023-11-28 09:59:25 INFO::Adding R matrix info for chrom 20 (core 5)
+2023-11-28 09:59:43 INFO::Adding R matrix info for chrom 3 (core 1)
+2023-11-28 10:00:31 INFO::Adding R matrix info for chrom 6 (core 2)
+2023-11-28 10:00:58 INFO::Adding R matrix info for chrom 14 (core 4)
+2023-11-28 10:06:35 INFO::Adding R matrix info for chrom 10 (core 3)
+2023-11-28 10:07:43 INFO::Adding R matrix info for chrom 21 (core 5)
+2023-11-28 10:10:58 INFO::Adding R matrix info for chrom 22 (core 5)
+2023-11-28 10:15:43 INFO::Run susie for all regions.
+2023-11-28 10:15:44 INFO::run iteration 1
+starting worker pid=3374 on localhost:11767 at 10:15:45.461
+starting worker pid=3373 on localhost:11767 at 10:15:45.461
+starting worker pid=3376 on localhost:11767 at 10:15:45.461
+starting worker pid=3375 on localhost:11767 at 10:15:45.462
+starting worker pid=3372 on localhost:11767 at 10:15:45.462
+2023-11-28 10:34:26 INFO::No. LD regions: 1700
+2023-11-28 10:34:38 INFO::No. regions with at least one SNP/gene for chr1: 131
+2023-11-28 10:34:38 INFO::No. regions with at least one SNP/gene for chr1 after merging: 131
+2023-11-28 10:34:47 INFO::No. regions with at least one SNP/gene for chr2: 144
+2023-11-28 10:34:47 INFO::No. regions with at least one SNP/gene for chr2 after merging: 144
+2023-11-28 10:34:56 INFO::No. regions with at least one SNP/gene for chr3: 122
+2023-11-28 10:34:56 INFO::No. regions with at least one SNP/gene for chr3 after merging: 122
+2023-11-28 10:35:04 INFO::No. regions with at least one SNP/gene for chr4: 122
+2023-11-28 10:35:04 INFO::No. regions with at least one SNP/gene for chr4 after merging: 122
+2023-11-28 10:35:10 INFO::No. regions with at least one SNP/gene for chr5: 110
+2023-11-28 10:35:10 INFO::No. regions with at least one SNP/gene for chr5 after merging: 110
+2023-11-28 10:35:18 INFO::No. regions with at least one SNP/gene for chr6: 112
+2023-11-28 10:35:18 INFO::No. regions with at least one SNP/gene for chr6 after merging: 112
+2023-11-28 10:35:25 INFO::No. regions with at least one SNP/gene for chr7: 99
+2023-11-28 10:35:25 INFO::No. regions with at least one SNP/gene for chr7 after merging: 99
+2023-11-28 10:35:33 INFO::No. regions with at least one SNP/gene for chr8: 94
+2023-11-28 10:35:33 INFO::No. regions with at least one SNP/gene for chr8 after merging: 94
+2023-11-28 10:35:36 INFO::No. regions with at least one SNP/gene for chr9: 74
+2023-11-28 10:35:36 INFO::No. regions with at least one SNP/gene for chr9 after merging: 74
+2023-11-28 10:35:42 INFO::No. regions with at least one SNP/gene for chr10: 85
+2023-11-28 10:35:42 INFO::No. regions with at least one SNP/gene for chr10 after merging: 85
+2023-11-28 10:35:46 INFO::No. regions with at least one SNP/gene for chr11: 84
+2023-11-28 10:35:46 INFO::No. regions with at least one SNP/gene for chr11 after merging: 84
+2023-11-28 10:35:51 INFO::No. regions with at least one SNP/gene for chr12: 82
+2023-11-28 10:35:51 INFO::No. regions with at least one SNP/gene for chr12 after merging: 82
+2023-11-28 10:35:53 INFO::No. regions with at least one SNP/gene for chr13: 62
+2023-11-28 10:35:53 INFO::No. regions with at least one SNP/gene for chr13 after merging: 62
+2023-11-28 10:35:56 INFO::No. regions with at least one SNP/gene for chr14: 56
+2023-11-28 10:35:56 INFO::No. regions with at least one SNP/gene for chr14 after merging: 56
+2023-11-28 10:35:59 INFO::No. regions with at least one SNP/gene for chr15: 50
+2023-11-28 10:35:59 INFO::No. regions with at least one SNP/gene for chr15 after merging: 50
+2023-11-28 10:36:02 INFO::No. regions with at least one SNP/gene for chr16: 54
+2023-11-28 10:36:02 INFO::No. regions with at least one SNP/gene for chr16 after merging: 54
+2023-11-28 10:36:05 INFO::No. regions with at least one SNP/gene for chr17: 47
+2023-11-28 10:36:05 INFO::No. regions with at least one SNP/gene for chr17 after merging: 47
+2023-11-28 10:36:07 INFO::No. regions with at least one SNP/gene for chr18: 47
+2023-11-28 10:36:07 INFO::No. regions with at least one SNP/gene for chr18 after merging: 47
+2023-11-28 10:36:09 INFO::No. regions with at least one SNP/gene for chr19: 39
+2023-11-28 10:36:09 INFO::No. regions with at least one SNP/gene for chr19 after merging: 39
+2023-11-28 10:36:11 INFO::No. regions with at least one SNP/gene for chr20: 38
+2023-11-28 10:36:11 INFO::No. regions with at least one SNP/gene for chr20 after merging: 38
+2023-11-28 10:36:13 INFO::No. regions with at least one SNP/gene for chr21: 24
+2023-11-28 10:36:13 INFO::No. regions with at least one SNP/gene for chr21 after merging: 24
+2023-11-28 10:36:14 INFO::No. regions with at least one SNP/gene for chr22: 24
+2023-11-28 10:36:14 INFO::No. regions with at least one SNP/gene for chr22 after merging: 24
+2023-11-28 10:36:14 INFO::Trim regions with SNPs more than 20000
+2023-11-28 10:36:14 INFO::Adding R matrix info, as genotype is not given
+starting worker pid=5212 on localhost:11767 at 10:36:17.327
+starting worker pid=5210 on localhost:11767 at 10:36:17.327
+starting worker pid=5208 on localhost:11767 at 10:36:17.328
+starting worker pid=5209 on localhost:11767 at 10:36:17.328
+starting worker pid=5211 on localhost:11767 at 10:36:17.328
+2023-11-28 10:37:08 INFO::Adding R matrix info for chrom 14 (core 5)
+2023-11-28 10:37:08 INFO::Adding R matrix info for chrom 10 (core 4)
+2023-11-28 10:37:08 INFO::Adding R matrix info for chrom 6 (core 3)
+2023-11-28 10:37:08 INFO::Adding R matrix info for chrom 1 (core 1)
+2023-11-28 10:37:08 INFO::Adding R matrix info for chrom 3 (core 2)
+2023-11-28 10:40:30 INFO::Adding R matrix info for chrom 15 (core 5)
+2023-11-28 10:47:25 INFO::Adding R matrix info for chrom 7 (core 3)
+2023-11-28 10:48:56 INFO::Adding R matrix info for chrom 4 (core 2)
+2023-11-28 10:49:21 INFO::Adding R matrix info for chrom 16 (core 5)
+2023-11-28 10:51:39 INFO::Adding R matrix info for chrom 11 (core 4)
+2023-11-28 10:58:42 INFO::Adding R matrix info for chrom 17 (core 5)
+2023-11-28 11:05:04 INFO::Adding R matrix info for chrom 2 (core 1)
+2023-11-28 11:07:59 INFO::Adding R matrix info for chrom 8 (core 3)
+2023-11-28 11:08:52 INFO::Adding R matrix info for chrom 12 (core 4)
+2023-11-28 11:11:28 INFO::Adding R matrix info for chrom 18 (core 5)

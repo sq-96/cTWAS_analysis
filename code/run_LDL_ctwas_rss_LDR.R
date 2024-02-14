@@ -26,12 +26,10 @@ z_snp_outfile <- paste0(outputdir, "/", z_snp_stem, ".RDS")
 if (file.exists(z_snp_outfile)){
   z_snp <- readRDS(z_snp_outfile)
 } else {
-  z_snp <- fread(args[1],fill=TRUE)
-  z_snp <- na.omit(z_snp)
-  z_snp$SNP <- sapply(z_snp$rs, function(x){unlist(strsplit(x, split="[:]"))[1]})
-  z_snp$Z <- z_snp$beta/z_snp$se
-  z_snp$SS <- 966
-  z_snp <- z_snp[,c("SNP", "allele1", "allele0", "Z", "SS")]
+  z_snp <- VariantAnnotation::readVcf(args[1])
+  z_snp <- as.data.frame(gwasvcf::vcf_to_tibble(z_snp))
+  z_snp$Z <- z_snp$ES/z_snp$SE
+  z_snp <- z_snp[,c("rsid", "ALT", "REF", "Z", "SS")]
   colnames(z_snp) <- c("id", "A1", "A2", "z", "ss")
   z_snp <- z_snp[!(z_snp$id %in% z_snp$id[duplicated(z_snp$id)]),] #drop multiallelic variants (id not unique)
   saveRDS(z_snp, file=z_snp_outfile)
@@ -53,7 +51,7 @@ if (file.exists(paste0(outputdir, "/", outname, "_z_snp.Rd"))){
                                    outputdir=outputdir,
                                    outname=outname,
                                    harmonize_z=T, 
-                                   strand_ambig_action_z="recover")
+                                   strand_ambig_action_z="drop")
   z_snp <- res$z_snp
   save(z_snp, file = paste0(outputdir, "/", outname, "_z_snp.Rd"))
   rm(res)
@@ -61,7 +59,7 @@ if (file.exists(paste0(outputdir, "/", outname, "_z_snp.Rd"))){
 
 #impute gene z-scores for both sets of prediction weights by chromosome
 for (i in 1:22){
-  if (!file.exists(paste0(outputdir, "/", outname, "_chr", i, ".expr.gz"))){
+  if (!file.exists(paste0(outputdir, "/", outname, "_chr", i, ".exprqc.Rd"))){
     res <- impute_expr_z(z_snp = z_snp,
                          weight = weight,
                          ld_R_dir = ld_R_dir,
@@ -70,8 +68,9 @@ for (i in 1:22){
                          harmonize_z = F,
                          harmonize_wgt = T,
                          strand_ambig_action_wgt="drop",
-                         ncore=10, 
-                         chrom=i)
+                         ncore=5, 
+                         chrom=i,
+                         scale_by_ld_variance=T)
   }
 }
 
@@ -84,7 +83,7 @@ for (i in 1:22){
 }
 z_gene <- do.call(rbind, z_gene)
 rownames(z_gene) <- NULL
-save(z_gene, file = paste0(outputdir, outname, "_z_gene.Rd"))
+save(z_gene, file = paste0(outputdir, "/", outname, "_z_gene.Rd"))
 rm(qclist, wgtlist, z_gene_chr)
 
 #run ctwas_rss parameter estimation
@@ -99,7 +98,7 @@ if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
     ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, 
               ld_regions = ld_regions, ld_regions_version = ld_regions_version, 
               thin = 0.1, max_snp_region = max_snp_region, outputdir = outputdir, 
-              outname = outname, ncore = 10, ncore.rerun = 1, prob_single = prob_single,
+              outname = outname, ncore = 5, ncore.rerun = 1, prob_single = prob_single,
               merge=F, fine_map=T,
               group_prior = group_prior_rec, 
               group_prior_var = group_prior_var_rec, 
@@ -112,7 +111,7 @@ if (file.exists(paste0(outputdir, "/", outname, ".s2.susieIrssres.Rd"))){
   ctwas_rss(z_gene, z_snp, ld_exprfs, ld_pgenfs = NULL, ld_R_dir = ld_R_dir, 
             ld_regions = ld_regions, ld_regions_version = ld_regions_version, thin = 0.1, 
             max_snp_region = max_snp_region, outputdir = outputdir, outname = outname, 
-            ncore = 10, ncore.rerun = 1, prob_single = prob_single,
+            ncore = 5, ncore.rerun = 1, prob_single = prob_single,
             merge=F, 
             fine_map=F,
             ncore_LDR=5)

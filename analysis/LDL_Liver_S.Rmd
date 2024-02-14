@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 params:
   analysis_id: "LDL_Liver"
-  trait_id: "LDL_S"
+  trait_id: "LDL_A"
   weight: "Liver"
 ---
 
@@ -63,7 +63,7 @@ ctwas_res <- data.table::fread(paste0(results_dir, "/", analysis_id, "_ctwas.sus
 ctwas_res$region_tag <- paste(ctwas_res$region_tag1, ctwas_res$region_tag2, sep="_")
 
 #load z scores for SNPs and collect sample size
-load(paste0(results_dir, "/", analysis_id, "_expr_z_snp.Rd"))
+load(paste0(results_dir, "/", analysis_id, "_ctwas_z_snp.Rd"))
 
 sample_size <- z_snp$ss
 sample_size <- as.numeric(names(which.max(table(sample_size))))

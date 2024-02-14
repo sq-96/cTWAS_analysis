@@ -1,0 +1,90 @@
+---
+title: "index region"
+output: html_document
+date: '2024-02-14'
+---
+
+```{r}
+library(ctwas)
+library(data.table)
+```
+
+```{r eval=FALSE}
+index_regions <- function(regionfile,
+                          exprvarfs,
+                          pvarfs = NULL,
+                          ld_Rfs = NULL,
+                          select = NULL,
+                          thin = 1,
+                          maxSNP = Inf,
+                          minvar = 1,
+                          merge = T,
+                          outname = NULL,
+                          outputdir = getwd(),
+                          ncore = 1,
+                          reuse_R_gene = F)
+```
+
+
+```{r}
+outname <- "ukb-s80.45-3_uncorr_simu1-1_config1_LDR"
+outputdir <- "/project2/xinhe/shengqian/cTWAS/cTWAS_simulation/simulation_uncorrelated_ten_tissues_nomerge/"
+exprvarfs <- paste0(outputdir, "/", outname, "_chr", 1:22, ".exprvar")
+ld_R_dir <- "/project2/mstephens/wcrouse/UKB_LDR_0.1"
+ld_regions = "EUR"
+ld_regions_version = "b38"
+regionfile <- system.file("extdata", "ldetect",
+                          paste0(ld_regions, "." , ld_regions_version, ".bed"), package="ctwas")
+merge = F
+ncore = 1
+thin = 0.1
+minvar = 2
+maxSNP = Inf
+reuse_R_gene = F
+ld_Rfs <- ctwas:::write_ld_Rf(ld_R_dir, outname = outname, outputdir = outputdir)
+```
+
+### Use exprvarfs to load weight matrix
+```{r}
+#load all weights info
+wgtall <- lapply(exprvarfs, function(x){load(paste0(strsplit(x, ".exprvar")[[1]], ".exprqc.Rd")); wgtlist})
+wgtlistall <- do.call(c, wgtall)
+names(wgtlistall) <- do.call(c, lapply(wgtall, names))
+rm(wgtall)
+head(wgtlistall)
+```
+
+### Use exprvarfs to load imputed gene information
+```{r}
+geneinfo <- ctwas:::read_exprvar(exprvarf)
+head(geneinfo)
+```
+
+
+### Use ld_Rfs to load SNP information in LD reference in one chromosome
+```{r}
+b=1
+ld_Rf <- ld_Rfs[b]
+print(ld_Rf)
+snpinfo <- ctwas:::read_ld_Rvar(ld_Rf)
+head(snpinfo)
+```
+### Use ld_Rf to load LD blocks information in one chromosome
+```{r}
+ld_Rinfo <- as.data.frame(data.table::fread(ld_Rf, header = T))
+head(ld_Rinfo)
+```
+
+### Load LD matrix for a block
+```{r}
+regRDS <- ld_Rinfo[1, "RDS_file"]
+R_snp <- lapply(regRDS, readRDS)
+R_snp <- unname(R_snp[[1]])
+R_snp[1:5,1:5]
+```
+
+### Load SNP information for a block
+```{r}
+R_snp_anno <- as.data.frame(do.call(rbind, lapply(regRDS, ctwas:::read_ld_Rvar_RDS)))
+head(R_snp_anno)
+```

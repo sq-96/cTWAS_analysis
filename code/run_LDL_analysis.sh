@@ -1,14 +1,14 @@
 #!/bin/bash
 
-for WEIGHT in Liver
+for WEIGHT in Liver_oldmergeoff
 do 
 	TRAIT_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz"
 	LD_DIR="/project2/mstephens/wcrouse/UKB_LDR_0.1"
-	WEIGHT_FILE="/project2/compbio/predictdb/mashr_models/mashr_"$WEIGHT".db"
+	WEIGHT_FILE="/project2/compbio/predictdb/mashr_models/mashr_Liver.db"
 	CONFIG_FILE="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"
-	OUTNAME_E="LDL_"$WEIGHT"_expr"
-	OUTNAME="LDL_"$WEIGHT"_ctwas"
-	OUTDIR="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL/"$WEIGHT
+	OUTNAME_E="LDL_Liver_expr"
+	OUTNAME="LDL_Liver_ctwas"
+	OUTDIR="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_merge/"$WEIGHT
 	job_name="LDL_"$WEIGHT
 	job_out="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/LDL_out/"$job_name".out"
 	job_err="/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/LDL_out/"$job_name".err"

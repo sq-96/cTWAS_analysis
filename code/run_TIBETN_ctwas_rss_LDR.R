@@ -53,7 +53,7 @@ if (file.exists(paste0(outputdir, "/", outname, "_z_snp.Rd"))){
                                    outputdir=outputdir,
                                    outname=outname,
                                    harmonize_z=T, 
-                                   strand_ambig_action_z="recover")
+                                   strand_ambig_action_z="drop")
   z_snp <- res$z_snp
   save(z_snp, file = paste0(outputdir, "/", outname, "_z_snp.Rd"))
   rm(res)

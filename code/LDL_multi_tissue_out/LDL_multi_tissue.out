@@ -1,0 +1,197 @@
+[1] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/UKBB/ukb-d-30780_irnt.vcf.gz"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+[2] "/project2/mstephens/wcrouse/UKB_LDR_0.1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+[3] "/project2/compbio/predictdb/mashr_models/mashr_Liver.db;/project2/compbio/predictdb/mashr_models/mashr_Adipose_Subcutaneous.db;/project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db;/project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db;/project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db;/project2/compbio/predictdb/mashr_models/mashr_Lung.db;/project2/compbio/predictdb/mashr_models/mashr_Artery_Tibial.db;/project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db;/project2/compbio/predictdb/mashr_models/mashr_Stomach.db;/project2/compbio/predictdb/mashr_models/mashr_Pancreas.db"
+[4] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/code/ctwas_config_b38.R"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+[5] "LDL_Liver_expr"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+[6] "LDL_Liver_ctwas"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+[7] "/project2/xinhe/shengqian/cTWAS/cTWAS_analysis/data/LDL_multi_tissue/"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+2023-12-01 19:09:29 INFO::Reading weights for chromosome 1
+2023-12-01 19:09:33 INFO::Number of genes with weights provided: 139249
+2023-12-01 19:09:33 INFO::Collecting gene weight information ...
+2023-12-01 19:09:33 INFO::Flipping weights to match LD reference
+starting worker pid=34505 on localhost:11843 at 19:09:33.727
+starting worker pid=34507 on localhost:11843 at 19:09:33.727
+starting worker pid=34509 on localhost:11843 at 19:09:33.727
+starting worker pid=34506 on localhost:11843 at 19:09:33.728
+starting worker pid=34508 on localhost:11843 at 19:09:33.744
+2023-12-01 19:11:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 5)
+2023-12-01 19:11:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 2)
+2023-12-01 19:11:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Liver.db (core 1)
+2023-12-01 19:11:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 3)
+2023-12-01 19:11:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
+2023-12-01 19:11:08 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Stomach.db (core 5)
+2023-12-01 19:11:13 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Artery_Tibial.db (core 4)
+2023-12-01 19:11:14 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db (core 3)
+2023-12-01 19:16:45 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Subcutaneous.db (core 1)
+2023-12-01 19:18:15 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 2)
+2023-12-01 19:18:19 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Pancreas.db (core 5)
+2023-12-01 19:18:20 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
+2023-12-01 19:20:21 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 4)
+2023-12-01 19:24:25 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 1)
+2023-12-01 19:27:02 INFO::Start gene z score imputation ...
+2023-12-01 19:27:02 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=36175 on localhost:11843 at 19:27:07.133
+starting worker pid=36174 on localhost:11843 at 19:27:07.134
+starting worker pid=36171 on localhost:11843 at 19:27:07.143
+starting worker pid=36173 on localhost:11843 at 19:27:07.156
+starting worker pid=36172 on localhost:11843 at 19:27:07.157
+2023-12-01 19:40:27 INFO::Imputation done, writing results to output...
+2023-12-01 19:40:28 INFO::Imputation done: number of genes with imputed expression: 10855 for chr 1
+2023-12-01 19:40:36 INFO::Reading weights for chromosome 2
+2023-12-01 19:40:37 INFO::Number of genes with weights provided: 139249
+2023-12-01 19:40:37 INFO::Collecting gene weight information ...
+2023-12-01 19:40:37 INFO::Flipping weights to match LD reference
+starting worker pid=37416 on localhost:11843 at 19:40:37.604
+starting worker pid=37419 on localhost:11843 at 19:40:37.604
+starting worker pid=37418 on localhost:11843 at 19:40:37.606
+starting worker pid=37417 on localhost:11843 at 19:40:37.606
+starting worker pid=37420 on localhost:11843 at 19:40:37.608
+2023-12-01 19:41:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 5)
+2023-12-01 19:41:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 2)
+2023-12-01 19:41:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Liver.db (core 1)
+2023-12-01 19:41:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
+2023-12-01 19:41:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 3)
+2023-12-01 19:42:04 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Stomach.db (core 5)
+2023-12-01 19:42:05 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Artery_Tibial.db (core 4)
+2023-12-01 19:42:09 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db (core 3)
+2023-12-01 19:46:16 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Subcutaneous.db (core 1)
+2023-12-01 19:47:05 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 2)
+2023-12-01 19:47:12 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
+2023-12-01 19:47:36 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Pancreas.db (core 5)
+2023-12-01 19:49:01 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 4)
+2023-12-01 19:52:32 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 1)
+2023-12-01 19:54:14 INFO::Start gene z score imputation ...
+2023-12-01 19:54:14 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=38658 on localhost:11843 at 19:54:18.318
+starting worker pid=38655 on localhost:11843 at 19:54:18.322
+starting worker pid=38654 on localhost:11843 at 19:54:18.323
+starting worker pid=38657 on localhost:11843 at 19:54:18.346
+starting worker pid=38656 on localhost:11843 at 19:54:18.348
+2023-12-01 20:05:17 INFO::Imputation done, writing results to output...
+2023-12-01 20:05:18 INFO::Imputation done: number of genes with imputed expression: 7650 for chr 2
+2023-12-01 20:05:26 INFO::Reading weights for chromosome 3
+2023-12-01 20:05:27 INFO::Number of genes with weights provided: 139249
+2023-12-01 20:05:27 INFO::Collecting gene weight information ...
+2023-12-01 20:05:27 INFO::Flipping weights to match LD reference
+starting worker pid=39676 on localhost:11843 at 20:05:28.256
+starting worker pid=39677 on localhost:11843 at 20:05:28.259
+starting worker pid=39675 on localhost:11843 at 20:05:28.261
+starting worker pid=39674 on localhost:11843 at 20:05:28.265
+starting worker pid=39678 on localhost:11843 at 20:05:28.266
+2023-12-01 20:06:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 5)
+2023-12-01 20:06:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 2)
+2023-12-01 20:06:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 3)
+2023-12-01 20:06:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Liver.db (core 1)
+2023-12-01 20:06:59 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
+2023-12-01 20:07:03 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Artery_Tibial.db (core 4)
+2023-12-01 20:07:03 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Stomach.db (core 5)
+2023-12-01 20:07:10 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db (core 3)
+2023-12-01 20:10:42 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Subcutaneous.db (core 1)
+2023-12-01 20:10:42 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Pancreas.db (core 5)
+2023-12-01 20:11:18 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
+2023-12-01 20:11:18 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 2)
+2023-12-01 20:12:19 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 4)
+2023-12-01 20:15:30 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 1)
+2023-12-01 20:16:17 INFO::Start gene z score imputation ...
+2023-12-01 20:16:17 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=40689 on localhost:11843 at 20:16:19.973
+starting worker pid=40690 on localhost:11843 at 20:16:19.998
+starting worker pid=40688 on localhost:11843 at 20:16:20.011
+starting worker pid=40686 on localhost:11843 at 20:16:20.016
+starting worker pid=40687 on localhost:11843 at 20:16:20.036
+2023-12-01 20:25:10 INFO::Imputation done, writing results to output...
+2023-12-01 20:25:10 INFO::Imputation done: number of genes with imputed expression: 6291 for chr 3
+2023-12-01 20:25:18 INFO::Reading weights for chromosome 4
+2023-12-01 20:25:19 INFO::Number of genes with weights provided: 139249
+2023-12-01 20:25:19 INFO::Collecting gene weight information ...
+2023-12-01 20:25:19 INFO::Flipping weights to match LD reference
+starting worker pid=41499 on localhost:11843 at 20:25:19.827
+starting worker pid=41497 on localhost:11843 at 20:25:19.844
+starting worker pid=41500 on localhost:11843 at 20:25:19.844
+starting worker pid=41498 on localhost:11843 at 20:25:19.847
+starting worker pid=41496 on localhost:11843 at 20:25:19.863
+2023-12-01 20:26:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 5)
+2023-12-01 20:26:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Liver.db (core 1)
+2023-12-01 20:26:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 3)
+2023-12-01 20:26:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
+2023-12-01 20:26:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 2)
+2023-12-01 20:26:52 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Stomach.db (core 5)
+2023-12-01 20:26:54 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Artery_Tibial.db (core 4)
+2023-12-01 20:26:56 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db (core 3)
+2023-12-01 20:29:31 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Subcutaneous.db (core 1)
+2023-12-01 20:29:36 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Pancreas.db (core 5)
+2023-12-01 20:29:49 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
+2023-12-01 20:29:49 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 2)
+2023-12-01 20:30:54 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 4)
+2023-12-01 20:33:12 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 1)
+2023-12-01 20:33:55 INFO::Start gene z score imputation ...
+2023-12-01 20:33:55 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=42327 on localhost:11843 at 20:33:57.048
+starting worker pid=42328 on localhost:11843 at 20:33:57.048
+starting worker pid=42331 on localhost:11843 at 20:33:57.051
+starting worker pid=42330 on localhost:11843 at 20:33:57.052
+starting worker pid=42329 on localhost:11843 at 20:33:57.061
+2023-12-01 20:41:23 INFO::Imputation done, writing results to output...
+2023-12-01 20:41:23 INFO::Imputation done: number of genes with imputed expression: 4232 for chr 4
+2023-12-01 20:41:31 INFO::Reading weights for chromosome 5
+2023-12-01 20:41:32 INFO::Number of genes with weights provided: 139249
+2023-12-01 20:41:32 INFO::Collecting gene weight information ...
+2023-12-01 20:41:32 INFO::Flipping weights to match LD reference
+starting worker pid=43051 on localhost:11843 at 20:41:33.334
+starting worker pid=43055 on localhost:11843 at 20:41:33.341
+starting worker pid=43052 on localhost:11843 at 20:41:33.343
+starting worker pid=43054 on localhost:11843 at 20:41:33.344
+starting worker pid=43053 on localhost:11843 at 20:41:33.356
+2023-12-01 20:42:48 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 5)
+2023-12-01 20:42:48 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Liver.db (core 1)
+2023-12-01 20:42:48 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 3)
+2023-12-01 20:42:48 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 2)
+2023-12-01 20:42:48 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
+2023-12-01 20:42:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Stomach.db (core 5)
+2023-12-01 20:42:54 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db (core 3)
+2023-12-01 20:42:54 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Artery_Tibial.db (core 4)
+2023-12-01 20:45:53 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Subcutaneous.db (core 1)
+2023-12-01 20:46:05 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Pancreas.db (core 5)
+2023-12-01 20:46:17 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 2)
+2023-12-01 20:46:18 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
+2023-12-01 20:47:26 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 4)
+2023-12-01 20:50:01 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 1)
+2023-12-01 20:50:53 INFO::Start gene z score imputation ...
+2023-12-01 20:50:53 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=43925 on localhost:11843 at 20:50:55.650
+starting worker pid=43928 on localhost:11843 at 20:50:55.650
+starting worker pid=43924 on localhost:11843 at 20:50:55.652
+starting worker pid=43927 on localhost:11843 at 20:50:55.669
+starting worker pid=43926 on localhost:11843 at 20:50:55.671
+2023-12-01 20:59:13 INFO::Imputation done, writing results to output...
+2023-12-01 20:59:14 INFO::Imputation done: number of genes with imputed expression: 5089 for chr 5
+2023-12-01 20:59:22 INFO::Reading weights for chromosome 6
+2023-12-01 20:59:22 INFO::Number of genes with weights provided: 139249
+2023-12-01 20:59:22 INFO::Collecting gene weight information ...
+2023-12-01 20:59:22 INFO::Flipping weights to match LD reference
+starting worker pid=44817 on localhost:11843 at 20:59:22.932
+starting worker pid=44815 on localhost:11843 at 20:59:22.933
+starting worker pid=44818 on localhost:11843 at 20:59:22.934
+starting worker pid=44816 on localhost:11843 at 20:59:22.952
+starting worker pid=44819 on localhost:11843 at 20:59:22.957
+2023-12-01 21:00:46 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 5)
+2023-12-01 21:00:46 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Liver.db (core 1)
+2023-12-01 21:00:46 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 2)
+2023-12-01 21:00:46 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 3)
+2023-12-01 21:00:46 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 4)
+2023-12-01 21:00:47 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Stomach.db (core 5)
+2023-12-01 21:00:52 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Artery_Tibial.db (core 4)
+2023-12-01 21:00:56 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Whole_Blood.db (core 3)
+2023-12-01 21:04:50 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Subcutaneous.db (core 1)
+2023-12-01 21:05:18 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Adipose_Visceral_Omentum.db (core 2)
+2023-12-01 21:05:20 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Pancreas.db (core 5)
+2023-12-01 21:05:51 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Lung.db (core 3)
+2023-12-01 21:06:23 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Heart_Left_Ventricle.db (core 4)
+2023-12-01 21:10:54 INFO::Current weight: /project2/compbio/predictdb/mashr_models/mashr_Brain_Cerebellum.db (core 1)
+2023-12-01 21:11:06 INFO::Start gene z score imputation ...
+2023-12-01 21:11:06 INFO::Using given LD matrices to impute gene z score.
+starting worker pid=45966 on localhost:11843 at 21:11:08.812
+starting worker pid=45967 on localhost:11843 at 21:11:08.812
+starting worker pid=45968 on localhost:11843 at 21:11:08.814
+starting worker pid=45969 on localhost:11843 at 21:11:08.833
+starting worker pid=45965 on localhost:11843 at 21:11:08.835
